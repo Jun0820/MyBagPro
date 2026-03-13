@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bag Pro | あなたのゴルフセッティングが、最高の名刺になる</title>
+    <meta name="description" content="14本のクラブを登録して、あなただけのデジタルゴルフ名刺を作ろう。AIクラブ診断で1本ずつ最適化し、SNSでシェア。完全無料。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#047857',
+                            'green-light': '#10b981',
+                            'green-dark': '#064e3b',
+                            cyan: '#06b6d4',
+                            slate: '#f8fafc',
+                            dark: '#0f172a',
+                            text: '#334155',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'Inter', 'sans-serif'],
+                        eng: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 8px rgba(4,120,87,0.6))' },
+                            '50%': { opacity: .7, filter: 'drop-shadow(0 0 2px rgba(4,120,87,0.2))' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; padding: 0; background-color: #f8fafc; }
+        .glass-panel { background: rgba(255,255,255,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+        .btn-modern { transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .btn-modern::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: rgba(255,255,255,0.1); transform: rotate(45deg); transition: all 0.3s ease; opacity: 0; }
+        .btn-modern:hover::after { left: 100%; opacity: 1; transition: all 0.6s ease; }
+        .btn-modern:hover { transform: translateY(-2px); }
+        .mockup-shadow { box-shadow: 0 25px 50px -12px rgba(15,23,42,0.25); }
+    </style>
+</head>
+<body class="font-sans text-brand-text overflow-x-hidden antialiased">
+
+    <div class="w-full bg-brand-slate">
+        
+        <!-- HEADER -->
+        <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/50 shadow-sm">
+            <div class="container mx-auto px-6 h-16 flex items-center justify-between max-w-6xl">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-brand-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+                    <span class="font-eng font-bold text-xl tracking-tight text-brand-dark">MY <span class="text-brand-green">BAG</span> PRO</span>
+                </div>
+                <nav class="hidden md:flex gap-8 text-sm font-bold text-brand-text/80">
+                    <a href="#features" class="hover:text-brand-green transition-colors no-underline">機能</a>
+                    <a href="#diagnosis" class="hover:text-brand-green transition-colors no-underline">AI診断</a>
+                    <a href="#share" class="hover:text-brand-green transition-colors no-underline">シェア</a>
+                </nav>
+                <a href="/app/#/mypage" class="text-xs font-bold bg-brand-green text-white px-5 py-2.5 rounded-full hover:bg-brand-green-dark transition-colors no-underline tracking-wider shadow-md shadow-brand-green/20">
+                    My Bagをつくる
+                </a>
+            </div>
+        </header>
+
+        <!-- ============================================ -->
+        <!-- 1. HERO — My Bag = ゴルフ名刺 -->
+        <!-- ============================================ -->
+        <section class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-slate to-brand-green-light/10 -z-10"></div>
+            
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    
+                    <!-- Left: Copy & CTA -->
+                    <div class="w-full lg:w-[45%] z-10">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-green/10 border border-brand-green/20 text-brand-green rounded-full text-xs font-bold mb-6 tracking-wider">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
+                            </span>
+                            完全無料・登録不要
+                        </div>
+                        
+                        <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-brand-dark leading-[1.2] mb-6 tracking-tight">
+                            あなたのセッティングが、<br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-brand-cyan">最高の名刺になる。</span>
+                        </h1>
+                        
+                        <p class="text-brand-text/80 text-base md:text-lg mb-10 leading-relaxed font-medium">
+                            ゴルフ仲間に「何使ってるの？」と聞かれたら、My Bagを見せるだけ。<br>
+                            14本のクラブを登録して、あなただけのデジタルゴルフ名刺をつくろう。<br class="hidden md:block">
+                            AI診断で1本ずつ最適化もできます。
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <!-- PRIMARY CTA: My Bag作成 -->
+                            <a href="/app/#/mypage" class="btn-modern bg-brand-green text-white px-8 py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-brand-green/30 no-underline group text-lg">
+                                My Bagをつくる（無料）
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                            <!-- SECONDARY CTA: クラブ診断 -->
+                            <a href="/app/#/diagnosis" class="px-8 py-4 rounded-xl font-bold text-brand-dark bg-white border border-slate-200 text-center hover:bg-slate-50 transition-colors no-underline flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                AIクラブ診断から始める
+                            </a>
+                        </div>
+                        <p class="text-xs text-brand-text/50 mt-4 font-medium">※ メールアドレス登録なしですぐに始められます</p>
+                    </div>
+
+                    <!-- Right: My Bag UI Mockup -->
+                    <div class="w-full lg:w-[55%] relative">
+                        <div class="bg-brand-dark rounded-3xl p-5 md:p-6 mockup-shadow border border-white/10 relative overflow-hidden">
+                            <!-- Window Bar -->
+                            <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+                                <div class="flex gap-1.5">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="flex-1 text-center text-xs text-slate-500 font-eng">mybagpro.jp</div>
+                            </div>
+                            
+                            <!-- My Bag Card Preview -->
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="font-eng font-bold text-lg text-white">TOMMY'S <span class="text-brand-green">BAG</span> <span class="text-xs text-slate-500 ml-1">2026.03</span></div>
+                                <div class="flex items-center gap-2">
+                                    <div class="bg-[#1DA1F2] text-white text-[10px] px-2.5 py-1 rounded-full flex items-center gap-1 font-bold">
+                                        <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                                        Share
+                                    </div>
+                                    <div class="bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F56040] text-white text-[10px] px-2.5 py-1 rounded-full font-bold">IG</div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-2.5 bg-white/5 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
+                                    <div class="flex items-center gap-3"><span class="w-7 text-center text-[10px] font-bold text-emerald-400 bg-emerald-400/10 rounded py-0.5">1W</span> <span class="font-bold text-xs text-white">TaylorMade Qi10 LS</span></div>
+                                    <span class="text-[10px] font-mono text-emerald-400">9.0° / Ventus TR 6S</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 bg-white/5 rounded-lg border border-white/5">
+                                    <div class="flex items-center gap-3"><span class="w-7 text-center text-[10px] font-bold text-emerald-400 bg-emerald-400/10 rounded py-0.5">3W</span> <span class="font-bold text-xs text-white">PING G430 MAX</span></div>
+                                    <span class="text-[10px] font-mono text-emerald-400">15° / Tour 173-65S</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 bg-white/5 rounded-lg border border-white/5">
+                                    <div class="flex items-center gap-3"><span class="w-7 text-center text-[10px] font-bold text-blue-400 bg-blue-400/10 rounded py-0.5">5I</span> <span class="font-bold text-xs text-white">Titleist T200</span></div>
+                                    <span class="text-[10px] font-mono text-blue-400">MODUS³ 105S</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 bg-white/5 rounded-lg border border-white/5">
+                                    <div class="flex items-center gap-3"><span class="w-7 text-center text-[10px] font-bold text-indigo-400 bg-indigo-400/10 rounded py-0.5">56°</span> <span class="font-bold text-xs text-white">Vokey SM10</span></div>
+                                    <span class="text-[10px] font-mono text-indigo-400">DG S200 / 14F</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 bg-white/5 rounded-lg border border-white/5">
+                                    <div class="flex items-center gap-3"><span class="w-7 text-center text-[10px] font-bold text-slate-400 bg-slate-400/10 rounded py-0.5">PT</span> <span class="font-bold text-xs text-white">Scotty Cameron Phantom X</span></div>
+                                    <span class="text-[10px] font-mono text-slate-400">34inch</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 bg-white/5 rounded-lg border border-white/5">
+                                    <div class="flex items-center gap-3"><span class="w-7 text-center text-[10px] font-bold text-amber-400 bg-amber-400/10 rounded py-0.5">⚪</span> <span class="font-bold text-xs text-white">Titleist Pro V1x</span></div>
+                                    <span class="text-[10px] font-mono text-amber-400">2025モデル</span>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Stats -->
+                            <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <div class="text-center">
+                                        <div class="text-[9px] text-slate-500 font-eng">CLUBS</div>
+                                        <div class="text-white font-eng font-bold text-sm">12/14</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-[9px] text-slate-500 font-eng">HEAD SPEED</div>
+                                        <div class="text-white font-eng font-bold text-sm">42 m/s</div>
+                                    </div>
+                                </div>
+                                <div class="bg-brand-green/20 text-brand-green text-[10px] font-bold px-3 py-1.5 rounded-full border border-brand-green/30">
+                                    ✓ セッティング完成度 86%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Social Proof -->
+                        <div class="absolute -bottom-4 -left-4 glass-panel px-4 py-3 rounded-xl shadow-xl animate-slide-up flex items-center gap-3" style="animation-delay: 0.5s;">
+                            <div class="text-2xl">🏌️</div>
+                            <div>
+                                <div class="text-[10px] text-brand-text/60 font-bold">Xでシェアしたら</div>
+                                <div class="font-bold text-brand-dark text-sm">「こだわり見える！」と反響</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 2. WHY MY BAG — なぜセッティングを登録するのか -->
+        <!-- ============================================ -->
+        <section id="features" class="py-24 bg-white border-y border-slate-100">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-green font-eng font-bold tracking-widest text-sm uppercase mb-2 block">WHY MY BAG?</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-6 tracking-tight">
+                        「何使ってるの？」に、<br>スマートに答えよう。
+                    </h2>
+                    <p class="text-brand-text/70 text-base leading-relaxed font-medium">
+                        ゴルフ場での会話でセッティングを聞かれたら、My Bagを見せるだけ。<br>
+                        あなたの14本のこだわりが、一目で伝わります。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1: Register -->
+                    <div class="bg-brand-slate p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-green/10 text-brand-green flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">セッティングを登録</h3>
+                        <p class="text-sm text-brand-text/70 leading-relaxed">ドライバーからパターまで、ブランド・モデル・シャフト・ロフトを登録。ボールやヘッドスピードも記録できます。</p>
+                    </div>
+                    
+                    <!-- Feature 2: Share -->
+                    <div class="bg-gradient-to-br from-brand-cyan/5 to-brand-green/5 p-8 rounded-2xl border border-brand-cyan/20 hover:shadow-lg transition-all hover:-translate-y-1 relative group">
+                        <div class="absolute top-0 right-0 bg-brand-cyan text-white text-[10px] font-black px-3 py-1 rounded-bl-lg rounded-tr-2xl tracking-wider">人気機能</div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center mb-6 group-hover:bg-brand-cyan group-hover:text-white transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">SNSでシェア</h3>
+                        <p class="text-sm text-brand-text/70 leading-relaxed">完成したMy BagをX(旧Twitter)やInstagram Storiesに投稿。ゴルフ仲間と「どっちのセッティングが良い？」で盛り上がろう。</p>
+                    </div>
+                    
+                    <!-- Feature 3: Optimize -->
+                    <div class="bg-brand-slate p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-dark/10 text-brand-dark flex items-center justify-center mb-6 group-hover:bg-brand-dark group-hover:text-white transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">AIで1本ずつ最適化</h3>
+                        <p class="text-sm text-brand-text/70 leading-relaxed">「このドライバー、本当に自分に合ってる？」AI診断で各カテゴリのベストモデルを提案。My Bagをアップグレード。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 3. AI DIAGNOSIS — My Bagを充実させるツール -->
+        <!-- ============================================ -->
+        <section id="diagnosis" class="py-24 bg-brand-dark text-white relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+            
+            <div class="container mx-auto px-6 max-w-6xl relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-green font-eng font-bold tracking-widest text-sm uppercase mb-2 block">AI CLUB FITTING</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-white mb-6 tracking-tight">
+                        My Bagの1本を、<br>AIで最適化する。
+                    </h2>
+                    <p class="text-slate-300 text-base leading-relaxed font-medium">
+                        「ドライバーが合ってない気がする」「アイアンを買い替えたい」<br>
+                        そんな時は、AI診断。あなたのスイングDNAに合ったベストモデルを即座に提案します。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors text-center">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="font-bold text-lg mb-2">カテゴリ選択</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">ドライバー、FW、UT、アイアン、ウェッジ、パターの6カテゴリに対応</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-brand-green/20 to-transparent border border-brand-green/30 rounded-2xl p-8 relative text-center">
+                        <div class="absolute top-0 right-0 bg-brand-green text-white text-[10px] font-black px-3 py-1 rounded-bl-lg rounded-tr-xl tracking-wider">CORE</div>
+                        <div class="text-4xl mb-4">🤖</div>
+                        <h3 class="font-bold text-lg mb-2">Gemini AI解析</h3>
+                        <p class="text-sm text-brand-green/80 leading-relaxed">25万以上のモデルデータから適合率・推奨シャフトをレーダーチャート付きで算出</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors text-center">
+                        <div class="text-4xl mb-4">💾</div>
+                        <h3 class="font-bold text-lg mb-2">My Bagに即登録</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">気に入ったクラブをワンタップでMy Bagに追加。最強のセッティングを構築</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/app/#/diagnosis" class="btn-modern inline-flex items-center gap-2 bg-brand-green text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-brand-green/30 no-underline text-lg">
+                        AIクラブ診断をためす
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                    <a href="/app/#/ball-diagnosis" class="inline-flex items-center gap-2 text-slate-300 font-bold py-4 px-8 rounded-full border border-white/20 no-underline hover:bg-white/5 transition-colors">
+                        ⚪ ボール診断もあります
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 4. SNS SHARE — シェアの魅力 -->
+        <!-- ============================================ -->
+        <section id="share" class="py-24 bg-white">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="flex flex-col md:flex-row items-center gap-16">
+                    <!-- Left: Share Preview -->
+                    <div class="w-full md:w-1/2">
+                        <div class="bg-slate-50 rounded-3xl p-6 border border-slate-100 shadow-sm">
+                            <!-- Tweet Preview -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm mb-4">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-white font-bold text-sm">T</div>
+                                    <div>
+                                        <div class="font-bold text-sm text-brand-dark">Tommy @tommy_golf</div>
+                                        <div class="text-[10px] text-slate-400">3分前</div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-brand-dark leading-relaxed mb-3">🏌️ My Bag更新しました！Qi10 LSに替えてから飛距離10yd伸びた。セッティングの流れも良くなった気がする。</p>
+                                <div class="bg-brand-dark/5 rounded-xl p-3 border border-brand-dark/10">
+                                    <div class="text-[10px] font-bold text-brand-green mb-1">🎒 TOMMY'S BAG</div>
+                                    <div class="text-[10px] text-slate-500 space-y-0.5">
+                                        <div>1W: TaylorMade Qi10 LS / 3W: PING G430 / 5I-PW: Titleist T200</div>
+                                        <div>56°: Vokey SM10 / PT: Scotty Cameron / ⚪ Pro V1x</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-6 mt-3 text-xs text-slate-400">
+                                    <span>♡ 24</span>
+                                    <span>🔁 8</span>
+                                    <span>💬 5</span>
+                                </div>
+                            </div>
+                            <!-- Reply -->
+                            <div class="bg-white rounded-2xl p-4 border border-slate-100 ml-8">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-[10px]">K</div>
+                                    <span class="font-bold text-xs text-brand-dark">Kenta</span>
+                                    <span class="text-[10px] text-slate-400">2分前</span>
+                                </div>
+                                <p class="text-xs text-slate-600">めっちゃ良いセッティング！自分もMy Bag作ろ 🔥</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Copy -->
+                    <div class="w-full md:w-1/2">
+                        <span class="text-brand-cyan font-eng font-bold tracking-widest text-sm uppercase mb-2 block">SHARE & CONNECT</span>
+                        <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-6 tracking-tight">
+                            ギア談義が、<br>もっと面白くなる。
+                        </h2>
+                        <p class="text-brand-text/80 text-base leading-relaxed mb-6 font-medium">
+                            「このドライバー良いよ」だけじゃ伝わらない。<br>
+                            セッティング全体を見せれば、あなたのゴルフへのこだわりが一目で伝わります。
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-sm font-medium text-brand-dark">
+                                <span class="w-8 h-8 bg-[#1DA1F2]/10 rounded-full flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4 text-[#1DA1F2]" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                                </span>
+                                X(旧Twitter)にワンタップでシェア
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium text-brand-dark">
+                                <span class="w-8 h-8 bg-gradient-to-br from-[#833AB4]/10 to-[#F56040]/10 rounded-full flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4 text-[#E1306C]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                                </span>
+                                Instagram Storiesにコピペで投稿
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium text-brand-dark">
+                                <span class="w-8 h-8 bg-brand-green/10 rounded-full flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                </span>
+                                画像としてダウンロードも可能
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 5. サポートメーカー -->
+        <!-- ============================================ -->
+        <section class="py-10 border-y border-slate-200 bg-brand-slate">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <p class="text-center text-xs font-bold text-brand-text/40 tracking-widest mb-6">SUPPORTED MANUFACTURERS & DATA</p>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale select-none font-eng font-black text-xl tracking-tighter">
+                    <div>TaylorMade</div>
+                    <div>Callaway</div>
+                    <div>PING</div>
+                    <div>Titleist</div>
+                    <div>DUNLOP</div>
+                    <div>Bridgestone</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 6. BOTTOM CTA -->
+        <!-- ============================================ -->
+        <section class="py-32 bg-brand-dark relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; filter: grayscale(100%); mix-blend-mode: overlay;"></div>
+            
+            <div class="container mx-auto px-6 relative z-10 text-center max-w-3xl">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
+                    あなたのこだわりを、<br>世界に見せよう。
+                </h2>
+                <p class="text-slate-300 mb-10 text-lg">
+                    14本のセッティングを登録して、SNSで共有。<br>
+                    ゴルファー同士のつながりが、ここから始まります。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/app/#/mypage" class="btn-modern inline-flex items-center gap-2 bg-brand-green text-white text-xl font-bold py-5 px-12 rounded-full shadow-[0_0_30px_rgba(4,120,87,0.4)] hover:shadow-[0_0_40px_rgba(4,120,87,0.6)] transition-all no-underline">
+                        My Bagをつくる（無料）
+                    </a>
+                </div>
+                <p class="text-xs text-slate-500 mt-4 font-medium">完全無料・登録不要・すぐに始められます</p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-[#0b1120] text-slate-400 py-12 border-t border-white/10">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-brand-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+                        <span class="font-eng font-bold text-white tracking-tight">MY <span class="text-brand-green">BAG</span> PRO</span>
+                    </div>
+                    <div class="flex gap-6 text-sm font-bold">
+                        <a href="/about/" class="hover:text-white transition-colors no-underline">運営会社</a>
+                        <a href="/terms/" class="hover:text-white transition-colors no-underline">利用規約</a>
+                        <a href="/privacy/" class="hover:text-white transition-colors no-underline">プライバシーポリシー</a>
+                    </div>
+                </div>
+                <div class="mt-8 text-center text-xs text-slate-500 font-eng">© 2026 My Bag Pro. All rights reserved.</div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>

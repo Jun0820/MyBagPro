@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー | My Bag Pro</title>
+    <meta name="description" content="My Bag Proのプライバシーポリシーです。個人情報の取り扱いについて説明しています。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { green: '#047857', 'green-light': '#10b981', dark: '#0f172a', text: '#334155' } },
+                    fontFamily: { sans: ['Noto Sans JP', 'Inter', 'sans-serif'], eng: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; padding: 0; background-color: #f8fafc; }
+        .glass-panel { background: rgba(255,255,255,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body class="font-sans text-brand-text antialiased">
+    <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/50 shadow-sm">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between max-w-4xl">
+            <a href="/" class="flex items-center gap-2 no-underline">
+                <svg class="w-6 h-6 text-brand-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+                <span class="font-eng font-bold text-xl tracking-tight text-brand-dark">MY <span class="text-brand-green">BAG</span> PRO</span>
+            </a>
+            <a href="/" class="text-xs font-bold text-brand-text/60 hover:text-brand-green transition-colors no-underline">← トップに戻る</a>
+        </div>
+    </header>
+
+    <main class="pt-28 pb-20 px-6 max-w-4xl mx-auto">
+        <h1 class="text-3xl font-black text-brand-dark mb-8 tracking-tight">プライバシーポリシー</h1>
+        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-100 space-y-8 text-sm leading-relaxed">
+            <section>
+                <h2 class="text-lg font-bold text-brand-dark mb-3">1. 個人情報の収集</h2>
+                <p>My Bag Pro（以下「当サービス」）は、サービス提供に必要な範囲で、ユーザーの以下の情報を収集することがあります。</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li>メールアドレス（アカウント登録時）</li>
+                    <li>お名前またはニックネーム</li>
+                    <li>ゴルフに関するプレー情報（スコア、ヘッドスピード、使用ギア等）</li>
+                    <li>アクセスログ、Cookie情報</li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="text-lg font-bold text-brand-dark mb-3">2. 利用目的</h2>
+                <p>収集した個人情報は、以下の目的で利用いたします。</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li>AIによるギア診断サービスの提供</li>
+                    <li>ユーザーのセッティング情報の保存・表示</li>
+                    <li>サービスの改善およびアクセス解析</li>
+                    <li>お問い合わせへの対応</li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="text-lg font-bold text-brand-dark mb-3">3. 第三者提供</h2>
+                <p>当サービスは、法令に基づく場合を除き、ユーザーの同意なく個人情報を第三者に提供することはありません。</p>
+            </section>
+            <section>
+                <h2 class="text-lg font-bold text-brand-dark mb-3">4. Cookieの使用</h2>
+                <p>当サービスでは、ユーザー体験の向上やアクセス解析のためにCookieを使用します。ブラウザの設定でCookieを無効にすることができますが、一部の機能が利用できなくなる場合があります。</p>
+            </section>
+            <section>
+                <h2 class="text-lg font-bold text-brand-dark mb-3">5. データの保管</h2>
+                <p>ユーザーのデータは、ブラウザのlocalStorageに保存されます。サーバーへの送信は、AI診断リクエスト時のみ行われます。</p>
+            </section>
+            <section>
+                <h2 class="text-lg font-bold text-brand-dark mb-3">6. お問い合わせ</h2>
+                <p>個人情報の取り扱いに関するお問い合わせは、サイト内のお問い合わせフォームよりご連絡ください。</p>
+            </section>
+            <p class="text-xs text-slate-400 pt-4 border-t border-slate-100">制定日: 2026年3月11日</p>
+        </div>
+    </main>
+
+    <footer class="bg-[#0b1120] text-slate-400 py-8 border-t border-white/10">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <div class="flex justify-center gap-6 text-sm font-bold mb-4">
+                <a href="/terms/" class="hover:text-white transition-colors no-underline">利用規約</a>
+                <a href="/privacy/" class="hover:text-white transition-colors no-underline text-white">プライバシーポリシー</a>
+            </div>
+            <div class="text-xs text-slate-500 font-eng">© 2026 My Bag Pro. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>

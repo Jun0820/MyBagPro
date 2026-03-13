@@ -1,0 +1,97 @@
+/* Premium Dark Theme - "Night Golf" */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-slate-50 text-slate-900 font-sans antialiased;
+        min-height: 100vh;
+        position: relative;
+    }
+}
+
+@layer utilities {
+    .glass-premium {
+        @apply bg-white/80 backdrop-blur-xl border border-white/60;
+        box-shadow: 0 8px 30px rgb(0, 0, 0, 0.04);
+    }
+
+    .glass-dark {
+        @apply bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 shadow-2xl;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+    }
+
+    .card-hover-effect {
+        @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Mobile-friendly Range Slider */
+.range-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    /* Increased touch target */
+    height: 28px;
+    border-radius: 50%;
+    background: #fff;
+    border: 6px solid #16a34a;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.1s;
+}
+
+.range-slider::-webkit-slider-thumb:active {
+    transform: scale(1.1);
+}
+
+/* Glass Utilities */
+.glass-panel {
+    @apply bg-white/90 backdrop-blur-md border border-white/40 shadow-lg;
+}
+
+.glass-card {
+    @apply bg-white/90 backdrop-blur-sm border border-white/50 shadow-sm hover:shadow-md transition-all;
+}
+
+.bg-carbon {
+    background-color: #111;
+    background-image:
+        linear-gradient(27deg, #151515 5px, transparent 5px),
+        linear-gradient(207deg, #151515 5px, transparent 5px),
+        linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+        linear-gradient(90deg, #1b1b1b 10px, transparent 10px);
+    background-size: 20px 20px;
+}

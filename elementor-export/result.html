@@ -1,0 +1,317 @@
+<!-- 
+  My Bag Pro: AI Golf Ball Diagnosis
+  Page 3: Result Screen & Auto-Share
+  Paste this into an Elementor "HTML Widget".
+-->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Noto Sans JP', 'sans-serif'],
+          eng: ['Montserrat', 'sans-serif'],
+        },
+        animation: {
+          'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          'spin-slow': 'spin 1.5s linear infinite',
+        }
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- html2canvas for Image Generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+  html, body { background-color: #0f172a; margin: 0; padding: 0; width: 100%; min-height: 100vh; }
+</style>
+
+<div class="min-h-screen bg-slate-900 text-white font-sans selection:bg-cyan-500/30 overflow-hidden relative">
+  <!-- Dynamic Background Decorations -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-600/20 blur-[120px] rounded-full mix-blend-screen"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-600/20 blur-[120px] rounded-full mix-blend-screen"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col pt-6 pb-24 px-6 md:px-0">
+    
+    <!-- 1. Loading State -->
+    <div id="loading-view" class="flex-1 flex flex-col items-center justify-center transition-opacity duration-500">
+      <div class="relative w-24 h-24 mb-8">
+        <div class="absolute inset-0 border-t-2 border-r-2 border-cyan-400 rounded-full animate-spin"></div>
+        <div class="absolute inset-2 border-t-2 border-l-2 border-emerald-400 rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-8 h-8 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
+        </div>
+      </div>
+      <h2 class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-2">
+        AIがあなたのスイングデータを解析中...
+      </h2>
+      <p class="text-slate-400 text-sm">最適なプロスペックボールを選定しています</p>
+    </div>
+
+    <!-- 2. Result State -->
+    <div id="result-view" class="hidden flex-1 flex-col opacity-0 transition-opacity duration-700">
+      
+      <!-- Result Header -->
+      <div class="text-center mb-4">
+        <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full mb-3">
+          <i data-lucide="flag" class="w-3.5 h-3.5"></i>
+          診断完了
+        </div>
+      </div>
+
+      <!-- Trading Card Container (Target for html2canvas) -->
+      <div id="card-element" class="mt-4 relative transform translate-y-8 opacity-0 scale-95 transition-all duration-700">
+        <!-- Glow effect -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-emerald-500 to-cyan-500 rounded-3xl blur-md opacity-30 animate-pulse-slow"></div>
+        
+        <div class="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl overflow-hidden shadow-2xl">
+          <!-- Top banner -->
+          <div class="h-32 relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
+            <!-- Dynamic Image injected via JS -->
+            <img id="res-img" src="" crossorigin="anonymous" class="w-full h-full object-cover opacity-60 mix-blend-luminosity scale-105" />
+            
+            <div id="res-match" class="absolute top-4 right-4 z-20 bg-emerald-500/90 text-white border border-emerald-400 px-3 py-1 rounded-full text-xs font-bold font-eng shadow-lg"></div>
+            
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-16 h-16 bg-white rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)] flex items-center justify-center">
+              <span class="text-2xl">⛳</span>
+            </div>
+          </div>
+
+          <div class="p-6 relative z-20">
+            <div class="mb-6 text-center">
+              <p id="res-profileLabel" class="text-cyan-400 font-bold text-xs mb-1 tracking-widest"></p>
+              <h2 id="res-name" class="text-2xl font-black font-eng tracking-tight text-white mb-2"></h2>
+              <div id="res-type" class="inline-block bg-slate-800 px-3 py-1 rounded-md text-xs text-slate-300 font-medium"></div>
+            </div>
+
+            <p id="res-desc" class="text-sm text-slate-300 leading-relaxed mb-6 text-center"></p>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-slate-700/50 mb-6">
+              <div class="text-center">
+                <i data-lucide="wind" class="w-5 h-5 mx-auto text-emerald-400 mb-1"></i>
+                <div class="text-[10px] text-slate-400">飛距離</div>
+                <div id="res-dist" class="font-bold text-sm"></div>
+              </div>
+              <div class="text-center border-l border-r border-slate-700/50">
+                <i data-lucide="rotate-ccw" class="w-5 h-5 mx-auto text-cyan-400 mb-1"></i>
+                <div class="text-[10px] text-slate-400">スピン</div>
+                <div id="res-spin" class="font-bold text-sm"></div>
+              </div>
+              <div class="text-center">
+                <i data-lucide="crosshair" class="w-5 h-5 mx-auto text-blue-400 mb-1"></i>
+                <div class="text-[10px] text-slate-400">打感</div>
+                <div id="res-feel" class="font-bold text-sm"></div>
+              </div>
+            </div>
+
+            <!-- Profile Summary -->
+            <div class="bg-slate-800/50 rounded-xl p-4 flex items-start gap-3">
+              <i data-lucide="flag" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i>
+              <div>
+                <div class="text-xs font-bold text-slate-200 mb-1">【解析結果】あなたのスイング傾向</div>
+                <div id="res-summary" class="text-xs text-slate-400 leading-tight"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 space-y-4 relative z-10 w-full">
+        <!-- Next Step CTA: Update href to the user's My Page or App link -->
+        <a href="/app/#/mypage" class="w-full relative group overflow-hidden bg-gradient-to-br from-slate-100 to-slate-300 text-slate-900 font-bold py-4 px-6 rounded-2xl shadow-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all active:scale-95 flex items-center justify-between block no-underline">
+          <div class="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out z-0"></div>
+          <div class="text-left relative z-10 text-slate-900">
+            <div class="text-[10px] text-slate-600 font-black tracking-wider uppercase mb-0.5">Next Step</div>
+            <div class="text-lg tracking-tight">こだわりの14本を登録する</div>
+          </div>
+          <div class="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center text-white relative z-10 shadow-lg group-hover:scale-110 transition-transform">
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </div>
+        </a>
+
+        <!-- Native Web Share Button -->
+        <button id="btn-share" onclick="handleShare()" class="w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold text-sm transition-all text-white bg-[#1DA1F2] hover:bg-[#1a8cd8] active:scale-95 shadow-md shadow-[#1DA1F2]/30">
+          <span id="share-content" class="flex items-center gap-2">
+            <i data-lucide="share-2" class="w-5 h-5"></i> 結果をシェア・保存する
+          </span>
+        </button>
+
+        <a href="/ball-diagnosis/" class="block w-full text-center py-3 text-sm text-slate-500 font-medium hover:text-slate-300 transition-colors mt-2 no-underline">
+          診断をやり直す
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  // 1. Diagnosis Database and Logic (Ported from React)
+  const BALL_DATABASE = [
+    { id: 'prov1x-2025', name: 'Pro V1x (2025/2026 Model)', brand: 'Titleist', type: 'スピン系・高弾道', img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80', desc: '最新のデュアルコア技術により、ドライバーでの圧倒的な低スピンとアイアンでの高弾道・高スピンを両立させたフラッグシップモデル。', profiles: { targetSpeed: ['44-47', '48-49', 'over50'], targetScore: ['under80', '80s', '90s'], targetConcern: ['distance', 'spin'], targetTrajectory: ['draw', 'straight'] }, radar: { distance: 5, spin: 5, feel: 4 } },
+    { id: 'prov1-2025', name: 'Pro V1 (2025/2026 Model)', brand: 'Titleist', type: 'スピン系・中弾道', img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80', desc: 'すべてのゴルファーに推奨される完成度。Xと比べて中弾道で、より柔らかい打感と優れたショートゲームコントロールを提供。', profiles: { targetSpeed: ['40-43', '44-47', '48-49'], targetScore: ['under80', '80s', '90s', 'over100'], targetConcern: ['feel', 'spin', 'stability'], targetTrajectory: ['fade', 'straight', 'slice'] }, radar: { distance: 4.5, spin: 5, feel: 5 } },
+    { id: 'tp5-2024', name: 'TP5 (2024/2026 Model)', brand: 'TaylorMade', type: '5ピース・スピン系', img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80', desc: '独自の5層構造がもたらすグリーン周りでの最強のスピン量。アプローチをとにかく食いつかせたいプレーヤー向け。', profiles: { targetSpeed: ['40-43', '44-47'], targetScore: ['under80', '80s', '90s'], targetConcern: ['spin', 'feel'], targetTrajectory: ['draw', 'fade', 'straight'] }, radar: { distance: 4, spin: 5, feel: 5 } },
+    { id: 'tp5x-2024', name: 'TP5x (2024/2026 Model)', brand: 'TaylorMade', type: '5ピース・ディスタンス', img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80', desc: 'ツアーレベルのボールの中でトップクラスの初速。風に負けない強弾道で、5層フェースが飛距離を限界まで引き上げる。', profiles: { targetSpeed: ['44-47', '48-49', 'over50'], targetScore: ['under80', '80s', '90s'], targetConcern: ['distance', 'stability'], targetTrajectory: ['draw', 'straight', 'slice'] }, radar: { distance: 5, spin: 4, feel: 3.5 } },
+    { id: 'chrome-tour-2025', name: 'Chrome Tour', brand: 'Callaway', type: 'スピン系・ディスタンス', img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80', desc: '最新のエアロネットワークパターンにより、強風下でも落ち際まで伸びる弾道。飛距離とスピンの高次元なバランス。', profiles: { targetSpeed: ['44-47', '48-49'], targetScore: ['under80', '80s'], targetConcern: ['distance', 'spin', 'stability'], targetTrajectory: ['draw', 'fade', 'straight'] }, radar: { distance: 4.8, spin: 4.8, feel: 4.5 } },
+    { id: 'zstar-diamond-2025', name: 'Z-STAR ◆ (Diamond)', brand: 'Srixon', type: 'スピン系・アイアン強化', img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80', desc: 'アイアンでの強烈なスピンと飛距離性能を兼ね備えたモダンプロファイル。ハードヒッターがピンをデッドに狙うためのボール。', profiles: { targetSpeed: ['48-49', 'over50'], targetScore: ['under80', '80s'], targetConcern: ['spin', 'distance'], targetTrajectory: ['fade', 'straight', 'hook'] }, radar: { distance: 4.5, spin: 5, feel: 4 } },
+    { id: 'avx-2024', name: 'AVX', brand: 'Titleist', type: '低弾道・低スピン', img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80', desc: '極めて柔らかい打感と、吹け上がりを抑えた低弾道が特徴。スライスやフックの曲がり幅を抑えたいプレーヤーの救世主。', profiles: { targetSpeed: ['under40', '40-43', '44-47'], targetScore: ['90s', 'over100'], targetConcern: ['stability', 'feel'], targetTrajectory: ['slice', 'hook'] }, radar: { distance: 4.5, spin: 3, feel: 5 } }
+  ];
+
+  function calculateDiagnosis(answers) {
+    let bestMatch = BALL_DATABASE[0];
+    let highestScore = -1;
+
+    BALL_DATABASE.forEach(ball => {
+      let score = 0;
+      if (answers.headSpeed && ball.profiles.targetSpeed.includes(answers.headSpeed)) score += 40;
+      else score += 10;
+      if (answers.concern && ball.profiles.targetConcern.includes(answers.concern)) score += 35;
+      if (answers.score && ball.profiles.targetScore.includes(answers.score)) score += 15;
+      if (answers.trajectory && ball.profiles.targetTrajectory.includes(answers.trajectory)) score += 10;
+
+      const finalMatchScore = Math.min(score + Math.floor(Math.random() * 5), 98);
+      if (finalMatchScore > highestScore) {
+        highestScore = finalMatchScore;
+        bestMatch = ball;
+      }
+    });
+
+    return { 
+      ball: bestMatch, 
+      matchScore: Math.max(highestScore, 70 + Math.floor(Math.random() * 10)) 
+    };
+  }
+
+  // 2. Load User Session Answers
+  let rawAnswers = sessionStorage.getItem('mybagpro_answers');
+  
+  if (!rawAnswers) {
+    // If accessed directly without session data, generate fake answers or force redirect
+    console.warn("No active session answers. Generating defaults.");
+    rawAnswers = JSON.stringify({ score: 'under80', headSpeed: '48-49', concern: 'distance', trajectory: 'straight' });
+    // window.location.href = '/ball-diagnosis/'; // Optionally redirect to start
+  }
+
+  const answers = JSON.parse(rawAnswers);
+  const result = calculateDiagnosis(answers);
+
+  // 3. Inject Data
+  document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+
+    // Map labels
+    const concernLabel = answers.concern === 'distance' ? '飛距離' : answers.concern === 'spin' ? 'スピン' : answers.concern === 'stability' ? '安定性' : '打感';
+    const trajLabel = answers.trajectory === 'draw' ? 'ドロー' : answers.trajectory === 'fade' ? 'フェード' : answers.trajectory === 'slice' ? 'スライス' : answers.trajectory === 'hook' ? 'フック' : 'ストレート';
+    const concernSol = answers.concern === 'distance' ? '高初速帯での伸びがカギ。' : answers.concern === 'spin' ? '高スピンでグリーンを攻略。' : answers.concern === 'stability' ? 'サイドスピン抑制がカギ。' : 'ソフトな打感で繊細なタッチを。';
+    
+    // Inject DOM
+    document.getElementById('res-img').src = result.ball.img;
+    document.getElementById('res-match').innerText = `${result.matchScore}% MATCH`;
+    document.getElementById('res-profileLabel').innerText = `HS ${answers.headSpeed || '40-43'}m/s / ${answers.score === 'under80' ? 'トップレベル' : answers.score === '80s' ? '上級者' : answers.score === '90s' ? 'プレーヤー' : 'エンジョイゴルファー'}の為の最適解`;
+    document.getElementById('res-name').innerText = result.ball.name;
+    document.getElementById('res-type').innerText = result.ball.type;
+    document.getElementById('res-desc').innerText = result.ball.desc;
+    
+    document.getElementById('res-dist').innerText = `LV.${result.ball.radar.distance}`;
+    document.getElementById('res-spin').innerText = `LV.${result.ball.radar.spin}`;
+    document.getElementById('res-feel').innerText = `LV.${result.ball.radar.feel}`;
+
+    document.getElementById('res-summary').innerText = `「${concernLabel}」を重視し、「${trajLabel}」軌道で攻めるスタイル。${concernSol}`;
+
+    // 4. Animate Out Loading & Show Results
+    setTimeout(() => {
+      document.getElementById('loading-view').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('loading-view').classList.add('hidden');
+        document.getElementById('result-view').classList.remove('hidden');
+        document.getElementById('result-view').classList.add('flex');
+        
+        // Trigger fade in layout
+        setTimeout(() => {
+          document.getElementById('result-view').style.opacity = '1';
+          
+          // Trigger card slide up
+          setTimeout(() => {
+            const card = document.getElementById('card-element');
+            card.classList.remove('translate-y-8', 'opacity-0', 'scale-95');
+            card.classList.add('translate-y-0', 'opacity-100', 'scale-100');
+          }, 100);
+        }, 50);
+      }, 500);
+    }, 3500); // 3.5s fake loading
+  });
+
+  // 5. Native Share API & HTML2Canvas Logic
+  let isSharing = false;
+  
+  window.handleShare = async function() {
+    if (isSharing) return;
+    isSharing = true;
+
+    const btnShare = document.getElementById('btn-share');
+    const shareContent = document.getElementById('share-content');
+    const cardRef = document.getElementById('card-element');
+
+    // UI Loading State
+    btnShare.classList.remove('bg-[#1DA1F2]', 'hover:bg-[#1a8cd8]');
+    btnShare.classList.add('bg-slate-700', 'cursor-not-allowed', 'opacity-80');
+    shareContent.innerHTML = `<div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> 画像を生成中...`;
+
+    try {
+      // Allow browser to flush UI state
+      await new Promise(r => setTimeout(r, 100));
+
+      const canvas = await html2canvas(cardRef, {
+        scale: 2,
+        backgroundColor: '#0f172a',
+        logging: false,
+        useCORS: true, 
+      });
+
+      canvas.toBlob(async (blob) => {
+        if (!blob) throw new Error('Failed to generate image');
+
+        const file = new File([blob], 'mybagpro-diagnosis.png', { type: 'image/png' });
+
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'My Bag Pro 診断結果',
+            text: `AIが選んだ運命のボールは【${result.ball.name}】でした！ #MyBagPro #ゴルフボール診断 #ゴルフギア`,
+            files: [file],
+          });
+        } else {
+          // Fallback Download
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'mybagpro-diagnosis.png';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          alert('結果画像をダウンロードしました。SNSに添付してシェアしてください！');
+        }
+      }, 'image/png');
+
+    } catch (error) {
+      console.error('Sharing failed:', error);
+      alert('画像の生成に失敗しました。ページをリロードして再試行してください。');
+    } finally {
+      // Revert UI State
+      isSharing = false;
+      btnShare.classList.remove('bg-slate-700', 'cursor-not-allowed', 'opacity-80');
+      btnShare.classList.add('bg-[#1DA1F2]', 'hover:bg-[#1a8cd8]');
+      shareContent.innerHTML = `<i data-lucide="share-2" class="w-5 h-5"></i> 結果をシェア・保存する`;
+      lucide.createIcons();
+    }
+  };
+</script>

@@ -1,0 +1,817 @@
+<!DOCTYPE html><html><head><title>Copy Helper</title><style>body{font-family:sans-serif; padding:20px; background:#f0f0f0;} textarea{width:100%; height:200px; margin-bottom: 20px; font-family:monospace;}</style></head><body><h1>Elementor Snippets Copy Helper</h1><h2>home.html</h2><textarea id="home">&lt;!-- 
+  My Bag Pro: Home / LP
+  Page: LP Top
+  Paste this into an Elementor "HTML Widget".
+--&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;script&gt;
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Noto Sans JP', 'sans-serif'],
+          eng: ['Montserrat', 'sans-serif'],
+        },
+        colors: {
+          trust: {
+            navy: '#1B263B',
+            'navy-light': '#2D3E5B',
+            slate: '#4F5D75',
+            platinum: '#E0E1DD',
+          },
+          golf: {
+            50: '#f2f9f6',
+            100: '#e0f1e8',
+            400: '#75c89e',
+            500: '#4fb682',
+            600: '#3d9468',
+            700: '#327755',
+            800: '#2a5f45',
+          }
+        },
+        animation: {
+          'float': 'float 6s ease-in-out infinite',
+          'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          'fadeIn': 'fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          'slideIn': 'slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        },
+        keyframes: {
+          float: {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-20px)' },
+          },
+          fadeIn: {
+            '0%': { opacity: '0' },
+            '100%': { opacity: '1' },
+          },
+          slideIn: {
+            '0%': { opacity: '0', transform: 'translateY(20px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' },
+          }
+        }
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet"&gt;
+&lt;!-- Lucide Icons --&gt;
+&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
+
+&lt;style&gt;
+  html { scroll-behavior: smooth; }
+  .text-trust-navy { color: #1B263B; }
+  .text-trust-slate { color: #4F5D75; }
+  .bg-trust-navy { background-color: #1B263B; }
+  .bg-trust-platinum { background-color: #E0E1DD; }
+&lt;/style&gt;
+
+&lt;div class="w-full bg-trust-platinum/20 min-h-screen font-sans text-trust-navy overflow-x-hidden selection:bg-golf-500/30"&gt;
+  
+  &lt;!-- HERO SECTION --&gt;
+  &lt;section class="relative w-full overflow-hidden bg-white pt-20 pb-16 md:pt-32 md:pb-24"&gt;
+    &lt;!-- Background Decorations --&gt;
+    &lt;div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none"&gt;
+      &lt;div class="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-gradient-to-b from-golf-100 to-golf-50 blur-3xl opacity-60 animate-float"&gt;&lt;/div&gt;
+      &lt;div class="absolute top-[20%] -left-[10%] w-[40%] h-[40%] rounded-full bg-gradient-to-tr from-trust-platinum to-blue-50 blur-3xl opacity-60 animate-pulse-slow"&gt;&lt;/div&gt;
+      &lt;div class="absolute bottom-0 right-[20%] w-[60%] h-[30%] rounded-t-full bg-gradient-to-t from-golf-50 to-transparent opacity-80"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="container mx-auto px-4 relative z-10"&gt;
+      &lt;div class="max-w-4xl mx-auto text-center flex flex-col items-center"&gt;
+        
+        &lt;!-- Trust Badge --&gt;
+        &lt;div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-trust-navy to-trust-navy-light text-white rounded-full text-xs md:text-sm font-bold mb-8 shadow-lg shadow-trust-navy/20 ring-1 ring-white/20 backdrop-blur-md transform transition hover:scale-105 cursor-default hover:-translate-y-1"&gt;
+          &lt;i data-lucide="share-2" class="w-3.5 h-3.5 text-cyan-300"&gt;&lt;/i&gt;
+          &lt;span class="tracking-wider"&gt;ゴルファーのためのセッティング共有プラットフォーム&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Main Copy --&gt;
+        &lt;h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-trust-navy mb-6 tracking-tight leading-[1.15] drop-shadow-sm animate-slideIn opacity-0"&gt;
+          あなたのセッティングが、&lt;br class="md:hidden" /&gt;
+          &lt;span class="text-transparent bg-clip-text bg-gradient-to-r from-golf-500 to-trust-navy"&gt;最高の名刺になる。&lt;/span&gt;
+        &lt;/h1&gt;
+
+        &lt;p class="text-trust-slate font-medium text-sm md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed md:leading-loose animate-fadeIn opacity-0" style="animation-delay: 0.1s;"&gt;
+          14本のクラブを登録して、あなただけのデジタルゴルフ名刺をつくろう。&lt;br class="hidden md:block" /&gt;
+          ゴルフ仲間に「何使ってるの？」と聞かれたら、My Bagを見せるだけ。
+        &lt;/p&gt;
+
+        &lt;!-- PRIMARY CTA: My Bag作成 --&gt;
+        &lt;div class="relative group animate-fadeIn opacity-0 w-full md:w-auto" style="animation-delay: 0.2s;"&gt;
+          &lt;div class="absolute -inset-1 bg-gradient-to-r from-golf-400 to-trust-navy rounded-full blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"&gt;&lt;/div&gt;
+          
+          &lt;a href="/app/#/mypage" class="relative flex items-center justify-center gap-3 bg-trust-navy text-white px-8 py-4 md:px-12 md:py-5 rounded-full font-bold text-lg md:text-xl shadow-2xl hover:scale-[1.02] active:scale-95 transition-all overflow-hidden block no-underline"&gt;
+            &lt;span class="relative z-10 flex items-center gap-2 text-white"&gt;
+              &lt;i data-lucide="plus" class="w-5 h-5"&gt;&lt;/i&gt; My Bagをつくる（無料） 
+              &lt;i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"&gt;&lt;/i&gt;
+            &lt;/span&gt;
+            &lt;div class="absolute inset-0 bg-gradient-to-r from-golf-600 to-trust-navy opacity-0 group-hover:opacity-20 transition-opacity duration-300"&gt;&lt;/div&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;!-- SECONDARY: AI診断リンク --&gt;
+        &lt;div class="mt-5 animate-fadeIn opacity-0 flex flex-col sm:flex-row gap-4 items-center" style="animation-delay: 0.25s;"&gt;
+          &lt;a href="/app/#/diagnosis" class="text-sm text-trust-slate/70 hover:text-golf-600 transition-colors font-medium flex items-center gap-1.5 no-underline"&gt;
+            🎯 クラブ選びに迷ったら → &lt;span class="text-golf-600 font-bold underline underline-offset-2"&gt;AIクラブ診断&lt;/span&gt;
+          &lt;/a&gt;
+          &lt;span class="text-slate-300 hidden sm:inline"&gt;|&lt;/span&gt;
+          &lt;a href="/ball-diagnosis/" class="text-sm text-trust-slate/70 hover:text-cyan-600 transition-colors font-medium flex items-center gap-1.5 no-underline bg-cyan-50/50 px-3 py-1 rounded-full border border-cyan-100"&gt;
+            &lt;span class="bg-cyan-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded mr-1"&gt;NEW&lt;/span&gt;
+            &lt;span class="text-cyan-600 font-bold underline underline-offset-2 hover:text-cyan-700"&gt;ボール診断&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Benefits --&gt;
+        &lt;div class="mt-8 flex flex-wrap gap-4 md:gap-8 text-xs md:text-sm font-bold text-trust-slate justify-center animate-fadeIn opacity-0" style="animation-delay: 0.3s;"&gt;
+          &lt;span class="flex items-center gap-1.5"&gt;&lt;i data-lucide="activity" class="w-4 h-4 text-golf-500"&gt;&lt;/i&gt; 完全無料&lt;/span&gt;
+          &lt;span class="flex items-center gap-1.5"&gt;&lt;i data-lucide="brain" class="w-4 h-4 text-trust-navy"&gt;&lt;/i&gt; 会員登録不要&lt;/span&gt;
+          &lt;span class="flex items-center gap-1.5"&gt;&lt;i data-lucide="share-2" class="w-4 h-4 text-cyan-500"&gt;&lt;/i&gt; SNSシェア対応&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- HOW IT WORKS --&gt;
+  &lt;section class="py-20 md:py-32 bg-[#F5F6F5] relative"&gt;
+    &lt;div class="container mx-auto px-4 relative z-10"&gt;
+      &lt;div class="text-center mb-16"&gt;
+        &lt;h2 class="text-3xl md:text-4xl font-black text-trust-navy mb-4 tracking-tight"&gt;
+          3ステップで、あなたの名刺が完成
+        &lt;/h2&gt;
+        &lt;p class="text-trust-slate text-sm md:text-base font-medium mt-4"&gt;
+          セッティングを登録 → AI診断で最適化 → SNSでシェア
+        &lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto"&gt;
+        
+        &lt;!-- Step 1: Register --&gt;
+        &lt;div class="relative flex flex-col items-center text-center group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-2"&gt;
+          &lt;div class="w-20 h-20 rounded-2xl bg-slate-50 text-trust-slate flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-trust-navy group-hover:text-white transition-all duration-300 transform -rotate-3 group-hover:rotate-0"&gt;
+            &lt;i data-lucide="plus" class="w-10 h-10" style="stroke-width: 1.5px;"&gt;&lt;/i&gt;
+          &lt;/div&gt;
+          &lt;div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-trust-navy text-white font-black flex items-center justify-center text-xl shadow-lg border-4 border-white"&gt;1&lt;/div&gt;
+          &lt;h3 class="text-xl font-bold text-trust-navy mb-3"&gt;セッティングを登録&lt;/h3&gt;
+          &lt;p class="text-trust-slate text-sm leading-relaxed"&gt;
+            ドライバーからパターまで14本のクラブとボールを登録。ブランド、モデル、シャフトまで記録できます。
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Step 2: Optimize --&gt;
+        &lt;div class="relative flex flex-col items-center text-center group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-2" style="transition-delay: 50ms;"&gt;
+          &lt;div class="w-20 h-20 rounded-2xl bg-golf-50 text-golf-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-golf-500 group-hover:text-white transition-all duration-300 transform rotate-3 group-hover:rotate-0"&gt;
+            &lt;i data-lucide="brain" class="w-10 h-10" style="stroke-width: 1.5px;"&gt;&lt;/i&gt;
+          &lt;/div&gt;
+          &lt;div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-trust-navy text-white font-black flex items-center justify-center text-xl shadow-lg border-4 border-white"&gt;2&lt;/div&gt;
+          &lt;h3 class="text-xl font-bold text-trust-navy mb-3"&gt;AI診断で最適化&lt;/h3&gt;
+          &lt;p class="text-trust-slate text-sm leading-relaxed"&gt;
+            「このクラブ、自分に合ってる？」AI診断で各カテゴリのベストモデルを提案。My Bagをアップグレードしよう。
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Step 3: Share --&gt;
+        &lt;div class="relative flex flex-col items-center text-center group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-2" style="transition-delay: 100ms;"&gt;
+          &lt;div class="w-20 h-20 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300 transform -rotate-3 group-hover:rotate-0"&gt;
+            &lt;i data-lucide="share-2" class="w-10 h-10" style="stroke-width: 1.5px;"&gt;&lt;/i&gt;
+          &lt;/div&gt;
+          &lt;div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-trust-navy text-white font-black flex items-center justify-center text-xl shadow-lg border-4 border-white"&gt;3&lt;/div&gt;
+          &lt;h3 class="text-xl font-bold text-trust-navy mb-3"&gt;SNSでシェア&lt;/h3&gt;
+          &lt;p class="text-trust-slate text-sm leading-relaxed"&gt;
+            完成したMy BagをXやInstagramに投稿。ゴルフ仲間と「どっちのセッティングが良い？」で盛り上がろう。
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+      
+      &lt;!-- Bottom CTA --&gt;
+      &lt;div class="mt-20 text-center"&gt;
+        &lt;a href="/app/#/mypage" class="inline-flex items-center gap-2 text-golf-600 font-bold hover:text-golf-800 transition-colors group no-underline"&gt;
+          &lt;span class="border-b-2 border-golf-600/30 group-hover:border-golf-800 pb-1 pr-1"&gt;早速、My Bagをつくる&lt;/span&gt;
+          &lt;i data-lucide="chevron-right" class="w-4 h-4 translate-y-0.5 group-hover:translate-x-1 transition-transform"&gt;&lt;/i&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // Initialize Lucide Icons
+  lucide.createIcons();
+&lt;/script&gt;
+</textarea><h2>landing.html</h2><textarea id="landing">&lt;!-- 
+  My Bag Pro: AI Golf Ball Diagnosis
+  Page 1: Landing Screen
+  Note: This is pure HTML with Tailwind CSS via CDN.
+  Paste this into an Elementor "HTML Widget".
+--&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;script&gt;
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Noto Sans JP', 'sans-serif'],
+          eng: ['Montserrat', 'sans-serif'],
+        },
+        animation: {
+          'fadeIn': 'fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        },
+        keyframes: {
+          fadeIn: {
+            '0%': { opacity: '0', transform: 'translateY(10px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' },
+          }
+        }
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"&gt;
+&lt;!-- Icon Library (Lucide alternative) --&gt;
+&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
+
+&lt;div class="min-h-screen bg-slate-900 text-white font-sans selection:bg-cyan-500/30 overflow-hidden relative"&gt;
+  &lt;!-- Background decorations --&gt;
+  &lt;div class="absolute inset-0 overflow-hidden pointer-events-none z-0"&gt;
+    &lt;div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-600/20 blur-[120px] rounded-full mix-blend-screen"&gt;&lt;/div&gt;
+    &lt;div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-600/20 blur-[120px] rounded-full mix-blend-screen"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col items-center justify-center p-6 animate-fadeIn"&gt;
+    &lt;div class="flex-1 flex flex-col items-center justify-center w-full max-w-sm mx-auto text-center space-y-8"&gt;
+      
+      &lt;!-- Logo Section --&gt;
+      &lt;div class="space-y-2"&gt;
+        &lt;div class="inline-block relative"&gt;
+          &lt;div class="absolute inset-0 bg-cyan-400/20 blur-xl rounded-full"&gt;&lt;/div&gt;
+          &lt;h1 class="relative font-eng text-5xl font-black tracking-tight text-white drop-shadow-lg"&gt;
+            My Bag &lt;span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400"&gt;Pro&lt;/span&gt;
+          &lt;/h1&gt;
+        &lt;/div&gt;
+        &lt;div class="h-px w-16 bg-gradient-to-r from-transparent via-slate-500 to-transparent mx-auto mt-4 mb-2"&gt;&lt;/div&gt;
+        &lt;p class="text-slate-300 font-medium tracking-widest text-xs uppercase"&gt;AI Golf Ball Diagnosis&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Hero Copy --&gt;
+      &lt;div class="space-y-4 pt-4"&gt;
+        &lt;h2 class="text-2xl font-bold leading-tight"&gt;
+          あなたのスイングに、&lt;br /&gt;
+          &lt;span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400"&gt;プロの選択を。&lt;/span&gt;
+        &lt;/h2&gt;
+        &lt;p class="text-slate-400 text-sm leading-relaxed"&gt;
+          プレースタイルを選択するだけで、&lt;br /&gt;
+          AIがあなたに最適なツアーボールを導き出します。
+        &lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Action Button --&gt;
+      &lt;div class="w-full pt-8"&gt;
+        &lt;!-- LINK DESTINATION: Update this href to your Elementor Chat page URL --&gt;
+        &lt;a href="/ball-diagnosis/chat/" class="group relative w-full flex items-center justify-center gap-3 py-4 px-8 rounded-2xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-bold text-lg shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] active:scale-95 transition-all duration-200 overflow-hidden text-decoration-none"&gt;
+          &lt;div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"&gt;&lt;/div&gt;
+          &lt;span class="relative z-10"&gt;診断をスタート（無料）&lt;/span&gt;
+          &lt;i data-lucide="arrow-right" class="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform"&gt;&lt;/i&gt;
+        &lt;/a&gt;
+        
+        &lt;p class="mt-4 text-xs text-slate-500 font-medium"&gt;所要時間: 約30秒 / 登録不要&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  lucide.createIcons();
+&lt;/script&gt;
+</textarea><h2>chat.html</h2><textarea id="chat">&lt;!-- 
+  My Bag Pro: AI Golf Ball Diagnosis
+  Page 2: Chat UI
+  Paste this into an Elementor "HTML Widget".
+--&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;script&gt;
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Noto Sans JP', 'sans-serif'],
+          eng: ['Montserrat', 'sans-serif'],
+        },
+        animation: {
+          'slideIn': 'slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        },
+        keyframes: {
+          slideIn: {
+            '0%': { opacity: '0', transform: 'translateX(20px)' },
+            '100%': { opacity: '1', transform: 'translateX(0)' },
+          }
+        }
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"&gt;
+&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
+
+&lt;div class="min-h-screen bg-slate-900 text-white font-sans selection:bg-cyan-500/30 overflow-hidden relative"&gt;
+  &lt;!-- Background decorations --&gt;
+  &lt;div class="absolute inset-0 overflow-hidden pointer-events-none z-0"&gt;
+    &lt;div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-600/20 blur-[120px] rounded-full mix-blend-screen"&gt;&lt;/div&gt;
+    &lt;div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-600/20 blur-[120px] rounded-full mix-blend-screen"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col p-6 animate-slideIn"&gt;
+    &lt;!-- Progress Bar --&gt;
+    &lt;div class="w-full pt-8 pb-12"&gt;
+      &lt;div class="flex justify-between text-xs text-slate-400 mb-2 font-bold font-eng"&gt;
+        &lt;span id="progress-text-current"&gt;01&lt;/span&gt;
+        &lt;span id="progress-text-total"&gt;04&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden"&gt;
+        &lt;div id="progress-bar" class="h-full bg-gradient-to-r from-cyan-500 to-emerald-500 transition-all duration-500 ease-out" style="width: 25%"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Main Question Area --&gt;
+    &lt;div class="flex-1 flex flex-col pt-4"&gt;
+      &lt;h2 id="question-title" class="text-2xl font-bold mb-2 tracking-tight transition-opacity duration-300"&gt;&lt;/h2&gt;
+      &lt;p id="question-subtitle" class="text-slate-400 text-sm mb-8 transition-opacity duration-300"&gt;&lt;/p&gt;
+
+      &lt;!-- Options List --&gt;
+      &lt;div id="options-container" class="space-y-3"&gt;
+        &lt;!-- Options injected here by JS --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  lucide.createIcons();
+
+  // Configuration
+  // IMPORTANT: Set this to the URL of your Result page in WordPress
+  const RESULT_PAGE_URL = '/ball-diagnosis/result/'; 
+
+  const QUESTIONS = [
+    {
+      id: 'score',
+      title: '現在の平均スコアは？',
+      subtitle: 'ハンディキャップの目安として',
+      options: [
+        { value: 'under80', label: '80未満', desc: 'プロ・トップアマレベル' },
+        { value: '80s', label: '80台', desc: 'シングル〜上級者レベル' },
+        { value: '90s', label: '90台', desc: 'アベレージゴルファー' },
+        { value: 'over100', label: '100以上', desc: 'エンジョイゴルファー' },
+      ]
+    },
+    {
+      id: 'headSpeed',
+      title: '平均ヘッドスピードは？',
+      subtitle: 'ドライバーでの計測値',
+      options: [
+        { value: 'under40', label: '40m/s未満', desc: 'ゆったりとしたスイング' },
+        { value: '40-43', label: '40〜43m/s', desc: '一般的なアマチュア層' },
+        { value: '44-47', label: '44〜47m/s', desc: 'アスリート志向' },
+        { value: '48-49', label: '48〜49m/s', desc: 'ハードヒッター' },
+        { value: 'over50', label: '50m/s以上', desc: 'プロ・ドラコンレベル' },
+      ]
+    },
+    {
+      id: 'concern',
+      title: '最も解決したい悩みは？',
+      subtitle: '理想のボールに求める性能',
+      options: [
+        { value: 'distance', label: '飛距離アップ', desc: 'とにかく前に飛ばしたい' },
+        { value: 'spin', label: 'スピン・コントロール', desc: 'グリーンでピタッと止めたい' },
+        { value: 'feel', label: '打感の柔らかさ', desc: 'フェースに乗る感触重視' },
+        { value: 'stability', label: '曲がり幅の軽減', desc: 'サイドスピンを抑制したい' },
+      ]
+    },
+    {
+      id: 'trajectory',
+      title: '現在の持ち球は？',
+      subtitle: '自然に出る球筋',
+      options: [
+        { value: 'draw', label: 'ドロー', desc: '右から左に曲がる' },
+        { value: 'fade', label: 'フェード', desc: '左から右に曲がる' },
+        { value: 'straight', label: 'ストレート', desc: 'まっすぐ飛ぶ' },
+        { value: 'slice', label: 'スライス', desc: '右に大きく曲がる' },
+        { value: 'hook', label: 'フック', desc: '左に大きく曲がる' },
+      ]
+    }
+  ];
+
+  let currentStep = 0;
+  let answers = {};
+
+  const titleEl = document.getElementById('question-title');
+  const subtitleEl = document.getElementById('question-subtitle');
+  const containerEl = document.getElementById('options-container');
+  const progTextCurrent = document.getElementById('progress-text-current');
+  const progTextTotal = document.getElementById('progress-text-total');
+  const progBar = document.getElementById('progress-bar');
+
+  function renderQuestion() {
+    const q = QUESTIONS[currentStep];
+    
+    // Update Progress
+    progTextCurrent.innerText = `0${currentStep + 1}`;
+    progTextTotal.innerText = `0${QUESTIONS.length}`;
+    progBar.style.width = `${((currentStep + 1) / QUESTIONS.length) * 100}%`;
+
+    // Update Text (Fade effect)
+    titleEl.style.opacity = 0;
+    subtitleEl.style.opacity = 0;
+    containerEl.style.opacity = 0;
+    
+    setTimeout(() =&gt; {
+      titleEl.innerText = q.title;
+      subtitleEl.innerText = q.subtitle;
+      
+      let html = '';
+      q.options.forEach((opt, idx) =&gt; {
+        html += `
+          &lt;button onclick="handleSelect('${opt.value}')" 
+            class="w-full group relative flex items-center justify-between p-5 rounded-2xl text-left transition-all duration-200 active:scale-95 bg-slate-800/40 border-slate-700/50 hover:bg-slate-800 hover:border-slate-600 border backdrop-blur-md"
+            style="animation: slideIn 0.3s ease forwards ${idx * 0.1}s; opacity: 0; transform: translateY(10px);"
+          &gt;
+            &lt;div&gt;
+              &lt;div class="font-bold text-lg mb-1 text-slate-200 group-hover:text-cyan-400 transition-colors"&gt;
+                ${opt.label}
+              &lt;/div&gt;
+              &lt;div class="text-xs text-slate-400"&gt;
+                ${opt.desc}
+              &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-slate-700/50 text-slate-400 group-hover:bg-cyan-500 group-hover:text-white shadow-none group-hover:shadow-[0_0_10px_rgba(34,211,238,0.5)]"&gt;
+              &lt;i data-lucide="chevron-right" class="w-4 h-4"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+          &lt;/button&gt;
+        `;
+      });
+      containerEl.innerHTML = html;
+      lucide.createIcons();
+      
+      titleEl.style.opacity = 1;
+      subtitleEl.style.opacity = 1;
+      containerEl.style.opacity = 1;
+    }, 200);
+  }
+
+  window.handleSelect = function(value) {
+    const q = QUESTIONS[currentStep];
+    answers[q.id] = value;
+
+    // Visual feedback on the selected button
+    const buttons = containerEl.querySelectorAll('button');
+    buttons.forEach(btn =&gt; {
+      if (btn.getAttribute('onclick').includes(value)) {
+        btn.classList.add('bg-slate-800/80', 'border-cyan-500/50', 'shadow-[0_0_15px_rgba(34,211,238,0.2)]');
+        btn.classList.remove('bg-slate-800/40', 'border-slate-700/50', 'hover:bg-slate-800');
+        btn.querySelector('.text-slate-200').classList.replace('text-slate-200', 'text-cyan-400');
+        btn.querySelector('.bg-slate-700\\/50').className = 'w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-cyan-500 text-white shadow-[0_0_10px_rgba(34,211,238,0.5)]';
+      } else {
+        btn.style.opacity = 0.5;
+        btn.style.pointerEvents = 'none';
+      }
+    });
+
+    setTimeout(() =&gt; {
+      if (currentStep &lt; QUESTIONS.length - 1) {
+        currentStep++;
+        renderQuestion();
+      } else {
+        // Complete! Save answers and redirect
+        sessionStorage.setItem('mybagpro_answers', JSON.stringify(answers));
+        window.location.href = RESULT_PAGE_URL;
+      }
+    }, 400); // Wait for transition
+  };
+
+  // Initialize
+  renderQuestion();
+&lt;/script&gt;
+
+&lt;style&gt;
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+&lt;/style&gt;
+</textarea><h2>result.html</h2><textarea id="result">&lt;!-- 
+  My Bag Pro: AI Golf Ball Diagnosis
+  Page 3: Result Screen & Auto-Share
+  Paste this into an Elementor "HTML Widget".
+--&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;script&gt;
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Noto Sans JP', 'sans-serif'],
+          eng: ['Montserrat', 'sans-serif'],
+        },
+        animation: {
+          'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          'spin-slow': 'spin 1.5s linear infinite',
+        }
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"&gt;
+&lt;!-- Lucide Icons --&gt;
+&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
+&lt;!-- html2canvas for Image Generation --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"&gt;&lt;/script&gt;
+
+&lt;style&gt;
+  html, body { background-color: #0f172a; margin: 0; padding: 0; width: 100%; min-height: 100vh; }
+&lt;/style&gt;
+
+&lt;div class="min-h-screen bg-slate-900 text-white font-sans selection:bg-cyan-500/30 overflow-hidden relative"&gt;
+  &lt;!-- Dynamic Background Decorations --&gt;
+  &lt;div class="fixed inset-0 overflow-hidden pointer-events-none z-0"&gt;
+    &lt;div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-600/20 blur-[120px] rounded-full mix-blend-screen"&gt;&lt;/div&gt;
+    &lt;div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-600/20 blur-[120px] rounded-full mix-blend-screen"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col pt-6 pb-24 px-6 md:px-0"&gt;
+    
+    &lt;!-- 1. Loading State --&gt;
+    &lt;div id="loading-view" class="flex-1 flex flex-col items-center justify-center transition-opacity duration-500"&gt;
+      &lt;div class="relative w-24 h-24 mb-8"&gt;
+        &lt;div class="absolute inset-0 border-t-2 border-r-2 border-cyan-400 rounded-full animate-spin"&gt;&lt;/div&gt;
+        &lt;div class="absolute inset-2 border-t-2 border-l-2 border-emerald-400 rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"&gt;&lt;/div&gt;
+        &lt;div class="absolute inset-0 flex items-center justify-center"&gt;
+          &lt;div class="w-8 h-8 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)]"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;h2 class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-2"&gt;
+        AIがあなたのスイングデータを解析中...
+      &lt;/h2&gt;
+      &lt;p class="text-slate-400 text-sm"&gt;最適なプロスペックボールを選定しています&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 2. Result State --&gt;
+    &lt;div id="result-view" class="hidden flex-1 flex-col opacity-0 transition-opacity duration-700"&gt;
+      
+      &lt;!-- Result Header --&gt;
+      &lt;div class="text-center mb-4"&gt;
+        &lt;div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full mb-3"&gt;
+          &lt;i data-lucide="flag" class="w-3.5 h-3.5"&gt;&lt;/i&gt;
+          診断完了
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Trading Card Container (Target for html2canvas) --&gt;
+      &lt;div id="card-element" class="mt-4 relative transform translate-y-8 opacity-0 scale-95 transition-all duration-700"&gt;
+        &lt;!-- Glow effect --&gt;
+        &lt;div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-emerald-500 to-cyan-500 rounded-3xl blur-md opacity-30 animate-pulse-slow"&gt;&lt;/div&gt;
+        
+        &lt;div class="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl overflow-hidden shadow-2xl"&gt;
+          &lt;!-- Top banner --&gt;
+          &lt;div class="h-32 relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"&gt;
+            &lt;div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10"&gt;&lt;/div&gt;
+            &lt;!-- Dynamic Image injected via JS --&gt;
+            &lt;img id="res-img" src="" crossorigin="anonymous" class="w-full h-full object-cover opacity-60 mix-blend-luminosity scale-105" /&gt;
+            
+            &lt;div id="res-match" class="absolute top-4 right-4 z-20 bg-emerald-500/90 text-white border border-emerald-400 px-3 py-1 rounded-full text-xs font-bold font-eng shadow-lg"&gt;&lt;/div&gt;
+            
+            &lt;div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-16 h-16 bg-white rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)] flex items-center justify-center"&gt;
+              &lt;span class="text-2xl"&gt;⛳&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="p-6 relative z-20"&gt;
+            &lt;div class="mb-6 text-center"&gt;
+              &lt;p id="res-profileLabel" class="text-cyan-400 font-bold text-xs mb-1 tracking-widest"&gt;&lt;/p&gt;
+              &lt;h2 id="res-name" class="text-2xl font-black font-eng tracking-tight text-white mb-2"&gt;&lt;/h2&gt;
+              &lt;div id="res-type" class="inline-block bg-slate-800 px-3 py-1 rounded-md text-xs text-slate-300 font-medium"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;p id="res-desc" class="text-sm text-slate-300 leading-relaxed mb-6 text-center"&gt;&lt;/p&gt;
+
+            &lt;!-- Stats --&gt;
+            &lt;div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-slate-700/50 mb-6"&gt;
+              &lt;div class="text-center"&gt;
+                &lt;i data-lucide="wind" class="w-5 h-5 mx-auto text-emerald-400 mb-1"&gt;&lt;/i&gt;
+                &lt;div class="text-[10px] text-slate-400"&gt;飛距離&lt;/div&gt;
+                &lt;div id="res-dist" class="font-bold text-sm"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="text-center border-l border-r border-slate-700/50"&gt;
+                &lt;i data-lucide="rotate-ccw" class="w-5 h-5 mx-auto text-cyan-400 mb-1"&gt;&lt;/i&gt;
+                &lt;div class="text-[10px] text-slate-400"&gt;スピン&lt;/div&gt;
+                &lt;div id="res-spin" class="font-bold text-sm"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="text-center"&gt;
+                &lt;i data-lucide="crosshair" class="w-5 h-5 mx-auto text-blue-400 mb-1"&gt;&lt;/i&gt;
+                &lt;div class="text-[10px] text-slate-400"&gt;打感&lt;/div&gt;
+                &lt;div id="res-feel" class="font-bold text-sm"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Profile Summary --&gt;
+            &lt;div class="bg-slate-800/50 rounded-xl p-4 flex items-start gap-3"&gt;
+              &lt;i data-lucide="flag" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"&gt;&lt;/i&gt;
+              &lt;div&gt;
+                &lt;div class="text-xs font-bold text-slate-200 mb-1"&gt;【解析結果】あなたのスイング傾向&lt;/div&gt;
+                &lt;div id="res-summary" class="text-xs text-slate-400 leading-tight"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Action Buttons --&gt;
+      &lt;div class="mt-8 space-y-4 relative z-10 w-full"&gt;
+        &lt;!-- Next Step CTA: Update href to the user's My Page or App link --&gt;
+        &lt;a href="/app/#/mypage" class="w-full relative group overflow-hidden bg-gradient-to-br from-slate-100 to-slate-300 text-slate-900 font-bold py-4 px-6 rounded-2xl shadow-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all active:scale-95 flex items-center justify-between block no-underline"&gt;
+          &lt;div class="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out z-0"&gt;&lt;/div&gt;
+          &lt;div class="text-left relative z-10 text-slate-900"&gt;
+            &lt;div class="text-[10px] text-slate-600 font-black tracking-wider uppercase mb-0.5"&gt;Next Step&lt;/div&gt;
+            &lt;div class="text-lg tracking-tight"&gt;こだわりの14本を登録する&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center text-white relative z-10 shadow-lg group-hover:scale-110 transition-transform"&gt;
+            &lt;i data-lucide="arrow-right" class="w-5 h-5"&gt;&lt;/i&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;!-- Native Web Share Button --&gt;
+        &lt;button id="btn-share" onclick="handleShare()" class="w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold text-sm transition-all text-white bg-[#1DA1F2] hover:bg-[#1a8cd8] active:scale-95 shadow-md shadow-[#1DA1F2]/30"&gt;
+          &lt;span id="share-content" class="flex items-center gap-2"&gt;
+            &lt;i data-lucide="share-2" class="w-5 h-5"&gt;&lt;/i&gt; 結果をシェア・保存する
+          &lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;a href="/ball-diagnosis/" class="block w-full text-center py-3 text-sm text-slate-500 font-medium hover:text-slate-300 transition-colors mt-2 no-underline"&gt;
+          診断をやり直す
+        &lt;/a&gt;
+      &lt;/div&gt;
+      
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // 1. Diagnosis Database and Logic (Ported from React)
+  const BALL_DATABASE = [
+    { id: 'prov1x-2025', name: 'Pro V1x (2025/2026 Model)', brand: 'Titleist', type: 'スピン系・高弾道', img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80', desc: '最新のデュアルコア技術により、ドライバーでの圧倒的な低スピンとアイアンでの高弾道・高スピンを両立させたフラッグシップモデル。', profiles: { targetSpeed: ['44-47', '48-49', 'over50'], targetScore: ['under80', '80s', '90s'], targetConcern: ['distance', 'spin'], targetTrajectory: ['draw', 'straight'] }, radar: { distance: 5, spin: 5, feel: 4 } },
+    { id: 'prov1-2025', name: 'Pro V1 (2025/2026 Model)', brand: 'Titleist', type: 'スピン系・中弾道', img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80', desc: 'すべてのゴルファーに推奨される完成度。Xと比べて中弾道で、より柔らかい打感と優れたショートゲームコントロールを提供。', profiles: { targetSpeed: ['40-43', '44-47', '48-49'], targetScore: ['under80', '80s', '90s', 'over100'], targetConcern: ['feel', 'spin', 'stability'], targetTrajectory: ['fade', 'straight', 'slice'] }, radar: { distance: 4.5, spin: 5, feel: 5 } },
+    { id: 'tp5-2024', name: 'TP5 (2024/2026 Model)', brand: 'TaylorMade', type: '5ピース・スピン系', img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80', desc: '独自の5層構造がもたらすグリーン周りでの最強のスピン量。アプローチをとにかく食いつかせたいプレーヤー向け。', profiles: { targetSpeed: ['40-43', '44-47'], targetScore: ['under80', '80s', '90s'], targetConcern: ['spin', 'feel'], targetTrajectory: ['draw', 'fade', 'straight'] }, radar: { distance: 4, spin: 5, feel: 5 } },
+    { id: 'tp5x-2024', name: 'TP5x (2024/2026 Model)', brand: 'TaylorMade', type: '5ピース・ディスタンス', img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80', desc: 'ツアーレベルのボールの中でトップクラスの初速。風に負けない強弾道で、5層フェースが飛距離を限界まで引き上げる。', profiles: { targetSpeed: ['44-47', '48-49', 'over50'], targetScore: ['under80', '80s', '90s'], targetConcern: ['distance', 'stability'], targetTrajectory: ['draw', 'straight', 'slice'] }, radar: { distance: 5, spin: 4, feel: 3.5 } },
+    { id: 'chrome-tour-2025', name: 'Chrome Tour', brand: 'Callaway', type: 'スピン系・ディスタンス', img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80', desc: '最新のエアロネットワークパターンにより、強風下でも落ち際まで伸びる弾道。飛距離とスピンの高次元なバランス。', profiles: { targetSpeed: ['44-47', '48-49'], targetScore: ['under80', '80s'], targetConcern: ['distance', 'spin', 'stability'], targetTrajectory: ['draw', 'fade', 'straight'] }, radar: { distance: 4.8, spin: 4.8, feel: 4.5 } },
+    { id: 'zstar-diamond-2025', name: 'Z-STAR ◆ (Diamond)', brand: 'Srixon', type: 'スピン系・アイアン強化', img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80', desc: 'アイアンでの強烈なスピンと飛距離性能を兼ね備えたモダンプロファイル。ハードヒッターがピンをデッドに狙うためのボール。', profiles: { targetSpeed: ['48-49', 'over50'], targetScore: ['under80', '80s'], targetConcern: ['spin', 'distance'], targetTrajectory: ['fade', 'straight', 'hook'] }, radar: { distance: 4.5, spin: 5, feel: 4 } },
+    { id: 'avx-2024', name: 'AVX', brand: 'Titleist', type: '低弾道・低スピン', img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80', desc: '極めて柔らかい打感と、吹け上がりを抑えた低弾道が特徴。スライスやフックの曲がり幅を抑えたいプレーヤーの救世主。', profiles: { targetSpeed: ['under40', '40-43', '44-47'], targetScore: ['90s', 'over100'], targetConcern: ['stability', 'feel'], targetTrajectory: ['slice', 'hook'] }, radar: { distance: 4.5, spin: 3, feel: 5 } }
+  ];
+
+  function calculateDiagnosis(answers) {
+    let bestMatch = BALL_DATABASE[0];
+    let highestScore = -1;
+
+    BALL_DATABASE.forEach(ball =&gt; {
+      let score = 0;
+      if (answers.headSpeed && ball.profiles.targetSpeed.includes(answers.headSpeed)) score += 40;
+      else score += 10;
+      if (answers.concern && ball.profiles.targetConcern.includes(answers.concern)) score += 35;
+      if (answers.score && ball.profiles.targetScore.includes(answers.score)) score += 15;
+      if (answers.trajectory && ball.profiles.targetTrajectory.includes(answers.trajectory)) score += 10;
+
+      const finalMatchScore = Math.min(score + Math.floor(Math.random() * 5), 98);
+      if (finalMatchScore &gt; highestScore) {
+        highestScore = finalMatchScore;
+        bestMatch = ball;
+      }
+    });
+
+    return { 
+      ball: bestMatch, 
+      matchScore: Math.max(highestScore, 70 + Math.floor(Math.random() * 10)) 
+    };
+  }
+
+  // 2. Load User Session Answers
+  let rawAnswers = sessionStorage.getItem('mybagpro_answers');
+  
+  if (!rawAnswers) {
+    // If accessed directly without session data, generate fake answers or force redirect
+    console.warn("No active session answers. Generating defaults.");
+    rawAnswers = JSON.stringify({ score: 'under80', headSpeed: '48-49', concern: 'distance', trajectory: 'straight' });
+    // window.location.href = '/ball-diagnosis/'; // Optionally redirect to start
+  }
+
+  const answers = JSON.parse(rawAnswers);
+  const result = calculateDiagnosis(answers);
+
+  // 3. Inject Data
+  document.addEventListener('DOMContentLoaded', () =&gt; {
+    lucide.createIcons();
+
+    // Map labels
+    const concernLabel = answers.concern === 'distance' ? '飛距離' : answers.concern === 'spin' ? 'スピン' : answers.concern === 'stability' ? '安定性' : '打感';
+    const trajLabel = answers.trajectory === 'draw' ? 'ドロー' : answers.trajectory === 'fade' ? 'フェード' : answers.trajectory === 'slice' ? 'スライス' : answers.trajectory === 'hook' ? 'フック' : 'ストレート';
+    const concernSol = answers.concern === 'distance' ? '高初速帯での伸びがカギ。' : answers.concern === 'spin' ? '高スピンでグリーンを攻略。' : answers.concern === 'stability' ? 'サイドスピン抑制がカギ。' : 'ソフトな打感で繊細なタッチを。';
+    
+    // Inject DOM
+    document.getElementById('res-img').src = result.ball.img;
+    document.getElementById('res-match').innerText = `${result.matchScore}% MATCH`;
+    document.getElementById('res-profileLabel').innerText = `HS ${answers.headSpeed || '40-43'}m/s / ${answers.score === 'under80' ? 'トップレベル' : answers.score === '80s' ? '上級者' : answers.score === '90s' ? 'プレーヤー' : 'エンジョイゴルファー'}の為の最適解`;
+    document.getElementById('res-name').innerText = result.ball.name;
+    document.getElementById('res-type').innerText = result.ball.type;
+    document.getElementById('res-desc').innerText = result.ball.desc;
+    
+    document.getElementById('res-dist').innerText = `LV.${result.ball.radar.distance}`;
+    document.getElementById('res-spin').innerText = `LV.${result.ball.radar.spin}`;
+    document.getElementById('res-feel').innerText = `LV.${result.ball.radar.feel}`;
+
+    document.getElementById('res-summary').innerText = `「${concernLabel}」を重視し、「${trajLabel}」軌道で攻めるスタイル。${concernSol}`;
+
+    // 4. Animate Out Loading & Show Results
+    setTimeout(() =&gt; {
+      document.getElementById('loading-view').style.opacity = '0';
+      setTimeout(() =&gt; {
+        document.getElementById('loading-view').classList.add('hidden');
+        document.getElementById('result-view').classList.remove('hidden');
+        document.getElementById('result-view').classList.add('flex');
+        
+        // Trigger fade in layout
+        setTimeout(() =&gt; {
+          document.getElementById('result-view').style.opacity = '1';
+          
+          // Trigger card slide up
+          setTimeout(() =&gt; {
+            const card = document.getElementById('card-element');
+            card.classList.remove('translate-y-8', 'opacity-0', 'scale-95');
+            card.classList.add('translate-y-0', 'opacity-100', 'scale-100');
+          }, 100);
+        }, 50);
+      }, 500);
+    }, 3500); // 3.5s fake loading
+  });
+
+  // 5. Native Share API & HTML2Canvas Logic
+  let isSharing = false;
+  
+  window.handleShare = async function() {
+    if (isSharing) return;
+    isSharing = true;
+
+    const btnShare = document.getElementById('btn-share');
+    const shareContent = document.getElementById('share-content');
+    const cardRef = document.getElementById('card-element');
+
+    // UI Loading State
+    btnShare.classList.remove('bg-[#1DA1F2]', 'hover:bg-[#1a8cd8]');
+    btnShare.classList.add('bg-slate-700', 'cursor-not-allowed', 'opacity-80');
+    shareContent.innerHTML = `&lt;div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"&gt;&lt;/div&gt; 画像を生成中...`;
+
+    try {
+      // Allow browser to flush UI state
+      await new Promise(r =&gt; setTimeout(r, 100));
+
+      const canvas = await html2canvas(cardRef, {
+        scale: 2,
+        backgroundColor: '#0f172a',
+        logging: false,
+        useCORS: true, 
+      });
+
+      canvas.toBlob(async (blob) =&gt; {
+        if (!blob) throw new Error('Failed to generate image');
+
+        const file = new File([blob], 'mybagpro-diagnosis.png', { type: 'image/png' });
+
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'My Bag Pro 診断結果',
+            text: `AIが選んだ運命のボールは【${result.ball.name}】でした！ #MyBagPro #ゴルフボール診断 #ゴルフギア`,
+            files: [file],
+          });
+        } else {
+          // Fallback Download
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'mybagpro-diagnosis.png';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          alert('結果画像をダウンロードしました。SNSに添付してシェアしてください！');
+        }
+      }, 'image/png');
+
+    } catch (error) {
+      console.error('Sharing failed:', error);
+      alert('画像の生成に失敗しました。ページをリロードして再試行してください。');
+    } finally {
+      // Revert UI State
+      isSharing = false;
+      btnShare.classList.remove('bg-slate-700', 'cursor-not-allowed', 'opacity-80');
+      btnShare.classList.add('bg-[#1DA1F2]', 'hover:bg-[#1a8cd8]');
+      shareContent.innerHTML = `&lt;i data-lucide="share-2" class="w-5 h-5"&gt;&lt;/i&gt; 結果をシェア・保存する`;
+      lucide.createIcons();
+    }
+  };
+&lt;/script&gt;
+</textarea></body></html>
