@@ -6,7 +6,7 @@ import { generateAiPrompt } from './aiPromptGenerator';
 export interface DiagnosisResult {
     result: any;
     groundingMetadata: null;
-    // final release
+    // final release 
 }
 
 export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: string) => {
