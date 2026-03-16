@@ -6,7 +6,7 @@ import { generateAiPrompt } from './aiPromptGenerator';
 export interface DiagnosisResult {
     result: any;
     groundingMetadata: null;
-    // final release 
+    // final release candidate with robust retry
 }
 
 export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: string) => {
@@ -16,46 +16,54 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
 
     console.log("Generating Production AI Diagnosis using Gemini API...");
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
-        generationConfig: {
-            responseMimeType: "application/json",
+    
+    // Attempt with multiple model identifiers if one fails (handling 404 v1beta issues)
+    const modelNames = ["gemini-1.5-flash", "models/gemini-1.5-flash", "gemini-1.5-flash-latest"];
+    let lastError: any = null;
+
+    for (const modelName of modelNames) {
+        try {
+            console.log(`Attempting with model: ${modelName}`);
+            const model = genAI.getGenerativeModel({ 
+                model: modelName,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                }
+            });
+
+            const prompt = generateAiPrompt(profile);
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = response.text();
+            
+            console.log(`Success with model: ${modelName}`);
+            
+            // JSON extraction logic
+            let jsonStr = text.trim();
+            const jsonMatch = jsonStr.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                jsonStr = jsonMatch[0];
+            }
+            jsonStr = jsonStr.replace(/,\s*([\}\]])/g, '$1'); 
+
+            const diagnosisData = JSON.parse(jsonStr);
+
+            const finalizedResult = {
+                category: profile.targetCategory,
+                type: profile.targetCategory === TargetCategory.BALL ? "BALL" : "CLUB", 
+                ...diagnosisData,
+                aiPromptText: prompt 
+            };
+
+            return { result: finalizedResult, groundingMetadata: null };
+        } catch (error: any) {
+            console.warn(`Failed with model: ${modelName}. Error: ${error?.message || error}`);
+            lastError = error;
+            // Continue to next model
         }
-    });
-
-    const prompt = generateAiPrompt(profile);
-
-    try {
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
-        
-        // JSONを抽出し、クリーニングする堅牢なロジック
-        let jsonStr = text.trim();
-        
-        // 正規表現で最初の { から最後の } までを取り出す
-        const jsonMatch = jsonStr.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-            jsonStr = jsonMatch[0];
-        }
-
-        // AI特有の崩れ（末尾のカンマ、制御文字など）を最小限に補正
-        jsonStr = jsonStr.replace(/,\s*([\}\]])/g, '$1'); 
-
-        const diagnosisData = JSON.parse(jsonStr);
-
-        // 期待される構造が欠けている場合のフォールバック処理とメタデータの注入
-        const finalizedResult = {
-            category: profile.targetCategory,
-            type: profile.targetCategory === TargetCategory.BALL ? "BALL" : "CLUB", 
-            ...diagnosisData,
-            aiPromptText: prompt // デバッグ用
-        };
-
-        return { result: finalizedResult, groundingMetadata: null };
-    } catch (error) {
-        console.error("Gemini API Error:", error);
-        throw error;
     }
+
+    // If all models failed
+    console.error("All Gemini models failed to respond.", lastError);
+    throw lastError || new Error("AI analysis failed with all attempted models.");
 };
-　
