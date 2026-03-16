@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // mybagpro.jp/app/ サブディレクトリに配置
-  base: '/app/',
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
