@@ -17,7 +17,7 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
     console.log("Generating Production AI Diagnosis using Gemini API...");
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash-latest",
+        model: "gemini-1.5-flash",
         generationConfig: {
             responseMimeType: "application/json",
         }
