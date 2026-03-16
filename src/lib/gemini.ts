@@ -58,3 +58,4 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
         throw error;
     }
 };
+　
