@@ -69,6 +69,15 @@ export const CLUB_SPECIFIC_MISS_TYPES: Record<string, { value: string; label: st
         { value: 'SOFT_FEEL_WANTED', label: 'もっと柔らかい球が欲しい', icon: '☁️' },
         { value: 'WIND_AFFECTED', label: '風に弱い', icon: '💨' },
         { value: 'DURABILITY', label: 'すぐ傷がつく', icon: '🔧' }
+    ],
+    [TargetCategory.TOTAL_SETTING]: [
+        { value: 'DISTANCE_GAP', label: '番手間の距離が開く', icon: '📏' },
+        { value: 'LEFT_RIGHT_MISS', label: '左右のミスの幅が広い', icon: '↔️' },
+        { value: 'TRAJECTORY_INCONSISTENT', label: '弾道の高さがバラバラ', icon: '↕️' },
+        { value: 'WEIGHT_FLOW_BAD', label: 'クラブによって重さがバラバラ', icon: '⚖️' },
+        { value: 'BRAND_MIXED', label: 'メーカーがバラバラ', icon: '🧩' },
+        { value: 'DIFFICULT_LONG_CLUBS', label: '長いクラブが打てない', icon: '🏌️' },
+        { value: 'WEDGE_GAPPING', label: 'ウェッジの距離が合わない', icon: '📉' }
     ]
 };
 

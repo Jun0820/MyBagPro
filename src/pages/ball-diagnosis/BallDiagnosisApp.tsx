@@ -39,28 +39,28 @@ export interface DiagnosisAnswers {
 }
 
 export const BallDiagnosisApp: React.FC = () => {
-  const { updateProfile } = useDiagnosis();
+  const { profile, updateProfile } = useDiagnosis();
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('landing');
   const [mode, setMode] = useState<DiagnosisMode>('lite');
   const [answers, setAnswers] = useState<DiagnosisAnswers>({
-    score: 100,
-    headSpeed: 40,
+    score: profile.averageScore || 100,
+    headSpeed: profile.headSpeed || 40,
     concern: null,
     trajectory: null,
-    gender: null,
-    age: null,
-    annualRounds: null,
-    currentBallBrand: null,
-    currentBallModel: null,
+    gender: profile.gender || null,
+    age: (profile as any).age || null,
+    annualRounds: (profile as any).annualRounds || null,
+    currentBallBrand: (profile as any).currentBallBrand || null,
+    currentBallModel: (profile as any).currentBallModel || null,
     approachStyle: null,
     putterFeel: null,
     priority: null,
     missTendencies: null,
-    swingTempo: null,
+    swingTempo: profile.swingTempo || null,
     visualPreference: null,
     ballHardness: 80,
     shotData: {
-      carry: '200'
+      carry: profile.measurementData?.driverCarryDistance || '200'
     },
     useMyBag: false,
     favoriteBrands: null,

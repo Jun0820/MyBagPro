@@ -9,6 +9,7 @@ import { ResultPage } from './pages/ResultPage';
 import { MyGearPage } from './pages/MyGearPage';
 import { SharedBag } from './pages/SharedBag';
 import BallDiagnosisApp from './pages/ball-diagnosis/BallDiagnosisApp';
+import { Sitemap } from './pages/Sitemap';
 import { useState, useEffect } from 'react';
 
 // Layout Component (Internal to App for simplicity, could be separate)
@@ -45,7 +46,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <span className="uppercase">
               {saveStatus === 'saving' ? 'Saving...' : 
                saveStatus === 'saved' ? 'Saved' : 
-               saveStatus === 'error' ? 'Error' : 'Local'}
+               saveStatus === 'error' ? 'Error' : 'Guest (On Device)'}
             </span>
           </div>
 
@@ -60,16 +61,47 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      <main className="pt-32 pb-24 px-4 md:px-8 max-w-5xl mx-auto relative z-10">
+      <main className="pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
         {children}
       </main>
 
-      <footer className="bg-trust-navy text-white pt-16 pb-8 px-4 mt-auto relative z-10">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-sm text-slate-400 font-eng">© 2026 My Bag Pro</div>
-          <div className="flex gap-8 text-xs font-bold text-slate-500 tracking-wide">
-            <button onClick={() => setShowLegal('privacy')} className="hover:text-white transition-colors">PRIVACY</button>
-            <button onClick={() => setShowLegal('terms')} className="hover:text-white transition-colors">TERMS</button>
+      <footer className="bg-trust-navy text-white pt-20 pb-12 px-4 mt-auto relative z-10">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16 px-4">
+          <div className="col-span-1 md:col-span-1">
+            <a href="#/" className="flex items-center gap-3 mb-6 group">
+              <span className="font-eng text-2xl font-black tracking-tight text-white leading-none">MY <span className="text-transparent bg-clip-text bg-gradient-to-r from-golf-400 to-golf-600">BAG</span> PRO</span>
+            </a>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+              あなたのゴルフセッティングを最適な名刺に。AI診断とコミュニティで、最高の14本を。
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 col-span-1 md:col-span-2 gap-8">
+            <div>
+              <h4 className="font-bold text-sm mb-6 text-white tracking-widest uppercase">Features</h4>
+              <ul className="space-y-4 text-xs font-bold text-slate-400">
+                <li><button onClick={() => navigate('/diagnosis')} className="hover:text-golf-400 transition-colors">AIクラブ診断</button></li>
+                <li><button onClick={() => navigate('/ball-diagnosis')} className="hover:text-golf-400 transition-colors">AIボール診断</button></li>
+                <li><button onClick={() => navigate('/mypage')} className="hover:text-golf-400 transition-colors">マイページ / クラブ登録</button></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-sm mb-6 text-white tracking-widest uppercase">About</h4>
+              <ul className="space-y-4 text-xs font-bold text-slate-400">
+                <li><button onClick={() => navigate('/sitemap')} className="hover:text-golf-400 transition-colors">サイトマップ</button></li>
+                <li><button onClick={() => setShowLegal('terms')} className="hover:text-golf-400 transition-colors">利用規約</button></li>
+                <li><button onClick={() => setShowLegal('privacy')} className="hover:text-golf-400 transition-colors">プライバシーポリシー</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 px-4">
+          <div className="text-[10px] text-slate-500 font-eng tracking-widest">© 2026 MY BAG PRO. ALL RIGHTS RESERVED.</div>
+          <div className="flex gap-6">
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
           </div>
         </div>
       </footer>
@@ -121,6 +153,7 @@ function App() {
             <Route path="/result/:club/:mode" element={<ResultPage />} />
             <Route path="/mypage" element={<MyGearPage />} />
             <Route path="/bag" element={<SharedBag />} />
+            <Route path="/sitemap" element={<Sitemap />} />
           </Routes>
         </Layout>
       </HashRouter>

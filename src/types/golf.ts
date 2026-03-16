@@ -5,7 +5,8 @@ export enum TargetCategory {
     UTILITY = 'ユーティリティ',
     IRON = 'アイアン',
     WEDGE = 'ウェッジ',
-    PUTTER = 'パター'
+    PUTTER = 'パター',
+    TOTAL_SETTING = 'クラブセッティング診断'
 }
 
 export enum Gender {
@@ -19,6 +20,14 @@ export enum SkillLevel {
     UPPER_INTERMEDIATE = '上級者 (80切り目標)',
     ADVANCED = 'シングル (ハンデ一桁目標)',
     PRO = '競技志向・プロ'
+}
+
+export enum GolfHistory {
+    LESS_THAN_1 = '1年未満',
+    YEAR_1_3 = '1〜3年',
+    YEAR_3_5 = '3〜5年',
+    YEAR_5_10 = '5〜10年',
+    OVER_10 = '10年以上'
 }
 
 export enum MissType {
@@ -154,7 +163,9 @@ export interface Club {
     brand: string;
     model: string;
     shaft: string;
-    loft: string;
+    flex: string;   // Hardness of shaft
+    number: string; // [NEW] Number (e.g., 3W, 7I)
+    loft: string;   // [NEW] Loft angle (e.g., 15 deg)
     distance: string;
 }
 
@@ -180,7 +191,10 @@ export interface UserProfile {
     skillLevel: SkillLevel | null;
     headSpeed: number;
     spinRate: string;
+    birthdate?: string;
+    golfHistory?: GolfHistory | null;
     diagnosisMode: DiagnosisMode;
+    isPublic: boolean;
 
     // 計測データ（オプション）
     measurementData: {
@@ -336,6 +350,8 @@ export interface UserProfile {
 
     snsLinks?: { instagram?: string; x?: string };
     coverPhoto?: string;
+    bestScore?: number;
+    averageScore?: number;
     myBag: ClubSetting;
     
     // Phase 8: Extended Ball Diagnosis Fields
@@ -346,6 +362,24 @@ export interface UserProfile {
     approachStyle?: string;
     currentBallBrand?: string;
     currentBallModel?: string;
+
+    // [NEW] Total Setting Diagnosis Fields
+    diagnosisGoal?: string;            // 診断の目標 (飛距離、安定等)
+    roundFrequency?: string;           // ラウンド頻度
+    weightFlowFeel?: string;           // 重量フローの違和感
+    vibrationFeel?: string;            // 振動数・硬さの違和感
+    brandConsistency?: string;         // ブランド混在の懸念
+    knowsExactCarry?: boolean;         // 正確なキャリーの把握
+    gapDistance170210?: string;        // 170-210ydの空白地帯
+    wedgeGapFeel?: string;             // ウェッジの距離刻み
+    missQuality?: string;              // ミスの質 (打点 vs スピン)
+    attackAngleLevel?: string;         // 入射角の自覚
+    bestClub?: string;                 // 最も自信のあるクラブ
+    worstClub?: string;                // 最も構えたくないクラブ
+    situationalIssue?: string[];        // 苦手な状況
+    sensoryComplaints?: string;        // 感性的な不満
+    commonCourseType?: string;          // よく行くコース特性
+    playStyle?: 'AGGRESSIVE' | 'DEFENSIVE' | 'NEUTRAL'; // プレースタイル
 }
 
 export interface ClubPhysics {
@@ -401,6 +435,7 @@ export interface DiagnosisHistoryItem {
 }
 
 export interface UserAccount {
+    id: string;
     isLoggedIn: boolean;
     name: string;
     email: string;
@@ -414,6 +449,7 @@ export interface UserAccount {
 export const INITIAL_CLUB_SETTING: ClubSetting = { clubs: [], ball: '' };
 
 export const INITIAL_ACCOUNT: UserAccount = {
+    id: '',
     isLoggedIn: false,
     name: '',
     email: '',
@@ -431,6 +467,7 @@ export const INITIAL_PROFILE: UserProfile = {
     headSpeed: 40,
     spinRate: '',
     diagnosisMode: DiagnosisMode.FULL_SPEC,
+    isPublic: false,
     measurementData: {
         driverCarryDistance: '',
         driverTotalDistance: '',
@@ -509,6 +546,8 @@ export const INITIAL_PROFILE: UserProfile = {
     wedgeUsage: undefined,
     snsLinks: {},
     coverPhoto: undefined,
+    bestScore: undefined,
+    averageScore: undefined,
     myBag: INITIAL_CLUB_SETTING,
     
     // Phase 8
@@ -516,5 +555,7 @@ export const INITIAL_PROFILE: UserProfile = {
     currentBall: undefined,
     ballUseReason: undefined,
     ballImprovementPoints: [],
-    approachStyle: undefined
+    approachStyle: undefined,
+    birthdate: undefined,
+    golfHistory: null
 };

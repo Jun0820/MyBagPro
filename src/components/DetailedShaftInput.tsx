@@ -30,7 +30,7 @@ export const DetailedShaftInput: React.FC<DetailedShaftInputProps> = ({
                     placeholder="シャフトモデル"
                     className={cn(
                         "w-full border-2 border-slate-200 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-500 bg-white shadow-sm transition-all",
-                        compact ? "p-2 px-3 text-xs" : "p-3.5 md:p-3 text-base md:text-sm"
+                        compact ? "p-2 px-3 text-sm" : "p-3.5 md:p-3 text-base md:text-sm"
                     )}
                 />
                 {showModel && (
@@ -55,7 +55,7 @@ export const DetailedShaftInput: React.FC<DetailedShaftInputProps> = ({
                         onChange={(e) => onWeightChange(e.target.value)}
                         className={cn(
                             "w-full border-2 border-slate-200 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-500 bg-white appearance-none shadow-sm transition-all",
-                            compact ? "p-2 px-2 text-xs" : "p-3.5 md:p-3 text-base md:text-sm"
+                            compact ? "p-2 px-2 text-sm" : "p-3.5 md:p-3 text-base md:text-sm"
                         )}
                     >
                         <option value="">重量</option>
@@ -75,7 +75,7 @@ export const DetailedShaftInput: React.FC<DetailedShaftInputProps> = ({
                         onChange={(e) => onFlexChange(e.target.value)}
                         className={cn(
                             "w-full border-2 border-slate-200 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-500 bg-white appearance-none shadow-sm transition-all",
-                            compact ? "p-2 px-2 text-xs" : "p-3.5 md:p-3 text-base md:text-sm"
+                            compact ? "p-2 px-2 text-sm" : "p-3.5 md:p-3 text-base md:text-sm"
                         )}
                     >
                         <option value="">Flex</option>

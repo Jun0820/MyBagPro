@@ -3,9 +3,9 @@ import {
     type UserAccount, type UserProfile,
     INITIAL_ACCOUNT, INITIAL_PROFILE
 } from '../types/golf';
-import type { DiagnosisResult } from '../lib/diagnosis_logic';
-import { generateFittingDiagnosis } from '../lib/gemini';
+import { generateFittingDiagnosis, type DiagnosisResult } from '../lib/gemini';
 import { convertProfileToCustomerData, sendToGoogleSheets } from '../lib/googleSheets';
+import { supabase } from '../lib/supabase';
 
 interface DiagnosisContextType {
     user: UserAccount;
@@ -18,6 +18,7 @@ interface DiagnosisContextType {
     step: number;
     setStep: (step: number) => void;
     isAnalyzing: boolean;
+    diagnosisError: string | null;
     resultData: DiagnosisResult | null;
     runDiagnosis: () => Promise<void>;
     resetDiagnosis: () => void;
@@ -28,6 +29,7 @@ interface DiagnosisContextType {
     showMyPage: boolean;
     setShowMyPage: (show: boolean) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
+    syncWithSupabase: () => Promise<void>;
 }
 
 const DiagnosisContext = createContext<DiagnosisContextType | undefined>(undefined);
@@ -46,6 +48,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     const [step, setStep] = useState(1);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [diagnosisError, setDiagnosisError] = useState<string | null>(null);
     const [resultData, setResultData] = useState<DiagnosisResult | null>(() => {
         const saved = localStorage.getItem('mybagpro_result_data');
         return saved ? JSON.parse(saved) : null;
@@ -54,11 +57,96 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [showMyPage, setShowMyPage] = useState(false);
     const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
 
+    // Handle Supabase Auth State
+    useEffect(() => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+            if (event === 'SIGNED_IN' && session) {
+                setUser({
+                    id: session.user.id,
+                    email: session.user.email || '',
+                    name: session.user.user_metadata?.name || '',
+                    memberSince: session.user.created_at,
+                    isLoggedIn: true,
+                    history: []
+                });
+                await syncWithSupabase();
+            } else if (event === 'SIGNED_OUT') {
+                setUser(INITIAL_ACCOUNT);
+                localStorage.removeItem('mybagpro_user');
+                localStorage.removeItem('mybagpro_profile');
+                setProfile(INITIAL_PROFILE);
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
+
+    const syncWithSupabase = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return;
+
+        setSaveStatus('saving');
+        try {
+            const { data: profileData } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', user.id)
+                .single();
+
+            if (profileData) {
+                setProfile(prev => ({
+                    ...prev,
+                    name: profileData.name || prev.name,
+                    gender: profileData.gender || prev.gender,
+                    age: profileData.age || prev.age,
+                    headSpeed: profileData.head_speed || prev.headSpeed,
+                    birthdate: profileData.birthdate || prev.birthdate,
+                    golfHistory: profileData.golf_history || prev.golfHistory,
+                    snsLinks: profileData.sns_links || prev.snsLinks,
+                    coverPhoto: profileData.cover_photo || prev.coverPhoto,
+                    isPublic: profileData.is_public ?? prev.isPublic
+                }));
+            }
+
+            const { data: clubData } = await supabase
+                .from('clubs')
+                .select('*')
+                .eq('user_id', user.id);
+
+            if (clubData) {
+                setProfile(prev => ({
+                    ...prev,
+                    myBag: {
+                        ...prev.myBag,
+                        clubs: clubData.map(c => ({
+                            id: c.id,
+                            category: c.category,
+                            brand: c.brand,
+                            model: c.model,
+                            shaft: c.shaft,
+                            flex: c.flex,
+                            number: c.number,
+                            loft: c.loft,
+                            distance: c.distance
+                        }))
+                    }
+                }));
+            }
+            setSaveStatus('saved');
+        } catch (e) {
+            console.error("Sync error:", e);
+            setSaveStatus('error');
+        } finally {
+            setTimeout(() => setSaveStatus('idle'), 2000);
+        }
+    };
+
     // Persistence with Status Feedback
     useEffect(() => {
         const saveData = async () => {
             setSaveStatus('saving');
             try {
+                // Local Storage
                 localStorage.setItem('mybagpro_user', JSON.stringify(user));
                 localStorage.setItem('mybagpro_profile', JSON.stringify(profile));
                 if (resultData) {
@@ -66,8 +154,44 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 } else {
                     localStorage.removeItem('mybagpro_result_data');
                 }
+
+                // Supabase (Remote)
+                if (user.isLoggedIn && user.id) {
+                    // Update Profile
+                    await supabase.from('profiles').upsert({
+                        id: user.id,
+                        name: profile.name,
+                        gender: profile.gender,
+                        age: profile.age,
+                        head_speed: profile.headSpeed,
+                        birthdate: profile.birthdate,
+                        golf_history: profile.golfHistory,
+                        sns_links: profile.snsLinks,
+                        cover_photo: profile.coverPhoto,
+                        is_public: profile.isPublic,
+                        updated_at: new Date().toISOString()
+                    });
+
+                    // Sync Clubs (Careful with mass upsert/delete)
+                    // For simplicity, we'll delete and re-insert for now in this MVP, 
+                    // though delta syncing is better for production.
+                    await supabase.from('clubs').delete().eq('user_id', user.id);
+                    if (profile.myBag.clubs.length > 0) {
+                        const clubPayloads = profile.myBag.clubs.map(c => ({
+                            user_id: user.id,
+                            category: c.category,
+                            brand: c.brand,
+                            model: c.model,
+                            shaft: c.shaft,
+                            number: c.number,
+                            loft: c.loft,
+                            distance: c.distance
+                        }));
+                        await supabase.from('clubs').insert(clubPayloads);
+                    }
+                }
+
                 setSaveStatus('saved');
-                // Reset to idle after 2 seconds
                 const timer = setTimeout(() => setSaveStatus('idle'), 2000);
                 return () => clearTimeout(timer);
             } catch (e) {
@@ -76,8 +200,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             }
         };
 
-        saveData();
-    }, [user, profile, resultData]);
+        // Debounce save slightly to avoid excessive calls
+        const timeoutId = setTimeout(saveData, 1000);
+        return () => clearTimeout(timeoutId);
+    }, [user.id, user.isLoggedIn, profile, resultData]);
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
         setProfile(prev => ({ ...prev, [field]: value }));
@@ -85,6 +211,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     const runDiagnosis = async () => {
         setIsAnalyzing(true);
+        setDiagnosisError(null);
         // API Key logic matched from App.tsx
         const apiKey = import.meta.env.VITE_GEMINI_API_KEY || (window as any).process?.env?.API_KEY || '';
 
@@ -116,9 +243,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 };
                 setUser(updatedUser);
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Diagnosis error:", error);
-            // Handle error appropriately
+            setDiagnosisError(error.message || "AI解析中にエラーが発生しました。");
         } finally {
             setIsAnalyzing(false);
         }
@@ -126,6 +253,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     const resetDiagnosis = () => {
         setResultData(null);
+        setDiagnosisError(null);
         setStep(1);
         setProfile(prev => ({ ...prev, shotData: undefined, ballPreferences: undefined }));
     };
@@ -136,12 +264,14 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             profile, setProfile, updateProfile,
             step, setStep,
             isAnalyzing,
+            diagnosisError,
             resultData,
             runDiagnosis,
             resetDiagnosis,
             showAuth, setShowAuth,
             showMyPage, setShowMyPage,
-            saveStatus
+            saveStatus,
+            syncWithSupabase
         }}>
             {children}
         </DiagnosisContext.Provider>

@@ -13,6 +13,8 @@ interface SharedBagData {
         mo: string;
         l: string;
         sh: string;
+        fl: string; // flex
+        nu: string; // number
         di: string;
     }>;
 }
@@ -35,6 +37,8 @@ export const encodeBagData = (
             mo: club.model,
             l: club.loft,
             sh: club.shaft,
+            fl: club.flex,
+            nu: club.number,
             di: club.distance
         }))
     };
@@ -84,6 +88,8 @@ export const decodeBagData = (encoded: string): {
                     model: club.mo,
                     loft: club.l,
                     shaft: club.sh,
+                    flex: club.fl || '',
+                    number: club.nu || '',
                     distance: club.di
                 }))
             },

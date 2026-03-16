@@ -1,44 +1,59 @@
-import { generatePhysicsBasedDiagnosis } from './diagnosis_logic';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { UserProfile } from '../types/golf';
+import { TargetCategory } from '../types/golf';
 import { generateAiPrompt } from './aiPromptGenerator';
 
-export const generateFittingDiagnosis = async (profile: UserProfile, _apiKey: string) => {
-    console.log("Generating Physics-Based Diagnosis (API Free Mode)...");
-    
-    // [TODO: Fetch from ChatGPT API using this prompt]
+export interface DiagnosisResult {
+    result: any;
+    groundingMetadata: null;
+}
+
+export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: string) => {
+    if (!apiKey) {
+        throw new Error("Gemini API Key is missing. Please check your environment variables.");
+    }
+
+    console.log("Generating Production AI Diagnosis using Gemini API...");
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ 
+        model: "gemini-1.5-flash",
+        generationConfig: {
+            responseMimeType: "application/json",
+        }
+    });
+
     const prompt = generateAiPrompt(profile);
-    console.log("----- [AI PROMPT GENERATED] -----");
-    console.log(prompt);
-    console.log("---------------------------------");
 
-    // Simulate slight delay for UX
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        
+        // JSONを抽出し、クリーニングする堅牢なロジック
+        let jsonStr = text.trim();
+        
+        // 正規表現で最初の { から最後の } までを取り出す
+        const jsonMatch = jsonStr.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            jsonStr = jsonMatch[0];
+        }
 
-    const result = generatePhysicsBasedDiagnosis(profile);
-    // AIの生成プロンプトをデバッグ用に保持
-    result.aiPromptText = prompt;
-    
-    // UI構築用のダミーAIレスポンス（OpenAI API繋ぎ込み前のモック）
-    result.aiResponseText = `
-## 🎯 診断サマリー
-あなたのスイングデータ（HS約${profile.headSpeed}m/s）と「${profile.missTendencies.length > 0 ? profile.missTendencies.join('、') : '飛距離不足'}」という悩みを分析しました。
-インパクトでのフェースの開きや打点のブレが課題です。適度な重心角とつかまりの良いシャフトを組み合わせることで、フェアウェイキープ率と平均飛距離が劇的に向上します。
+        // AI特有の崩れ（末尾のカンマ、制御文字など）を最小限に補正
+        jsonStr = jsonStr.replace(/,\s*([\}\]])/g, '$1'); 
 
-## 🏆 ベストマッチ提案（メイン）
-- **ヘッド**: PING G430 MAX
-- **ロフト角**: 10.5度
-- **シャフト**: Fujikura Speeder NX Green 50-SR
-- **おすすめの理由**: G430 MAXの圧倒的なMOI（慣性モーメント）が打点のブレをカバーし、Speeder NX Greenの手元の安定感と先端の適度な走りがインパクトでのフェース角をスクエアに導きます。ミスを軽減しつつ、初速を最大化できる現在の最高峰の組み合わせです。
+        const diagnosisData = JSON.parse(jsonStr);
 
-## ⏳ 専門家が厳選する中古名器（2年以上前のモデル）
-- **ヘッド**: Callaway EPIC SPEED
-- **ロフト角**: 10.5度
-- **シャフト**: Tour AD HD-5 (S)
-- **おすすめの理由**: 2021年の名器です。空気抵抗を減らしたジェイルブレイクフレーム設計でヘッドスピードを底上げし、先端剛性が高いHDシャフトが余計なスピンや左への引っかけを防ぎつつ強い弾道を生み出します。中古市場（GDO等）でも手頃な価格帯で手に入る非常に完成度の高いセッティングです。
+        // 期待される構造が欠けている場合のフォールバック処理とメタデータの注入
+        const finalizedResult = {
+            category: profile.targetCategory,
+            type: profile.targetCategory === TargetCategory.BALL ? "BALL" : "CLUB", 
+            ...diagnosisData,
+            aiPromptText: prompt // デバッグ用
+        };
 
-## ⚙️ セッティングのワンポイントアドバイス
-- 現在お使いのクラブより少しだけ短く握る（指1本分）ことで、ミート率が上がりシャフトの恩恵をより受けやすくなります。スリーブ調整機能がある場合は「Draw」または「Upright」ポジションから試してみてください。
-    `;
-    
-    return { result, groundingMetadata: null };
+        return { result: finalizedResult, groundingMetadata: null };
+    } catch (error) {
+        console.error("Gemini API Error:", error);
+        throw error;
+    }
 };

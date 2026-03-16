@@ -38,7 +38,7 @@ const getExpectedTypeFromUrl = (club: string | undefined, mode: string | undefin
     if (modeLower === 'shaft') return 'SHAFT';
 
     // ヘッド診断・フル診断はどちらもCLUBタイプ
-    if (['driver', 'fairway', 'utility', 'iron', 'wedge'].includes(clubLower || '')) {
+    if (['driver', 'fairway', 'utility', 'iron', 'wedge', 'total'].includes(clubLower || '')) {
         return 'CLUB';
     }
 
@@ -50,14 +50,42 @@ const getExpectedTypeFromUrl = (club: string | undefined, mode: string | undefin
 };
 
 export const ResultPage = () => {
-    const { resultData, user, setProfile, resetDiagnosis, setShowAuth, profile } = useDiagnosis();
+    const { resultData, diagnosisError, user, setProfile, resetDiagnosis, setShowAuth, profile } = useDiagnosis();
     const navigate = useNavigate();
     const { club, mode } = useParams<{ club?: string; mode?: string }>();
+
+    if (diagnosisError) {
+        return (
+            <div className="text-center py-20 bg-slate-50 min-h-screen px-4">
+                <div className="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl shadow-slate-200 border border-slate-100">
+                    <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <AlertTriangle className="text-red-500 w-10 h-10" />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-800 mb-2">AI解析エラー</h3>
+                    <p className="text-slate-500 mb-8 text-sm leading-relaxed">{diagnosisError}</p>
+                    <div className="flex flex-col gap-3">
+                        <button 
+                            onClick={() => window.location.reload()} 
+                            className="w-full bg-trust-navy text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-slate-800 transition-colors"
+                        >
+                            再試行する
+                        </button>
+                        <button 
+                            onClick={() => navigate('/')} 
+                            className="w-full bg-slate-100 text-slate-600 font-bold py-4 rounded-2xl hover:bg-slate-200 transition-colors"
+                        >
+                            ホームに戻る
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     if (!resultData) {
         return (
             <div className="text-center py-20 bg-slate-50 min-h-screen">
-                <p className="text-slate-600 mb-4">診断結果が見つかりません。</p>
+                <p className="text-slate-600 mb-4">保存された診断結果がありません。</p>
                 <button onClick={() => navigate('/')} className="text-trust-navy underline font-bold">ホームに戻る</button>
             </div>
         );
@@ -138,6 +166,40 @@ export const ResultPage = () => {
                 </summary>
                 <div className="pt-6">
             
+            {/* 🆕 総合診断専用：重量フロー & 距離の階段分析 */}
+            {profile.targetCategory === TargetCategory.TOTAL_SETTING && (
+                <div className="grid md:grid-cols-2 gap-6 mb-12 px-4 md:px-0">
+                    {result.weightFlowAnalysis && result.weightFlowAnalysis !== 'なし' && (
+                        <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                                <Activity size={80} className="text-slate-900" />
+                            </div>
+                            <h4 className="font-eng font-black text-xl mb-4 flex items-center gap-2 text-slate-800">
+                                <span className="p-1.5 bg-slate-900 text-white rounded-lg"><Activity size={16} /></span>
+                                WEIGHT FLOW ANALYSIS
+                            </h4>
+                            <p className="text-sm leading-relaxed text-slate-600 font-medium whitespace-pre-wrap">
+                                {result.weightFlowAnalysis}
+                            </p>
+                        </div>
+                    )}
+                    {result.distanceGapAnalysis && result.distanceGapAnalysis !== 'なし' && (
+                        <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                                <Zap size={80} className="text-slate-900" />
+                            </div>
+                            <h4 className="font-eng font-black text-xl mb-4 flex items-center gap-2 text-slate-800">
+                                <span className="p-1.5 bg-slate-900 text-white rounded-lg"><Zap size={16} /></span>
+                                DISTANCE GAP ANALYSIS
+                            </h4>
+                            <p className="text-sm leading-relaxed text-slate-600 font-medium whitespace-pre-wrap">
+                                {result.distanceGapAnalysis}
+                            </p>
+                        </div>
+                    )}
+                </div>
+            )}
+
             {result.currentGearAnalysis &&
                 (!profile.currentBrand || (profile.currentBrand !== 'Unknown' && profile.currentBrand !== '')) &&
                 (!profile.currentModel || (profile.currentModel !== 'Unknown' && profile.currentModel !== '')) && (
@@ -398,6 +460,19 @@ export const ResultPage = () => {
                                             <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
                                         </div>
                                     </div>
+                                    {/* フィッターの熱い一言 */}
+                                    {item.expertOpinion && (
+                                        <div className="mb-6 p-4 bg-amber-50 rounded-2xl border border-amber-100 relative overflow-hidden group">
+                                            <div className="absolute top-0 left-0 w-1 h-full bg-amber-400"></div>
+                                            <div className="text-[10px] font-bold text-amber-600 mb-1 flex items-center gap-1">
+                                                <Stethoscope size={10} /> FITTER'S INSIGHT
+                                            </div>
+                                            <p className="text-xs font-bold text-slate-700 italic leading-relaxed">
+                                                "{item.expertOpinion}"
+                                            </p>
+                                        </div>
+                                    )}
+
                                     {/* ランキング説明 */}
                                     {item.rankingExplanation && (
                                         <p className="text-xs text-slate-500 mb-6 flex items-center gap-1">
@@ -835,12 +910,12 @@ export const ResultPage = () => {
                                 const category = profile.targetCategory || TargetCategory.DRIVER;
                                 const newClub = {
                                     id: Math.random().toString(36),
-                                    category: category,
+                                    category: (category as string),
                                     brand: topModel.brand || '',
                                     model: topModel.modelName || '',
-                                    shaft: topModel.shafts?.[0]
-                                        ? (typeof topModel.shafts[0] === 'string' ? topModel.shafts[0] : `${topModel.shafts[0].modelName} ${topModel.shafts[0].flex}`)
-                                        : '',
+                                    number: topModel.modelName || '', 
+                                    flex: '',
+                                    shaft: typeof topModel.shafts?.[0] === 'string' ? topModel.shafts[0] : topModel.shafts?.[0]?.modelName || '',
                                     loft: topModel.loft ? `${topModel.loft}°` : '',
                                     distance: ''
                                 };

@@ -82,7 +82,7 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
     };
 
     return (
-        <div ref={wrapperRef} className={cn("grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3", compact && "gap-1.5 md:gap-2")}>
+        <div ref={wrapperRef} className={cn("grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3", compact && "grid-cols-2 md:grid-cols-2 gap-1.5 md:gap-2")}>
             {/* BRAND */}
             <div className="relative">
                 <label className={cn("block font-bold text-slate-500 mb-1 ml-1", compact ? "text-[9px]" : "text-[10px] md:text-xs")}>メーカー</label>
@@ -95,7 +95,7 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
                         placeholder="メーカー"
                         className={cn(
                             "w-full border border-slate-200/60 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-400 focus:ring-4 focus:ring-golf-400/10 transition-all shadow-sm",
-                            compact ? "p-2.5 text-xs" : "p-4 md:p-4 text-base md:text-sm",
+                            compact ? "p-2.5 text-sm" : "p-4 md:p-4 text-base md:text-sm",
                             bgClass === "bg-white" ? "bg-white/50 backdrop-blur-sm" : bgClass
                         )}
                     />

@@ -11,7 +11,7 @@ interface StepCardProps {
 
 export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, onBack, isFirst }) => {
     return (
-        <div className="w-full max-w-3xl mx-auto animate-fadeIn">
+        <div className="w-full max-w-5xl mx-auto animate-fadeIn">
             <div className="mb-6 md:mb-8 px-2 md:px-0">
                 {!isFirst && onBack && (
                     <button

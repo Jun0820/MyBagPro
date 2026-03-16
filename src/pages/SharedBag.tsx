@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { decodeBagData } from '../lib/urlData';
 import { type ClubSetting, TargetCategory } from '../types/golf';
-import { ArrowLeft, Instagram, Send, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Instagram, Send, ExternalLink, ShieldCheck, AlertCircle, Lock } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { supabase } from '../lib/supabase';
 
 export const SharedBag = () => {
     const location = useLocation();
@@ -14,26 +15,114 @@ export const SharedBag = () => {
         setting: ClubSetting,
         headSpeed: number
     } | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const query = new URLSearchParams(location.search);
         const d = query.get('d');
-        if (d) {
-            const decoded = decodeBagData(d);
-            if (decoded) {
-                setData(decoded);
+        const id = query.get('id');
+
+        const loadData = async () => {
+            setLoading(true);
+            setError(null);
+
+            if (id) {
+                // Fetch from Supabase
+                try {
+                    const { data: profile, error: pError } = await supabase
+                        .from('profiles')
+                        .select('*')
+                        .eq('id', id)
+                        .single();
+
+                    if (pError || !profile) {
+                        setError('セッティングが見つからないか、非公開に設定されています。');
+                        setLoading(false);
+                        return;
+                    }
+
+                    if (!profile.is_public) {
+                        setError('このセッティングは非公開設定になっています。');
+                        setLoading(false);
+                        return;
+                    }
+
+                    const { data: clubs, error: cError } = await supabase
+                        .from('clubs')
+                        .select('*')
+                        .eq('user_id', id);
+
+                    if (cError) throw cError;
+
+                    setData({
+                        name: profile.name || 'Anonymous',
+                        sns: profile.sns_links || {},
+                        headSpeed: profile.head_speed || 0,
+                        setting: {
+                            clubs: (clubs || []).map(c => ({
+                                id: c.id,
+                                category: c.category,
+                                brand: c.brand || '',
+                                model: c.model || '',
+                                number: c.number || '',
+                                loft: c.loft || '',
+                                shaft: c.shaft || '',
+                                flex: c.flex || '',
+                                distance: c.distance || ''
+                            })),
+                            ball: profile.current_ball || ''
+                        }
+                    });
+                } catch (err) {
+                    console.error(err);
+                    setError('データの読み込み中にエラーが発生しました。');
+                }
+            } else if (d) {
+                // Legacy URL data
+                const decoded = decodeBagData(d);
+                if (decoded) {
+                    setData(decoded);
+                } else {
+                    setError('無効な共有リンクです。');
+                }
+            } else {
+                setError('共有リンクにデータが含まれていません。');
             }
-        }
+            setLoading(false);
+        };
+
+        loadData();
     }, [location.search]);
 
-    if (!data) {
+    if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-slate-400">
-                <div className="animate-spin mb-4">⛳️</div>
-                <p>セッティングを読み込んでいます...</p>
+                <div className="animate-spin mb-4 text-2xl text-golf-500">⛳️</div>
+                <p className="font-bold text-sm">セッティングを読み込んでいます...</p>
             </div>
         );
     }
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
+                <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mb-6">
+                    {error.includes('非公開') ? <Lock size={32} /> : <AlertCircle size={32} />}
+                </div>
+                <h2 className="text-xl font-bold text-trust-navy mb-2">読み込めませんでした</h2>
+                <p className="text-slate-500 text-sm mb-8 max-w-xs">{error}</p>
+                <button 
+                    onClick={() => navigate('/')} 
+                    className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-black transition-all"
+                >
+                    TOPへ戻る
+                </button>
+            </div>
+        );
+    }
+
+    if (!data) return null;
 
     const { name, sns, setting, headSpeed } = data;
 

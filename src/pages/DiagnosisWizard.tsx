@@ -9,7 +9,7 @@ import { PutterHeadSelector, PutterNeckSelector } from '../components/PutterSele
 import { BallPreferenceSelector } from '../components/BallPreferenceSelector';
 import { AdvancedShotInput } from '../components/AdvancedShotInput';
 import { Zap } from 'lucide-react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrandSelector } from '../components/BrandSelector';
 import { getShaftModels, getShaftWeightOptions } from '../lib/data';
 import { CLUB_SPECIFIC_MISS_TYPES, CLUB_MEASUREMENT_FIELDS } from '../components/ClubSpecificQuestions';
@@ -28,13 +28,17 @@ export const DiagnosisWizard = () => {
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     const prevStep = () => {
+        setBackwards(true); // Set flag to prevent auto-skip/advance loops
         if (step <= 1) {
-            // ステップ1（またはそれ以下）の場合はトップに戻る
             navigate('/');
         } else if (step === 2 && category) {
-            // URLパラメータ経由でステップ2の場合、カテゴリ選択（Step 1）に戻るためにパラメータ無しのページへ遷移およびステップリセット
             setStep(1);
             navigate('/diagnosis');
+        } else if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
+            // [NEW] Total Setting special back logic
+            if (step === 20) setStep(1);
+            else if (step === 4) setStep(25); // Back from profile to last total setting step
+            else setStep(step - 1);
         } else {
             setStep(step - 1);
         }
@@ -472,6 +476,40 @@ export const DiagnosisWizard = () => {
         }
     }, [category, step]);
 
+    // Auto-advance Step 4 (Profile) if data already exists
+    // [FIX] Only auto-advance if we didn't just come back from a later step
+    const [backwards, setBackwards] = useState(false);
+
+    useEffect(() => {
+        if (step === 4 && profile.gender && profile.skillLevel && profile.bestScore && profile.averageScore) {
+            if (!backwards) {
+                setStep(step + 1);
+            }
+        }
+        // Reset backwards flag when moving away from step 4 or changing step
+        if (step !== 4) setBackwards(false);
+    }, [step, profile.gender, profile.skillLevel, profile.bestScore, profile.averageScore, backwards]);
+
+    // [NEW] Auto-skip Miss Tendencies (Step 5 for most clubs) if already answered
+    useEffect(() => {
+        // Only skip if we are actually at the miss tendency step (usually step 5 or 6 depending on category)
+        // And if the user has already provided miss tendencies from their profile
+        if (profile.missTendencies && profile.missTendencies.length > 0) {
+           if (step === 5 && profile.targetCategory !== TargetCategory.WEDGE) {
+               // setStep(step + 1); // Enable this if we want to skip miss tendency step
+           }
+        }
+    }, [step, profile.missTendencies, profile.targetCategory]);
+
+    // [NEW] Handle auto-advance for TOTAL_SETTING (Moving from render body to useEffect)
+    useEffect(() => {
+        if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
+            if (step === 2 || step === 3) {
+                setStep(4); // Total Setting skips Mode and Current Gear entry
+            }
+        }
+    }, [step, profile.targetCategory]);
+
 
     // Step 1: Target Selection (Default if no category param)
     if (step === 1) return (
@@ -488,7 +526,11 @@ export const DiagnosisWizard = () => {
                                     if (isEnabled) {
                                         resetCategorySpecificData();
                                         updateProfile('targetCategory', c);
-                                        setStep(step + 1);
+                                        if (c === TargetCategory.TOTAL_SETTING) {
+                                            setStep(20);
+                                        } else {
+                                            setStep(step + 1);
+                                        }
                                         navigate(`/diagnosis/${Object.keys(TargetCategory).find(key => TargetCategory[key as keyof typeof TargetCategory] === c)?.toLowerCase()}`);
                                     }
                                 }}
@@ -519,6 +561,11 @@ export const DiagnosisWizard = () => {
         if ((profile.targetCategory as any) === TargetCategory.WEDGE || profile.targetCategory === 'ウェッジ') {
             const wedgeContent = renderWedgeSteps();
             if (wedgeContent) return wedgeContent;
+        }
+
+        // Total Setting skips mode selection (handled in useEffect)
+        if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
+            return null;
         }
 
         if (profile.targetCategory === TargetCategory.PUTTER) {
@@ -562,7 +609,10 @@ export const DiagnosisWizard = () => {
 
     // Step 3: Current Gear
     if (step === 3) {
-
+        // Total Setting skips individual gear entry (handled in useEffect)
+        if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
+            return null;
+        }
 
         // ユーティリティ診断用の特別なUI
         if (profile.targetCategory === TargetCategory.UTILITY) {
@@ -897,6 +947,30 @@ export const DiagnosisWizard = () => {
                         ))}
                     </div>
                 </div>
+
+                {/* スコア入力セクション */}
+                <div className="grid grid-cols-2 gap-4 mt-6">
+                    <div className="space-y-2">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">ベストスコア</label>
+                        <input 
+                            type="number" 
+                            placeholder="例: 78"
+                            value={profile.bestScore || ''}
+                            onChange={(e) => updateProfile('bestScore', e.target.value ? parseInt(e.target.value) : undefined)}
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-800 focus:ring-2 focus:ring-golf-500/20 focus:border-golf-500 transition-all outline-none"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">平均スコア</label>
+                        <input 
+                            type="number" 
+                            placeholder="例: 92"
+                            value={profile.averageScore || ''}
+                            onChange={(e) => updateProfile('averageScore', e.target.value ? parseInt(e.target.value) : undefined)}
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-800 focus:ring-2 focus:ring-golf-500/20 focus:border-golf-500 transition-all outline-none"
+                        />
+                    </div>
+                </div>
             </div>
             <button onClick={() => setStep(step + 1)} disabled={!profile.gender || !profile.skillLevel} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 disabled:opacity-50 transition-colors">
                 次へ
@@ -1070,7 +1144,7 @@ export const DiagnosisWizard = () => {
 
         // For Ball & Clubs: Show Swing Data
         return (
-            <StepCard title="スイングデータ" subtitle="スイングの特徴を教えてください" onBack={() => setStep(step - 1)}>
+            <StepCard title="スイングデータ" subtitle="スイングの特徴を教えてください" onBack={prevStep}>
                 <div className="bg-white/50 p-6 rounded-2xl border border-slate-100 shadow-inner mb-8">
                     <label className="font-bold block mb-2 text-trust-navy text-lg flex justify-between items-end">
                         <span>ドライバーのヘッドスピード</span>
@@ -1705,6 +1779,7 @@ export const DiagnosisWizard = () => {
                 case TargetCategory.WEDGE: return 'wedge';
                 case TargetCategory.PUTTER: return 'putter';
                 case TargetCategory.BALL: return 'ball';
+                case TargetCategory.TOTAL_SETTING: return 'total';
                 default: return 'driver';
             }
         };

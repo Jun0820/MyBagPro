@@ -212,7 +212,16 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
   const baseQuestions = mode === 'lite' ? LITE_QUESTIONS : PRO_QUESTIONS;
   
   // Skip gender/score if already in userProfile (optional, keeping for now)
-  const finalQuestions = baseQuestions; // Disabling skip for now to ensure clean flow as requested
+  const finalQuestions = baseQuestions.filter(q => {
+    // Skip profile group if basic info exists
+    if (q.id === 'profile' && answers.gender && answers.age && answers.annualRounds) return false;
+    
+    // Skip score/headSpeed if they were initialized from user profile (i.e., not default values)
+    if (q.id === 'score' && answers.score && answers.score !== 100) return false;
+    if (q.id === 'headSpeed' && answers.headSpeed && answers.headSpeed !== 40) return false;
+    
+    return true;
+  });
 
   const handleSelect = (value: any) => {
     if (isTransitioning) return;
