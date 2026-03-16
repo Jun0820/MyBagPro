@@ -6,6 +6,7 @@ import { generateAiPrompt } from './aiPromptGenerator';
 export interface DiagnosisResult {
     result: any;
     groundingMetadata: null;
+    // trigger redeploy to unblock Vercel
 }
 
 export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: string) => {
