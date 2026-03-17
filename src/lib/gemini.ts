@@ -6,7 +6,6 @@ import { generateAiPrompt } from './aiPromptGenerator';
 export interface DiagnosisResult {
     result: any;
     groundingMetadata: null;
-    // final release candidate with robust retry
 }
 
 export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: string) => {
@@ -17,13 +16,15 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
     console.log("Generating Production AI Diagnosis using Gemini API...");
     const genAI = new GoogleGenerativeAI(apiKey);
     
-    // Attempt with multiple model identifiers if one fails (handling 404 v1beta issues)
-    const modelNames = ["gemini-1.5-flash", "models/gemini-1.5-flash", "gemini-1.5-flash-latest"];
+    // Attempt with multiple model identifiers to be exhaustive.
+    // Models listed in preference order. 
+    // "gemini-1.5-flash" is the current standard name.
+    const modelNames = ["gemini-1.5-flash", "gemini-1.5-flash-latest", "gemini-2.0-flash"];
     let lastError: any = null;
 
     for (const modelName of modelNames) {
         try {
-            console.log(`Attempting with model: ${modelName}`);
+            console.log(`Current attempt model: ${modelName}`);
             const model = genAI.getGenerativeModel({ 
                 model: modelName,
                 generationConfig: {
@@ -38,7 +39,7 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
             
             console.log(`Success with model: ${modelName}`);
             
-            // JSON extraction logic
+            // JSON extraction and cleanup
             let jsonStr = text.trim();
             const jsonMatch = jsonStr.match(/\{[\s\S]*\}/);
             if (jsonMatch) {
@@ -57,13 +58,12 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
 
             return { result: finalizedResult, groundingMetadata: null };
         } catch (error: any) {
-            console.warn(`Failed with model: ${modelName}. Error: ${error?.message || error}`);
+            console.warn(`Model ${modelName} failed:`, error?.message || error);
             lastError = error;
-            // Continue to next model
+            // Fallthrough to next model
         }
     }
 
-    // If all models failed
-    console.error("All Gemini models failed to respond.", lastError);
+    console.error("Critical: All Gemini models failed.", lastError);
     throw lastError || new Error("AI analysis failed with all attempted models.");
 };
