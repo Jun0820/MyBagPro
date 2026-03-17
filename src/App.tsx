@@ -100,7 +100,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 }`}
               >
                 {user.isLoggedIn ? <User size={14} className="group-hover:scale-110 transition-transform" /> : <LogIn size={14} />} 
-                <span>{user.isLoggedIn ? 'MY PAGE' : 'LOGIN'}</span>
+                <span>{user.isLoggedIn ? 'マイページ' : 'ログイン'}</span>
                 {user.isLoggedIn && <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />}
               </button>
 

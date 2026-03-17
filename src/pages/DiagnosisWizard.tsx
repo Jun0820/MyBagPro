@@ -264,7 +264,7 @@ export const DiagnosisWizard = () => {
                             onClick={() => setStep(step + 1)}
                             className="w-full mt-6 bg-trust-navy text-white py-4 rounded-xl font-bold shadow-lg hover:bg-slate-800 transition-all"
                         >
-                            NEXT STEP
+                            次へ
                         </button>
                     </StepCard>
                 );
@@ -1530,7 +1530,7 @@ export const DiagnosisWizard = () => {
                     </>
                 )}
 
-                <button onClick={() => setStep(step + 1)} disabled={!profile.swingTempo} className="w-full mt-10 bg-trust-navy text-white py-4 md:py-5 rounded-full font-bold text-lg shadow-xl shadow-trust-navy/20 hover:bg-slate-800 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all">NEXT STEP (BRAND)</button>
+                <button onClick={() => setStep(step + 1)} disabled={!profile.swingTempo} className="w-full mt-10 bg-trust-navy text-white py-4 md:py-5 rounded-full font-bold text-lg shadow-xl shadow-trust-navy/20 hover:bg-slate-800 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all">メーカー選択へ</button>
             </StepCard>
         );
     }
@@ -1540,7 +1540,7 @@ export const DiagnosisWizard = () => {
     if (step === 6) {
         if (profile.targetCategory === TargetCategory.BALL) {
             return (
-                <StepCard title="BALL PREFERENCES" subtitle="好みと重要視するポイント" onBack={() => setStep(step - 1)}>
+                <StepCard title="ボールの好み" subtitle="好みと重要視するポイント" onBack={() => setStep(step - 1)}>
                     <BallPreferenceSelector
                         preferences={profile.ballPreferences}
                         userProfile={profile}
@@ -1548,7 +1548,7 @@ export const DiagnosisWizard = () => {
                         onProfileChange={updateProfile}
                     />
                     <button onClick={() => setStep(7)} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800">
-                        NEXT STEP (SHOT DATA)
+                        計測データへ
                     </button>
                 </StepCard>
             );
@@ -1558,7 +1558,7 @@ export const DiagnosisWizard = () => {
         const clubMissTypes = CLUB_SPECIFIC_MISS_TYPES[profile.targetCategory || TargetCategory.DRIVER] || [];
 
         return (
-            <StepCard title="DEEP ANALYSIS" subtitle={`${profile.targetCategory || 'クラブ'}の悩みやミスの傾向`} onBack={() => setStep(step - 1)}>
+            <StepCard title="詳細分析" subtitle={`${profile.targetCategory || 'クラブ'}の悩みやミスの傾向`} onBack={() => setStep(step - 1)}>
                 <div className="space-y-6">
                     <div>
                         <label className="font-bold block mb-3">ミス傾向 (複数選択可)</label>
@@ -1588,7 +1588,7 @@ export const DiagnosisWizard = () => {
                         />
                     </div>
                 </div>
-                <button onClick={() => setStep(7)} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors">NEXT STEP</button>
+                <button onClick={() => setStep(7)} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors">次へ</button>
             </StepCard>
         );
     }
@@ -1597,13 +1597,13 @@ export const DiagnosisWizard = () => {
     if (step === 7) {
         if (profile.targetCategory === TargetCategory.BALL) {
             return (
-                <StepCard title="SHOT DATA (OPTIONAL)" subtitle="計測データがあれば入力してください" onBack={() => setStep(step - 1)}>
+                <StepCard title="計測データ（任意）" subtitle="計測データがあれば入力してください" onBack={() => setStep(step - 1)}>
                     <AdvancedShotInput
                         data={profile.shotData}
                         onChange={v => updateProfile('shotData', v)}
                     />
                     <button onClick={() => setStep(8)} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800">
-                        NEXT STEP (BRAND)
+                        メーカー選択へ
                     </button>
                 </StepCard>
             );
@@ -1617,7 +1617,7 @@ export const DiagnosisWizard = () => {
         };
 
         return (
-            <StepCard title="MEASUREMENT DATA" subtitle={`${profile.targetCategory || 'クラブ'}の計測データ（任意）`} onBack={() => setStep(step - 1)}>
+            <StepCard title="計測データ" subtitle={`${profile.targetCategory || 'クラブ'}の計測データ（任意）`} onBack={() => setStep(step - 1)}>
                 <div className="mb-6">
                     <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -1698,7 +1698,7 @@ export const DiagnosisWizard = () => {
         const finalCanProceed = isHeadValid;
 
         return (
-            <StepCard title="BRAND PREFERENCE" subtitle="こだわりメーカーはありますか？" onBack={() => setStep(step - 1)}>
+            <StepCard title="メーカー選択" subtitle="こだわりメーカーはありますか？" onBack={() => setStep(step - 1)}>
                 <div className="space-y-8">
                     {/* Head Brands */}
                     {showHeadBrands && (
