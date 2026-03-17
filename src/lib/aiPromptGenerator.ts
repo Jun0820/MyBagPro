@@ -1,147 +1,176 @@
 import type { UserProfile } from '../types/golf';
-import { DiagnosisMode, TargetCategory } from '../types/golf';
+import { TargetCategory } from '../types/golf';
 
 /**
  * ユーザーの診断プロファイルから、Gemini APIへ送信するためのプロンプト文字列を生成します。
- * 本番運用では、AIからパース可能なJSON形式でのレスポンスを要求します。
  */
 export const generateAiPrompt = (profile: UserProfile): string => {
     const isTotalSetting = profile.targetCategory === TargetCategory.TOTAL_SETTING;
 
-    let prompt = `あなたは世界最高峰のゴルフクラブフィッター10人と、ギアへのこだわりが強いシングルゴルファー100人の知恵を統合した最強のAIアドバイザーです。
-以下の分析データに基づいて、ユーザーにとって「最高に美しく、最高に結果が出るセッティング」を診断し、指定されたJSONフォーマットで回答してください。
+    let prompt = `あなたは世界最高峰のゴルフクラブフィッター10人と、ギアへのこだわりが強いシングルゴルファー100人の知恵を統合した最強のAIアドバイザー兼コンシェルジュです。
+あなたの使命は、ユーザーのデータを精密に分析し、スコアアップに直結する「魔法のセッティング」を提案することです。
 
-### 【診断の重要ルール（専門家10人×ユーザー100人の協議結果）】
-1. **重量フローの整合性**: ドライバーからウェッジまで、重量が一定の傾きで重くなる「黄金の重量フロー」を最重視してください。
-2. **飛距離の階段（ギャップ）**: 170〜210ydのレンジで「打てない番手」が発生していないか厳密にチェックし、解消策を提示してください。
-3. **最新機と名器のミックス**: 最新2024-2026年モデルの恩恵と、過去10年の「変える必要がない完成度の高い中古名器」をバランスよく組み合わせてください。
-4. **エモーショナルな助言**: 単なるデータの羅列ではなく、ユーザーの悩みに寄り添い、ゴルフがもっと楽しくなるようなワクワクする言葉を選んでください。
-${isTotalSetting ? '5. **セッティング診断モード**: 各クラブ個別の診断ではなく「14本の流れ」を評価し、特定のクラブだけが浮いていないかを評価してください。\n6. **現在のバッグの解体・再構築**: ユーザーのMyBagにある中で「残すべき宝物」と「今すぐ変えるべき弱点」を明確に分けて助言してください。' : ''}
-${isTotalSetting ? '7' : '5'}. **JSONフォーマット**: 出力は必ず以下のJSON構造に従ってください。Markdownのコードブロック（ \`\`\`json ... \`\`\` ）で囲んで出力してください。
+### 【診断の重要ルール（専門家10人×ユーザー100人の合議制）】
+1. **重量フローの整合性**: 全ての番手の重量が、1WからSWまでスムーズに重くなるようチェックしてください。
+2. **感情的ニーズの充足**: 「170ydを楽に打ちたい」「この1本が構えにくい」という個別の悩みに対し、物理スペックと感情の両面から解決策を提示してください。
+3. **アフィリエイト購入導線**: 買い替えを提案する際は、ユーザーがその場で「買いたい！」と思えるような魅力的な解説を加えてください。
+4. **最新 vs 名器**: 最新2026年モデルのテクノロジーと、一生モノの「中古名器」を戦略的に使い分けてください。
+5. **JSON厳守**: 出力は必ず指定のJSONフォーマットのみで行ってください。
 
 ---
 
 ### 【ユーザープロファイル】
-- **診断対象カテゴリ**: ${profile.targetCategory || '総合'}
-- **年齢層**: ${profile.age || '未回答'} / **性別**: ${profile.gender || '指定なし'}
-- **ゴルフ歴/レベル**: ${profile.skillLevel || '未回答'}
-- **現在の悩み/傾向**: ${profile.missTendencies.length > 0 ? profile.missTendencies.join(', ') : '特になし'}
-- **スイングテンポ**: ${profile.swingTempo || '未回答'}
-- **ヘッドスピード**: ${profile.headSpeed ? `約${profile.headSpeed} m/s` : '未回答'}
+- **カテゴリ**: ${profile.targetCategory || '総合'}
+- **属性**: ${profile.age || ''} ${profile.gender || ''} / スコア: ${profile.averageScore || '未回答'} / HS: ${profile.headSpeed} m/s
+- **全体的な悩み**: ${profile.missTendencies.join(', ') || '特になし'}
+- **スイングDNA**: テンポ(${profile.swingTempo || ''}), インパクト(${profile.impactStyle || ''})
 `;
 
-    // セッティング情報（MyBag）の追加
-    if (isTotalSetting && profile.myBag && profile.myBag.clubs.length > 0) {
-        prompt += `\n### 【現在のクラブセッティング（MyBag）】\n`;
+    // 14本セッティング（MyBag）の詳細抽出
+    if (profile.myBag && profile.myBag.clubs.length > 0) {
+        prompt += `\n### 【現在の14本セッティング & 個別の悩み】\n`;
         profile.myBag.clubs.forEach(club => {
-            prompt += `- ${club.category}: ${club.brand} ${club.model} (シャフト: ${club.shaft || '不明'}, ロフト: ${club.loft || '不明'})\n`;
+            prompt += `- ${club.category}(${club.number || club.loft || ''}): ${club.brand} ${club.model} [${club.shaft || ''}] 飛距離: ${club.distance || ''}Y\n`;
+            if (club.worry) {
+                prompt += `  **個別の悩み**: ${club.worry}\n`;
+            }
         });
         if (profile.myBag.ball) {
             prompt += `- 使用ボール: ${profile.myBag.ball}\n`;
         }
     }
 
-    // 診断モードによる情報追加 (単体診断の場合)
-    if (!isTotalSetting && profile.diagnosisMode === DiagnosisMode.FULL_SPEC) {
-        prompt += `- **現在の使用クラブ**: ${profile.currentBrand || ''} ${profile.currentModel || ''}\n`;
-        prompt += `- **現在のシャフト**: ${profile.currentShaftModel || ''} ${profile.currentShaftWeight || ''} ${profile.currentShaftFlex || ''}\n`;
-        prompt += `- **現在のロフト角**: ${profile.currentLoft || ''}\n`;
-    }
-
-    // こだわりメーカー
-    if (profile.brandPreferenceMode !== 'any' && profile.preferredBrands && profile.preferredBrands.length > 0) {
-        const modeText = profile.brandPreferenceMode === 'strict' ? '（必須条件）' : '（できれば）';
-        prompt += `- **希望するメーカー**: ${profile.preferredBrands.join(', ')} ${modeText}\n`;
-    }
-
-    // ショットの傾向
-    prompt += `\n### 【ショットデータ/傾向】\n`;
-    if (profile.trajectoryHeight) prompt += `- **現在の弾道高さ**: ${profile.trajectoryHeight}\n`;
-    if (profile.idealTrajectory) prompt += `- **理想の弾道**: ${profile.idealTrajectory}\n`;
-    if (profile.preferredBallFlight) prompt += `- **好みの球筋**: ${profile.preferredBallFlight}\n`;
-    if (profile.impactStyle) prompt += `- **インパクトの傾向**: ${profile.impactStyle}\n`;
-
     if (profile.freeComments) {
-        prompt += `\n### 【ユーザーメッセージ・特定の悩み】\n${profile.freeComments}\n`;
+        prompt += `\n### 【特記事項】\n${profile.freeComments}\n`;
     }
 
+    // 診断モードによる追加データ
     if (isTotalSetting) {
-        prompt += `\n### 【セッティング診断用詳細データ】\n`;
-        if (profile.diagnosisGoal) prompt += `- 診断の最重要目標: ${profile.diagnosisGoal}\n`;
-        if (profile.roundFrequency) prompt += `- ラウンド頻度: ${profile.roundFrequency}\n`;
-        if (profile.weightFlowFeel) prompt += `- 重量フローの違和感: ${profile.weightFlowFeel}\n`;
-        if (profile.brandConsistency) prompt += `- ブランド統一感への懸念: ${profile.brandConsistency}\n`;
-        if (profile.gapDistance170210) prompt += `- 170-210ydレンジの空白地帯: ${profile.gapDistance170210}\n`;
-        if (profile.missQuality) prompt += `- ミスの質（打点 vs スピン）: ${profile.missQuality}\n`;
-        if (profile.attackAngleLevel) prompt += `- 自覚している入射角: ${profile.attackAngleLevel}\n`;
-        if (profile.bestClub) prompt += `- 最も信頼しているクラブ: ${profile.bestClub}\n`;
-        if (profile.worstClub) prompt += `- 最も苦手/構えたくないクラブ: ${profile.worstClub}\n`;
-        if (profile.situationalIssue && profile.situationalIssue.length > 0) prompt += `- 苦手なシチュエーション: ${profile.situationalIssue.join(', ')}\n`;
-        if (profile.commonCourseType) prompt += `- よく行くコース特性: ${profile.commonCourseType}\n`;
-        if (profile.playStyle) prompt += `- プレースタイル: ${profile.playStyle}\n`;
+        prompt += `\n### 【セッティング診断用詳細質問への回答】\n`;
+        const details = [
+            { k: "診断目標", v: profile.diagnosisGoal },
+            { k: "170-210ydの空白", v: profile.gapDistance170210 },
+            { k: "得意なクラブ", v: profile.bestClub },
+            { k: "苦手なクラブ", v: profile.worstClub },
+            { k: "ミスの質", v: profile.missQuality }
+        ];
+        details.forEach(d => { if(d.v) prompt += `- ${d.k}: ${d.v}\n` });
     }
 
     prompt += `
 ---
 
-### 【出力JSONスキーマ】
+### 【出力要求事項】
+以下のJSON構造で回答してください。JSON以外の一切のテキスト（「承知しました」等）を排除してください。
+
 \`\`\`json
 {
-  "aiResponseText": "ユーザーへの挨拶と、スイング傾向および${isTotalSetting ? 'セッティング全体' : 'クラブ'}の総評を含むMarkdown形式のテキスト",
+  "aiResponseText": "以下のセクションを必ず含めてMarkdown形式で作成してください（アフィリエイト購入を促す魅力的な文章にすること）。\n\n## 🎯 診断サマリー\n（全体的な診断結果の要約を1〜2文で）\n\n## 🏆 ベストマッチ提案\n- **ヘッド**: 推奨モデル名\n- **ロフト角**: 最適なロフト\n- **シャフト**: 推奨シャフトとスペック\n- **おすすめの理由**: なぜこの組み合わせが最強なのかの解説\n\n## ⏳ 専門家が厳選する中古名器\n- **ヘッド**: 中古市場で狙い目の名器モデル名\n- **ロフト角**: 推奨ロフト\n- **シャフト**: 挿さっていることが多い/おすすめのシャフト\n- **おすすめの理由**: なぜ今このモデルが『買い』なのかの解説\n\n## ⚙️ セッティングのワンポイントアドバイス\n- アドバイス1\n- アドバイス2",
   "userSwingDna": {
-    "type": "スイングタイプの名称（例：パワードロー型）",
-    "description": "スイング特性の解説",
-    "keyNeeds": ["改善すべき点1", "改善すべき点2"]
+    "type": "スイングタイプ名",
+    "description": "解析結果",
+    "keyNeeds": ["課題1", "課題2"]
   },
   "currentGearAnalysis": {
-    "matchPercentage": 適合率(数値),
-    "typeDescription": "${isTotalSetting ? '現在のセッティング構成' : '現在のクラブ'}のタイプ解説",
-    "pros": "現在の良い点",
-    "cons": "現在の課題点・改善点"
-  },
-  "idealTrajectory": {
-    "recommendation": "推奨される弾道の方向性（例：高弾道ロースピン）",
-    "details": {
-      "launchAngle": "適正な打ち出し角の目安",
-      "spinRate": "適正なスピン量の目安",
-      "maxHeight": "適正な最高到達点の目安"
-    }
+    "matchPercentage": 適合率(0-100),
+    "cons": "現在のセッティングの致命的な欠陥や改善点"
   },
   "rankings": [
     {
       "rank": 1,
       "brand": "メーカー名",
-      "modelName": "${isTotalSetting ? '推奨するセッティングのキーとなるクラブ' : '製品名'}",
-      "matchPercentage": 適合率(0-100の数値),
-      "catchphrase": "キャッチコピー",
-      "reasoning": "${isTotalSetting ? '各番手の重量フローとロフト角の階段を物理的に算出した結果、' : ''}選定した論理的理由",
-      "technicalFit": "物理スペック的な適合ポイント",
+      "modelName": "推奨モデル名",
+      "matchPercentage": 95,
+      "catchphrase": "ユーザーの心に刺さるキャッチコピー",
+      "reasoning": "なぜこのモデルが、今の悩みを解決し、他の13本と調和するのかの詳細な理由",
       "radarChart": {
-        "axis1": ${isTotalSetting ? '重量フロー' : '飛距離性能'}(1-10),
-        "axis2": ${isTotalSetting ? 'ロフトギャップ' : '寛容性/やさしさ'}(1-10),
-        "axis3": ${isTotalSetting ? '操作性' : '操作性'}(1-10),
-        "axis4": '感性・打感'(1-10),
-        "axis5": 'トータル整合性'(1-10)
+        "性能": 9,
+        "やさしさ": 8,
+        "操作性": 7,
+        "重量フロー調和": 10,
+        "所有欲": 9
       },
-      "shafts": ["推奨シャフト名1(スペック含む)", "推奨シャフト名2"],
-      "priceEstimate": "目安価格",
-      "isUsedMasterpiece": false,
-      "expertOpinion": "フィッターとしての熱い一言"
-    },
-    {
-      "rank": 2,
-      "...": "(同様の構造で計3件程度)"
+      "shafts": ["推奨シャフト1", "推奨シャフト2"],
+      "expertOpinion": "フィッター10人による太鼓判メッセージ"
     }
   ],
-  "weightFlowAnalysis": "${isTotalSetting ? '現在のセッティングの重量フローに関する詳細な科学的分析' : 'なし'}",
-  "distanceGapAnalysis": "${isTotalSetting ? '14本の距離の階段に関する詳細な分析' : 'なし'}",
-  "summary": {
-    "title": "診断の要約タイトル",
-    "items": [
-      { "model": "製品名", "description": "一言メモ" }
-    ]
+  "advice": "スコアアップのための具体的アクションプラン"
+}
+\`\`\`
+`;
+
+    return prompt;
+};
+
+/**
+ * ゴルフボール診断用のプロンプトを生成します。
+ */
+export const generateBallAiPrompt = (profile: UserProfile): string => {
+    let prompt = `あなたは世界最高峰のゴルフボール・フィッティング・スペシャリストです。
+全メーカーのボール構造（コア、カバー、ディンプル）と弾道計算理論を完璧にマスターしています。
+ユーザーのヘッドスピード、スピン傾向、そして現在の「14本のクラブセッティング」を分析し、最もスコアを削れる「運命のボール」を1つ、そして代替案を2つ提案してください。
+
+### 【診断の重要ルール】
+1. **クラブとの連動**: ユーザーのMy Bagにあるウッドのロフトやアイアンのシャフト重量を考慮し、トータルパッケージとして最適なボールを提案してください。
+2. **打感と数値の両立**: HSだけでなく、ユーザーが求める「打感」と、実際に必要な「スピン量・初速」のギャップを埋めるアドバイスをしてください。
+3. **アフィリエイト購入導線**: 提案するボールごとに、なぜそれが「買い」なのかを専門家視点で魅力的に解説してください。
+4. **JSON厳守**: 出力は必ず指定のJSONフォーマットのみで行ってください。
+
+---
+
+### 【ユーザープロファイル】
+- **属性**: ${profile.age || ''} ${profile.gender || ''} / スコア: ${profile.averageScore || '未回答'} / HS: ${profile.headSpeed} m/s
+- **ヘッドスピード**: ${profile.headSpeed} m/s
+- **年間ラウンド数**: ${profile.annualRounds || '不明'}
+- **現在使用中のボール**: ${profile.currentBallBrand || ''} ${profile.currentBallModel || ''}
+- **アプローチの好み**: ${profile.approachStyle === 'spin' ? 'スピンで止めたい' : '転がして寄せたい'}
+- **最優先事項**: ${profile.ballPerformanceGoals.join(', ') || '飛距離とスピンのバランス'}
+- **悩み・ミス傾向**: ${profile.missTendencies.join(', ') || '特になし'}
+`;
+
+    if (profile.myBag && profile.myBag.clubs.length > 0) {
+        prompt += `\n### 【現在の14本セッティング（ギア構成）】\n`;
+        profile.myBag.clubs.forEach(club => {
+            prompt += `- ${club.category}(${club.number || club.loft || ''}): ${club.brand} ${club.model} [${club.shaft || ''}]\n`;
+        });
+    }
+
+    prompt += `
+---
+
+### 【出力要求事項】
+以下のJSON構造で回答してください。JSON以外の一切のテキストを排除してください。
+
+\`\`\`json
+{
+  "recommendedBall": {
+    "name": "推奨ボール名",
+    "brand": "メーカー名",
+    "matchScore": 98,
+    "catchphrase": "ユーザーの心に刺さるキャッチコピー",
+    "description": "なぜこのボールが、ユーザーのHSとギア構成において最強の武器になるのかの詳細な解説",
+    "radarChart": {
+      "飛距離": 9,
+      "スピン": 10,
+      "打感": 8,
+      "直進性": 9,
+      "コストパフォーマンス": 7
+    },
+    "expertOpinion": "フィッティング専門家からのメッセージ"
   },
-  "advice": "セッティング全体の流れを良くするための具体的なアドバイス（番手の追加・削除、シャフトの重量調整など）"
+  "alternatives": [
+    {
+      "type": "SOFT (より柔らかい打感)",
+      "name": "ボール名",
+      "reason": "メインの推奨よりも〇〇を重視する場合の選択肢"
+    },
+    {
+      "type": "HARD (よりしっかりした打感)",
+      "name": "ボール名",
+      "reason": "メインの推奨よりも初速と手応えを重視する場合の選択肢"
+    }
+  ],
+  "gearSynergyAdvice": "現在のクラブセッティング（FW/アイアン等）との親和性に関する技術的なアドバイス"
 }
 \`\`\`
 `;

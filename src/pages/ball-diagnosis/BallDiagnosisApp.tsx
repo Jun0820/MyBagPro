@@ -4,6 +4,7 @@ import { useDiagnosis } from '../../context/DiagnosisContext';
 import LandingScreen from './LandingScreen';
 import ChatScreen from './ChatScreen';
 import ResultScreen from './ResultScreen';
+import { TargetCategory, BallPerformanceGoal } from '../../types/golf';
 
 export type ScreenState = 'landing' | 'modeSelect' | 'chat' | 'loading' | 'result';
 export type DiagnosisMode = 'lite' | 'pro';
@@ -39,7 +40,7 @@ export interface DiagnosisAnswers {
 }
 
 export const BallDiagnosisApp: React.FC = () => {
-  const { profile, updateProfile } = useDiagnosis();
+  const { profile, setProfile, runDiagnosis, isAnalyzing } = useDiagnosis();
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('landing');
   const [mode, setMode] = useState<DiagnosisMode>('lite');
   const [answers, setAnswers] = useState<DiagnosisAnswers>({
@@ -95,24 +96,45 @@ export const BallDiagnosisApp: React.FC = () => {
     setAnswers(newAnswers);
   };
 
-  const handleDiagnose = (finalAnswers: any) => {
+  const handleDiagnose = async (finalAnswers: any) => {
     setAnswers(finalAnswers);
     
-    // Sync newly collected profile data if it was asked
-    if (finalAnswers.gender) updateProfile('gender', finalAnswers.gender);
-    if (finalAnswers.age) updateProfile('age', finalAnswers.age);
-    if (finalAnswers.headSpeed) updateProfile('headSpeed', finalAnswers.headSpeed);
-    if (finalAnswers.annualRounds) updateProfile('annualRounds', finalAnswers.annualRounds);
-    if (finalAnswers.currentBallBrand) updateProfile('currentBallBrand', finalAnswers.currentBallBrand);
-    if (finalAnswers.currentBallModel) updateProfile('currentBallModel', finalAnswers.currentBallModel);
-    if (finalAnswers.approachStyle) updateProfile('approachStyle', finalAnswers.approachStyle);
+    // 1. Map all ball-specific answers to the global profile
+    setProfile(prev => ({
+      ...prev,
+      targetCategory: TargetCategory.BALL,
+      headSpeed: finalAnswers.headSpeed,
+      averageScore: finalAnswers.score,
+      gender: finalAnswers.gender,
+      age: finalAnswers.age,
+      annualRounds: finalAnswers.annualRounds,
+      currentBallBrand: finalAnswers.currentBallBrand,
+      currentBallModel: finalAnswers.currentBallModel,
+      approachStyle: finalAnswers.approachStyle,
+      ballPerformanceGoals: (finalAnswers.priority || []).map((p: string) => {
+        switch(p) {
+          case 'stability': return BallPerformanceGoal.CURVE_REDUCTION;
+          case 'spin': return BallPerformanceGoal.MORE_SPIN;
+          case 'high': return BallPerformanceGoal.HIGH_TRAJECTORY;
+          case 'distance': return BallPerformanceGoal.MAX_DISTANCE;
+          default: return BallPerformanceGoal.MAX_DISTANCE;
+        }
+      }),
+      ballPreferences: {
+        preferredFeel: finalAnswers.ballHardness < 65 ? 'VERY_SOFT' : finalAnswers.ballHardness < 80 ? 'SOFT' : finalAnswers.ballHardness < 90 ? 'FIRM' : 'VERY_FIRM',
+        priority: finalAnswers.priority?.includes('distance') ? 'DISTANCE' : finalAnswers.priority?.includes('spin') ? 'SPIN' : 'BALANCE'
+      }
+    }));
 
+    // 2. Trigger AI diagnosis
     setCurrentScreen('loading');
-    
-    // Simulate API call / AI diagnosis
-    setTimeout(() => {
+    try {
+      await runDiagnosis();
       setCurrentScreen('result');
-    }, 3500);
+    } catch (error) {
+      console.error("Ball diagnosis failed:", error);
+      setCurrentScreen('result');
+    }
   };
 
   const handleRestart = () => {
@@ -205,7 +227,7 @@ export const BallDiagnosisApp: React.FC = () => {
           />
         )}
         
-        {currentScreen === 'loading' && (
+        {(isAnalyzing || currentScreen === 'loading') && (
           <div className="flex-1 flex flex-col items-center justify-center p-6 animate-fadeIn">
             <div className="relative w-24 h-24 mb-8">
               <div className="absolute inset-0 border-t-2 border-r-2 border-cyan-400 rounded-full animate-spin"></div>

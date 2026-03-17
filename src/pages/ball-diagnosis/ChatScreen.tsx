@@ -181,10 +181,13 @@ const PRO_QUESTIONS: Question[] = [
     title: '好きなメーカー（優先して提案）',
     subtitle: '特定のメーカーを優先して提案してほしい場合に選択してください（複数選択可）',
     multiple: true,
-    options: BALL_MASTER_DATA.filter(b => b.id !== 'unknown').map(b => ({
-      value: b.id,
-      label: b.name
-    }))
+    options: [
+      { value: 'unknown', label: '特にこだわりなし' },
+      ...BALL_MASTER_DATA.filter(b => b.id !== 'unknown').map(b => ({
+        value: b.id,
+        label: b.name
+      }))
+    ]
   },
   {
     id: 'useMyBag',
@@ -511,7 +514,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
                         </div>
                       )}
                     </div>
-                    
+
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500
                       ${isSelected ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-900/50 rotate-0' : 'bg-slate-700/50 text-slate-400 rotate-0 group-hover:rotate-12'}`}>
                       {currentQuestion.multiple ? (

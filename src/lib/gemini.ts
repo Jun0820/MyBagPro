@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { UserProfile } from '../types/golf';
 import { TargetCategory } from '../types/golf';
-import { generateAiPrompt } from './aiPromptGenerator';
+import { generateAiPrompt, generateBallAiPrompt } from './aiPromptGenerator';
 
 export interface DiagnosisResult {
     result: any;
@@ -32,7 +32,8 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
                 }
             });
 
-            const prompt = generateAiPrompt(profile);
+            const isBall = profile.targetCategory === TargetCategory.BALL;
+            const prompt = isBall ? generateBallAiPrompt(profile) : generateAiPrompt(profile);
             const result = await model.generateContent(prompt);
             const response = await result.response;
             const text = response.text();
@@ -51,7 +52,7 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
 
             const finalizedResult = {
                 category: profile.targetCategory,
-                type: profile.targetCategory === TargetCategory.BALL ? "BALL" : "CLUB", 
+                type: isBall ? "BALL" : "CLUB", 
                 ...diagnosisData,
                 aiPromptText: prompt 
             };

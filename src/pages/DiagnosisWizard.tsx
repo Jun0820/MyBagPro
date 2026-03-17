@@ -28,17 +28,21 @@ export const DiagnosisWizard = () => {
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     const prevStep = () => {
-        setBackwards(true); // Set flag to prevent auto-skip/advance loops
+        setBackwards(true);
         if (step <= 1) {
             navigate('/');
-        } else if (step === 2 && category) {
+        } else if (step === 2 && (category || profile.targetCategory)) {
             setStep(1);
             navigate('/diagnosis');
         } else if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
-            // [NEW] Total Setting special back logic
-            if (step === 20) setStep(1);
-            else if (step === 4) setStep(25); // Back from profile to last total setting step
-            else setStep(step - 1);
+            // Total Setting back logic
+            if (step === 20) {
+                setStep(1);
+            } else if (step === 4) {
+                setStep(1);
+            } else {
+                setStep(step - 1);
+            }
         } else {
             setStep(step - 1);
         }
@@ -490,13 +494,20 @@ export const DiagnosisWizard = () => {
         if (step !== 4) setBackwards(false);
     }, [step, profile.gender, profile.skillLevel, profile.bestScore, profile.averageScore, backwards]);
 
+    // [NEW] Auto-skip Profile (Step 4) if basic info already exists
+    useEffect(() => {
+        if (step === 4 && profile.gender && profile.skillLevel && profile.headSpeed > 0) {
+            setStep(step + 1);
+        }
+    }, [step, profile.gender, profile.skillLevel, profile.headSpeed]);
+
     // [NEW] Auto-skip Miss Tendencies (Step 5 for most clubs) if already answered
     useEffect(() => {
         // Only skip if we are actually at the miss tendency step (usually step 5 or 6 depending on category)
         // And if the user has already provided miss tendencies from their profile
         if (profile.missTendencies && profile.missTendencies.length > 0) {
            if (step === 5 && profile.targetCategory !== TargetCategory.WEDGE) {
-               // setStep(step + 1); // Enable this if we want to skip miss tendency step
+               setStep(step + 1); // Enable automatic skip
            }
         }
     }, [step, profile.missTendencies, profile.targetCategory]);
@@ -778,7 +789,7 @@ export const DiagnosisWizard = () => {
 
         // その他のクラブ種別（ドライバー、FW、アイアン、ボール）のデフォルトStep 3
         return (
-            <StepCard title="CURRENT GEAR" subtitle="現在使用中のモデルを教えてください" onBack={() => setStep(step - 1)}>
+            <StepCard title="現在のギア" subtitle="現在使用中のモデルを教えてください" onBack={() => setStep(step - 1)}>
                 <div className="space-y-6">
                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                         <label className="text-xs font-bold text-slate-400 mb-4 block flex items-center gap-2">
@@ -1565,6 +1576,17 @@ export const DiagnosisWizard = () => {
                             ))}
                         </div>
                     </div>
+                    
+                    <div className="mt-8">
+                        <label className="font-bold block mb-3 text-trust-navy text-lg">具体的な悩みやこだわり (任意)</label>
+                        <p className="text-xs text-slate-500 mb-4">今の${profile.targetCategory || 'クラブ'}について、AIに伝えたいことを具体的に入力してください</p>
+                        <textarea
+                            value={profile.freeComments || ''}
+                            onChange={(e) => updateProfile('freeComments', e.target.value)}
+                            placeholder="例：170ydを楽に打ちたい。スライスを抑えたい。最新だけでなく中古の名器も知りたい。"
+                            className="w-full p-4 bg-white text-slate-900 border-2 border-slate-200 rounded-xl outline-none focus:border-golf-500 min-h-[120px] text-sm md:text-base shadow-sm"
+                        />
+                    </div>
                 </div>
                 <button onClick={() => setStep(7)} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors">NEXT STEP</button>
             </StepCard>
@@ -1759,7 +1781,7 @@ export const DiagnosisWizard = () => {
                     disabled={!finalCanProceed}
                     className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    NEXT STEP (FINAL CHECK)
+                    最終確認へ
                 </button>
             </StepCard>
         );
@@ -1795,7 +1817,9 @@ export const DiagnosisWizard = () => {
         };
 
         const handleSubmit = async () => {
-            await runDiagnosis();
+            if (isAnalyzing) return; // 二重送信防止
+            const success = await runDiagnosis();
+            if (!success) return; // エラー時はナビゲートしない
             const clubPath = getClubPath();
             const modePath = getModePath();
             // ボールとパターはモード不要
@@ -1830,7 +1854,7 @@ export const DiagnosisWizard = () => {
         }
 
         return (
-            <StepCard title="FINAL CHECK" subtitle="最後にいくつか確認させてください" onBack={() => setStep(step - 1)}>
+            <StepCard title="最終確認" subtitle="最後にいくつか確認させてください" onBack={() => setStep(step - 1)}>
                 <div className="space-y-6">
                     <div>
                         <label className="font-bold block mb-2">Free Comments (その他要望)</label>
@@ -1853,8 +1877,8 @@ export const DiagnosisWizard = () => {
                     </div>
                 )}
 
-                <button onClick={handleSubmit} className="w-full mt-8 bg-gradient-to-r from-golf-600 to-golf-500 text-white py-4 rounded-xl font-bold shadow-lg shadow-golf-500/30 hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
-                    <Zap size={20} fill="currentColor" /> DIAGNOSE
+                <button onClick={handleSubmit} disabled={isAnalyzing} className="w-full mt-8 bg-gradient-to-r from-golf-600 to-golf-500 text-white py-4 rounded-xl font-bold shadow-lg shadow-golf-500/30 hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+                    <Zap size={20} fill="currentColor" /> {isAnalyzing ? '診断中...' : 'AI診断を開始'}
                 </button>
             </StepCard>
         );

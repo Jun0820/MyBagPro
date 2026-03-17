@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import type { DiagnosisAnswers } from './BallDiagnosisApp';
-import { Share2, ArrowRight, RotateCcw, Crosshair, Wind, Flag, Layers } from 'lucide-react';
+import { Share2, ArrowRight, RotateCcw, Crosshair, Wind, Flag, Layers, Activity, Stethoscope } from 'lucide-react';
 import { useDiagnosis } from '../../context/DiagnosisContext';
 import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
@@ -22,9 +22,47 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
   // Consider Pro Mode / MyBag context
   const isProMode = answers.useMyBag && profile.myBag && profile.myBag.clubs.length > 0;
   
-  // Real diagnosis logic (2026 models)
-  const diagnosisResult = calculateDiagnosis(answers);
-  const { ball: recommendedBall, matchScore } = diagnosisResult;
+  // 1. Get AI result if available, otherwise fallback to local calculation
+  const { resultData } = useDiagnosis();
+  const aiResult = resultData?.result;
+  
+  // 2. Resolve recommended ball (Try to find in local DB by name if possible, or use fallback)
+  let recommendedBall;
+  let matchScore;
+  let aiExpertAnalysis = null;
+  let aiSynergyAdvice = null;
+
+  if (aiResult?.recommendedBall) {
+    // Try to find exact or partial match in BALL_DATABASE (from golfBalls.ts or master data)
+    const ballInDb = BALL_MASTER_DATA.flatMap(brand => brand.models).find(m => 
+      aiResult.recommendedBall.name.toLowerCase().includes(m.name.toLowerCase()) ||
+      m.name.toLowerCase().includes(aiResult.recommendedBall.name.toLowerCase())
+    );
+
+    // Find the GolfBall interface object for radar/img
+    const fullBallData = calculateDiagnosis(answers).ball; // Just for fallback structure
+
+    recommendedBall = ballInDb ? {
+      ...fullBallData, // Use structure as template
+      name: aiResult.recommendedBall.name,
+      brand: aiResult.recommendedBall.brand,
+      desc: aiResult.recommendedBall.description,
+      radar: {
+        distance: aiResult.recommendedBall.radar?.['飛距離'] || 5,
+        spin: aiResult.recommendedBall.radar?.['スピン'] || 5,
+        feel: aiResult.recommendedBall.radar?.['打感'] || 5,
+      }
+    } : fullBallData;
+
+    matchScore = aiResult.recommendedBall.matchScore || 95;
+    aiExpertAnalysis = aiResult.recommendedBall.expertOpinion;
+    aiSynergyAdvice = aiResult.gearSynergyAdvice;
+  } else {
+    // Fallback to local 2026 models calculation
+    const diagnosisResult = calculateDiagnosis(answers);
+    recommendedBall = diagnosisResult.ball;
+    matchScore = diagnosisResult.matchScore;
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => setShowCard(true), 100);
@@ -155,11 +193,14 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
           </div>
 
           <div className="p-6 relative z-20">
-            <div className="mb-6 text-center">
-              <p className="text-cyan-400 font-bold text-xs mb-1 tracking-widest">{profileLabel}の為の最適解</p>
-              <h2 className="text-2xl font-black font-eng tracking-tight text-white mb-2">{recommendedBall.name}</h2>
-              <div className="inline-block bg-slate-800 px-3 py-1 rounded-md text-xs text-slate-300 font-medium">
-                {recommendedBall.type}
+            <div className="mb-6 text-center px-4">
+              <p className="text-cyan-400 font-bold text-[10px] mb-1 tracking-widest uppercase">{profileLabel}</p>
+              <h2 className="text-2xl font-black font-eng tracking-tight text-white mb-1 leading-tight">{recommendedBall.name}</h2>
+              {aiResult?.recommendedBall?.catchphrase && (
+                <p className="text-emerald-400 text-xs font-bold mb-3 italic">"{aiResult.recommendedBall.catchphrase}"</p>
+              )}
+              <div className="inline-block bg-slate-800 px-3 py-1 rounded-md text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                {recommendedBall.type || aiResult?.recommendedBall?.brand}
               </div>
             </div>
 
@@ -187,7 +228,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
             </div>
 
             {/* User Profile Summary */}
-            <div className={`rounded-xl p-4 flex items-start gap-3 ${isProMode ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-slate-800/50'}`}>
+            <div className={`rounded-xl p-4 flex items-start gap-3 ${isProMode ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-slate-800/50'} mb-6`}>
               {isProMode ? <Layers className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" /> : <Flag className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />}
               <div>
                 <div className={`text-xs font-bold mb-1 ${isProMode ? 'text-emerald-300' : 'text-slate-200'}`}>
@@ -203,18 +244,44 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
                     <>
                       「{getPriorityLabel(answers.priority)}」を重視し、
                       アプローチでは「{getStyleLabel(answers.approachStyle)}」スタイルで攻めるプレーヤーに。
-                      現在の「{BALL_MASTER_DATA.find(b => b.id === answers.currentBallBrand)?.name || '不明'} / {BALL_MASTER_DATA.find(b => b.id === answers.currentBallBrand)?.models.find(m => m.id === answers.currentBallModel)?.name || '不明'}」からのアップグレードとして最適です。
                     </>
                   )}
                 </div>
               </div>
             </div>
+
+            {/* AI Expert Opinion (New) */}
+            {(aiExpertAnalysis || aiSynergyAdvice) && (
+              <div className="mt-6 space-y-4 animate-fadeIn">
+                <div className="relative p-4 rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-emerald-500/20 shadow-inner group overflow-hidden">
+                   <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                      <Stethoscope className="w-12 h-12 text-emerald-400" />
+                   </div>
+                   <div className="relative z-10">
+                    <h4 className="text-[10px] font-black text-emerald-400 tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
+                       <Activity className="w-3 h-3" /> AI Expert Analysis
+                    </h4>
+                    <p className="text-xs text-slate-300 leading-relaxed italic">
+                      {aiExpertAnalysis}
+                    </p>
+                    {aiSynergyAdvice && (
+                      <div className="mt-3 pt-3 border-t border-white/5">
+                        <div className="text-[9px] font-bold text-cyan-400 uppercase tracking-widest mb-1">Gear Synergy Advice</div>
+                        <p className="text-[11px] text-slate-400 leading-snug">
+                          {aiSynergyAdvice}
+                        </p>
+                      </div>
+                    )}
+                   </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       {/* Alternatives Section */}
-      {(diagnosisResult.softAlternative || diagnosisResult.hardAlternative) && (
+      {(aiResult?.alternatives || recommendedBall) && (
         <div className="mt-8 mb-4 animate-fadeIn" style={{ animationDelay: '400ms' }}>
           <div className="flex items-center gap-2 mb-4 px-1">
             <Layers className="w-4 h-4 text-cyan-400" />
@@ -222,37 +289,16 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            {diagnosisResult.softAlternative && (
-              <div className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center group hover:bg-slate-800/60 transition-all">
-                <div className="text-[10px] font-black text-cyan-400 mb-2 tracking-widest uppercase">Softer Feel</div>
-                <div className="w-16 h-16 rounded-full bg-white mb-3 shadow-lg overflow-hidden flex items-center justify-center p-2">
-                  <img 
-                    src={diagnosisResult.softAlternative.img} 
-                    alt={diagnosisResult.softAlternative.name} 
-                    crossOrigin="anonymous"
-                    className="w-full h-full object-contain"
-                  />
+            {(aiResult?.alternatives || []).map((alt: any, idx: number) => (
+              <div key={idx} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center group hover:bg-slate-800/60 transition-all">
+                <div className="text-[10px] font-black text-cyan-400 mb-2 tracking-widest uppercase">{alt.type}</div>
+                <div className="w-16 h-16 rounded-full bg-white mb-3 shadow-lg overflow-hidden flex items-center justify-center p-2 text-slate-800 font-bold text-[10px]">
+                  {alt.name}
                 </div>
-                <div className="text-xs font-bold text-white mb-1 line-clamp-1">{diagnosisResult.softAlternative.name}</div>
-                <div className="text-[9px] text-slate-500 leading-tight">より柔らかい打感を<br/>求めるなら</div>
+                <div className="text-xs font-bold text-white mb-1 line-clamp-1">{alt.name}</div>
+                <div className="text-[9px] text-slate-500 leading-tight line-clamp-2">{alt.reason}</div>
               </div>
-            )}
-            
-            {diagnosisResult.hardAlternative && (
-              <div className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center group hover:bg-slate-800/60 transition-all">
-                <div className="text-[10px] font-black text-emerald-400 mb-2 tracking-widest uppercase">Firmer Feel</div>
-                <div className="w-16 h-16 rounded-full bg-white mb-3 shadow-lg overflow-hidden flex items-center justify-center p-2">
-                  <img 
-                    src={diagnosisResult.hardAlternative.img} 
-                    alt={diagnosisResult.hardAlternative.name} 
-                    crossOrigin="anonymous"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="text-xs font-bold text-white mb-1 line-clamp-1">{diagnosisResult.hardAlternative.name}</div>
-                <div className="text-[9px] text-slate-500 leading-tight">よりしっかりした打感を<br/>求めるなら</div>
-              </div>
-            )}
+            ))}
           </div>
         </div>
       )}

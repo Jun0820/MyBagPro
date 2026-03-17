@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Plus, Trash2, ChevronDown } from 'lucide-react';
+import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2 } from 'lucide-react';
 import { type ClubSetting, type Club, TargetCategory } from '../../types/golf';
 import { BrandModelInput } from '../../components/BrandModelInput';
 import { DetailedShaftInput } from '../../components/DetailedShaftInput';
@@ -24,14 +24,15 @@ const getCategoryLabel = (cat: string) => {
         case TargetCategory.DRIVER: return "1W";
         case TargetCategory.FAIRWAY: return "FW";
         case TargetCategory.UTILITY: return "UT";
-        case TargetCategory.IRON: return "IRON";
-        case TargetCategory.WEDGE: return "WDG";
+        case TargetCategory.IRON: return "IR";
+        case TargetCategory.WEDGE: return "WG";
         case TargetCategory.PUTTER: return "PT";
-        default: return "CLB";
+        case TargetCategory.TOTAL_SETTING: return "SET";
+        default: return "CL";
     }
 };
 
-const ClubRow = ({ entry, onUpdate, onRemove }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void }) => {
+const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, onDiagnose: (c: Club) => void }) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
 
     const parseShaft = (str: string) => {
@@ -51,18 +52,18 @@ const ClubRow = ({ entry, onUpdate, onRemove }: { entry: Club, onUpdate: (c: Clu
     };
 
     return (
-        <div className="bg-white p-3 md:p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all group relative">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-3 border-b border-slate-100 pb-2">
-                <div className="flex items-center gap-2">
-                    <span className={cn(getCategoryColor(entry.category), "text-white text-[10px] md:text-xs px-2 py-0.5 rounded font-black uppercase tracking-wider")}>
+        <div className="bg-white p-2 md:p-3 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all group relative">
+            <div className="flex items-center justify-between gap-2 mb-2 border-b border-slate-50 pb-1.5">
+                <div className="flex items-center gap-1.5">
+                    <span className={cn(getCategoryColor(entry.category), "text-white text-[9px] md:text-[10px] px-1.5 py-0.5 rounded font-black uppercase tracking-wider")}>
                         {getCategoryLabel(entry.category)}
                     </span>
                     {entry.number && (
-                        <span className="text-trust-navy font-black text-xs md:text-sm bg-slate-100 px-2 rounded">{entry.number}</span>
+                        <span className="text-trust-navy font-black text-[10px] md:text-xs bg-slate-100 px-1.5 rounded">{entry.number}</span>
                     )}
                 </div>
-                <button onClick={onRemove} className="w-6 h-6 flex items-center justify-center rounded-full bg-slate-50 text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all ml-auto">
-                    <Trash2 size={12} />
+                <button onClick={onRemove} className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-50 text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all ml-auto">
+                    <Trash2 size={10} />
                 </button>
             </div>
             
@@ -135,6 +136,23 @@ const ClubRow = ({ entry, onUpdate, onRemove }: { entry: Club, onUpdate: (c: Clu
                         </div>
                     </div>
                 </div>
+
+                {/* Individual Worry & Diagnosis Button */}
+                <div className="pt-2 border-t border-slate-50 flex items-center gap-2">
+                    <input
+                        type="text"
+                        value={entry.worry || ''}
+                        onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
+                        placeholder="悩み（捕まる、等）"
+                        className="flex-1 px-2 py-1.5 bg-slate-50 text-slate-900 border border-slate-200 rounded-lg text-[10px] outline-none focus:border-golf-500"
+                    />
+                    <button 
+                        onClick={() => onDiagnose(entry)}
+                        className="px-2 py-1.5 bg-golf-600 text-white rounded-lg text-[9px] font-bold hover:bg-golf-700 transition-colors whitespace-nowrap"
+                    >
+                        AI診断
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -145,9 +163,12 @@ const MemoizedClubRow = React.memo(ClubRow);
 interface MyBagManagerProps {
     setting: ClubSetting;
     onUpdate: (setting: ClubSetting) => void;
+    onDiagnose?: (club: Club) => void;
+    saveStatus: 'idle' | 'saving' | 'saved' | 'error';
+    onManualSave?: () => void;
 }
 
-export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate }) => {
+export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, onDiagnose, saveStatus, onManualSave }) => {
     const [addCategory, setAddCategory] = useState('');
     const [selectedLofts, setSelectedLofts] = useState<string[]>([]);
     const [batchPreset, setBatchPreset] = useState({
@@ -203,27 +224,52 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate })
         );
     };
 
-    const handleBatchAdd = (category: TargetCategory) => {
+    const handleBatchAdd = (requestedCategory: TargetCategory) => {
         if (selectedLofts.length === 0) return;
         const shaftString = `${batchPreset.shaftModel} ${batchPreset.shaftWeight ? batchPreset.shaftWeight + 'g' : ''} ${batchPreset.shaftFlex}`.trim();
 
-        const newClubs = selectedLofts.map(val => ({
-            id: Math.random().toString(36).substring(7),
-            category: category,
-            brand: batchPreset.brand,
-            model: batchPreset.model || '',
-            shaft: shaftString,
-            flex: batchPreset.shaftFlex,
-            number: val,
-            loft: '',
-            distance: ''
-        }));
+        const getCorrectCategory = (val: string): TargetCategory => {
+            if (val === '1W') return TargetCategory.DRIVER;
+            if (['3W', '4W', '5W', '7W', '9W'].includes(val)) return TargetCategory.FAIRWAY;
+            if (['2U', '3U', '4U', '5U', '6U'].includes(val)) return TargetCategory.UTILITY;
+            if (['3I', '4I', '5I', '6I', '7I', '8I', '9I', 'PW', 'AW'].includes(val)) return TargetCategory.IRON;
+            if (['SW', 'LW'].includes(val) || val.includes('°')) return TargetCategory.WEDGE;
+            return requestedCategory;
+        };
+
+        const isAppropriate = (val: string, req: TargetCategory) => {
+            if (req === TargetCategory.FAIRWAY) return val.includes('W') || val.includes('U');
+            if (req === TargetCategory.IRON) return val.includes('I') || ['PW', 'AW', 'SW', 'LW'].includes(val);
+            if (req === TargetCategory.WEDGE) return val.includes('°') || ['PW', 'AW', 'SW', 'LW'].includes(val);
+            return true;
+        };
+
+        const newClubs = selectedLofts
+            .map(val => {
+                const actualCategory = getCorrectCategory(val);
+                if (!isAppropriate(val, requestedCategory)) return null;
+
+                return {
+                    id: Math.random().toString(36).substring(7),
+                    category: actualCategory as TargetCategory,
+                    brand: batchPreset.brand,
+                    model: batchPreset.model || '',
+                    shaft: shaftString,
+                    flex: batchPreset.shaftFlex,
+                    number: val,
+                    loft: '',
+                    distance: ''
+                } as Club;
+            })
+            .filter((c): c is Club => c !== null);
 
         onUpdate({
             ...setting,
             clubs: [...setting.clubs, ...newClubs]
         });
         setSelectedLofts([]);
+        // Batch add should also attempt a sync
+        setTimeout(() => onManualSave?.(), 100);
     };
 
     return (
@@ -246,7 +292,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate })
                 
                 <div id="my-bag-export-area" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6 bg-white p-1 rounded-2xl">
                     {sortedClubs.map(entry => (
-                        <MemoizedClubRow key={entry.id} entry={entry} onUpdate={updateClub} onRemove={() => removeClub(entry.id)} />
+                        <MemoizedClubRow 
+                            key={entry.id} 
+                            entry={entry} 
+                            onUpdate={updateClub} 
+                            onRemove={() => removeClub(entry.id)} 
+                            onDiagnose={(c) => onDiagnose?.(c)}
+                        />
                     ))}
                     {sortedClubs.length === 0 && (
                         <div className="col-span-full text-center py-16 border-2 border-dashed border-slate-100 rounded-2xl text-slate-300">
@@ -256,8 +308,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate })
                     )}
                 </div>
                 
-                <div className="mt-8 pt-6 border-t border-slate-100 max-w-4xl">
-                    <div className="flex flex-col sm:flex-row gap-3">
+                <div className="mt-8 pt-6 border-t border-slate-100 max-w-4xl flex items-center justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 flex-1">
                         <div className="flex-1 relative">
                             <select
                                 value={addCategory}
@@ -276,20 +328,45 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate })
                         <button
                             onClick={() => handleAddClub()}
                             disabled={!addCategory}
-                            className="h-12 px-8 bg-slate-900 text-white font-bold rounded-xl hover:bg-black disabled:opacity-50 flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-black/10"
+                            className="h-12 px-8 bg-slate-100 text-trust-navy font-bold rounded-xl hover:bg-slate-200 disabled:opacity-50 flex items-center justify-center gap-2 transition-all active:scale-95"
                         >
-                            <Plus size={20} /> 追加
+                            <Plus size={20} /> 個別追加
                         </button>
                     </div>
+
+                    <button 
+                        onClick={() => onManualSave?.()} 
+                        className="h-12 px-8 bg-trust-navy text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all shadow-lg active:scale-95 whitespace-nowrap"
+                    >
+                        {saveStatus === 'saving' ? (
+                            <>
+                                <Loader2 size={18} className="animate-spin" />
+                                <span>保存中...</span>
+                            </>
+                        ) : saveStatus === 'saved' ? (
+                            <>
+                                <CheckCircle2 size={18} className="text-emerald-400" />
+                                <span>保存完了</span>
+                            </>
+                        ) : (
+                            <>
+                                <Save size={18} />
+                                <span>変更を保存</span>
+                            </>
+                        )}
+                    </button>
                 </div>
             </div>
 
             {/* クラブ一括追加 */}
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center gap-3">
-                    <Plus size={18} className="text-golf-600" />
-                    <h3 className="font-bold text-sm text-trust-navy">番手一括追加（スペック事前入力）</h3>
-                </div>
+            <details className="group bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300">
+                <summary className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden">
+                    <div className="flex items-center gap-3">
+                        <Plus size={18} className="text-golf-600" />
+                        <h3 className="font-bold text-sm text-trust-navy uppercase tracking-tight">BATCH ADD CLUBS</h3>
+                    </div>
+                    <ChevronDown size={18} className="text-slate-400 group-open:rotate-180 transition-transform" />
+                </summary>
                 <div className="p-6 space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
@@ -373,7 +450,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate })
                         </div>
                     </div>
                 </div>
-            </div>
+            </details>
         </div>
     );
 };

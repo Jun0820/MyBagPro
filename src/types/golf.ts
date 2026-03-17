@@ -167,6 +167,7 @@ export interface Club {
     number: string; // [NEW] Number (e.g., 3W, 7I)
     loft: string;   // [NEW] Loft angle (e.g., 15 deg)
     distance: string;
+    worry?: string; // [NEW] 個別の悩みメモ
 }
 
 export interface ClubSetting {

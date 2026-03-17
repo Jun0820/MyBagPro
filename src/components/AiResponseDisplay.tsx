@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, Trophy, Clock, Lightbulb, ShoppingCart, Search, ChevronRight } from 'lucide-react';
+import { Target, Trophy, Clock, Lightbulb, ShoppingCart, Search } from 'lucide-react';
 import { getAffiliateUrl } from '../utils/affiliate';
 
 interface AiResponseDisplayProps {
@@ -98,14 +98,18 @@ export const AiResponseDisplay: React.FC<AiResponseDisplayProps> = ({ responseTe
                         </div>
 
                         {/* アフィリエイトボタン群 */}
-                        <div className="flex flex-col sm:flex-row gap-3">
-                            <a href={getAffiliateUrl('amazon', bestMatch.items['ヘッド'])} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#FF9900]/90 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-[#FF9900]/20 active:scale-95 text-sm">
-                                <ShoppingCart size={18} />
-                                Amazonで探す
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <a href={getAffiliateUrl('amazon', bestMatch.items['ヘッド'])} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#FF9900]/90 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg shadow-[#FF9900]/20 active:scale-95 text-[10px] md:text-xs">
+                                <ShoppingCart size={16} />
+                                Amazon
                             </a>
-                            <a href={getAffiliateUrl('rakuten', bestMatch.items['ヘッド'])} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#BF0000] hover:bg-[#BF0000]/90 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-[#BF0000]/20 active:scale-95 text-sm">
-                                <ShoppingCart size={18} />
-                                楽天市場で探す
+                            <a href={getAffiliateUrl('rakuten', bestMatch.items['ヘッド'])} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#BF0000] hover:bg-[#BF0000]/90 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg shadow-[#BF0000]/20 active:scale-95 text-[10px] md:text-xs">
+                                <ShoppingCart size={16} />
+                                楽天市場
+                            </a>
+                            <a href={getAffiliateUrl('rakuten_golf_partner', bestMatch.items['ヘッド'], 'RAKUTEN_GOLF_PARTNER' as any)} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg shadow-green-600/20 active:scale-95 text-[10px] md:text-xs">
+                                <Search size={16} />
+                                Golf Partner
                             </a>
                         </div>
                     </div>
@@ -140,11 +144,16 @@ export const AiResponseDisplay: React.FC<AiResponseDisplayProps> = ({ responseTe
                             {vintageMatch.items['おすすめの理由'] || vintageMatch.description}
                         </p>
 
-                        <a href={getAffiliateUrl('gdo_used', vintageMatch.items['ヘッド'])} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3.5 px-4 rounded-xl transition-all active:scale-95 text-sm">
-                            <Search size={18} />
-                            GDO 中古市場で探す
-                            <ChevronRight size={16} className="ml-auto" />
-                        </a>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <a href={getAffiliateUrl('rakuten_golf_partner', vintageMatch.items['ヘッド'], 'RAKUTEN_GOLF_PARTNER' as any)} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl transition-all active:scale-95 text-xs shadow-md">
+                                <Search size={18} />
+                                Golf Partner 中古在庫
+                            </a>
+                            <a href={getAffiliateUrl('amazon', vintageMatch.items['ヘッド'])} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold py-3.5 px-4 rounded-xl transition-all active:scale-95 text-xs shadow-md">
+                                <ShoppingCart size={18} />
+                                Amazonで中古を探す
+                            </a>
+                        </div>
                     </div>
                 </div>
             )}

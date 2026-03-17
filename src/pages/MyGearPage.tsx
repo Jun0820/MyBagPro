@@ -3,13 +3,12 @@ import { useDiagnosis } from '../context/DiagnosisContext';
 import { MyBagView } from '../features/gear/MyBagView';
 import { MyBagManager } from '../features/gear/MyBagManager';
 import { ProfileManager } from '../features/gear/ProfileManager';
-import { ArrowLeft, Edit3, User, Eye, LogOut, Loader2, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Edit3, User, Eye, Loader2, CheckCircle2 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { supabase } from '../lib/supabase';
 import { useState } from 'react';
 
 export const MyGearPage = () => {
-    const { profile, updateProfile, user, setUser, resetDiagnosis, saveStatus } = useDiagnosis();
+    const { profile, updateProfile, user, saveStatus, setStep, manualSave } = useDiagnosis();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<'view' | 'clubs' | 'profile'>('view');
 
@@ -17,19 +16,6 @@ export const MyGearPage = () => {
         navigate('/');
     };
 
-    const handleLogout = async () => {
-        await supabase.auth.signOut();
-        setUser({ 
-            id: '',
-            email: '',
-            name: '',
-            memberSince: '',
-            isLoggedIn: false,
-            history: []
-        });
-        resetDiagnosis();
-        navigate('/');
-    };
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -89,13 +75,6 @@ export const MyGearPage = () => {
                                 </div>
                              ) : null}
                         </div>
-                        <button 
-                            onClick={handleLogout}
-                            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all border border-slate-200"
-                            title="Logout"
-                        >
-                            <LogOut size={18} />
-                        </button>
                     </div>
                 </div>
             </div>
@@ -120,6 +99,26 @@ export const MyGearPage = () => {
                     <MyBagManager 
                         setting={profile.myBag}
                         onUpdate={(b: any) => updateProfile('myBag', b)}
+                        onDiagnose={(club) => {
+                            // ピンポイント診断の準備
+                            updateProfile('targetCategory', club.category);
+                            updateProfile('currentBrand', club.brand);
+                            updateProfile('currentModel', club.model);
+                            updateProfile('currentShaftModel', club.shaft);
+                            updateProfile('currentLoft', club.loft);
+                            updateProfile('freeComments', club.worry || '');
+                            
+                            // 基本プロフィールが入力済みなら、カテゴリー選択をスキップして詳細質問へ
+                            if (profile.headSpeed > 0 && profile.gender) {
+                                setStep(2); // カテゴリー選択済みの状態から開始
+                            } else {
+                                setStep(1);
+                            }
+                            
+                            navigate('/diagnosis');
+                        }}
+                        saveStatus={saveStatus}
+                        onManualSave={manualSave}
                     />
                 )}
 
@@ -147,6 +146,8 @@ export const MyGearPage = () => {
                         onUpdateBestScore={(s: number | undefined) => updateProfile('bestScore', s)}
                         averageScore={profile.averageScore}
                         onUpdateAverageScore={(s: number | undefined) => updateProfile('averageScore', s)}
+                        saveStatus={saveStatus}
+                        onManualSave={manualSave}
                     />
                 )}
             </main>

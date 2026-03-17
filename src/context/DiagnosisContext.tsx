@@ -20,7 +20,7 @@ interface DiagnosisContextType {
     isAnalyzing: boolean;
     diagnosisError: string | null;
     resultData: DiagnosisResult | null;
-    runDiagnosis: () => Promise<void>;
+    runDiagnosis: () => Promise<boolean>;
     resetDiagnosis: () => void;
 
     // UI State
@@ -30,6 +30,7 @@ interface DiagnosisContextType {
     setShowMyPage: (show: boolean) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     syncWithSupabase: () => Promise<void>;
+    manualSave: () => Promise<void>;
 }
 
 const DiagnosisContext = createContext<DiagnosisContextType | undefined>(undefined);
@@ -127,7 +128,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                             flex: c.flex,
                             number: c.number,
                             loft: c.loft,
-                            distance: c.distance
+                            distance: c.distance,
+                            worry: c.worry
                         }))
                     }
                 }));
@@ -185,7 +187,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                             shaft: c.shaft,
                             number: c.number,
                             loft: c.loft,
-                            distance: c.distance
+                            distance: c.distance,
+                            worry: c.worry
                         }));
                         await supabase.from('clubs').insert(clubPayloads);
                     }
@@ -204,6 +207,54 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         const timeoutId = setTimeout(saveData, 1000);
         return () => clearTimeout(timeoutId);
     }, [user.id, user.isLoggedIn, profile, resultData]);
+    
+    // Manual Save Trigger (Immediate)
+    const manualSave = async () => {
+        setSaveStatus('saving');
+        try {
+            // Local Storage
+            localStorage.setItem('mybagpro_user', JSON.stringify(user));
+            localStorage.setItem('mybagpro_profile', JSON.stringify(profile));
+            
+            // Supabase (Remote)
+            if (user.isLoggedIn && user.id) {
+                await supabase.from('profiles').upsert({
+                    id: user.id,
+                    name: profile.name,
+                    gender: profile.gender,
+                    age: profile.age,
+                    head_speed: profile.headSpeed,
+                    birthdate: profile.birthdate,
+                    golf_history: profile.golfHistory,
+                    sns_links: profile.snsLinks,
+                    cover_photo: profile.coverPhoto,
+                    is_public: profile.isPublic,
+                    updated_at: new Date().toISOString()
+                });
+
+                await supabase.from('clubs').delete().eq('user_id', user.id);
+                if (profile.myBag.clubs.length > 0) {
+                    const clubPayloads = profile.myBag.clubs.map(c => ({
+                        user_id: user.id,
+                        category: c.category,
+                        brand: c.brand,
+                        model: c.model,
+                        shaft: c.shaft,
+                        number: c.number,
+                        loft: c.loft,
+                        distance: c.distance,
+                        worry: c.worry
+                    }));
+                    await supabase.from('clubs').insert(clubPayloads);
+                }
+            }
+            setSaveStatus('saved');
+            setTimeout(() => setSaveStatus('idle'), 2000);
+        } catch (e) {
+            console.error("Manual save error:", e);
+            setSaveStatus('error');
+        }
+    };
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
         setProfile(prev => ({ ...prev, [field]: value }));
@@ -243,9 +294,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 };
                 setUser(updatedUser);
             }
+            return true;
         } catch (error: any) {
             console.error("Diagnosis error:", error);
             setDiagnosisError(error.message || "AI解析中にエラーが発生しました。");
+            return false;
         } finally {
             setIsAnalyzing(false);
         }
@@ -271,7 +324,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             showAuth, setShowAuth,
             showMyPage, setShowMyPage,
             saveStatus,
-            syncWithSupabase
+            syncWithSupabase,
+            manualSave
         }}>
             {children}
         </DiagnosisContext.Provider>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { User, Image, Instagram, Send, Globe, Check } from 'lucide-react';
+import { User, Image, Instagram, Send, Globe, Check, Save, Loader2, CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const BACKGROUND_TEMPLATES = [
@@ -37,6 +37,8 @@ interface ProfileManagerProps {
     onUpdateBestScore: (score: number | undefined) => void;
     averageScore?: number;
     onUpdateAverageScore: (score: number | undefined) => void;
+    saveStatus: 'idle' | 'saving' | 'saved' | 'error';
+    onManualSave?: () => void;
 }
 
 export const ProfileManager: React.FC<ProfileManagerProps> = ({
@@ -44,7 +46,8 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
     coverPhoto, onUpdateCoverPhoto, age, onUpdateAge, gender, onUpdateGender,
     headSpeed, onUpdateHeadSpeed, isPublic, onUpdateIsPublic,
     birthdate, onUpdateBirthdate, golfHistory, onUpdateGolfHistory,
-    bestScore, onUpdateBestScore, averageScore, onUpdateAverageScore
+    bestScore, onUpdateBestScore, averageScore, onUpdateAverageScore,
+    saveStatus, onManualSave
 }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -129,7 +132,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
                         {/* Left Side: Basic Info */}
                         <div className="space-y-6">
-                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">Basic Information</h4>
+                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">基本情報</h4>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Gender</label>
@@ -229,7 +232,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
 
                         {/* Right Side: SNS & Privacy */}
                         <div className="space-y-6">
-                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">Connections & Privacy</h4>
+                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">SNS & 公開設定</h4>
                             <div className="space-y-4">
                                 <div className="relative">
                                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">
@@ -277,6 +280,36 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                     {isPublic ? '現在あなたのバッグは誰でも閲覧可能な状態です。' : 'バッグはあなただけに表示されています。URLを知っていても閲覧できません。'}
                                 </p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Account Settings */}
+                <div className="bg-white rounded-[32px] shadow-xl border border-slate-100 p-8">
+                    <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-3 mb-6">アカウント設定</h4>
+                    <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                        <div className="space-y-4 w-full md:w-auto">
+                            <button 
+                                onClick={() => onManualSave?.()} 
+                                className="w-full md:w-auto px-8 py-3 bg-trust-navy text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all shadow-lg active:scale-95"
+                            >
+                                {saveStatus === 'saving' ? (
+                                    <>
+                                        <Loader2 size={18} className="animate-spin" />
+                                        <span>保存中...</span>
+                                    </>
+                                ) : saveStatus === 'saved' ? (
+                                    <>
+                                        <CheckCircle2 size={18} className="text-emerald-400" />
+                                        <span>保存完了</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Save size={18} />
+                                        <span>変更を保存</span>
+                                    </>
+                                )}
+                            </button>
                         </div>
                     </div>
                 </div>

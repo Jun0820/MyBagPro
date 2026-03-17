@@ -1,11 +1,13 @@
-import { Activity, Dumbbell, Zap, Stethoscope, Wrench, AlertTriangle, ChevronDown } from 'lucide-react';
+import { Activity, Dumbbell, Zap, Stethoscope, Wrench, AlertTriangle, ChevronDown, Share2, X, Download } from 'lucide-react';
 import { useDiagnosis } from '../context/DiagnosisContext';
+import { useState } from 'react';
 
 import { RadarChart } from '../components/RadarChart';
 import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
 import { useNavigate, useParams } from 'react-router-dom';
 import { INITIAL_PROFILE, TargetCategory } from '../types/golf';
 import { AiResponseDisplay } from '../components/AiResponseDisplay';
+import { BagShareCard } from '../features/share/BagShareCard';
 
 // Trajectory Animation Component (Local or Imported)
 const TrajectoryAnimation = () => (
@@ -53,6 +55,7 @@ export const ResultPage = () => {
     const { resultData, diagnosisError, user, setProfile, resetDiagnosis, setShowAuth, profile } = useDiagnosis();
     const navigate = useNavigate();
     const { club, mode } = useParams<{ club?: string; mode?: string }>();
+    const [showShareModal, setShowShareModal] = useState(false);
 
     if (diagnosisError) {
         return (
@@ -95,7 +98,7 @@ export const ResultPage = () => {
 
     // URLカテゴリとの整合性チェック（新形式: /result/:club/:mode）
     const expectedTypeFromUrl = getExpectedTypeFromUrl(club, mode);
-    const resultType = result.type || (profile.targetCategory === TargetCategory.BALL ? 'BALL' : 'CLUB');
+    const resultType = result?.type || (profile.targetCategory === TargetCategory.BALL ? 'BALL' : 'CLUB');
     const isBallResult = resultType === 'BALL';
 
     // カテゴリ整合性チェック（警告用）
@@ -264,15 +267,15 @@ export const ResultPage = () => {
                                 <div className="grid grid-cols-3 gap-3 text-center text-xs font-medium text-slate-600">
                                     <div className="bg-white rounded-xl p-3 border border-slate-200 shadow-sm">
                                         <div className="text-slate-500 text-[10px] mb-1 font-eng tracking-wider">LAUNCH</div>
-                                        <div className="font-bold text-lg text-slate-800">{result.idealTrajectory.details.launchAngle}</div>
+                                        <div className="font-bold text-lg text-slate-800">{result.idealTrajectory.details?.launchAngle || '-'}</div>
                                     </div>
                                     <div className="bg-white rounded-xl p-3 border border-slate-200 shadow-sm">
                                         <div className="text-slate-500 text-[10px] mb-1 font-eng tracking-wider">SPIN</div>
-                                        <div className="font-bold text-lg text-slate-800">{result.idealTrajectory.details.spinRate}</div>
+                                        <div className="font-bold text-lg text-slate-800">{result.idealTrajectory.details?.spinRate || '-'}</div>
                                     </div>
                                     <div className="bg-white rounded-xl p-3 border border-slate-200 shadow-sm">
                                         <div className="text-slate-500 text-[10px] mb-1 font-eng tracking-wider">HEIGHT</div>
-                                        <div className="font-bold text-lg text-slate-800">{result.idealTrajectory.details.maxHeight}</div>
+                                        <div className="font-bold text-lg text-slate-800">{result.idealTrajectory.details?.maxHeight || '-'}</div>
                                     </div>
                                 </div>
                             </div>
@@ -404,7 +407,7 @@ export const ResultPage = () => {
                                         <div className="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-[10px] font-bold shadow-sm text-slate-600 tracking-wider border border-slate-100">{item.brand}</div>
                                         <div className="w-full h-full flex items-center justify-center">
                                             {item.radarChart ? (
-                                                <RadarChart data={item.radarChart} category={result.category} />
+                                                <RadarChart data={item.radarChart} category={result.category || TargetCategory.DRIVER} />
                                             ) : (
                                                 /* RadarChartがない場合（ウェッジ/パターなど）はスペック概要を表示 */
                                                 <div className="text-center">
@@ -430,10 +433,12 @@ export const ResultPage = () => {
                                                                 <span>性能チャート</span>
                                                                 <span className="text-slate-400 text-[9px]">現状 vs 理想</span>
                                                             </div>
-                                                            <RadarChart
-                                                                data={result.radarChart}
-                                                                category={isBallResult ? TargetCategory.BALL : TargetCategory.DRIVER}
-                                                            />
+                                                            {item.radarChart && (
+                                                                <RadarChart
+                                                                    data={item.radarChart}
+                                                                    category={isBallResult ? TargetCategory.BALL : (result.category || TargetCategory.DRIVER)}
+                                                                />
+                                                            )}
                                                             <div className="mt-3 flex justify-center gap-4 text-[10px] font-bold">
                                                                 <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-slate-500"></span> 現在</div>
                                                                 <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-indigo-500"></span> 理想</div>
@@ -882,24 +887,44 @@ export const ResultPage = () => {
                             Xでシェア
                         </button>
                         <button
-                            onClick={async () => {
-                                const topModel = result.rankings[0];
-                                const shareText = `🏌️ My Bag Pro AI診断結果\n\n⛳ 推奨: ${topModel?.modelName || '—'} (${topModel?.brand || '—'})\n📊 適合率: ${topModel?.matchPercentage?.toFixed(1) || '—'}%\n🎯 スイングDNA: ${result.userSwingDna?.type || '—'}\n\n▶ あなたも無料で診断してみよう！`;
-                                const shareUrl = typeof window !== 'undefined' ? window.location.origin : '';
-                                try {
-                                    await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
-                                    alert('テキストをコピーしました！Instagramストーリーに貼り付けてシェアしてください 📱');
-                                } catch {
-                                    alert('コピーに失敗しました');
-                                }
-                            }}
-                            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F56040] text-white py-3.5 rounded-xl font-bold text-sm transition-colors active:scale-95 shadow-md"
+                            onClick={() => setShowShareModal(true)}
+                            className="flex-1 flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 py-3.5 rounded-xl font-bold text-sm transition-colors active:scale-95 shadow-md"
                         >
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                            Stories
+                            <Share2 size={18} />
+                            画像でシェア
                         </button>
                     </div>
                 </div>
+
+                {/* Share Preview Modal */}
+                {showShareModal && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
+                        <div className="relative w-full max-w-lg max-h-[90vh] flex flex-col items-center">
+                            <button 
+                                onClick={() => setShowShareModal(false)}
+                                className="absolute -top-12 right-0 p-2 text-white hover:text-golf-400 transition-colors"
+                            >
+                                <X size={32} />
+                            </button>
+                            
+                            <div className="w-full overflow-y-auto rounded-3xl shadow-2xl origin-top transform scale-75 md:scale-90 lg:scale-100">
+                                <BagShareCard profile={profile} bag={profile.myBag} />
+                            </div>
+
+                            <div className="mt-8 flex gap-4">
+                                <button 
+                                    onClick={() => {
+                                        alert('画像を長押し、または右クリックして「画像を保存」からSNSへシェアしてください ✨');
+                                    }}
+                                    className="px-8 py-3 bg-golf-600 text-white rounded-full font-bold shadow-xl hover:bg-golf-700 transition-all flex items-center gap-2"
+                                >
+                                    <Download size={18} />
+                                    画像を保存
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* My Bag Registration */}
                 {result.rankings.length > 0 && (
