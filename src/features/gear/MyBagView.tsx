@@ -22,6 +22,13 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
     bestScore, averageScore
 }) => {
     const sortedClubs = [...setting.clubs].sort((a, b) => {
+        const distA = a.distance ? parseInt(String(a.distance).replace(/\D/g, ''), 10) : 0;
+        const distB = b.distance ? parseInt(String(b.distance).replace(/\D/g, ''), 10) : 0;
+
+        if (distA !== distB) {
+            return distB - distA;
+        }
+
         const order = [
             TargetCategory.DRIVER,
             TargetCategory.FAIRWAY,
@@ -30,7 +37,18 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
             TargetCategory.WEDGE,
             TargetCategory.PUTTER
         ];
-        return order.indexOf(a.category as TargetCategory) - order.indexOf(b.category as TargetCategory);
+        const orderA = order.indexOf(a.category as TargetCategory);
+        const orderB = order.indexOf(b.category as TargetCategory);
+
+        if (orderA !== orderB) {
+            return orderA - orderB;
+        }
+
+        if (a.number && b.number) {
+            return a.number.localeCompare(b.number);
+        }
+
+        return 0;
     });
 
     const getCatShort = (cat: string) => {

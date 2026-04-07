@@ -6,6 +6,7 @@ import { ProfileManager } from '../features/gear/ProfileManager';
 import { ArrowLeft, Edit3, User, Eye, Loader2, CheckCircle2 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useState } from 'react';
+import { supabase } from '../lib/supabase';
 
 export const MyGearPage = () => {
     const { profile, updateProfile, user, saveStatus, setStep, manualSave } = useDiagnosis();
@@ -67,11 +68,11 @@ export const MyGearPage = () => {
                         <div className="hidden md:flex items-center gap-2">
                              {saveStatus === 'saving' ? (
                                 <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 animate-pulse">
-                                    <Loader2 size={12} className="animate-spin" /> SAVING...
+                                    <Loader2 size={12} className="animate-spin" /> 同期中...
                                 </div>
                              ) : saveStatus === 'saved' ? (
                                 <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-500">
-                                    <CheckCircle2 size={12} /> SYNCED
+                                    <CheckCircle2 size={12} /> 同期完了
                                 </div>
                              ) : null}
                         </div>
@@ -148,6 +149,12 @@ export const MyGearPage = () => {
                         onUpdateAverageScore={(s: number | undefined) => updateProfile('averageScore', s)}
                         saveStatus={saveStatus}
                         onManualSave={manualSave}
+                        onLogout={async () => {
+                            if (window.confirm('ログアウトしますか？')) {
+                                await supabase.auth.signOut();
+                                window.location.href = '#/'; // Back to Home
+                            }
+                        }}
                     />
                 )}
             </main>

@@ -57,6 +57,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [showAuth, setShowAuth] = useState(false);
     const [showMyPage, setShowMyPage] = useState(false);
     const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+    const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
 
     // Handle Supabase Auth State
     useEffect(() => {
@@ -135,6 +136,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 }));
             }
             setSaveStatus('saved');
+            setIsInitialSyncComplete(true);
         } catch (e) {
             console.error("Sync error:", e);
             setSaveStatus('error');
@@ -159,6 +161,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
                 // Supabase (Remote)
                 if (user.isLoggedIn && user.id) {
+                    // CRITICAL: Prevent overwriting remote data if initial sync hasn't finished yet
+                    if (!isInitialSyncComplete) {
+                        console.log("Skipping remote save: initial sync not complete");
+                        return;
+                    }
+
                     // Update Profile
                     await supabase.from('profiles').upsert({
                         id: user.id,
@@ -180,6 +188,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     await supabase.from('clubs').delete().eq('user_id', user.id);
                     if (profile.myBag.clubs.length > 0) {
                         const clubPayloads = profile.myBag.clubs.map(c => ({
+                            id: c.id, // Include stable ID
                             user_id: user.id,
                             category: c.category,
                             brand: c.brand,
@@ -190,7 +199,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                             distance: c.distance,
                             worry: c.worry
                         }));
-                        await supabase.from('clubs').insert(clubPayloads);
+                        await supabase.from('clubs').upsert(clubPayloads);
                     }
                 }
 
@@ -206,7 +215,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         // Debounce save slightly to avoid excessive calls
         const timeoutId = setTimeout(saveData, 1000);
         return () => clearTimeout(timeoutId);
-    }, [user.id, user.isLoggedIn, profile, resultData]);
+    }, [user.id, user.isLoggedIn, profile, resultData, isInitialSyncComplete]);
     
     // Manual Save Trigger (Immediate)
     const manualSave = async () => {
@@ -218,6 +227,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             
             // Supabase (Remote)
             if (user.isLoggedIn && user.id) {
+                if (!isInitialSyncComplete) {
+                    throw new Error("Cannot save yet: Initial sync is in progress.");
+                }
                 await supabase.from('profiles').upsert({
                     id: user.id,
                     name: profile.name,
@@ -235,6 +247,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 await supabase.from('clubs').delete().eq('user_id', user.id);
                 if (profile.myBag.clubs.length > 0) {
                     const clubPayloads = profile.myBag.clubs.map(c => ({
+                        id: c.id, // Include stable ID
                         user_id: user.id,
                         category: c.category,
                         brand: c.brand,
@@ -245,7 +258,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         distance: c.distance,
                         worry: c.worry
                     }));
-                    await supabase.from('clubs').insert(clubPayloads);
+                    await supabase.from('clubs').upsert(clubPayloads);
                 }
             }
             setSaveStatus('saved');

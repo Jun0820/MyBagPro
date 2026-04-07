@@ -1,0 +1,233 @@
+{
+  "profile": {
+    "slug": "ryo-ishikawa",
+    "display_name": "石川 遼",
+    "nationality": "Japan",
+    "birthplace": "Matsubushi, Saitama, Japan",
+    "birth_date": "1991-09-17",
+    "height_cm": 175,
+    "profile_type": "tour_pro",
+    "segment": "launch10",
+    "season_year": 2026,
+    "best_score": 58,
+    "ball_name": "Titleist Pro V1x",
+    "feature_1": "2026シーズン基準",
+    "feature_2": "ドライバー巧者",
+    "feature_3": "大会実戦セット",
+    "summary": "2026年クラブカー選手権時点で確認できた石川遼のドライバーと使用ボールを掲載するプロフィール。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-07T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "QUANTUM Triple Diamond",
+      "loft_label": "9 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD GC",
+      "shaft_flex": "S",
+      "shaft_weight": "60g class",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Callaway",
+      "model_name": "Paradym Ai Smoke Max",
+      "spec_label": "3W",
+      "loft_label": "15 degrees tuned to 14",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD GC",
+      "shaft_flex": "X",
+      "shaft_weight": "70g class",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Callaway",
+      "model_name": "APEX UW 2022",
+      "spec_label": "3U",
+      "loft_label": "19 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD UB",
+      "shaft_flex": "X",
+      "shaft_weight": "80g class",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Callaway",
+      "model_name": "APEX UW 2025",
+      "spec_label": "4U",
+      "loft_label": "23 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD UB",
+      "shaft_flex": "X",
+      "shaft_weight": "90g class",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Callaway",
+      "model_name": "APEX MB Forged",
+      "spec_label": "5I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Callaway",
+      "model_name": "APEX MB Tour Version",
+      "spec_label": "6I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Callaway",
+      "model_name": "APEX MB Tour Version",
+      "spec_label": "7I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Callaway",
+      "model_name": "APEX MB Tour Version",
+      "spec_label": "8I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Callaway",
+      "model_name": "APEX MB Tour Version",
+      "spec_label": "9I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Callaway",
+      "model_name": "X Forged Wedge 2026",
+      "spec_label": "PW",
+      "loft_label": "48 degrees",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Callaway",
+      "model_name": "OPUS SP Wedge",
+      "spec_label": "GW",
+      "loft_label": "52 degrees",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Callaway",
+      "model_name": "OPUS SP Wedge",
+      "spec_label": "SW",
+      "loft_label": "56 degrees",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Callaway",
+      "model_name": "X Forged Wedge 2026",
+      "spec_label": "LW",
+      "loft_label": "60 degrees",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus System3+ Prototype",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "Prototype PT 09 ix",
+      "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://ryo-ishikawa.jp/profile/",
+      "source_title": "石川遼 オフィシャルサイト プロフィール",
+      "checked_at": "2026-04-07T00:00:00.000Z",
+      "notes": "Used for bio fields and best score."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/player/15422/profile",
+      "source_title": "JGTO 石川遼プロフィール",
+      "checked_at": "2026-04-07T00:00:00.000Z",
+      "notes": "Used to support official player profile fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/100/2026/1/",
+      "source_title": "GDO 石川遼 クラブセッティング 2026年 クラブカー選手権",
+      "checked_at": "2026-04-07T00:00:00.000Z",
+      "notes": "Used for 2026 driver, shaft, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "ryo-ishikawa-2026-driver-update",
+    "title": "石川遼の2026年ドライバー情報を更新しました",
+    "excerpt": "2026シーズン基準で、石川遼のドライバーと使用ボールの掲載内容を更新しました。",
+    "body": "石川遼の2026年セッティングについて、2026年クラブカー選手権時点で確認できたドライバー情報と使用ボールを反映しました。今後も確認できたクラブカテゴリから順次更新していきます。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-07T00:00:00.000Z"
+  }
+}

@@ -151,7 +151,8 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col p-6 overflow-y-auto pb-24">
+    <div className="flex-1 flex flex-col items-center p-6 overflow-y-auto pb-24 animate-fadeIn">
+      <div className="w-full max-w-5xl flex flex-col">
       {/* Result Header */}
       <div className="text-center mb-4 animate-fadeIn">
         <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full mb-3">
@@ -163,7 +164,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
       {/* Trading Card Container (Target for html2canvas) */}
       <div 
         ref={cardRef}
-        className={`mt-4 transform transition-all duration-700 relative ${showCard ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'}`}
+        className={`mt-4 transform transition-all duration-700 relative w-full max-w-2xl mx-auto ${showCard ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'}`}
       >
         
         {/* Glow effect */}
@@ -171,7 +172,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
         
         <div className="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl overflow-hidden shadow-2xl">
           {/* Top banner */}
-          <div className="h-32 relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
+          <div className="h-40 md:h-56 relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
             {/* Abstract pattern */}
             <div className="absolute inset-0">
@@ -183,28 +184,28 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
             />
             </div>
             {/* Tag */}
-            <div className="absolute top-4 right-4 z-20 bg-emerald-500/90 text-white border border-emerald-400 px-3 py-1 rounded-full text-xs font-bold font-eng shadow-lg">
+            <div className="absolute top-6 right-6 z-20 bg-emerald-500/90 text-white border border-emerald-400 px-4 py-1.5 rounded-full text-sm font-bold font-eng shadow-lg">
               {matchScore}% MATCH
             </div>
             {/* Ball icon */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-16 h-16 bg-white rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)] flex items-center justify-center">
-              <span className="text-2xl">⛳</span>
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center border-4 border-slate-900">
+              <span className="text-3xl md:text-4xl">⛳</span>
             </div>
           </div>
 
           <div className="p-6 relative z-20">
-            <div className="mb-6 text-center px-4">
-              <p className="text-cyan-400 font-bold text-[10px] mb-1 tracking-widest uppercase">{profileLabel}</p>
-              <h2 className="text-2xl font-black font-eng tracking-tight text-white mb-1 leading-tight">{recommendedBall.name}</h2>
+            <div className="mb-8 text-center px-4">
+              <p className="text-cyan-400 font-bold text-xs md:text-sm mb-2 tracking-widest uppercase">{profileLabel}</p>
+              <h2 className="text-3xl md:text-5xl font-black font-eng tracking-tight text-white mb-2 leading-tight">{recommendedBall.name}</h2>
               {aiResult?.recommendedBall?.catchphrase && (
-                <p className="text-emerald-400 text-xs font-bold mb-3 italic">"{aiResult.recommendedBall.catchphrase}"</p>
+                <p className="text-emerald-400 text-sm md:text-base font-bold mb-4 italic">"{aiResult.recommendedBall.catchphrase}"</p>
               )}
-              <div className="inline-block bg-slate-800 px-3 py-1 rounded-md text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+              <div className="inline-block bg-slate-800 px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400">
                 {recommendedBall.type || aiResult?.recommendedBall?.brand}
               </div>
             </div>
 
-            <p className="text-sm text-slate-300 leading-relaxed mb-6 text-center">
+            <p className="text-base text-slate-300 leading-relaxed mb-8 text-center px-4 md:px-8">
               {recommendedBall.desc}
             </p>
 
@@ -288,11 +289,11 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
             <h3 className="text-sm font-bold text-white tracking-wider">あわせてチェックしたい代替案</h3>
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {(aiResult?.alternatives || []).map((alt: any, idx: number) => (
-              <div key={idx} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center group hover:bg-slate-800/60 transition-all">
+              <div key={idx} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center group hover:bg-slate-800/60 transition-all hover:-translate-y-1">
                 <div className="text-[10px] font-black text-cyan-400 mb-2 tracking-widest uppercase">{alt.type}</div>
-                <div className="w-16 h-16 rounded-full bg-white mb-3 shadow-lg overflow-hidden flex items-center justify-center p-2 text-slate-800 font-bold text-[10px]">
+                <div className="w-16 h-16 rounded-full bg-white mb-3 shadow-lg overflow-hidden flex items-center justify-center p-2 text-slate-800 font-bold text-[10px] transform group-hover:scale-110 transition-transform">
                   {alt.name}
                 </div>
                 <div className="text-xs font-bold text-white mb-1 line-clamp-1">{alt.name}</div>
@@ -306,40 +307,42 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
       {/* Action Buttons */}
       <div className="mt-8 space-y-4">
         {/* Next Step CTA */}
-        <button 
-          onClick={() => navigate('/mypage')}
-          className="w-full relative group overflow-hidden bg-gradient-to-br from-slate-100 to-slate-300 text-slate-900 font-bold py-4 px-6 rounded-2xl shadow-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all active:scale-95 flex items-center justify-between"
-        >
-          <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out z-0"></div>
-          <div className="text-left relative z-10">
-            <div className="text-[10px] text-slate-600 font-black tracking-wider uppercase mb-0.5">Next Step</div>
-            <div className="text-lg tracking-tight">My Bagにクラブを登録する</div>
-          </div>
-          <div className="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center text-white relative z-10 shadow-lg group-hover:scale-110 transition-transform">
-            <ArrowRight className="w-5 h-5" />
-          </div>
-        </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button 
+            onClick={() => navigate('/mypage')}
+            className="relative group overflow-hidden bg-gradient-to-br from-slate-100 to-slate-300 text-slate-900 font-bold py-6 px-8 rounded-2xl shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all active:scale-95 flex items-center justify-between"
+            >
+            <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out z-0"></div>
+            <div className="text-left relative z-10">
+                <div className="text-[10px] text-slate-600 font-black tracking-wider uppercase mb-1">Next Step</div>
+                <div className="text-xl tracking-tight">My Bagを作成する</div>
+            </div>
+            <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center text-white relative z-10 shadow-lg group-hover:scale-110 transition-transform">
+                <ArrowRight className="w-6 h-6" />
+            </div>
+            </button>
 
-        {/* Native Web Share Button (Generates Image & Shares) */}
-        <button 
-          onClick={handleShare}
-          disabled={isSharing}
-          className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold text-sm transition-all text-white
-            ${isSharing 
-              ? 'bg-slate-700 cursor-not-allowed opacity-80' 
-              : 'bg-[#1DA1F2] hover:bg-[#1a8cd8] active:scale-95 shadow-md shadow-[#1DA1F2]/30'} `}
-        >
-          {isSharing ? (
-            <span className="flex items-center gap-2">
-               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> 画像を生成中...
-            </span>
-          ) : (
-            <>
-               <Share2 className="w-5 h-5" />
-               結果をシェア・保存する
-            </>
-          )}
-        </button>
+            {/* Native Web Share Button (Generates Image & Shares) */}
+            <button 
+            onClick={handleShare}
+            disabled={isSharing}
+            className={`flex items-center justify-center gap-3 py-6 rounded-2xl font-black text-lg transition-all text-white
+                ${isSharing 
+                ? 'bg-slate-700 cursor-not-allowed opacity-80' 
+                : 'bg-[#1DA1F2] hover:bg-[#1a8cd8] active:scale-95 shadow-xl shadow-[#1DA1F2]/30'} `}
+            >
+            {isSharing ? (
+                <span className="flex items-center gap-2">
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> 画像を生成中...
+                </span>
+            ) : (
+                <>
+                <Share2 className="w-6 h-6" />
+                結果をSNSにシェア
+                </>
+            )}
+            </button>
+        </div>
 
         <button 
           onClick={onRestart}
@@ -347,6 +350,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
         >
           診断をやり直す
         </button>
+      </div>
       </div>
     </div>
   );

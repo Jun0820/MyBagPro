@@ -7,7 +7,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "supabase:check": "node scripts/supabase-admin.mjs check",
+    "supabase:publish-profile": "node scripts/supabase-admin.mjs publish-profile",
+    "supabase:insert-source": "node scripts/supabase-admin.mjs insert-source",
+    "supabase:upsert-article": "node scripts/supabase-admin.mjs upsert-article",
+    "supabase:upsert-setting-profile": "node scripts/supabase-admin.mjs upsert-setting-profile"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

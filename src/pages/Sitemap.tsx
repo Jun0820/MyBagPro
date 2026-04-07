@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Home, ClipboardList, Target, User, Share2, Shield, FileText, Info } from 'lucide-react';
+import { Home, ClipboardList, Target, User, Share2, Shield, FileText, Info, Newspaper } from 'lucide-react';
 
 export const Sitemap = () => {
     const navigate = useNavigate();
@@ -24,6 +24,7 @@ export const Sitemap = () => {
             title: 'ソーシャル・その他',
             items: [
                 { name: 'バッグ共有', path: '/bag', icon: <Share2 size={18} /> },
+                { name: '更新記事', path: '/articles', icon: <Newspaper size={18} /> },
             ]
         },
         {

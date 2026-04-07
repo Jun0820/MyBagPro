@@ -9,6 +9,13 @@ interface BagShareCardProps {
 
 export const BagShareCard = ({ profile, bag }: BagShareCardProps) => {
     const sortedClubs = [...bag.clubs].sort((a, b) => {
+        const distA = a.distance ? parseInt(String(a.distance).replace(/\D/g, ''), 10) : 0;
+        const distB = b.distance ? parseInt(String(b.distance).replace(/\D/g, ''), 10) : 0;
+
+        if (distA !== distB) {
+            return distB - distA;
+        }
+
         const order = [
             TargetCategory.DRIVER,
             TargetCategory.FAIRWAY,
@@ -17,7 +24,18 @@ export const BagShareCard = ({ profile, bag }: BagShareCardProps) => {
             TargetCategory.WEDGE,
             TargetCategory.PUTTER
         ];
-        return order.indexOf(a.category as TargetCategory) - order.indexOf(b.category as TargetCategory);
+        const orderA = order.indexOf(a.category as TargetCategory);
+        const orderB = order.indexOf(b.category as TargetCategory);
+
+        if (orderA !== orderB) {
+            return orderA - orderB;
+        }
+
+        if (a.number && b.number) {
+            return a.number.localeCompare(b.number);
+        }
+
+        return 0;
     });
 
     return (
@@ -107,7 +125,7 @@ export const BagShareCard = ({ profile, bag }: BagShareCardProps) => {
                         <Zap className="text-slate-900" fill="currentColor" />
                     </div>
                     <div>
-                        <div className="text-xl font-black font-eng tracking-widest">PRO FIT AI</div>
+                        <div className="text-xl font-black font-eng tracking-widest">MY BAG PRO</div>
                         <div className="text-[10px] font-bold text-slate-500 uppercase">Analysis Engine v2.0</div>
                     </div>
                 </div>

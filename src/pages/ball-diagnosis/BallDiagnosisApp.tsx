@@ -173,7 +173,7 @@ export const BallDiagnosisApp: React.FC = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-600/20 blur-[120px] rounded-full mix-blend-screen"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col">
+      <div className="relative z-10 w-full max-w-7xl mx-auto min-h-screen flex flex-col px-4 md:px-8">
         {currentScreen === 'landing' && (
           <LandingScreen onStart={handleStart} />
         )}

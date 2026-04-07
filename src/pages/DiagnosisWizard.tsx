@@ -467,18 +467,27 @@ export const DiagnosisWizard = () => {
         }));
     };
 
-    // Initial category setup from URL
+    // Initial category setup from URL or profile.targetCategory (pre-set by My Page)
     useEffect(() => {
-        if (step === 1 && category) {
-            const validCategory = Object.values(TargetCategory).find(c => c === category) ||
-                Object.entries(TargetCategory).find(([k, _v]) => k.toLowerCase() === category?.toLowerCase())?.[1];
-            if (validCategory) {
-                resetCategorySpecificData();
-                updateProfile('targetCategory', validCategory);
+        if (step === 1) {
+            // URL parameter has priority
+            if (category) {
+                const validCategory = Object.values(TargetCategory).find(c => c === category) ||
+                    Object.entries(TargetCategory).find(([k, _v]) => k.toLowerCase() === category?.toLowerCase())?.[1];
+                if (validCategory) {
+                    resetCategorySpecificData();
+                    updateProfile('targetCategory', validCategory);
+                    setStep(2);
+                    return;
+                }
+            }
+            
+            // If targetCategory was pre-set (e.g. via MyPage's onDiagnose)
+            if (profile.targetCategory) {
                 setStep(2);
             }
         }
-    }, [category, step]);
+    }, [category, step, profile.targetCategory]);
 
     // Auto-advance Step 4 (Profile) if data already exists
     // [FIX] Only auto-advance if we didn't just come back from a later step
@@ -494,29 +503,40 @@ export const DiagnosisWizard = () => {
         if (step !== 4) setBackwards(false);
     }, [step, profile.gender, profile.skillLevel, profile.bestScore, profile.averageScore, backwards]);
 
-    // [NEW] Auto-skip Profile (Step 4) if basic info already exists
     useEffect(() => {
-        if (step === 4 && profile.gender && profile.skillLevel && profile.headSpeed > 0) {
+        if (step === 4 && profile.gender && profile.skillLevel && profile.headSpeed > 0 && !backwards) {
             setStep(step + 1);
         }
-    }, [step, profile.gender, profile.skillLevel, profile.headSpeed]);
+    }, [step, profile.gender, profile.skillLevel, profile.headSpeed, backwards]);
 
-    // [NEW] Auto-skip Miss Tendencies (Step 5 for most clubs) if already answered
     useEffect(() => {
-        // Only skip if we are actually at the miss tendency step (usually step 5 or 6 depending on category)
-        // And if the user has already provided miss tendencies from their profile
-        if (profile.missTendencies && profile.missTendencies.length > 0) {
-           if (step === 5 && profile.targetCategory !== TargetCategory.WEDGE) {
-               setStep(step + 1); // Enable automatic skip
+        if (step === 4 && profile.gender && profile.skillLevel && profile.bestScore && !backwards) {
+            setStep(step + 1);
+        }
+    }, [step, profile.gender, profile.skillLevel, profile.bestScore, backwards]);
+
+    useEffect(() => {
+        if (step === 3 && !backwards) {
+            const hasCurrentGear = profile.currentBrand && profile.currentModel;
+            if (hasCurrentGear && profile.targetCategory !== TargetCategory.TOTAL_SETTING && profile.targetCategory !== TargetCategory.WEDGE) {
+                setStep(step + 1);
+            }
+        }
+    }, [step, profile.currentBrand, profile.currentModel, profile.targetCategory, backwards]);
+
+    useEffect(() => {
+        if (profile.missTendencies && profile.missTendencies.length > 0 && !backwards) {
+           if (step === 5 && profile.targetCategory !== TargetCategory.WEDGE && profile.targetCategory !== TargetCategory.PUTTER) {
+               setStep(step + 1);
            }
         }
-    }, [step, profile.missTendencies, profile.targetCategory]);
+    }, [step, profile.missTendencies, profile.targetCategory, backwards]);
 
-    // [NEW] Handle auto-advance for TOTAL_SETTING (Moving from render body to useEffect)
+    // [NEW] Handle auto-advance for TOTAL_SETTING
     useEffect(() => {
         if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
             if (step === 2 || step === 3) {
-                setStep(4); // Total Setting skips Mode and Current Gear entry
+                setStep(4);
             }
         }
     }, [step, profile.targetCategory]);

@@ -380,7 +380,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col p-6 animate-slideIn">
+    <div className="flex-1 flex flex-col items-center p-6 animate-slideIn overflow-x-hidden">
+      <div className="w-full max-w-4xl flex flex-col flex-1">
       {/* Header: Back + Progress */}
       <div className="w-full pt-8 pb-4">
         <div className="flex items-center gap-3 mb-3">
@@ -417,16 +418,16 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
           renderProfileGroup()
         ) : currentQuestion.type === 'slider' ? (
           <div className="py-8">
-            <div className="flex flex-col items-center justify-center p-10 rounded-[2.5rem] bg-slate-800/30 border border-white/5 backdrop-blur-xl mb-10 relative overflow-hidden group">
+            <div className="flex flex-col items-center justify-center p-12 md:p-20 rounded-[3rem] bg-slate-800/30 border border-white/5 backdrop-blur-xl mb-12 relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative z-10 text-xs font-black text-cyan-400 mb-2 font-eng tracking-[0.2em] uppercase">Current Value</div>
-              <div className="relative z-10 flex items-baseline gap-2">
-                <span className="text-8xl font-black tabular-nums tracking-tighter text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+              <div className="relative z-10 text-sm font-black text-cyan-400 mb-4 font-eng tracking-[0.3em] uppercase">Current Value</div>
+              <div className="relative z-10 flex items-baseline gap-4">
+                <span className="text-8xl md:text-[10rem] font-black tabular-nums tracking-tighter text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
                   {currentQuestion.id.startsWith('shotData_') 
                     ? (answers.shotData?.[currentQuestion.id.split('_')[1] as keyof typeof answers.shotData] || currentQuestion.min || 0)
                     : (answers[currentQuestion.id as keyof DiagnosisAnswers] as number || currentQuestion.min || 0)}
                 </span>
-                <span className="text-2xl font-black text-slate-500 font-eng italic">{currentQuestion.unit}</span>
+                <span className="text-3xl md:text-4xl font-black text-slate-500 font-eng italic">{currentQuestion.unit}</span>
               </div>
             </div>
 
@@ -473,13 +474,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
 
             <button
                onClick={() => handleSelect(currentQuestion.id.startsWith('shotData_') ? (answers.shotData?.[currentQuestion.id.split('_')[1] as keyof typeof answers.shotData] || currentQuestion.min) : (answers[currentQuestion.id as keyof DiagnosisAnswers] || currentQuestion.min))}
-               className="w-full p-6 rounded-[2rem] bg-white text-slate-900 font-black text-xl tracking-tighter hover:bg-cyan-400 transition-all active:scale-95 flex items-center justify-center gap-2"
+               className="w-full max-w-md mx-auto p-10 rounded-[2.5rem] bg-white text-slate-900 font-black text-2xl tracking-tighter hover:bg-cyan-400 transition-all active:scale-95 flex items-center justify-center gap-3 shadow-2xl"
             >
-              CONTINUE <ChevronRight size={24} />
+              CONTINUE <ChevronRight size={32} />
             </button>
           </div>
         ) : (
-          <div className="space-y-3 pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-16">
             {currentQuestion.options?.map((opt: any, idx: number) => {
               const questionValue = answers[currentQuestion.id as keyof DiagnosisAnswers];
               const isSelected = Array.isArray(questionValue) 
@@ -528,16 +529,19 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
             })}
             
             {currentQuestion.multiple && (
-              <button
-                disabled={!Array.isArray(answers[currentQuestion.id as keyof DiagnosisAnswers]) || (answers[currentQuestion.id as keyof DiagnosisAnswers] as string[]).length === 0}
-                onClick={() => handleSelect(answers[currentQuestion.id as keyof DiagnosisAnswers])}
-                className="w-full mt-8 p-6 rounded-2xl bg-gradient-to-r from-cyan-600 to-emerald-600 text-white font-black text-lg tracking-widest shadow-xl shadow-cyan-900/20 active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-3"
-              >
-                選択を確定して次へ <ChevronRight size={20} />
-              </button>
+              <div className="md:col-span-2 flex justify-center mt-8">
+                <button
+                  disabled={!Array.isArray(answers[currentQuestion.id as keyof DiagnosisAnswers]) || (answers[currentQuestion.id as keyof DiagnosisAnswers] as string[]).length === 0}
+                  onClick={() => handleSelect(answers[currentQuestion.id as keyof DiagnosisAnswers])}
+                  className="w-full max-w-xl p-8 rounded-3xl bg-gradient-to-r from-cyan-600 to-emerald-600 text-white font-black text-xl tracking-widest shadow-xl shadow-cyan-900/20 active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4"
+                >
+                  選択を確定して次へ <ChevronRight size={24} />
+                </button>
+              </div>
             )}
           </div>
         )}
+      </div>
       </div>
     </div>
   );

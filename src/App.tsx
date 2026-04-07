@@ -8,11 +8,21 @@ import { DiagnosisWizard } from './pages/DiagnosisWizard';
 import { ResultPage } from './pages/ResultPage';
 import { MyGearPage } from './pages/MyGearPage';
 import { SharedBag } from './pages/SharedBag';
+import { ProsSettingsPage } from './pages/ProsSettingsPage';
+import { UsersSettingsPage } from './pages/UsersSettingsPage';
+import { DriversCatalogPage } from './pages/DriversCatalogPage';
+import { ProSettingDetailPage } from './pages/ProSettingDetailPage';
+import { DriverDetailPage } from './pages/DriverDetailPage';
+import { BuyPage } from './pages/BuyPage';
+import { ComparePage } from './pages/ComparePage';
+import { ArticlesPage } from './pages/ArticlesPage';
+import { ArticleDetailPage } from './pages/ArticleDetailPage';
 import BallDiagnosisApp from './pages/ball-diagnosis/BallDiagnosisApp';
 import { Sitemap } from './pages/Sitemap';
 import { useState, useEffect } from 'react';
 import { INITIAL_PROFILE } from './types/golf';
 import { supabase } from './lib/supabase';
+import { SeoManager } from './components/SeoManager';
 
 // Layout Component (Internal to App for simplicity, could be separate)
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -137,9 +147,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div>
               <h4 className="font-bold text-sm mb-6 text-white tracking-widest uppercase">Features</h4>
               <ul className="space-y-4 text-xs font-bold text-slate-400">
-                <li><button onClick={() => navigate('/diagnosis')} className="hover:text-golf-400 transition-colors">AIクラブ診断</button></li>
-                <li><button onClick={() => navigate('/ball-diagnosis')} className="hover:text-golf-400 transition-colors">AIボール診断</button></li>
-                <li><button onClick={() => navigate('/mypage')} className="hover:text-golf-400 transition-colors">マイページ / クラブ登録</button></li>
+                <li><button onClick={() => navigate('/settings/pros')} className="hover:text-golf-400 transition-colors">プロのセッティング</button></li>
+                <li><button onClick={() => navigate('/settings/users')} className="hover:text-golf-400 transition-colors">みんなのMy Bag</button></li>
+                <li><button onClick={() => navigate('/clubs/drivers')} className="hover:text-golf-400 transition-colors">人気ドライバー</button></li>
+                <li><button onClick={() => navigate('/articles')} className="hover:text-golf-400 transition-colors">更新記事</button></li>
               </ul>
             </div>
             <div>
@@ -198,10 +209,20 @@ function App() {
   return (
     <DiagnosisProvider>
       <HashRouter>
+        <SeoManager />
         <ScrollToTop />
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/settings/pros" element={<ProsSettingsPage />} />
+            <Route path="/settings/pros/:slug" element={<ProSettingDetailPage />} />
+            <Route path="/settings/users" element={<UsersSettingsPage />} />
+            <Route path="/clubs/drivers" element={<DriversCatalogPage />} />
+            <Route path="/clubs/drivers/:slug" element={<DriverDetailPage />} />
+            <Route path="/buy/:category/:slug" element={<BuyPage />} />
+            <Route path="/compare" element={<ComparePage />} />
+            <Route path="/articles" element={<ArticlesPage />} />
+            <Route path="/articles/:slug" element={<ArticleDetailPage />} />
             <Route path="/ball-diagnosis" element={<BallDiagnosisApp />} />
             <Route path="/diagnosis" element={<DiagnosisWizard />} />
             <Route path="/diagnosis/:category" element={<DiagnosisWizard />} />
@@ -209,6 +230,7 @@ function App() {
             <Route path="/result/:club" element={<ResultPage />} />
             <Route path="/result/:club/:mode" element={<ResultPage />} />
             <Route path="/mypage" element={<MyGearPage />} />
+            <Route path="/mybag/create" element={<MyGearPage />} />
             <Route path="/bag" element={<SharedBag />} />
             <Route path="/sitemap" element={<Sitemap />} />
           </Routes>

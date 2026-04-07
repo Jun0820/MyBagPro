@@ -15,7 +15,7 @@ export const OptionButton: React.FC<OptionButtonProps> = ({ label, subLabel, sel
         <button
             onClick={onClick}
             className={cn(
-                "w-full text-left p-4 md:p-6 rounded-2xl border flex items-center justify-between transition-all duration-300 active:scale-[0.98] group relative overflow-hidden",
+                "w-full text-left p-4 md:p-6 rounded-2xl border flex items-center justify-between transition-all duration-200 active:scale-[0.98] group relative overflow-hidden",
                 selected
                     ? 'bg-white/90 border-golf-400 shadow-[0_0_30px_rgba(74,222,128,0.2)] ring-1 ring-golf-400/50'
                     : 'bg-white/60 border-white/40 hover:bg-white/80 hover:border-golf-300/50 hover:shadow-lg hover:-translate-y-1 shadow-sm backdrop-blur-sm',
@@ -46,11 +46,11 @@ export const OptionButton: React.FC<OptionButtonProps> = ({ label, subLabel, sel
                 </div>
             </div>
             <div className={cn(
-                "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300",
+                "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200",
                 selected ? 'border-golf-500 bg-golf-500 scale-110' : 'border-slate-200 group-hover:border-golf-300'
             )}>
                 <div className={cn(
-                    "w-2.5 h-2.5 bg-white rounded-full transition-transform duration-300",
+                    "w-2.5 h-2.5 bg-white rounded-full transition-transform duration-200",
                     selected ? "scale-100" : "scale-0"
                 )} />
             </div>

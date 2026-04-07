@@ -39,6 +39,7 @@ interface ProfileManagerProps {
     onUpdateAverageScore: (score: number | undefined) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     onManualSave?: () => void;
+    onLogout?: () => void;
 }
 
 export const ProfileManager: React.FC<ProfileManagerProps> = ({
@@ -47,7 +48,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
     headSpeed, onUpdateHeadSpeed, isPublic, onUpdateIsPublic,
     birthdate, onUpdateBirthdate, golfHistory, onUpdateGolfHistory,
     bestScore, onUpdateBestScore, averageScore, onUpdateAverageScore,
-    saveStatus, onManualSave
+    saveStatus, onManualSave, onLogout
 }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -117,7 +118,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                         </div>
                         <div className="flex-1 space-y-4">
                             <div>
-                                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Profile Name</label>
+                                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">プロフィール名</label>
                                 <input 
                                     type="text" 
                                     value={userName} 
@@ -135,7 +136,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                             <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">基本情報</h4>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Gender</label>
+                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">性別</label>
                                     <select 
                                         value={gender || ''} 
                                         onChange={e => onUpdateGender(e.target.value)}
@@ -147,7 +148,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Age</label>
+                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">年代</label>
                                     <select 
                                         value={age || ''} 
                                         onChange={e => onUpdateAge(e.target.value)}
@@ -163,7 +164,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Best Score</label>
+                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">ベストスコア</label>
                                     <input 
                                         type="number" 
                                         placeholder="78"
@@ -173,7 +174,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Average Score</label>
+                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">平均スコア</label>
                                     <input 
                                         type="number" 
                                         placeholder="92"
@@ -186,7 +187,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
 
                             <div className="grid grid-cols-1 gap-4">
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Birthdate</label>
+                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">生年月日</label>
                                     <input 
                                         type="date" 
                                         value={birthdate || ''} 
@@ -195,7 +196,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Golf History</label>
+                                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">ゴルフ歴</label>
                                     <select 
                                         value={golfHistory || ''} 
                                         onChange={e => onUpdateGolfHistory(e.target.value)}
@@ -212,7 +213,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                             </div>
 
                             <div>
-                                <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">Head Speed (Avg)</label>
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">平均ヘッドスピード</label>
                                 <div className="flex items-center gap-4">
                                     <input 
                                         type="range" 
@@ -288,7 +289,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                 <div className="bg-white rounded-[32px] shadow-xl border border-slate-100 p-8">
                     <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-3 mb-6">アカウント設定</h4>
                     <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                        <div className="space-y-4 w-full md:w-auto">
+                        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
                             <button 
                                 onClick={() => onManualSave?.()} 
                                 className="w-full md:w-auto px-8 py-3 bg-trust-navy text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all shadow-lg active:scale-95"
@@ -309,6 +310,13 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                         <span>変更を保存</span>
                                     </>
                                 )}
+                            </button>
+
+                            <button 
+                                onClick={() => onLogout?.()}
+                                className="w-full md:w-auto px-8 py-3 bg-red-50 text-red-600 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-red-100 transition-all active:scale-95 border border-red-100"
+                            >
+                                <span>ログアウト</span>
                             </button>
                         </div>
                     </div>

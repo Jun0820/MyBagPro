@@ -51,18 +51,71 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
         onUpdate({ ...entry, shaft: `${m} ${w ? w + 'g' : ''} ${f}`.trim() });
     };
 
+    const handleCategoryNumberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const val = e.target.value;
+        const parts = val.split(':');
+        const newCat = parts[0] as TargetCategory;
+        const newNum = parts[1] || '';
+        onUpdate({ ...entry, category: newCat, number: newNum });
+    };
+
+    const clubOptions = [
+        { label: '1W (ドライバー)', cat: TargetCategory.DRIVER, num: '1W' },
+        { label: '3W', cat: TargetCategory.FAIRWAY, num: '3W' },
+        { label: '4W', cat: TargetCategory.FAIRWAY, num: '4W' },
+        { label: '5W', cat: TargetCategory.FAIRWAY, num: '5W' },
+        { label: '7W', cat: TargetCategory.FAIRWAY, num: '7W' },
+        { label: '9W', cat: TargetCategory.FAIRWAY, num: '9W' },
+        { label: '2U', cat: TargetCategory.UTILITY, num: '2U' },
+        { label: '3U', cat: TargetCategory.UTILITY, num: '3U' },
+        { label: '4U', cat: TargetCategory.UTILITY, num: '4U' },
+        { label: '5U', cat: TargetCategory.UTILITY, num: '5U' },
+        { label: '6U', cat: TargetCategory.UTILITY, num: '6U' },
+        { label: '3I', cat: TargetCategory.IRON, num: '3I' },
+        { label: '4I', cat: TargetCategory.IRON, num: '4I' },
+        { label: '5I', cat: TargetCategory.IRON, num: '5I' },
+        { label: '6I', cat: TargetCategory.IRON, num: '6I' },
+        { label: '7I', cat: TargetCategory.IRON, num: '7I' },
+        { label: '8I', cat: TargetCategory.IRON, num: '8I' },
+        { label: '9I', cat: TargetCategory.IRON, num: '9I' },
+        { label: 'PW', cat: TargetCategory.WEDGE, num: 'PW' },
+        { label: 'AW', cat: TargetCategory.WEDGE, num: 'AW' },
+        { label: 'SW', cat: TargetCategory.WEDGE, num: 'SW' },
+        { label: 'LW', cat: TargetCategory.WEDGE, num: 'LW' },
+        { label: 'パター', cat: TargetCategory.PUTTER, num: 'PT' },
+        { label: 'その他 ウッド', cat: TargetCategory.FAIRWAY, num: 'FW' },
+        { label: 'その他 ユーティリティ', cat: TargetCategory.UTILITY, num: 'UT' },
+        { label: 'その他 アイアン', cat: TargetCategory.IRON, num: 'IRN' },
+        { label: 'その他 ウェッジ', cat: TargetCategory.WEDGE, num: 'WDG' },
+    ];
+
+    const currentSelectValue = `${entry.category}:${entry.number || (entry.category === TargetCategory.PUTTER ? 'PT' : '')}`;
+
     return (
         <div className="bg-white p-2 md:p-3 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all group relative">
             <div className="flex items-center justify-between gap-2 mb-2 border-b border-slate-50 pb-1.5">
-                <div className="flex items-center gap-1.5">
-                    <span className={cn(getCategoryColor(entry.category), "text-white text-[9px] md:text-[10px] px-1.5 py-0.5 rounded font-black uppercase tracking-wider")}>
-                        {getCategoryLabel(entry.category)}
-                    </span>
-                    {entry.number && (
-                        <span className="text-trust-navy font-black text-[10px] md:text-xs bg-slate-100 px-1.5 rounded">{entry.number}</span>
-                    )}
+                <div className="flex items-center gap-1.5 relative">
+                    <div className={cn(getCategoryColor(entry.category), "flex items-center rounded overflow-hidden shadow-sm hover:opacity-90 transition-opacity")}>
+                        <div className="px-1.5 py-0.5 pointer-events-none text-white text-[9px] md:text-[10px] font-black uppercase tracking-wider">
+                            {getCategoryLabel(entry.category)}
+                        </div>
+                        <select
+                            value={currentSelectValue}
+                            onChange={handleCategoryNumberChange}
+                            className="bg-transparent text-white font-black text-[10px] md:text-xs tracking-wider outline-none appearance-none pr-4 pl-1 min-w-[3rem] cursor-pointer"
+                            style={{ WebkitAppearance: 'none' }}
+                        >
+                            <option value={`${entry.category}:${entry.number}`} className="text-slate-800">変更...</option>
+                            {clubOptions.map(opt => (
+                                <option key={`${opt.cat}:${opt.num}`} value={`${opt.cat}:${opt.num}`} className="text-slate-800">
+                                    {opt.label}
+                                </option>
+                            ))}
+                        </select>
+                        <ChevronDown size={10} className="text-white absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none opacity-80" />
+                    </div>
                 </div>
-                <button onClick={onRemove} className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-50 text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all ml-auto">
+                <button onClick={onRemove} className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-50 text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all ml-auto focus:outline-none">
                     <Trash2 size={10} />
                 </button>
             </div>
@@ -180,8 +233,30 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, o
     });
 
     const sortedClubs = [...setting.clubs].sort((a, b) => {
+        // 1. Parse distances (extract digits only)
+        const distA = a.distance ? parseInt(String(a.distance).replace(/\D/g, ''), 10) : 0;
+        const distB = b.distance ? parseInt(String(b.distance).replace(/\D/g, ''), 10) : 0;
+
+        // 2. Sort by distance (descending) if both have valid distances, or if one has and the other doesn't
+        if (distA !== distB) {
+            return distB - distA;
+        }
+
+        // 3. Fallback: Sort by Category Order
         const order = [TargetCategory.DRIVER, TargetCategory.FAIRWAY, TargetCategory.UTILITY, TargetCategory.IRON, TargetCategory.WEDGE, TargetCategory.PUTTER];
-        return order.indexOf(a.category as TargetCategory) - order.indexOf(b.category as TargetCategory);
+        const orderA = order.indexOf(a.category as TargetCategory);
+        const orderB = order.indexOf(b.category as TargetCategory);
+        
+        if (orderA !== orderB) {
+            return orderA - orderB;
+        }
+
+        // 4. Fallback: Sort by number (lexical, ensures 3W comes before 5W etc if distances are same)
+        if (a.number && b.number) {
+            return a.number.localeCompare(b.number);
+        }
+
+        return 0;
     });
 
     const updateClub = useCallback((updated: Club) => {
