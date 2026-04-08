@@ -662,11 +662,14 @@ export const DiagnosisWizard = () => {
 
         if (profile.targetCategory === TargetCategory.PUTTER) {
             return (
-                <StepCard title="モード選択" subtitle="AI診断モード" onBack={() => setStep(step - 1)}>
-                    <div className="text-center py-10">
-                        <div className="text-6xl mb-6">🤖</div>
-                        <p className="font-bold mb-8 text-xl">AI最適化モードで診断します</p>
-                        <button onClick={() => setStep(step + 1)} className="px-10 py-4 bg-trust-navy text-white rounded-full font-bold shadow-xl hover:scale-105 transition-transform">
+                <StepCard title="このまま診断を始めます" subtitle="パターは最適化モードでそのまま進みます。" onBack={() => setStep(step - 1)}>
+                    <div className="py-6 md:py-10">
+                        <div className="rounded-[1.75rem] bg-slate-50 p-6 text-center">
+                            <div className="text-5xl mb-5">🤖</div>
+                            <p className="font-black text-2xl text-trust-navy">選び方をすぐ整える</p>
+                            <p className="mt-3 text-sm leading-7 text-slate-600">細かいモード選択はせず、そのまま最適化へ進みます。</p>
+                        </div>
+                        <button onClick={() => setStep(step + 1)} className="mt-6 w-full px-10 py-4 bg-trust-navy text-white rounded-full font-black hover:scale-[1.01] transition-transform">
                             次へ進む
                         </button>
                     </div>
@@ -674,25 +677,28 @@ export const DiagnosisWizard = () => {
             );
         }
         return (
-            <StepCard title="診断モード" subtitle="ご希望の診断レベルを選択してください" onBack={() => setStep(step - 1)}>
+            <StepCard title="どう診断したいですか？" subtitle="まずは、どこまで見直したいかを選ぶだけで大丈夫です。" onBack={() => setStep(step - 1)}>
                 <div className="space-y-4">
                     <OptionButton
-                        label="⚡ フル診断"
-                        subLabel="ヘッド+シャフトの最適な組み合わせをご提案します。新しいクラブを探している方や、トータルでの性能向上を目指す方に。"
+                        label="フルで見直す"
+                        subLabel="ヘッドとシャフトをまとめて提案します。"
                         selected={profile.diagnosisMode === DiagnosisMode.FULL_SPEC}
                         onClick={() => { updateProfile('diagnosisMode', DiagnosisMode.FULL_SPEC); setStep(step + 1) }}
+                        icon={<Sparkles size={18} />}
                     />
                     <OptionButton
-                        label="🎯 ヘッド診断"
-                        subLabel="今のシャフトはそのままで、最適なヘッドをご提案します。リシャフト予定がない方や、シャフトにこだわりがある方に。"
+                        label="ヘッドだけ見直す"
+                        subLabel="シャフトは活かして、合うヘッドを探します。"
                         selected={profile.diagnosisMode === DiagnosisMode.HEAD_ONLY}
                         onClick={() => { updateProfile('diagnosisMode', DiagnosisMode.HEAD_ONLY); setStep(step + 1) }}
+                        icon={<Zap size={18} />}
                     />
                     <OptionButton
-                        label="🔧 シャフト診断"
-                        subLabel="今のヘッドはそのままで、最適なシャフトをご提案します。ヘッドは気に入っているが、シャフトで飛距離・安定性をアップさせたい方に。"
+                        label="シャフトだけ見直す"
+                        subLabel="ヘッドはそのままで、振りやすさを整えます。"
                         selected={profile.diagnosisMode === DiagnosisMode.SHAFT_ONLY}
                         onClick={() => { updateProfile('diagnosisMode', DiagnosisMode.SHAFT_ONLY); setStep(step + 1) }}
+                        icon={<ArrowRight size={18} />}
                     />
                 </div>
             </StepCard>
