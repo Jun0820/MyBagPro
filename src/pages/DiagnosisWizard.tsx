@@ -8,7 +8,7 @@ import { BrandModelInput } from '../components/BrandModelInput';
 import { PutterHeadSelector, PutterNeckSelector } from '../components/PutterSelectors';
 import { BallPreferenceSelector } from '../components/BallPreferenceSelector';
 import { AdvancedShotInput } from '../components/AdvancedShotInput';
-import { Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { BrandSelector } from '../components/BrandSelector';
 import { getShaftModels, getShaftWeightOptions } from '../lib/data';
@@ -544,39 +544,100 @@ export const DiagnosisWizard = () => {
 
     // Step 1: Target Selection (Default if no category param)
     if (step === 1) return (
-        <StepCard title="診断対象" subtitle="診断したいクラブを選択してください" isFirst>
-            <div className="grid md:grid-cols-2 gap-4">
-                {[TargetCategory.DRIVER, TargetCategory.FAIRWAY, TargetCategory.UTILITY, TargetCategory.IRON, TargetCategory.WEDGE, TargetCategory.PUTTER].map(c => {
-                    const isEnabled = c === TargetCategory.DRIVER || window.location.hostname === 'localhost' || new URLSearchParams(window.location.search).get('preview') === 'true';
-                    return (
-                        <div key={c} className="relative">
-                            <OptionButton
-                                label={c}
-                                selected={profile.targetCategory === c}
-                                onClick={() => {
-                                    if (isEnabled) {
+        <div className="w-full max-w-6xl mx-auto animate-fadeIn">
+            <section className="overflow-hidden rounded-[2.5rem] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_48%,#eef6f1_100%)] shadow-sm">
+                <div className="relative px-6 py-12 md:px-10 md:py-16">
+                    <div className="absolute inset-y-0 right-[-10%] hidden w-[42%] rounded-full bg-[radial-gradient(circle,_rgba(39,174,96,0.16),_rgba(255,255,255,0)_68%)] blur-2xl lg:block" />
+                    <div className="relative grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+                        <div>
+                            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-slate-500">
+                                <Sparkles size={14} className="text-golf-700" />
+                                AI CLUB DIAGNOSIS
+                            </div>
+                            <h1 className="mt-6 text-4xl font-black leading-tight tracking-tight text-trust-navy md:text-6xl">
+                                まずは、
+                                <br />
+                                ドライバーから。
+                            </h1>
+                            <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
+                                いくつか答えるだけで、選ぶべき方向が見えてくる。
+                            </p>
+
+                            <div className="mt-7 space-y-3">
+                                {['右に抜ける不安を減らしたい', '捕まりすぎを抑えたい', '今より候補を早く絞りたい'].map((point) => (
+                                    <div key={point} className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                                        <CheckCircle2 size={18} className="text-golf-700" />
+                                        {point}
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                                <button
+                                    onClick={() => {
                                         resetCategorySpecificData();
-                                        updateProfile('targetCategory', c);
-                                        if (c === TargetCategory.TOTAL_SETTING) {
-                                            setStep(20);
-                                        } else {
-                                            setStep(step + 1);
-                                        }
-                                        navigate(`/diagnosis/${Object.keys(TargetCategory).find(key => TargetCategory[key as keyof typeof TargetCategory] === c)?.toLowerCase()}`);
-                                    }
-                                }}
-                                className={isEnabled ? "" : "opacity-50 cursor-not-allowed grayscale"}
-                            />
-                            {!isEnabled && (
-                                <div className="absolute top-2 right-2 bg-slate-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full pointer-events-none">
-                                    準備中
-                                </div>
-                            )}
+                                        updateProfile('targetCategory', TargetCategory.DRIVER);
+                                        setStep(2);
+                                        navigate('/diagnosis/driver');
+                                    }}
+                                    className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-7 py-4 text-sm font-black text-white transition-transform hover:-translate-y-0.5"
+                                >
+                                    10秒でドライバー診断を始める
+                                    <ArrowRight size={16} />
+                                </button>
+                                <button
+                                    onClick={() => navigate('/settings/pros')}
+                                    className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-7 py-4 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
+                                >
+                                    先にプロのセッティングを見る
+                                </button>
+                            </div>
                         </div>
-                    );
-                })}
-            </div>
-        </StepCard>
+
+                        <div className="rounded-[2rem] bg-slate-950 p-6 text-white">
+                            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                                <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">QUESTION 01</div>
+                                <div className="mt-3 text-2xl font-black">いまのミスはどれに近いですか？</div>
+                                <div className="mt-5 space-y-3">
+                                    {['右に抜ける', '左に行きすぎる', '高さが出ない'].map((choice, index) => (
+                                        <div
+                                            key={choice}
+                                            className={`rounded-[1.25rem] px-4 py-4 text-sm font-black ${
+                                                index === 0 ? 'bg-white text-trust-navy' : 'bg-white/5 text-slate-300'
+                                            }`}
+                                        >
+                                            {choice}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                                <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">NEXT</div>
+                                <div className="mt-3 text-2xl font-black">相性の良い方向を3本まで絞り込む</div>
+                                <p className="mt-3 text-sm leading-7 text-slate-300">
+                                    まずは候補を狭める。細かいスペックはそのあとで大丈夫です。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">OTHER DIAGNOSIS</div>
+                <div className="mt-3 flex flex-wrap gap-3">
+                    {['フェアウェイウッド', 'ユーティリティ', 'アイアン', 'ウェッジ', 'パター'].map((item) => (
+                        <div
+                            key={item}
+                            className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-500"
+                        >
+                            {item} は順次公開予定
+                        </div>
+                    ))}
+                </div>
+            </section>
+        </div>
     );
 
     // Wedge Flow Interceptor (Vokey Style)

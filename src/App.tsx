@@ -76,10 +76,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/92 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-3 md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:px-8">
           <div className="flex items-center justify-between gap-4">
             <a href="#/" className="flex items-center gap-3 cursor-pointer group min-w-0">
-              <div className="w-11 h-11 shrink-0 bg-gradient-to-br from-golf-500 to-golf-700 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 shrink-0 bg-gradient-to-br from-golf-500 to-golf-700 rounded-2xl flex items-center justify-center shadow-lg">
                 <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
@@ -88,14 +88,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="font-eng text-lg font-[900] tracking-tight text-trust-navy leading-none">
                   MY <span className="bg-gradient-to-r from-golf-600 to-golf-800 bg-clip-text text-transparent">BAG</span> PRO
                 </div>
-                <div className="mt-1 text-xs font-bold text-slate-500">
-                  プロとみんなのクラブセッティングを見て、比べて、整えるサイト
-                </div>
+                <div className="mt-1 text-[11px] font-bold text-slate-500">クラブ選びを、もっと迷わず。</div>
               </div>
             </a>
 
             <div className="flex items-center gap-3">
-              <div className="hidden md:flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-[11px] font-bold text-slate-500">
+              <div className="hidden xl:flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-[11px] font-bold text-slate-500">
                 {saveStatus === 'saving' ? (
                   <Loader2 size={12} className="animate-spin text-golf-500" />
                 ) : (
@@ -147,7 +145,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   className={`inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition-colors ${
                     isActive(item.href)
                       ? 'bg-trust-navy text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      : 'text-slate-600 hover:bg-slate-100'
                   }`}
                 >
                   <Icon size={14} />
