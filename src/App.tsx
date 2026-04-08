@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { User, LogIn, Loader2, LogOut, BookOpen, House, Newspaper, Users2 } from 'lucide-react';
+import { User, LogIn, Loader2, LogOut, Search, ShieldCheck, Stethoscope, UserRoundCog } from 'lucide-react';
 import { DiagnosisProvider, useDiagnosis } from './context/DiagnosisContext';
 import { AccountAuth } from './features/auth/AccountAuth';
 import { LegalPage } from './components/LegalPage';
@@ -32,10 +32,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
   const navigationItems = [
-    { label: 'ホーム', href: '/', icon: House },
-    { label: 'プロ一覧', href: '/settings/pros', icon: BookOpen },
-    { label: 'みんなのバッグ', href: '/settings/users', icon: Users2 },
-    { label: '更新記事', href: '/articles', icon: Newspaper },
+    { label: 'プロセッティング', href: '/settings/pros', icon: ShieldCheck },
+    { label: '診断', href: '/diagnosis', icon: Stethoscope },
+    { label: 'マイページ', href: '/mypage', icon: UserRoundCog },
   ];
 
   const isActive = (href: string) => {
@@ -75,20 +74,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#0f172a_1px,transparent_1px)] [background-size:24px_24px]"></div>
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/92 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:px-8">
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-3 md:px-8">
           <div className="flex items-center justify-between gap-4">
             <a href="#/" className="flex items-center gap-3 cursor-pointer group min-w-0">
-              <div className="w-10 h-10 shrink-0 bg-gradient-to-br from-golf-500 to-golf-700 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-golf-500 to-sky-700 shadow-lg">
                 <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
               </div>
               <div className="min-w-0">
-                <div className="font-eng text-lg font-[900] tracking-tight text-trust-navy leading-none">
-                  MY <span className="bg-gradient-to-r from-golf-600 to-golf-800 bg-clip-text text-transparent">BAG</span> PRO
+                <div className="font-eng text-lg font-[900] tracking-tight text-trust-navy leading-none md:text-xl">
+                  My <span className="bg-gradient-to-r from-golf-600 to-sky-700 bg-clip-text text-transparent">Bag</span> Pro
                 </div>
-                <div className="mt-1 text-[11px] font-bold text-slate-500">クラブ選びを、もっと迷わず。</div>
+                <div className="mt-1 text-[11px] font-bold text-slate-500">診断・比較・購入までを、ひとつの流れで。</div>
               </div>
             </a>
 
@@ -109,6 +108,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 )}
                 <span>{saveStatus === 'saving' ? '保存中' : user.isLoggedIn ? 'アカウント保存' : 'ローカル保存'}</span>
               </div>
+
+              <button
+                onClick={() => navigate('/settings/pros')}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:border-golf-300 hover:text-golf-700"
+                title="プロセッティングを探す"
+              >
+                <Search size={18} />
+              </button>
 
               <button
                 onClick={handleMyPageClick}
@@ -161,39 +168,40 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
 
-      <footer className="relative z-10 mt-auto border-t border-slate-200 bg-white px-4 py-12">
+      <footer className="relative z-10 mt-auto border-t border-slate-900/20 bg-slate-950 px-4 py-12 text-white">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           <div>
-            <a href="#/" className="font-eng text-2xl font-black tracking-tight text-trust-navy">
-              MY <span className="text-transparent bg-clip-text bg-gradient-to-r from-golf-500 to-golf-700">BAG</span> PRO
+            <a href="#/" className="font-eng text-2xl font-black tracking-tight text-white">
+              MY <span className="bg-gradient-to-r from-golf-400 to-sky-400 bg-clip-text text-transparent">BAG</span> PRO
             </a>
-            <p className="mt-4 max-w-md text-sm leading-7 text-slate-600">
+            <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">
               プロや上級者のクラブセッティングを見て、自分のバッグと比べ、AI診断や購入導線までつなげるためのゴルフ情報サイトです。
             </p>
           </div>
 
           <div>
-            <h4 className="text-sm font-black text-trust-navy">主要ページ</h4>
-            <ul className="mt-4 space-y-3 text-sm text-slate-600">
-              <li><button onClick={() => navigate('/settings/pros')} className="hover:text-golf-700 transition-colors">プロのセッティング一覧</button></li>
-              <li><button onClick={() => navigate('/settings/users')} className="hover:text-golf-700 transition-colors">みんなのMy Bag</button></li>
-              <li><button onClick={() => navigate('/clubs/drivers')} className="hover:text-golf-700 transition-colors">人気ドライバー</button></li>
-              <li><button onClick={() => navigate('/articles')} className="hover:text-golf-700 transition-colors">更新記事</button></li>
+            <h4 className="text-sm font-black text-white">コンテンツ</h4>
+            <ul className="mt-4 space-y-3 text-sm text-slate-300">
+              <li><button onClick={() => navigate('/settings/pros')} className="hover:text-golf-300 transition-colors">プロセッティング</button></li>
+              <li><button onClick={() => navigate('/diagnosis')} className="hover:text-golf-300 transition-colors">診断</button></li>
+              <li><button onClick={() => navigate('/articles')} className="hover:text-golf-300 transition-colors">記事一覧</button></li>
+              <li><button onClick={() => navigate('/mypage')} className="hover:text-golf-300 transition-colors">マイページ</button></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-sm font-black text-trust-navy">サイト情報</h4>
-            <ul className="mt-4 space-y-3 text-sm text-slate-600">
-              <li><button onClick={() => navigate('/sitemap')} className="hover:text-golf-700 transition-colors">サイトマップ</button></li>
-              <li><button onClick={() => setShowLegal('terms')} className="hover:text-golf-700 transition-colors">利用規約</button></li>
-              <li><button onClick={() => setShowLegal('privacy')} className="hover:text-golf-700 transition-colors">プライバシーポリシー</button></li>
+            <h4 className="text-sm font-black text-white">運営情報</h4>
+            <ul className="mt-4 space-y-3 text-sm text-slate-300">
+              <li><button onClick={() => setShowLegal('privacy')} className="hover:text-golf-300 transition-colors">プライバシーポリシー</button></li>
+              <li><button onClick={() => setShowLegal('terms')} className="hover:text-golf-300 transition-colors">利用規約</button></li>
+              <li><button onClick={() => navigate('/sitemap')} className="hover:text-golf-300 transition-colors">サイトマップ</button></li>
+              <li><a href="mailto:info@mybagpro.jp" className="hover:text-golf-300 transition-colors">お問い合わせ</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-6xl flex-col gap-3 border-t border-slate-200 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
-          <div>© 2026 MY BAG PRO. ALL RIGHTS RESERVED.</div>
+        <div className="mx-auto mt-10 flex max-w-6xl flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-400 md:flex-row md:items-center md:justify-between">
+          <div>© My Bag Pro All rights reserved.</div>
           <div>公開するのは確認済みデータのみ。サンプルや推定値は掲載しません。</div>
         </div>
       </footer>
