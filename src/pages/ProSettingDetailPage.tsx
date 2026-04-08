@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Gauge, ShoppingBag, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Gauge, Newspaper, ShoppingBag, Sparkles } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
+import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
@@ -22,10 +23,36 @@ const formatDistance = (carryDistance?: number | null, totalDistance?: number | 
   return '未公開';
 };
 
+const evergreenPrioritySlugs = [
+  'how-to-read-pro-setting-pages',
+  'how-to-use-setting-compare',
+  'why-14-clubs-matter',
+  'driver-diagnosis-purpose',
+  'what-to-check-before-publishing-profile',
+];
+
+const pickRecommendedArticles = (articles: PublicArticle[], profileName: string) => {
+  const directMatches = articles.filter(
+    (article) =>
+      article.title.includes(profileName) ||
+      article.excerpt.includes(profileName) ||
+      article.body.includes(profileName)
+  );
+
+  const evergreenMatches = evergreenPrioritySlugs
+    .map((targetSlug) => articles.find((article) => article.slug === targetSlug))
+    .filter(Boolean) as PublicArticle[];
+
+  return [...directMatches, ...evergreenMatches]
+    .filter((article, index, self) => self.findIndex((item) => item.slug === article.slug) === index)
+    .slice(0, 3);
+};
+
 export const ProSettingDetailPage = () => {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   const [setting, setSetting] = useState<PublicSettingProfile | null>(null);
+  const [relatedArticles, setRelatedArticles] = useState<PublicArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -125,6 +152,28 @@ export const ProSettingDetailPage = () => {
   }, [setting, slug]);
 
   useEffect(() => () => removeStructuredData('profile-page'), []);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadArticles = async () => {
+      if (!setting) {
+        setRelatedArticles([]);
+        return;
+      }
+
+      const articles = await fetchPublishedArticles({ limit: 50 });
+      if (isMounted) {
+        setRelatedArticles(pickRecommendedArticles(articles, setting.name));
+      }
+    };
+
+    loadArticles();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [setting]);
 
   if (isLoading) {
     return (
@@ -401,6 +450,44 @@ export const ProSettingDetailPage = () => {
             <p>
               気になる構成があれば、そのまま比較ページや AI診断につなげて、自分向けの候補へ絞り込めます。
             </p>
+          </div>
+        </article>
+
+        <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+          <div className="inline-flex items-center gap-2 text-[11px] font-black text-slate-400">
+            <Newspaper size={14} />
+            関連記事
+          </div>
+          <h2 className="mt-3 text-2xl font-black text-trust-navy">このセッティングと一緒に読みたい記事</h2>
+          <div className="mt-5 space-y-4">
+            {relatedArticles.map((article) => (
+              <button
+                key={article.slug}
+                onClick={() => {
+                  trackEvent('select_article', {
+                    source_page: 'pro_setting_detail',
+                    profile_slug: setting.slug,
+                    profile_name: setting.name,
+                    article_slug: article.slug,
+                    article_title: article.title,
+                  });
+                  navigate(`/articles/${article.slug}`);
+                }}
+                className="w-full rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:-translate-y-0.5 hover:bg-white"
+              >
+                <h3 className="text-base font-black text-trust-navy">{article.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{article.excerpt}</p>
+                <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                  記事を読む
+                  <ArrowRight size={14} />
+                </div>
+              </button>
+            ))}
+            {relatedArticles.length === 0 && (
+              <p className="rounded-[1.5rem] bg-slate-50 p-4 text-sm leading-7 text-slate-600">
+                このセッティングの見方や比較の使い方に関する記事を順次追加していきます。
+              </p>
+            )}
           </div>
         </article>
       </section>
