@@ -1,0 +1,202 @@
+{
+  "profile": {
+    "slug": "peter-malnati",
+    "display_name": "ピーター・マルナチ",
+    "nationality": "United States",
+    "birthplace": "Indiana, United States",
+    "birth_date": "1987-06-13",
+    "height_cm": 178,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2024,
+    "ball_name": "Titleist Pro V1x",
+    "feature_1": "2024シーズン基準",
+    "feature_2": "Titleist中心",
+    "feature_3": "14本確認済み",
+    "summary": "2024年バルスパー選手権時点で確認できたピーター・マルナチの14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "latest_source_policy": "2024_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-08T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Titleist",
+      "model_name": "TSR3 Driver",
+      "loft_label": "10°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X Denali Blue",
+      "shaft_flex": "TX",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Titleist",
+      "model_name": "TSi3 Fairway Metal",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus TR Blue",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Titleist",
+      "model_name": "818 H2 Hybrid",
+      "loft_label": "19°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD DI95",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Titleist",
+      "model_name": "T200 Iron 2023",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Titleist",
+      "model_name": "T150 Iron 2023",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Titleist",
+      "model_name": "T100 Iron 2023",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Titleist",
+      "model_name": "T100 Iron 2023",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Titleist",
+      "model_name": "T100 Iron 2023",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Titleist",
+      "model_name": "T100 Iron 2023",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "PW",
+      "loft_label": "48°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "GW",
+      "loft_label": "52°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "SW",
+      "loft_label": "58°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "LW",
+      "loft_label": "60°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue S400",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "Special Select Tourtype Masterful Prototype",
+      "source_note": "Confirmed from GDO 2024 Valspar Championship setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/15304/",
+      "source_title": "GDO ピーター・マルナチ クラブセッティング 2024年 バルスパー選手権",
+      "checked_at": "2026-04-08T00:00:00.000Z",
+      "notes": "Used for bio fields, 2024 full bag, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "peter-malnati-2024-setting-update",
+    "title": "ピーター・マルナチの2024年クラブセッティングを掲載しました",
+    "excerpt": "2024シーズン基準で、ピーター・マルナチの14本のクラブセッティングと使用ボールを掲載しました。",
+    "body": "ピーター・マルナチのセッティングについて、2024年バルスパー選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。PGA TOURのTitleist中心セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2024,
+    "published": true,
+    "published_at": "2026-04-08T00:00:00.000Z"
+  }
+}
