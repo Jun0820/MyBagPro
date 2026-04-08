@@ -3,7 +3,16 @@ import { ArrowRight, CalendarDays, Newspaper } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 
+type ArticleFilter = 'all' | PublicArticle['articleType'];
+
 const articleTypeLabel: Record<PublicArticle['articleType'], string> = {
+  news: 'お知らせ',
+  update: '更新情報',
+  column: '読みもの',
+};
+
+const filterLabel: Record<ArticleFilter, string> = {
+  all: 'すべて',
   news: 'お知らせ',
   update: '更新情報',
   column: '読みもの',
@@ -22,6 +31,7 @@ export const ArticlesPage = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState<PublicArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState<ArticleFilter>('all');
 
   useEffect(() => {
     let isMounted = true;
@@ -39,6 +49,15 @@ export const ArticlesPage = () => {
     };
   }, []);
 
+  const filteredArticles =
+    activeFilter === 'all'
+      ? articles
+      : articles.filter((article) => article.articleType === activeFilter);
+
+  const updateCount = articles.filter((article) => article.articleType === 'update').length;
+  const columnCount = articles.filter((article) => article.articleType === 'column').length;
+  const newsCount = articles.filter((article) => article.articleType === 'news').length;
+
   return (
     <div className="min-h-screen pb-20">
       <section className="rounded-[2rem] bg-slate-950 px-6 py-10 text-white md:px-10 md:py-14">
@@ -51,9 +70,40 @@ export const ArticlesPage = () => {
           確認済みの掲載更新、比較や診断の使い方、セッティングの読み解き方をまとめています。
           プロフィールだけでは伝わりにくい背景を、あとから追いやすい形で公開します。
         </p>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+            <div className="text-xs font-black text-slate-400">公開記事</div>
+            <div className="mt-2 text-2xl font-black text-white">{articles.length}</div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+            <div className="text-xs font-black text-slate-400">更新情報</div>
+            <div className="mt-2 text-2xl font-black text-white">{updateCount}</div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+            <div className="text-xs font-black text-slate-400">読みもの</div>
+            <div className="mt-2 text-2xl font-black text-white">{columnCount + newsCount}</div>
+          </div>
+        </div>
       </section>
 
       <section className="mt-8 grid gap-5">
+        <div className="flex flex-wrap gap-3">
+          {(['all', 'update', 'column', 'news'] as ArticleFilter[]).map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`rounded-full px-4 py-2 text-sm font-black transition-colors ${
+                activeFilter === filter
+                  ? 'bg-trust-navy text-white'
+                  : 'border border-slate-200 bg-white text-slate-600 hover:border-golf-300 hover:text-golf-700'
+              }`}
+            >
+              {filterLabel[filter]}
+            </button>
+          ))}
+        </div>
+
         {isLoading && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
             記事を読み込んでいます...
@@ -70,7 +120,17 @@ export const ArticlesPage = () => {
           </div>
         )}
 
-        {articles.map((article) => (
+        {!isLoading && articles.length > 0 && filteredArticles.length === 0 && (
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-8">
+            <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">絞り込み結果</div>
+            <h2 className="mt-3 text-2xl font-black text-trust-navy">{filterLabel[activeFilter]}の記事はまだありません。</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              別のカテゴリを選ぶと、公開済みの記事を見られます。
+            </p>
+          </div>
+        )}
+
+        {filteredArticles.map((article) => (
           <button
             key={article.slug}
             onClick={() => navigate(`/articles/${article.slug}`)}
