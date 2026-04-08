@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, BadgeCheck } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Image as ImageIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
+import { getProfileVisuals } from '../lib/profileVisuals';
 
 export const ProsSettingsPage = () => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export const ProsSettingsPage = () => {
         </div>
       </section>
 
-      <section className="grid gap-4">
+      <section className="grid gap-5 lg:grid-cols-2">
         {isLoading && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
             掲載プロフィールを読み込んでいます...
@@ -87,71 +88,96 @@ export const ProsSettingsPage = () => {
           </div>
         )}
 
-        {profiles.map((setting) => (
-          <button
-            key={setting.slug}
-            onClick={() => {
-              trackEvent('view_setting_detail', {
-                source_page: 'pros_library',
-                profile_slug: setting.slug,
-                profile_name: setting.name,
-              });
-              navigate(`/settings/pros/${setting.slug}`);
-            }}
-            className="rounded-[2rem] border border-slate-200 bg-white p-6 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md md:p-8"
-          >
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-3xl">
-                <div className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-500">
-                  {setting.type}
+        {profiles.map((setting) => {
+          const visuals = getProfileVisuals(setting.slug);
+
+          return (
+            <button
+              key={setting.slug}
+              onClick={() => {
+                trackEvent('view_setting_detail', {
+                  source_page: 'pros_library',
+                  profile_slug: setting.slug,
+                  profile_name: setting.name,
+                });
+                navigate(`/settings/pros/${setting.slug}`);
+              }}
+              className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
+            >
+              <div className="relative h-64 overflow-hidden">
+                <img src={visuals.hero} alt="" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.05)_0%,rgba(15,23,42,0.72)_100%)]" />
+
+                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.12em] text-white backdrop-blur">
+                  <ImageIcon size={13} />
+                  参考イメージ
                 </div>
-                <h2 className="mt-4 text-3xl font-black tracking-tight text-trust-navy">{setting.name}</h2>
-                <p className="mt-3 text-base font-bold text-golf-700">{setting.tagline}</p>
-                <p className="mt-4 text-sm leading-7 text-slate-600">{setting.summary}</p>
+
+                <div className="absolute bottom-6 left-6 right-6 flex items-end gap-4">
+                  <img
+                    src={visuals.portrait}
+                    alt=""
+                    className="h-20 w-20 rounded-full border-4 border-white/90 object-cover shadow-lg"
+                  />
+                  <div className="min-w-0">
+                    <div className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-500">
+                      {setting.type}
+                    </div>
+                    <h2 className="mt-3 text-3xl font-black tracking-tight text-white">{setting.name}</h2>
+                    <p className="mt-2 text-sm font-bold text-cyan-100">{setting.tagline}</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[360px]">
-                <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                  <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">ヘッドスピード</div>
-                  <div className="mt-2 text-sm font-black text-trust-navy">{setting.headSpeed}</div>
+              <div className="p-6 md:p-8">
+                <p className="text-sm leading-7 text-slate-600">{setting.summary}</p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">ヘッドスピード</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.headSpeed}</div>
+                  </div>
+                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">平均スコア</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.averageScore}</div>
+                  </div>
+                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">使用ボール</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.ball}</div>
+                  </div>
                 </div>
-                <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                  <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">平均スコア</div>
-                  <div className="mt-2 text-sm font-black text-trust-navy">{setting.averageScore}</div>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {setting.strengths.slice(0, 3).map((strength) => (
+                    <span
+                      key={strength}
+                      className="rounded-full border border-golf-200 bg-golf-50 px-3 py-1 text-xs font-bold text-golf-700"
+                    >
+                      {strength}
+                    </span>
+                  ))}
                 </div>
-                <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                  <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">使用ボール</div>
-                  <div className="mt-2 text-sm font-black text-trust-navy">{setting.ball}</div>
+
+                <div className="mt-6 grid gap-3 md:grid-cols-2">
+                  {setting.clubs.slice(0, 4).map((club) => (
+                    <div
+                      key={`${setting.slug}-${club.category}`}
+                      className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4"
+                    >
+                      <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">{club.category}</div>
+                      <div className="mt-2 text-sm font-black text-trust-navy">{club.model}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
+                  セッティング詳細を見る
+                  <ArrowRight size={16} />
                 </div>
               </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {setting.strengths.slice(0, 3).map((strength) => (
-                <span
-                  key={strength}
-                  className="rounded-full border border-golf-200 bg-golf-50 px-3 py-1 text-xs font-bold text-golf-700"
-                >
-                  {strength}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-6 grid gap-3 md:grid-cols-4">
-              {setting.clubs.slice(0, 4).map((club) => (
-                <div key={`${setting.slug}-${club.category}`} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4">
-                  <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">{club.category}</div>
-                  <div className="mt-2 text-sm font-black text-trust-navy">{club.model}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
-              セッティング詳細を見る
-              <ArrowRight size={16} />
-            </div>
-          </button>
-        ))}
+            </button>
+          );
+        })}
       </section>
     </div>
   );

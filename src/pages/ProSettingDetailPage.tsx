@@ -17,6 +17,7 @@ import { getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { fetchPublishedSettingProfileBySlug, type PublicProfileSource, type PublicSettingProfile } from '../lib/contentProfiles';
+import { getProfileVisuals } from '../lib/profileVisuals';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const formatClubLabel = (category: string, specLabel?: string) => {
@@ -352,6 +353,7 @@ export const ProSettingDetailPage = () => {
       return bTime - aTime;
     })
     .slice(0, 4);
+  const visuals = getProfileVisuals(setting.slug);
 
   return (
     <div className="min-h-screen pb-20">
@@ -363,59 +365,80 @@ export const ProSettingDetailPage = () => {
         プロ一覧へ戻る
       </button>
 
-      <section className="rounded-[2rem] bg-slate-950 px-6 py-10 text-white md:px-10 md:py-14">
-        <div className="max-w-4xl">
-          <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black text-cyan-200">
-            {setting.type}
+      <section className="overflow-hidden rounded-[2rem] bg-slate-950 text-white">
+        <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="px-6 py-10 md:px-10 md:py-14">
+            <div className="max-w-4xl">
+              <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black text-cyan-200">
+                {setting.type}
+              </div>
+              <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">{setting.name}</h1>
+              <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
+
+              {channelLinks.length > 0 && (
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {channelLinks.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <a
+                        key={link.label}
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() =>
+                          trackEvent('open_profile_channel', {
+                            source_page: 'pro_setting_detail',
+                            profile_slug: setting.slug,
+                            profile_name: setting.name,
+                            channel_label: link.label,
+                          })
+                        }
+                        className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-black text-white/90 transition-colors hover:bg-white/10"
+                      >
+                        <Icon size={15} />
+                        {link.label}
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+
+              <div className="mt-8 grid gap-4 md:grid-cols-4">
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                  <div className="text-[11px] font-black text-slate-400">ヘッドスピード</div>
+                  <div className="mt-2 text-base font-black text-white">{setting.headSpeed}</div>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                  <div className="text-[11px] font-black text-slate-400">平均スコア</div>
+                  <div className="mt-2 text-base font-black text-white">{setting.averageScore}</div>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                  <div className="text-[11px] font-black text-slate-400">使用ボール</div>
+                  <div className="mt-2 text-base font-black text-white">{setting.ball}</div>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                  <div className="text-[11px] font-black text-slate-400">特徴</div>
+                  <div className="mt-2 text-base font-black text-white">{setting.style}</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">{setting.name}</h1>
-          <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
 
-          {channelLinks.length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-3">
-              {channelLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <a
-                    key={link.label}
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() =>
-                      trackEvent('open_profile_channel', {
-                        source_page: 'pro_setting_detail',
-                        profile_slug: setting.slug,
-                        profile_name: setting.name,
-                        channel_label: link.label,
-                      })
-                    }
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-black text-white/90 transition-colors hover:bg-white/10"
-                  >
-                    <Icon size={15} />
-                    {link.label}
-                  </a>
-                );
-              })}
+          <div className="relative min-h-[360px] overflow-hidden">
+            <img src={visuals.hero} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.72)_100%)]" />
+            <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.14em] text-white backdrop-blur">
+              <ImageIcon size={13} />
+              参考イメージ
             </div>
-          )}
-
-          <div className="mt-8 grid gap-4 md:grid-cols-4">
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-              <div className="text-[11px] font-black text-slate-400">ヘッドスピード</div>
-              <div className="mt-2 text-base font-black text-white">{setting.headSpeed}</div>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-              <div className="text-[11px] font-black text-slate-400">平均スコア</div>
-              <div className="mt-2 text-base font-black text-white">{setting.averageScore}</div>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-              <div className="text-[11px] font-black text-slate-400">使用ボール</div>
-              <div className="mt-2 text-base font-black text-white">{setting.ball}</div>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-              <div className="text-[11px] font-black text-slate-400">特徴</div>
-              <div className="mt-2 text-base font-black text-white">{setting.style}</div>
+            <div className="absolute bottom-6 left-6 right-6 grid gap-3 sm:grid-cols-3">
+              {mediaHighlights.map((item) => (
+                <div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-slate-950/55 px-4 py-4 backdrop-blur">
+                  <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{item.label}</div>
+                  <div className="mt-2 text-sm font-black text-white">{item.value}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -527,6 +550,42 @@ export const ProSettingDetailPage = () => {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] text-slate-400">
+              <ImageIcon size={14} />
+              REFERENCE GALLERY
+            </div>
+            <h2 className="mt-3 text-2xl font-black text-trust-navy">イメージでセッティングの空気感をつかむ</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              表を見る前に、どんなプレースタイルや空気感のセッティングなのかを視覚的につかみやすくしました。
+            </p>
+          </div>
+          <div className="rounded-full bg-slate-100 px-4 py-2 text-xs font-black tracking-[0.14em] text-slate-500">
+            すべて参考イメージ
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {visuals.gallery.map((image, index) => (
+            <div key={`${setting.slug}-gallery-${index}`} className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
+              <img src={image} alt="" className="h-56 w-full object-cover" />
+              <div className="px-5 py-4">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
+                  {['スイングの印象', 'クラブ選びのイメージ', 'ラウンドの空気感'][index]}
+                </div>
+                <div className="mt-2 text-sm font-bold text-trust-navy">
+                  {index === 0 && 'まずショットの雰囲気から把握する'}
+                  {index === 1 && 'バッグ全体の方向性を想像しやすくする'}
+                  {index === 2 && '実戦での使い方まで連想しやすくする'}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

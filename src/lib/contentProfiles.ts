@@ -191,7 +191,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
       .eq('is_published', true)
       .order('is_featured', { ascending: false })
       .order('season_year', { ascending: false })
-      .limit(30);
+      .limit(60);
 
     if (error || !profiles || profiles.length === 0) return [];
 
