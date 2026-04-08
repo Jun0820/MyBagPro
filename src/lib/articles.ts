@@ -20,6 +20,11 @@ interface ArticleRow {
   season_year: number | null;
 }
 
+interface FetchArticlesOptions {
+  limit?: number;
+  excludeSlug?: string;
+}
+
 const mapArticle = (row: ArticleRow): PublicArticle => ({
   slug: row.slug,
   title: row.title,
@@ -30,16 +35,26 @@ const mapArticle = (row: ArticleRow): PublicArticle => ({
   seasonYear: row.season_year,
 });
 
-export const fetchPublishedArticles = async (): Promise<PublicArticle[]> => {
+export const fetchPublishedArticles = async (
+  options: FetchArticlesOptions = {}
+): Promise<PublicArticle[]> => {
   if (!isSupabaseConfigured) return [];
 
+  const { limit = 50, excludeSlug } = options;
+
   try {
-    const { data, error } = await supabase
+    let query = supabase
       .from('content_articles')
       .select('slug, title, excerpt, body, article_type, published_at, season_year')
       .eq('published', true)
       .order('published_at', { ascending: false })
-      .limit(50);
+      .limit(limit);
+
+    if (excludeSlug) {
+      query = query.neq('slug', excludeSlug);
+    }
+
+    const { data, error } = await query;
 
     if (error || !data) return [];
     return (data as ArticleRow[]).map(mapArticle);

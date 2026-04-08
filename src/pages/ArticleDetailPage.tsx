@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, CalendarDays, FileText } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CalendarDays, FileText } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchPublishedArticleBySlug, type PublicArticle } from '../lib/articles';
+import { fetchPublishedArticleBySlug, fetchPublishedArticles, type PublicArticle } from '../lib/articles';
+import { trackEvent } from '../lib/analytics';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const articleTypeLabel: Record<PublicArticle['articleType'], string> = {
@@ -23,6 +24,7 @@ export const ArticleDetailPage = () => {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   const [article, setArticle] = useState<PublicArticle | null>(null);
+  const [relatedArticles, setRelatedArticles] = useState<PublicArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -34,9 +36,13 @@ export const ArticleDetailPage = () => {
         return;
       }
       setIsLoading(true);
-      const data = await fetchPublishedArticleBySlug(slug);
+      const [data, related] = await Promise.all([
+        fetchPublishedArticleBySlug(slug),
+        fetchPublishedArticles({ limit: 3, excludeSlug: slug }),
+      ]);
       if (isMounted) {
         setArticle(data);
+        setRelatedArticles(related);
         setIsLoading(false);
       }
     };
@@ -129,6 +135,39 @@ export const ArticleDetailPage = () => {
         )}
         <div className="mt-8 whitespace-pre-wrap text-sm leading-8 text-slate-700">{article.body}</div>
       </article>
+
+      {relatedArticles.length > 0 && (
+        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+          <div className="text-xs font-black text-slate-400">次に読みたい記事</div>
+          <h2 className="mt-2 text-2xl font-black text-trust-navy">セッティングの見方を深める</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {relatedArticles.map((relatedArticle) => (
+              <button
+                key={relatedArticle.slug}
+                onClick={() => {
+                  trackEvent('select_article', {
+                    source_page: 'article_detail',
+                    article_slug: relatedArticle.slug,
+                    article_title: relatedArticle.title,
+                  });
+                  navigate(`/articles/${relatedArticle.slug}`);
+                }}
+                className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-left transition-all hover:-translate-y-0.5 hover:bg-white"
+              >
+                <div className="text-[11px] font-black tracking-[0.12em] text-slate-500">
+                  {articleTypeLabel[relatedArticle.articleType]}
+                </div>
+                <h3 className="mt-2 text-lg font-black text-trust-navy">{relatedArticle.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{relatedArticle.excerpt}</p>
+                <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                  続きを読む
+                  <ArrowRight size={14} />
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 };

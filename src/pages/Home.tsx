@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Brain, Eye, Plus, Search, ShoppingBag, Sparkles, Users } from 'lucide-react';
+import { ArrowRight, Brain, CalendarDays, Eye, Newspaper, Plus, Search, ShoppingBag, Sparkles, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { discoveryPaths } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
+import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
 
 const stepCards = [
@@ -29,15 +30,20 @@ export const Home = () => {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState<PublicSettingProfile[]>([]);
   const [isLoadingProfiles, setIsLoadingProfiles] = useState(true);
+  const [articles, setArticles] = useState<PublicArticle[]>([]);
 
   useEffect(() => {
     let isMounted = true;
 
     const loadProfiles = async () => {
       setIsLoadingProfiles(true);
-      const data = await fetchPublishedSettingProfiles();
+      const [profileData, articleData] = await Promise.all([
+        fetchPublishedSettingProfiles(),
+        fetchPublishedArticles({ limit: 3 }),
+      ]);
       if (isMounted) {
-        setProfiles(data);
+        setProfiles(profileData);
+        setArticles(articleData);
         setIsLoadingProfiles(false);
       }
     };
@@ -355,6 +361,52 @@ export const Home = () => {
               >
                 <ShoppingBag size={16} />
                 人気ドライバーを見る
+              </button>
+            </div>
+          </section>
+
+          <section className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-trust-navy">
+                <Newspaper size={20} />
+              </div>
+              <div>
+                <div className="text-xs font-black text-slate-400">読みもの</div>
+                <h2 className="mt-1 text-2xl font-black text-trust-navy">見方が分かる更新記事</h2>
+              </div>
+            </div>
+
+            <div className="mt-5 space-y-4">
+              {articles.map((article) => (
+                <button
+                  key={article.slug}
+                  onClick={() => {
+                    trackEvent('select_article', {
+                      source_page: 'home',
+                      article_slug: article.slug,
+                      article_title: article.title,
+                    });
+                    navigate(`/articles/${article.slug}`);
+                  }}
+                  className="w-full rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:-translate-y-0.5 hover:bg-white"
+                >
+                  <div className="inline-flex items-center gap-2 text-xs font-bold text-slate-500">
+                    <CalendarDays size={14} />
+                    {article.publishedAt
+                      ? new Intl.DateTimeFormat('ja-JP', { month: 'long', day: 'numeric' }).format(new Date(article.publishedAt))
+                      : '公開日未設定'}
+                  </div>
+                  <h3 className="mt-2 text-base font-black text-trust-navy">{article.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{article.excerpt}</p>
+                </button>
+              ))}
+
+              <button
+                onClick={() => navigate('/articles')}
+                className="inline-flex items-center gap-2 text-sm font-black text-golf-700"
+              >
+                記事一覧を見る
+                <ArrowRight size={16} />
               </button>
             </div>
           </section>
