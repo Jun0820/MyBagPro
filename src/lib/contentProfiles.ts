@@ -104,6 +104,16 @@ const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfi
 const formatHeadSpeed = (value: number | null) => (value ? `${value.toFixed(1)} m/s` : '未公開');
 const formatAverageScore = (value: number | null) => (value ? `${value}` : '未公開');
 const formatBestScore = (value: number | null) => (value ? `${value}` : undefined);
+const formatLoftLabel = (value: string | null) => {
+  if (!value) return undefined;
+
+  return value
+    .replace(/\s*degrees?\b/gi, '°')
+    .replace(/\s*degree\b/gi, '°')
+    .replace(/\s+plus\b/gi, '°+')
+    .replace(/°\s+\+/g, '°+')
+    .trim();
+};
 
 const inferTagline = (strengths: string[], type: PublicSettingProfile['type']) => {
   if (strengths.length > 0) {
@@ -128,7 +138,7 @@ const buildProfiles = (
         brand: item.brand || undefined,
         model: item.model_name,
         specLabel: item.spec_label || undefined,
-        loft: item.loft_label || undefined,
+        loft: formatLoftLabel(item.loft_label),
         shaftBrand: item.shaft_brand || undefined,
         shaftModel: item.shaft_model || undefined,
         shaftFlex: item.shaft_flex || undefined,
