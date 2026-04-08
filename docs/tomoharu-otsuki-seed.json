@@ -1,0 +1,175 @@
+{
+  "profile": {
+    "slug": "tomoharu-otsuki",
+    "display_name": "大槻 智春",
+    "nationality": "Japan",
+    "birthplace": "Ibaraki, Japan",
+    "birth_date": "1990-01-26",
+    "height_cm": 172,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2023,
+    "ball_name": "Titleist Pro V1",
+    "feature_1": "2023シーズン基準",
+    "feature_2": "PING中心",
+    "feature_3": "14本確認済み",
+    "summary": "2023年パナソニックオープン時点で確認できた大槻智春の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "latest_source_policy": "2023_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-08T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G400 MAX Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD DI",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Callaway",
+      "model_name": "Paradym Triple Diamond Tour Fairway Wood",
+      "spec_label": "3W HL",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "SIM UDI",
+      "spec_label": "3I",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "PING",
+      "model_name": "i210 Iron",
+      "spec_label": "4I",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "PING",
+      "model_name": "Blueprint Iron",
+      "spec_label": "5I",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "PING",
+      "model_name": "Blueprint Iron",
+      "spec_label": "6I",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "PING",
+      "model_name": "Blueprint Iron",
+      "spec_label": "7I",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "PING",
+      "model_name": "Blueprint Iron",
+      "spec_label": "8I",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "PING",
+      "model_name": "Blueprint Iron",
+      "spec_label": "9I",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "PW",
+      "loft_label": "46°",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "GW",
+      "loft_label": "50°",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey Prototype Wedge",
+      "spec_label": "SW",
+      "loft_label": "54°",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "AXIS GOLF",
+      "model_name": "Z1 Wedge Tour Spec",
+      "spec_label": "LW",
+      "loft_label": "60°",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "GSS Putter",
+      "source_note": "Confirmed from GDO 2023 Panasonic Open setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6680/",
+      "source_title": "GDO 大槻智春 クラブセッティング 2023年 パナソニックオープン",
+      "checked_at": "2026-04-08T00:00:00.000Z",
+      "notes": "Used for bio fields, 2023 full bag, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "tomoharu-otsuki-2023-setting-update",
+    "title": "大槻智春の2023年クラブセッティングを掲載しました",
+    "excerpt": "2023シーズン基準で、大槻智春の14本のクラブセッティングと使用ボールを掲載しました。",
+    "body": "大槻智春のセッティングについて、2023年パナソニックオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2023,
+    "published": true,
+    "published_at": "2026-04-08T00:00:00.000Z"
+  }
+}
