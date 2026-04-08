@@ -1,0 +1,203 @@
+{
+  "profile": {
+    "slug": "riki-kawamoto",
+    "display_name": "河本 力",
+    "nationality": "Japan",
+    "birthplace": "Ehime, Japan",
+    "birth_date": "2000-03-03",
+    "height_cm": 183,
+    "profile_type": "tour_pro",
+    "segment": "launch10",
+    "season_year": 2025,
+    "ball_name": "Callaway Chrome Tour 360 Triple Track",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "キャロウェイ中心",
+    "feature_3": "パワー型セット",
+    "summary": "2025年東建ホームメイトカップ時点で確認できた河本力の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-08T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "ELYTE Triple Diamond Driver",
+      "loft_label": "9 degrees",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "VENTUS BLACK",
+      "shaft_flex": "TX",
+      "shaft_weight": "70g class",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Callaway",
+      "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
+      "spec_label": "3HL",
+      "loft_label": "16 degrees",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "VENTUS BLACK",
+      "shaft_flex": "TX",
+      "shaft_weight": "80g class",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Callaway",
+      "model_name": "X FORGED Utility",
+      "loft_label": "18 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 6.5",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Callaway",
+      "model_name": "X Prototype Iron",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Callaway",
+      "model_name": "APEX MB Iron 2023",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Callaway",
+      "model_name": "APEX MB Iron 2023",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Callaway",
+      "model_name": "APEX MB Iron 2023",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Callaway",
+      "model_name": "APEX MB Iron 2023",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Callaway",
+      "model_name": "APEX MB Iron 2023",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Callaway",
+      "model_name": "JAWS RAW Wedge",
+      "spec_label": "PW",
+      "loft_label": "46 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Callaway",
+      "model_name": "JAWS RAW Wedge",
+      "spec_label": "GW",
+      "loft_label": "50 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Callaway",
+      "model_name": "JAWS RAW Wedge",
+      "spec_label": "SW",
+      "loft_label": "54 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Callaway",
+      "model_name": "OPUS PLATINUM Wedge",
+      "spec_label": "LW",
+      "loft_label": "60 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 7.0",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "Ai-ONE Square 2 Square Jailbird Nano Putter",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/18052/2025/1/",
+      "source_title": "GDO 河本力 クラブセッティング 2025年 東建ホームメイトカップ",
+      "checked_at": "2026-04-08T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "riki-kawamoto-2025-setting-update",
+    "title": "河本力の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、河本力の14本のクラブセッティングと使用ボールを掲載しました。",
+    "body": "河本力のセッティングについて、東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。キャロウェイ中心のパワー型実戦セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-08T00:00:00.000Z"
+  }
+}

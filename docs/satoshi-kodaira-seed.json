@@ -1,0 +1,199 @@
+{
+  "profile": {
+    "slug": "satoshi-kodaira",
+    "display_name": "小平 智",
+    "nationality": "Japan",
+    "birthplace": "Tokyo, Japan",
+    "birth_date": "1989-09-11",
+    "height_cm": 172,
+    "profile_type": "tour_pro",
+    "segment": "launch10",
+    "season_year": 2025,
+    "ball_name": "Titleist Pro V1x",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "繊細な組み合わせ",
+    "feature_3": "三浦技研中心",
+    "summary": "2025年ISPS HANDA 夏の決戦・誰が一番強いんだトーナメント時点で確認できた小平智の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-08T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "Paradym Triple Diamond Driver",
+      "loft_label": "10.5 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD Quattro Tech",
+      "shaft_flex": "X",
+      "shaft_weight": "70g class",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "Qi10 Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD CQ",
+      "shaft_flex": "X",
+      "shaft_weight": "70g class",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "Yonex",
+      "model_name": "iD nabla black Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "18 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD Prototype",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Yonex",
+      "model_name": "EZONE CB702 Forged Iron",
+      "spec_label": "4I",
+      "shaft_brand": "Yonex",
+      "shaft_model": "REXIS Steel Core Type-H",
+      "shaft_flex": "X",
+      "shaft_weight": "120g class",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Miura",
+      "model_name": "TC-102 Iron",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Miura",
+      "model_name": "TC-102 Iron",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Miura",
+      "model_name": "TC-102 Iron",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Miura",
+      "model_name": "TC-102 Iron",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Miura",
+      "model_name": "TC-102 Iron",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Miura",
+      "model_name": "TC-102 Iron",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "GW",
+      "loft_label": "52 degrees",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "SW",
+      "loft_label": "56 degrees",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey SM9 Wedge",
+      "spec_label": "LW",
+      "loft_label": "60 degrees",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "Prototype Putter",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA final battle setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6594/2025/1/",
+      "source_title": "GDO 小平智 クラブセッティング 2025年 ISPS HANDA 夏の決戦・誰が一番強いんだトーナメント",
+      "checked_at": "2026-04-08T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "satoshi-kodaira-2025-setting-update",
+    "title": "小平智の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、小平智の14本のクラブセッティングと使用ボールを掲載しました。",
+    "body": "小平智のセッティングについて、ISPS HANDA 夏の決戦・誰が一番強いんだトーナメント時点で確認できた14本のクラブ構成と使用ボールを反映しました。繊細な組み合わせの実戦セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-08T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "profile": {
+    "slug": "kazuki-higa",
+    "display_name": "比嘉 一貴",
+    "nationality": "Japan",
+    "birthplace": "Okinawa, Japan",
+    "birth_date": "1995-04-23",
+    "height_cm": 158,
+    "profile_type": "tour_pro",
+    "segment": "launch10",
+    "season_year": 2025,
+    "ball_name": "Bridgestone Tour B X",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "PING中心",
+    "feature_3": "操作性重視",
+    "summary": "2025年ISPS HANDA 夏に爆発どれだけバーディ取れるんだトーナメント時点で確認できた比嘉一貴の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-08T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G440 MAX Driver",
+      "loft_label": "9 degrees",
+      "shaft_brand": "Mitsubishi Chemical",
+      "shaft_model": "Diamana BB",
+      "shaft_flex": "X",
+      "shaft_weight": "60g class",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "Qi35 Fairway Wood",
+      "spec_label": "3HL",
+      "loft_label": "16.5 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD F",
+      "shaft_flex": "X",
+      "shaft_weight": "70g class",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "Qi35 Fairway Wood",
+      "spec_label": "7W",
+      "loft_label": "21 degrees",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD F",
+      "shaft_flex": "X",
+      "shaft_weight": "80g class",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Titleist",
+      "model_name": "U505 Utility Iron 2023",
+      "spec_label": "4U",
+      "shaft_brand": "Mitsubishi Chemical",
+      "shaft_model": "TENSEI Pro 1K HY",
+      "shaft_flex": "TX",
+      "shaft_weight": "90g class",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Srixon",
+      "model_name": "ZX5 Mk II Iron",
+      "spec_label": "5I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "Modus3 System3 Tour125",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3 Iron",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 6.0",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3 Iron",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 6.0",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3 Iron",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 6.0",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3 Iron",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 6.0",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Bridgestone",
+      "model_name": "221CB Iron",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 6.0",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Bridgestone",
+      "model_name": "BRM2 Wedge",
+      "spec_label": "GW",
+      "loft_label": "51 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Project X 6.0",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Bridgestone",
+      "model_name": "Prototype Wedge",
+      "spec_label": "SW",
+      "loft_label": "55 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Bridgestone",
+      "model_name": "Prototype Wedge",
+      "spec_label": "LW",
+      "loft_label": "59 degrees",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "T-9",
+      "source_note": "Confirmed from GDO 2025 ISPS HANDA setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/10780/2025/2/",
+      "source_title": "GDO 比嘉一貴 クラブセッティング 2025年 ISPS HANDA 夏に爆発どれだけバーディ取れるんだトーナメント",
+      "checked_at": "2026-04-08T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "kazuki-higa-2025-setting-update",
+    "title": "比嘉一貴の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、比嘉一貴の14本のクラブセッティングと使用ボールを掲載しました。",
+    "body": "比嘉一貴のセッティングについて、ISPS HANDA 夏に爆発どれだけバーディ取れるんだトーナメント時点で確認できた14本のクラブ構成と使用ボールを反映しました。操作性重視の実戦セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-08T00:00:00.000Z"
+  }
+}
