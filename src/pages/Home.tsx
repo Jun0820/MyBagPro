@@ -3,6 +3,8 @@ import {
   BarChart3,
   BrainCircuit,
   ClipboardCheck,
+  Club,
+  Goal,
   Search,
   ShoppingCart,
   Star,
@@ -13,15 +15,16 @@ import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 
 const heroImage =
-  'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?auto=format&fit=crop&w=1920&q=80';
+  'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1920&q=80';
 
 const popularPros = [
   {
     slug: 'ryo-ishikawa',
     name: '石川 遼',
     tag: '操作性重視',
-    trait: '鋭い操作性と完成度を両立したセッティング',
-    image: 'https://i.pravatar.cc/160?img=11',
+    trait: '狙った高さと球筋を細かく作りやすい、競技志向のセット。',
+    image:
+      'https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=900&q=80',
     clubs: [
       { label: '1W', model: 'ステルス プラス' },
       { label: '3W / 5W', model: 'SIM / ステルス プラス' },
@@ -33,8 +36,9 @@ const popularPros = [
     slug: 'keita-nakajima',
     name: '中島 啓太',
     tag: '飛距離重視',
-    trait: '高さと飛距離を活かした現代型セット',
-    image: 'https://i.pravatar.cc/160?img=5',
+    trait: '高さと飛距離を両立させる、現代的な強弾道セッティング。',
+    image:
+      'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=80',
     clubs: [
       { label: '1W', model: 'Qi35 LS' },
       { label: '3W', model: 'Qi10 Tour' },
@@ -46,14 +50,33 @@ const popularPros = [
     slug: 'takumi-kanaya',
     name: '金谷 拓実',
     tag: '精密志向',
-    trait: '競技ゴルファー向けの精密なPING中心構成',
-    image: 'https://i.pravatar.cc/160?img=33',
+    trait: 'ミスを減らしながら再現性を高める、精密なPING中心構成。',
+    image:
+      'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=80',
     clubs: [
       { label: '1W', model: 'G440 LST' },
       { label: '3W', model: 'G410 FW' },
       { label: 'アイアン', model: 'G710 / i230' },
       { label: 'パター', model: 'Sigma 2 Anser' },
     ],
+  },
+];
+
+const golfHighlights = [
+  {
+    title: 'プロの14本を参考にする',
+    copy: '1Wからウェッジ、パターまで、セット全体の流れを一気に把握できます。',
+    icon: Club,
+  },
+  {
+    title: '自分に合う方向性を知る',
+    copy: 'ヘッドスピードや悩みから、いま選ぶべきクラブ像を整理します。',
+    icon: Goal,
+  },
+  {
+    title: '比較してそのまま検討する',
+    copy: '人気モデルとプロ使用例を見比べながら、購入候補まで絞れます。',
+    icon: ShoppingCart,
   },
 ];
 
@@ -98,17 +121,17 @@ export const Home = () => {
       <section className="relative isolate overflow-hidden rounded-[2.25rem] shadow-[0_24px_80px_rgba(15,23,42,0.18)]">
         <img
           src={heroImage}
-          alt="ゴルフ場でスイングするゴルファー"
+          alt="ゴルフバッグとクラブセッティングのイメージ"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.25),transparent_28%)]" />
+        <div className="absolute inset-0 bg-slate-950/55" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-14 md:min-h-[680px] md:px-10">
+        <div className="relative mx-auto grid min-h-[620px] max-w-7xl items-center gap-8 px-6 py-14 md:min-h-[680px] md:grid-cols-[minmax(0,1.2fr)_420px] md:px-10">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-white/90 backdrop-blur">
               <Star size={14} className="text-emerald-300" />
-              GOLF SETTING PLATFORM
+              GOLF CLUB SETTING PLATFORM
             </div>
 
             <h1 className="mt-6 text-4xl font-black leading-[1.16] tracking-tight text-white md:text-6xl">
@@ -118,7 +141,7 @@ export const Home = () => {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90 md:text-xl">
-              スコアアップを目指すゴルファーのための、クラブ診断・比較プラットフォーム。
+              1Wからパターまでの14本を見比べながら、自分に合うクラブの診断・比較・購入までつなげられるサイトです。
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -150,6 +173,58 @@ export const Home = () => {
                 プロのセッティングを見る
               </button>
             </div>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {golfHighlights.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-[1.5rem] border border-white/15 bg-white/10 p-5 backdrop-blur"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-emerald-300">
+                      <Icon size={20} />
+                    </div>
+                    <h2 className="mt-4 text-sm font-black text-white md:text-base">{item.title}</h2>
+                    <p className="mt-2 text-sm leading-6 text-white/75">{item.copy}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="grid gap-4">
+            {popularPros.map((pro) => (
+              <button
+                key={`hero-${pro.slug}`}
+                onClick={() => navigate(`/settings/pros/${pro.slug}`)}
+                className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 text-left shadow-lg backdrop-blur transition hover:-translate-y-1 hover:border-white/20"
+              >
+                <div className="grid grid-cols-[112px_minmax(0,1fr)] gap-0">
+                  <img src={pro.image} alt="" className="h-full min-h-[144px] w-full object-cover" />
+                  <div className="p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black tracking-[0.12em] text-white/80">
+                        {pro.tag}
+                      </span>
+                      <span className="text-[11px] font-bold text-white/45">参考にする</span>
+                    </div>
+                    <h2 className="mt-3 text-2xl font-black text-white">{pro.name}</h2>
+                    <p className="mt-2 text-sm leading-6 text-white/75">{pro.trait}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {pro.clubs.slice(0, 3).map((club) => (
+                        <span
+                          key={`hero-club-${pro.slug}-${club.label}`}
+                          className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold text-cyan-100"
+                        >
+                          {club.label} {club.model}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -169,22 +244,19 @@ export const Home = () => {
                 key={pro.slug}
                 className="overflow-hidden rounded-[1.75rem] bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
               >
+                <img
+                  src={pro.image}
+                  alt={`${pro.name}のセッティングをイメージしたゴルフ写真`}
+                  className="h-52 w-full object-cover"
+                />
                 <div className="p-6">
-                  <div className="flex items-center gap-4 border-b border-gray-100 pb-6">
-                    <img
-                      src={pro.image}
-                      alt={`${pro.name}のプレースホルダー画像`}
-                      className="h-16 w-16 rounded-full object-cover"
-                    />
-                    <div>
-                      <h3 className="text-xl font-black text-gray-900">{pro.name}</h3>
-                      <span className="mt-2 inline-block rounded bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
-                        {pro.tag}
-                      </span>
+                  <div className="border-b border-gray-100 pb-6">
+                    <div className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+                      {pro.tag}
                     </div>
+                    <h3 className="mt-3 text-xl font-black text-gray-900">{pro.name}</h3>
+                    <p className="mt-2 text-sm leading-7 text-gray-600">{pro.trait}</p>
                   </div>
-
-                  <p className="mt-4 text-sm leading-7 text-gray-600">{pro.trait}</p>
 
                   <ul className="mt-5 space-y-3 text-sm text-gray-600">
                     {pro.clubs.map((club) => (
