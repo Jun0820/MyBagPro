@@ -1,5 +1,17 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Gauge, Image as ImageIcon, Newspaper, PlayCircle, ShoppingBag, Sparkles } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Gauge,
+  Globe,
+  Image as ImageIcon,
+  Instagram,
+  Newspaper,
+  PlayCircle,
+  ShoppingBag,
+  Sparkles,
+  Twitter,
+} from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
@@ -65,6 +77,26 @@ const sourceActionLabel: Record<string, string> = {
   article: '記事を開く',
   tour_photo: '写真を見る',
   manual: '確認内容を見る',
+};
+
+const formatCheckedAt = (checkedAt?: string | null) => {
+  if (!checkedAt) return '確認日未設定';
+  return new Intl.DateTimeFormat('ja-JP', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date(checkedAt));
+};
+
+const toChannelUrl = (value: string, platform: 'youtube' | 'instagram' | 'x') => {
+  if (/^https?:\/\//.test(value)) return value;
+
+  const normalized = value.replace(/^@/, '').trim();
+  if (!normalized) return undefined;
+
+  if (platform === 'youtube') return `https://www.youtube.com/${normalized}`;
+  if (platform === 'instagram') return `https://www.instagram.com/${normalized}/`;
+  return `https://x.com/${normalized}`;
 };
 
 const evergreenPrioritySlugs = [
@@ -256,6 +288,40 @@ export const ProSettingDetailPage = () => {
     .filter((source): source is PublicProfileSource => Boolean(source))
     .filter((source, index, self) => self.findIndex((item) => item.url === source.url) === index)
     .slice(0, 4);
+  const channelLinks: Array<{ label: string; url: string; icon: typeof Globe }> = [];
+  if (setting.websiteUrl) {
+    channelLinks.push({ label: '公式サイト', url: setting.websiteUrl, icon: Globe });
+  }
+  const youtubeChannelUrl = setting.youtubeChannel ? toChannelUrl(setting.youtubeChannel, 'youtube') : undefined;
+  if (youtubeChannelUrl) {
+    channelLinks.push({ label: 'YouTube', url: youtubeChannelUrl, icon: PlayCircle });
+  }
+  const instagramChannelUrl = setting.instagramHandle ? toChannelUrl(setting.instagramHandle, 'instagram') : undefined;
+  if (instagramChannelUrl) {
+    channelLinks.push({ label: 'Instagram', url: instagramChannelUrl, icon: Instagram });
+  }
+  const xChannelUrl = setting.xHandle ? toChannelUrl(setting.xHandle, 'x') : undefined;
+  if (xChannelUrl) {
+    channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
+  }
+
+  const mediaStatusCards = [
+    {
+      label: 'スイング動画',
+      value: youtubeSource ? '確認済み' : '順次追加',
+      tone: youtubeSource ? 'text-golf-700 bg-golf-50 border-golf-200' : 'text-slate-500 bg-slate-50 border-slate-200',
+    },
+    {
+      label: '画像・実戦素材',
+      value: instagramSource ? '確認済み' : '順次追加',
+      tone: instagramSource ? 'text-golf-700 bg-golf-50 border-golf-200' : 'text-slate-500 bg-slate-50 border-slate-200',
+    },
+    {
+      label: '掲載根拠',
+      value: leadSources.length > 0 ? `${leadSources.length}件` : '確認中',
+      tone: leadSources.length > 0 ? 'text-golf-700 bg-golf-50 border-golf-200' : 'text-slate-500 bg-slate-50 border-slate-200',
+    },
+  ];
 
   return (
     <div className="min-h-screen pb-20">
@@ -275,6 +341,34 @@ export const ProSettingDetailPage = () => {
           <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">{setting.name}</h1>
           <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
+
+          {channelLinks.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-3">
+              {channelLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() =>
+                      trackEvent('open_profile_channel', {
+                        source_page: 'pro_setting_detail',
+                        profile_slug: setting.slug,
+                        profile_name: setting.name,
+                        channel_label: link.label,
+                      })
+                    }
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-black text-white/90 transition-colors hover:bg-white/10"
+                  >
+                    <Icon size={15} />
+                    {link.label}
+                  </a>
+                );
+              })}
+            </div>
+          )}
 
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
@@ -345,6 +439,15 @@ export const ProSettingDetailPage = () => {
           </div>
           <h2 className="mt-3 text-2xl font-black text-trust-navy">この選手ページに載せるべきものだけを並べる</h2>
 
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {mediaStatusCards.map((card) => (
+              <div key={card.label} className={`rounded-[1.25rem] border px-4 py-4 ${card.tone}`}>
+                <div className="text-[11px] font-black tracking-[0.16em]">{card.label}</div>
+                <div className="mt-2 text-sm font-black">{card.value}</div>
+              </div>
+            ))}
+          </div>
+
           <div className="mt-5 space-y-3">
             {leadSources.map((source) => (
               <a
@@ -367,6 +470,7 @@ export const ProSettingDetailPage = () => {
                   {sourceTypeLabel[source.type] || '確認ソース'}
                 </div>
                 <h3 className="mt-2 text-base font-black text-trust-navy">{source.title}</h3>
+                <div className="mt-2 text-xs font-bold text-slate-400">確認日: {formatCheckedAt(source.checkedAt)}</div>
                 {source.notes && <p className="mt-2 text-sm leading-7 text-slate-600">{source.notes}</p>}
                 <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
                   {sourceActionLabel[source.type] || '開く'}
@@ -502,6 +606,24 @@ export const ProSettingDetailPage = () => {
               </div>
               <p className="rounded-[1.25rem] bg-slate-50 px-4 py-4 text-sm">
                 同じクラブを真似するよりも、番手の流れ方、ウェッジの構成、ボールとの組み合わせを見て、自分のバッグにどう落とし込むかを考えるのがコツです。
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-6">
+            <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">掲載基準</div>
+            <h2 className="mt-3 text-xl font-black text-trust-navy">このページは何を根拠に公開しているか</h2>
+            <div className="mt-5 grid gap-4 text-sm leading-7 text-slate-600">
+              <div className="rounded-[1.25rem] bg-slate-50 px-4 py-4">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">シーズン基準</div>
+                <div className="mt-1 font-bold text-trust-navy">{setting.seasonYear ? `${setting.seasonYear}年` : '未設定'}</div>
+              </div>
+              <div className="rounded-[1.25rem] bg-slate-50 px-4 py-4">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">確認ポリシー</div>
+                <div className="mt-1 font-bold text-trust-navy">{setting.latestSourcePolicy || '確認済みソース優先'}</div>
+              </div>
+              <p className="rounded-[1.25rem] bg-slate-50 px-4 py-4">
+                推定値や未確認情報は掲載しません。動画・記事・公式情報のいずれかで確認できた内容だけを、このページの素材として使います。
               </p>
             </div>
           </div>
