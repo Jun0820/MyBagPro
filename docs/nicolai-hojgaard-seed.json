@@ -1,0 +1,197 @@
+{
+  "profile": {
+    "slug": "nicolai-hojgaard",
+    "display_name": "ニコライ・ホイゴー",
+    "nationality": "Denmark",
+    "birthplace": "",
+    "birth_date": "2001-03-12",
+    "profile_type": "tour_pro",
+    "segment": "launch10",
+    "season_year": 2025,
+    "ball_name": "Callaway Chrome Tour X 2024",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "Callaway中心",
+    "feature_3": "要追加確認",
+    "summary": "2025年チューリッヒクラシック時点の確認メモをもとに、ニコライ・ホイゴーのクラブセッティングを公開前に整理するための下書きプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": false,
+    "is_published": false,
+    "verified_at": "2026-04-08T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "Paradym Ai Smoke Triple Diamond Driver",
+      "loft_label": "10.5 degrees",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus TR Black",
+      "shaft_flex": "7X",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Callaway",
+      "model_name": "ELYTE 3HL Fairway Wood",
+      "spec_label": "3HL",
+      "loft_label": "16.5 degrees",
+      "shaft_brand": "Mitsubishi Chemical",
+      "shaft_model": "TENSEI Pro White 1K",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "Stealth 2 Fairway Wood",
+      "spec_label": "7W",
+      "loft_label": "21 degrees",
+      "shaft_brand": "Mitsubishi Chemical",
+      "shaft_model": "TENSEI Pro 1K",
+      "shaft_flex": "80TX",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Callaway",
+      "model_name": "X Forged Iron 2024",
+      "spec_label": "4I",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Callaway",
+      "model_name": "X Forged Iron 2024",
+      "spec_label": "5I",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Callaway",
+      "model_name": "X Forged Iron 2024",
+      "spec_label": "6I",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Callaway",
+      "model_name": "X Forged Iron 2024",
+      "spec_label": "7I",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Callaway",
+      "model_name": "X Forged Iron 2024",
+      "spec_label": "8I",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Callaway",
+      "model_name": "X Forged Iron 2024",
+      "spec_label": "9I",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Callaway",
+      "model_name": "OPUS Wedge",
+      "spec_label": "PW",
+      "loft_label": "50 degrees",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Callaway",
+      "model_name": "OPUS Wedge",
+      "spec_label": "SW",
+      "loft_label": "56 degrees",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Callaway",
+      "model_name": "OPUS Wedge",
+      "spec_label": "LW",
+      "loft_label": "60 degrees",
+      "shaft_brand": "Project X",
+      "shaft_model": "LZ 6.5",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 13,
+      "brand": "Odyssey",
+      "model_name": "Ai-ONE Jailbird Mini",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Ball",
+      "slot_order": 14,
+      "brand": "Callaway",
+      "model_name": "Chrome Tour X Ball 2024",
+      "source_note": "Confirmed from GDO 2025 Zurich Classic setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/18160/",
+      "source_title": "GDO ニコライ・ホイゴー クラブセッティング 2025年 チューリッヒクラシック",
+      "checked_at": "2026-04-08T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "nicolai-hojgaard-2025-setting-update",
+    "title": "ニコライ・ホイゴーの2025年クラブセッティングを掲載しました",
+    "excerpt": "公開前の確認用に、ニコライ・ホイゴーの2025年セッティング下書きを保存しました。",
+    "body": "ニコライ・ホイゴーのセッティングについて、チューリッヒクラシック時点の確認メモを下書きとして保存しました。クラブ本数とクラブ種別の最終確認後に公開へ切り替えます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": false,
+    "published_at": null
+  }
+}
