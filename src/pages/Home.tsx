@@ -11,8 +11,10 @@ import {
   Users,
   WandSparkles,
 } from 'lucide-react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
+import { getProfileVisuals } from '../lib/profileVisuals';
 
 const heroImage =
   'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1920&q=80';
@@ -23,8 +25,6 @@ const popularPros = [
     name: '石川 遼',
     tag: '操作性重視',
     trait: '狙った高さと球筋を細かく作りやすい、競技志向のセット。',
-    image:
-      'https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=900&q=80',
     clubs: [
       { label: '1W', model: 'ステルス プラス' },
       { label: '3W / 5W', model: 'SIM / ステルス プラス' },
@@ -37,8 +37,6 @@ const popularPros = [
     name: '中島 啓太',
     tag: '飛距離重視',
     trait: '高さと飛距離を両立させる、現代的な強弾道セッティング。',
-    image:
-      'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=80',
     clubs: [
       { label: '1W', model: 'Qi35 LS' },
       { label: '3W', model: 'Qi10 Tour' },
@@ -51,8 +49,6 @@ const popularPros = [
     name: '金谷 拓実',
     tag: '精密志向',
     trait: 'ミスを減らしながら再現性を高める、精密なPING中心構成。',
-    image:
-      'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=80',
     clubs: [
       { label: '1W', model: 'G440 LST' },
       { label: '3W', model: 'G410 FW' },
@@ -64,18 +60,18 @@ const popularPros = [
 
 const golfHighlights = [
   {
-    title: 'プロの14本を参考にする',
-    copy: '1Wからウェッジ、パターまで、セット全体の流れを一気に把握できます。',
+    title: 'まず有名プロの14本を知る',
+    copy: '誰がどのドライバー、アイアン、パターを使っているかを最初に把握できます。',
     icon: Club,
   },
   {
-    title: '自分に合う方向性を知る',
-    copy: 'ヘッドスピードや悩みから、いま選ぶべきクラブ像を整理します。',
+    title: '選手名で検索してすぐ見る',
+    copy: '石川遼や中島啓太のように、気になる選手名から直接詳細へ入れます。',
     icon: Goal,
   },
   {
-    title: '比較してそのまま検討する',
-    copy: '人気モデルとプロ使用例を見比べながら、購入候補まで絞れます。',
+    title: 'そのあと診断と比較へ進む',
+    copy: '見つけたセッティングを参考にしながら、自分の登録や比較に進めます。',
     icon: ShoppingCart,
   },
 ];
@@ -115,6 +111,16 @@ const features = [
 
 export const Home = () => {
   const navigate = useNavigate();
+  const [searchName, setSearchName] = useState('');
+
+  const handleSearch = () => {
+    const query = searchName.trim();
+    trackEvent('search_setting_profile', {
+      source_page: 'home_hero',
+      search_term: query || 'all',
+    });
+    navigate(query ? `/settings/pros?search=${encodeURIComponent(query)}` : '/settings/pros');
+  };
 
   return (
     <div className="min-h-screen space-y-10 pb-20 md:space-y-14">
@@ -135,14 +141,51 @@ export const Home = () => {
             </div>
 
             <h1 className="mt-6 text-4xl font-black leading-[1.16] tracking-tight text-white md:text-6xl">
-              プロのセッティングを参考に、
+              有名プロの現在の
               <br className="hidden md:block" />
-              あなただけのベストセットを見つけよう
+              クラブセッティングを、
+              <br className="hidden md:block" />
+              すぐ探して知る。
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90 md:text-xl">
-              1Wからパターまでの14本を見比べながら、自分に合うクラブの診断・比較・購入までつなげられるサイトです。
+              石川遼や中島啓太のような有名プロの14本をまとめて検索し、クラブ選びの参考にできるサイトです。
+              そのあとに自分のセッティング登録や診断へ進めます。
             </p>
+
+            <div className="mt-8 max-w-2xl rounded-[1.75rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center">
+                <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1rem] bg-white px-4 py-3 shadow-lg shadow-slate-950/15">
+                  <Search className="shrink-0 text-slate-400" size={20} />
+                  <input
+                    value={searchName}
+                    onChange={(event) => setSearchName(event.target.value)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') handleSearch();
+                    }}
+                    placeholder="選手名で検索 例: 石川遼 クラブセッティング"
+                    className="min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400 md:text-base"
+                  />
+                </div>
+                <button
+                  onClick={handleSearch}
+                  className="inline-flex items-center justify-center rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800 md:text-base"
+                >
+                  検索する
+                </button>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {['石川遼', '中島啓太', '金谷拓実', '時松隆光'].map((name) => (
+                  <button
+                    key={name}
+                    onClick={() => navigate(`/settings/pros?search=${encodeURIComponent(name)}`)}
+                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-bold text-white/80 transition hover:bg-white/20"
+                  >
+                    {name}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <button
@@ -201,7 +244,11 @@ export const Home = () => {
                 className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 text-left shadow-lg backdrop-blur transition hover:-translate-y-1 hover:border-white/20"
               >
                 <div className="grid grid-cols-[112px_minmax(0,1fr)] gap-0">
-                  <img src={pro.image} alt="" className="h-full min-h-[144px] w-full object-cover" />
+                  <img
+                    src={getProfileVisuals(pro.slug).portrait}
+                    alt={`${pro.name}のプレースホルダー画像`}
+                    className="h-full min-h-[144px] w-full bg-white object-cover p-3"
+                  />
                   <div className="p-5">
                     <div className="flex items-center justify-between gap-3">
                       <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black tracking-[0.12em] text-white/80">
@@ -232,9 +279,9 @@ export const Home = () => {
       <section id="pro-settings" className="rounded-[2.25rem] bg-gray-100 px-6 py-12 md:px-10 md:py-16">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h2 className="text-3xl font-black text-gray-900 md:text-4xl">人気プロのセッティング</h2>
+            <h2 className="text-3xl font-black text-gray-900 md:text-4xl">有名プロのクラブセッティングをすぐ探す</h2>
             <p className="mt-4 text-base text-gray-600">
-              トッププロ達が選んだこだわりのギアを、カードで直感的に見比べられます。
+              Google で探されやすい有名プロから、現在の14本を分かりやすく確認できます。
             </p>
           </div>
 
@@ -244,21 +291,22 @@ export const Home = () => {
                 key={pro.slug}
                 className="overflow-hidden rounded-[1.75rem] bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <img
-                  src={pro.image}
-                  alt={`${pro.name}のセッティングをイメージしたゴルフ写真`}
-                  className="h-52 w-full object-cover"
-                />
-                <div className="p-6">
-                  <div className="border-b border-gray-100 pb-6">
+                <div className="flex items-center gap-4 border-b border-gray-100 bg-white p-6">
+                  <img
+                    src={getProfileVisuals(pro.slug).portrait}
+                    alt={`${pro.name}のプレースホルダー画像`}
+                    className="h-16 w-16 rounded-full border border-slate-200 bg-white object-cover p-2"
+                  />
+                  <div>
                     <div className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
                       {pro.tag}
                     </div>
                     <h3 className="mt-3 text-xl font-black text-gray-900">{pro.name}</h3>
                     <p className="mt-2 text-sm leading-7 text-gray-600">{pro.trait}</p>
                   </div>
-
-                  <ul className="mt-5 space-y-3 text-sm text-gray-600">
+                </div>
+                <div className="p-6">
+                  <ul className="space-y-3 text-sm text-gray-600">
                     {pro.clubs.map((club) => (
                       <li key={`${pro.slug}-${club.label}`} className="flex items-start justify-between gap-4">
                         <span className="shrink-0 font-bold text-gray-900">{club.label}</span>

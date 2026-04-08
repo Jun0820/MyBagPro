@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, BadgeCheck, Camera, PlayCircle } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ArrowRight, BadgeCheck, Camera, PlayCircle, Search } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
 import { getProfileVisuals } from '../lib/profileVisuals';
 
 export const ProsSettingsPage = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [profiles, setProfiles] = useState<PublicSettingProfile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchText, setSearchText] = useState(searchParams.get('search') || '');
 
   useEffect(() => {
     let isMounted = true;
@@ -29,12 +31,36 @@ export const ProsSettingsPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setSearchText(searchParams.get('search') || '');
+  }, [searchParams]);
+
+  const filteredProfiles = useMemo(() => {
+    const query = searchText.trim().toLowerCase();
+    if (!query) return profiles;
+
+    return profiles.filter((profile) => {
+      const haystack = [
+        profile.name,
+        profile.tagline,
+        profile.summary,
+        profile.ball,
+        ...profile.strengths,
+        ...profile.clubs.map((club) => `${club.category} ${club.model}`),
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      return haystack.includes(query);
+    });
+  }, [profiles, searchText]);
+
   const summary = useMemo(
     () => ({
-      profileCount: profiles.length,
+      profileCount: filteredProfiles.length,
       ballCount: new Set(profiles.map((profile) => profile.ball).filter(Boolean)).size,
     }),
-    [profiles]
+    [filteredProfiles, profiles]
   );
 
   return (
@@ -47,25 +73,60 @@ export const ProsSettingsPage = () => {
           </div>
 
           <h1 className="mt-6 text-4xl font-black tracking-tight text-trust-navy md:text-6xl">
-            見るべき14本を、
+            有名プロの現在の
             <br />
-            静かに選ぶ。
+            クラブセッティングを探す。
           </h1>
 
           <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
-            確認できたプロフィールだけを並べています。
-            まずは気になる1人を選んで、セッティング全体の流れを見てください。
+            確認できた14本だけを公開しています。選手名やクラブ名で検索して、気になる1人の詳細へすぐ入れます。
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy">
-              公開プロフィール {summary.profileCount}
+              該当プロフィール {summary.profileCount}
             </div>
             <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy">
               使用ボール {summary.ballCount}
             </div>
             <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy">
               推定値は非表示
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center">
+              <div className="flex items-center gap-3 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 md:flex-1">
+                <Search size={18} className="text-slate-400" />
+                <input
+                  value={searchText}
+                  onChange={(event) => setSearchText(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      setSearchParams(searchText.trim() ? { search: searchText.trim() } : {});
+                    }
+                  }}
+                  placeholder="選手名・クラブ名で検索 例: 石川遼 / Qi35 LS"
+                  className="w-full bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400"
+                />
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setSearchParams(searchText.trim() ? { search: searchText.trim() } : {})}
+                  className="rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
+                >
+                  検索する
+                </button>
+                <button
+                  onClick={() => {
+                    setSearchText('');
+                    setSearchParams({});
+                  }}
+                  className="rounded-full border border-slate-200 px-5 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                >
+                  クリア
+                </button>
+              </div>
             </div>
           </div>
 
@@ -119,7 +180,7 @@ export const ProsSettingsPage = () => {
           </div>
         )}
 
-        {profiles.map((setting) => {
+        {filteredProfiles.map((setting) => {
           const visuals = getProfileVisuals(setting.slug);
 
           return (
@@ -164,6 +225,17 @@ export const ProsSettingsPage = () => {
               </div>
 
               <div className="p-6 md:p-8">
+                <div className="mb-5 flex items-center gap-4">
+                  <img
+                    src={visuals.portrait}
+                    alt={`${setting.name}のプレースホルダー画像`}
+                    className="h-16 w-16 rounded-full border border-slate-200 bg-white object-cover p-2"
+                  />
+                  <div>
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">選手プロフィール</div>
+                    <div className="mt-1 text-lg font-black text-trust-navy">{setting.name}</div>
+                  </div>
+                </div>
                 <p className="text-sm leading-7 text-slate-600">{setting.summary}</p>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-3">
@@ -212,6 +284,12 @@ export const ProsSettingsPage = () => {
             </button>
           );
         })}
+
+        {!isLoading && filteredProfiles.length === 0 && profiles.length > 0 && (
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-center text-sm font-bold text-slate-500">
+            条件に合うプロフィールが見つかりませんでした。選手名やクラブ名を変えて検索してください。
+          </div>
+        )}
       </section>
     </div>
   );

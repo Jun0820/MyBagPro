@@ -5,12 +5,12 @@ import { applySeo, getSeoPath } from '../lib/seo';
 
 const routeSeoMap: Record<string, { title: string; description: string; noindex?: boolean }> = {
   '/': {
-    title: 'プロとみんなのクラブセッティングが見つかる',
-    description: 'プロや人気ゴルファーの14本のクラブセッティングを見て参考にできる My Bag Pro。確認済みデータだけを掲載します。',
+    title: '有名プロのクラブセッティングを検索して見られるサイト',
+    description: '石川遼や中島啓太など、有名プロの現在の14本のクラブセッティングを検索して見られる My Bag Pro。確認済みデータだけを掲載します。',
   },
   '/settings/pros': {
-    title: 'プロのクラブセッティング一覧',
-    description: 'プロゴルファーの14本のクラブセッティング一覧。確認済みのヘッド、シャフト、使用ボールを比較しながら見られます。',
+    title: 'プロのクラブセッティング一覧・検索',
+    description: '有名プロの14本のクラブセッティング一覧。選手名やクラブ名で検索しながら、確認済みのヘッド、シャフト、使用ボールを見られます。',
   },
   '/settings/users': {
     title: 'みんなのMy Bag',
@@ -59,7 +59,7 @@ const getSeoForPath = (pathname: string) => {
   if (pathname.startsWith('/settings/pros/')) {
     return {
       title: 'プロのクラブセッティング詳細',
-      description: '確認済みの14本のクラブセッティング詳細ページです。',
+      description: '選手ごとの確認済み14本のクラブセッティング詳細ページです。',
     };
   }
 
