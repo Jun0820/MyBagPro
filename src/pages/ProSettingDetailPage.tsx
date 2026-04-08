@@ -99,6 +99,15 @@ const toChannelUrl = (value: string, platform: 'youtube' | 'instagram' | 'x') =>
   return `https://x.com/${normalized}`;
 };
 
+const mediaPriorityCopy: Record<string, string> = {
+  youtube: '最初に見る',
+  instagram: '見た目をつかむ',
+  official: 'プロフィール確認',
+  article: '詳細を読む',
+  tour_photo: '実戦写真を見る',
+  manual: '確認メモ',
+};
+
 const evergreenPrioritySlugs = [
   'how-to-read-pro-setting-pages',
   'how-to-use-setting-compare',
@@ -322,6 +331,27 @@ export const ProSettingDetailPage = () => {
       tone: leadSources.length > 0 ? 'text-golf-700 bg-golf-50 border-golf-200' : 'text-slate-500 bg-slate-50 border-slate-200',
     },
   ];
+  const mediaHighlights = [
+    {
+      label: '注目ドライバー',
+      value: driverClub ? driverClub.model : '未公開',
+    },
+    {
+      label: '使用ボール',
+      value: setting.ball,
+    },
+    {
+      label: '見るべき特徴',
+      value: setting.style,
+    },
+  ];
+  const sourceTimeline = [...leadSources]
+    .sort((a, b) => {
+      const aTime = a.checkedAt ? new Date(a.checkedAt).getTime() : 0;
+      const bTime = b.checkedAt ? new Date(b.checkedAt).getTime() : 0;
+      return bTime - aTime;
+    })
+    .slice(0, 4);
 
   return (
     <div className="min-h-screen pb-20">
@@ -448,6 +478,15 @@ export const ProSettingDetailPage = () => {
             ))}
           </div>
 
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {mediaHighlights.map((item) => (
+              <div key={item.label} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4">
+                <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">{item.label}</div>
+                <div className="mt-2 text-sm font-black text-trust-navy">{item.value}</div>
+              </div>
+            ))}
+          </div>
+
           <div className="mt-5 space-y-3">
             {leadSources.map((source) => (
               <a
@@ -468,6 +507,9 @@ export const ProSettingDetailPage = () => {
               >
                 <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">
                   {sourceTypeLabel[source.type] || '確認ソース'}
+                </div>
+                <div className="mt-2 inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black tracking-[0.14em] text-slate-500">
+                  {mediaPriorityCopy[source.type] || '確認素材'}
                 </div>
                 <h3 className="mt-2 text-base font-black text-trust-navy">{source.title}</h3>
                 <div className="mt-2 text-xs font-bold text-slate-400">確認日: {formatCheckedAt(source.checkedAt)}</div>
@@ -712,6 +754,32 @@ export const ProSettingDetailPage = () => {
             <p>
               気になる構成があれば、そのまま比較ページや AI診断につなげて、自分向けの候補へ絞り込めます。
             </p>
+          </div>
+        </article>
+
+        <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+          <div className="text-[11px] font-black text-slate-400">確認の流れ</div>
+          <h2 className="mt-3 text-2xl font-black text-trust-navy">どの素材を根拠にこのページを作っているか</h2>
+          <div className="mt-5 space-y-4">
+            {sourceTimeline.map((source, index) => (
+              <div key={`${source.url}-${index}`} className="flex gap-4">
+                <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black text-trust-navy">
+                  {index + 1}
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
+                    {sourceTypeLabel[source.type] || '確認ソース'} / {formatCheckedAt(source.checkedAt)}
+                  </div>
+                  <div className="mt-1 text-base font-black text-trust-navy">{source.title}</div>
+                  {source.notes && <p className="mt-1 text-sm leading-7 text-slate-600">{source.notes}</p>}
+                </div>
+              </div>
+            ))}
+            {sourceTimeline.length === 0 && (
+              <p className="rounded-[1.25rem] bg-slate-50 px-4 py-4 text-sm leading-7 text-slate-600">
+                確認ソースが増えるたびに、このページも順に厚くしていきます。
+              </p>
+            )}
           </div>
         </article>
 
