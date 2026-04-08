@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, BadgeCheck, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Camera, PlayCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
@@ -68,6 +68,37 @@ export const ProsSettingsPage = () => {
               推定値は非表示
             </div>
           </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                icon: Camera,
+                title: 'まず写真で全体像を見る',
+                text: 'クラブやバッグの雰囲気を先に見てから、14本の中身へ入れます。',
+              },
+              {
+                icon: PlayCircle,
+                title: '動画があれば優先表示',
+                text: 'スイング動画やセッティング動画が確認できる選手から順に見やすく掲載します。',
+              },
+              {
+                icon: BadgeCheck,
+                title: '確認できた情報だけ公開',
+                text: '参照元と14本がそろったものだけに絞って公開しています。',
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.title} className="rounded-[1.5rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-golf-50 text-golf-700">
+                    <Icon size={20} />
+                  </div>
+                  <h2 className="mt-4 text-base font-black text-trust-navy">{item.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -109,22 +140,25 @@ export const ProsSettingsPage = () => {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.05)_0%,rgba(15,23,42,0.72)_100%)]" />
 
                 <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.12em] text-white backdrop-blur">
-                  <ImageIcon size={13} />
-                  参考イメージ
+                  <Camera size={13} />
+                  セッティングの雰囲気
                 </div>
 
-                <div className="absolute bottom-6 left-6 right-6 flex items-end gap-4">
-                  <img
-                    src={visuals.portrait}
-                    alt=""
-                    className="h-20 w-20 rounded-full border-4 border-white/90 object-cover shadow-lg"
-                  />
-                  <div className="min-w-0">
-                    <div className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-500">
-                      {setting.type}
-                    </div>
-                    <h2 className="mt-3 text-3xl font-black tracking-tight text-white">{setting.name}</h2>
-                    <p className="mt-2 text-sm font-bold text-cyan-100">{setting.tagline}</p>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-500">
+                    {setting.type}
+                  </div>
+                  <h2 className="mt-3 text-3xl font-black tracking-tight text-white">{setting.name}</h2>
+                  <p className="mt-2 max-w-xl text-sm font-bold text-cyan-100">{setting.tagline}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {setting.clubs.slice(0, 3).map((club) => (
+                      <span
+                        key={`${setting.slug}-hero-${club.category}`}
+                        className="rounded-full border border-white/10 bg-slate-950/45 px-3 py-1 text-[11px] font-bold text-white/90 backdrop-blur"
+                      >
+                        {club.category} {club.model}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -171,7 +205,7 @@ export const ProsSettingsPage = () => {
                 </div>
 
                 <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
-                  セッティング詳細を見る
+                  写真・動画・14本を見る
                   <ArrowRight size={16} />
                 </div>
               </div>

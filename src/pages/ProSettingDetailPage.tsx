@@ -422,6 +422,32 @@ export const ProSettingDetailPage = () => {
                   <div className="mt-2 text-base font-black text-white">{setting.style}</div>
                 </div>
               </div>
+
+              <div className="mt-6 grid gap-3 md:grid-cols-3">
+                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/40 px-4 py-4">
+                  <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">最初に見るもの</div>
+                  <div className="mt-2 text-sm font-black text-white">
+                    {youtubeSource ? 'スイング動画' : 'バッグとクラブの全体像'}
+                  </div>
+                  <p className="mt-2 text-xs leading-6 text-slate-300">
+                    まずは動きや見た目から、その選手のセッティングの方向性をつかみます。
+                  </p>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/40 px-4 py-4">
+                  <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">注目クラブ</div>
+                  <div className="mt-2 text-sm font-black text-white">{driverClub ? driverClub.model : 'ドライバー確認中'}</div>
+                  <p className="mt-2 text-xs leading-6 text-slate-300">
+                    1Wだけでなく、FWやウェッジとのつながりまで見ていくのがおすすめです。
+                  </p>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/40 px-4 py-4">
+                  <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">参考にする視点</div>
+                  <div className="mt-2 text-sm font-black text-white">{setting.style}</div>
+                  <p className="mt-2 text-xs leading-6 text-slate-300">
+                    同じモデル名より、番手構成とクラブの流れ方を自分の14本にどう移すかを見ます。
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -430,7 +456,7 @@ export const ProSettingDetailPage = () => {
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.72)_100%)]" />
             <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.14em] text-white backdrop-blur">
               <ImageIcon size={13} />
-              参考イメージ
+              バッグとクラブのイメージ
             </div>
             <div className="absolute bottom-6 left-6 right-6 grid gap-3 sm:grid-cols-3">
               {mediaHighlights.map((item) => (
@@ -558,15 +584,15 @@ export const ProSettingDetailPage = () => {
           <div>
             <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] text-slate-400">
               <ImageIcon size={14} />
-              REFERENCE GALLERY
+              SETTING GALLERY
             </div>
-            <h2 className="mt-3 text-2xl font-black text-trust-navy">イメージでセッティングの空気感をつかむ</h2>
+            <h2 className="mt-3 text-2xl font-black text-trust-navy">クラブ選びの空気感を、写真から先につかむ</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              表を見る前に、どんなプレースタイルや空気感のセッティングなのかを視覚的につかみやすくしました。
+              テーブルの数字に入る前に、バッグ、クラブ、スイングの雰囲気から全体像をつかみやすくしています。
             </p>
           </div>
           <div className="rounded-full bg-slate-100 px-4 py-2 text-xs font-black tracking-[0.14em] text-slate-500">
-            すべて参考イメージ
+            ゴルフ写真を中心に表示
           </div>
         </div>
 
