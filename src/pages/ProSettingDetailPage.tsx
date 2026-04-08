@@ -167,23 +167,43 @@ export const ProSettingDetailPage = () => {
 
       <section className="rounded-[2rem] bg-slate-950 px-6 py-10 text-white md:px-10 md:py-14">
         <div className="max-w-4xl">
-          <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-cyan-200">
+          <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black text-cyan-200">
             {setting.type}
           </div>
           <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">{setting.name}</h1>
           <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-4">
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+              <div className="text-[11px] font-black text-slate-400">ヘッドスピード</div>
+              <div className="mt-2 text-base font-black text-white">{setting.headSpeed}</div>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+              <div className="text-[11px] font-black text-slate-400">平均スコア</div>
+              <div className="mt-2 text-base font-black text-white">{setting.averageScore}</div>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+              <div className="text-[11px] font-black text-slate-400">使用ボール</div>
+              <div className="mt-2 text-base font-black text-white">{setting.ball}</div>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+              <div className="text-[11px] font-black text-slate-400">特徴</div>
+              <div className="mt-2 text-base font-black text-white">{setting.style}</div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="mt-8 grid gap-6 md:grid-cols-[1.4fr_0.9fr]">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+          <div className="inline-flex items-center gap-2 text-[11px] font-black text-slate-400">
             <Sparkles size={14} />
-            The 14 Clubs Snapshot
+            このページで分かること
           </div>
+          <h2 className="mt-3 text-2xl font-black text-trust-navy">14本の構成をひと目で確認する</h2>
           <p className="mt-3 text-sm leading-7 text-slate-600">
-            ヘッド、ロフト、シャフト、飛距離まで確認できた14本だけを掲載しています。
+            クラブ名、シャフト、ロフト、硬さ、飛距離までを一覧で見られるようにしています。まずは全体の並び方を見て、気になる番手を詳しく確認してください。
           </p>
           <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-200">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_2fr_2.2fr_1fr_1fr_1.2fr]">
@@ -270,34 +290,37 @@ export const ProSettingDetailPage = () => {
 
         <div className="space-y-6">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-6">
-            <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+            <div className="inline-flex items-center gap-2 text-[11px] font-black text-slate-400">
               <Gauge size={14} />
-              Profile
+              見るときのポイント
             </div>
-            <div className="mt-5 space-y-4 text-sm text-slate-600">
+            <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
               <div>
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Head Speed</div>
+                <div className="text-[11px] font-black text-slate-400">ヘッドスピード</div>
                 <div className="mt-1 font-bold text-trust-navy">{setting.headSpeed}</div>
               </div>
               <div>
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Average Score</div>
+                <div className="text-[11px] font-black text-slate-400">平均スコア</div>
                 <div className="mt-1 font-bold text-trust-navy">{setting.averageScore}</div>
               </div>
               <div>
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Ball</div>
+                <div className="text-[11px] font-black text-slate-400">使用ボール</div>
                 <div className="mt-1 font-bold text-trust-navy">{setting.ball}</div>
               </div>
               <div>
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Style</div>
+                <div className="text-[11px] font-black text-slate-400">見るべき特徴</div>
                 <div className="mt-1 font-bold text-trust-navy">{setting.style}</div>
               </div>
+              <p className="rounded-[1.25rem] bg-slate-50 px-4 py-4 text-sm">
+                同じクラブを真似するよりも、番手の流れ方、ウェッジの構成、ボールとの組み合わせを見て、自分のバッグにどう落とし込むかを考えるのがコツです。
+              </p>
             </div>
           </div>
 
           <div className="rounded-[2rem] border border-cyan-100 bg-cyan-50 p-6">
-            <h2 className="text-xl font-black text-trust-navy">次の行動を置くならここです。</h2>
+            <h2 className="text-xl font-black text-trust-navy">このあとできること</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              個別ページでは、このセッティングを見た人がそのまま比較、診断、購入へ進める導線が重要です。
+              気になる構成を見つけたら、そのまま比較や診断へ進めます。使っているドライバーが気になるときは購入比較にも移動できます。
             </p>
             <div className="mt-5 flex flex-col gap-3">
               {driverDetail && (
@@ -353,7 +376,7 @@ export const ProSettingDetailPage = () => {
 
       <section className="mt-8 grid gap-6 lg:grid-cols-2">
         <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">読みどころ</div>
+          <div className="text-[11px] font-black text-slate-400">読みどころ</div>
           <h2 className="mt-3 text-2xl font-black text-trust-navy">{setting.name}のセッティングを見るポイント</h2>
           <div className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
             <p>
@@ -368,7 +391,7 @@ export const ProSettingDetailPage = () => {
         </article>
 
         <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">活かし方</div>
+          <div className="text-[11px] font-black text-slate-400">活かし方</div>
           <h2 className="mt-3 text-2xl font-black text-trust-navy">自分のバッグ作りに落とし込む</h2>
           <div className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
             <p>
