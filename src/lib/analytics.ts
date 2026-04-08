@@ -14,6 +14,8 @@ export const isAnalyticsEnabled = Boolean(GA_MEASUREMENT_ID);
 const pageLocation = () =>
   `${window.location.origin}${window.location.pathname}${window.location.search}${window.location.hash}`;
 
+type AnalyticsParams = Record<string, string | number | boolean | null | undefined>;
+
 export const initAnalytics = () => {
   if (!isAnalyticsEnabled || initialized || typeof window === 'undefined') return;
 
@@ -52,6 +54,16 @@ export const trackPageView = (path: string, title: string) => {
     page_title: title,
     page_location: pageLocation(),
     page_path: path,
+    debug_mode: true,
+  });
+};
+
+export const trackEvent = (eventName: string, params: AnalyticsParams = {}) => {
+  if (!isAnalyticsEnabled || !window.gtag) return;
+
+  window.gtag('event', eventName, {
+    ...params,
+    page_location: pageLocation(),
     debug_mode: true,
   });
 };

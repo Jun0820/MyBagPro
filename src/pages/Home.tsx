@@ -3,6 +3,7 @@ import { ArrowRight, Brain, Eye, Plus, Radar, Search, ShoppingBag, Sparkles, Use
 import { useNavigate } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { discoveryPaths } from '../data/featuredSettings';
+import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
 
 export const Home = () => {
@@ -65,14 +66,25 @@ export const Home = () => {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
-                  onClick={() => navigate('/settings/pros')}
+                  onClick={() => {
+                    trackEvent('select_content_group', {
+                      source_page: 'home',
+                      target_type: 'pros_library',
+                    });
+                    navigate('/settings/pros');
+                  }}
                   className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-black text-slate-900 shadow-2xl transition-all hover:scale-[1.01]"
                 >
                   人気のセッティングを見る
                   <ArrowRight size={18} />
                 </button>
                 <button
-                  onClick={() => navigate('/mybag/create')}
+                  onClick={() => {
+                    trackEvent('begin_mybag_creation', {
+                      source_page: 'home',
+                    });
+                    navigate('/mybag/create');
+                  }}
                   className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-7 py-4 text-sm font-black text-white backdrop-blur-sm transition-colors hover:bg-white/10"
                 >
                   <Plus size={18} />
@@ -91,7 +103,14 @@ export const Home = () => {
               {profiles.slice(0, 3).map((setting) => (
                 <button
                   key={setting.slug}
-                  onClick={() => navigate(`/settings/pros/${setting.slug}`)}
+                  onClick={() => {
+                    trackEvent('select_setting_profile', {
+                      source_page: 'home_hero',
+                      profile_slug: setting.slug,
+                      profile_name: setting.name,
+                    });
+                    navigate(`/settings/pros/${setting.slug}`);
+                  }}
                   className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 text-left backdrop-blur-md transition-all hover:-translate-y-1 hover:bg-white/10"
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -137,7 +156,14 @@ export const Home = () => {
           {discoveryPaths.map((path) => (
             <button
               key={path.label}
-              onClick={() => navigate(path.href)}
+              onClick={() => {
+                trackEvent('select_discovery_path', {
+                  source_page: 'home',
+                  path_label: path.label,
+                  path_href: path.href,
+                });
+                navigate(path.href);
+              }}
               className="rounded-[1.75rem] border border-slate-200 bg-white p-6 text-left shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="text-sm font-black text-trust-navy">{path.label}</div>
@@ -193,14 +219,28 @@ export const Home = () => {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
-                  onClick={() => navigate(`/settings/pros/${setting.slug}`)}
+                  onClick={() => {
+                    trackEvent('select_setting_profile', {
+                      source_page: 'home_featured',
+                      profile_slug: setting.slug,
+                      profile_name: setting.name,
+                    });
+                    navigate(`/settings/pros/${setting.slug}`);
+                  }}
                   className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition-colors hover:bg-slate-900"
                 >
                   セッティングを見る
                   <ArrowRight size={16} />
                 </button>
                 <button
-                  onClick={() => navigate('/diagnosis')}
+                  onClick={() => {
+                    trackEvent('start_ai_diagnosis', {
+                      source_page: 'home_featured',
+                      reference_profile_slug: setting.slug,
+                      reference_profile_name: setting.name,
+                    });
+                    navigate('/diagnosis');
+                  }}
                   className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
                 >
                   この構成を参考に診断

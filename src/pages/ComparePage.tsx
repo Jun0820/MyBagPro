@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, GitCompareArrows, Plus,
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
+import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
 
 const parseHeadSpeedValue = (value: string) => {
@@ -112,17 +113,43 @@ export const ComparePage = () => {
           primaryLabel: row.category === 'Driver' && driverDetail ? '製品詳細を見る' : '比較を続ける',
           primaryAction: () => {
             if (row.category === 'Driver' && driverDetail) {
+              trackEvent('view_product_detail', {
+                source_page: 'compare_page',
+                profile_slug: targetSetting.slug,
+                profile_name: targetSetting.name,
+                product_slug: driverDetail.slug,
+                product_name: `${driverDetail.brand} ${driverDetail.name}`,
+                category: 'drivers',
+              });
               navigate(`/clubs/drivers/${driverDetail.slug}`);
               return;
             }
+            trackEvent('start_ai_diagnosis', {
+              source_page: 'compare_page',
+              reference_profile_slug: targetSetting.slug,
+              reference_profile_name: targetSetting.name,
+              target_category: row.category,
+            });
             navigate('/diagnosis');
           },
           secondaryLabel: row.category === 'Driver' && driverDetail ? '購入先を比較する' : 'My Bagを整える',
           secondaryAction: () => {
             if (row.category === 'Driver' && driverDetail) {
+              trackEvent('view_buy_options', {
+                source_page: 'compare_page',
+                profile_slug: targetSetting.slug,
+                profile_name: targetSetting.name,
+                product_slug: driverDetail.slug,
+                product_name: `${driverDetail.brand} ${driverDetail.name}`,
+                category: 'drivers',
+              });
               navigate(`/buy/drivers/${driverDetail.slug}`);
               return;
             }
+            trackEvent('begin_mybag_creation', {
+              source_page: 'compare_page',
+              reference_profile_slug: targetSetting.slug,
+            });
             navigate('/mybag/create');
           },
         };
@@ -137,7 +164,15 @@ export const ComparePage = () => {
       reason: '一致度が高いので、大きな入れ替えよりもスペックやボール最適化のほうが効きやすい状態です。',
       detail: '次はAI診断で細かな差分を詰める段階',
       primaryLabel: 'AI診断へ進む',
-      primaryAction: () => navigate('/diagnosis'),
+      primaryAction: () => {
+        trackEvent('start_ai_diagnosis', {
+          source_page: 'compare_page',
+          reference_profile_slug: targetSetting.slug,
+          reference_profile_name: targetSetting.name,
+          target_category: club.category,
+        });
+        navigate('/diagnosis');
+      },
       secondaryLabel: 'My Bagを確認する',
       secondaryAction: () => navigate('/mypage'),
     }));
@@ -161,7 +196,17 @@ export const ComparePage = () => {
         title: `まずは ${targetDriverDetail.name} を比較候補に入れる`,
         description: `${targetSetting.name} の入口になっているドライバーです。使用者情報と購入比較を先に見ると、全体の方向性を掴みやすいです。`,
         cta: '使用ドライバーを見る',
-        onClick: () => navigate(`/clubs/drivers/${targetDriverDetail.slug}`),
+        onClick: () => {
+          trackEvent('view_product_detail', {
+            source_page: 'compare_page',
+            profile_slug: targetSetting.slug,
+            profile_name: targetSetting.name,
+            product_slug: targetDriverDetail.slug,
+            product_name: `${targetDriverDetail.brand} ${targetDriverDetail.name}`,
+            category: 'drivers',
+          });
+          navigate(`/clubs/drivers/${targetDriverDetail.slug}`);
+        },
         icon: 'buy',
       });
     }
@@ -171,7 +216,14 @@ export const ComparePage = () => {
         title: `未登録の ${missingCategories[0].category} を埋める`,
         description: `比較精度を上げるには、まず My Bag の空欄を埋めるのが最短です。いまは ${missingCategories.length} カテゴリが未登録です。`,
         cta: 'My Bagを整える',
-        onClick: () => navigate('/mybag/create'),
+        onClick: () => {
+          trackEvent('begin_mybag_creation', {
+            source_page: 'compare_page',
+            reference_profile_slug: targetSetting.slug,
+            target_category: missingCategories[0].category,
+          });
+          navigate('/mybag/create');
+        },
         icon: 'edit',
       });
     }
@@ -181,7 +233,15 @@ export const ComparePage = () => {
         title: `差分の大きい ${differentCategories[0].category} をAI診断する`,
         description: `一致していないカテゴリから優先的に見直すと、参考セッティングとの差を自分向けに翻訳しやすくなります。`,
         cta: 'AI診断へ進む',
-        onClick: () => navigate('/diagnosis'),
+        onClick: () => {
+          trackEvent('start_ai_diagnosis', {
+            source_page: 'compare_page',
+            reference_profile_slug: targetSetting.slug,
+            reference_profile_name: targetSetting.name,
+            target_category: differentCategories[0].category,
+          });
+          navigate('/diagnosis');
+        },
         icon: 'compare',
       });
     }
@@ -191,13 +251,20 @@ export const ComparePage = () => {
         title: 'かなり近い構成です',
         description: 'ここまで揃っているなら、次はボールや細かなスペック差をAI診断で詰めると効果的です。',
         cta: 'AI診断へ進む',
-        onClick: () => navigate('/diagnosis'),
+        onClick: () => {
+          trackEvent('start_ai_diagnosis', {
+            source_page: 'compare_page',
+            reference_profile_slug: targetSetting.slug,
+            reference_profile_name: targetSetting.name,
+          });
+          navigate('/diagnosis');
+        },
         icon: 'compare',
       });
     }
 
     return actions.slice(0, 3);
-  }, [comparisonRows, navigate, targetDriverDetail, targetSetting.name]);
+  }, [comparisonRows, navigate, targetDriverDetail, targetSetting.name, targetSetting.slug]);
 
   const renderActionIcon = (icon: 'compare' | 'buy' | 'edit') => {
     switch (icon) {

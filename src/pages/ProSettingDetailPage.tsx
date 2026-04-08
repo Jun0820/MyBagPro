@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Gauge, ShoppingBag, Sparkles } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
+import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
-import { applySeo, getSeoPath } from '../lib/seo';
+import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const formatClubLabel = (category: string, specLabel?: string) => {
   if (specLabel) return specLabel;
@@ -55,6 +56,7 @@ export const ProSettingDetailPage = () => {
     if (!slug) return;
 
     if (!setting) {
+      removeStructuredData('profile-page');
       applySeo({
         title: 'プロのクラブセッティング詳細',
         description: '確認済みの14本のクラブセッティング詳細ページです。',
@@ -68,7 +70,61 @@ export const ProSettingDetailPage = () => {
       description: `${setting.name}の確認済み14本セッティング。使用ボールやシャフト情報まで見られます。`,
       path: getSeoPath(`/settings/pros/${slug}`),
     });
+
+    setStructuredData('profile-page', {
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      name: `${setting.name}のクラブセッティング`,
+      description: `${setting.name}の確認済み14本セッティング。使用ボールやシャフト情報まで見られます。`,
+      url: toAbsoluteUrl(getSeoPath(`/settings/pros/${slug}`)),
+      mainEntity: {
+        '@type': 'Person',
+        name: setting.name,
+        description: setting.summary,
+        additionalType: setting.type,
+      },
+      hasPart: {
+        '@type': 'ItemList',
+        name: `${setting.name}の14本セッティング`,
+        numberOfItems: setting.clubs.length,
+        itemListElement: setting.clubs.map((club, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: `${formatClubLabel(club.category, club.specLabel)} ${club.model}`,
+          item: {
+            '@type': 'Product',
+            name: club.model,
+            brand: club.brand || undefined,
+            additionalProperty: [
+              club.loft
+                ? {
+                    '@type': 'PropertyValue',
+                    name: 'Loft',
+                    value: club.loft,
+                  }
+                : null,
+              club.shaftFlex
+                ? {
+                    '@type': 'PropertyValue',
+                    name: 'Flex',
+                    value: club.shaftFlex,
+                  }
+                : null,
+              club.carryDistance || club.totalDistance
+                ? {
+                    '@type': 'PropertyValue',
+                    name: 'Distance',
+                    value: formatDistance(club.carryDistance, club.totalDistance),
+                  }
+                : null,
+            ].filter(Boolean),
+          },
+        })),
+      },
+    });
   }, [setting, slug]);
+
+  useEffect(() => () => removeStructuredData('profile-page'), []);
 
   if (isLoading) {
     return (
@@ -146,7 +202,17 @@ export const ProSettingDetailPage = () => {
                   <button
                     key={`${setting.slug}-${club.category}-${club.specLabel || index}`}
                     onClick={() => {
-                      if (isDriver && driverDetail) navigate(`/clubs/drivers/${driverDetail.slug}`);
+                      if (isDriver && driverDetail) {
+                        trackEvent('view_product_detail', {
+                          source_page: 'pro_setting_detail',
+                          profile_slug: setting.slug,
+                          profile_name: setting.name,
+                          product_slug: driverDetail.slug,
+                          product_name: `${driverDetail.brand} ${driverDetail.name}`,
+                          category: 'drivers',
+                        });
+                        navigate(`/clubs/drivers/${driverDetail.slug}`);
+                      }
                     }}
                     className={`w-full text-left ${
                       isDriver && driverDetail ? 'transition-colors hover:bg-cyan-50' : ''
@@ -236,7 +302,17 @@ export const ProSettingDetailPage = () => {
             <div className="mt-5 flex flex-col gap-3">
               {driverDetail && (
                 <button
-                  onClick={() => navigate(`/buy/drivers/${driverDetail.slug}`)}
+                  onClick={() => {
+                    trackEvent('view_buy_options', {
+                      source_page: 'pro_setting_detail',
+                      profile_slug: setting.slug,
+                      profile_name: setting.name,
+                      product_slug: driverDetail.slug,
+                      product_name: `${driverDetail.brand} ${driverDetail.name}`,
+                      category: 'drivers',
+                    });
+                    navigate(`/buy/drivers/${driverDetail.slug}`);
+                  }}
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-black text-trust-navy ring-1 ring-cyan-200"
                 >
                   <ShoppingBag size={16} />
@@ -244,14 +320,28 @@ export const ProSettingDetailPage = () => {
                 </button>
               )}
               <button
-                onClick={() => navigate(`/compare?setting=${setting.slug}`)}
+                onClick={() => {
+                  trackEvent('start_setting_compare', {
+                    source_page: 'pro_setting_detail',
+                    profile_slug: setting.slug,
+                    profile_name: setting.name,
+                  });
+                  navigate(`/compare?setting=${setting.slug}`);
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
               >
                 自分のバッグと比べる
                 <ArrowRight size={16} />
               </button>
               <button
-                onClick={() => navigate('/diagnosis')}
+                onClick={() => {
+                  trackEvent('start_ai_diagnosis', {
+                    source_page: 'pro_setting_detail',
+                    reference_profile_slug: setting.slug,
+                    reference_profile_name: setting.name,
+                  });
+                  navigate('/diagnosis');
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300 px-5 py-3 text-sm font-black text-cyan-700"
               >
                 この構成を参考にAI診断する

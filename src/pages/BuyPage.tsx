@@ -2,6 +2,7 @@ import { ArrowLeft, Check, ShoppingCart } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
+import { trackEvent } from '../lib/analytics';
 
 export const BuyPage = () => {
   const navigate = useNavigate();
@@ -69,6 +70,16 @@ export const BuyPage = () => {
             <a
               key={shop.id}
               href={getAffiliateUrl(driver.brand, driver.name, shop.id)}
+              onClick={() =>
+                trackEvent('click_affiliate_shop', {
+                  source_page: 'buy_page',
+                  category: category ?? 'drivers',
+                  product_slug: driver.slug,
+                  product_name: `${driver.brand} ${driver.name}`,
+                  shop_id: shop.id,
+                  shop_name: shop.name,
+                })
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col gap-4 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:flex-row md:items-center md:justify-between"

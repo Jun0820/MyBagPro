@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, FileText } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPublishedArticleBySlug, type PublicArticle } from '../lib/articles';
-import { applySeo, getSeoPath } from '../lib/seo';
+import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 export const ArticleDetailPage = () => {
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ export const ArticleDetailPage = () => {
     if (!slug) return;
 
     if (!article) {
+      removeStructuredData('article-page');
       applySeo({
         title: '更新記事',
         description: '掲載データやクラブセッティングの更新内容を公開する記事です。',
@@ -50,7 +51,30 @@ export const ArticleDetailPage = () => {
       path: getSeoPath(`/articles/${slug}`),
       type: 'article',
     });
+
+    setStructuredData('article-page', {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: article.title,
+      description: article.excerpt || 'クラブセッティングの更新内容を公開する記事です。',
+      articleSection: article.articleType,
+      datePublished: article.publishedAt || undefined,
+      dateModified: article.publishedAt || undefined,
+      mainEntityOfPage: toAbsoluteUrl(getSeoPath(`/articles/${slug}`)),
+      url: toAbsoluteUrl(getSeoPath(`/articles/${slug}`)),
+      publisher: {
+        '@type': 'Organization',
+        name: 'My Bag Pro',
+        url: toAbsoluteUrl('/'),
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'My Bag Pro',
+      },
+    });
   }, [article, slug]);
+
+  useEffect(() => () => removeStructuredData('article-page'), []);
 
   if (isLoading) {
     return <div className="rounded-[2rem] border border-slate-200 bg-white p-10 text-center">記事を読み込んでいます...</div>;

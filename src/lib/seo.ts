@@ -1,6 +1,10 @@
 const SITE_NAME = 'My Bag Pro';
 const SITE_URL = 'https://mybagpro.jp';
 
+export const getSiteUrl = () => SITE_URL;
+
+export const toAbsoluteUrl = (path = '/') => `${SITE_URL}${path}`;
+
 export interface SeoPayload {
   title: string;
   description: string;

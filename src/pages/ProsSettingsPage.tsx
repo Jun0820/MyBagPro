@@ -3,6 +3,7 @@ import { ArrowRight, BadgeCheck, Gauge, ListChecks, Sparkles } from 'lucide-reac
 import { useNavigate } from 'react-router-dom';
 import { proRosterGroups, requiredProfileFields, youtubeLessonRoster } from '../data/proRoster';
 import { editorialPolicy, launch10Reasoning } from '../data/editorialPolicy';
+import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
 
 export const ProsSettingsPage = () => {
@@ -118,14 +119,27 @@ export const ProsSettingsPage = () => {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <button
-                onClick={() => navigate(`/settings/pros/${setting.slug}`)}
+                onClick={() => {
+                  trackEvent('view_setting_detail', {
+                    source_page: 'pros_library',
+                    profile_slug: setting.slug,
+                    profile_name: setting.name,
+                  });
+                  navigate(`/settings/pros/${setting.slug}`);
+                }}
                 className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition-all hover:bg-slate-900"
               >
                 セッティング詳細を見る
                 <ArrowRight size={16} />
               </button>
               <button
-                onClick={() => navigate('/mybag/create')}
+                onClick={() => {
+                  trackEvent('begin_mybag_creation', {
+                    source_page: 'pros_library',
+                    reference_profile_slug: setting.slug,
+                  });
+                  navigate('/mybag/create');
+                }}
                 className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
               >
                 自分のMy Bagを作る
@@ -148,7 +162,12 @@ export const ProsSettingsPage = () => {
             </p>
           </div>
           <button
-            onClick={() => navigate('/diagnosis')}
+            onClick={() => {
+              trackEvent('start_ai_diagnosis', {
+                source_page: 'pros_library',
+              });
+              navigate('/diagnosis');
+            }}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-600 px-5 py-3 text-sm font-black text-white transition-all hover:bg-cyan-700"
           >
             診断導線も確認する
