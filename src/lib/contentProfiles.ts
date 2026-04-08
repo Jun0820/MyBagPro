@@ -14,6 +14,14 @@ export interface PublicBagClub {
   productSlug?: string;
 }
 
+export interface PublicProfileSource {
+  type: 'official' | 'tour_photo' | 'youtube' | 'instagram' | 'article' | 'manual';
+  title: string;
+  url: string;
+  checkedAt?: string | null;
+  notes?: string | null;
+}
+
 export interface PublicSettingProfile {
   slug: string;
   name: string;
@@ -27,6 +35,11 @@ export interface PublicSettingProfile {
   ball: string;
   strengths: string[];
   clubs: PublicBagClub[];
+  youtubeChannel?: string;
+  instagramHandle?: string;
+  xHandle?: string;
+  websiteUrl?: string;
+  sources: PublicProfileSource[];
   seasonYear?: number | null;
   latestSourcePolicy?: string | null;
 }
@@ -41,6 +54,10 @@ interface SettingProfileRow {
   average_score: number | null;
   best_score: number | null;
   ball_name: string | null;
+  youtube_channel: string | null;
+  instagram_handle: string | null;
+  x_handle: string | null;
+  website_url: string | null;
   feature_1: string | null;
   feature_2: string | null;
   feature_3: string | null;
@@ -66,6 +83,15 @@ interface BagItemRow {
   slot_order: number;
 }
 
+interface SourceRow {
+  profile_id: string;
+  source_type: PublicProfileSource['type'];
+  source_url: string | null;
+  source_title: string | null;
+  checked_at: string | null;
+  notes: string | null;
+}
+
 const MIN_PUBLISHED_CLUBS = 14;
 
 const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfile['type']> = {
@@ -88,7 +114,11 @@ const inferTagline = (strengths: string[], type: PublicSettingProfile['type']) =
 
 const inferStyle = (strengths: string[]) => strengths[0] || '最新セッティング';
 
-const buildProfiles = (profiles: SettingProfileRow[], bagItems: BagItemRow[]): PublicSettingProfile[] =>
+const buildProfiles = (
+  profiles: SettingProfileRow[],
+  bagItems: BagItemRow[],
+  sourceRows: SourceRow[]
+): PublicSettingProfile[] =>
   profiles.map((profile) => {
     const clubs = bagItems
       .filter((item) => item.profile_id === profile.id)
@@ -108,6 +138,15 @@ const buildProfiles = (profiles: SettingProfileRow[], bagItems: BagItemRow[]): P
 
     const strengths = [profile.feature_1, profile.feature_2, profile.feature_3].filter(Boolean) as string[];
     const type = typeLabelMap[profile.profile_type];
+    const sources = sourceRows
+      .filter((source) => source.profile_id === profile.id && source.source_url)
+      .map((source) => ({
+        type: source.source_type,
+        title: source.source_title || '確認ソース',
+        url: source.source_url as string,
+        checkedAt: source.checked_at,
+        notes: source.notes,
+      }));
 
     return {
       slug: profile.slug,
@@ -122,6 +161,11 @@ const buildProfiles = (profiles: SettingProfileRow[], bagItems: BagItemRow[]): P
       ball: profile.ball_name || '未公開',
       strengths: strengths.length > 0 ? strengths : ['確認中'],
       clubs,
+      youtubeChannel: profile.youtube_channel || undefined,
+      instagramHandle: profile.instagram_handle || undefined,
+      xHandle: profile.x_handle || undefined,
+      websiteUrl: profile.website_url || undefined,
+      sources,
       seasonYear: profile.season_year,
       latestSourcePolicy: profile.latest_source_policy,
     };
@@ -133,7 +177,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
   try {
     const { data: profiles, error } = await supabase
       .from('setting_profiles')
-      .select('id, slug, display_name, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
+      .select('id, slug, display_name, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
       .eq('is_published', true)
       .order('is_featured', { ascending: false })
       .order('season_year', { ascending: false })
@@ -148,14 +192,22 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
       .in('profile_id', profileIds)
       .order('slot_order', { ascending: true });
 
+    const { data: sources } = await supabase
+      .from('content_sources')
+      .select('profile_id, source_type, source_url, source_title, checked_at, notes')
+      .in('profile_id', profileIds)
+      .order('checked_at', { ascending: false });
+
     const bagRows = (bagItems || []) as BagItemRow[];
+    const sourceRows = (sources || []) as SourceRow[];
     const completeProfileIds = profileIds.filter((profileId) =>
       bagRows.filter((item) => item.profile_id === profileId).length >= MIN_PUBLISHED_CLUBS
     );
 
     return buildProfiles(
       (profiles as SettingProfileRow[]).filter((profile) => completeProfileIds.includes(profile.id)),
-      bagRows
+      bagRows,
+      sourceRows
     );
   } catch (error) {
     console.error('Failed to fetch published setting profiles:', error);
@@ -169,7 +221,7 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
   try {
     const { data: profile, error } = await supabase
       .from('setting_profiles')
-      .select('id, slug, display_name, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
+      .select('id, slug, display_name, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
       .eq('slug', slug)
       .eq('is_published', true)
       .maybeSingle();
@@ -182,10 +234,17 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
       .eq('profile_id', profile.id)
       .order('slot_order', { ascending: true });
 
+    const { data: sources } = await supabase
+      .from('content_sources')
+      .select('profile_id, source_type, source_url, source_title, checked_at, notes')
+      .eq('profile_id', profile.id)
+      .order('checked_at', { ascending: false });
+
     const bagRows = (bagItems || []) as BagItemRow[];
+    const sourceRows = (sources || []) as SourceRow[];
     if (bagRows.length < MIN_PUBLISHED_CLUBS) return null;
 
-    return buildProfiles([profile as SettingProfileRow], bagRows)[0] ?? null;
+    return buildProfiles([profile as SettingProfileRow], bagRows, sourceRows)[0] ?? null;
   } catch (error) {
     console.error('Failed to fetch setting profile by slug:', error);
     return null;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Gauge, Newspaper, ShoppingBag, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Gauge, Image as ImageIcon, Newspaper, PlayCircle, ShoppingBag, Sparkles } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
-import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
+import { fetchPublishedSettingProfileBySlug, type PublicProfileSource, type PublicSettingProfile } from '../lib/contentProfiles';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const formatClubLabel = (category: string, specLabel?: string) => {
@@ -21,6 +21,50 @@ const formatDistance = (carryDistance?: number | null, totalDistance?: number | 
   if (carryDistance) return `${carryDistance}`;
   if (totalDistance) return `${totalDistance}`;
   return '未公開';
+};
+
+const getYoutubeEmbedUrl = (url: string) => {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname.includes('youtu.be')) {
+      const id = parsed.pathname.replace('/', '');
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+
+    if (parsed.hostname.includes('youtube.com')) {
+      if (parsed.pathname === '/watch') {
+        const id = parsed.searchParams.get('v');
+        return id ? `https://www.youtube.com/embed/${id}` : null;
+      }
+
+      const pathMatch = parsed.pathname.match(/^\/(embed|shorts)\/([^/?]+)/);
+      if (pathMatch?.[2]) {
+        return `https://www.youtube.com/embed/${pathMatch[2]}`;
+      }
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+};
+
+const sourceTypeLabel: Record<string, string> = {
+  official: '公式情報',
+  youtube: 'YouTube',
+  instagram: 'Instagram',
+  article: '掲載記事',
+  tour_photo: '実戦写真',
+  manual: '確認メモ',
+};
+
+const sourceActionLabel: Record<string, string> = {
+  official: '公式ページを見る',
+  youtube: '動画を見る',
+  instagram: 'Instagramを見る',
+  article: '記事を開く',
+  tour_photo: '写真を見る',
+  manual: '確認内容を見る',
 };
 
 const evergreenPrioritySlugs = [
@@ -203,6 +247,15 @@ export const ProSettingDetailPage = () => {
   const driverDetail = driverClub?.productSlug
     ? getDriverDetailBySlug(driverClub.productSlug)
     : undefined;
+  const youtubeSource = setting.sources.find((source) => source.type === 'youtube');
+  const instagramSource = setting.sources.find((source) => source.type === 'instagram');
+  const officialSource = setting.sources.find((source) => source.type === 'official');
+  const articleSources = setting.sources.filter((source) => source.type === 'article').slice(0, 2);
+  const primaryYoutubeEmbed = youtubeSource ? getYoutubeEmbedUrl(youtubeSource.url) : null;
+  const leadSources = [youtubeSource, instagramSource, officialSource, ...articleSources]
+    .filter((source): source is PublicProfileSource => Boolean(source))
+    .filter((source, index, self) => self.findIndex((item) => item.url === source.url) === index)
+    .slice(0, 4);
 
   return (
     <div className="min-h-screen pb-20">
@@ -240,6 +293,93 @@ export const ProSettingDetailPage = () => {
               <div className="text-[11px] font-black text-slate-400">特徴</div>
               <div className="mt-2 text-base font-black text-white">{setting.style}</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+          <div className="border-b border-slate-200 px-6 py-5 md:px-8">
+            <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] text-slate-400">
+              <PlayCircle size={14} />
+              動画と画像で見る
+            </div>
+            <h2 className="mt-3 text-2xl font-black text-trust-navy">表より先に、動きと見た目で理解する</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              このページでは、まず動画や確認済みソースから全体像をつかみ、そのあとで14本の表を見る流れをおすすめしています。
+            </p>
+          </div>
+
+          {primaryYoutubeEmbed ? (
+            <div className="aspect-video w-full bg-slate-950">
+              <iframe
+                src={primaryYoutubeEmbed}
+                title={`${setting.name}のスイングまたはセッティング動画`}
+                className="h-full w-full"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-6 py-10 text-white md:px-8 md:py-12">
+              <div className="max-w-xl">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-black tracking-[0.16em] text-cyan-200">
+                  <ImageIcon size={14} />
+                  MEDIA READY
+                </div>
+                <h3 className="mt-5 text-3xl font-black tracking-tight">動画がない選手でも、見どころは作れる。</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  まずは公式プロフィール、掲載記事、確認ソースからこのセッティングの背景を追えるようにしています。
+                  YouTube や Instagram の確認ソースが入った選手から、順次動画枠を追加します。
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+          <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] text-slate-400">
+            <Newspaper size={14} />
+            確認済みメディア
+          </div>
+          <h2 className="mt-3 text-2xl font-black text-trust-navy">この選手ページに載せるべきものだけを並べる</h2>
+
+          <div className="mt-5 space-y-3">
+            {leadSources.map((source) => (
+              <a
+                key={source.url}
+                href={source.url}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() =>
+                  trackEvent('open_profile_source', {
+                    source_page: 'pro_setting_detail',
+                    profile_slug: setting.slug,
+                    profile_name: setting.name,
+                    source_type: source.type,
+                    source_title: source.title,
+                  })
+                }
+                className="block rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:bg-white"
+              >
+                <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">
+                  {sourceTypeLabel[source.type] || '確認ソース'}
+                </div>
+                <h3 className="mt-2 text-base font-black text-trust-navy">{source.title}</h3>
+                {source.notes && <p className="mt-2 text-sm leading-7 text-slate-600">{source.notes}</p>}
+                <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                  {sourceActionLabel[source.type] || '開く'}
+                  <ArrowRight size={14} />
+                </div>
+              </a>
+            ))}
+
+            {leadSources.length === 0 && (
+              <div className="rounded-[1.5rem] bg-slate-50 p-4 text-sm leading-7 text-slate-600">
+                現在は表と掲載記事を中心に公開しています。動画や画像のソースが確認できた選手から順次追加します。
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -425,16 +565,16 @@ export const ProSettingDetailPage = () => {
 
       <section className="mt-8 grid gap-6 lg:grid-cols-2">
         <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="text-[11px] font-black text-slate-400">読みどころ</div>
-          <h2 className="mt-3 text-2xl font-black text-trust-navy">{setting.name}のセッティングを見るポイント</h2>
+          <div className="text-[11px] font-black text-slate-400">このページの見方</div>
+          <h2 className="mt-3 text-2xl font-black text-trust-navy">動画と表をどう使い分けるか</h2>
           <div className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
             <p>
-              このページでは、{setting.name}の14本のクラブ構成を一覧で確認できます。ドライバーだけでなく、
-              フェアウェイウッド、アイアン、ウェッジ、パターまで、つながりで見られるのが価値です。
+              最初に動画や確認ソースを見ると、どういう球筋やセッティング思想の選手なのかをつかみやすくなります。
+              そのあとで14本の表を見ると、クラブの流れが頭に入りやすくなります。
             </p>
             <p>
-              特に注目したいのは、使用ボールが <span className="font-bold text-trust-navy">{setting.ball}</span> であることと、
-              {setting.strengths.join('・')} という特徴です。単品ではなく、全体の流れとして参考にするのが向いています。
+              適切なのは、スイング動画、セッティング紹介動画、実戦写真、公式プロフィール、掲載記事の順で並べることです。
+              スペックだけでなく、動きと文脈を一緒に見られるページの方が理解しやすくなります。
             </p>
           </div>
         </article>
