@@ -1,8 +1,23 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, FileText } from 'lucide-react';
+import { ArrowLeft, CalendarDays, FileText } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPublishedArticleBySlug, type PublicArticle } from '../lib/articles';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
+
+const articleTypeLabel: Record<PublicArticle['articleType'], string> = {
+  news: 'お知らせ',
+  update: '更新情報',
+  column: '読みもの',
+};
+
+const formatPublishedAt = (publishedAt: string | null) => {
+  if (!publishedAt) return '公開日未設定';
+  return new Intl.DateTimeFormat('ja-JP', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date(publishedAt));
+};
 
 export const ArticleDetailPage = () => {
   const navigate = useNavigate();
@@ -95,12 +110,24 @@ export const ArticleDetailPage = () => {
       </button>
 
       <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-10">
-        <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+        <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-[11px] font-black tracking-[0.15em] text-slate-500">
           <FileText size={14} />
-          {article.articleType}
+          {articleTypeLabel[article.articleType]}
         </div>
         <h1 className="mt-5 text-4xl font-black tracking-tight text-trust-navy md:text-6xl">{article.title}</h1>
-        <p className="mt-6 whitespace-pre-wrap text-sm leading-8 text-slate-700">{article.body}</p>
+        <div className="mt-5 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-500">
+          <span className="inline-flex items-center gap-2">
+            <CalendarDays size={16} />
+            {formatPublishedAt(article.publishedAt)}
+          </span>
+          {article.seasonYear && <span>{article.seasonYear}シーズン</span>}
+        </div>
+        {article.excerpt && (
+          <p className="mt-6 rounded-[1.5rem] bg-slate-50 p-5 text-sm leading-7 text-slate-700">
+            {article.excerpt}
+          </p>
+        )}
+        <div className="mt-8 whitespace-pre-wrap text-sm leading-8 text-slate-700">{article.body}</div>
       </article>
     </div>
   );

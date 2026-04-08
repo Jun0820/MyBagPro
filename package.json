@@ -12,6 +12,7 @@
     "supabase:publish-profile": "node scripts/supabase-admin.mjs publish-profile",
     "supabase:insert-source": "node scripts/supabase-admin.mjs insert-source",
     "supabase:upsert-article": "node scripts/supabase-admin.mjs upsert-article",
+    "supabase:upsert-articles": "node scripts/supabase-admin.mjs upsert-articles",
     "supabase:upsert-setting-profile": "node scripts/supabase-admin.mjs upsert-setting-profile"
   },
   "dependencies": {

@@ -178,6 +178,81 @@ async function upsertArticle(profileSlug, articleSlug, title, excerpt, body, sea
   console.log(JSON.stringify(data, null, 2));
 }
 
+async function upsertArticlesFromFile(filepath) {
+  if (!filepath) {
+    throw new Error('Usage: npm run supabase:upsert-articles -- <jsonFilePath>');
+  }
+
+  const absolutePath = path.isAbsolute(filepath)
+    ? filepath
+    : path.join(projectRoot, filepath);
+
+  if (!fs.existsSync(absolutePath)) {
+    throw new Error(`File not found: ${absolutePath}`);
+  }
+
+  const payload = JSON.parse(fs.readFileSync(absolutePath, 'utf8'));
+  const articles = Array.isArray(payload) ? payload : payload.articles;
+
+  if (!Array.isArray(articles) || articles.length === 0) {
+    throw new Error('JSON payload must include a non-empty articles array.');
+  }
+
+  const supabase = getAdminClient();
+  const profileCache = new Map();
+  const results = [];
+
+  for (const article of articles) {
+    if (!article.slug || !article.title || !article.excerpt || !article.body || !article.article_type) {
+      throw new Error(`Each article needs slug, title, excerpt, body, and article_type. Invalid slug: ${article.slug || 'unknown'}`);
+    }
+
+    let relatedProfileId = null;
+
+    if (article.related_profile_slug) {
+      if (!profileCache.has(article.related_profile_slug)) {
+        const { data: profile, error: profileError } = await supabase
+          .from('setting_profiles')
+          .select('id')
+          .eq('slug', article.related_profile_slug)
+          .single();
+
+        if (profileError) throw profileError;
+        profileCache.set(article.related_profile_slug, profile.id);
+      }
+
+      relatedProfileId = profileCache.get(article.related_profile_slug);
+    }
+
+    const articlePayload = {
+      slug: article.slug,
+      title: article.title,
+      excerpt: article.excerpt,
+      body: article.body,
+      article_type: article.article_type,
+      related_profile_id: relatedProfileId,
+      related_product_id: article.related_product_id || null,
+      season_year: article.season_year ? Number(article.season_year) : null,
+      published: article.published ?? true,
+      published_at: article.published_at || new Date().toISOString(),
+    };
+
+    const { data, error } = await supabase
+      .from('content_articles')
+      .upsert(articlePayload, { onConflict: 'slug' })
+      .select('slug, title, published, published_at')
+      .single();
+
+    if (error) throw error;
+    results.push(data);
+  }
+
+  console.log(JSON.stringify({
+    imported: results.length,
+    articles: results,
+  }, null, 2));
+}
+
 async function upsertSettingProfileFromFile(filepath) {
   if (!filepath) {
     throw new Error('Usage: npm run supabase:upsert-setting-profile -- <jsonFilePath>');
@@ -303,12 +378,15 @@ async function main() {
     case 'upsert-article':
       await upsertArticle(args[0], args[1], args[2], args[3], args[4], args[5]);
       break;
+    case 'upsert-articles':
+      await upsertArticlesFromFile(args[0]);
+      break;
     case 'upsert-setting-profile':
       await upsertSettingProfileFromFile(args[0]);
       break;
     default:
       throw new Error(
-        'Unknown command. Use one of: check, publish-profile, insert-source, upsert-article, upsert-setting-profile'
+        'Unknown command. Use one of: check, publish-profile, insert-source, upsert-article, upsert-articles, upsert-setting-profile'
       );
   }
 }

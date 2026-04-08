@@ -39,7 +39,7 @@ export const fetchPublishedArticles = async (): Promise<PublicArticle[]> => {
       .select('slug, title, excerpt, body, article_type, published_at, season_year')
       .eq('published', true)
       .order('published_at', { ascending: false })
-      .limit(20);
+      .limit(50);
 
     if (error || !data) return [];
     return (data as ArticleRow[]).map(mapArticle);
