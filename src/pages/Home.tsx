@@ -19,6 +19,21 @@ import { getProfileVisuals } from '../lib/profileVisuals';
 
 const featuredSlugOrder = ['ryo-ishikawa', 'keita-nakajima', 'takumi-kanaya', 'yui-kawamoto'];
 
+const kanaGroups = [
+  { id: 'all', label: 'すべて' },
+  { id: 'a', label: 'あ' },
+  { id: 'ka', label: 'か' },
+  { id: 'sa', label: 'さ' },
+  { id: 'ta', label: 'た' },
+  { id: 'na', label: 'な' },
+  { id: 'ha', label: 'は' },
+  { id: 'ma', label: 'ま' },
+  { id: 'ya', label: 'や' },
+  { id: 'ra', label: 'ら' },
+  { id: 'wa', label: 'わ' },
+  { id: 'latin', label: 'A-Z' },
+] as const;
+
 const heroImage =
   'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1920&q=80';
 
@@ -76,6 +91,8 @@ const features = [
 export const Home = () => {
   const navigate = useNavigate();
   const [searchName, setSearchName] = useState('');
+  const [activeCategory, setActiveCategory] = useState<(typeof profileCategories)[number]['id']>('all');
+  const [activeKana, setActiveKana] = useState<(typeof kanaGroups)[number]['id']>('all');
   const [profiles, setProfiles] = useState<PublicSettingProfile[]>([]);
 
   useEffect(() => {
@@ -110,7 +127,11 @@ export const Home = () => {
       source_page: 'home_hero',
       search_term: query || 'all',
     });
-    navigate(query ? `/settings/pros?search=${encodeURIComponent(query)}` : '/settings/pros');
+    const params = new URLSearchParams();
+    if (query) params.set('search', query);
+    if (activeCategory !== 'all') params.set('category', activeCategory);
+    if (activeKana !== 'all') params.set('kana', activeKana);
+    navigate(params.toString() ? `/settings/pros?${params.toString()}` : '/settings/pros');
   };
 
   return (
@@ -154,7 +175,7 @@ export const Home = () => {
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') handleSearch();
                     }}
-                    placeholder="選手名で検索 例: 石川遼 クラブセッティング"
+                    placeholder="選手名・クラブ名で検索"
                     className="min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400 md:text-base"
                   />
                 </div>
@@ -169,10 +190,48 @@ export const Home = () => {
                 {['石川遼', '中島啓太', '金谷拓実', '河本結'].map((name) => (
                   <button
                     key={name}
-                    onClick={() => navigate(`/settings/pros?search=${encodeURIComponent(name)}`)}
+                    onClick={() => {
+                      const params = new URLSearchParams();
+                      params.set('search', name);
+                      if (activeCategory !== 'all') params.set('category', activeCategory);
+                      if (activeKana !== 'all') params.set('kana', activeKana);
+                      navigate(`/settings/pros?${params.toString()}`);
+                    }}
                     className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-bold text-white/80 transition hover:bg-white/20"
                   >
                     {name}
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {profileCategories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
+                      activeCategory === category.id
+                        ? 'bg-white text-trust-navy'
+                        : 'border border-white/15 bg-white/10 text-white/80 hover:bg-white/20'
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-3 flex flex-wrap gap-2">
+                {kanaGroups.map((group) => (
+                  <button
+                    key={group.id}
+                    onClick={() => setActiveKana(group.id)}
+                    className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
+                      activeKana === group.id
+                        ? 'bg-emerald-300 text-trust-navy'
+                        : 'border border-white/15 bg-white/10 text-white/80 hover:bg-white/20'
+                    }`}
+                  >
+                    {group.label}
                   </button>
                 ))}
               </div>
