@@ -1,0 +1,180 @@
+{
+  "profile": {
+    "slug": "ayano-yasuda",
+    "display_name": "安田彩乃",
+    "kana_name": "ヤスダ アヤノ",
+    "nationality": "Japan",
+    "birthplace": "神奈川県茅ヶ崎市",
+    "birth_date": "1995-06-06",
+    "height_cm": 162,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "スリクソン Z-STAR XV",
+    "feature_1": "2025年時点ギア",
+    "feature_2": "ダンロップ契約",
+    "feature_3": "主要構成確認済み",
+    "summary": "ダンロップ公式の2025年3月時点ギア情報をもとに整理した安田彩乃のクラブセッティング。",
+    "latest_source_policy": "2026_season",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-04-09T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "XXIO",
+      "model_name": "XXIO 13 Driver",
+      "loft_label": "10.5°",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "XXIO",
+      "model_name": "XXIO Fairway Wood",
+      "spec_label": "4W",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "XXIO",
+      "model_name": "XXIO Fairway Wood",
+      "spec_label": "7W",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Srixon",
+      "model_name": "ZXi Hybrid",
+      "spec_label": "4U",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "Srixon",
+      "model_name": "ZXi Hybrid",
+      "spec_label": "5U",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Srixon",
+      "model_name": "ZXi5 Iron",
+      "spec_label": "5I",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Srixon",
+      "model_name": "ZXi5 Iron",
+      "spec_label": "6I",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Srixon",
+      "model_name": "ZXi5 Iron",
+      "spec_label": "7I",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Srixon",
+      "model_name": "ZXi5 Iron",
+      "spec_label": "8I",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Srixon",
+      "model_name": "ZXi5 Iron",
+      "spec_label": "9I",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 11,
+      "brand": "Srixon",
+      "model_name": "ZXi5 Iron",
+      "spec_label": "PW",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Cleveland",
+      "model_name": "RTZ Wedge",
+      "spec_label": "AW",
+      "loft_label": "48°",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Cleveland",
+      "model_name": "RTZ Wedge",
+      "spec_label": "SW",
+      "loft_label": "52°",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 14,
+      "brand": "Cleveland",
+      "model_name": "RTZ Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "source_note": "Confirmed from DUNLOP official player page as of 2025-03-30.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://sports.dunlop.co.jp/golf/players/detail/ayano-yasuda.html",
+      "source_title": "DUNLOP 安田彩乃 使用ギア",
+      "checked_at": "2026-04-09T00:00:00.000Z",
+      "notes": "Player profile and official gear list as of 2025-03-30."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://news.golfdigest.co.jp/players/stats/10932/",
+      "source_title": "GDO 安田彩乃 プロフィール",
+      "checked_at": "2026-04-09T00:00:00.000Z",
+      "notes": "Used for birthplace, birth date, and height confirmation."
+    }
+  ],
+  "article": {
+    "slug": "ayano-yasuda-2026-setting-update",
+    "title": "安田彩乃のクラブセッティングを掲載しました",
+    "excerpt": "ダンロップ公式の2025年3月時点ギア情報をもとに、安田彩乃のクラブ構成を掲載しました。",
+    "body": "安田彩乃のクラブセッティングを掲載しました。ダンロップ公式の使用ギア情報をベースに、主要クラブと使用ボールを整理しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-09T00:00:00.000Z"
+  }
+}

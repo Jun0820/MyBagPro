@@ -1,0 +1,182 @@
+{
+  "profile": {
+    "slug": "mizuki-oide",
+    "display_name": "大出瑞月",
+    "kana_name": "オオイデ ミズキ",
+    "nationality": "Japan",
+    "birthplace": "群馬県",
+    "birth_date": "1997-11-21",
+    "height_cm": 151,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "",
+    "feature_1": "2025年10月時点",
+    "feature_2": "PING中心",
+    "feature_3": "主要構成確認済み",
+    "summary": "PING公式の2025年10月時点情報をもとに整理した大出瑞月のクラブセッティング。",
+    "latest_source_policy": "2026_season",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-04-09T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G440 MAX Driver",
+      "loft_label": "10.5°",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "4W",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "7W",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "4U",
+      "loft_label": "23°",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "PING",
+      "model_name": "G430 Hybrid",
+      "spec_label": "5U",
+      "loft_label": "26°",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 6,
+      "brand": "PING",
+      "model_name": "G430 Hybrid",
+      "spec_label": "6U",
+      "loft_label": "30°",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "7I",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "8I",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "9I",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "PW",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "PING",
+      "model_name": "GLIDE 4.0 Wedge",
+      "spec_label": "AW",
+      "loft_label": "50°",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "PING",
+      "model_name": "GLIDE 4.0 Wedge",
+      "spec_label": "SW",
+      "loft_label": "54°",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "PING",
+      "model_name": "s159 Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "PING",
+      "model_name": "PING 2023 PUTTER TYNE G",
+      "source_note": "Confirmed from PING official tour pro page as of 2025-10-08.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://clubping.jp/tourpros/ooide.html",
+      "source_title": "PING 大出瑞月 使用クラブ",
+      "checked_at": "2026-04-09T00:00:00.000Z",
+      "notes": "Official PING tour pro page. Club setting information dated 2025-10-08."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://news.golfdigest.co.jp/players/stats/17585/",
+      "source_title": "GDO 大出瑞月 プロフィール",
+      "checked_at": "2026-04-09T00:00:00.000Z",
+      "notes": "Used for birthplace, birth date, and height confirmation."
+    }
+  ],
+  "article": {
+    "slug": "mizuki-oide-2026-setting-update",
+    "title": "大出瑞月のクラブセッティングを掲載しました",
+    "excerpt": "PING公式の2025年10月時点ギア情報をもとに、大出瑞月のクラブ構成を掲載しました。",
+    "body": "大出瑞月のクラブセッティングを掲載しました。PING公式のツアープロ情報をもとに、主要クラブ構成を整理しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-09T00:00:00.000Z"
+  }
+}
