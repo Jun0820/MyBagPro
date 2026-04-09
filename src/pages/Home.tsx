@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BarChart3,
   BrainCircuit,
-  ClipboardCheck,
   Club,
   Goal,
   Search,
@@ -11,52 +10,17 @@ import {
   Users,
   WandSparkles,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
+import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
+import { profileCategories } from '../lib/profileMetadata';
 import { getProfileVisuals } from '../lib/profileVisuals';
+
+const featuredSlugOrder = ['ryo-ishikawa', 'keita-nakajima', 'takumi-kanaya', 'yui-kawamoto'];
 
 const heroImage =
   'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1920&q=80';
-
-const popularPros = [
-  {
-    slug: 'ryo-ishikawa',
-    name: '石川 遼',
-    tag: '操作性重視',
-    trait: '狙った高さと球筋を細かく作りやすい、競技志向のセット。',
-    clubs: [
-      { label: '1W', model: 'ステルス プラス' },
-      { label: '3W / 5W', model: 'SIM / ステルス プラス' },
-      { label: 'アイアン', model: 'RORS プロト' },
-      { label: 'パター', model: 'Spider X' },
-    ],
-  },
-  {
-    slug: 'keita-nakajima',
-    name: '中島 啓太',
-    tag: '飛距離重視',
-    trait: '高さと飛距離を両立させる、現代的な強弾道セッティング。',
-    clubs: [
-      { label: '1W', model: 'Qi35 LS' },
-      { label: '3W', model: 'Qi10 Tour' },
-      { label: 'アイアン', model: 'P7CB / P7MB' },
-      { label: 'パター', model: 'TP Soto' },
-    ],
-  },
-  {
-    slug: 'takumi-kanaya',
-    name: '金谷 拓実',
-    tag: '精密志向',
-    trait: 'ミスを減らしながら再現性を高める、精密なPING中心構成。',
-    clubs: [
-      { label: '1W', model: 'G440 LST' },
-      { label: '3W', model: 'G410 FW' },
-      { label: 'アイアン', model: 'G710 / i230' },
-      { label: 'パター', model: 'Sigma 2 Anser' },
-    ],
-  },
-];
 
 const golfHighlights = [
   {
@@ -112,6 +76,33 @@ const features = [
 export const Home = () => {
   const navigate = useNavigate();
   const [searchName, setSearchName] = useState('');
+  const [profiles, setProfiles] = useState<PublicSettingProfile[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadProfiles = async () => {
+      const data = await fetchPublishedSettingProfiles();
+      if (isMounted) {
+        setProfiles(data);
+      }
+    };
+
+    loadProfiles();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const featuredProfiles = useMemo(() => {
+    const prioritized = featuredSlugOrder
+      .map((slug) => profiles.find((profile) => profile.slug === slug))
+      .filter(Boolean) as PublicSettingProfile[];
+
+    const fallback = profiles.filter((profile) => !featuredSlugOrder.includes(profile.slug)).slice(0, 4 - prioritized.length);
+    return [...prioritized, ...fallback].slice(0, 4);
+  }, [profiles]);
 
   const handleSearch = () => {
     const query = searchName.trim();
@@ -175,7 +166,7 @@ export const Home = () => {
                 </button>
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
-                {['石川遼', '中島啓太', '金谷拓実', '時松隆光'].map((name) => (
+                {['石川遼', '中島啓太', '金谷拓実', '河本結'].map((name) => (
                   <button
                     key={name}
                     onClick={() => navigate(`/settings/pros?search=${encodeURIComponent(name)}`)}
@@ -234,10 +225,24 @@ export const Home = () => {
                 );
               })}
             </div>
+
+            <div className="mt-8 flex flex-wrap gap-2">
+              {profileCategories
+                .filter((category) => category.id !== 'all')
+                .map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => navigate(`/settings/pros?category=${encodeURIComponent(category.id)}`)}
+                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white/85 transition hover:bg-white/20"
+                  >
+                    {category.label}
+                  </button>
+                ))}
+            </div>
           </div>
 
           <div className="grid gap-4">
-            {popularPros.map((pro) => (
+            {featuredProfiles.map((pro) => (
               <button
                 key={`hero-${pro.slug}`}
                 onClick={() => navigate(`/settings/pros/${pro.slug}`)}
@@ -252,19 +257,19 @@ export const Home = () => {
                   <div className="p-5">
                     <div className="flex items-center justify-between gap-3">
                       <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black tracking-[0.12em] text-white/80">
-                        {pro.tag}
+                        {pro.categoryLabel}
                       </span>
-                      <span className="text-[11px] font-bold text-white/45">参考にする</span>
+                      <span className="text-[11px] font-bold text-white/45">{pro.contractLabel}</span>
                     </div>
                     <h2 className="mt-3 text-2xl font-black text-white">{pro.name}</h2>
-                    <p className="mt-2 text-sm leading-6 text-white/75">{pro.trait}</p>
+                    <p className="mt-2 text-sm leading-6 text-white/75">{pro.tagline}</p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {pro.clubs.slice(0, 3).map((club) => (
                         <span
-                          key={`hero-club-${pro.slug}-${club.label}`}
+                          key={`hero-club-${pro.slug}-${club.category}`}
                           className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold text-cyan-100"
                         >
-                          {club.label} {club.model}
+                          {club.specLabel || club.category} {club.model}
                         </span>
                       ))}
                     </div>
@@ -281,12 +286,12 @@ export const Home = () => {
           <div className="text-center">
             <h2 className="text-3xl font-black text-gray-900 md:text-4xl">有名プロのクラブセッティングをすぐ探す</h2>
             <p className="mt-4 text-base text-gray-600">
-              Google で探されやすい有名プロから、現在の14本を分かりやすく確認できます。
+              選手名検索とカテゴリ分けから、現在の14本と使用ボールをすぐ確認できます。
             </p>
           </div>
 
           <div className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {popularPros.map((pro) => (
+            {featuredProfiles.map((pro) => (
               <article
                 key={pro.slug}
                 className="overflow-hidden rounded-[1.75rem] bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
@@ -299,17 +304,17 @@ export const Home = () => {
                   />
                   <div>
                     <div className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
-                      {pro.tag}
+                      {pro.categoryLabel}
                     </div>
                     <h3 className="mt-3 text-xl font-black text-gray-900">{pro.name}</h3>
-                    <p className="mt-2 text-sm leading-7 text-gray-600">{pro.trait}</p>
+                    <p className="mt-2 text-sm leading-7 text-gray-600">{pro.tagline}</p>
                   </div>
                 </div>
                 <div className="p-6">
                   <ul className="space-y-3 text-sm text-gray-600">
-                    {pro.clubs.map((club) => (
-                      <li key={`${pro.slug}-${club.label}`} className="flex items-start justify-between gap-4">
-                        <span className="shrink-0 font-bold text-gray-900">{club.label}</span>
+                    {pro.clubs.slice(0, 4).map((club) => (
+                      <li key={`${pro.slug}-${club.category}`} className="flex items-start justify-between gap-4">
+                        <span className="shrink-0 font-bold text-gray-900">{club.specLabel || club.category}</span>
                         <span className="text-right">{club.model}</span>
                       </li>
                     ))}
@@ -325,7 +330,7 @@ export const Home = () => {
                     }}
                     className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-green-500 py-3 font-black text-green-600 transition hover:bg-green-50"
                   >
-                    詳細を見る
+                    現在の14本を見る
                     <ArrowRight size={16} />
                   </button>
                 </div>
@@ -375,18 +380,18 @@ export const Home = () => {
             {[
               {
                 icon: Search,
-                title: '参考にする',
-                text: '人気プロの14本を見て、いまのクラブ選びの基準を作る。',
+                title: '探して知る',
+                text: 'まず有名プロの現在の14本を検索し、誰が何を使っているかを知る。',
               },
               {
-                icon: ClipboardCheck,
-                title: '診断する',
-                text: 'いくつかの質問から、自分に合うクラブの方向性を絞る。',
+                icon: BrainCircuit,
+                title: '自分に当てはめる',
+                text: '見つけたセッティングを参考に、自分の方向性や比較条件を整理する。',
               },
               {
                 icon: ShoppingCart,
-                title: '購入につなげる',
-                text: '比較した流れのまま、候補クラブの検討と購入へ進む。',
+                title: '比較して検討する',
+                text: '気になるクラブはそのまま比較と購入導線に進める。',
               },
             ].map((item) => {
               const Icon = item.icon;

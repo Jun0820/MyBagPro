@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, BadgeCheck, Camera, PlayCircle, Search } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Search } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
+import { profileCategories, type ProfileCategory } from '../lib/profileMetadata';
 import { getProfileVisuals } from '../lib/profileVisuals';
 
 export const ProsSettingsPage = () => {
@@ -11,6 +12,7 @@ export const ProsSettingsPage = () => {
   const [profiles, setProfiles] = useState<PublicSettingProfile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState(searchParams.get('search') || '');
+  const activeCategory = (searchParams.get('category') as 'all' | ProfileCategory | null) || 'all';
 
   useEffect(() => {
     let isMounted = true;
@@ -37,11 +39,15 @@ export const ProsSettingsPage = () => {
 
   const filteredProfiles = useMemo(() => {
     const query = searchText.trim().toLowerCase();
-    if (!query) return profiles;
-
     return profiles.filter((profile) => {
+      if (activeCategory !== 'all' && profile.category !== activeCategory) {
+        return false;
+      }
+      if (!query) return true;
       const haystack = [
         profile.name,
+        profile.categoryLabel,
+        profile.contractLabel,
         profile.tagline,
         profile.summary,
         profile.ball,
@@ -53,7 +59,7 @@ export const ProsSettingsPage = () => {
 
       return haystack.includes(query);
     });
-  }, [profiles, searchText]);
+  }, [activeCategory, profiles, searchText]);
 
   const summary = useMemo(
     () => ({
@@ -112,7 +118,15 @@ export const ProsSettingsPage = () => {
               </div>
               <div className="flex gap-3">
                 <button
-                  onClick={() => setSearchParams(searchText.trim() ? { search: searchText.trim() } : {})}
+                  onClick={() =>
+                    setSearchParams(
+                      {
+                        ...(searchText.trim() ? { search: searchText.trim() } : {}),
+                        ...(activeCategory !== 'all' ? { category: activeCategory } : {}),
+                      },
+                      { replace: true }
+                    )
+                  }
                   className="rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
                 >
                   検索する
@@ -120,7 +134,7 @@ export const ProsSettingsPage = () => {
                 <button
                   onClick={() => {
                     setSearchText('');
-                    setSearchParams({});
+                    setSearchParams(activeCategory !== 'all' ? { category: activeCategory } : {}, { replace: true });
                   }}
                   className="rounded-full border border-slate-200 px-5 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-50"
                 >
@@ -130,35 +144,26 @@ export const ProsSettingsPage = () => {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[
-              {
-                icon: Camera,
-                title: 'まず写真で全体像を見る',
-                text: 'クラブやバッグの雰囲気を先に見てから、14本の中身へ入れます。',
-              },
-              {
-                icon: PlayCircle,
-                title: '動画があれば優先表示',
-                text: 'スイング動画やセッティング動画が確認できる選手から順に見やすく掲載します。',
-              },
-              {
-                icon: BadgeCheck,
-                title: '確認できた情報だけ公開',
-                text: '参照元と14本がそろったものだけに絞って公開しています。',
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.title} className="rounded-[1.5rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-golf-50 text-golf-700">
-                    <Icon size={20} />
-                  </div>
-                  <h2 className="mt-4 text-base font-black text-trust-navy">{item.title}</h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
-                </div>
-              );
-            })}
+          <div className="mt-8 flex flex-wrap gap-3">
+            {profileCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => {
+                  const next = {
+                    ...(searchText.trim() ? { search: searchText.trim() } : {}),
+                    ...(category.id !== 'all' ? { category: category.id } : {}),
+                  };
+                  setSearchParams(next, { replace: true });
+                }}
+                className={`rounded-full px-4 py-2 text-sm font-black transition ${
+                  activeCategory === category.id
+                    ? 'bg-trust-navy text-white'
+                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                }`}
+              >
+                {category.label}
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -196,21 +201,20 @@ export const ProsSettingsPage = () => {
               }}
               className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
             >
-              <div className="relative h-64 overflow-hidden">
-                <img src={visuals.hero} alt="" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.05)_0%,rgba(15,23,42,0.72)_100%)]" />
+                <div className="relative h-64 overflow-hidden">
+                  <img src={visuals.hero} alt="" className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.05)_0%,rgba(15,23,42,0.72)_100%)]" />
 
-                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.12em] text-white backdrop-blur">
-                  <Camera size={13} />
-                  セッティングの雰囲気
-                </div>
-
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-500">
-                    {setting.type}
+                  <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.12em] text-white backdrop-blur">
+                    {setting.categoryLabel}
                   </div>
-                  <h2 className="mt-3 text-3xl font-black tracking-tight text-white">{setting.name}</h2>
-                  <p className="mt-2 max-w-xl text-sm font-bold text-cyan-100">{setting.tagline}</p>
+
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <div className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-500">
+                      {setting.contractLabel}
+                    </div>
+                    <h2 className="mt-3 text-3xl font-black tracking-tight text-white">{setting.name}</h2>
+                    <p className="mt-2 max-w-xl text-sm font-bold text-cyan-100">{setting.tagline}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {setting.clubs.slice(0, 3).map((club) => (
                       <span
@@ -240,12 +244,12 @@ export const ProsSettingsPage = () => {
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-3">
                   <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">ヘッドスピード</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.headSpeed}</div>
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">区分</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.categoryLabel}</div>
                   </div>
                   <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">平均スコア</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.averageScore}</div>
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約区分</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.contractLabel}</div>
                   </div>
                   <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
                     <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">使用ボール</div>
@@ -277,7 +281,7 @@ export const ProsSettingsPage = () => {
                 </div>
 
                 <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
-                  写真・動画・14本を見る
+                  現在の14本を見る
                   <ArrowRight size={16} />
                 </div>
               </div>

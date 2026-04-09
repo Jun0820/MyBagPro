@@ -1,3 +1,4 @@
+import { getProfileMetadata, type ContractStatus, type ProfileCategory } from './profileMetadata';
 import { isSupabaseConfigured, supabase } from './supabase';
 
 export interface PublicBagClub {
@@ -26,6 +27,10 @@ export interface PublicSettingProfile {
   slug: string;
   name: string;
   type: 'Tour Pro' | 'Influencer' | 'Amateur' | 'Legend';
+  category: ProfileCategory;
+  categoryLabel: string;
+  contractStatus: ContractStatus;
+  contractLabel: string;
   tagline: string;
   summary: string;
   headSpeed: string;
@@ -148,6 +153,7 @@ const buildProfiles = (
 
     const strengths = [profile.feature_1, profile.feature_2, profile.feature_3].filter(Boolean) as string[];
     const type = typeLabelMap[profile.profile_type];
+    const metadata = getProfileMetadata(profile.slug);
     const sources = sourceRows
       .filter((source) => source.profile_id === profile.id && source.source_url)
       .map((source) => ({
@@ -162,6 +168,10 @@ const buildProfiles = (
       slug: profile.slug,
       name: profile.display_name,
       type,
+      category: metadata.category,
+      categoryLabel: metadata.categoryLabel,
+      contractStatus: metadata.contractStatus,
+      contractLabel: metadata.contractLabel,
       tagline: inferTagline(strengths, type),
       summary: profile.summary || '2026シーズン基準で確認していく掲載用プロフィールです。',
       headSpeed: formatHeadSpeed(profile.head_speed_mps),

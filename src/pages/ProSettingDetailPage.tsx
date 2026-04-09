@@ -2,14 +2,11 @@ import { useEffect, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
-  Gauge,
   Globe,
-  Image as ImageIcon,
   Instagram,
   Newspaper,
   PlayCircle,
   ShoppingBag,
-  Sparkles,
   Twitter,
 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -98,15 +95,6 @@ const toChannelUrl = (value: string, platform: 'youtube' | 'instagram' | 'x') =>
   if (platform === 'youtube') return `https://www.youtube.com/${normalized}`;
   if (platform === 'instagram') return `https://www.instagram.com/${normalized}/`;
   return `https://x.com/${normalized}`;
-};
-
-const mediaPriorityCopy: Record<string, string> = {
-  youtube: '最初に見る',
-  instagram: '見た目をつかむ',
-  official: 'プロフィール確認',
-  article: '詳細を読む',
-  tour_photo: '実戦写真を見る',
-  manual: '確認メモ',
 };
 
 const evergreenPrioritySlugs = [
@@ -315,44 +303,6 @@ export const ProSettingDetailPage = () => {
     channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
   }
 
-  const mediaStatusCards = [
-    {
-      label: 'スイング動画',
-      value: youtubeSource ? '確認済み' : '順次追加',
-      tone: youtubeSource ? 'text-golf-700 bg-golf-50 border-golf-200' : 'text-slate-500 bg-slate-50 border-slate-200',
-    },
-    {
-      label: '画像・実戦素材',
-      value: instagramSource ? '確認済み' : '順次追加',
-      tone: instagramSource ? 'text-golf-700 bg-golf-50 border-golf-200' : 'text-slate-500 bg-slate-50 border-slate-200',
-    },
-    {
-      label: '掲載根拠',
-      value: leadSources.length > 0 ? `${leadSources.length}件` : '確認中',
-      tone: leadSources.length > 0 ? 'text-golf-700 bg-golf-50 border-golf-200' : 'text-slate-500 bg-slate-50 border-slate-200',
-    },
-  ];
-  const mediaHighlights = [
-    {
-      label: '注目ドライバー',
-      value: driverClub ? driverClub.model : '未公開',
-    },
-    {
-      label: '使用ボール',
-      value: setting.ball,
-    },
-    {
-      label: '見るべき特徴',
-      value: setting.style,
-    },
-  ];
-  const sourceTimeline = [...leadSources]
-    .sort((a, b) => {
-      const aTime = a.checkedAt ? new Date(a.checkedAt).getTime() : 0;
-      const bTime = b.checkedAt ? new Date(b.checkedAt).getTime() : 0;
-      return bTime - aTime;
-    })
-    .slice(0, 4);
   const visuals = getProfileVisuals(setting.slug);
 
   return (
@@ -406,6 +356,14 @@ export const ProSettingDetailPage = () => {
 
               <div className="mt-8 grid gap-4 md:grid-cols-4">
                 <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                  <div className="text-[11px] font-black text-slate-400">区分</div>
+                  <div className="mt-2 text-base font-black text-white">{setting.categoryLabel}</div>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                  <div className="text-[11px] font-black text-slate-400">契約区分</div>
+                  <div className="mt-2 text-base font-black text-white">{setting.contractLabel}</div>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
                   <div className="text-[11px] font-black text-slate-400">ヘッドスピード</div>
                   <div className="mt-2 text-base font-black text-white">{setting.headSpeed}</div>
                 </div>
@@ -417,36 +375,6 @@ export const ProSettingDetailPage = () => {
                   <div className="text-[11px] font-black text-slate-400">使用ボール</div>
                   <div className="mt-2 text-base font-black text-white">{setting.ball}</div>
                 </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-                  <div className="text-[11px] font-black text-slate-400">特徴</div>
-                  <div className="mt-2 text-base font-black text-white">{setting.style}</div>
-                </div>
-              </div>
-
-              <div className="mt-6 grid gap-3 md:grid-cols-3">
-                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/40 px-4 py-4">
-                  <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">最初に見るもの</div>
-                  <div className="mt-2 text-sm font-black text-white">
-                    {youtubeSource ? 'スイング動画' : 'バッグとクラブの全体像'}
-                  </div>
-                  <p className="mt-2 text-xs leading-6 text-slate-300">
-                    まずは動きや見た目から、その選手のセッティングの方向性をつかみます。
-                  </p>
-                </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/40 px-4 py-4">
-                  <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">注目クラブ</div>
-                  <div className="mt-2 text-sm font-black text-white">{driverClub ? driverClub.model : 'ドライバー確認中'}</div>
-                  <p className="mt-2 text-xs leading-6 text-slate-300">
-                    1Wだけでなく、FWやウェッジとのつながりまで見ていくのがおすすめです。
-                  </p>
-                </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/40 px-4 py-4">
-                  <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">参考にする視点</div>
-                  <div className="mt-2 text-sm font-black text-white">{setting.style}</div>
-                  <p className="mt-2 text-xs leading-6 text-slate-300">
-                    同じモデル名より、番手構成とクラブの流れ方を自分の14本にどう移すかを見ます。
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -454,17 +382,15 @@ export const ProSettingDetailPage = () => {
           <div className="relative min-h-[360px] overflow-hidden">
             <img src={visuals.hero} alt="" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.72)_100%)]" />
-            <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.14em] text-white backdrop-blur">
-              <ImageIcon size={13} />
-              バッグとクラブのイメージ
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 grid gap-3 sm:grid-cols-3">
-              {mediaHighlights.map((item) => (
-                <div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-slate-950/55 px-4 py-4 backdrop-blur">
-                  <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{item.label}</div>
-                  <div className="mt-2 text-sm font-black text-white">{item.value}</div>
-                </div>
-              ))}
+            <div className="absolute bottom-6 left-6 right-6 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/55 px-4 py-4 backdrop-blur">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>
+                <div className="mt-2 text-sm font-black text-white">{driverClub ? driverClub.model : '未公開'}</div>
+              </div>
+              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/55 px-4 py-4 backdrop-blur">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ボール</div>
+                <div className="mt-2 text-sm font-black text-white">{setting.ball}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -473,14 +399,8 @@ export const ProSettingDetailPage = () => {
       <section className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
           <div className="border-b border-slate-200 px-6 py-5 md:px-8">
-            <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] text-slate-400">
-              <PlayCircle size={14} />
-              動画と画像で見る
-            </div>
-            <h2 className="mt-3 text-2xl font-black text-trust-navy">表より先に、動きと見た目で理解する</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              このページでは、まず動画や確認済みソースから全体像をつかみ、そのあとで14本の表を見る流れをおすすめしています。
-            </p>
+            <h2 className="text-2xl font-black text-trust-navy">動画・公式・掲載記事</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">確認できたソースだけを掲載しています。</p>
           </div>
 
           {primaryYoutubeEmbed ? (
@@ -497,14 +417,9 @@ export const ProSettingDetailPage = () => {
           ) : (
             <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-6 py-10 text-white md:px-8 md:py-12">
               <div className="max-w-xl">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-black tracking-[0.16em] text-cyan-200">
-                  <ImageIcon size={14} />
-                  MEDIA READY
-                </div>
-                <h3 className="mt-5 text-3xl font-black tracking-tight">動画がない選手でも、見どころは作れる。</h3>
+                <h3 className="text-3xl font-black tracking-tight">確認済みの動画は順次追加しています。</h3>
                 <p className="mt-4 text-sm leading-7 text-slate-300">
-                  まずは公式プロフィール、掲載記事、確認ソースからこのセッティングの背景を追えるようにしています。
-                  YouTube や Instagram の確認ソースが入った選手から、順次動画枠を追加します。
+                  現在は公式プロフィールと掲載記事を中心に公開しています。動画ソースが確認できた選手から順に表示します。
                 </p>
               </div>
             </div>
@@ -514,27 +429,9 @@ export const ProSettingDetailPage = () => {
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
           <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] text-slate-400">
             <Newspaper size={14} />
-            確認済みメディア
+            確認済みソース
           </div>
-          <h2 className="mt-3 text-2xl font-black text-trust-navy">この選手ページに載せるべきものだけを並べる</h2>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {mediaStatusCards.map((card) => (
-              <div key={card.label} className={`rounded-[1.25rem] border px-4 py-4 ${card.tone}`}>
-                <div className="text-[11px] font-black tracking-[0.16em]">{card.label}</div>
-                <div className="mt-2 text-sm font-black">{card.value}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {mediaHighlights.map((item) => (
-              <div key={item.label} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4">
-                <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">{item.label}</div>
-                <div className="mt-2 text-sm font-black text-trust-navy">{item.value}</div>
-              </div>
-            ))}
-          </div>
+          <h2 className="mt-3 text-2xl font-black text-trust-navy">このページの掲載根拠</h2>
 
           <div className="mt-5 space-y-3">
             {leadSources.map((source) => (
@@ -557,9 +454,6 @@ export const ProSettingDetailPage = () => {
                 <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">
                   {sourceTypeLabel[source.type] || '確認ソース'}
                 </div>
-                <div className="mt-2 inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black tracking-[0.14em] text-slate-500">
-                  {mediaPriorityCopy[source.type] || '確認素材'}
-                </div>
                 <h3 className="mt-2 text-base font-black text-trust-navy">{source.title}</h3>
                 <div className="mt-2 text-xs font-bold text-slate-400">確認日: {formatCheckedAt(source.checkedAt)}</div>
                 {source.notes && <p className="mt-2 text-sm leading-7 text-slate-600">{source.notes}</p>}
@@ -579,48 +473,8 @@ export const ProSettingDetailPage = () => {
         </div>
       </section>
 
-      <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] text-slate-400">
-              <ImageIcon size={14} />
-              SETTING GALLERY
-            </div>
-            <h2 className="mt-3 text-2xl font-black text-trust-navy">クラブ選びの空気感を、写真から先につかむ</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              テーブルの数字に入る前に、バッグ、クラブ、スイングの雰囲気から全体像をつかみやすくしています。
-            </p>
-          </div>
-          <div className="rounded-full bg-slate-100 px-4 py-2 text-xs font-black tracking-[0.14em] text-slate-500">
-            ゴルフ写真を中心に表示
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {visuals.gallery.map((image, index) => (
-            <div key={`${setting.slug}-gallery-${index}`} className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
-              <img src={image} alt="" className="h-56 w-full object-cover" />
-              <div className="px-5 py-4">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
-                  {['スイングの印象', 'クラブ選びのイメージ', 'ラウンドの空気感'][index]}
-                </div>
-                <div className="mt-2 text-sm font-bold text-trust-navy">
-                  {index === 0 && 'まずショットの雰囲気から把握する'}
-                  {index === 1 && 'バッグ全体の方向性を想像しやすくする'}
-                  {index === 2 && '実戦での使い方まで連想しやすくする'}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-8 grid gap-6 md:grid-cols-[1.4fr_0.9fr]">
+      <section className="mt-8 grid gap-6 md:grid-cols-[1.45fr_0.85fr]">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="inline-flex items-center gap-2 text-[11px] font-black text-slate-400">
-            <Sparkles size={14} />
-            このページで分かること
-          </div>
           <h2 className="mt-3 text-2xl font-black text-trust-navy">14本の構成をひと目で確認する</h2>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             クラブ名、シャフト、ロフト、硬さ、飛距離までを一覧で見られるようにしています。まずは全体の並び方を見て、気になる番手を詳しく確認してください。
@@ -709,52 +563,6 @@ export const ProSettingDetailPage = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6">
-            <div className="inline-flex items-center gap-2 text-[11px] font-black text-slate-400">
-              <Gauge size={14} />
-              見るときのポイント
-            </div>
-            <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
-              <div>
-                <div className="text-[11px] font-black text-slate-400">ヘッドスピード</div>
-                <div className="mt-1 font-bold text-trust-navy">{setting.headSpeed}</div>
-              </div>
-              <div>
-                <div className="text-[11px] font-black text-slate-400">平均スコア</div>
-                <div className="mt-1 font-bold text-trust-navy">{setting.averageScore}</div>
-              </div>
-              <div>
-                <div className="text-[11px] font-black text-slate-400">使用ボール</div>
-                <div className="mt-1 font-bold text-trust-navy">{setting.ball}</div>
-              </div>
-              <div>
-                <div className="text-[11px] font-black text-slate-400">見るべき特徴</div>
-                <div className="mt-1 font-bold text-trust-navy">{setting.style}</div>
-              </div>
-              <p className="rounded-[1.25rem] bg-slate-50 px-4 py-4 text-sm">
-                同じクラブを真似するよりも、番手の流れ方、ウェッジの構成、ボールとの組み合わせを見て、自分のバッグにどう落とし込むかを考えるのがコツです。
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6">
-            <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">掲載基準</div>
-            <h2 className="mt-3 text-xl font-black text-trust-navy">このページは何を根拠に公開しているか</h2>
-            <div className="mt-5 grid gap-4 text-sm leading-7 text-slate-600">
-              <div className="rounded-[1.25rem] bg-slate-50 px-4 py-4">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">シーズン基準</div>
-                <div className="mt-1 font-bold text-trust-navy">{setting.seasonYear ? `${setting.seasonYear}年` : '未設定'}</div>
-              </div>
-              <div className="rounded-[1.25rem] bg-slate-50 px-4 py-4">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">確認ポリシー</div>
-                <div className="mt-1 font-bold text-trust-navy">{setting.latestSourcePolicy || '確認済みソース優先'}</div>
-              </div>
-              <p className="rounded-[1.25rem] bg-slate-50 px-4 py-4">
-                推定値や未確認情報は掲載しません。動画・記事・公式情報のいずれかで確認できた内容だけを、このページの素材として使います。
-              </p>
-            </div>
-          </div>
-
           <div className="rounded-[2rem] border border-cyan-100 bg-cyan-50 p-6">
             <h2 className="text-xl font-black text-trust-navy">このあとできること</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -811,63 +619,7 @@ export const ProSettingDetailPage = () => {
           </div>
         </div>
       </section>
-
-      <section className="mt-8 grid gap-6 lg:grid-cols-2">
-        <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="text-[11px] font-black text-slate-400">このページの見方</div>
-          <h2 className="mt-3 text-2xl font-black text-trust-navy">動画と表をどう使い分けるか</h2>
-          <div className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
-            <p>
-              最初に動画や確認ソースを見ると、どういう球筋やセッティング思想の選手なのかをつかみやすくなります。
-              そのあとで14本の表を見ると、クラブの流れが頭に入りやすくなります。
-            </p>
-            <p>
-              適切なのは、スイング動画、セッティング紹介動画、実戦写真、公式プロフィール、掲載記事の順で並べることです。
-              スペックだけでなく、動きと文脈を一緒に見られるページの方が理解しやすくなります。
-            </p>
-          </div>
-        </article>
-
-        <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="text-[11px] font-black text-slate-400">活かし方</div>
-          <h2 className="mt-3 text-2xl font-black text-trust-navy">自分のバッグ作りに落とし込む</h2>
-          <div className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
-            <p>
-              プロのセッティングをそのまま真似するというより、クラブの並び方、ロフトの階段、ウェッジ構成、ボールとの組み合わせを見て、
-              自分のヘッドスピードや平均スコアにどう落とし込むかを考えるのがコツです。
-            </p>
-            <p>
-              気になる構成があれば、そのまま比較ページや AI診断につなげて、自分向けの候補へ絞り込めます。
-            </p>
-          </div>
-        </article>
-
-        <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="text-[11px] font-black text-slate-400">確認の流れ</div>
-          <h2 className="mt-3 text-2xl font-black text-trust-navy">どの素材を根拠にこのページを作っているか</h2>
-          <div className="mt-5 space-y-4">
-            {sourceTimeline.map((source, index) => (
-              <div key={`${source.url}-${index}`} className="flex gap-4">
-                <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black text-trust-navy">
-                  {index + 1}
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
-                    {sourceTypeLabel[source.type] || '確認ソース'} / {formatCheckedAt(source.checkedAt)}
-                  </div>
-                  <div className="mt-1 text-base font-black text-trust-navy">{source.title}</div>
-                  {source.notes && <p className="mt-1 text-sm leading-7 text-slate-600">{source.notes}</p>}
-                </div>
-              </div>
-            ))}
-            {sourceTimeline.length === 0 && (
-              <p className="rounded-[1.25rem] bg-slate-50 px-4 py-4 text-sm leading-7 text-slate-600">
-                確認ソースが増えるたびに、このページも順に厚くしていきます。
-              </p>
-            )}
-          </div>
-        </article>
-
+      <section className="mt-8">
         <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
           <div className="inline-flex items-center gap-2 text-[11px] font-black text-slate-400">
             <Newspaper size={14} />
