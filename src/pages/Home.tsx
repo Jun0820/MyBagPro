@@ -132,7 +132,7 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative mx-auto grid min-h-[560px] max-w-7xl items-center gap-8 px-5 py-12 md:min-h-[680px] md:grid-cols-[minmax(0,1.2fr)_420px] md:px-10">
+        <div className="relative mx-auto flex min-h-[560px] max-w-7xl items-center px-5 py-12 md:min-h-[680px] md:px-10">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-white/90 backdrop-blur">
               <Star size={14} className="text-emerald-300" />
@@ -236,44 +236,6 @@ export const Home = () => {
               </button>
             </div>
 
-          </div>
-
-          <div className="hidden gap-4 md:grid">
-            {featuredProfiles.map((pro) => (
-              <button
-                key={`hero-${pro.slug}`}
-                onClick={() => navigate(`/settings/pros/${pro.slug}`)}
-                className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 text-left shadow-lg backdrop-blur transition hover:-translate-y-1 hover:border-white/20"
-              >
-                <div className="grid grid-cols-[112px_minmax(0,1fr)] gap-0">
-                  <img
-                    src={getProfileVisuals(pro.slug).portrait}
-                    alt={`${pro.name}のプレースホルダー画像`}
-                    className="h-full min-h-[144px] w-full bg-white object-cover p-3"
-                  />
-                  <div className="p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black tracking-[0.12em] text-white/80">
-                        {pro.categoryLabel}
-                      </span>
-                      <span className="text-[11px] font-bold text-white/45">{pro.contractLabel}</span>
-                    </div>
-                    <h2 className="mt-3 text-2xl font-black text-white">{pro.name}</h2>
-                    <p className="mt-2 text-sm leading-6 text-white/75">{pro.tagline}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {pro.clubs.slice(0, 3).map((club) => (
-                        <span
-                          key={`hero-club-${pro.slug}-${club.category}`}
-                          className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold text-cyan-100"
-                        >
-                          {club.specLabel || club.category} {club.model}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </button>
-            ))}
           </div>
         </div>
       </section>
