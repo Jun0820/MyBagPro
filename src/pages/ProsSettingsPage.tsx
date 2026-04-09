@@ -187,7 +187,7 @@ export const ProsSettingsPage = () => {
         </div>
       </section>
 
-      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {isLoading && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
             掲載プロフィールを読み込んでいます...
@@ -215,46 +215,37 @@ export const ProsSettingsPage = () => {
                 });
                 navigate(`/settings/pros/${setting.slug}`);
               }}
-              className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
+              className="rounded-[2rem] border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
             >
-              <div className="relative h-52 overflow-hidden">
-                <img src={visuals.hero} alt="" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.06)_0%,rgba(15,23,42,0.72)_100%)]" />
-                <div className="absolute left-5 top-5 inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-white backdrop-blur">
-                  {setting.categoryLabel}
-                </div>
-                <div className="absolute bottom-5 left-5 right-5">
-                  <h2 className="text-3xl font-black tracking-tight text-white">{setting.name}</h2>
-                  {setting.kanaName && <div className="mt-2 text-sm font-bold text-white/80">{setting.kanaName}</div>}
-                </div>
-              </div>
-
-              <div className="p-6">
+              <div className="p-5">
                 <div className="flex items-center gap-4">
                   <img
                     src={visuals.portrait}
                     alt={`${setting.name}のプレースホルダー画像`}
                     className="h-16 w-16 rounded-full border border-slate-200 bg-white object-cover p-2"
                   />
-                  <div className="text-sm font-bold text-slate-500">公開中プロフィール</div>
+                  <div className="min-w-0">
+                    <div className="text-lg font-black text-trust-navy">{setting.name}</div>
+                    {setting.kanaName && <div className="mt-1 text-xs font-bold text-slate-500">{setting.kanaName}</div>}
+                  </div>
                 </div>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
+                <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                  <div className="rounded-[1.25rem] bg-slate-50 px-4 py-3">
                     <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">カテゴリ</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.categoryLabel}</div>
+                    <div className="mt-1 text-sm font-black text-trust-navy">{setting.categoryLabel}</div>
                   </div>
-                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約区分</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.contractDisplay}</div>
+                  <div className="rounded-[1.25rem] bg-slate-50 px-4 py-3">
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約メーカー</div>
+                    <div className="mt-1 text-sm font-black text-trust-navy">{setting.contractDisplay}</div>
                   </div>
-                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
+                  <div className="rounded-[1.25rem] bg-slate-50 px-4 py-3">
                     <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">年齢</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.age ? `${setting.age}歳` : '未公開'}</div>
+                    <div className="mt-1 text-sm font-black text-trust-navy">{setting.age ?? '未公開'}</div>
                   </div>
                 </div>
 
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
+                <div className="mt-5 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
                   詳細を見る
                   <ArrowRight size={16} />
                 </div>

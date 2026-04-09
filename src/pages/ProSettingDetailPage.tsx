@@ -250,7 +250,6 @@ export const ProSettingDetailPage = () => {
 
   const visuals = getProfileVisuals(setting.slug);
   const profileFacts = [
-    { label: 'ふりがな', value: setting.kanaName || '未公開' },
     { label: '生年月日', value: setting.birthDate || '未公開' },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
     { label: '契約メーカー', value: setting.contractDisplay },
