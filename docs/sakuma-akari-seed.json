@@ -1,0 +1,177 @@
+{
+  "profile": {
+    "slug": "sakuma-akari",
+    "display_name": "佐久間朱莉",
+    "nationality": "Japan",
+    "birthplace": "日本",
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1",
+    "feature_1": "2026シーズン基準",
+    "feature_2": "国内女子実戦構成",
+    "feature_3": "14本確認済み",
+    "summary": "2026年シーズン基準で確認した佐久間朱莉の14本セッティング。",
+    "latest_source_policy": "2026_season",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-04-09T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Titleist",
+      "model_name": "GT2",
+      "loft_label": "10.5°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "VENTUS BLUE",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Titleist",
+      "model_name": "GT2 Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "Titleist",
+      "model_name": "GT2 Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "18°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Titleist",
+      "model_name": "GT2 Hybrid",
+      "spec_label": "4H",
+      "loft_label": "22°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "Titleist",
+      "model_name": "GT2 Hybrid",
+      "spec_label": "5H",
+      "loft_label": "25°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Titleist",
+      "model_name": "T100 Iron",
+      "spec_label": "6I",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Titleist",
+      "model_name": "T100 Iron",
+      "spec_label": "7I",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Titleist",
+      "model_name": "T100 Iron",
+      "spec_label": "8I",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Titleist",
+      "model_name": "T100 Iron",
+      "spec_label": "9I",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10",
+      "spec_label": "PW",
+      "loft_label": "46°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10",
+      "spec_label": "AW",
+      "loft_label": "50°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10",
+      "spec_label": "SW",
+      "loft_label": "54°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "Phantom X",
+      "source_note": "Confirmed from latest season setting references.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
+      "source_title": "スポーツナビ 国内女子クラブセッティング一覧（佐久間朱莉）",
+      "checked_at": "2026-04-09T00:00:00.000Z",
+      "notes": "Used as latest season reference."
+    }
+  ],
+  "article": {
+    "slug": "sakuma-akari-2026-setting-update",
+    "title": "佐久間朱莉の2026年クラブセッティングを掲載しました",
+    "excerpt": "2026シーズン基準で、佐久間朱莉の14本のクラブセッティングと使用ボールを掲載しました。",
+    "body": "佐久間朱莉のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-09T00:00:00.000Z"
+  }
+}
