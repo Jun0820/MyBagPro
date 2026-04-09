@@ -44,10 +44,18 @@ const formatBirthplace = (birthplace?: string | null, nationality?: string | nul
     Fukuoka: '福岡県',
   };
 
+  const hasJapaneseText = (value: string) => /[ぁ-んァ-ン一-龠々]/.test(value);
+
   if (nationality === 'Japan') {
-    const base = (birthplace || '').split(',')[0].trim();
+    const raw = (birthplace || '').trim();
+    if (raw && hasJapaneseText(raw)) return `${raw} 🇯🇵`;
+    const base = raw.split(',')[0].trim();
     const normalized = prefectureMap[base] || base || '未公開';
     return normalized === '未公開' ? normalized : `${normalized} 🇯🇵`;
+  }
+
+  if (birthplace && hasJapaneseText(birthplace)) {
+    return birthplace;
   }
 
   const country = nationality ? countryMap[nationality] : undefined;
@@ -276,10 +284,7 @@ export const ProSettingDetailPage = () => {
               {setting.kanaName && <div className="mt-5 text-sm font-bold text-white/70">{setting.kanaName}</div>}
               <h1 className="mt-2 text-4xl font-black tracking-tight md:text-6xl">
                 {setting.name}
-                <span className="ml-3 text-lg font-bold text-white/75 md:text-2xl">
-                  {setting.age ? `(${setting.age})` : ''}
-                  {setting.genderLabel !== '不明' ? ` ${setting.genderLabel}` : ''}
-                </span>
+                <span className="ml-3 text-lg font-bold text-white/75 md:text-2xl">{setting.age ? `(${setting.age})` : ''}</span>
               </h1>
               <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
@@ -312,8 +317,8 @@ export const ProSettingDetailPage = () => {
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
           <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
           <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-200">
-            <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_2fr_2.2fr_1fr_1fr_1.2fr]">
-              {['クラブ', 'クラブ名', 'シャフト', 'ロフト', '硬さ', '飛距離'].map((heading) => (
+            <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
+              {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', '飛距離'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
                   {heading}
                 </div>
@@ -342,10 +347,14 @@ export const ProSettingDetailPage = () => {
                     }}
                     className={`w-full text-left ${isDriver && driverDetail ? 'transition-colors hover:bg-cyan-50' : ''}`}
                   >
-                    <div className="grid gap-3 px-4 py-4 md:grid-cols-[0.7fr_2fr_2.2fr_1fr_1fr_1.2fr] md:items-center">
+                    <div className="grid gap-3 px-4 py-4 md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr] md:items-center">
                       <div>
                         <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">クラブ</div>
                         <div className="text-sm font-black text-trust-navy">{formatClubLabel(club.category, club.specLabel)}</div>
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">メーカー</div>
+                        <div className="text-sm font-bold text-slate-600">{club.brand || '未公開'}</div>
                       </div>
                       <div>
                         <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">クラブ名</div>

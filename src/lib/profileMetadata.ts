@@ -178,6 +178,8 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'xander-schauffele': { category: 'overseas_men', contractStatus: 'free_contract' },
   'ludvig-aberg': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
   'justin-thomas': { category: 'overseas_men', contractStatus: 'free_contract' },
+  'sami-valimaki': { category: 'overseas_men', contractStatus: 'free_contract' },
+  'nicolai-hojgaard': { category: 'overseas_men', contractStatus: 'free_contract' },
 };
 
 export const getProfileMetadata = (slug: string): ProfileMetadata => {

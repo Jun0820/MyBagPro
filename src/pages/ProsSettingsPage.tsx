@@ -21,8 +21,12 @@ const kanaGroups = [
   { id: 'latin', label: 'A-Z' },
 ] as const;
 
+const toHiragana = (value: string) =>
+  value.replace(/[\u30a1-\u30f6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60));
+
 const getKanaGroup = (name: string) => {
-  const first = name.trim().charAt(0);
+  const normalized = toHiragana(name.trim());
+  const first = normalized.charAt(0);
   if (!first) return 'all';
   if (/[A-Za-z]/.test(first)) return 'latin';
   if ('あいうえおぁぃぅぇぉ'.includes(first)) return 'a';
