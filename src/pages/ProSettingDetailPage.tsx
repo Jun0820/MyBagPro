@@ -23,10 +23,36 @@ const formatDistance = (carryDistance?: number | null, totalDistance?: number | 
 };
 
 const formatBirthplace = (birthplace?: string | null, nationality?: string | null) => {
-  if (birthplace && nationality && !birthplace.includes(nationality)) {
-    return `${birthplace}（${nationality}）`;
+  const countryMap: Record<string, { label: string; flag: string }> = {
+    Japan: { label: '日本', flag: '🇯🇵' },
+    'United States': { label: 'アメリカ', flag: '🇺🇸' },
+    Australia: { label: 'オーストラリア', flag: '🇦🇺' },
+    Canada: { label: 'カナダ', flag: '🇨🇦' },
+    'South Korea': { label: '韓国', flag: '🇰🇷' },
+    Denmark: { label: 'デンマーク', flag: '🇩🇰' },
+    Finland: { label: 'フィンランド', flag: '🇫🇮' },
+    Austria: { label: 'オーストリア', flag: '🇦🇹' },
+  };
+  const prefectureMap: Record<string, string> = {
+    Ehime: '愛媛県',
+    Osaka: '大阪府',
+    Miyagi: '宮城県',
+    Yamaguchi: '山口県',
+    Kagoshima: '鹿児島県',
+    Okayama: '岡山県',
+    Ibaraki: '茨城県',
+    Fukuoka: '福岡県',
+  };
+
+  if (nationality === 'Japan') {
+    const base = (birthplace || '').split(',')[0].trim();
+    const normalized = prefectureMap[base] || base || '未公開';
+    return normalized === '未公開' ? normalized : `${normalized} 🇯🇵`;
   }
-  return birthplace || nationality || '未公開';
+
+  const country = nationality ? countryMap[nationality] : undefined;
+  if (country) return `${country.label} ${country.flag}`;
+  return nationality || birthplace || '未公開';
 };
 
 const getYoutubeEmbedUrl = (url: string) => {
@@ -225,11 +251,10 @@ export const ProSettingDetailPage = () => {
   const visuals = getProfileVisuals(setting.slug);
   const profileFacts = [
     { label: 'ふりがな', value: setting.kanaName || '未公開' },
-    { label: '年齢', value: setting.age ? `${setting.age}歳` : '未公開' },
     { label: '生年月日', value: setting.birthDate || '未公開' },
-    { label: '性別', value: setting.genderLabel },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
-    { label: '契約区分', value: setting.contractDisplay },
+    { label: '契約メーカー', value: setting.contractDisplay },
+    { label: '使用ボール', value: setting.ball },
   ];
 
   return (
@@ -249,11 +274,18 @@ export const ProSettingDetailPage = () => {
               <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black text-cyan-200">
                 {setting.type}
               </div>
-              <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">{setting.name}</h1>
+              {setting.kanaName && <div className="mt-5 text-sm font-bold text-white/70">{setting.kanaName}</div>}
+              <h1 className="mt-2 text-4xl font-black tracking-tight md:text-6xl">
+                {setting.name}
+                <span className="ml-3 text-lg font-bold text-white/75 md:text-2xl">
+                  {setting.age ? `(${setting.age})` : ''}
+                  {setting.genderLabel !== '不明' ? ` ${setting.genderLabel}` : ''}
+                </span>
+              </h1>
               <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-3">
+              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 {profileFacts.map((fact) => (
                   <div key={fact.label} className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
                     <div className="text-[11px] font-black text-slate-400">{fact.label}</div>

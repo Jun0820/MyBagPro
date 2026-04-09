@@ -236,10 +236,7 @@ export const ProsSettingsPage = () => {
                     alt={`${setting.name}のプレースホルダー画像`}
                     className="h-16 w-16 rounded-full border border-slate-200 bg-white object-cover p-2"
                   />
-                  <div>
-                    <div className="text-sm font-black text-trust-navy">{setting.name}</div>
-                    {setting.kanaName && <div className="mt-1 text-sm font-bold text-slate-500">{setting.kanaName}</div>}
-                  </div>
+                  <div className="text-sm font-bold text-slate-500">公開中プロフィール</div>
                 </div>
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-3">
