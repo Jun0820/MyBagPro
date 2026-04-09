@@ -15,7 +15,14 @@ import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib
 import { profileCategories } from '../lib/profileMetadata';
 import { getProfileVisuals } from '../lib/profileVisuals';
 
-const featuredSlugOrder = ['ryo-ishikawa', 'keita-nakajima', 'takumi-kanaya', 'yui-kawamoto'];
+const featuredSlugOrder = [
+  'hideki-matsuyama',
+  'ryo-ishikawa',
+  'keita-nakajima',
+  'hinako-shibuno',
+  'ayaka-furue',
+  'mao-saigo',
+];
 
 const kanaGroups = [
   { id: 'all', label: 'すべて' },
@@ -97,8 +104,8 @@ export const Home = () => {
       .map((slug) => profiles.find((profile) => profile.slug === slug))
       .filter(Boolean) as PublicSettingProfile[];
 
-    const fallback = profiles.filter((profile) => !featuredSlugOrder.includes(profile.slug)).slice(0, 4 - prioritized.length);
-    return [...prioritized, ...fallback].slice(0, 4);
+    const fallback = profiles.filter((profile) => !featuredSlugOrder.includes(profile.slug)).slice(0, 6 - prioritized.length);
+    return [...prioritized, ...fallback].slice(0, 6);
   }, [profiles]);
 
   const handleSearch = () => {
@@ -125,14 +132,14 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative mx-auto grid min-h-[620px] max-w-7xl items-center gap-8 px-6 py-14 md:min-h-[680px] md:grid-cols-[minmax(0,1.2fr)_420px] md:px-10">
+        <div className="relative mx-auto grid min-h-[560px] max-w-7xl items-center gap-8 px-5 py-12 md:min-h-[680px] md:grid-cols-[minmax(0,1.2fr)_420px] md:px-10">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-white/90 backdrop-blur">
               <Star size={14} className="text-emerald-300" />
               GOLF CLUB SETTING PLATFORM
             </div>
 
-            <h1 className="mt-6 text-4xl font-black leading-[1.16] tracking-tight text-white md:text-6xl">
+            <h1 className="mt-6 text-[2.4rem] font-black leading-[1.14] tracking-tight text-white md:text-6xl">
               有名プロの現在の
               <br className="hidden md:block" />
               クラブセッティングを、
@@ -140,7 +147,7 @@ export const Home = () => {
               すぐ探して知る。
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90 md:text-xl">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white/90 md:mt-6 md:text-xl md:leading-8">
               石川遼や中島啓太のような有名プロの14本をまとめて検索し、クラブ選びの参考にできるサイトです。
               そのあとに自分のセッティング登録や診断へ進めます。
             </p>
@@ -199,7 +206,7 @@ export const Home = () => {
               </div>
             </div>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
               <button
                 onClick={() => {
                   trackEvent('start_ai_diagnosis', {
@@ -231,7 +238,7 @@ export const Home = () => {
 
           </div>
 
-          <div className="grid gap-4">
+          <div className="hidden gap-4 md:grid">
             {featuredProfiles.map((pro) => (
               <button
                 key={`hero-${pro.slug}`}
@@ -271,44 +278,61 @@ export const Home = () => {
         </div>
       </section>
 
-      <section id="pro-settings" className="rounded-[2.25rem] bg-gray-100 px-6 py-12 md:px-10 md:py-16">
+      <section id="pro-settings" className="rounded-[2.25rem] bg-white px-5 py-10 shadow-sm md:px-10 md:py-14">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
-            <h2 className="text-3xl font-black text-gray-900 md:text-4xl">有名プロのクラブセッティングをすぐ探す</h2>
-            <p className="mt-4 text-base text-gray-600">
-              選手名検索とカテゴリ分けから、現在の14本と使用ボールをすぐ確認できます。
-            </p>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[11px] font-black tracking-[0.18em] text-emerald-600">POPULAR SETTINGS</div>
+              <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">よく見られているプロのセッティング</h2>
+              <p className="mt-3 text-sm leading-7 text-gray-600 md:text-base">
+                検索されやすい有名選手のページから、いま使われているクラブ構成をすぐ確認できます。
+              </p>
+            </div>
+
+            <button
+              onClick={() => navigate('/settings/pros')}
+              className="inline-flex items-center justify-center gap-2 self-start rounded-full border border-slate-200 px-5 py-3 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50"
+            >
+              一覧をすべて見る
+              <ArrowRight size={16} />
+            </button>
           </div>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {featuredProfiles.map((pro) => (
               <article
                 key={pro.slug}
-                className="overflow-hidden rounded-[1.75rem] bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+                className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="flex items-center gap-4 border-b border-gray-100 bg-white p-6">
+                <div className="flex items-center gap-4 border-b border-gray-100 bg-white p-5">
                   <img
                     src={getProfileVisuals(pro.slug).portrait}
                     alt={`${pro.name}のプレースホルダー画像`}
-                    className="h-16 w-16 rounded-full border border-slate-200 bg-white object-cover p-2"
+                    className="h-16 w-16 rounded-full border border-slate-200 bg-slate-50 object-cover p-2"
                   />
-                  <div>
-                    <div className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
-                      {pro.categoryLabel}
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <div className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-[11px] font-bold text-blue-800">
+                        {pro.categoryLabel}
+                      </div>
+                      <div className="text-[11px] font-bold text-slate-500">{pro.contractLabel}</div>
                     </div>
-                    <h3 className="mt-3 text-xl font-black text-gray-900">{pro.name}</h3>
-                    <p className="mt-2 text-sm leading-7 text-gray-600">{pro.tagline}</p>
+                    <h3 className="mt-2 text-xl font-black text-gray-900">{pro.name}</h3>
+                    <p className="mt-1 line-clamp-2 text-sm leading-6 text-gray-600">{pro.tagline}</p>
                   </div>
                 </div>
-                <div className="p-6">
-                  <ul className="space-y-3 text-sm text-gray-600">
-                    {pro.clubs.slice(0, 4).map((club) => (
-                      <li key={`${pro.slug}-${club.category}`} className="flex items-start justify-between gap-4">
-                        <span className="shrink-0 font-bold text-gray-900">{club.specLabel || club.category}</span>
-                        <span className="text-right">{club.model}</span>
-                      </li>
+                <div className="p-5">
+                  <div className="grid gap-2">
+                    {pro.clubs.slice(0, 3).map((club) => (
+                      <div
+                        key={`${pro.slug}-${club.category}`}
+                        className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-2.5 text-sm"
+                      >
+                        <span className="shrink-0 font-bold text-slate-900">{club.specLabel || club.category}</span>
+                        <span className="truncate text-right text-slate-600">{club.model}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
 
                   <button
                     onClick={() => {
@@ -318,9 +342,9 @@ export const Home = () => {
                       });
                       navigate(`/settings/pros/${pro.slug}`);
                     }}
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-green-500 py-3 font-black text-green-600 transition hover:bg-green-50"
+                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-trust-navy py-3 font-black text-white transition hover:bg-slate-800"
                   >
-                    現在の14本を見る
+                    詳細を見る
                     <ArrowRight size={16} />
                   </button>
                 </div>
@@ -366,7 +390,7 @@ export const Home = () => {
             })}
           </div>
 
-          <div className="mt-10 grid gap-4 rounded-[2rem] bg-slate-950 p-6 text-white md:grid-cols-3">
+          <div className="mt-10 grid gap-4 rounded-[2rem] bg-slate-950 p-5 text-white md:grid-cols-3 md:p-6">
             {[
               {
                 icon: Search,
