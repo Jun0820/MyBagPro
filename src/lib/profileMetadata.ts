@@ -13,6 +13,7 @@ export interface ProfileMetadata {
   categoryLabel: string;
   contractStatus: ContractStatus;
   contractLabel: string;
+  contractMaker?: string;
 }
 
 const defaultMetadata: ProfileMetadata = {
@@ -39,12 +40,12 @@ const contractLabelMap: Record<ContractStatus, string> = {
 
 const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'ryo-ishikawa': { category: 'japan_men', contractStatus: 'free_contract' },
-  'keita-nakajima': { category: 'japan_men', contractStatus: 'club_contract' },
-  'takumi-kanaya': { category: 'japan_men', contractStatus: 'club_contract' },
-  'ryo-hisatsune': { category: 'japan_men', contractStatus: 'club_contract' },
-  'taiga-semikawa': { category: 'japan_men', contractStatus: 'club_contract' },
+  'keita-nakajima': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
+  'takumi-kanaya': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'PING' },
+  'ryo-hisatsune': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'PING' },
+  'taiga-semikawa': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
   'kensei-hirata': { category: 'japan_men', contractStatus: 'checking' },
-  'shugo-imahira': { category: 'japan_men', contractStatus: 'club_contract' },
+  'shugo-imahira': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: '本間ゴルフ' },
   'yuki-inamori': { category: 'japan_men', contractStatus: 'club_contract' },
   'yuto-katsuragawa': { category: 'japan_men', contractStatus: 'checking' },
   'riki-kawamoto': { category: 'japan_men', contractStatus: 'club_contract' },
@@ -52,34 +53,34 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'satoshi-kodaira': { category: 'japan_men', contractStatus: 'free_contract' },
   'tatsunori-shogenji': { category: 'japan_men', contractStatus: 'checking' },
   'aguri-iwasaki': { category: 'japan_men', contractStatus: 'checking' },
-  'rikuya-hoshino': { category: 'japan_men', contractStatus: 'club_contract' },
+  'rikuya-hoshino': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'キャロウェイ' },
   'hiroshi-iwata': { category: 'japan_men', contractStatus: 'free_contract' },
   'mikumu-horikawa': { category: 'japan_men', contractStatus: 'checking' },
-  'ryosuke-kinoshita': { category: 'japan_men', contractStatus: 'club_contract' },
+  'ryosuke-kinoshita': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
   'taichi-nabetani': { category: 'japan_men', contractStatus: 'checking' },
-  'takamitsu-tokimatsu': { category: 'japan_men', contractStatus: 'club_contract' },
+  'takamitsu-tokimatsu': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'ブリヂストン' },
   'tomoharu-otsuki': { category: 'japan_men', contractStatus: 'checking' },
   'yosuke-tsukada': { category: 'japan_men', contractStatus: 'checking' },
-  'yui-kawamoto': { category: 'japan_women', contractStatus: 'club_contract' },
-  'minjee-lee': { category: 'overseas_women', contractStatus: 'club_contract' },
-  'collin-morikawa': { category: 'overseas_men', contractStatus: 'club_contract' },
+  'yui-kawamoto': { category: 'japan_women', contractStatus: 'club_contract', contractMaker: 'キャロウェイ' },
+  'minjee-lee': { category: 'overseas_women', contractStatus: 'club_contract', contractMaker: 'キャロウェイ' },
+  'collin-morikawa': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
   'nick-taylor': { category: 'overseas_men', contractStatus: 'free_contract' },
-  'cameron-young': { category: 'overseas_men', contractStatus: 'club_contract' },
-  'wyndham-clark': { category: 'overseas_men', contractStatus: 'club_contract' },
+  'cameron-young': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'タイトリスト' },
+  'wyndham-clark': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'タイトリスト' },
   'thorbjorn-olesen': { category: 'overseas_men', contractStatus: 'free_contract' },
   'jason-day': { category: 'overseas_men', contractStatus: 'free_contract' },
   'peter-malnati': { category: 'overseas_men', contractStatus: 'free_contract' },
-  'viktor-hovland': { category: 'overseas_men', contractStatus: 'club_contract' },
+  'viktor-hovland': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'PING' },
   'tommy-fleetwood': { category: 'overseas_men', contractStatus: 'free_contract' },
   'thomas-detry': { category: 'overseas_men', contractStatus: 'free_contract' },
   'jordan-spieth': { category: 'overseas_men', contractStatus: 'free_contract' },
   'tony-finau': { category: 'overseas_men', contractStatus: 'free_contract' },
   'sepp-straka': { category: 'overseas_men', contractStatus: 'free_contract' },
   'adam-scott': { category: 'overseas_men', contractStatus: 'free_contract' },
-  'tom-kim': { category: 'overseas_men', contractStatus: 'club_contract' },
+  'tom-kim': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'タイトリスト' },
   'matt-mccarty': { category: 'overseas_men', contractStatus: 'checking' },
   'xander-schauffele': { category: 'overseas_men', contractStatus: 'free_contract' },
-  'ludvig-aberg': { category: 'overseas_men', contractStatus: 'club_contract' },
+  'ludvig-aberg': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
   'justin-thomas': { category: 'overseas_men', contractStatus: 'free_contract' },
 };
 
@@ -93,6 +94,7 @@ export const getProfileMetadata = (slug: string): ProfileMetadata => {
     categoryLabel: categoryLabelMap[category],
     contractStatus,
     contractLabel: contractLabelMap[contractStatus],
+    contractMaker: partial.contractMaker,
   };
 };
 

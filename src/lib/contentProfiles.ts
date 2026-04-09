@@ -31,6 +31,7 @@ export interface PublicSettingProfile {
   categoryLabel: string;
   contractStatus: ContractStatus;
   contractLabel: string;
+  contractMaker?: string;
   tagline: string;
   summary: string;
   headSpeed: string;
@@ -172,6 +173,7 @@ const buildProfiles = (
       categoryLabel: metadata.categoryLabel,
       contractStatus: metadata.contractStatus,
       contractLabel: metadata.contractLabel,
+      contractMaker: metadata.contractMaker,
       tagline: inferTagline(strengths, type),
       summary: profile.summary || '2026シーズン基準で確認していく掲載用プロフィールです。',
       headSpeed: formatHeadSpeed(profile.head_speed_mps),

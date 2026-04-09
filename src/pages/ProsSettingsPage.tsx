@@ -1,10 +1,42 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, BadgeCheck, Search } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
 import { profileCategories, type ProfileCategory } from '../lib/profileMetadata';
 import { getProfileVisuals } from '../lib/profileVisuals';
+
+const kanaGroups = [
+  { id: 'all', label: 'すべて' },
+  { id: 'a', label: 'あ' },
+  { id: 'ka', label: 'か' },
+  { id: 'sa', label: 'さ' },
+  { id: 'ta', label: 'た' },
+  { id: 'na', label: 'な' },
+  { id: 'ha', label: 'は' },
+  { id: 'ma', label: 'ま' },
+  { id: 'ya', label: 'や' },
+  { id: 'ra', label: 'ら' },
+  { id: 'wa', label: 'わ' },
+  { id: 'latin', label: 'A-Z' },
+] as const;
+
+const getKanaGroup = (name: string) => {
+  const first = name.trim().charAt(0);
+  if (!first) return 'all';
+  if (/[A-Za-z]/.test(first)) return 'latin';
+  if ('あいうえおぁぃぅぇぉ'.includes(first)) return 'a';
+  if ('かがきぎくぐけげこご'.includes(first)) return 'ka';
+  if ('さざしじすずせぜそぞ'.includes(first)) return 'sa';
+  if ('ただちぢっつづてでとど'.includes(first)) return 'ta';
+  if ('なにぬねの'.includes(first)) return 'na';
+  if ('はばぱひびぴふぶぷへべぺほぼぽ'.includes(first)) return 'ha';
+  if ('まみむめも'.includes(first)) return 'ma';
+  if ('やゃゆゅよょ'.includes(first)) return 'ya';
+  if ('らりるれろ'.includes(first)) return 'ra';
+  if ('わをん'.includes(first)) return 'wa';
+  return 'ka';
+};
 
 export const ProsSettingsPage = () => {
   const navigate = useNavigate();
@@ -13,6 +45,7 @@ export const ProsSettingsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState(searchParams.get('search') || '');
   const activeCategory = (searchParams.get('category') as 'all' | ProfileCategory | null) || 'all';
+  const activeKana = searchParams.get('kana') || 'all';
 
   useEffect(() => {
     let isMounted = true;
@@ -43,15 +76,16 @@ export const ProsSettingsPage = () => {
       if (activeCategory !== 'all' && profile.category !== activeCategory) {
         return false;
       }
+      if (activeKana !== 'all' && getKanaGroup(profile.name) !== activeKana) {
+        return false;
+      }
       if (!query) return true;
+
       const haystack = [
         profile.name,
         profile.categoryLabel,
         profile.contractLabel,
-        profile.tagline,
-        profile.summary,
-        profile.ball,
-        ...profile.strengths,
+        profile.contractMaker || '',
         ...profile.clubs.map((club) => `${club.category} ${club.model}`),
       ]
         .join(' ')
@@ -59,46 +93,29 @@ export const ProsSettingsPage = () => {
 
       return haystack.includes(query);
     });
-  }, [activeCategory, profiles, searchText]);
+  }, [activeCategory, activeKana, profiles, searchText]);
 
-  const summary = useMemo(
-    () => ({
-      profileCount: filteredProfiles.length,
-      ballCount: new Set(profiles.map((profile) => profile.ball).filter(Boolean)).size,
-    }),
-    [filteredProfiles, profiles]
-  );
+  const applyFilters = (next: { search?: string; category?: string; kana?: string }) => {
+    setSearchParams(
+      {
+        ...(next.search ? { search: next.search } : {}),
+        ...(next.category && next.category !== 'all' ? { category: next.category } : {}),
+        ...(next.kana && next.kana !== 'all' ? { kana: next.kana } : {}),
+      },
+      { replace: true }
+    );
+  };
 
   return (
     <div className="min-h-screen space-y-8 pb-20">
-      <section className="rounded-[2.5rem] border border-slate-200 bg-[linear-gradient(180deg,#f7fafc_0%,#ffffff_54%,#f4f8f5_100%)] px-6 py-12 shadow-sm md:px-10 md:py-16">
-        <div className="mx-auto max-w-4xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-slate-500">
-            <BadgeCheck size={14} className="text-golf-700" />
-            VERIFIED 14-CLUB SETTINGS
-          </div>
-
-          <h1 className="mt-6 text-4xl font-black tracking-tight text-trust-navy md:text-6xl">
-            有名プロの現在の
+      <section className="rounded-[2.5rem] border border-slate-200 bg-white px-6 py-10 shadow-sm md:px-10 md:py-14">
+        <div className="mx-auto max-w-5xl">
+          <h1 className="text-4xl font-black tracking-tight text-trust-navy md:text-6xl">
+            有名プロの
             <br />
-            クラブセッティングを探す。
+            クラブセッティング一覧
           </h1>
-
-          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
-            確認できた14本だけを公開しています。選手名やクラブ名で検索して、気になる1人の詳細へすぐ入れます。
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy">
-              該当プロフィール {summary.profileCount}
-            </div>
-            <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy">
-              使用ボール {summary.ballCount}
-            </div>
-            <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy">
-              推定値は非表示
-            </div>
-          </div>
+          <p className="mt-4 text-sm font-bold text-slate-500">選手名・クラブ名・カテゴリから絞り込めます。</p>
 
           <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-sm">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
@@ -109,32 +126,24 @@ export const ProsSettingsPage = () => {
                   onChange={(event) => setSearchText(event.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
-                      setSearchParams(searchText.trim() ? { search: searchText.trim() } : {});
+                      applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana });
                     }
                   }}
-                  placeholder="選手名・クラブ名で検索 例: 石川遼 / Qi35 LS"
+                  placeholder="選手名・クラブ名で検索"
                   className="w-full bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400"
                 />
               </div>
               <div className="flex gap-3">
                 <button
-                  onClick={() =>
-                    setSearchParams(
-                      {
-                        ...(searchText.trim() ? { search: searchText.trim() } : {}),
-                        ...(activeCategory !== 'all' ? { category: activeCategory } : {}),
-                      },
-                      { replace: true }
-                    )
-                  }
+                  onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana })}
                   className="rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
                 >
-                  検索する
+                  検索
                 </button>
                 <button
                   onClick={() => {
                     setSearchText('');
-                    setSearchParams(activeCategory !== 'all' ? { category: activeCategory } : {}, { replace: true });
+                    applyFilters({ category: activeCategory, kana: activeKana });
                   }}
                   className="rounded-full border border-slate-200 px-5 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-50"
                 >
@@ -144,17 +153,11 @@ export const ProsSettingsPage = () => {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             {profileCategories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => {
-                  const next = {
-                    ...(searchText.trim() ? { search: searchText.trim() } : {}),
-                    ...(category.id !== 'all' ? { category: category.id } : {}),
-                  };
-                  setSearchParams(next, { replace: true });
-                }}
+                onClick={() => applyFilters({ search: searchText.trim(), category: category.id, kana: activeKana })}
                 className={`rounded-full px-4 py-2 text-sm font-black transition ${
                   activeCategory === category.id
                     ? 'bg-trust-navy text-white'
@@ -165,10 +168,30 @@ export const ProsSettingsPage = () => {
               </button>
             ))}
           </div>
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            {kanaGroups.map((group) => (
+              <button
+                key={group.id}
+                onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: group.id })}
+                className={`rounded-full px-4 py-2 text-sm font-black transition ${
+                  activeKana === group.id
+                    ? 'bg-golf-700 text-white'
+                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                }`}
+              >
+                {group.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy inline-flex">
+            該当プロフィール {filteredProfiles.length}
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-5 lg:grid-cols-2">
+      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {isLoading && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
             掲載プロフィールを読み込んでいます...
@@ -177,11 +200,8 @@ export const ProsSettingsPage = () => {
 
         {!isLoading && profiles.length === 0 && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8">
-            <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">公開準備中</div>
-            <h2 className="mt-3 text-2xl font-black text-trust-navy">確認済みプロフィールを準備しています。</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              14本と参照元が確認できた内容から順に公開します。
-            </p>
+            <h2 className="text-2xl font-black text-trust-navy">公開準備中です。</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">確認できた14本のプロフィールから順に公開します。</p>
           </div>
         )}
 
@@ -201,24 +221,18 @@ export const ProsSettingsPage = () => {
               }}
               className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
             >
-                <div className="relative h-64 overflow-hidden">
-                  <img src={visuals.hero} alt="" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.05)_0%,rgba(15,23,42,0.72)_100%)]" />
-
-                  <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-black tracking-[0.12em] text-white backdrop-blur">
-                    {setting.categoryLabel}
-                  </div>
-
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <div className="inline-flex rounded-full bg-white/90 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-500">
-                      {setting.contractLabel}
-                    </div>
-                    <h2 className="mt-3 text-3xl font-black tracking-tight text-white">{setting.name}</h2>
-                    <p className="mt-2 max-w-xl text-sm font-bold text-cyan-100">{setting.tagline}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {setting.clubs.slice(0, 3).map((club) => (
+              <div className="relative h-52 overflow-hidden">
+                <img src={visuals.hero} alt="" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.06)_0%,rgba(15,23,42,0.72)_100%)]" />
+                <div className="absolute left-5 top-5 inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-white backdrop-blur">
+                  {setting.categoryLabel}
+                </div>
+                <div className="absolute bottom-5 left-5 right-5">
+                  <h2 className="text-3xl font-black tracking-tight text-white">{setting.name}</h2>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {setting.clubs.slice(0, 2).map((club) => (
                       <span
-                        key={`${setting.slug}-hero-${club.category}`}
+                        key={`${setting.slug}-${club.category}-${club.model}`}
                         className="rounded-full border border-white/10 bg-slate-950/45 px-3 py-1 text-[11px] font-bold text-white/90 backdrop-blur"
                       >
                         {club.category} {club.model}
@@ -228,50 +242,34 @@ export const ProsSettingsPage = () => {
                 </div>
               </div>
 
-              <div className="p-6 md:p-8">
-                <div className="mb-5 flex items-center gap-4">
+              <div className="p-6">
+                <div className="flex items-center gap-4">
                   <img
                     src={visuals.portrait}
                     alt={`${setting.name}のプレースホルダー画像`}
                     className="h-16 w-16 rounded-full border border-slate-200 bg-white object-cover p-2"
                   />
                   <div>
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">選手プロフィール</div>
-                    <div className="mt-1 text-lg font-black text-trust-navy">{setting.name}</div>
+                    <div className="text-sm font-black text-trust-navy">{setting.name}</div>
+                    <div className="mt-1 text-sm font-bold text-slate-500">{setting.contractLabel}</div>
                   </div>
                 </div>
-                <p className="text-sm leading-7 text-slate-600">{setting.summary}</p>
 
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">区分</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.categoryLabel}</div>
-                  </div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
                     <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約区分</div>
                     <div className="mt-2 text-sm font-black text-trust-navy">{setting.contractLabel}</div>
                   </div>
                   <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">使用ボール</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.ball}</div>
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約メーカー</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.contractMaker || '確認中'}</div>
                   </div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {setting.strengths.slice(0, 3).map((strength) => (
-                    <span
-                      key={strength}
-                      className="rounded-full border border-golf-200 bg-golf-50 px-3 py-1 text-xs font-bold text-golf-700"
-                    >
-                      {strength}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-6 grid gap-3 md:grid-cols-2">
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
                   {setting.clubs.slice(0, 4).map((club) => (
                     <div
-                      key={`${setting.slug}-${club.category}`}
+                      key={`${setting.slug}-${club.category}-${club.model}`}
                       className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4"
                     >
                       <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">{club.category}</div>
@@ -281,7 +279,7 @@ export const ProsSettingsPage = () => {
                 </div>
 
                 <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
-                  現在の14本を見る
+                  詳細を見る
                   <ArrowRight size={16} />
                 </div>
               </div>
@@ -291,7 +289,7 @@ export const ProsSettingsPage = () => {
 
         {!isLoading && filteredProfiles.length === 0 && profiles.length > 0 && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-center text-sm font-bold text-slate-500">
-            条件に合うプロフィールが見つかりませんでした。選手名やクラブ名を変えて検索してください。
+            条件に合うプロフィールが見つかりませんでした。
           </div>
         )}
       </section>
