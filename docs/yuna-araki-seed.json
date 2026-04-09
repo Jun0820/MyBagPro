@@ -1,0 +1,200 @@
+{
+  "profile": {
+    "slug": "yuna-araki",
+    "display_name": "荒木優奈",
+    "kana_name": "アラキ ユウナ",
+    "nationality": "Japan",
+    "birthplace": "熊本県",
+    "birth_date": "2005-06-17",
+    "height_cm": 156,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "TOUR B X ボール＜2024年＞",
+    "feature_1": "2025年取材",
+    "feature_2": "PINGとブリヂストン",
+    "feature_3": "主要構成確認済み",
+    "summary": "2025年ゴルフ5レディスで確認できた荒木優奈のクラブセッティング。",
+    "latest_source_policy": "2026_season",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-04-09T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G440 LST Driver",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder NX Gold",
+      "shaft_flex": "S",
+      "shaft_weight": "50g",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder NX Violet",
+      "shaft_flex": "S",
+      "shaft_weight": "60g",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "PING",
+      "model_name": "G440 Hybrid Utility",
+      "spec_label": "4U",
+      "loft_label": "23°",
+      "shaft_brand": "Mitsubishi Chemical",
+      "shaft_model": "TENSEI PRO 1K HY80",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "PING",
+      "model_name": "G440 Hybrid Utility",
+      "spec_label": "5U",
+      "loft_label": "26°",
+      "shaft_brand": "Mitsubishi Chemical",
+      "shaft_model": "TENSEI PRO 1K HY80",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Yonex",
+      "model_name": "EZONE CB511 Forged Iron",
+      "spec_label": "5I",
+      "shaft_brand": "Yonex",
+      "shaft_model": "REXIS KAIZA-i HP 9",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Yonex",
+      "model_name": "EZONE CB511 Forged Iron",
+      "spec_label": "6I",
+      "shaft_brand": "Yonex",
+      "shaft_model": "REXIS KAIZA-i HP 9",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Yonex",
+      "model_name": "EZONE CB511 Forged Iron",
+      "spec_label": "7I",
+      "shaft_brand": "Yonex",
+      "shaft_model": "REXIS KAIZA-i HP 9",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Yonex",
+      "model_name": "EZONE CB511 Forged Iron",
+      "spec_label": "8I",
+      "shaft_brand": "Yonex",
+      "shaft_model": "REXIS KAIZA-i HP 9",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Yonex",
+      "model_name": "EZONE CB511 Forged Iron",
+      "spec_label": "9I",
+      "shaft_brand": "Yonex",
+      "shaft_model": "REXIS KAIZA-i HP 9",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Yonex",
+      "model_name": "EZONE CB511 Forged Iron",
+      "spec_label": "PW",
+      "shaft_brand": "Yonex",
+      "shaft_model": "REXIS KAIZA-i HP 9",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Bridgestone",
+      "model_name": "BRM2 HF Wedge",
+      "spec_label": "AW",
+      "loft_label": "52°",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 1150GH TOUR",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Bridgestone",
+      "model_name": "BITING SPIN Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 1150GH TOUR",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 13,
+      "brand": "Odyssey",
+      "model_name": "Ai-ONE TRI-BEAM 2-BALL Putter",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/18499/",
+      "source_title": "GDO 荒木優奈 クラブセッティング 2025年 ゴルフ5レディス",
+      "checked_at": "2026-04-09T00:00:00.000Z",
+      "notes": "Used for bag and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "yuna-araki-2026-setting-update",
+    "title": "荒木優奈のクラブセッティングを掲載しました",
+    "excerpt": "2025年ゴルフ5レディス取材をもとに、荒木優奈の主要セッティングを掲載しました。",
+    "body": "荒木優奈のクラブセッティングを掲載しました。公開ソースをもとに、使用クラブとボールを整理しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-09T00:00:00.000Z"
+  }
+}

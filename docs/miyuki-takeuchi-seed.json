@@ -1,0 +1,176 @@
+{
+  "profile": {
+    "slug": "miyuki-takeuchi",
+    "display_name": "竹内美雪",
+    "kana_name": "タケウチ ミユキ",
+    "nationality": "Japan",
+    "birthplace": "兵庫県神戸市",
+    "birth_date": "1995-12-07",
+    "height_cm": 160,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "クロムソフト X トリプル・トラック＜2022年＞",
+    "feature_1": "2022年取材",
+    "feature_2": "キャロウェイ中心",
+    "feature_3": "14本確認済み",
+    "summary": "2022年ダイキンオーキッドレディスで確認できた竹内美雪の14本セッティング。",
+    "latest_source_policy": "2026_season",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-04-09T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "Rogue ST Prototype Driver",
+      "loft_label": "9°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Callaway",
+      "model_name": "Epic Speed Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Callaway",
+      "model_name": "APEX Utility",
+      "spec_label": "4U",
+      "loft_label": "21°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Callaway",
+      "model_name": "APEX Utility",
+      "spec_label": "5U",
+      "loft_label": "24°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "Callaway",
+      "model_name": "APEX Utility",
+      "spec_label": "6U",
+      "loft_label": "27°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Callaway",
+      "model_name": "X FORGED CB Iron",
+      "spec_label": "6I",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Callaway",
+      "model_name": "X FORGED CB Iron",
+      "spec_label": "7I",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Callaway",
+      "model_name": "X FORGED STAR Iron",
+      "spec_label": "8I",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Callaway",
+      "model_name": "X FORGED STAR Iron",
+      "spec_label": "9I",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Callaway",
+      "model_name": "X FORGED STAR Iron",
+      "spec_label": "PW",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Callaway",
+      "model_name": "JAWS FORGED Wedge",
+      "spec_label": "AW",
+      "loft_label": "48°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Callaway",
+      "model_name": "JAWS FORGED Wedge",
+      "spec_label": "SW",
+      "loft_label": "52°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Callaway",
+      "model_name": "JAWS FORGED Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "STROKE LAB #3T",
+      "source_note": "Confirmed from GDO 2022 setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/16094/",
+      "source_title": "GDO 竹内美雪 クラブセッティング 2022年 ダイキンオーキッドレディス",
+      "checked_at": "2026-04-09T00:00:00.000Z",
+      "notes": "Used for bag and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "miyuki-takeuchi-setting-update",
+    "title": "竹内美雪のクラブセッティングを掲載しました",
+    "excerpt": "2022年ダイキンオーキッドレディス取材をもとに、竹内美雪の14本セッティングを掲載しました。",
+    "body": "竹内美雪のクラブセッティングを掲載しました。キャロウェイ中心のバッグ構成を、公開ソースベースで整理しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-09T00:00:00.000Z"
+  }
+}
