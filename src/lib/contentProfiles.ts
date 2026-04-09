@@ -110,6 +110,7 @@ interface SourceRow {
 }
 
 const MIN_PUBLISHED_CLUBS = 14;
+const PROFILE_LIST_FETCH_LIMIT = 500;
 
 const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfile['type']> = {
   tour_pro: 'Tour Pro',
@@ -241,7 +242,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
       .eq('is_published', true)
       .order('is_featured', { ascending: false })
       .order('season_year', { ascending: false })
-      .limit(60);
+      .limit(PROFILE_LIST_FETCH_LIMIT);
 
     if (error || !profiles || profiles.length === 0) return [];
 
