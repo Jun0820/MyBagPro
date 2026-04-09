@@ -1,7 +1,7 @@
 {
   "profile": {
     "slug": "yosuke-tsukada",
-    "display_name": "塚田 よおすけ",
+    "display_name": "塚田陽亮",
     "nationality": "Japan",
     "birthplace": "Nagano, Japan",
     "birth_date": "1985-05-24",
@@ -17,7 +17,8 @@
     "latest_source_policy": "2025_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-04-08T00:00:00.000Z"
+    "verified_at": "2026-04-08T00:00:00.000Z",
+    "kana_name": "ツカダ ヨウスケ"
   },
   "bagItems": [
     {

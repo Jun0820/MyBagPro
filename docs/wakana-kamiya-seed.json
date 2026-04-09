@@ -2,7 +2,7 @@
   "profile": {
     "slug": "wakana-kamiya",
     "display_name": "神谷和奏",
-    "kana_name": "かみや わかな",
+    "kana_name": "カミヤ ワカナ",
     "nationality": "Japan",
     "profile_type": "tour_pro",
     "segment": "verified_batch",
@@ -11,7 +11,8 @@
     "latest_source_policy": "2026_season",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-04-09T00:00:00.000Z"
+    "verified_at": "2026-04-09T00:00:00.000Z",
+    "birth_date": "2000-04-22"
   },
   "bagItems": [],
   "sources": []

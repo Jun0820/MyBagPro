@@ -2,7 +2,7 @@
   "profile": {
     "slug": "kano-nakamura",
     "display_name": "仲村果乃",
-    "kana_name": "なかむら かの",
+    "kana_name": "ナカムラ カノ",
     "nationality": "Japan",
     "profile_type": "tour_pro",
     "segment": "verified_batch",
@@ -11,7 +11,8 @@
     "latest_source_policy": "2026_season",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-04-09T00:00:00.000Z"
+    "verified_at": "2026-04-09T00:00:00.000Z",
+    "birth_date": "2001-10-15"
   },
   "bagItems": [],
   "sources": []

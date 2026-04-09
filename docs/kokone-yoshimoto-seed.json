@@ -2,7 +2,7 @@
   "profile": {
     "slug": "kokone-yoshimoto",
     "display_name": "吉本ここね",
-    "kana_name": "よしもと ここね",
+    "kana_name": "ヨシモト ココネ",
     "nationality": "Japan",
     "profile_type": "tour_pro",
     "segment": "verified_batch",
@@ -11,7 +11,8 @@
     "latest_source_policy": "2026_season",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-04-09T00:00:00.000Z"
+    "verified_at": "2026-04-09T00:00:00.000Z",
+    "birth_date": "2000-01-05"
   },
   "bagItems": [],
   "sources": []
