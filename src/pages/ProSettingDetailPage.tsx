@@ -22,6 +22,13 @@ const formatDistance = (carryDistance?: number | null, totalDistance?: number | 
   return '未公開';
 };
 
+const formatBirthplace = (birthplace?: string | null, nationality?: string | null) => {
+  if (birthplace && nationality && !birthplace.includes(nationality)) {
+    return `${birthplace}（${nationality}）`;
+  }
+  return birthplace || nationality || '未公開';
+};
+
 const getYoutubeEmbedUrl = (url: string) => {
   try {
     const parsed = new URL(url);
@@ -216,6 +223,14 @@ export const ProSettingDetailPage = () => {
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
   const visuals = getProfileVisuals(setting.slug);
+  const profileFacts = [
+    { label: 'ふりがな', value: setting.kanaName || '未公開' },
+    { label: '年齢', value: setting.age ? `${setting.age}歳` : '未公開' },
+    { label: '生年月日', value: setting.birthDate || '未公開' },
+    { label: '性別', value: setting.genderLabel },
+    { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
+    { label: '契約区分', value: setting.contractDisplay },
+  ];
 
   return (
     <div className="min-h-screen pb-20">
@@ -238,51 +253,13 @@ export const ProSettingDetailPage = () => {
               <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
 
-              {channelLinks.length > 0 && (
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {channelLinks.map((link) => {
-                    const Icon = link.icon;
-                    return (
-                      <a
-                        key={link.label}
-                        href={link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={() =>
-                          trackEvent('open_profile_channel', {
-                            source_page: 'pro_setting_detail',
-                            profile_slug: setting.slug,
-                            profile_name: setting.name,
-                            channel_label: link.label,
-                          })
-                        }
-                        className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-black text-white/90 transition-colors hover:bg-white/10"
-                      >
-                        <Icon size={15} />
-                        {link.label}
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-
-              <div className="mt-8 grid gap-4 md:grid-cols-4">
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-                  <div className="text-[11px] font-black text-slate-400">区分</div>
-                  <div className="mt-2 text-base font-black text-white">{setting.categoryLabel}</div>
-                </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-                  <div className="text-[11px] font-black text-slate-400">契約区分</div>
-                  <div className="mt-2 text-base font-black text-white">{setting.contractLabel}</div>
-                </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-                  <div className="text-[11px] font-black text-slate-400">契約メーカー</div>
-                  <div className="mt-2 text-base font-black text-white">{setting.contractMaker || '確認中'}</div>
-                </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
-                  <div className="text-[11px] font-black text-slate-400">使用ボール</div>
-                  <div className="mt-2 text-base font-black text-white">{setting.ball}</div>
-                </div>
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                {profileFacts.map((fact) => (
+                  <div key={fact.label} className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                    <div className="text-[11px] font-black text-slate-400">{fact.label}</div>
+                    <div className="mt-2 text-base font-black text-white">{fact.value}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -297,33 +274,6 @@ export const ProSettingDetailPage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="mt-8">
-        <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 px-6 py-5 md:px-8">
-            <h2 className="text-2xl font-black text-trust-navy">動画と公式リンク</h2>
-          </div>
-
-          {primaryYoutubeEmbed ? (
-            <div className="aspect-video w-full bg-slate-950">
-              <iframe
-                src={primaryYoutubeEmbed}
-                title={`${setting.name}のスイングまたはセッティング動画`}
-                className="h-full w-full"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          ) : (
-            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-6 py-10 text-white md:px-8 md:py-12">
-              <div className="max-w-xl">
-                <h3 className="text-3xl font-black tracking-tight">動画は順次追加しています。</h3>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
@@ -392,6 +342,63 @@ export const ProSettingDetailPage = () => {
               })}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mt-8">
+        <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+          <div className="border-b border-slate-200 px-6 py-5 md:px-8">
+            <h2 className="text-2xl font-black text-trust-navy">動画と公式リンク</h2>
+          </div>
+
+          {primaryYoutubeEmbed ? (
+            <div className="aspect-video w-full bg-slate-950">
+              <iframe
+                src={primaryYoutubeEmbed}
+                title={`${setting.name}のスイングまたはセッティング動画`}
+                className="h-full w-full"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-6 py-10 text-white md:px-8 md:py-12">
+              <div className="max-w-xl">
+                <h3 className="text-3xl font-black tracking-tight">動画は順次追加しています。</h3>
+              </div>
+            </div>
+          )}
+
+          {channelLinks.length > 0 && (
+            <div className="border-t border-slate-200 px-6 py-5 md:px-8">
+              <div className="flex flex-wrap gap-3">
+                {channelLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() =>
+                        trackEvent('open_profile_channel', {
+                          source_page: 'pro_setting_detail',
+                          profile_slug: setting.slug,
+                          profile_name: setting.name,
+                          channel_label: link.label,
+                        })
+                      }
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:bg-white"
+                    >
+                      <Icon size={15} />
+                      {link.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

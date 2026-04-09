@@ -26,14 +26,21 @@ export interface PublicProfileSource {
 export interface PublicSettingProfile {
   slug: string;
   name: string;
+  kanaName?: string;
   type: 'Tour Pro' | 'Influencer' | 'Amateur' | 'Legend';
   category: ProfileCategory;
   categoryLabel: string;
   contractStatus: ContractStatus;
   contractLabel: string;
   contractMaker?: string;
+  contractDisplay: string;
   tagline: string;
   summary: string;
+  birthDate?: string | null;
+  age?: number | null;
+  genderLabel: string;
+  birthplace?: string | null;
+  nationality?: string | null;
   headSpeed: string;
   averageScore: string;
   bestScore?: string;
@@ -54,6 +61,10 @@ interface SettingProfileRow {
   id: string;
   slug: string;
   display_name: string;
+  kana_name: string | null;
+  birth_date: string | null;
+  birthplace: string | null;
+  nationality: string | null;
   profile_type: 'tour_pro' | 'influencer' | 'amateur' | 'legend';
   season_year: number | null;
   head_speed_mps: number | null;
@@ -110,6 +121,23 @@ const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfi
 const formatHeadSpeed = (value: number | null) => (value ? `${value.toFixed(1)} m/s` : '未公開');
 const formatAverageScore = (value: number | null) => (value ? `${value}` : '未公開');
 const formatBestScore = (value: number | null) => (value ? `${value}` : undefined);
+const getAge = (value: string | null) => {
+  if (!value) return null;
+  const birth = new Date(value);
+  if (Number.isNaN(birth.getTime())) return null;
+  const now = new Date();
+  let age = now.getFullYear() - birth.getFullYear();
+  const hasHadBirthday =
+    now.getMonth() > birth.getMonth() ||
+    (now.getMonth() === birth.getMonth() && now.getDate() >= birth.getDate());
+  if (!hasHadBirthday) age -= 1;
+  return age;
+};
+const getGenderLabel = (category: ProfileCategory) => {
+  if (category === 'japan_women' || category === 'overseas_women') return '女性';
+  if (category === 'japan_men' || category === 'overseas_men') return '男性';
+  return '不明';
+};
 const formatLoftLabel = (value: string | null) => {
   if (!value) return undefined;
 
@@ -168,14 +196,24 @@ const buildProfiles = (
     return {
       slug: profile.slug,
       name: profile.display_name,
+      kanaName: profile.kana_name || undefined,
       type,
       category: metadata.category,
       categoryLabel: metadata.categoryLabel,
       contractStatus: metadata.contractStatus,
       contractLabel: metadata.contractLabel,
       contractMaker: metadata.contractMaker,
+      contractDisplay:
+        metadata.contractStatus === 'club_contract'
+          ? metadata.contractMaker || '契約メーカー確認中'
+          : metadata.contractLabel,
       tagline: inferTagline(strengths, type),
       summary: profile.summary || '2026シーズン基準で確認していく掲載用プロフィールです。',
+      birthDate: profile.birth_date,
+      age: getAge(profile.birth_date),
+      genderLabel: getGenderLabel(metadata.category),
+      birthplace: profile.birthplace,
+      nationality: profile.nationality,
       headSpeed: formatHeadSpeed(profile.head_speed_mps),
       averageScore: formatAverageScore(profile.average_score),
       bestScore: formatBestScore(profile.best_score),
@@ -199,7 +237,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
   try {
     const { data: profiles, error } = await supabase
       .from('setting_profiles')
-      .select('id, slug, display_name, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
+      .select('id, slug, display_name, kana_name, birth_date, birthplace, nationality, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
       .eq('is_published', true)
       .order('is_featured', { ascending: false })
       .order('season_year', { ascending: false })
@@ -243,7 +281,7 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
   try {
     const { data: profile, error } = await supabase
       .from('setting_profiles')
-      .select('id, slug, display_name, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
+      .select('id, slug, display_name, kana_name, birth_date, birthplace, nationality, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
       .eq('slug', slug)
       .eq('is_published', true)
       .maybeSingle();

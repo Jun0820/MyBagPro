@@ -72,27 +72,23 @@ export const ProsSettingsPage = () => {
 
   const filteredProfiles = useMemo(() => {
     const query = searchText.trim().toLowerCase();
-    return profiles.filter((profile) => {
-      if (activeCategory !== 'all' && profile.category !== activeCategory) {
-        return false;
-      }
-      if (activeKana !== 'all' && getKanaGroup(profile.name) !== activeKana) {
-        return false;
-      }
-      if (!query) return true;
+    return profiles
+      .filter((profile) => {
+        if (activeCategory !== 'all' && profile.category !== activeCategory) {
+          return false;
+        }
+        if (activeKana !== 'all' && getKanaGroup(profile.kanaName || profile.name) !== activeKana) {
+          return false;
+        }
+        if (!query) return true;
 
-      const haystack = [
-        profile.name,
-        profile.categoryLabel,
-        profile.contractLabel,
-        profile.contractMaker || '',
-        ...profile.clubs.map((club) => `${club.category} ${club.model}`),
-      ]
-        .join(' ')
-        .toLowerCase();
+        const haystack = [profile.name, profile.kanaName || '', profile.categoryLabel, profile.contractDisplay]
+          .join(' ')
+          .toLowerCase();
 
-      return haystack.includes(query);
-    });
+        return haystack.includes(query);
+      })
+      .sort((a, b) => (a.kanaName || a.name).localeCompare(b.kanaName || b.name, 'ja'));
   }, [activeCategory, activeKana, profiles, searchText]);
 
   const applyFilters = (next: { search?: string; category?: string; kana?: string }) => {
@@ -229,16 +225,7 @@ export const ProsSettingsPage = () => {
                 </div>
                 <div className="absolute bottom-5 left-5 right-5">
                   <h2 className="text-3xl font-black tracking-tight text-white">{setting.name}</h2>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {setting.clubs.slice(0, 2).map((club) => (
-                      <span
-                        key={`${setting.slug}-${club.category}-${club.model}`}
-                        className="rounded-full border border-white/10 bg-slate-950/45 px-3 py-1 text-[11px] font-bold text-white/90 backdrop-blur"
-                      >
-                        {club.category} {club.model}
-                      </span>
-                    ))}
-                  </div>
+                  {setting.kanaName && <div className="mt-2 text-sm font-bold text-white/80">{setting.kanaName}</div>}
                 </div>
               </div>
 
@@ -251,31 +238,23 @@ export const ProsSettingsPage = () => {
                   />
                   <div>
                     <div className="text-sm font-black text-trust-navy">{setting.name}</div>
-                    <div className="mt-1 text-sm font-bold text-slate-500">{setting.contractLabel}</div>
+                    {setting.kanaName && <div className="mt-1 text-sm font-bold text-slate-500">{setting.kanaName}</div>}
                   </div>
                 </div>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">カテゴリ</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.categoryLabel}</div>
+                  </div>
                   <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
                     <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約区分</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.contractLabel}</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.contractDisplay}</div>
                   </div>
                   <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約メーカー</div>
-                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.contractMaker || '確認中'}</div>
+                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">年齢</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">{setting.age ? `${setting.age}歳` : '未公開'}</div>
                   </div>
-                </div>
-
-                <div className="mt-5 grid gap-3 md:grid-cols-2">
-                  {setting.clubs.slice(0, 4).map((club) => (
-                    <div
-                      key={`${setting.slug}-${club.category}-${club.model}`}
-                      className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4"
-                    >
-                      <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">{club.category}</div>
-                      <div className="mt-2 text-sm font-black text-trust-navy">{club.model}</div>
-                    </div>
-                  ))}
                 </div>
 
                 <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
