@@ -2,8 +2,6 @@ import {
   ArrowRight,
   BarChart3,
   BrainCircuit,
-  Club,
-  Goal,
   Search,
   ShoppingCart,
   Star,
@@ -36,24 +34,6 @@ const kanaGroups = [
 
 const heroImage =
   'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1920&q=80';
-
-const golfHighlights = [
-  {
-    title: 'まず有名プロの14本を知る',
-    copy: '誰がどのドライバー、アイアン、パターを使っているかを最初に把握できます。',
-    icon: Club,
-  },
-  {
-    title: '選手名で検索してすぐ見る',
-    copy: '石川遼や中島啓太のように、気になる選手名から直接詳細へ入れます。',
-    icon: Goal,
-  },
-  {
-    title: 'そのあと診断と比較へ進む',
-    copy: '見つけたセッティングを参考にしながら、自分の登録や比較に進めます。',
-    icon: ShoppingCart,
-  },
-];
 
 const features = [
   {
@@ -186,24 +166,6 @@ export const Home = () => {
                   検索する
                 </button>
               </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {['石川遼', '中島啓太', '金谷拓実', '河本結'].map((name) => (
-                  <button
-                    key={name}
-                    onClick={() => {
-                      const params = new URLSearchParams();
-                      params.set('search', name);
-                      if (activeCategory !== 'all') params.set('category', activeCategory);
-                      if (activeKana !== 'all') params.set('kana', activeKana);
-                      navigate(`/settings/pros?${params.toString()}`);
-                    }}
-                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-bold text-white/80 transition hover:bg-white/20"
-                  >
-                    {name}
-                  </button>
-                ))}
-              </div>
-
               <div className="mt-4 flex flex-wrap gap-2">
                 {profileCategories.map((category) => (
                   <button
@@ -267,37 +229,6 @@ export const Home = () => {
               </button>
             </div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
-              {golfHighlights.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="rounded-[1.5rem] border border-white/15 bg-white/10 p-5 backdrop-blur"
-                  >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-emerald-300">
-                      <Icon size={20} />
-                    </div>
-                    <h2 className="mt-4 text-sm font-black text-white md:text-base">{item.title}</h2>
-                    <p className="mt-2 text-sm leading-6 text-white/75">{item.copy}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-2">
-              {profileCategories
-                .filter((category) => category.id !== 'all')
-                .map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => navigate(`/settings/pros?category=${encodeURIComponent(category.id)}`)}
-                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white/85 transition hover:bg-white/20"
-                  >
-                    {category.label}
-                  </button>
-                ))}
-            </div>
           </div>
 
           <div className="grid gap-4">
