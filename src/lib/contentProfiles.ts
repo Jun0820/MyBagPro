@@ -109,7 +109,6 @@ interface SourceRow {
   notes: string | null;
 }
 
-const MIN_PUBLISHED_CLUBS = 14;
 const PROFILE_LIST_FETCH_LIMIT = 500;
 
 const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfile['type']> = {
@@ -261,15 +260,8 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
 
     const bagRows = (bagItems || []) as BagItemRow[];
     const sourceRows = (sources || []) as SourceRow[];
-    const completeProfileIds = profileIds.filter((profileId) =>
-      bagRows.filter((item) => item.profile_id === profileId).length >= MIN_PUBLISHED_CLUBS
-    );
 
-    return buildProfiles(
-      (profiles as SettingProfileRow[]).filter((profile) => completeProfileIds.includes(profile.id)),
-      bagRows,
-      sourceRows
-    );
+    return buildProfiles(profiles as SettingProfileRow[], bagRows, sourceRows);
   } catch (error) {
     console.error('Failed to fetch published setting profiles:', error);
     return [];
@@ -303,7 +295,6 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
 
     const bagRows = (bagItems || []) as BagItemRow[];
     const sourceRows = (sources || []) as SourceRow[];
-    if (bagRows.length < MIN_PUBLISHED_CLUBS) return null;
 
     return buildProfiles([profile as SettingProfileRow], bagRows, sourceRows)[0] ?? null;
   } catch (error) {
