@@ -1,0 +1,43 @@
+{
+  "profile": {
+    "slug": "yuta-ikeda",
+    "display_name": "池田 勇太",
+    "nationality": "Japan",
+    "birthplace": "千葉県",
+    "birth_date": "1985-12-22",
+    "height_cm": 177,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "",
+    "feature_1": "日本男子ツアー",
+    "feature_2": "賞金王経験者",
+    "feature_3": "2026年継続確認中",
+    "summary": "JGTO公式プロフィールをもとに掲載する池田勇太のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
+    "latest_source_policy": "2026_profile",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "イケダ ユウタ"
+  },
+  "bagItems": [],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/player/15400/profile",
+      "source_title": "JGTO 池田勇太 プロフィール",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+    }
+  ],
+  "article": {
+    "slug": "yuta-ikeda-profile-published",
+    "title": "池田勇太のプロフィールを掲載しました",
+    "excerpt": "池田勇太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+    "body": "池田勇太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}
