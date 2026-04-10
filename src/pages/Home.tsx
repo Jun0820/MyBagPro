@@ -339,7 +339,7 @@ export const Home = () => {
               >
                 <div className="flex items-center gap-4 border-b border-gray-100 bg-white p-5">
                   <img
-                    src={getProfileVisuals(pro.slug).portrait}
+                    src={getProfileVisuals(pro.slug, pro.instagramHandle).portrait}
                     alt={`${pro.name}のプレースホルダー画像`}
                     className="h-16 w-16 rounded-full border border-slate-200 bg-slate-50 object-cover p-2"
                   />

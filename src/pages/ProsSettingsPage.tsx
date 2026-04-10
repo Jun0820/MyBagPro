@@ -206,7 +206,7 @@ export const ProsSettingsPage = () => {
         )}
 
         {filteredProfiles.map((setting) => {
-          const visuals = getProfileVisuals(setting.slug);
+          const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
 
           return (
             <button

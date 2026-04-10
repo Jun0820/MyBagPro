@@ -416,7 +416,7 @@ export const ProSettingDetailPage = () => {
   useEffect(() => {
     if (!setting) return;
 
-    const visuals = getProfileVisuals(setting.slug);
+    const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
     const embeds = visuals.socialEmbeds || [];
     const hasInstagram = embeds.some((embed) => embed.platform === 'instagram');
     const hasX = embeds.some((embed) => embed.platform === 'x');
@@ -478,7 +478,7 @@ export const ProSettingDetailPage = () => {
   const xChannelUrl = setting.xHandle ? toChannelUrl(setting.xHandle, 'x') : undefined;
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
-  const visuals = getProfileVisuals(setting.slug);
+  const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
   const profileIntro = `${setting.name}の${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}クラブセッティングを掲載しています。${driverClub ? `使用ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `使用ボールは${setting.ball}。` : ''}契約メーカーは${setting.contractDisplay}です。`;
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
@@ -852,10 +852,14 @@ export const ProSettingDetailPage = () => {
 
             {visuals.portraitMedia && (
               <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">COMMONS PHOTO</div>
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
+                  {visuals.portraitMedia.sourceType === 'instagram_profile' ? 'INSTAGRAM PROFILE' : 'COMMONS PHOTO'}
+                </div>
                 <h3 className="mt-3 text-xl font-black text-trust-navy">{setting.name}の掲載写真</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Wikimedia Commons で再利用可能と明記された写真のみを使用しています。ページ上にも出典とライセンスを残しています。
+                  {visuals.portraitMedia.sourceType === 'instagram_profile'
+                    ? '公開Instagramアカウントのプロフィール画像を優先表示しています。プロフィール画像が使えない場合のみ、再利用可能画像へフォールバックします。'
+                    : 'Wikimedia Commons で再利用可能と明記された写真のみを使用しています。ページ上にも出典とライセンスを残しています。'}
                 </p>
                 <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-white p-4">
                   <AttributionLine attribution={visuals.portraitMedia.attribution} />

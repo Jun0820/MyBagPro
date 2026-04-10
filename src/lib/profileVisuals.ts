@@ -10,6 +10,7 @@ export interface ProfilePortraitAttribution {
 
 export interface ProfilePortraitMedia {
   kind: 'image';
+  sourceType: 'instagram_profile' | 'commons';
   src: string;
   alt: string;
   attribution: ProfilePortraitAttribution;
@@ -106,6 +107,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'hideki-matsuyama': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hideki%20Matsuyama%20ClevelandGolf4-21.jpg',
       alt: 'Hideki Matsuyama at the 2014 WGC-Bridgestone Invitational.',
       attribution: {
@@ -121,6 +123,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'rory-mcilroy': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rory%20McIlroy%20Ryder%20Cup%202025-195%20%28cropped%29.jpg',
       alt: 'Rory McIlroy during the 2025 Ryder Cup.',
       attribution: {
@@ -136,6 +139,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'nelly-korda': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nelly_Korda%20at%20the%202022%20KPMG%20Women%27s%20PGA%20Championship.jpg',
       alt: 'Nelly Korda at the 2022 KPMG Women’s PGA Championship.',
       attribution: {
@@ -160,6 +164,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'lydia-ko': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Lydia%20Ko%20at%20the%202022%20KPMG%20Women%27s%20PGA%20Championship.jpg',
       alt: 'Lydia Ko at the 2022 KPMG Women’s PGA Championship.',
       attribution: {
@@ -175,6 +180,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'tiger-woods': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tiger%20Woods%20July%202010.jpg',
       alt: 'Tiger Woods in 2010.',
       attribution: {
@@ -199,6 +205,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'scottie-scheffler': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Scottie%20Scheffler%20Ryder%20Cup%202025%20%28cropped%29.jpg',
       alt: 'Scottie Scheffler during the 2025 Ryder Cup.',
       attribution: {
@@ -223,6 +230,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'justin-rose': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Justin%20Rose%20at%202015%20PGA%20Championship.jpg',
       alt: 'Justin Rose at the 2015 PGA Championship.',
       attribution: {
@@ -238,6 +246,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'tommy-fleetwood': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tommy%20Fleetwood%202023.jpg',
       alt: 'Tommy Fleetwood in 2023.',
       attribution: {
@@ -253,6 +262,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'brooks-koepka': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brooks%20Koepka%202019%20PGA.jpg',
       alt: 'Brooks Koepka at the 2019 PGA Championship.',
       attribution: {
@@ -268,6 +278,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'brian-harman': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brian%20Harman%20at%202015%20Sony%20Open%20in%20Hawaii%20(portrait).png',
       alt: 'Brian Harman at the 2015 Sony Open in Hawaii Pro-Am.',
       attribution: {
@@ -282,6 +293,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'patrick-reed': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Patrick%20Reed%2001.jpg',
       alt: 'Patrick Reed at the 2018 U.S. Open.',
       attribution: {
@@ -297,6 +309,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'patrick-cantlay': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Patrick%20Cantlay%20Ryder%20Cup%202025-146%20%28cropped%29.jpg',
       alt: 'Patrick Cantlay during the 2025 Ryder Cup.',
       attribution: {
@@ -312,6 +325,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'shane-lowry': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Shane%20Lowry%208107.jpg',
       alt: 'Shane Lowry after winning the Irish Open in 2009.',
       attribution: {
@@ -327,6 +341,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'jordan-spieth': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jordan%20Spieth%2020180927.jpg',
       alt: 'Jordan Spieth during practice day at the 2018 Ryder Cup.',
       attribution: {
@@ -342,6 +357,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'collin-morikawa': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Max%20Homa%20and%20Collin%20Morikawa%201.jpg',
       alt: 'Collin Morikawa at the 2024 Presidents Cup.',
       attribution: {
@@ -357,6 +373,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'max-homa': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Max%20Homa%201.jpg',
       alt: 'Max Homa at the 2024 Presidents Cup.',
       attribution: {
@@ -372,6 +389,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'sam-burns': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Sam%20Burns.jpg',
       alt: 'Sam Burns at the 2024 Presidents Cup.',
       attribution: {
@@ -387,6 +405,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'tony-finau': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Tony%20Finau%201.jpg',
       alt: 'Tony Finau at the 2024 Presidents Cup.',
       attribution: {
@@ -402,6 +421,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'xander-schauffele': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Xander%20Schauffele%20Ryder%20Cup%202025%20%28cropped%29.jpg',
       alt: 'Xander Schauffele during the 2025 Ryder Cup.',
       attribution: {
@@ -417,6 +437,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'keegan-bradley': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/BMW%20Aronimink%20Tournament%20-%202018%20-%20Keegan%20Bradley%20%2830732646368%29.jpg',
       alt: 'Keegan Bradley at the 2018 BMW Championship at Aronimink.',
       attribution: {
@@ -432,6 +453,7 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'cameron-smith': {
     portraitMedia: {
       kind: 'image',
+      sourceType: 'commons',
       src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2017%20Australian%20Open%20-%20Cameron%20Smith%20%2842152296975%29%20%28cropped%29.jpg',
       alt: 'Cameron Smith at the 2017 Australian Open.',
       attribution: {
@@ -449,15 +471,37 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
 const hashSlug = (slug: string) =>
   [...slug].reduce((total, char) => total + char.charCodeAt(0), 0);
 
-export const getProfileVisuals = (slug: string): ProfileVisuals => {
+const buildInstagramPortraitMedia = (instagramHandle: string): ProfilePortraitMedia => {
+  const normalizedHandle = instagramHandle.replace(/^@/, '').trim();
+
+  return {
+    kind: 'image',
+    sourceType: 'instagram_profile',
+    src: `https://unavatar.io/instagram/${encodeURIComponent(normalizedHandle)}`,
+    alt: `${normalizedHandle} のInstagramプロフィール画像`,
+    attribution: {
+      creator: `@${normalizedHandle}`,
+      creatorUrl: `https://www.instagram.com/${normalizedHandle}/`,
+      sourceLabel: 'Instagram',
+      sourceUrl: `https://www.instagram.com/${normalizedHandle}/`,
+      licenseLabel: 'プロフィール画像',
+      note: '公開Instagramアカウントのプロフィール画像を参照しています。画像の権利はアカウント所有者または権利者に帰属します。',
+    },
+  };
+};
+
+export const getProfileVisuals = (slug: string, instagramHandle?: string): ProfileVisuals => {
   const index = hashSlug(slug) % visualPool.length;
   const base = visualPool[index];
   const override = reusableMediaBySlug[slug];
-  const portrait = override?.portraitMedia?.src || base.portrait;
+  const instagramPortrait = instagramHandle ? buildInstagramPortraitMedia(instagramHandle) : undefined;
+  const portraitMedia = instagramPortrait || override?.portraitMedia;
+  const portrait = portraitMedia?.src || base.portrait;
 
   return {
     ...base,
     ...override,
+    portraitMedia,
     portrait,
   };
 };
