@@ -1,0 +1,53 @@
+{
+  "profile": {
+    "slug": "in-gee-chun",
+    "display_name": "チョン・インジ",
+    "kana_name": "チョン・インジ",
+    "nationality": "South Korea",
+    "birthplace": "韓国",
+    "birth_date": "1994-08-10",
+    "height_cm": 175,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Srixon Z-Star",
+    "feature_1": "メジャー3勝",
+    "feature_2": "PING契約",
+    "feature_3": "2026シーズン基準",
+    "summary": "チョン・インジの2026シーズン基準クラブセッティング。PING中心の実戦セットを掲載しています。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-11T00:00:00.000Z",
+    "youtube_channel": "-",
+    "instagram_handle": "ingeechun_dumbo",
+    "x_handle": "-",
+    "website_url": "-"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G430 LST", "loft_label": "10.5°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G430 MAX", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "PING", "model_name": "G430 MAX", "spec_label": "5W", "loft_label": "18°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 4, "brand": "PING", "model_name": "G430 MAX", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 5, "brand": "PING", "model_name": "G430 Hybrid", "spec_label": "4U", "loft_label": "22°", "shaft_brand": "KBS", "shaft_model": "Tour Hybrid", "shaft_flex": "S", "shaft_weight": "70g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "PING", "model_name": "i230", "spec_label": "5I-PW", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
+    { "category": "Wedge", "slot_order": 7, "brand": "PING", "model_name": "s159", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 8, "brand": "PING", "model_name": "s159", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 9, "brand": "PING", "model_name": "s159", "spec_label": "LW", "loft_label": "58°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 10, "brand": "PING", "model_name": "PLD Anser", "source_note": "GolfWRX WITBより確認。", "is_featured_item": true }
+  ],
+  "sources": [
+    { "source_type": "official", "source_url": "https://ping.com/en-us/tour/pros/in-gee-chun", "source_title": "In Gee Chun - PING", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "契約情報と主要クラブ確認用。" },
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/732972/in-gee-chun-witb-2024/", "source_title": "In Gee Chun WITB - GolfWRX", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "詳細セッティング確認用。" }
+  ],
+  "article": {
+    "slug": "in-gee-chun-2026-setting-update",
+    "title": "チョン・インジのクラブセッティング【2026年最新】",
+    "excerpt": "PING契約のチョン・インジの2026シーズン基準セッティングを掲載しました。",
+    "body": "チョン・インジのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAXウッド、i230アイアン、s159ウェッジを中心にした構成です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-11T00:00:00.000Z"
+  }
+}

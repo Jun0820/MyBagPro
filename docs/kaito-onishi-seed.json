@@ -1,0 +1,51 @@
+{
+  "profile": {
+    "slug": "kaito-onishi",
+    "display_name": "大西魁斗",
+    "kana_name": "オオニシカイト",
+    "nationality": "Japan",
+    "birthplace": "愛知県",
+    "birth_date": "1998-10-13",
+    "height_cm": 178,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1",
+    "feature_1": "米国育ちのグローバルプレーヤー",
+    "feature_2": "タイトリスト中心",
+    "feature_3": "2026シーズン基準",
+    "summary": "大西魁斗の2026シーズン基準クラブセッティング。タイトリスト中心の実戦的な構成を掲載しています。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-11T00:00:00.000Z",
+    "youtube_channel": "-",
+    "instagram_handle": "kaito_onishi",
+    "x_handle": "-",
+    "website_url": "https://www.jgto.org/player/16712"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Titleist", "model_name": "TSR3", "loft_label": "9.0°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-6", "shaft_flex": "X", "shaft_weight": "60g台", "source_note": "GDOセッティング記事より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Titleist", "model_name": "TSR3", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-7", "shaft_flex": "X", "shaft_weight": "70g台", "source_note": "GDOセッティング記事より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "Callaway", "model_name": "Apex UW", "spec_label": "19°", "loft_label": "19°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-8", "shaft_flex": "X", "shaft_weight": "80g台", "source_note": "GDOセッティング記事より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Titleist", "model_name": "T100", "spec_label": "4I-9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "shaft_weight": "130g", "source_note": "GDOセッティング記事より確認。", "is_featured_item": true },
+    { "category": "Wedge", "slot_order": 5, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "PW", "loft_label": "46°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "shaft_weight": "130g", "source_note": "GDOセッティング記事より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 6, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GDOセッティング記事より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 7, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GDOセッティング記事より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 8, "brand": "Titleist", "model_name": "Vokey Design WedgeWorks", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GDOセッティング記事より確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 9, "brand": "Scotty Cameron", "model_name": "Phantom X 5.5", "source_note": "GDOセッティング記事より確認。", "is_featured_item": true }
+  ],
+  "sources": [
+    { "source_type": "article", "source_url": "https://news.golfdigest.co.jp/players/setting/16712/", "source_title": "大西魁斗 クラブセッティング - GDO", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "詳細セッティング確認用。" }
+  ],
+  "article": {
+    "slug": "kaito-onishi-2026-setting-update",
+    "title": "大西魁斗のクラブセッティング【2026年最新】",
+    "excerpt": "大西魁斗の2026シーズン基準クラブセッティングを掲載しました。",
+    "body": "大西魁斗のクラブセッティングについて、GDOのセッティング記事をもとに2026シーズン基準で整理しました。TSR3ドライバーとフェアウェイウッド、Apex UW、T100アイアン、Vokeyウェッジを中心にした構成です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-11T00:00:00.000Z"
+  }
+}

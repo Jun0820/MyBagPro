@@ -1,0 +1,49 @@
+{
+  "profile": {
+    "slug": "tiger-woods",
+    "display_name": "タイガー・ウッズ",
+    "kana_name": "タイガー・ウッズ",
+    "nationality": "United States",
+    "birthplace": "アメリカ合衆国",
+    "birth_date": "1975-12-30",
+    "height_cm": 185,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Bridgestone Tour B X",
+    "feature_1": "メジャー15勝",
+    "feature_2": "ゴルフ界のレジェンド",
+    "feature_3": "2026シーズン基準",
+    "summary": "タイガー・ウッズの2026シーズン基準クラブセッティング。近年出場時のセッティングをもとに掲載しています。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-11T00:00:00.000Z",
+    "youtube_channel": "-",
+    "instagram_handle": "tigerwoods",
+    "x_handle": "-",
+    "website_url": "https://tigerwoods.com/"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "TaylorMade", "model_name": "Qi10 LS", "loft_label": "10.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD VF-6", "shaft_flex": "X", "shaft_weight": "60g台", "source_note": "TaylorMade公式およびGolfWRX WITBより確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi10 Tour", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD VF-7", "shaft_flex": "X", "shaft_weight": "70g台", "source_note": "TaylorMade公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 3, "brand": "TaylorMade", "model_name": "P7TW", "spec_label": "3I-PW", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "shaft_weight": "130g", "source_note": "TaylorMade公式およびGolfWRX WITBより確認。", "is_featured_item": true },
+    { "category": "Wedge", "slot_order": 4, "brand": "TaylorMade", "model_name": "MG4 Raw", "spec_label": "SW", "loft_label": "56°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "TaylorMade公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 5, "brand": "TaylorMade", "model_name": "MG4 Raw", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "TaylorMade公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 6, "brand": "Scotty Cameron", "model_name": "Newport 2 GSS", "spec_label": "Prototype", "source_note": "GolfWRX WITBより確認。", "is_featured_item": true }
+  ],
+  "sources": [
+    { "source_type": "official", "source_url": "https://www.taylormadegolf.com/tour-team/tiger-woods.html", "source_title": "Tiger Woods - TaylorMade Golf", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "契約情報と主要クラブ確認用。" },
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/732899/tiger-woods-witb-2024/", "source_title": "Tiger Woods WITB - GolfWRX", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "詳細セッティング確認用。" }
+  ],
+  "article": {
+    "slug": "tiger-woods-2026-setting-update",
+    "title": "タイガー・ウッズのクラブセッティング【2026年最新】",
+    "excerpt": "タイガー・ウッズの2026シーズン基準クラブセッティングを掲載しました。",
+    "body": "タイガー・ウッズのクラブセッティングについて、TaylorMade公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。Qi10 LSドライバー、Qi10 Tourフェアウェイウッド、P7TWアイアン、MG4 Rawウェッジ、Scotty Cameron Newport 2 GSSという構成です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-11T00:00:00.000Z"
+  }
+}
