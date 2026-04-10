@@ -9,6 +9,8 @@
     "profile_type": "tour_pro",
     "segment": "launch10",
     "season_year": 2025,
+    "average_score": 70.183,
+    "best_score": 61,
     "ball_name": "Srixon Z-STAR",
     "feature_1": "2025シーズン基準",
     "feature_2": "藤本技工中心",
@@ -30,6 +32,7 @@
       "shaft_model": "Tour AD FI",
       "shaft_flex": "X",
       "shaft_weight": "60g class",
+      "total_distance": 293,
       "source_note": "Confirmed from GDO 2025 Japan Players Championship setting page.",
       "is_featured_item": true
     },
@@ -197,6 +200,20 @@
       "source_title": "GDO 生源寺龍憲 クラブセッティング 2025年 ジャパンプレーヤーズチャンピオンシップ",
       "checked_at": "2026-04-08T00:00:00.000Z",
       "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/en/player/16920/data",
+      "source_title": "Tatsunori SHOGENJI Tour Player Stats - JGTO",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JGTO official stats page used for 2025 scoring average 70.183 and driving distance 293.02 yd."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/en/player/16920/profile",
+      "source_title": "Tatsunori SHOGENJI Player Profile - JGTO",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JGTO official profile used for lowest 18-hole score 61."
     }
   ],
   "article": {

@@ -10,6 +10,9 @@
     "profile_type": "tour_pro",
     "segment": "masters_2026_batch",
     "season_year": 2026,
+    "head_speed_mps": 51.5,
+    "average_score": 69.25,
+    "best_score": 64,
     "ball_name": "Srixon Z-Star XV",
     "feature_1": "2021マスターズ覇者",
     "feature_2": "2025年初戦優勝時WITB",
@@ -22,7 +25,7 @@
     "website_url": "https://www.pgatour.com/player/32839/hideki-matsuyama"
   },
   "bagItems": [
-    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "ZX5 LS Mk II Driver", "loft_label": "9.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 8", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": true },
+    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "ZX5 LS Mk II Driver", "loft_label": "9.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 8", "shaft_flex": "TX", "total_distance": 300, "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": true },
     { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi10 Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 9", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
     { "category": "Fairway Wood", "slot_order": 3, "brand": "Cobra", "model_name": "King RadSpeed Tour", "spec_label": "5W", "loft_label": "19°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 10", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
     { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "4I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
@@ -39,6 +42,8 @@
   ],
   "sources": [
     { "source_type": "official", "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama", "source_title": "Hideki Matsuyama PGA TOUR Player Profile", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official profile used for player context and 2026 season status." },
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/stats", "source_title": "Hideki Matsuyama PGA TOUR Stats", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "PGA TOUR official stats page used for club head speed 115.33 mph, driving distance 300.0 yd, scoring average 69.25 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data." },
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career", "source_title": "Hideki Matsuyama PGA TOUR Career", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Career page confirms all-time career low round and PGA TOUR career context." },
     { "source_type": "article", "source_url": "https://www.golfwrx.com/751995/hideki-matsuyama-witb-2025-january-the-sentry/", "source_title": "Hideki Matsuyama’s winning WITB: 2025 Sentry - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Latest detailed full-bag breakdown found for Matsuyama." }
   ],
   "article": {

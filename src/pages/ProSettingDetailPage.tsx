@@ -22,6 +22,8 @@ const formatDistance = (carryDistance?: number | null, totalDistance?: number | 
   return '未公開';
 };
 
+const formatStatLabel = (value?: string) => value || '未公開';
+
 const formatBirthplace = (birthplace?: string | null, nationality?: string | null) => {
   const countryMap: Record<string, { label: string; flag: string }> = {
     Japan: { label: '日本', flag: '🇯🇵' },
@@ -332,6 +334,11 @@ export const ProSettingDetailPage = () => {
     { label: '契約メーカー', value: setting.contractDisplay },
     { label: '使用ボール', value: setting.ball },
   ];
+  const statCards = [
+    { label: 'ヘッドスピード', value: formatStatLabel(setting.headSpeed) },
+    { label: '平均スコア', value: formatStatLabel(setting.averageScore) },
+    { label: 'ベストスコア', value: formatStatLabel(setting.bestScore) },
+  ];
 
   return (
     <div className="min-h-screen pb-20">
@@ -411,6 +418,28 @@ export const ProSettingDetailPage = () => {
 
       <section className="mt-8">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
+              <h2 className="mt-3 text-2xl font-black text-trust-navy">飛距離とスタッツ</h2>
+            </div>
+            <p className="text-sm leading-7 text-slate-500">
+              公開ソースで確認できた値のみ掲載しています。単位や測定系はソースメモを確認してください。
+            </p>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {statCards.map((card) => (
+              <div key={card.label} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{card.label}</div>
+                <div className="mt-3 text-2xl font-black text-trust-navy">{card.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-8">
+        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
           <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
           <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-200">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
@@ -480,6 +509,50 @@ export const ProSettingDetailPage = () => {
           </div>
         </div>
       </section>
+
+      {setting.sources.length > 0 && (
+        <section className="mt-8">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
+                <h2 className="mt-3 text-2xl font-black text-trust-navy">確認ソースと計測メモ</h2>
+              </div>
+              <p className="text-sm leading-7 text-slate-500">
+                TrackMan、GCQuad、公式ツアースタッツなど、確認できた計測・参照元を残しています。
+              </p>
+            </div>
+            <div className="mt-6 grid gap-4">
+              {setting.sources.map((source) => (
+                <a
+                  key={`${source.type}-${source.url}`}
+                  href={source.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white"
+                >
+                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{source.type}</div>
+                      <div className="mt-1 text-base font-black text-trust-navy">{source.title}</div>
+                    </div>
+                    {source.checkedAt && (
+                      <div className="text-xs font-bold text-slate-500">
+                        確認日 {new Intl.DateTimeFormat('ja-JP').format(new Date(source.checkedAt))}
+                      </div>
+                    )}
+                  </div>
+                  {source.notes && <p className="mt-3 text-sm leading-7 text-slate-600">{source.notes}</p>}
+                  <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                    ソースを見る
+                    <ArrowRight size={14} />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="mt-8">
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">

@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "best_score": 67,
     "ball_name": "Srixon Z-STAR XV",
     "feature_1": "2026シーズン基準",
     "feature_2": "スリクソン中心",
@@ -166,6 +167,20 @@
       "source_title": "山下 美夢有 選手情報 - ダンロップスポーツ",
       "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Official contract player page used to complement current season setup confirmation."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/athletes/miyu-yamashita/102077/results",
+      "source_title": "Miyu Yamashita | Results | LPGA",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "LPGA official results page used for current-season low round 67."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/athletes/miyu-yamashita/102077/stats",
+      "source_title": "Miyu Yamashita | Statistics | LPGA",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
     },
     {
       "source_type": "article",

@@ -10,6 +10,9 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 53.8,
+    "average_score": 67.85,
+    "best_score": 63,
     "ball_name": "Titleist Pro V1",
     "feature_1": "2026年1月確認",
     "feature_2": "テーラーメイド中心",
@@ -30,6 +33,7 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black 7",
       "shaft_flex": "X",
+      "total_distance": 312,
       "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": true
     },
@@ -198,6 +202,20 @@
       "source_title": "Scottie Scheffler WITB | TaylorMade Golf",
       "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Official current player page confirms current TaylorMade-centered setup and Qi4D family overview."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/stats",
+      "source_title": "Scottie Scheffler PGA TOUR Stats",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "PGA TOUR official stats page used for club head speed 120.30 mph, driving distance 312.3 yd, scoring average 67.85 and lowest round 63. These are official tour stats, not public TrackMan or GCQuad session data."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/career",
+      "source_title": "Scottie Scheffler PGA TOUR Career",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Career page also confirms all-time lowest round reference."
     },
     {
       "source_type": "article",

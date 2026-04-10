@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "best_score": 64,
     "ball_name": "PRO V1x 2025",
     "feature_1": "2026シーズン基準",
     "feature_2": "PING中心",
@@ -204,6 +205,20 @@
       "source_title": "GDO リディア・コー クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
       "checked_at": "2026-04-09T00:00:00.000Z",
       "notes": "Used for 2026 full bag and ball confirmation."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/results",
+      "source_title": "Lydia Ko | Results | LPGA",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "LPGA official results page used for current-season low round 64."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/stats",
+      "source_title": "Lydia Ko | Statistics | LPGA",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
     }
   ],
   "article": {

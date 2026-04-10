@@ -9,6 +9,8 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
+    "average_score": 71.507,
+    "best_score": 63,
     "ball_name": "Titleist Pro V1x 2025",
     "feature_1": "2025シーズン基準",
     "feature_2": "Titleist/TaylorMade混成",
@@ -29,6 +31,7 @@
       "shaft_brand": "Graphite Design",
       "shaft_model": "Tour AD PT",
       "shaft_flex": "X",
+      "total_distance": 300,
       "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
       "is_featured_item": true
     },
@@ -197,6 +200,20 @@
       "source_title": "GDO 岩崎亜久竜 クラブセッティング 2025年 リシャール・ミル チャリティトーナメント",
       "checked_at": "2026-04-08T00:00:00.000Z",
       "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/en/player/16914/data",
+      "source_title": "Aguri IWASAKI Tour Player Stats - JGTO",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JGTO official stats page used for 2025 scoring average 71.507 and driving distance 299.51 yd."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/en/player/16914/profile",
+      "source_title": "Aguri IWASAKI Player Profile - JGTO",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JGTO official profile used for lowest 18-hole score 63."
     }
   ],
   "article": {

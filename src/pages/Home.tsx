@@ -14,6 +14,7 @@ import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
 import { profileCategories } from '../lib/profileMetadata';
 import { getProfileVisuals } from '../lib/profileVisuals';
+import { tournamentSpotlights } from '../lib/tournamentSpotlights';
 
 const featuredSlugOrder = [
   'hideki-matsuyama',
@@ -236,6 +237,76 @@ export const Home = () => {
               </button>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      <section className="rounded-[2.25rem] bg-white px-5 py-10 shadow-sm md:px-10 md:py-14">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[11px] font-black tracking-[0.18em] text-amber-600">TOURNAMENT SPOTLIGHT</div>
+              <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">
+                今週の大会で追うべき注目セッティング
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-gray-600 md:text-base">
+                2026年4月10日時点の開催中大会とオフ週の主要ツアーから、いま見ておきたい選手のクラブセッティング記事をまとめています。
+              </p>
+            </div>
+
+            <button
+              onClick={() => navigate('/articles')}
+              className="inline-flex items-center justify-center gap-2 self-start rounded-full border border-slate-200 px-5 py-3 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50"
+            >
+              特集記事一覧へ
+              <ArrowRight size={16} />
+            </button>
+          </div>
+
+          <div className="mt-8 grid gap-4 xl:grid-cols-4">
+            {tournamentSpotlights.map((spotlight) => (
+              <button
+                key={spotlight.articleSlug}
+                onClick={() => {
+                  trackEvent('select_article', {
+                    source_page: 'home_tournament_spotlight',
+                    article_slug: spotlight.articleSlug,
+                    article_title: `${spotlight.tourLabel} ${spotlight.tournamentName}`,
+                  });
+                  navigate(`/articles/${spotlight.articleSlug}`);
+                }}
+                className="group rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(160deg,#ffffff_0%,#f8fafc_55%,#eff6ff_100%)] p-5 text-left transition-all hover:-translate-y-1 hover:border-golf-300 hover:shadow-lg"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">{spotlight.tourLabel}</div>
+                    <h3 className="mt-2 text-xl font-black text-trust-navy">{spotlight.tournamentName}</h3>
+                  </div>
+                  <span className="rounded-full bg-amber-100 px-3 py-1 text-[11px] font-black text-amber-700">
+                    {spotlight.statusLabel}
+                  </span>
+                </div>
+                <div className="mt-4 text-sm font-bold text-slate-500">{spotlight.eventDates}</div>
+                <p className="mt-4 text-sm leading-7 text-slate-600">{spotlight.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {spotlight.featuredPlayerSlugs.slice(0, 3).map((playerSlug) => {
+                    const profile = profiles.find((item) => item.slug === playerSlug);
+                    return (
+                      <span
+                        key={playerSlug}
+                        className="rounded-full bg-white px-3 py-1.5 text-xs font-black text-slate-600 shadow-sm"
+                      >
+                        {profile?.name || playerSlug}
+                      </span>
+                    );
+                  })}
+                </div>
+                <div className="mt-5 inline-flex items-center gap-2 text-sm font-black text-golf-700 transition group-hover:translate-x-0.5">
+                  記事を読む
+                  <ArrowRight size={15} />
+                </div>
+              </button>
+            ))}
           </div>
         </div>
       </section>

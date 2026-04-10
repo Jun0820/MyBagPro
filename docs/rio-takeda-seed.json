@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "average_score": 69.24,
     "ball_name": "Srixon Z-STAR XV 2025",
     "feature_1": "2026シーズン基準",
     "feature_2": "スリクソン中心",
@@ -31,6 +32,7 @@
       "shaft_model": "Tour AD UB",
       "shaft_flex": "X",
       "shaft_weight": "50g台",
+      "total_distance": 263,
       "source_note": "Confirmed from GDO 2026 Tournament of Champions setting page.",
       "is_featured_item": true
     },
@@ -203,6 +205,20 @@
       "source_title": "GDO 竹田麗央 クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
       "checked_at": "2026-04-09T00:00:00.000Z",
       "notes": "Used for 2026 full bag and ball confirmation."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.or.jp/stats/2024/lpga/summary",
+      "source_title": "記録一覧｜JLPGA｜2024シーズン",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JLPGA official stats summary used for average stroke 69.24 and driving distance 263.19."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.or.jp/stats/2024/lpga/distance/1",
+      "source_title": "ドライビングディスタンス｜JLPGA｜2024",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JLPGA official distance page confirms 2024 driving distance leader at 263.19 yd. Public TrackMan or GCQuad numeric session data was not confirmed."
     }
   ],
   "article": {

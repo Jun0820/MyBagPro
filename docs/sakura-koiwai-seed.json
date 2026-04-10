@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "average_score": 70.2759,
     "ball_name": "スリクソン Z-STAR XV ボール〈2025年〉",
     "feature_1": "2025年明治安田レディス",
     "feature_2": "スリクソン中心",
@@ -31,6 +32,7 @@
       "shaft_model": "TENSEI Pro Orange 1K",
       "shaft_flex": "S",
       "shaft_weight": "50g台",
+      "total_distance": 251,
       "source_note": "Confirmed from GDO 2025 setting page.",
       "is_featured_item": true
     },
@@ -201,6 +203,20 @@
       "source_title": "GDO 小祝さくら クラブセッティング 2025年 明治安田レディス",
       "checked_at": "2026-04-09T00:00:00.000Z",
       "notes": "Used for full bag and ball confirmation."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.or.jp/stats/2025/lpga/stroke/1",
+      "source_title": "平均ストローク｜JLPGA｜2025",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JLPGA official stats page used for 2025 average stroke 70.2759."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.or.jp/stats/2025/lpga/distance/1",
+      "source_title": "ドライビングディスタンス｜JLPGA｜2025",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "JLPGA official distance page confirms 2025 driving distance 250.95 yd. Public TrackMan or GCQuad numeric session data was not confirmed."
     }
   ],
   "article": {

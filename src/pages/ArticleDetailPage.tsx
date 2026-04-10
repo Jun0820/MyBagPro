@@ -5,6 +5,7 @@ import { fetchPublishedArticleBySlug, fetchPublishedArticles, type PublicArticle
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
+import { getTournamentSpotlightByArticleSlug } from '../lib/tournamentSpotlights';
 
 const articleTypeLabel: Record<PublicArticle['articleType'], string> = {
   news: 'お知らせ',
@@ -27,6 +28,7 @@ export const ArticleDetailPage = () => {
   const [article, setArticle] = useState<PublicArticle | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<PublicArticle[]>([]);
   const [relatedProfile, setRelatedProfile] = useState<PublicSettingProfile | null>(null);
+  const [tournamentProfiles, setTournamentProfiles] = useState<PublicSettingProfile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -143,20 +145,26 @@ export const ArticleDetailPage = () => {
   useEffect(() => {
     let isMounted = true;
 
-    const loadProfile = async () => {
-      if (!article?.relatedProfileSlug) {
-        setRelatedProfile(null);
-        return;
-      }
-      const profile = await fetchPublishedSettingProfileBySlug(article.relatedProfileSlug);
-      if (isMounted) setRelatedProfile(profile);
+    const loadProfiles = async () => {
+      const spotlight = getTournamentSpotlightByArticleSlug(article?.slug);
+
+      const [singleProfile, spotlightProfiles] = await Promise.all([
+        article?.relatedProfileSlug ? fetchPublishedSettingProfileBySlug(article.relatedProfileSlug) : Promise.resolve(null),
+        spotlight
+          ? Promise.all(spotlight.featuredPlayerSlugs.map((profileSlug) => fetchPublishedSettingProfileBySlug(profileSlug)))
+          : Promise.resolve([]),
+      ]);
+
+      if (!isMounted) return;
+      setRelatedProfile(singleProfile);
+      setTournamentProfiles((spotlightProfiles || []).filter(Boolean) as PublicSettingProfile[]);
     };
 
-    loadProfile();
+    loadProfiles();
     return () => {
       isMounted = false;
     };
-  }, [article?.relatedProfileSlug]);
+  }, [article?.relatedProfileSlug, article?.slug]);
 
   if (isLoading) {
     return <div className="rounded-[2rem] border border-slate-200 bg-white p-10 text-center">記事を読み込んでいます...</div>;
@@ -165,6 +173,8 @@ export const ArticleDetailPage = () => {
   if (!article) {
     return <div className="rounded-[2rem] border border-slate-200 bg-white p-10 text-center">記事が見つかりません。</div>;
   }
+
+  const tournamentSpotlight = getTournamentSpotlightByArticleSlug(article.slug);
 
   return (
     <div className="min-h-screen pb-20">
@@ -213,6 +223,34 @@ export const ArticleDetailPage = () => {
           </div>
         )}
         <div className="mt-8 whitespace-pre-wrap text-sm leading-8 text-slate-700">{article.body}</div>
+        {tournamentSpotlight && tournamentProfiles.length > 0 && (
+          <section className="mt-8 rounded-[1.5rem] border border-amber-200 bg-amber-50/70 p-5">
+            <div className="text-[11px] font-black tracking-[0.14em] text-amber-700">TOURNAMENT PLAYERS</div>
+            <h2 className="mt-2 text-xl font-black text-trust-navy">
+              {tournamentSpotlight.tournamentName}で追いたい注目選手
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-700">
+              各選手のセッティング詳細ページでは、使用ドライバー、番手構成、飛距離、確認ソースまで一覧で見られます。
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {tournamentProfiles.map((profile) => (
+                <button
+                  key={profile.slug}
+                  onClick={() => navigate(`/settings/pros/${profile.slug}`)}
+                  className="rounded-[1.25rem] border border-amber-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-amber-300"
+                >
+                  <div className="text-[11px] font-black tracking-[0.12em] text-amber-700">{profile.categoryLabel}</div>
+                  <h3 className="mt-2 text-lg font-black text-trust-navy">{profile.name}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{profile.summary}</p>
+                  <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                    セッティングを見る
+                    <ArrowRight size={14} />
+                  </div>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
         {relatedProfile && (
           <section className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">SETTING SUMMARY</div>

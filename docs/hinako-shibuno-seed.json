@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "best_score": 65,
     "ball_name": "Titleist Pro V1x",
     "feature_1": "2026シーズン基準",
     "feature_2": "国内女子実戦構成",
@@ -165,6 +166,20 @@
       "source_title": "スポーツナビ 国内女子クラブセッティング一覧（渋野日向子）",
       "checked_at": "2026-04-09T00:00:00.000Z",
       "notes": "Used as latest season reference."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/results",
+      "source_title": "Hinako Shibuno | Results | LPGA",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "LPGA official results page used for current-season low round 65."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/stats",
+      "source_title": "Hinako Shibuno | Statistics | LPGA",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
     }
   ],
   "article": {

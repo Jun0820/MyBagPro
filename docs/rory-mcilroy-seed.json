@@ -10,6 +10,9 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 55.4,
+    "average_score": 69,
+    "best_score": 64,
     "ball_name": "TaylorMade TP5",
     "feature_1": "2026年4月確認",
     "feature_2": "テーラーメイド中心",
@@ -30,6 +33,7 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black 6",
       "shaft_flex": "X",
+      "total_distance": 316,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April).",
       "is_featured_item": true
     },
@@ -199,6 +203,20 @@
       "source_title": "Rory McIlroy WITB | TaylorMade Golf",
       "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Official current player page confirms Qi4D driver/fairway family and TaylorMade-centered setup."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/28237/rory-mcilroy/stats",
+      "source_title": "Rory McIlroy PGA TOUR Stats",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "PGA TOUR official stats page used for club head speed 123.87 mph, driving distance 315.5 yd, scoring average 69.00 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/28237/rory-mcilroy/career",
+      "source_title": "Rory McIlroy PGA TOUR Career",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Career page used to cross-check profile context and season status."
     },
     {
       "source_type": "article",
