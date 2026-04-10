@@ -179,6 +179,19 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
     ],
   },
   'scottie-scheffler': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Scottie%20Scheffler%20Ryder%20Cup%202025%20%28cropped%29.jpg',
+      alt: 'Scottie Scheffler during the 2025 Ryder Cup.',
+      attribution: {
+        creator: 'Bryan Berlin',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Scottie_Scheffler_Ryder_Cup_2025_(cropped).jpg',
+        licenseLabel: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+        note: 'WikiPortraitsの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
     socialEmbeds: [
       {
         platform: 'x',
@@ -275,6 +288,81 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
         licenseLabel: 'CC BY-SA 3.0',
         licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
         note: 'VRT確認済みの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'jordan-spieth': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jordan%20Spieth%2020180927.jpg',
+      alt: 'Jordan Spieth during practice day at the 2018 Ryder Cup.',
+      attribution: {
+        creator: 'EEJB',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Jordan_Spieth_20180927.jpg',
+        licenseLabel: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'collin-morikawa': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Max%20Homa%20and%20Collin%20Morikawa%201.jpg',
+      alt: 'Collin Morikawa at the 2024 Presidents Cup.',
+      attribution: {
+        creator: 'Caddyshack01',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:2024_Presidents_Cup_-_Max_Homa_and_Collin_Morikawa_1.jpg',
+        licenseLabel: 'CC BY 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+        note: '再利用可能画像。Max Homaも写り込む写真です。人物画像のためパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'max-homa': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Max%20Homa%201.jpg',
+      alt: 'Max Homa at the 2024 Presidents Cup.',
+      attribution: {
+        creator: 'Caddyshack01',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:2024_Presidents_Cup_-_Max_Homa_1.jpg',
+        licenseLabel: 'CC BY 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'sam-burns': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Sam%20Burns.jpg',
+      alt: 'Sam Burns at the 2024 Presidents Cup.',
+      attribution: {
+        creator: 'Caddyshack01',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:2024_Presidents_Cup_-_Sam_Burns.jpg',
+        licenseLabel: 'CC BY 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'tony-finau': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2024%20Presidents%20Cup%20-%20Tony%20Finau%201.jpg',
+      alt: 'Tony Finau at the 2024 Presidents Cup.',
+      attribution: {
+        creator: 'Caddyshack01',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:2024_Presidents_Cup_-_Tony_Finau_1.jpg',
+        licenseLabel: 'CC BY 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
       },
     },
   },
