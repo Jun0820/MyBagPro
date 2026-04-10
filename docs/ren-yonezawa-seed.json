@@ -1,0 +1,213 @@
+{
+  "profile": {
+    "slug": "ren-yonezawa",
+    "display_name": "米澤 蓮",
+    "nationality": "Japan",
+    "birthplace": "岩手県",
+    "birth_date": "1999-07-23",
+    "height_cm": 175,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2025,
+    "ball_name": "PRO V1x ボール＜2025年＞",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "国内男子ツアー実戦セット",
+    "feature_3": "14本確認済み",
+    "summary": "2025年東建ホームメイトカップ時点で確認できた米澤蓮の14本セッティングを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "ヨネザワ レン"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Titleist",
+      "model_name": "GT1 Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Titleist",
+      "model_name": "GT1 Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "Titleist",
+      "model_name": "GT1 Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "18°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Titleist",
+      "model_name": "U505 Utility Iron＜2023年＞",
+      "spec_label": "3U",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Titleist",
+      "model_name": "T200 Iron＜2023年＞",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Titleist",
+      "model_name": "T100 Iron＜2023年＞",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Titleist",
+      "model_name": "T100 Iron＜2023年＞",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Titleist",
+      "model_name": "T100 Iron＜2023年＞",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Titleist",
+      "model_name": "T100 Iron＜2023年＞",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Titleist",
+      "model_name": "T100 Iron＜2023年＞",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "AMT Tour White",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "PW",
+      "loft_label": "46°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "GW",
+      "loft_label": "52°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "SW",
+      "loft_label": "58°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "TG6.2 Prototype Putter",
+      "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/18057/2025/1/",
+      "source_title": "GDO 米澤蓮 クラブセッティング 2025年 東建ホームメイトカップ",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 setting, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "ren-yonezawa-2025-setting-update",
+    "title": "米澤蓮の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、米澤蓮の14本セッティングと使用ボールを掲載しました。",
+    "body": "米澤蓮のセッティングについて、2025年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの注目プロとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

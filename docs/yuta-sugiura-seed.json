@@ -1,0 +1,200 @@
+{
+  "profile": {
+    "slug": "yuta-sugiura",
+    "display_name": "杉浦 悠太",
+    "nationality": "Japan",
+    "birthplace": "愛知県",
+    "birth_date": "2001-09-12",
+    "height_cm": 170,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2025,
+    "ball_name": "PRO V1x ボール＜2023年＞",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "国内男子ツアー実戦セット",
+    "feature_3": "公開ソース確認済み",
+    "summary": "2025年ソニーオープン時点で確認できた杉浦悠太のクラブセッティングを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "スギウラ ユウタ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "Paradym Triple Diamond S Driver",
+      "loft_label": "8.5°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder Evolution 7",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder Evolution",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro Utility",
+      "spec_label": "3U",
+      "loft_label": "19°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder TR Hybrid",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro Fli-Hi Utility",
+      "spec_label": "3U",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder TR Hybrid",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro S-3",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "GW",
+      "loft_label": "52°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "SW",
+      "loft_label": "58°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "Ai-ONE #5 CS",
+      "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/17979/2025/1/",
+      "source_title": "GDO 杉浦悠太 クラブセッティング 2025年 ソニーオープン",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 setting, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "yuta-sugiura-2025-setting-update",
+    "title": "杉浦悠太の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、杉浦悠太のクラブセッティングと使用ボールを掲載しました。",
+    "body": "杉浦悠太のセッティングについて、2025年ソニーオープン時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーで注目度の高い若手の実戦セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}
