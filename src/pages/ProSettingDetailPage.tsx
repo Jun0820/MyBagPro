@@ -556,70 +556,31 @@ export const ProSettingDetailPage = () => {
           </div>
 
           <div className="relative min-h-[360px] overflow-hidden">
-            <img src={visuals.hero} alt="" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.72)_100%)]" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/55 px-4 py-4 backdrop-blur">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>
-                <div className="mt-2 text-sm font-black text-white">{driverClub ? driverClub.model : '未公開'}</div>
+            {visuals.portraitMedia ? (
+              <div className="flex h-full flex-col bg-slate-100">
+                <div className="relative flex-1 overflow-hidden">
+                  <img src={visuals.portraitMedia.src} alt={visuals.portraitMedia.alt} className="h-full w-full object-cover object-top" />
+                </div>
+                <div className="border-t border-slate-200 bg-white/95 px-5 py-4 backdrop-blur">
+                  <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>
+                  <div className="mt-2 text-sm font-black text-trust-navy">{driverClub ? driverClub.model : '未公開'}</div>
+                </div>
               </div>
-            </div>
+            ) : (
+              <>
+                <img src={visuals.hero} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.72)_100%)]" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/55 px-4 py-4 backdrop-blur">
+                    <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>
+                    <div className="mt-2 text-sm font-black text-white">{driverClub ? driverClub.model : '未公開'}</div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
-
-      {(visuals.portraitMedia || (visuals.socialEmbeds && visuals.socialEmbeds.length > 0)) && (
-        <section className="mt-8">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-              <div>
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PHOTO & POSTS</div>
-                <h2 className="mt-3 text-2xl font-black text-trust-navy">写真とSNS投稿</h2>
-              </div>
-              <p className="text-sm leading-7 text-slate-500">
-                再利用可能画像または公式埋め込みのみ掲載しています。表示できない場合は外部リンクを利用してください。
-              </p>
-            </div>
-
-            {visuals.portraitMedia && (
-              <div className="mt-6 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
-                <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
-                  <div className="bg-slate-100">
-                    <img src={visuals.portraitMedia.src} alt={visuals.portraitMedia.alt} className="h-full w-full object-cover" />
-                  </div>
-                  <div className="p-5 md:p-6">
-                    <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">COMMONS PHOTO</div>
-                    <h3 className="mt-3 text-xl font-black text-trust-navy">{setting.name}の掲載写真</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">
-                      Wikimedia Commons で再利用可能と明記された写真のみを使用しています。ページ上にも出典とライセンスを残しています。
-                    </p>
-                    <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-white p-4">
-                      <AttributionLine attribution={visuals.portraitMedia.attribution} />
-                    </div>
-                    <a
-                      href={visuals.portraitMedia.attribution.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
-                    >
-                      元画像ページを見る
-                      <ArrowRight size={14} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {visuals.socialEmbeds && visuals.socialEmbeds.length > 0 && (
-              <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                {visuals.socialEmbeds.map((embed) => (
-                  <SocialEmbedCard key={`${setting.slug}-${embed.platform}-${embed.postUrl}`} embed={embed} />
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      )}
 
       <section className="mt-8">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
@@ -872,6 +833,52 @@ export const ProSettingDetailPage = () => {
               ドライバー詳細を見る
               <ShoppingBag size={16} />
             </button>
+          </div>
+        </section>
+      )}
+
+      {(visuals.portraitMedia || (visuals.socialEmbeds && visuals.socialEmbeds.length > 0)) && (
+        <section className="mt-8">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PHOTO & POSTS</div>
+                <h2 className="mt-3 text-2xl font-black text-trust-navy">写真とSNS投稿</h2>
+              </div>
+              <p className="text-sm leading-7 text-slate-500">
+                再利用可能画像または公式埋め込みのみ掲載しています。表示できない場合は外部リンクを利用してください。
+              </p>
+            </div>
+
+            {visuals.portraitMedia && (
+              <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">COMMONS PHOTO</div>
+                <h3 className="mt-3 text-xl font-black text-trust-navy">{setting.name}の掲載写真</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Wikimedia Commons で再利用可能と明記された写真のみを使用しています。ページ上にも出典とライセンスを残しています。
+                </p>
+                <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-white p-4">
+                  <AttributionLine attribution={visuals.portraitMedia.attribution} />
+                </div>
+                <a
+                  href={visuals.portraitMedia.attribution.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
+                >
+                  元画像ページを見る
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+            )}
+
+            {visuals.socialEmbeds && visuals.socialEmbeds.length > 0 && (
+              <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                {visuals.socialEmbeds.map((embed) => (
+                  <SocialEmbedCard key={`${setting.slug}-${embed.platform}-${embed.postUrl}`} embed={embed} />
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
