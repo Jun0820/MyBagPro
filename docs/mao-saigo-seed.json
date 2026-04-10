@@ -11,14 +11,15 @@
     "season_year": 2026,
     "ball_name": "Titleist Pro V1x",
     "feature_1": "2026シーズン基準",
-    "feature_2": "タイトルスト系セット",
+    "feature_2": "2025シェブロン選手権優勝",
     "feature_3": "14本確認済み",
-    "summary": "2026年トーナメント・オブ・チャンピオンズ時点で確認できた西郷真央の14本のクラブセッティング。TitleistとMizunoを中心にした構成と使用ボールまで掲載しています。",
+    "summary": "2025年シェブロン選手権を制した西郷真央の、2026年トーナメント・オブ・チャンピオンズ時点で確認できた14本のクラブセッティング。TitleistとMizunoを中心にした構成と使用ボールまで掲載しています。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-09T00:00:00.000Z",
-    "kana_name": "サイゴウ マオ"
+    "kana_name": "サイゴウ マオ",
+    "website_url": "https://www.lpga.com/athletes/mao-saigo/101918/overview"
   },
   "bagItems": [
     {
@@ -196,18 +197,32 @@
   ],
   "sources": [
     {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/athletes/mao-saigo/101918/overview",
+      "source_title": "Mao Saigo | Overview | LPGA",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Official LPGA player page used to confirm current profile context and latest win record."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.titleist.com/tour/4743/mao-saigo",
+      "source_title": "Mao Saigo | Golfer | Titleist",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Official Titleist player page used to confirm current ball information."
+    },
+    {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/17000/2026/1/",
       "source_title": "GDO 西郷真央 クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
-      "checked_at": "2026-04-09T00:00:00.000Z",
+      "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Used for 2026 full bag and ball confirmation."
     }
   ],
   "article": {
     "slug": "mao-saigo-2026-setting-update",
     "title": "西郷真央の2026年クラブセッティングを掲載しました",
-    "excerpt": "2026シーズン基準で、西郷真央の14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "西郷真央の2026年クラブセッティングについて、2026年トーナメント・オブ・チャンピオンズ時点で確認できた14本の構成を反映しました。使用ドライバーはTitleist GT3 Driver、使用ボールはTitleist Pro V1xです。掲載ページではフェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パターまで一覧で確認できます。西郷真央の現在のクラブセッティングを探したい人向けに、メーカー、クラブ名、シャフト、ロフト、硬さも整理して掲載しています。",
+    "excerpt": "2026シーズン基準で、西郷真央の14本のクラブセッティングと使用ボールを掲載しました。LPGA公式プロフィールと2026年のGDOセッティング記事をもとに更新しています。",
+    "body": "西郷真央の2026年クラブセッティングについて、2026年トーナメント・オブ・チャンピオンズ時点で確認できた14本の構成を反映しました。使用ドライバーはTitleist GT3 Driver、使用ボールはTitleist Pro V1xです。掲載ページではフェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パターまで一覧で確認できます。2025年シェブロン選手権優勝後のプロフィール文脈も踏まえつつ、LPGA公式プロフィールとTitleist公式、GDOの2026年セッティング記事を参照して整理しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
