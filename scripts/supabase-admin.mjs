@@ -67,6 +67,33 @@ function getAdminClient() {
   });
 }
 
+function parseProfileSocialOverrides() {
+  const socialFile = path.join(projectRoot, 'src/lib/profileSocials.ts');
+
+  if (!fs.existsSync(socialFile)) {
+    throw new Error(`Social overrides file not found: ${socialFile}`);
+  }
+
+  const source = fs.readFileSync(socialFile, 'utf8');
+  const overrides = [];
+  const linePattern = /^\s*'([^']+)':\s*\{\s*([^}]*)\},?\s*$/gm;
+
+  let match;
+  while ((match = linePattern.exec(source)) !== null) {
+    const [, slug, body] = match;
+    const instagramMatch = body.match(/instagramHandle:\s*'([^']+)'/);
+    const xMatch = body.match(/xHandle:\s*'([^']+)'/);
+
+    overrides.push({
+      slug,
+      instagram_handle: instagramMatch?.[1] || null,
+      x_handle: xMatch?.[1] || null,
+    });
+  }
+
+  return overrides.filter((entry) => entry.instagram_handle || entry.x_handle);
+}
+
 async function checkConnection() {
   const { supabaseUrl, serviceRoleKey, anonKey } = readConfig();
 
@@ -362,6 +389,74 @@ async function upsertSettingProfileFromFile(filepath) {
   }, null, 2));
 }
 
+async function syncSocialOverrides({ dryRun = false } = {}) {
+  const supabase = getAdminClient();
+  const overrides = parseProfileSocialOverrides();
+
+  const { data: profiles, error } = await supabase
+    .from('setting_profiles')
+    .select('id, slug, display_name, instagram_handle, x_handle')
+    .in('slug', overrides.map((entry) => entry.slug));
+
+  if (error) throw error;
+
+  const profileMap = new Map((profiles || []).map((profile) => [profile.slug, profile]));
+  const updates = [];
+  const missing = [];
+
+  for (const entry of overrides) {
+    const profile = profileMap.get(entry.slug);
+
+    if (!profile) {
+      missing.push(entry.slug);
+      continue;
+    }
+
+    const nextInstagram = entry.instagram_handle ?? profile.instagram_handle;
+    const nextX = entry.x_handle ?? profile.x_handle;
+
+    if (profile.instagram_handle === nextInstagram && profile.x_handle === nextX) {
+      continue;
+    }
+
+    updates.push({
+      id: profile.id,
+      slug: profile.slug,
+      display_name: profile.display_name,
+      instagram_handle: nextInstagram,
+      x_handle: nextX,
+    });
+  }
+
+  if (!dryRun && updates.length > 0) {
+    for (const update of updates) {
+      const { error: updateError } = await supabase
+        .from('setting_profiles')
+        .update({
+          instagram_handle: update.instagram_handle,
+          x_handle: update.x_handle,
+        })
+        .eq('id', update.id);
+
+      if (updateError) throw updateError;
+    }
+  }
+
+  console.log(JSON.stringify({
+    dryRun,
+    parsedOverrides: overrides.length,
+    matchedProfiles: profiles?.length || 0,
+    updatedProfiles: updates.length,
+    missingProfiles: missing,
+    sampleUpdates: updates.slice(0, 20).map(({ slug, display_name, instagram_handle, x_handle }) => ({
+      slug,
+      display_name,
+      instagram_handle,
+      x_handle,
+    })),
+  }, null, 2));
+}
+
 async function main() {
   const [command, ...args] = process.argv.slice(2);
 
@@ -384,9 +479,12 @@ async function main() {
     case 'upsert-setting-profile':
       await upsertSettingProfileFromFile(args[0]);
       break;
+    case 'sync-social-overrides':
+      await syncSocialOverrides({ dryRun: args.includes('--dry-run') });
+      break;
     default:
       throw new Error(
-        'Unknown command. Use one of: check, publish-profile, insert-source, upsert-article, upsert-articles, upsert-setting-profile'
+        'Unknown command. Use one of: check, publish-profile, insert-source, upsert-article, upsert-articles, upsert-setting-profile, sync-social-overrides'
       );
   }
 }

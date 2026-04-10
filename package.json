@@ -14,7 +14,8 @@
     "supabase:insert-source": "node scripts/supabase-admin.mjs insert-source",
     "supabase:upsert-article": "node scripts/supabase-admin.mjs upsert-article",
     "supabase:upsert-articles": "node scripts/supabase-admin.mjs upsert-articles",
-    "supabase:upsert-setting-profile": "node scripts/supabase-admin.mjs upsert-setting-profile"
+    "supabase:upsert-setting-profile": "node scripts/supabase-admin.mjs upsert-setting-profile",
+    "supabase:sync-social-overrides": "node scripts/supabase-admin.mjs sync-social-overrides"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
