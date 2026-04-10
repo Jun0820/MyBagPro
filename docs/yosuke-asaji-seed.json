@@ -1,0 +1,58 @@
+{
+  "profile": {
+    "slug": "yosuke-asaji",
+    "display_name": "浅地 洋佑",
+    "nationality": "Japan",
+    "birthplace": "東京都",
+    "birth_date": "1993-05-24",
+    "height_cm": 163,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2025,
+    "ball_name": "PRO V1 ボール＜2025年＞",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "中日クラウンズ実戦セット",
+    "feature_3": "14本確認済み",
+    "summary": "2025年中日クラウンズ時点で確認できた浅地洋佑の14本セッティングを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "アサジ ヨウスケ"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Titleist", "model_name": "GT3 Driver", "loft_label": "9°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLACK", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Callaway", "model_name": "Paradym Triple Diamond T Fairway Wood", "spec_label": "3W", "loft_label": "14°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLACK", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "Callaway", "model_name": "Paradym Triple Diamond T Fairway Wood", "spec_label": "5W", "loft_label": "18°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLACK", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "Callaway", "model_name": "APEX UW＜2023年＞", "spec_label": "4U", "loft_label": "23°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLACK", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "5I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 SYSTEM3 TOUR125", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "6I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 SYSTEM3 TOUR125", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "7I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 SYSTEM3 TOUR125", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "8I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 SYSTEM3 TOUR125", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "9I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 SYSTEM3 TOUR125", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "PW", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 SYSTEM3 TOUR125", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Callaway", "model_name": "OPUS Wedge", "spec_label": "GW", "loft_label": "50°", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 SYSTEM3 TOUR125", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Callaway", "model_name": "OPUS Wedge", "spec_label": "SW", "loft_label": "56°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Weight Lock Tour Issue", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "ProtoConcept", "model_name": "RR Wedge", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Weight Lock Tour Issue", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "Ai-ONE Square 2 Square JAILBIRD Putter", "source_note": "Confirmed from GDO 2025 Chunichi Crowns setting page.", "is_featured_item": false }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6659/2025/1/",
+      "source_title": "GDO 浅地洋佑 クラブセッティング 2025年 中日クラウンズ",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 setting, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "yosuke-asaji-2025-setting-update",
+    "title": "浅地洋佑の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、浅地洋佑の14本セッティングと使用ボールを掲載しました。",
+    "body": "浅地洋佑のセッティングについて、2025年中日クラウンズ時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}
