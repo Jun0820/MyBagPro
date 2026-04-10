@@ -9,13 +9,13 @@
     "height_cm": 190,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
-    "season_year": 2025,
+    "season_year": 2026,
     "ball_name": "Titleist Pro V1",
-    "feature_1": "2025シーズン基準",
+    "feature_1": "2026年1月確認",
     "feature_2": "テーラーメイド中心",
     "feature_3": "14本確認済み",
-    "summary": "スコッティ・シェフラーの2025年クラブセッティングを、使用ドライバー、フェアウェイウッド、ユーティリティアイアン、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるページです。",
-    "latest_source_policy": "2025_season",
+    "summary": "スコッティ・シェフラーの2026年クラブセッティングを、2026年1月の優勝時WITBをもとに、使用ドライバー、フェアウェイウッド、ユーティリティアイアン、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるページです。",
+    "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z"
@@ -30,7 +30,7 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black 7",
       "shaft_flex": "X",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": true
     },
     {
@@ -43,19 +43,20 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black 8",
       "shaft_flex": "X",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
-      "category": "Utility",
+      "category": "Fairway Wood",
       "slot_order": 3,
-      "brand": "Srixon",
-      "model_name": "ZU85 Utility Iron",
-      "spec_label": "3I",
-      "shaft_brand": "Nippon Shaft",
-      "shaft_model": "N.S. Pro Modus 3 Hybrid Prototype 10",
+      "brand": "TaylorMade",
+      "model_name": "Qi4D Fairway Wood",
+      "spec_label": "7W",
+      "loft_label": "21°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black 9",
       "shaft_flex": "X",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -67,7 +68,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -79,7 +80,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -91,7 +92,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -103,7 +104,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -115,7 +116,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -127,7 +128,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -139,7 +140,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -152,7 +153,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -165,7 +166,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -178,7 +179,7 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     },
     {
@@ -186,33 +187,33 @@
       "slot_order": 14,
       "brand": "TaylorMade",
       "model_name": "Spider Tour X Putter",
-      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
       "is_featured_item": false
     }
   ],
   "sources": [
     {
-      "source_type": "article",
-      "source_url": "https://news.golfdigest.co.jp/players/setting/17786/",
-      "source_title": "GDO スコッティ・シェフラー クラブセッティング 2025年 全英オープン",
+      "source_type": "official",
+      "source_url": "https://www.taylormadegolf.com/tourplayers/scottie-scheffler.html?lang=en_US",
+      "source_title": "Scottie Scheffler WITB | TaylorMade Golf",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for profile and 2025 full bag confirmation."
+      "notes": "Official current player page confirms current TaylorMade-centered setup and Qi4D family overview."
     },
     {
       "source_type": "article",
-      "source_url": "https://www.golfwrx.com/763621/bks-breakdowns-scottie-schefflers-witb-from-the-2025-open-championship/",
-      "source_title": "GolfWRX Scottie Scheffler WITB 2025 Open Championship",
+      "source_url": "https://www.golfwrx.com/772379/scotties-scheffler-winning-witb-the-2026-american-express/",
+      "source_title": "GolfWRX Scottie Scheffler winning WITB 2026 American Express",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used to confirm shafts and utility iron composition."
+      "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
     }
   ],
   "article": {
-    "slug": "scottie-scheffler-2025-setting-update",
-    "title": "スコッティ・シェフラー クラブセッティング 2025年版 14本と使用ドライバー",
-    "excerpt": "スコッティ・シェフラーの2025年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
-    "body": "スコッティ・シェフラーのクラブセッティングについて、2025年全英オープン時点で確認できた14本の構成を反映しました。Qi10ドライバー、Qi10 3W、ZU85ユーティリティアイアン、P7TWアイアン、Vokeyウェッジ、Spider Tour Xパター、Titleist Pro V1という流れで、スコッティ・シェフラーの現在のクラブセッティングを確認できます。詳細ページでは各番手のメーカー、クラブ名、シャフト、ロフトを一覧で見られます。",
+    "slug": "scottie-scheffler-2026-setting-update",
+    "title": "スコッティ・シェフラー クラブセッティング 2026年版 14本と使用ドライバー",
+    "excerpt": "スコッティ・シェフラーの2026年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
+    "body": "スコッティ・シェフラーのクラブセッティングについて、2026年1月のアメリカン・エキスプレス優勝時点で確認できた14本の構成を反映しました。Qi10ドライバー、Qi10 3W、Qi4D 7W、ZU85 4I、P7TWアイアン、Vokeyウェッジ、Spider Tour Xパター、Titleist Pro V1という流れで、スコッティ・シェフラーの現在のクラブセッティングを確認できます。TaylorMade公式の現行プレーヤーページも参照しつつ、詳細スペックはGolfWRXの最新優勝WITBをベースに整理しています。",
     "article_type": "update",
-    "season_year": 2025,
+    "season_year": 2026,
     "published": true,
     "published_at": "2026-04-10T00:00:00.000Z"
   }

@@ -18,7 +18,8 @@
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-09T00:00:00.000Z",
-    "kana_name": "ヤマシタ ミユウ"
+    "kana_name": "ヤマシタ ミユウ",
+    "website_url": "https://www.lpga.or.jp/members/info/1004192"
   },
   "bagItems": [
     {
@@ -160,10 +161,17 @@
   ],
   "sources": [
     {
+      "source_type": "official",
+      "source_url": "https://sports.dunlop.co.jp/golf/tour/player/yamashita_miyuu/",
+      "source_title": "山下 美夢有 選手情報 - ダンロップスポーツ",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Official contract player page used to complement current season setup confirmation."
+    },
+    {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/17669/?car=playertop_ranking",
       "source_title": "GDO 山下美夢有 クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
-      "checked_at": "2026-04-09T00:00:00.000Z",
+      "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Used for 2026 full bag and ball confirmation."
     }
   ],
