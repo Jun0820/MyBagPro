@@ -1,0 +1,58 @@
+{
+  "profile": {
+    "slug": "tomoyo-ikemura",
+    "display_name": "池村 寛世",
+    "nationality": "Japan",
+    "birthplace": "鹿児島県",
+    "birth_date": "1995-08-30",
+    "height_cm": 166,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2025,
+    "ball_name": "PRO V1 ボール＜2025年＞",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "国内男子ツアー実戦セット",
+    "feature_3": "公開ソース確認済み",
+    "summary": "2025年リシャール・ミル チャリティトーナメント時点で確認できた池村寛世のクラブセッティングを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "イケムラ トモヨ"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "BALDO", "model_name": "GT5 Driver", "loft_label": "10.5°", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "Diamana Black Prototype", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": true },
+    { "category": "Driver", "slot_order": 2, "brand": "TaylorMade", "model_name": "r7 QUAD Mini Driver", "loft_label": "13.5°", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "Diamana WB", "shaft_flex": "X", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "TaylorMade", "model_name": "Stealth 2 Fairway Wood", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO Prototype", "shaft_flex": "TX", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 4, "brand": "TaylorMade", "model_name": "Qi35 Fairway Wood", "spec_label": "9W", "loft_label": "24°", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO Prototype", "shaft_flex": "TX", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "6I", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "OT Tour i110", "shaft_flex": "S", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "7I", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "OT Tour i110", "shaft_flex": "S", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "8I", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "OT Tour i110", "shaft_flex": "S", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Callaway", "model_name": "X FORGED Iron＜2024年＞", "spec_label": "9I", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "OT Tour i110", "shaft_flex": "S", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 9, "brand": "Cleveland", "model_name": "RTZ Tour Rack Wedge", "spec_label": "PW", "loft_label": "50°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "Cleveland", "model_name": "RTZ Tour Rack Wedge", "spec_label": "GW", "loft_label": "54°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Cleveland", "model_name": "RTZ Tour Rack Wedge", "spec_label": "SW", "loft_label": "58°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Cleveland", "model_name": "RTZ Tour Rack Wedge", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Zodia", "model_name": "Wedge", "spec_label": "LW2", "loft_label": "61°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "LAB Golf", "model_name": "DF 2.1 Putter", "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.", "is_featured_item": false }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/16068/2025/1/",
+      "source_title": "GDO 池村寛世 クラブセッティング 2025年 リシャール・ミル チャリティトーナメント",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 setting, and ball confirmation."
+    }
+  ],
+  "article": {
+    "slug": "tomoyo-ikemura-2025-setting-update",
+    "title": "池村寛世の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、池村寛世のクラブセッティングと使用ボールを掲載しました。",
+    "body": "池村寛世のセッティングについて、2025年リシャール・ミル チャリティトーナメント時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

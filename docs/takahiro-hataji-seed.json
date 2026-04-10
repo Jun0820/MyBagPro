@@ -1,0 +1,58 @@
+{
+  "profile": {
+    "slug": "takahiro-hataji",
+    "display_name": "幡地 隆寛",
+    "nationality": "Japan",
+    "birthplace": "広島県三原市",
+    "birth_date": "1993-06-30",
+    "height_cm": 188,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2025,
+    "ball_name": "PRO V1x レフトダッシュ ボール",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "東建ホームメイト練習日セット",
+    "feature_3": "公開ソース確認済み",
+    "summary": "2025年東建ホームメイトカップ練習日時点で確認できた幡地隆寛のクラブセッティングを掲載するプロフィール。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "ハタジ タカヒロ"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Titleist", "model_name": "GT4 Driver", "loft_label": "10°", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "Diamana WB", "shaft_flex": "TX", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page. Practice-day source listed 15 clubs.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Titleist", "model_name": "GT1 Fairway Wood", "spec_label": "3W", "loft_label": "14.5°", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "Diamana WB", "shaft_flex": "TX", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "Titleist", "model_name": "GT1 Utility Metal", "spec_label": "4U", "loft_label": "20°", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "TENSEI Pro 1K HY", "shaft_flex": "TX", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Titleist", "model_name": "T350 Prototype Iron", "spec_label": "3I", "shaft_brand": "Fujikura", "shaft_model": "VENTUS HB", "shaft_flex": "TX", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Titleist", "model_name": "620 MB Iron", "spec_label": "4I", "shaft_brand": "FST", "shaft_model": "KBS Prototype", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Titleist", "model_name": "620 MB Iron", "spec_label": "5I", "shaft_brand": "FST", "shaft_model": "KBS Prototype", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Titleist", "model_name": "620 MB Iron", "spec_label": "6I", "shaft_brand": "FST", "shaft_model": "KBS Prototype", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Titleist", "model_name": "620 MB Iron", "spec_label": "7I", "shaft_brand": "FST", "shaft_model": "KBS Prototype", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Titleist", "model_name": "620 MB Iron", "spec_label": "8I", "shaft_brand": "FST", "shaft_model": "KBS Prototype", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Titleist", "model_name": "620 MB Iron", "spec_label": "9I", "shaft_brand": "FST", "shaft_model": "KBS Prototype", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey SM10 Wedge", "spec_label": "PW", "loft_label": "46°", "shaft_brand": "FST", "shaft_model": "KBS V TEN", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey SM10 Wedge", "spec_label": "GW", "loft_label": "52°", "shaft_brand": "FST", "shaft_model": "KBS V TEN", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey SM10 Wedge", "spec_label": "SW", "loft_label": "57°", "shaft_brand": "FST", "shaft_model": "KBS V TEN", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "Phantom T-11", "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.", "is_featured_item": false }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6406/2025/1/",
+      "source_title": "GDO 幡地隆寛 クラブセッティング 2025年 東建ホームメイトカップ",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for bio fields, 2025 setting, and ball confirmation. Source note says practice-day 15 clubs."
+    }
+  ],
+  "article": {
+    "slug": "takahiro-hataji-2025-setting-update",
+    "title": "幡地隆寛の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、幡地隆寛のクラブセッティングと使用ボールを掲載しました。",
+    "body": "幡地隆寛のセッティングについて、2025年東建ホームメイトカップ練習日時点で確認できたクラブ構成と使用ボールを反映しました。より新しい実戦ソースが確認でき次第更新していきます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}
