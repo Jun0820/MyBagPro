@@ -103,15 +103,15 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
   'rory-mcilroy': {
     portraitMedia: {
       kind: 'image',
-      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rory%20McIlroy.jpg',
-      alt: 'Rory McIlroy practicing at St Andrews in 2010.',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rory%20McIlroy%20Ryder%20Cup%202025-195%20%28cropped%29.jpg',
+      alt: 'Rory McIlroy during the 2025 Ryder Cup.',
       attribution: {
-        creator: 'tourprogolfclubs',
+        creator: 'Bryan Berlin',
         sourceLabel: 'Wikimedia Commons',
-        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Rory_McIlroy.jpg',
-        licenseLabel: 'CC BY-SA 2.0',
-        licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
-        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Rory_McIlroy_Ryder_Cup_2025-195_(cropped).jpg',
+        licenseLabel: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+        note: 'WikiPortraitsの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
       },
     },
   },
@@ -276,6 +276,21 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
       },
     },
   },
+  'patrick-cantlay': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Patrick%20Cantlay%20Ryder%20Cup%202025-146%20%28cropped%29.jpg',
+      alt: 'Patrick Cantlay during the 2025 Ryder Cup.',
+      attribution: {
+        creator: 'Bryan Berlin',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Patrick_Cantlay_Ryder_Cup_2025-146_(cropped).jpg',
+        licenseLabel: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+        note: 'WikiPortraitsの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
   'shane-lowry': {
     portraitMedia: {
       kind: 'image',
@@ -363,6 +378,51 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
         licenseLabel: 'CC BY 4.0',
         licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
         note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'xander-schauffele': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Xander%20Schauffele%20Ryder%20Cup%202025%20%28cropped%29.jpg',
+      alt: 'Xander Schauffele during the 2025 Ryder Cup.',
+      attribution: {
+        creator: 'Bryan Berlin',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Xander_Schauffele_Ryder_Cup_2025_(cropped).jpg',
+        licenseLabel: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+        note: 'WikiPortraitsの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'keegan-bradley': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/BMW%20Aronimink%20Tournament%20-%202018%20-%20Keegan%20Bradley%20%2830732646368%29.jpg',
+      alt: 'Keegan Bradley at the 2018 BMW Championship at Aronimink.',
+      attribution: {
+        creator: 'Michael Stokes',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:BMW_Aronimink_Tournament_-_2018_-_Keegan_Bradley_(30732646368).jpg',
+        licenseLabel: 'CC BY 2.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+        note: 'Flickr review済みの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'cameron-smith': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/2017%20Australian%20Open%20-%20Cameron%20Smith%20%2842152296975%29%20%28cropped%29.jpg',
+      alt: 'Cameron Smith at the 2017 Australian Open.',
+      attribution: {
+        creator: 'Justin Falconer',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:2017_Australian_Open_-_Cameron_Smith_(42152296975)_(cropped).jpg',
+        licenseLabel: 'CC BY 2.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+        note: 'Flickr review済みの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
       },
     },
   },
