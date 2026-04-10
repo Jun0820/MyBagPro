@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, FileText } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPublishedArticleBySlug, fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { trackEvent } from '../lib/analytics';
+import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const articleTypeLabel: Record<PublicArticle['articleType'], string> = {
@@ -25,6 +26,7 @@ export const ArticleDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [article, setArticle] = useState<PublicArticle | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<PublicArticle[]>([]);
+  const [relatedProfile, setRelatedProfile] = useState<PublicSettingProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -57,6 +59,7 @@ export const ArticleDetailPage = () => {
 
     if (!article) {
       removeStructuredData('article-page');
+      removeStructuredData('article-breadcrumbs');
       applySeo({
         title: '更新記事',
         description: '掲載データやクラブセッティングの更新内容を公開する記事です。',
@@ -102,9 +105,58 @@ export const ArticleDetailPage = () => {
         name: 'My Bag Pro',
       },
     });
+
+    setStructuredData('article-breadcrumbs', {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'ホーム',
+          item: toAbsoluteUrl('/'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: '更新記事',
+          item: toAbsoluteUrl('/articles'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: article.title,
+          item: toAbsoluteUrl(getSeoPath(`/articles/${slug}`)),
+        },
+      ],
+    });
   }, [article, slug]);
 
-  useEffect(() => () => removeStructuredData('article-page'), []);
+  useEffect(
+    () => () => {
+      removeStructuredData('article-page');
+      removeStructuredData('article-breadcrumbs');
+    },
+    []
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadProfile = async () => {
+      if (!article?.relatedProfileSlug) {
+        setRelatedProfile(null);
+        return;
+      }
+      const profile = await fetchPublishedSettingProfileBySlug(article.relatedProfileSlug);
+      if (isMounted) setRelatedProfile(profile);
+    };
+
+    loadProfile();
+    return () => {
+      isMounted = false;
+    };
+  }, [article?.relatedProfileSlug]);
 
   if (isLoading) {
     return <div className="rounded-[2rem] border border-slate-200 bg-white p-10 text-center">記事を読み込んでいます...</div>;
@@ -161,6 +213,36 @@ export const ArticleDetailPage = () => {
           </div>
         )}
         <div className="mt-8 whitespace-pre-wrap text-sm leading-8 text-slate-700">{article.body}</div>
+        {relatedProfile && (
+          <section className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+            <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">SETTING SUMMARY</div>
+            <h2 className="mt-2 text-xl font-black text-trust-navy">
+              {relatedProfile.name}のクラブセッティング概要
+            </h2>
+            <p className="mt-3 text-sm leading-8 text-slate-700">
+              {relatedProfile.name}の{relatedProfile.seasonYear ? `${relatedProfile.seasonYear}年` : '最新'}クラブセッティングでは、
+              使用ドライバー{relatedProfile.clubs.find((club) => club.category === 'Driver')?.model || '未公開'}、
+              使用ボール{relatedProfile.ball}、
+              契約メーカー{relatedProfile.contractDisplay}を確認できます。詳細ページではクラブ名、メーカー、シャフト、ロフト、
+              硬さ、飛距離まで一覧で見られます。
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button
+                onClick={() => navigate(`/settings/pros/${relatedProfile.slug}`)}
+                className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-4 py-2 text-sm font-black text-white transition hover:bg-slate-800"
+              >
+                詳細ページを見る
+                <ArrowRight size={14} />
+              </button>
+              <button
+                onClick={() => navigate(`/settings/pros?category=${relatedProfile.category}`)}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700 transition hover:bg-slate-100"
+              >
+                {relatedProfile.categoryLabel}をもっと見る
+              </button>
+            </div>
+          </section>
+        )}
       </article>
 
       {relatedArticles.length > 0 && (

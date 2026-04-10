@@ -160,6 +160,7 @@ export const ProSettingDetailPage = () => {
     if (!setting) {
       removeStructuredData('profile-page');
       removeStructuredData('profile-breadcrumbs');
+      removeStructuredData('profile-faq');
       applySeo({
         title: 'プロのクラブセッティング詳細',
         description: '確認済みの14本のクラブセッティング詳細ページです。',
@@ -225,12 +226,44 @@ export const ProSettingDetailPage = () => {
         },
       ],
     });
+
+    setStructuredData('profile-faq', {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: `${setting.name}のクラブセッティングでは何が確認できますか？`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `${setting.name}のドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボール、契約メーカーを確認できます。`,
+          },
+        },
+        {
+          '@type': 'Question',
+          name: `${setting.name}の契約メーカーはどこですか？`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `${setting.name}の契約メーカーは${setting.contractDisplay}です。`,
+          },
+        },
+        {
+          '@type': 'Question',
+          name: `${setting.name}はどのボールとドライバーを使っていますか？`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `${setting.name}の使用ボールは${setting.ball}、掲載ドライバーは${driverClub ? driverClub.model : '未公開'}です。`,
+          },
+        },
+      ],
+    });
   }, [setting, slug]);
 
   useEffect(
     () => () => {
       removeStructuredData('profile-page');
       removeStructuredData('profile-breadcrumbs');
+      removeStructuredData('profile-faq');
     },
     []
   );
@@ -292,6 +325,7 @@ export const ProSettingDetailPage = () => {
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
   const visuals = getProfileVisuals(setting.slug);
+  const profileIntro = `${setting.name}の${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}クラブセッティングを掲載しています。${driverClub ? `使用ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `使用ボールは${setting.ball}。` : ''}契約メーカーは${setting.contractDisplay}です。`;
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
@@ -331,6 +365,33 @@ export const ProSettingDetailPage = () => {
                     <div className="mt-2 text-base font-black text-white">{fact.value}</div>
                   </div>
                 ))}
+              </div>
+
+              <div className="mt-8 rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
+                <div className="text-[11px] font-black tracking-[0.14em] text-cyan-200">掲載概要</div>
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-200">{profileIntro}</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <button
+                    onClick={() => navigate(`/settings/pros?category=${setting.category}`)}
+                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                  >
+                    {setting.categoryLabel}をもっと見る
+                  </button>
+                  <button
+                    onClick={() => navigate('/settings/pros')}
+                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                  >
+                    一覧で探す
+                  </button>
+                  {relatedArticles.length > 0 && (
+                    <button
+                      onClick={() => navigate(`/articles/${relatedArticles[0].slug}`)}
+                      className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                    >
+                      関連記事へ
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
