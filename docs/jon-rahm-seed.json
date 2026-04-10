@@ -1,0 +1,220 @@
+{
+  "profile": {
+    "slug": "jon-rahm",
+    "display_name": "ジョン・ラーム",
+    "kana_name": "ジョン・ラーム",
+    "nationality": "Spain",
+    "birthplace": "スペイン バリカ",
+    "birth_date": "1994-11-10",
+    "height_cm": 188,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Callaway Chrome Tour 2026",
+    "feature_1": "2026シーズン基準",
+    "feature_2": "キャロウェイ中心",
+    "feature_3": "14本確認済み",
+    "summary": "ジョン・ラームの2026年クラブセッティングを、使用ドライバー、フェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるページです。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "Quantum Triple Diamond Driver",
+      "loft_label": "10.5°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black 7",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Callaway",
+      "model_name": "Paradym Ai Smoke Triple Diamond HL Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "16°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD DI 8",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "Callaway",
+      "model_name": "Paradym Ai Smoke Triple Diamond HL Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "18°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD DI 8",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Callaway",
+      "model_name": "Apex UT Utility Iron",
+      "loft_label": "21°",
+      "shaft_brand": "KBS",
+      "shaft_model": "Tour Hybrid Prototype 105",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Callaway",
+      "model_name": "Apex TCB Iron",
+      "spec_label": "5I",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Callaway",
+      "model_name": "Apex TCB Iron",
+      "spec_label": "6I",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Callaway",
+      "model_name": "Apex TCB Iron",
+      "spec_label": "7I",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Callaway",
+      "model_name": "Apex TCB Iron",
+      "spec_label": "8I",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Callaway",
+      "model_name": "Apex TCB Iron",
+      "spec_label": "9I",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Callaway",
+      "model_name": "Apex TCB Iron",
+      "spec_label": "PW",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Callaway",
+      "model_name": "Jaws Raw Wedge",
+      "spec_label": "AW",
+      "loft_label": "52°",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X 125",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Callaway",
+      "model_name": "Jaws Raw Wedge",
+      "spec_label": "SW",
+      "loft_label": "56°",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X 125",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Callaway",
+      "model_name": "Jaws Raw Wedge",
+      "spec_label": "LW",
+      "loft_label": "60°",
+      "shaft_brand": "Project X",
+      "shaft_model": "Project X 125",
+      "shaft_flex": "6.5",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "White Hot Rossie Putter",
+      "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/news/jon-rahm-winning-whats-in-the-bag-liv-golf-hong-kong-2026",
+      "source_title": "Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for 2026 winning setup and ball confirmation."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/16456/2024/1/",
+      "source_title": "GDO ジョン・ラーム クラブセッティング 2024年 LIVゴルフ・マヤコバ",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used to support 2024-2026 bag continuity and profile details."
+    }
+  ],
+  "article": {
+    "slug": "jon-rahm-2026-setting-update",
+    "title": "ジョン・ラーム クラブセッティング 2026年版 14本と使用ドライバー",
+    "excerpt": "ジョン・ラームの2026年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
+    "body": "ジョン・ラームのクラブセッティングについて、2026年LIVゴルフ香港優勝時点で確認できた14本の構成を反映しました。Quantum Triple Diamondドライバー、Paradym Ai Smoke Triple Diamond HLフェアウェイウッド、Apex UT、Apex TCBアイアン、Jaws Rawウェッジ、Odyssey Rossieパター、Callaway Chrome Tour 2026という流れで、ジョン・ラームの現在のクラブセッティングを確認できます。詳細ページでは各番手のメーカー、クラブ名、シャフト、ロフトを一覧で見られます。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

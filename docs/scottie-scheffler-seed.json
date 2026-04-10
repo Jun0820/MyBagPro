@@ -1,0 +1,219 @@
+{
+  "profile": {
+    "slug": "scottie-scheffler",
+    "display_name": "スコッティ・シェフラー",
+    "kana_name": "スコッティ・シェフラー",
+    "nationality": "United States",
+    "birthplace": "アメリカ合衆国 ニュージャージー州リッジウッド",
+    "birth_date": "1996-06-21",
+    "height_cm": 190,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2025,
+    "ball_name": "Titleist Pro V1",
+    "feature_1": "2025シーズン基準",
+    "feature_2": "テーラーメイド中心",
+    "feature_3": "14本確認済み",
+    "summary": "スコッティ・シェフラーの2025年クラブセッティングを、使用ドライバー、フェアウェイウッド、ユーティリティアイアン、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるページです。",
+    "latest_source_policy": "2025_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "TaylorMade",
+      "model_name": "Qi10 Driver",
+      "loft_label": "8°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black 7",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "Qi10 Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black 8",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Srixon",
+      "model_name": "ZU85 Utility Iron",
+      "spec_label": "3I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S. Pro Modus 3 Hybrid Prototype 10",
+      "shaft_flex": "X",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Srixon",
+      "model_name": "ZU85 Utility Iron",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "TaylorMade",
+      "model_name": "P7TW Iron",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "TaylorMade",
+      "model_name": "P7TW Iron",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "TaylorMade",
+      "model_name": "P7TW Iron",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "TaylorMade",
+      "model_name": "P7TW Iron",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "TaylorMade",
+      "model_name": "P7TW Iron",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "TaylorMade",
+      "model_name": "P7TW Iron",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM8 Wedge",
+      "spec_label": "AW",
+      "loft_label": "50°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM8 Wedge",
+      "spec_label": "SW",
+      "loft_label": "56°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey Design WedgeWorks",
+      "spec_label": "LW",
+      "loft_label": "60°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "TaylorMade",
+      "model_name": "Spider Tour X Putter",
+      "source_note": "Confirmed from GDO and GolfWRX 2025 Open Championship setting references.",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/17786/",
+      "source_title": "GDO スコッティ・シェフラー クラブセッティング 2025年 全英オープン",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for profile and 2025 full bag confirmation."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfwrx.com/763621/bks-breakdowns-scottie-schefflers-witb-from-the-2025-open-championship/",
+      "source_title": "GolfWRX Scottie Scheffler WITB 2025 Open Championship",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used to confirm shafts and utility iron composition."
+    }
+  ],
+  "article": {
+    "slug": "scottie-scheffler-2025-setting-update",
+    "title": "スコッティ・シェフラー クラブセッティング 2025年版 14本と使用ドライバー",
+    "excerpt": "スコッティ・シェフラーの2025年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
+    "body": "スコッティ・シェフラーのクラブセッティングについて、2025年全英オープン時点で確認できた14本の構成を反映しました。Qi10ドライバー、Qi10 3W、ZU85ユーティリティアイアン、P7TWアイアン、Vokeyウェッジ、Spider Tour Xパター、Titleist Pro V1という流れで、スコッティ・シェフラーの現在のクラブセッティングを確認できます。詳細ページでは各番手のメーカー、クラブ名、シャフト、ロフトを一覧で見られます。",
+    "article_type": "update",
+    "season_year": 2025,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

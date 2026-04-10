@@ -229,6 +229,9 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'justin-thomas': { category: 'overseas_men', contractStatus: 'free_contract' },
   'sami-valimaki': { category: 'overseas_men', contractStatus: 'free_contract' },
   'nicolai-hojgaard': { category: 'overseas_men', contractStatus: 'free_contract' },
+  'rory-mcilroy': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
+  'scottie-scheffler': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
+  'jon-rahm': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'キャロウェイ' },
 };
 
 export const getProfileMetadata = (slug: string): ProfileMetadata => {
