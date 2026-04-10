@@ -1,0 +1,53 @@
+{
+  "profile": {
+    "slug": "patrick-reed",
+    "display_name": "パトリック・リード",
+    "kana_name": "パトリック・リード",
+    "nationality": "United States",
+    "birthplace": "アメリカ",
+    "birth_date": "1990-08-05",
+    "height_cm": 183,
+    "profile_type": "tour_pro",
+    "segment": "masters_2026_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1",
+    "feature_1": "2018マスターズ覇者",
+    "feature_2": "契約フリー",
+    "feature_3": "ミックスセッティング",
+    "summary": "2026年マスターズ出場選手として、パトリック・リードの契約フリーらしいミックスセッティングをまとめたクラブセッティングページです。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G430 LST", "loft_label": "9°", "shaft_brand": "Aldila", "shaft_model": "Rogue Silver 125 MSI", "shaft_flex": "70 TX", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Stealth 2", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Aldila", "shaft_model": "Rogue Silver 125 MSI", "shaft_flex": "80 TX", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "Callaway", "model_name": "Apex Pro", "spec_label": "3H", "loft_label": "20°", "shaft_brand": "UST Mamiya", "shaft_model": "Recoil Dart", "shaft_flex": "90 X", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Grindworks", "model_name": "PR-202", "spec_label": "4I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Grindworks", "model_name": "PR-202", "spec_label": "5I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Grindworks", "model_name": "PR-202", "spec_label": "6I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Grindworks", "model_name": "PR-202", "spec_label": "7I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Grindworks", "model_name": "PR-202", "spec_label": "8I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Grindworks", "model_name": "PR-202", "spec_label": "9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "Grindworks", "model_name": "PR-202", "spec_label": "PW", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Artisan Golf", "model_name": "Wedge", "spec_label": "AW", "loft_label": "51°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Artisan Golf", "model_name": "Wedge", "spec_label": "SW", "loft_label": "57°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey Design WedgeWorks", "spec_label": "LW", "loft_label": "61°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "White Hot Pro 3", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": true }
+  ],
+  "sources": [
+    { "source_type": "article", "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-patrick-reeds-bag", "source_title": "What’s in Patrick Reed’s bag? - Golf Monthly", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for mixed-bag configuration and club details." },
+    { "source_type": "article", "source_url": "https://www.golfpost.com/equipment/patrick-reed-witb", "source_title": "Patrick Reed WITB - Golf Post", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used as supporting source for lofts and club mix." }
+  ],
+  "article": {
+    "slug": "patrick-reed-2026-setting-update",
+    "title": "パトリック・リードのクラブセッティング【2026年マスターズ出場】",
+    "excerpt": "2026年マスターズ出場選手として、パトリック・リードの契約フリーらしいミックスセッティングを掲載しました。",
+    "body": "パトリック・リードのクラブセッティングについて、2026年マスターズ出場時点で参照しやすいWITB情報をもとに整理しました。PINGドライバー、TaylorMadeの3番ウッド、Callawayハイブリッド、Grindworksアイアン、Artisan GolfとVokeyのウェッジ、Odyssey White Hot Pro 3パターという構成で、契約フリーならではの個性的なバッグになっています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

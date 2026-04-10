@@ -1,0 +1,54 @@
+{
+  "profile": {
+    "slug": "shane-lowry",
+    "display_name": "シェーン・ローリー",
+    "kana_name": "シェーン・ローリー",
+    "nationality": "Ireland",
+    "birthplace": "アイルランド",
+    "birth_date": "1987-04-02",
+    "height_cm": 185,
+    "profile_type": "tour_pro",
+    "segment": "masters_2026_batch",
+    "season_year": 2026,
+    "ball_name": "Srixon Z-Star XV",
+    "feature_1": "2019全英オープン覇者",
+    "feature_2": "2026年3月WITB",
+    "feature_3": "スリクソン中心",
+    "summary": "2026年マスターズ出場選手として、シェーン・ローリーの2026年3月時点で確認できるクラブセッティングを整理したページです。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "website_url": "https://www.srixon.com/us/tour-team.html"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "ZXi LS Prototype", "loft_label": "9°", "shaft_brand": "Mitsubishi", "shaft_model": "Diamana D+ White 70", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi35 Fairway Wood", "spec_label": "3W", "loft_label": "16.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 8", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "Srixon", "model_name": "ZXi Utility", "spec_label": "3I", "loft_label": "20°", "shaft_brand": "Fujikura", "shaft_model": "Ventus VeloCore+ Blue HB 9", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "ZXi5 Iron", "spec_label": "4I", "shaft_brand": "KBS", "shaft_model": "Tour", "shaft_flex": "130 X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Srixon", "model_name": "ZXi5 Iron", "spec_label": "5I", "shaft_brand": "KBS", "shaft_model": "Tour", "shaft_flex": "130 X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Srixon", "model_name": "ZXi7 Iron", "spec_label": "6I", "shaft_brand": "KBS", "shaft_model": "Tour", "shaft_flex": "130 X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Srixon", "model_name": "ZXi7 Iron", "spec_label": "7I", "shaft_brand": "KBS", "shaft_model": "Tour", "shaft_flex": "130 X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Srixon", "model_name": "ZXi7 Iron", "spec_label": "8I", "shaft_brand": "KBS", "shaft_model": "Tour", "shaft_flex": "130 X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Srixon", "model_name": "ZXi7 Iron", "spec_label": "9I", "shaft_brand": "KBS", "shaft_model": "Tour", "shaft_flex": "130 X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "Srixon", "model_name": "ZXi7 Iron", "spec_label": "PW", "shaft_brand": "KBS", "shaft_model": "Tour", "shaft_flex": "130 X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Cleveland", "model_name": "RTZ Wedge", "spec_label": "AW", "loft_label": "52°", "shaft_brand": "KBS", "shaft_model": "Tour Wedge", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Cleveland", "model_name": "RTZ Wedge", "spec_label": "SW", "loft_label": "56°", "shaft_brand": "KBS", "shaft_model": "Tour Wedge", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Cleveland", "model_name": "RTZ Wedge", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "KBS", "shaft_model": "Tour Wedge", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "TaylorMade", "model_name": "Spider Tour Z", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": true }
+  ],
+  "sources": [
+    { "source_type": "official", "source_url": "https://www.srixon.com/us/tour-team.html", "source_title": "Tour Team - Srixon", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official brand team page used for contract context." },
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/773954/shane-lowry-witb-2026-march/", "source_title": "Shane Lowry WITB 2026 (March) – GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for latest detailed 14-club breakdown." }
+  ],
+  "article": {
+    "slug": "shane-lowry-2026-setting-update",
+    "title": "シェーン・ローリーのクラブセッティング【2026年マスターズ出場】",
+    "excerpt": "2026年マスターズ出場選手として、シェーン・ローリーの2026年3月時点の最新WITBを掲載しました。",
+    "body": "シェーン・ローリーのクラブセッティングについて、2026年3月時点で確認できたWITBをもとに整理しました。Srixon ZXi LS Prototypeドライバー、TaylorMade Qi35の3番ウッド、Srixon ZXi Utility 3番、ZXi5とZXi7のコンボアイアン、Cleveland RTZウェッジ、TaylorMade Spider Tour Zパター、Srixon Z-Star XVという構成です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

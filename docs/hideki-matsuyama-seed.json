@@ -1,0 +1,54 @@
+{
+  "profile": {
+    "slug": "hideki-matsuyama",
+    "display_name": "松山英樹",
+    "kana_name": "マツヤマ ヒデキ",
+    "nationality": "Japan",
+    "birthplace": "愛媛県",
+    "birth_date": "1992-02-25",
+    "height_cm": 180,
+    "profile_type": "tour_pro",
+    "segment": "masters_2026_batch",
+    "season_year": 2026,
+    "ball_name": "Srixon Z-Star XV",
+    "feature_1": "2021マスターズ覇者",
+    "feature_2": "2025年初戦優勝時WITB",
+    "feature_3": "ダンロップ中心",
+    "summary": "2026年マスターズ出場選手として、松山英樹の最新詳細WITBとして確認しやすい2025年ザ・セントリー優勝時の14本構成をもとに整理したクラブセッティングページです。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "website_url": "https://www.pgatour.com/player/32839/hideki-matsuyama"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "ZX5 LS Mk II Driver", "loft_label": "9.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 8", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi10 Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 9", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "Cobra", "model_name": "King RadSpeed Tour", "spec_label": "5W", "loft_label": "19°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 10", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "4I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "5I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "6I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "7I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "8I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "Cleveland", "model_name": "RTX 4 Forged Prototype", "spec_label": "PW", "loft_label": "48°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Cleveland", "model_name": "RTX 4 Forged Prototype", "spec_label": "AW", "loft_label": "52°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Cleveland", "model_name": "RTX 4 Forged Prototype", "spec_label": "SW", "loft_label": "56°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Cleveland", "model_name": "RTX 4 Forged Prototype", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "009M Center Shaft Tour Prototype", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": true }
+  ],
+  "sources": [
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama", "source_title": "Hideki Matsuyama PGA TOUR Player Profile", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official profile used for player context and 2026 season status." },
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/751995/hideki-matsuyama-witb-2025-january-the-sentry/", "source_title": "Hideki Matsuyama’s winning WITB: 2025 Sentry - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Latest detailed full-bag breakdown found for Matsuyama." }
+  ],
+  "article": {
+    "slug": "hideki-matsuyama-2026-setting-update",
+    "title": "松山英樹のクラブセッティング【2026年マスターズ出場】",
+    "excerpt": "2026年マスターズ出場選手として、松山英樹の最新詳細WITBとして確認しやすい14本構成を掲載しました。",
+    "body": "松山英樹のクラブセッティングについて、2026年マスターズ出場時点で参照しやすい最新詳細WITBとして、2025年ザ・セントリー優勝時の14本構成をベースに整理しました。Srixon ZX5 LS Mk IIドライバー、TaylorMade Qi10の3番ウッド、Cobra King RadSpeed Tourの5番ウッド、Srixon Z-Forged IIアイアン、Cleveland RTX 4 Forged Prototypeウェッジ、Scotty Cameron 009M Center Shaft Tour Prototypeパター、Srixon Z-Star XVという構成です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}
