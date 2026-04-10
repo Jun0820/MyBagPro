@@ -225,12 +225,15 @@ export const ProsSettingsPage = () => {
                 <div className="flex items-center gap-4">
                   <img
                     src={visuals.portrait}
-                    alt={`${setting.name}のプレースホルダー画像`}
-                    className="h-16 w-16 rounded-full border border-slate-200 bg-white object-cover p-2"
+                    alt={`${setting.name}の写真またはプレースホルダー画像`}
+                    className={`h-16 w-16 rounded-full border border-slate-200 bg-white object-cover ${
+                      visuals.portraitMedia ? '' : 'p-2'
+                    }`}
                   />
                   <div className="min-w-0">
                     <div className="text-lg font-black text-trust-navy">{setting.name}</div>
                     {setting.kanaName && <div className="mt-1 text-xs font-bold text-slate-500">{setting.kanaName}</div>}
+                    {visuals.portraitMedia && <div className="mt-1 text-[10px] font-black text-golf-700">CCライセンス画像あり</div>}
                   </div>
                 </div>
 

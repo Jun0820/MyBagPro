@@ -5,7 +5,7 @@ import { getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
-import { getProfileVisuals } from '../lib/profileVisuals';
+import { getProfileVisuals, type ProfilePortraitAttribution, type ProfileSocialEmbed } from '../lib/profileVisuals';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const formatClubLabel = (category: string, specLabel?: string) => {
@@ -125,6 +125,128 @@ const pickRecommendedArticles = (articles: PublicArticle[], profileName: string)
     .filter((article, index, self) => self.findIndex((item) => item.slug === article.slug) === index)
     .slice(0, 3);
 };
+
+const ensureExternalScript = (id: string, src: string) =>
+  new Promise<void>((resolve, reject) => {
+    if (typeof document === 'undefined') {
+      resolve();
+      return;
+    }
+
+    const existing = document.getElementById(id) as HTMLScriptElement | null;
+    if (existing) {
+      if (existing.dataset.loaded === 'true') {
+        resolve();
+        return;
+      }
+      existing.addEventListener('load', () => resolve(), { once: true });
+      existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.id = id;
+    script.src = src;
+    script.async = true;
+    script.onload = () => {
+      script.dataset.loaded = 'true';
+      resolve();
+    };
+    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.body.appendChild(script);
+  });
+
+const SocialEmbedCard = ({ embed }: { embed: ProfileSocialEmbed }) => {
+  if (embed.platform === 'instagram') {
+    return (
+      <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
+          <Instagram size={16} />
+          {embed.accountLabel}
+        </div>
+        <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50 p-2">
+          <blockquote
+            className="instagram-media mx-auto !min-w-0"
+            data-instgrm-captioned=""
+            data-instgrm-permalink={embed.postUrl}
+            data-instgrm-version="14"
+          >
+            <a href={embed.postUrl} target="_blank" rel="noopener noreferrer">
+              {embed.title}
+            </a>
+          </blockquote>
+        </div>
+        <p className="mt-3 text-xs leading-6 text-slate-500">
+          {embed.note || '公式Instagram投稿への埋め込みです。表示できない場合は下のリンクを開いてください。'}
+        </p>
+        <a
+          href={embed.postUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
+        >
+          Instagramで開く
+          <ArrowRight size={14} />
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
+        <Twitter size={16} />
+        {embed.accountLabel}
+      </div>
+      <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50 p-3">
+        <blockquote className="twitter-tweet" data-dnt="true" data-theme="light">
+          <a href={embed.postUrl} target="_blank" rel="noopener noreferrer">
+            {embed.title}
+          </a>
+        </blockquote>
+      </div>
+      <p className="mt-3 text-xs leading-6 text-slate-500">
+        {embed.note || '公式X投稿への埋め込みです。表示できない場合は下のリンクを開いてください。'}
+      </p>
+      <a
+        href={embed.postUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
+      >
+        Xで開く
+        <ArrowRight size={14} />
+      </a>
+    </div>
+  );
+};
+
+const AttributionLine = ({ attribution }: { attribution: ProfilePortraitAttribution }) => (
+  <div className="space-y-1 text-xs leading-6 text-slate-500">
+    <p>
+      写真: {attribution.creatorUrl ? (
+        <a href={attribution.creatorUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-trust-navy">
+          {attribution.creator}
+        </a>
+      ) : (
+        <span className="font-bold text-trust-navy">{attribution.creator}</span>
+      )}{' '}
+      /{' '}
+      <a href={attribution.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-trust-navy">
+        {attribution.sourceLabel}
+      </a>{' '}
+      /{' '}
+      {attribution.licenseUrl ? (
+        <a href={attribution.licenseUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-trust-navy">
+          {attribution.licenseLabel}
+        </a>
+      ) : (
+        <span className="font-bold text-trust-navy">{attribution.licenseLabel}</span>
+      )}
+    </p>
+    {attribution.note && <p>{attribution.note}</p>}
+  </div>
+);
 
 export const ProSettingDetailPage = () => {
   const navigate = useNavigate();
@@ -291,6 +413,36 @@ export const ProSettingDetailPage = () => {
     };
   }, [setting]);
 
+  useEffect(() => {
+    if (!setting) return;
+
+    const visuals = getProfileVisuals(setting.slug);
+    const embeds = visuals.socialEmbeds || [];
+    const hasInstagram = embeds.some((embed) => embed.platform === 'instagram');
+    const hasX = embeds.some((embed) => embed.platform === 'x');
+
+    if (!hasInstagram && !hasX) return;
+
+    const loadEmbeds = async () => {
+      try {
+        if (hasInstagram) {
+          await ensureExternalScript('instagram-embed-script', 'https://www.instagram.com/embed.js');
+          const instagram = (window as Window & { instgrm?: { Embeds?: { process: () => void } } }).instgrm;
+          instagram?.Embeds?.process?.();
+        }
+        if (hasX) {
+          await ensureExternalScript('x-embed-script', 'https://platform.twitter.com/widgets.js');
+          const twitter = (window as Window & { twttr?: { widgets?: { load: () => void } } }).twttr;
+          twitter?.widgets?.load?.();
+        }
+      } catch {
+        // Fail silently and keep the fallback links visible.
+      }
+    };
+
+    void loadEmbeds();
+  }, [setting]);
+
   if (isLoading) {
     return (
       <div className="min-h-[60vh] rounded-[2rem] border border-slate-200 bg-white p-10 text-center">
@@ -415,6 +567,59 @@ export const ProSettingDetailPage = () => {
           </div>
         </div>
       </section>
+
+      {(visuals.portraitMedia || (visuals.socialEmbeds && visuals.socialEmbeds.length > 0)) && (
+        <section className="mt-8">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PHOTO & POSTS</div>
+                <h2 className="mt-3 text-2xl font-black text-trust-navy">写真とSNS投稿</h2>
+              </div>
+              <p className="text-sm leading-7 text-slate-500">
+                再利用可能画像または公式埋め込みのみ掲載しています。表示できない場合は外部リンクを利用してください。
+              </p>
+            </div>
+
+            {visuals.portraitMedia && (
+              <div className="mt-6 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
+                <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
+                  <div className="bg-slate-100">
+                    <img src={visuals.portraitMedia.src} alt={visuals.portraitMedia.alt} className="h-full w-full object-cover" />
+                  </div>
+                  <div className="p-5 md:p-6">
+                    <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">COMMONS PHOTO</div>
+                    <h3 className="mt-3 text-xl font-black text-trust-navy">{setting.name}の掲載写真</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      Wikimedia Commons で再利用可能と明記された写真のみを使用しています。ページ上にも出典とライセンスを残しています。
+                    </p>
+                    <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-white p-4">
+                      <AttributionLine attribution={visuals.portraitMedia.attribution} />
+                    </div>
+                    <a
+                      href={visuals.portraitMedia.attribution.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
+                    >
+                      元画像ページを見る
+                      <ArrowRight size={14} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {visuals.socialEmbeds && visuals.socialEmbeds.length > 0 && (
+              <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                {visuals.socialEmbeds.map((embed) => (
+                  <SocialEmbedCard key={`${setting.slug}-${embed.platform}-${embed.postUrl}`} embed={embed} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="mt-8">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
