@@ -1,0 +1,53 @@
+{
+  "profile": {
+    "slug": "sam-burns",
+    "display_name": "サム・バーンズ",
+    "kana_name": "サム・バーンズ",
+    "nationality": "United States",
+    "birthplace": "アメリカ",
+    "birth_date": "1996-07-23",
+    "height_cm": 185,
+    "profile_type": "tour_pro",
+    "segment": "masters_2026_batch",
+    "season_year": 2026,
+    "ball_name": "Callaway Chrome Tour X",
+    "feature_1": "2025年6月WITB",
+    "feature_2": "キャロウェイ契約",
+    "feature_3": "Odyssey Ai-ONE #7 SB",
+    "summary": "2026年マスターズ出場選手として、サム・バーンズの2025年6月時点で確認できるWITBをもとに整理したクラブセッティングページです。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Callaway", "model_name": "Paradym Triple Diamond S Driver", "loft_label": "10°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Blue 7", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Callaway", "model_name": "Elyte Triple Diamond Fairway Wood", "spec_label": "3W", "loft_label": "16°", "shaft_brand": "Mitsubishi", "shaft_model": "Tensei 1K Black 75", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 3, "brand": "Callaway", "model_name": "Apex UT", "spec_label": "3I", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Callaway", "model_name": "Apex TCB '24 Iron", "spec_label": "4I", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Callaway", "model_name": "Apex TCB '24 Iron", "spec_label": "5I", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Callaway", "model_name": "Apex TCB '24 Iron", "spec_label": "6I", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Callaway", "model_name": "Apex TCB '24 Iron", "spec_label": "7I", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Callaway", "model_name": "Apex TCB '24 Iron", "spec_label": "8I", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Callaway", "model_name": "Apex TCB '24 Iron", "spec_label": "9I", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "Callaway", "model_name": "Apex TCB '24 Iron", "spec_label": "PW", "shaft_brand": "Project X", "shaft_model": "Project X", "shaft_flex": "6.5", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold S400 Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "loft_label": "55°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold S400 Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold S400 Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "Ai-One #7 SB", "source_note": "Confirmed from GolfWRX Sam Burns WITB 2025 (June).", "is_featured_item": true }
+  ],
+  "sources": [
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/761310/sam-burns-witb-2025-june/", "source_title": "Sam Burns WITB 2025 (June) - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for the latest detailed bag breakdown." },
+    { "source_type": "official", "source_url": "https://www.callawaygolf.com/tour-team/sam-burns/", "source_title": "Sam Burns - Callaway Golf", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official Callaway player page used for contract context." }
+  ],
+  "article": {
+    "slug": "sam-burns-2026-setting-update",
+    "title": "サム・バーンズのクラブセッティング【2026年マスターズ出場】",
+    "excerpt": "2026年マスターズ出場選手として、サム・バーンズの2025年6月時点の最新WITBを掲載しました。",
+    "body": "サム・バーンズのクラブセッティングについて、2025年6月時点で確認できたWITBをもとに整理しました。Callaway Paradym Triple Diamond Sドライバー、Elyte Triple Diamond 3番ウッド、Apex UT 3番アイアン、Apex TCB ’24アイアン、Vokeyウェッジ、Odyssey Ai-One #7 SBパター、Callaway Chrome Tour Xという構成です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}
