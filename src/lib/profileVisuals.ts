@@ -189,6 +189,95 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
       },
     ],
   },
+  'justin-rose': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Justin%20Rose%20at%202015%20PGA%20Championship.jpg',
+      alt: 'Justin Rose at the 2015 PGA Championship.',
+      attribution: {
+        creator: 'Jhansen23',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Justin_Rose_at_2015_PGA_Championship.jpg',
+        licenseLabel: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'tommy-fleetwood': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tommy%20Fleetwood%202023.jpg',
+      alt: 'Tommy Fleetwood in 2023.',
+      attribution: {
+        creator: "Professional Golfers' Association (Great Britain and Ireland)",
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Tommy_Fleetwood_2023.jpg',
+        licenseLabel: 'CC BY 3.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/3.0/',
+        note: 'YouTubeのCC BY公開動画由来の再利用可能画像。人物画像のためパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'brooks-koepka': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brooks%20Koepka%202019%20PGA.jpg',
+      alt: 'Brooks Koepka at the 2019 PGA Championship.',
+      attribution: {
+        creator: 'Joe Schilp',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Brooks_Koepka_2019_PGA.jpg',
+        licenseLabel: 'CC BY 2.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'brian-harman': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brian%20Harman%20at%202015%20Sony%20Open%20in%20Hawaii%20(portrait).png',
+      alt: 'Brian Harman at the 2015 Sony Open in Hawaii Pro-Am.',
+      attribution: {
+        creator: 'Staff Sgt. Christopher Hubenthal',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Brian_Harman_at_2015_Sony_Open_in_Hawaii_(portrait).png',
+        licenseLabel: 'Public domain (U.S. Air Force)',
+        note: '米空軍職務著作としてパブリックドメイン扱い。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'patrick-reed': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Patrick%20Reed%2001.jpg',
+      alt: 'Patrick Reed at the 2018 U.S. Open.',
+      attribution: {
+        creator: 'Peetlesnumber1',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Patrick_Reed_01.jpg',
+        licenseLabel: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+        note: '再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
+  'shane-lowry': {
+    portraitMedia: {
+      kind: 'image',
+      src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Shane%20Lowry%208107.jpg',
+      alt: 'Shane Lowry after winning the Irish Open in 2009.',
+      attribution: {
+        creator: 'This is Golf',
+        sourceLabel: 'Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Shane_Lowry_8107.jpg',
+        licenseLabel: 'CC BY-SA 3.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+        note: 'VRT確認済みの再利用可能画像。人物画像のため大会や国ごとのパブリシティ権は別途留意。',
+      },
+    },
+  },
 };
 
 const hashSlug = (slug: string) =>
