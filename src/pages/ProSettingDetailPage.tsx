@@ -559,7 +559,18 @@ export const ProSettingDetailPage = () => {
             {visuals.portraitMedia ? (
               <div className="flex h-full flex-col bg-slate-100">
                 <div className="relative flex-1 overflow-hidden">
-                  <img src={visuals.portraitMedia.src} alt={visuals.portraitMedia.alt} className="h-full w-full object-cover object-top" />
+                  <img
+                    src={visuals.portraitMedia.src}
+                    alt={visuals.portraitMedia.alt}
+                    className="h-full w-full object-cover object-top"
+                    onError={(event) => {
+                      const fallbackSrc = visuals.portraitMedia?.fallbackSrc;
+                      if (!fallbackSrc) return;
+                      const target = event.currentTarget;
+                      if (target.src === fallbackSrc) return;
+                      target.src = fallbackSrc;
+                    }}
+                  />
                 </div>
                 <div className="border-t border-slate-200 bg-white/95 px-5 py-4 backdrop-blur">
                   <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>

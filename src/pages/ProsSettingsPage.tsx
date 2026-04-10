@@ -229,6 +229,13 @@ export const ProsSettingsPage = () => {
                     className={`h-16 w-16 rounded-full border border-slate-200 bg-white object-cover ${
                       visuals.portraitMedia ? '' : 'p-2'
                     }`}
+                    onError={(event) => {
+                      const fallbackSrc = visuals.portraitMedia?.fallbackSrc;
+                      if (!fallbackSrc) return;
+                      const target = event.currentTarget;
+                      if (target.src === fallbackSrc) return;
+                      target.src = fallbackSrc;
+                    }}
                   />
                   <div className="min-w-0">
                     <div className="text-lg font-black text-trust-navy">{setting.name}</div>

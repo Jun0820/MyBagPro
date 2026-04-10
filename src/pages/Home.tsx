@@ -342,6 +342,14 @@ export const Home = () => {
                     src={getProfileVisuals(pro.slug, pro.instagramHandle).portrait}
                     alt={`${pro.name}のプレースホルダー画像`}
                     className="h-16 w-16 rounded-full border border-slate-200 bg-slate-50 object-cover p-2"
+                    onError={(event) => {
+                      const visuals = getProfileVisuals(pro.slug, pro.instagramHandle);
+                      const fallbackSrc = visuals.portraitMedia?.fallbackSrc;
+                      if (!fallbackSrc) return;
+                      const target = event.currentTarget;
+                      if (target.src === fallbackSrc) return;
+                      target.src = fallbackSrc;
+                    }}
                   />
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">

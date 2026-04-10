@@ -12,6 +12,7 @@ export interface ProfilePortraitMedia {
   kind: 'image';
   sourceType: 'instagram_profile' | 'commons';
   src: string;
+  fallbackSrc?: string;
   alt: string;
   attribution: ProfilePortraitAttribution;
 }
@@ -471,13 +472,14 @@ const reusableMediaBySlug: Record<string, Partial<ProfileVisuals>> = {
 const hashSlug = (slug: string) =>
   [...slug].reduce((total, char) => total + char.charCodeAt(0), 0);
 
-const buildInstagramPortraitMedia = (instagramHandle: string): ProfilePortraitMedia => {
+const buildInstagramPortraitMedia = (instagramHandle: string, fallbackSrc?: string): ProfilePortraitMedia => {
   const normalizedHandle = instagramHandle.replace(/^@/, '').trim();
 
   return {
     kind: 'image',
     sourceType: 'instagram_profile',
     src: `https://unavatar.io/instagram/${encodeURIComponent(normalizedHandle)}`,
+    fallbackSrc,
     alt: `${normalizedHandle} のInstagramプロフィール画像`,
     attribution: {
       creator: `@${normalizedHandle}`,
@@ -494,8 +496,13 @@ export const getProfileVisuals = (slug: string, instagramHandle?: string): Profi
   const index = hashSlug(slug) % visualPool.length;
   const base = visualPool[index];
   const override = reusableMediaBySlug[slug];
-  const instagramPortrait = instagramHandle ? buildInstagramPortraitMedia(instagramHandle) : undefined;
-  const portraitMedia = instagramPortrait || override?.portraitMedia;
+  const fallbackPortrait = override?.portraitMedia?.src || base.portrait;
+  const instagramPortrait = instagramHandle ? buildInstagramPortraitMedia(instagramHandle, fallbackPortrait) : undefined;
+  const portraitMedia = instagramPortrait
+    ? instagramPortrait
+    : override?.portraitMedia
+      ? { ...override.portraitMedia, fallbackSrc: base.portrait }
+      : undefined;
   const portrait = portraitMedia?.src || base.portrait;
 
   return {
