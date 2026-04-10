@@ -1,0 +1,43 @@
+{
+  "profile": {
+    "slug": "katsumasa-miyamoto",
+    "display_name": "宮本 勝昌",
+    "nationality": "Japan",
+    "birthplace": "静岡県",
+    "birth_date": "1972-08-28",
+    "height_cm": 174,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "",
+    "feature_1": "日本男子ツアー",
+    "feature_2": "ツアー12勝",
+    "feature_3": "ベテラン実力者",
+    "summary": "JGTO公式プロフィールをもとに掲載する宮本勝昌のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
+    "latest_source_policy": "2026_profile",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "ミヤモト カツマサ"
+  },
+  "bagItems": [],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/player/2178/profile",
+      "source_title": "JGTO 宮本勝昌 プロフィール",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+    }
+  ],
+  "article": {
+    "slug": "katsumasa-miyamoto-profile-published",
+    "title": "宮本勝昌のプロフィールを掲載しました",
+    "excerpt": "宮本勝昌の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+    "body": "宮本勝昌について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

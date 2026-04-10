@@ -1,0 +1,43 @@
+{
+  "profile": {
+    "slug": "shingo-katayama",
+    "display_name": "片山 晋呉",
+    "nationality": "Japan",
+    "birthplace": "茨城県",
+    "birth_date": "1973-01-31",
+    "height_cm": 171,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "",
+    "feature_1": "日本男子ツアー",
+    "feature_2": "賞金王5回",
+    "feature_3": "ツアー31勝",
+    "summary": "JGTO公式プロフィールをもとに掲載する片山晋呉のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
+    "latest_source_policy": "2026_profile",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "カタヤマ シンゴ"
+  },
+  "bagItems": [],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/player/2162/profile",
+      "source_title": "JGTO 片山晋呉 プロフィール",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+    }
+  ],
+  "article": {
+    "slug": "shingo-katayama-profile-published",
+    "title": "片山晋呉のプロフィールを掲載しました",
+    "excerpt": "片山晋呉の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+    "body": "片山晋呉について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "profile": {
+    "slug": "yuwa-kosaihira",
+    "display_name": "小斉平 優和",
+    "nationality": "Japan",
+    "birthplace": "大阪府",
+    "birth_date": "1998-05-22",
+    "height_cm": 180,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "",
+    "feature_1": "日本男子ツアー",
+    "feature_2": "初優勝経験者",
+    "feature_3": "2026年出場確認",
+    "summary": "JGTO公式プロフィールをもとに掲載する小斉平優和のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
+    "latest_source_policy": "2026_profile",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-04-10T00:00:00.000Z",
+    "kana_name": "コサイヒラ ユウワ"
+  },
+  "bagItems": [],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.jgto.org/player/16500/profile",
+      "source_title": "JGTO 小斉平優和 プロフィール",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+    }
+  ],
+  "article": {
+    "slug": "yuwa-kosaihira-profile-published",
+    "title": "小斉平優和のプロフィールを掲載しました",
+    "excerpt": "小斉平優和の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+    "body": "小斉平優和について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-10T00:00:00.000Z"
+  }
+}
