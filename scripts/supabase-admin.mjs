@@ -94,6 +94,57 @@ function parseProfileSocialOverrides() {
   return overrides.filter((entry) => entry.instagram_handle || entry.x_handle);
 }
 
+function loadProfileFieldOverrides() {
+  const filepath = path.join(projectRoot, 'scripts/profile-field-overrides.json');
+  if (!fs.existsSync(filepath)) return {};
+  return JSON.parse(fs.readFileSync(filepath, 'utf8'));
+}
+
+function loadSeedProfiles() {
+  const docsDir = path.join(projectRoot, 'docs');
+  const files = fs
+    .readdirSync(docsDir)
+    .filter((filename) => filename.endsWith('-seed.json'));
+
+  return files.map((filename) => {
+    const payload = JSON.parse(fs.readFileSync(path.join(docsDir, filename), 'utf8'));
+    return payload.profile || null;
+  }).filter(Boolean);
+}
+
+function isMeaningfulText(value) {
+  return typeof value === 'string' && value.trim() && !['-', '－', '—', '未公開'].includes(value.trim());
+}
+
+function normalizeOptionalText(value) {
+  if (typeof value !== 'string') return null;
+  const normalized = value.trim();
+  return normalized ? normalized : null;
+}
+
+function withFallback(...values) {
+  for (const value of values) {
+    if (value === null || value === undefined) continue;
+    if (typeof value === 'string') {
+      const normalized = normalizeOptionalText(value);
+      if (normalized) return normalized;
+      continue;
+    }
+    return value;
+  }
+  return null;
+}
+
+function inferKanaName(displayName) {
+  if (!displayName || /[一-龠々]/.test(displayName)) return null;
+  return displayName.replace(/\s+/g, ' ').trim();
+}
+
+function finalizeTextValue(value, placeholder = '-') {
+  const normalized = normalizeOptionalText(value);
+  return normalized || placeholder;
+}
+
 async function checkConnection() {
   const { supabaseUrl, serviceRoleKey, anonKey } = readConfig();
 
@@ -457,6 +508,138 @@ async function syncSocialOverrides({ dryRun = false } = {}) {
   }, null, 2));
 }
 
+async function syncProfileFields({ dryRun = false } = {}) {
+  const supabase = getAdminClient();
+  const socialOverrideMap = new Map(
+    parseProfileSocialOverrides().map((entry) => [entry.slug, entry])
+  );
+  const fieldOverrides = loadProfileFieldOverrides();
+  const seedProfiles = loadSeedProfiles();
+
+  const { data: profiles, error } = await supabase
+    .from('setting_profiles')
+    .select('id, slug, display_name, kana_name, birth_date, height_cm, birthplace, youtube_channel, instagram_handle, x_handle, website_url')
+    .order('slug');
+
+  if (error) throw error;
+
+  const profileMap = new Map((profiles || []).map((profile) => [profile.slug, profile]));
+  const unresolved = [];
+  const updates = [];
+
+  for (const seedProfile of seedProfiles) {
+    const profile = profileMap.get(seedProfile.slug);
+    if (!profile) continue;
+
+    const overrides = fieldOverrides[seedProfile.slug] || {};
+    const social = socialOverrideMap.get(seedProfile.slug);
+
+    const kanaName = withFallback(
+      overrides.kana_name,
+      seedProfile.kana_name,
+      profile.kana_name,
+      inferKanaName(seedProfile.display_name || profile.display_name)
+    );
+    const birthDate = withFallback(overrides.birth_date, seedProfile.birth_date, profile.birth_date);
+    const heightCm = withFallback(overrides.height_cm, seedProfile.height_cm, profile.height_cm);
+    const birthplace = withFallback(overrides.birthplace, seedProfile.birthplace, profile.birthplace, '未公開');
+    const youtubeChannel = finalizeTextValue(
+      withFallback(overrides.youtube_channel, seedProfile.youtube_channel, profile.youtube_channel)
+    );
+    const instagramHandle = finalizeTextValue(
+      withFallback(overrides.instagram_handle, social?.instagram_handle, seedProfile.instagram_handle, profile.instagram_handle)
+    );
+    const xHandle = finalizeTextValue(
+      withFallback(overrides.x_handle, social?.x_handle, seedProfile.x_handle, profile.x_handle)
+    );
+    const websiteUrl = finalizeTextValue(
+      withFallback(overrides.website_url, seedProfile.website_url, profile.website_url)
+    );
+
+    if (!kanaName || !birthDate || !heightCm || !birthplace) {
+      unresolved.push({
+        slug: seedProfile.slug,
+        display_name: seedProfile.display_name || profile.display_name,
+        kana_name: kanaName,
+        birth_date: birthDate,
+        height_cm: heightCm,
+        birthplace: birthplace,
+      });
+      continue;
+    }
+
+    const nextPayload = {
+      id: profile.id,
+      slug: profile.slug,
+      display_name: profile.display_name,
+      kana_name: kanaName,
+      birth_date: birthDate,
+      height_cm: Number(heightCm),
+      birthplace: birthplace,
+      youtube_channel: youtubeChannel,
+      instagram_handle: instagramHandle,
+      x_handle: xHandle,
+      website_url: websiteUrl,
+    };
+
+    const hasChanged =
+      profile.kana_name !== nextPayload.kana_name ||
+      profile.birth_date !== nextPayload.birth_date ||
+      profile.height_cm !== nextPayload.height_cm ||
+      profile.birthplace !== nextPayload.birthplace ||
+      profile.youtube_channel !== nextPayload.youtube_channel ||
+      profile.instagram_handle !== nextPayload.instagram_handle ||
+      profile.x_handle !== nextPayload.x_handle ||
+      profile.website_url !== nextPayload.website_url;
+
+    if (hasChanged) updates.push(nextPayload);
+  }
+
+  if (unresolved.length > 0) {
+    throw new Error(`Unresolved required fields for ${unresolved.length} profiles: ${JSON.stringify(unresolved.slice(0, 20))}`);
+  }
+
+  if (!dryRun && updates.length > 0) {
+    for (const update of updates) {
+      const { error: updateError } = await supabase
+        .from('setting_profiles')
+        .update({
+          kana_name: update.kana_name,
+          birth_date: update.birth_date,
+          height_cm: update.height_cm,
+          birthplace: update.birthplace,
+          youtube_channel: update.youtube_channel,
+          instagram_handle: update.instagram_handle,
+          x_handle: update.x_handle,
+          website_url: update.website_url,
+        })
+        .eq('id', update.id);
+
+      if (updateError) throw updateError;
+    }
+  }
+
+  console.log(JSON.stringify({
+    dryRun,
+    seedProfiles: seedProfiles.length,
+    matchedProfiles: profiles?.length || 0,
+    updatedProfiles: updates.length,
+    unresolvedProfiles: unresolved.length,
+    sampleUpdates: updates.slice(0, 20).map(({ slug, display_name, kana_name, birth_date, height_cm, birthplace, youtube_channel, instagram_handle, x_handle, website_url }) => ({
+      slug,
+      display_name,
+      kana_name,
+      birth_date,
+      height_cm,
+      birthplace,
+      youtube_channel,
+      instagram_handle,
+      x_handle,
+      website_url,
+    })),
+  }, null, 2));
+}
+
 async function main() {
   const [command, ...args] = process.argv.slice(2);
 
@@ -482,9 +665,12 @@ async function main() {
     case 'sync-social-overrides':
       await syncSocialOverrides({ dryRun: args.includes('--dry-run') });
       break;
+    case 'sync-profile-fields':
+      await syncProfileFields({ dryRun: args.includes('--dry-run') });
+      break;
     default:
       throw new Error(
-        'Unknown command. Use one of: check, publish-profile, insert-source, upsert-article, upsert-articles, upsert-setting-profile, sync-social-overrides'
+        'Unknown command. Use one of: check, publish-profile, insert-source, upsert-article, upsert-articles, upsert-setting-profile, sync-social-overrides, sync-profile-fields'
       );
   }
 }

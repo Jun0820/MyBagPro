@@ -111,6 +111,7 @@ interface SourceRow {
 }
 
 const PROFILE_LIST_FETCH_LIMIT = 500;
+const PLACEHOLDER_VALUES = new Set(['-', '－', '—', '未公開']);
 
 const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfile['type']> = {
   tour_pro: 'Tour Pro',
@@ -122,6 +123,12 @@ const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfi
 const formatHeadSpeed = (value: number | null) => (value ? `${value.toFixed(1)} m/s` : '未公開');
 const formatAverageScore = (value: number | null) => (value ? `${value}` : '未公開');
 const formatBestScore = (value: number | null) => (value ? `${value}` : undefined);
+const normalizeOptionalText = (value: string | null | undefined) => {
+  if (!value) return undefined;
+  const normalized = value.trim();
+  if (!normalized || PLACEHOLDER_VALUES.has(normalized)) return undefined;
+  return normalized;
+};
 const getAge = (value: string | null) => {
   if (!value) return null;
   const birth = new Date(value);
@@ -198,7 +205,7 @@ const buildProfiles = (
     return {
       slug: profile.slug,
       name: profile.display_name,
-      kanaName: profile.kana_name || undefined,
+      kanaName: normalizeOptionalText(profile.kana_name),
       type,
       category: metadata.category,
       categoryLabel: metadata.categoryLabel,
@@ -211,10 +218,10 @@ const buildProfiles = (
           : metadata.contractLabel,
       tagline: inferTagline(strengths, type),
       summary: profile.summary || '2026シーズン基準で確認していく掲載用プロフィールです。',
-      birthDate: profile.birth_date,
+      birthDate: normalizeOptionalText(profile.birth_date) || null,
       age: getAge(profile.birth_date),
       genderLabel: getGenderLabel(metadata.category),
-      birthplace: profile.birthplace,
+      birthplace: normalizeOptionalText(profile.birthplace) || null,
       nationality: profile.nationality,
       headSpeed: formatHeadSpeed(profile.head_speed_mps),
       averageScore: formatAverageScore(profile.average_score),
@@ -223,10 +230,10 @@ const buildProfiles = (
       ball: profile.ball_name || '未公開',
       strengths: strengths.length > 0 ? strengths : ['確認中'],
       clubs,
-      youtubeChannel: profile.youtube_channel || undefined,
-      instagramHandle: profile.instagram_handle || socialOverride?.instagramHandle || undefined,
-      xHandle: profile.x_handle || socialOverride?.xHandle || undefined,
-      websiteUrl: profile.website_url || undefined,
+      youtubeChannel: normalizeOptionalText(profile.youtube_channel),
+      instagramHandle: normalizeOptionalText(profile.instagram_handle) || socialOverride?.instagramHandle || undefined,
+      xHandle: normalizeOptionalText(profile.x_handle) || socialOverride?.xHandle || undefined,
+      websiteUrl: normalizeOptionalText(profile.website_url),
       sources,
       seasonYear: profile.season_year,
       latestSourcePolicy: profile.latest_source_policy,

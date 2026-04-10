@@ -1,0 +1,347 @@
+{
+  "aguri-iwasaki": {
+    "kana_name": "イワサキアグリ",
+    "birthplace": "静岡県"
+  },
+  "ai-suzuki": {
+    "kana_name": "スズキ アイ"
+  },
+  "alison-lee": {
+    "kana_name": "アリソン・リー"
+  },
+  "ally-ewing": {
+    "kana_name": "アリー・ユーイング"
+  },
+  "anna-nordqvist": {
+    "kana_name": "アンナ・ノルドクビスト"
+  },
+  "aoki-serena": {
+    "height_cm": 153,
+    "birthplace": "群馬県前橋市"
+  },
+  "arimura-chie": {
+    "birth_date": "1987-11-22",
+    "height_cm": 159,
+    "birthplace": "熊本県熊本市"
+  },
+  "ariya-jutanugarn": {
+    "kana_name": "アリヤ・ジュタヌガーン"
+  },
+  "brooke-henderson": {
+    "kana_name": "ブルック・ヘンダーソン"
+  },
+  "cameron-young": {
+    "kana_name": "キャメロン・ヤング",
+    "birthplace": "アメリカ合衆国 ニューヨーク州スカーバラ"
+  },
+  "charley-hull": {
+    "kana_name": "チャーリー・ハル"
+  },
+  "collin-morikawa": {
+    "kana_name": "コリン・モリカワ"
+  },
+  "danielle-kang": {
+    "kana_name": "ダニエル・カン"
+  },
+  "erika-hara": {
+    "height_cm": 173
+  },
+  "fukuda-mami": {
+    "height_cm": 168,
+    "birthplace": "福岡県福岡市"
+  },
+  "gaby-lopez": {
+    "kana_name": "ガビー・ロペス"
+  },
+  "goto-miu": {
+    "height_cm": 157,
+    "birthplace": "福岡県北九州市"
+  },
+  "haeran-ryu": {
+    "kana_name": "リュ・ヘラン"
+  },
+  "higa-mamiko": {
+    "height_cm": 161,
+    "birthplace": "沖縄県本部町"
+  },
+  "hori-kotone": {
+    "height_cm": 165,
+    "birthplace": "徳島県徳島市"
+  },
+  "hina-arakaki": {
+    "kana_name": "アラカキ ヒナ"
+  },
+  "hiroshi-iwata": {
+    "birthplace": "宮城県"
+  },
+  "ryo-ishikawa": {
+    "kana_name": "イシカワ リョウ"
+  },
+  "jason-day": {
+    "kana_name": "ジェイソン・デイ",
+    "birthplace": "オーストラリア クイーンズランド州"
+  },
+  "jennifer-kupcho": {
+    "kana_name": "ジェニファー・カプチョ"
+  },
+  "jordan-spieth": {
+    "kana_name": "ジョーダン・スピース",
+    "birthplace": "アメリカ合衆国 テキサス州ダラス"
+  },
+  "justin-thomas": {
+    "kana_name": "ジャスティン・トーマス",
+    "birthplace": "アメリカ合衆国 ケンタッキー州ルイビル"
+  },
+  "kanazawa-shina": {
+    "height_cm": 164,
+    "birthplace": "茨城県笠間市"
+  },
+  "kaneda-kumiko": {
+    "birth_date": "1989-08-14",
+    "height_cm": 166,
+    "birthplace": "愛知県名古屋市"
+  },
+  "karen-fujita": {
+    "height_cm": 162,
+    "birthplace": "滋賀県"
+  },
+  "kasa-ritsuko": {
+    "kana_name": "カサ リツコ",
+    "birth_date": "1987-11-04",
+    "height_cm": 160,
+    "birthplace": "熊本県"
+  },
+  "kawagishi-fumika": {
+    "birth_date": "1994-10-13",
+    "height_cm": 166,
+    "birthplace": "神奈川県"
+  },
+  "kazuki-higa": {
+    "birthplace": "沖縄県"
+  },
+  "kensei-hirata": {
+    "kana_name": "ヒラタ ケンセイ",
+    "birthplace": "大阪府"
+  },
+  "kido-ai": {
+    "height_cm": 172,
+    "birthplace": "神奈川県横須賀市"
+  },
+  "kokone-yoshimoto": {
+    "height_cm": 161,
+    "birthplace": "北海道札幌市"
+  },
+  "kotaki-mion": {
+    "height_cm": 153,
+    "birthplace": "茨城県ひたちなか市"
+  },
+  "kozuma-kotono": {
+    "height_cm": 157,
+    "birthplace": "鹿児島県鹿屋市"
+  },
+  "kudo-haruka": {
+    "height_cm": 171,
+    "birthplace": "千葉県"
+  },
+  "lexi-thompson": {
+    "kana_name": "レクシー・トンプソン"
+  },
+  "leona-maguire": {
+    "kana_name": "レオナ・マグワイア"
+  },
+  "linn-grant": {
+    "kana_name": "リン・グラント"
+  },
+  "ludvig-aberg": {
+    "kana_name": "ルドビグ・オーベリ"
+  },
+  "maya-stark": {
+    "kana_name": "マヤ・スターク"
+  },
+  "matsuda-rei": {
+    "height_cm": 165,
+    "birthplace": "滋賀県彦根市"
+  },
+  "mei-takagi": {
+    "height_cm": 163,
+    "birthplace": "大阪府"
+  },
+  "mikashima-kana": {
+    "height_cm": 164,
+    "birthplace": "福岡県糟屋郡"
+  },
+  "mikumu-horikawa": {
+    "kana_name": "ホリカワ ミクム",
+    "birthplace": "神奈川県",
+    "youtube_channel": "https://www.youtube.com/@%E5%A0%80%E5%B7%9D%E6%9C%AA%E6%9D%A5%E5%A4%A2%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB"
+  },
+  "minjee-lee": {
+    "birthplace": "オーストラリア パース"
+  },
+  "morita-haruka": {
+    "height_cm": 164,
+    "birthplace": "香川県高松市"
+  },
+  "morita-rikako": {
+    "birth_date": "1990-01-08",
+    "height_cm": 164,
+    "birthplace": "京都府京都市"
+  },
+  "moriya-jutanugarn": {
+    "kana_name": "モリヤ・ジュタヌガーン"
+  },
+  "nagai-kana": {
+    "height_cm": 155,
+    "birthplace": "東京都品川区"
+  },
+  "nanna-koerstz-madsen": {
+    "kana_name": "ナナ・コルツ・マドセン"
+  },
+  "nasa-hataoka": {
+    "kana_name": "ハタオカ ナサ"
+  },
+  "nick-taylor": {
+    "kana_name": "ニック・テイラー",
+    "birthplace": "カナダ マニトバ州"
+  },
+  "nicolai-hojgaard": {
+    "height_cm": 190
+  },
+  "patty-tavatanakit": {
+    "kana_name": "パティ・タバタナキット"
+  },
+  "riki-kawamoto": {
+    "kana_name": "カワモト リキ",
+    "birthplace": "愛媛県松山市"
+  },
+  "rikuya-hoshino": {
+    "kana_name": "ホシノ リクヤ",
+    "birthplace": "茨城県"
+  },
+  "ryann-odtoole": {
+    "kana_name": "ライアン・オトゥール"
+  },
+  "ryo-hisatsune": {
+    "kana_name": "ヒサツネ リョウ",
+    "birthplace": "岡山県"
+  },
+  "sakuma-akari": {
+    "height_cm": 155,
+    "birthplace": "埼玉県川越市"
+  },
+  "sami-valimaki": {
+    "kana_name": "サミ・バリマキ",
+    "birthplace": "フィンランド"
+  },
+  "sato-miyu": {
+    "height_cm": 161,
+    "birthplace": "神奈川県小田原市"
+  },
+  "satoshi-kodaira": {
+    "kana_name": "コダイラ サトシ",
+    "birthplace": "東京都"
+  },
+  "seira-oki": {
+    "height_cm": 161,
+    "birthplace": "山口県"
+  },
+  "sepp-straka": {
+    "kana_name": "セップ・ストラカ",
+    "birthplace": "オーストリア ウィーン"
+  },
+  "shugo-imahira": {
+    "kana_name": "イマヒラ シュウゴ",
+    "birthplace": "埼玉県"
+  },
+  "suga-fuka": {
+    "kana_name": "スガ フウカ",
+    "birth_date": "2005-05-18",
+    "height_cm": 167,
+    "birthplace": "宮崎県"
+  },
+  "taichi-nabetani": {
+    "birthplace": "大阪府"
+  },
+  "taiga-semikawa": {
+    "kana_name": "セミカワ タイガ",
+    "birthplace": "兵庫県"
+  },
+  "takamitsu-tokimatsu": {
+    "birthplace": "福岡県"
+  },
+  "takumi-kanaya": {
+    "kana_name": "カナヤ タクミ",
+    "birthplace": "広島県"
+  },
+  "tatsunori-shogenji": {
+    "kana_name": "ショウゲンジ タツノリ",
+    "birthplace": "山口県"
+  },
+  "thorbjorn-olesen": {
+    "kana_name": "トービヨン・オルセン",
+    "birthplace": "デンマーク ファルセ"
+  },
+  "tom-kim": {
+    "kana_name": "トム・キム",
+    "birthplace": "韓国 ソウル"
+  },
+  "tomoharu-otsuki": {
+    "kana_name": "オオツキ トモハル",
+    "birthplace": "茨城県"
+  },
+  "tony-finau": {
+    "kana_name": "トニー・フィナウ",
+    "birthplace": "アメリカ合衆国 ユタ州"
+  },
+  "tsuruoka-karen": {
+    "height_cm": 165,
+    "birthplace": "神奈川県横浜市"
+  },
+  "ueda-momoko": {
+    "height_cm": 161,
+    "birthplace": "熊本県熊本市"
+  },
+  "usui-reika": {
+    "height_cm": 158,
+    "birthplace": "栃木県鹿沼市"
+  },
+  "wakana-kamiya": {
+    "height_cm": 160,
+    "birthplace": "愛知県"
+  },
+  "wakimoto-hana": {
+    "height_cm": 174,
+    "birthplace": "宮崎県小林市"
+  },
+  "yokomine-sakura": {
+    "kana_name": "ヨコミネ サクラ",
+    "birth_date": "1985-12-13",
+    "height_cm": 155,
+    "birthplace": "鹿児島県鹿屋市"
+  },
+  "yoshimoto-hikaru": {
+    "height_cm": 152,
+    "birthplace": "滋賀県"
+  },
+  "yui-kawamoto": {
+    "birthplace": "愛媛県松山市"
+  },
+  "yuki-inamori": {
+    "kana_name": "イナモリ ユウキ",
+    "birthplace": "鹿児島県"
+  },
+  "yumeka-kobayashi": {
+    "height_cm": 167,
+    "birthplace": "埼玉県"
+  },
+  "yuna-nishimura": {
+    "kana_name": "ニシムラ ユナ"
+  },
+  "yosuke-tsukada": {
+    "birthplace": "長野県"
+  },
+  "yuto-katsuragawa": {
+    "kana_name": "カツラガワ ユウト",
+    "birthplace": "愛知県"
+  }
+}
