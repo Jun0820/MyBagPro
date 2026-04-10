@@ -5,12 +5,12 @@ import { applySeo, getSeoPath } from '../lib/seo';
 
 const routeSeoMap: Record<string, { title: string; description: string; noindex?: boolean }> = {
   '/': {
-    title: '有名プロのクラブセッティングを検索して見られるサイト',
-    description: '石川遼や中島啓太など、有名プロの現在の14本のクラブセッティングを検索して見られる My Bag Pro。確認済みデータだけを掲載します。',
+    title: 'プロのクラブセッティング検索サイト',
+    description: '石川遼、中島啓太、松山英樹など有名プロのクラブセッティングを検索できる My Bag Pro。ドライバー、アイアン、パター、使用ボールまで確認済みデータを掲載します。',
   },
   '/settings/pros': {
-    title: 'プロのクラブセッティング一覧・検索',
-    description: '有名プロの14本のクラブセッティング一覧。選手名やクラブ名で検索しながら、確認済みのヘッド、シャフト、使用ボールを見られます。',
+    title: 'プロのクラブセッティング一覧',
+    description: '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名やクラブ名、五十音で検索できます。',
   },
   '/settings/users': {
     title: 'みんなのMy Bag',
@@ -59,14 +59,14 @@ const getSeoForPath = (pathname: string) => {
   if (pathname.startsWith('/settings/pros/')) {
     return {
       title: 'プロのクラブセッティング詳細',
-      description: '選手ごとの確認済み14本のクラブセッティング詳細ページです。',
+      description: '選手ごとのクラブセッティング詳細ページです。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できます。',
     };
   }
 
   if (pathname.startsWith('/articles/')) {
     return {
       title: '更新記事',
-      description: '掲載データやクラブセッティングの更新内容を公開する記事です。',
+      description: 'クラブセッティング掲載情報の更新記事です。記事から各選手の詳細ページへ進めます。',
       noindex: false,
     };
   }

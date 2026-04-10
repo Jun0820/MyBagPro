@@ -159,6 +159,7 @@ export const ProSettingDetailPage = () => {
 
     if (!setting) {
       removeStructuredData('profile-page');
+      removeStructuredData('profile-breadcrumbs');
       applySeo({
         title: 'プロのクラブセッティング詳細',
         description: '確認済みの14本のクラブセッティング詳細ページです。',
@@ -168,8 +169,8 @@ export const ProSettingDetailPage = () => {
     }
 
     applySeo({
-      title: `${setting.name}のクラブセッティング`,
-      description: `${setting.name}の確認済み14本セッティング。使用ボールやシャフト情報まで見られます。`,
+      title: `${setting.name}のクラブセッティング${setting.seasonYear ? ` ${setting.seasonYear}年` : ''}`,
+      description: `${setting.name}のクラブセッティング詳細ページ。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボール、契約メーカーまで確認できます。`,
       path: getSeoPath(`/settings/pros/${slug}`),
     });
 
@@ -177,13 +178,16 @@ export const ProSettingDetailPage = () => {
       '@context': 'https://schema.org',
       '@type': 'ProfilePage',
       name: `${setting.name}のクラブセッティング`,
-      description: `${setting.name}の確認済み14本セッティング。使用ボールやシャフト情報まで見られます。`,
+      description: `${setting.name}のクラブセッティング詳細ページ。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボール、契約メーカーまで確認できます。`,
       url: toAbsoluteUrl(getSeoPath(`/settings/pros/${slug}`)),
       mainEntity: {
         '@type': 'Person',
         name: setting.name,
         description: setting.summary,
         additionalType: setting.type,
+        birthDate: setting.birthDate || undefined,
+        nationality: setting.nationality || undefined,
+        homeLocation: setting.birthplace || undefined,
       },
       hasPart: {
         '@type': 'ItemList',
@@ -196,9 +200,40 @@ export const ProSettingDetailPage = () => {
         })),
       },
     });
+
+    setStructuredData('profile-breadcrumbs', {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'ホーム',
+          item: toAbsoluteUrl('/'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'プロのクラブセッティング一覧',
+          item: toAbsoluteUrl('/settings/pros'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: `${setting.name}のクラブセッティング`,
+          item: toAbsoluteUrl(getSeoPath(`/settings/pros/${slug}`)),
+        },
+      ],
+    });
   }, [setting, slug]);
 
-  useEffect(() => () => removeStructuredData('profile-page'), []);
+  useEffect(
+    () => () => {
+      removeStructuredData('profile-page');
+      removeStructuredData('profile-breadcrumbs');
+    },
+    []
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -469,6 +504,9 @@ export const ProSettingDetailPage = () => {
                 </div>
                 <h3 className="mt-3 text-lg font-black tracking-tight text-trust-navy">{article.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{article.excerpt}</p>
+                <div className="mt-3 text-xs font-bold text-slate-500">
+                  この記事から {setting.name} のクラブセッティング詳細ページへ進めます。
+                </div>
                 <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-golf-700">
                   記事を読む
                   <ArrowRight size={14} />

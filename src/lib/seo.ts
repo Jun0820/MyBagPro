@@ -72,5 +72,5 @@ export const applySeo = ({ title, description, path = '/', type = 'website', noi
 
 export const getSeoPath = (hashPath: string) => {
   if (!hashPath || hashPath === '/') return '/';
-  return `/#${hashPath}`;
+  return hashPath;
 };

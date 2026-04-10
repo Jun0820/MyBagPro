@@ -30,7 +30,12 @@
       "name": "My Bag Pro",
       "url": "https://mybagpro.jp/",
       "inLanguage": "ja-JP",
-      "description": "プロや人気ゴルファーの14本のクラブセッティングを見つけて参考にできるサイト",
+      "description": "プロや人気ゴルファーのクラブセッティングを選手名やクラブ名で検索して見られるサイト",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mybagpro.jp/settings/pros?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
       "publisher": {
         "@type": "Organization",
         "name": "My Bag Pro"

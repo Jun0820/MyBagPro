@@ -83,6 +83,15 @@ export const ArticleDetailPage = () => {
       dateModified: article.publishedAt || undefined,
       mainEntityOfPage: toAbsoluteUrl(getSeoPath(`/articles/${slug}`)),
       url: toAbsoluteUrl(getSeoPath(`/articles/${slug}`)),
+      about: article.relatedProfileName
+        ? {
+            '@type': 'Person',
+            name: article.relatedProfileName,
+            url: article.relatedProfileSlug
+              ? toAbsoluteUrl(getSeoPath(`/settings/pros/${article.relatedProfileSlug}`))
+              : undefined,
+          }
+        : undefined,
       publisher: {
         '@type': 'Organization',
         name: 'My Bag Pro',
@@ -132,6 +141,24 @@ export const ArticleDetailPage = () => {
           <p className="mt-6 rounded-[1.5rem] bg-slate-50 p-5 text-sm leading-7 text-slate-700">
             {article.excerpt}
           </p>
+        )}
+        {article.relatedProfileSlug && article.relatedProfileName && (
+          <div className="mt-6 rounded-[1.5rem] border border-golf-200 bg-golf-50/60 p-5">
+            <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">PROFILE LINK</div>
+            <h2 className="mt-2 text-xl font-black text-trust-navy">
+              {article.relatedProfileName}のクラブセッティングを見る
+            </h2>
+            <p className="mt-2 text-sm leading-7 text-slate-700">
+              この記事の元になった掲載ページから、ドライバー、アイアン、パター、使用ボールまで一覧で確認できます。
+            </p>
+            <button
+              onClick={() => navigate(`/settings/pros/${article.relatedProfileSlug}`)}
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
+            >
+              クラブセッティングを見る
+              <ArrowRight size={16} />
+            </button>
+          </div>
         )}
         <div className="mt-8 whitespace-pre-wrap text-sm leading-8 text-slate-700">{article.body}</div>
       </article>

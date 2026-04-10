@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "supabase:check": "node scripts/supabase-admin.mjs check",
     "supabase:publish-profile": "node scripts/supabase-admin.mjs publish-profile",
     "supabase:insert-source": "node scripts/supabase-admin.mjs insert-source",

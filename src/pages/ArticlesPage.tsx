@@ -147,6 +147,12 @@ export const ArticlesPage = () => {
             </div>
             <h2 className="mt-3 text-2xl font-black text-trust-navy">{article.title}</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">{article.excerpt}</p>
+            {article.relatedProfileSlug && article.relatedProfileName && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[11px] font-black tracking-[0.08em] text-golf-700">
+                関連ページ
+                <span>{article.relatedProfileName}</span>
+              </div>
+            )}
             <div className="mt-5 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
               記事を読む
               <ArrowRight size={16} />

@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { User, LogIn, Loader2, LogOut, Search, ShieldCheck, Stethoscope, UserRoundCog } from 'lucide-react';
 import { DiagnosisProvider, useDiagnosis } from './context/DiagnosisContext';
 import { AccountAuth } from './features/auth/AccountAuth';
@@ -77,7 +77,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-3 md:px-8">
           <div className="flex items-center justify-between gap-4">
-            <a href="#/" className="flex items-center gap-3 cursor-pointer group min-w-0">
+            <a href="/" className="flex items-center gap-3 cursor-pointer group min-w-0">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-golf-500 to-sky-700 shadow-lg">
                 <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
@@ -171,7 +171,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <footer className="relative z-10 mt-auto border-t border-slate-900/20 bg-slate-950 px-4 py-12 text-white">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           <div>
-            <a href="#/" className="font-eng text-2xl font-black tracking-tight text-white">
+            <a href="/" className="font-eng text-2xl font-black tracking-tight text-white">
               MY <span className="bg-gradient-to-r from-golf-400 to-sky-400 bg-clip-text text-transparent">BAG</span> PRO
             </a>
             <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">
@@ -240,7 +240,7 @@ const ScrollToTop = () => {
 function App() {
   return (
     <DiagnosisProvider>
-      <HashRouter>
+      <BrowserRouter>
         <SeoManager />
         <ScrollToTop />
         <Layout>
@@ -267,7 +267,7 @@ function App() {
             <Route path="/sitemap" element={<Sitemap />} />
           </Routes>
         </Layout>
-      </HashRouter>
+      </BrowserRouter>
     </DiagnosisProvider>
   );
 }
