@@ -1,4 +1,5 @@
 import { getProfileMetadata, type ContractStatus, type ProfileCategory } from './profileMetadata';
+import { getProfileSocialOverride } from './profileSocials';
 import { isSupabaseConfigured, supabase } from './supabase';
 
 export interface PublicBagClub {
@@ -183,6 +184,7 @@ const buildProfiles = (
     const strengths = [profile.feature_1, profile.feature_2, profile.feature_3].filter(Boolean) as string[];
     const type = typeLabelMap[profile.profile_type];
     const metadata = getProfileMetadata(profile.slug);
+    const socialOverride = getProfileSocialOverride(profile.slug);
     const sources = sourceRows
       .filter((source) => source.profile_id === profile.id && source.source_url)
       .map((source) => ({
@@ -222,8 +224,8 @@ const buildProfiles = (
       strengths: strengths.length > 0 ? strengths : ['確認中'],
       clubs,
       youtubeChannel: profile.youtube_channel || undefined,
-      instagramHandle: profile.instagram_handle || undefined,
-      xHandle: profile.x_handle || undefined,
+      instagramHandle: profile.instagram_handle || socialOverride?.instagramHandle || undefined,
+      xHandle: profile.x_handle || socialOverride?.xHandle || undefined,
       websiteUrl: profile.website_url || undefined,
       sources,
       seasonYear: profile.season_year,

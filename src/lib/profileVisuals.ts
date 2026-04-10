@@ -41,45 +41,63 @@ const portraitPlaceholder =
     </svg>
   `);
 
+const golfBackdrop = (start: string, end: string, accent: string) =>
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="${start}"/>
+          <stop offset="100%" stop-color="${end}"/>
+        </linearGradient>
+      </defs>
+      <rect width="1600" height="900" fill="url(#sky)"/>
+      <rect y="620" width="1600" height="280" fill="${accent}"/>
+      <path d="M0 690 C210 590, 420 560, 640 640 S1080 760, 1600 620 L1600 900 L0 900 Z" fill="#0f5132" opacity="0.45"/>
+      <path d="M0 720 C300 630, 470 650, 760 720 S1180 800, 1600 700 L1600 900 L0 900 Z" fill="#0b3d2e" opacity="0.55"/>
+      <circle cx="1180" cy="220" r="68" fill="#ffffff" opacity="0.18"/>
+      <rect x="1110" y="330" width="8" height="180" rx="4" fill="#f8fafc"/>
+      <path d="M1118 330 L1280 380 L1118 440 Z" fill="#ffffff" opacity="0.95"/>
+      <circle cx="420" cy="715" r="16" fill="#ffffff"/>
+      <circle cx="416" cy="711" r="2.5" fill="#dbeafe"/>
+    </svg>
+  `);
+
 const visualPool: Array<Pick<ProfileVisuals, 'hero' | 'portrait' | 'gallery'>> = [
   {
-    hero:
-      'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1600&q=80',
+    hero: golfBackdrop('#0f172a', '#1d4ed8', '#2f855a'),
     portrait: portraitPlaceholder,
     gallery: [
-      'https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80',
+      golfBackdrop('#0b132b', '#1c2541', '#2f855a'),
+      golfBackdrop('#0f172a', '#134e4a', '#2e7d32'),
+      golfBackdrop('#111827', '#1d4ed8', '#2f855a'),
     ],
   },
   {
-    hero:
-      'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=1600&q=80',
+    hero: golfBackdrop('#082f49', '#0f766e', '#3f9d56'),
     portrait: portraitPlaceholder,
     gallery: [
-      'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1200&q=80',
+      golfBackdrop('#0b3b2e', '#166534', '#4ade80'),
+      golfBackdrop('#0f172a', '#155e75', '#2f855a'),
+      golfBackdrop('#1f2937', '#0f766e', '#3f9d56'),
     ],
   },
   {
-    hero:
-      'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1600&q=80',
+    hero: golfBackdrop('#172554', '#2563eb', '#2e8b57'),
     portrait: portraitPlaceholder,
     gallery: [
-      'https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=1200&q=80',
+      golfBackdrop('#172554', '#1d4ed8', '#2f855a'),
+      golfBackdrop('#0f172a', '#0f766e', '#4d7c0f'),
+      golfBackdrop('#1e3a8a', '#0f766e', '#2e8b57'),
     ],
   },
   {
-    hero:
-      'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&w=1600&q=80',
+    hero: golfBackdrop('#0f172a', '#14532d', '#2f855a'),
     portrait: portraitPlaceholder,
     gallery: [
-      'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80',
+      golfBackdrop('#111827', '#166534', '#4ade80'),
+      golfBackdrop('#082f49', '#1d4ed8', '#2f855a'),
+      golfBackdrop('#0f172a', '#134e4a', '#3f9d56'),
     ],
   },
 ];
