@@ -43,36 +43,136 @@ const kanaGroups = [
 const heroImage =
   'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1920&q=80';
 
+const marketingScene = (variant: 'library' | 'filter' | 'compare') =>
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    variant === 'library'
+      ? `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+          <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0f3d2e"/>
+              <stop offset="100%" stop-color="#14532d"/>
+            </linearGradient>
+          </defs>
+          <rect width="1200" height="720" fill="url(#bg)"/>
+          <rect y="520" width="1200" height="200" fill="#3f8f55"/>
+          <path d="M0 560 C180 500, 360 470, 600 520 S1000 620, 1200 540 L1200 720 L0 720 Z" fill="#2f6f40" opacity="0.9"/>
+          <circle cx="960" cy="130" r="52" fill="#f8fafc" opacity="0.18"/>
+          <g transform="translate(180 170)">
+            <rect x="0" y="0" width="312" height="212" rx="24" fill="#08130f" opacity="0.5"/>
+            <rect x="26" y="26" width="260" height="24" rx="12" fill="#cbd5e1" opacity="0.25"/>
+            <rect x="26" y="72" width="220" height="20" rx="10" fill="#d1fae5" opacity="0.65"/>
+            <rect x="26" y="110" width="188" height="18" rx="9" fill="#d1fae5" opacity="0.48"/>
+            <rect x="26" y="146" width="168" height="18" rx="9" fill="#d1fae5" opacity="0.38"/>
+          </g>
+          <g transform="translate(735 145)">
+            <path d="M58 0h28l16 192c1 20-16 37-36 37H15c-20 0-37-17-36-37L-6 0h27" fill="none" stroke="#f6d16f" stroke-width="14" stroke-linejoin="round"/>
+            <path d="M68 0v-50" stroke="#f6d16f" stroke-width="12" stroke-linecap="round"/>
+            <path d="M68 -50l48 10-48 16" fill="#f6d16f"/>
+            <path d="M30 -8v-34" stroke="#f6d16f" stroke-width="10" stroke-linecap="round"/>
+            <path d="M30 -42l34 7-34 14" fill="#f6d16f"/>
+            <path d="M0 240c26 16 95 16 121 0" stroke="#f6d16f" stroke-width="10" stroke-linecap="round"/>
+          </g>
+          <circle cx="864" cy="540" r="14" fill="#ffffff"/>
+          <circle cx="864" cy="540" r="4" fill="#cbd5e1"/>
+        </svg>
+      `
+      : variant === 'filter'
+        ? `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+            <defs>
+              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#082f49"/>
+                <stop offset="100%" stop-color="#164e63"/>
+              </linearGradient>
+            </defs>
+            <rect width="1200" height="720" fill="url(#bg)"/>
+            <rect y="520" width="1200" height="200" fill="#3f8f55"/>
+            <path d="M0 575 C180 500, 360 500, 620 560 S1030 620, 1200 545 L1200 720 L0 720 Z" fill="#2f6f40" opacity="0.85"/>
+            <g transform="translate(130 112)">
+              <rect width="372" height="304" rx="28" fill="#08131f" opacity="0.45"/>
+              <rect x="30" y="34" width="156" height="18" rx="9" fill="#dbeafe" opacity="0.4"/>
+              <rect x="30" y="78" width="118" height="18" rx="9" fill="#bfdbfe" opacity="0.8"/>
+              <rect x="30" y="124" width="196" height="18" rx="9" fill="#bfdbfe" opacity="0.6"/>
+              <rect x="30" y="176" width="258" height="20" rx="10" fill="#f8fafc" opacity="0.18"/>
+              <circle cx="316" cy="186" r="34" fill="#34d399"/>
+              <circle cx="316" cy="186" r="14" fill="#f8fafc"/>
+            </g>
+            <g transform="translate(685 70)">
+              <circle cx="164" cy="116" r="42" fill="#f8fafc" opacity="0.12"/>
+              <path d="M170 130c-28 26-41 50-44 112" stroke="#f6d16f" stroke-width="14" stroke-linecap="round"/>
+              <path d="M150 132c64-16 100-46 132-94" stroke="#f6d16f" stroke-width="14" stroke-linecap="round"/>
+              <path d="M126 244c36 9 74 9 116 0" stroke="#f6d16f" stroke-width="12" stroke-linecap="round"/>
+              <rect x="30" y="252" width="212" height="120" rx="24" fill="#07141f" opacity="0.45"/>
+              <path d="M68 332c20-22 41-34 64-34 21 0 35 8 51 24 8 8 18 10 30 5" fill="none" stroke="#86efac" stroke-width="12" stroke-linecap="round"/>
+              <path d="M70 292h150" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round" opacity="0.35"/>
+            </g>
+          </svg>
+        `
+        : `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+            <defs>
+              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#172554"/>
+                <stop offset="100%" stop-color="#1d4ed8"/>
+              </linearGradient>
+            </defs>
+            <rect width="1200" height="720" fill="url(#bg)"/>
+            <rect y="520" width="1200" height="200" fill="#3f8f55"/>
+            <path d="M0 580 C160 528, 380 520, 615 570 S1010 628, 1200 550 L1200 720 L0 720 Z" fill="#2f6f40" opacity="0.88"/>
+            <g transform="translate(114 110)">
+              <rect width="408" height="292" rx="30" fill="#08131f" opacity="0.38"/>
+              <rect x="36" y="42" width="144" height="18" rx="9" fill="#dbeafe" opacity="0.34"/>
+              <rect x="36" y="100" width="58" height="132" rx="18" fill="#93c5fd"/>
+              <rect x="116" y="132" width="58" height="100" rx="18" fill="#bfdbfe"/>
+              <rect x="196" y="80" width="58" height="152" rx="18" fill="#34d399"/>
+              <rect x="276" y="58" width="58" height="174" rx="18" fill="#f6d16f"/>
+            </g>
+            <g transform="translate(728 108)">
+              <path d="M40 318c72-30 126-74 174-142" fill="none" stroke="#f6d16f" stroke-width="14" stroke-linecap="round"/>
+              <circle cx="44" cy="318" r="16" fill="#ffffff"/>
+              <path d="M182 82c10-18 21-28 33-28 13 0 23 5 30 15" fill="none" stroke="#f6d16f" stroke-width="12" stroke-linecap="round"/>
+              <path d="M257 298c-46 0-84-15-116-47" fill="none" stroke="#f6d16f" stroke-width="14" stroke-linecap="round"/>
+              <path d="M238 328c-42-46-73-75-114-108" fill="none" stroke="#e2e8f0" stroke-width="10" stroke-linecap="round" opacity="0.5"/>
+            </g>
+          </svg>
+        `
+  );
+
 const features = [
   {
     step: '01',
-    title: 'AIクラブ診断',
+    title: '今の14本を一気に把握',
     description:
-      'ヘッドスピードや悩みをもとに、あなたに合うクラブの方向性を短時間で整理します。',
-    image:
-      'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80',
-    icon: BrainCircuit,
-    accent: 'bg-green-50 text-green-600',
+      '有名プロがいま使っているドライバー、アイアン、ボール、飛距離の目安まで、1ページで素早く確認できます。',
+    image: marketingScene('library'),
+    icon: Search,
+    accent: 'bg-emerald-50 text-emerald-600',
+    ctaLabel: '人気プロを見る',
+    ctaHref: '/settings/pros',
   },
   {
     step: '02',
-    title: '性能比較',
+    title: '自分に近い条件で絞る',
     description:
-      '人気プロのセッティングや気になるクラブを並べて、違いをわかりやすく比較できます。',
-    image:
-      'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80',
-    icon: BarChart3,
+      'ヘッドスピードやカテゴリから候補を絞り、参考にすべきセッティングを最短で見つけられます。',
+    image: marketingScene('filter'),
+    icon: BrainCircuit,
     accent: 'bg-blue-50 text-blue-600',
+    ctaLabel: '条件で探す',
+    ctaHref: '/settings/pros',
   },
   {
     step: '03',
-    title: 'そのまま購入',
+    title: '比較して次の1本を決める',
     description:
-      '診断や比較から見つけた候補を、そのまま購入検討やショップ比較へつなげられます。',
-    image:
-      'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=80',
-    icon: ShoppingCart,
+      '気になるプロやクラブを比較しながら、自分のバッグに落とし込む候補整理までつなげられます。',
+    image: marketingScene('compare'),
+    icon: BarChart3,
     accent: 'bg-amber-50 text-amber-500',
+    ctaLabel: '比較を始める',
+    ctaHref: '/compare',
   },
 ];
 
@@ -141,16 +241,16 @@ export const Home = () => {
             </div>
 
             <h1 className="mt-6 text-[2.4rem] font-black leading-[1.14] tracking-tight text-white md:text-6xl">
-              有名プロの現在の
+              プロの14本から、
               <br className="hidden md:block" />
-              クラブセッティングを、
+              自分の次の1本まで。
               <br className="hidden md:block" />
-              すぐ探して知る。
+              比較しながら進める。
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/90 md:mt-6 md:text-xl md:leading-8">
-              石川遼や中島啓太のような有名プロの14本をまとめて検索し、クラブ選びの参考にできるサイトです。
-              そのあとに自分のセッティング登録や診断へ進めます。
+              有名プロの最新セッティングを探し、ヘッドスピードやカテゴリで絞り込み、
+              診断や比較まで一気につなげるためのゴルフ情報サイトです。
             </p>
 
             <div className="mt-8 max-w-2xl rounded-[1.75rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
@@ -398,9 +498,11 @@ export const Home = () => {
       <section id="features" className="rounded-[2.25rem] bg-white px-6 py-12 shadow-sm md:px-10 md:py-16">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h2 className="text-3xl font-black text-gray-900 md:text-4xl">My Bag Proでできること</h2>
-            <p className="mt-4 text-base text-gray-600">
-              自分に合ったクラブを見つけるための3つのステップ
+            <div className="text-[11px] font-black tracking-[0.16em] text-emerald-600">WHY MY BAG PRO</div>
+            <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">探すだけで終わらせず、比較と判断まで進める</h2>
+            <p className="mt-4 text-base leading-7 text-gray-600">
+              My Bag Pro は、プロの14本を眺めるだけのサイトではなく、
+              自分に近い条件で候補を見つけて、次の1本の意思決定まで進めるための入口です。
             </p>
           </div>
 
@@ -424,6 +526,13 @@ export const Home = () => {
                       </div>
                       <h3 className="mt-3 text-xl font-black text-gray-900">{feature.title}</h3>
                       <p className="mt-4 text-sm leading-7 text-gray-600">{feature.description}</p>
+                      <button
+                        onClick={() => navigate(feature.ctaHref)}
+                        className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50"
+                      >
+                        {feature.ctaLabel}
+                        <ArrowRight size={15} />
+                      </button>
                     </div>
                   </div>
                 </article>
@@ -436,17 +545,17 @@ export const Home = () => {
               {
                 icon: Search,
                 title: '探して知る',
-                text: 'まず有名プロの現在の14本を検索し、誰が何を使っているかを知る。',
+                text: 'まずは気になる選手やブランドから入り、今どのモデルが実戦投入されているかを素早く把握する。',
               },
               {
                 icon: BrainCircuit,
                 title: '自分に当てはめる',
-                text: '見つけたセッティングを参考に、自分の方向性や比較条件を整理する。',
+                text: 'ヘッドスピードや好みの系統に照らして、自分が参考にすべきセッティングだけに絞り込む。',
               },
               {
                 icon: ShoppingCart,
                 title: '比較して検討する',
-                text: '気になるクラブはそのまま比較と購入導線に進める。',
+                text: '候補の違いを整理しながら、比較・診断・購入検討へそのままつなげて迷いを減らす。',
               },
             ].map((item) => {
               const Icon = item.icon;

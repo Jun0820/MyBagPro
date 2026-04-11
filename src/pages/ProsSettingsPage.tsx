@@ -23,11 +23,14 @@ const kanaGroups = [
 
 const headSpeedGroups = [
   { id: 'all', label: 'すべて' },
-  { id: 'lt40', label: '40m/s未満' },
-  { id: '40to44', label: '40-44.9m/s' },
-  { id: '45to49', label: '45-49.9m/s' },
-  { id: '50to54', label: '50-54.9m/s' },
-  { id: 'gte55', label: '55m/s以上' },
+  { id: 'lt37', label: '37m/s未満', max: 37 },
+  { id: '37to39', label: '37-39.9m/s', min: 37, max: 40 },
+  { id: '40to42', label: '40-42.9m/s', min: 40, max: 43 },
+  { id: '43to45', label: '43-45.9m/s', min: 43, max: 46 },
+  { id: '46to48', label: '46-48.9m/s', min: 46, max: 49 },
+  { id: '49to51', label: '49-51.9m/s', min: 49, max: 52 },
+  { id: '52to54', label: '52-54.9m/s', min: 52, max: 55 },
+  { id: 'gte55', label: '55m/s以上', min: 55 },
 ] as const;
 
 const toHiragana = (value: string) =>
@@ -97,11 +100,10 @@ export const ProsSettingsPage = () => {
         if (activeHeadSpeed !== 'all') {
           const speed = profile.headSpeedMps;
           if (speed === null || speed === undefined) return false;
-          if (activeHeadSpeed === 'lt40' && speed >= 40) return false;
-          if (activeHeadSpeed === '40to44' && (speed < 40 || speed >= 45)) return false;
-          if (activeHeadSpeed === '45to49' && (speed < 45 || speed >= 50)) return false;
-          if (activeHeadSpeed === '50to54' && (speed < 50 || speed >= 55)) return false;
-          if (activeHeadSpeed === 'gte55' && speed < 55) return false;
+          const group = headSpeedGroups.find((item) => item.id === activeHeadSpeed);
+          if (!group) return false;
+          if ('min' in group && group.min !== undefined && speed < group.min) return false;
+          if ('max' in group && group.max !== undefined && speed >= group.max) return false;
         }
         if (!query) return true;
 
