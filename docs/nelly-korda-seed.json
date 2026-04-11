@@ -14,7 +14,7 @@
     "feature_1": "2026シーズン基準",
     "feature_2": "テーラーメイド中心",
     "feature_3": "公式carry yardageあり",
-    "summary": "ネリー・コルダの2026年クラブセッティングを、2025年末の詳細WITBと2026年のTaylorMade公式プレーヤーページに加えて、公式carry yardageも確認できる形で整理したページです。",
+    "summary": "ネリー・コルダの2026年クラブセッティングを、2025年末の詳細WITBと2026年のTaylorMade公式プレーヤーページに加えて、公式carry yardageをPWまで確認できる形で整理したページです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
@@ -149,7 +149,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 124,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageではPWは124yd。",
       "is_featured_item": false
     },
     {
@@ -216,7 +217,7 @@
       "source_url": "https://www.taylormadegolf.com/clubhouse/486885-whats-in-the-bag-winning-witb-team-taylormade.html?lang=en_US",
       "source_title": "What Nelly Korda has in the bag at the Fir Hills Seri Pak Championship | TaylorMade Golf",
       "checked_at": "2026-04-11T00:00:00.000Z",
-      "notes": "TaylorMade公式記事のstock carry yardages。3W 232yd、7W 218yd、25°ハイブリッド 200yd、5I 185yd、6I 169yd、7I 154yd、8I 144yd、9I 135yd、50° 115yd、54° 100yd、58° 83ydを確認。公開TrackMan/GCQuad明記ではなく公式carry yardage。"
+      "notes": "TaylorMade公式記事のstock carry yardages。3W 232yd、7W 218yd、25°ハイブリッド 200yd、5I 185yd、6I 169yd、7I 154yd、8I 144yd、9I 135yd、PW 124yd、50° 115yd、54° 100yd、58° 83ydを確認。公開TrackMan/GCQuad明記ではなく公式carry yardage。"
     },
     {
       "source_type": "official",
@@ -243,8 +244,8 @@
   "article": {
     "slug": "nelly-korda-2026-setting-update",
     "title": "ネリー・コルダの2026年クラブセッティングを掲載しました｜最新参照を反映",
-    "excerpt": "ネリー・コルダの2026年クラブセッティングとして、Qi4Dドライバーへの更新を含む最新参照ベースの内容と公式carry yardageを掲載しました。",
-    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年プレーヤーページと、直近で詳細が確認できるGolfWRXの2025年12月WITBをもとに更新しました。現在の大枠はQi4Dドライバー、Stealth 2フェアウェイウッド、PING G425ハイブリッド、P770とP7CBのコンボ、TaylorMadeとTitleistを組み合わせたウェッジ、TP Reserve B31 NK Protoパター、TaylorMade TP5xという流れです。2026年の公式ページではQi4DドライバーとP7CBアイアンの継続使用も確認でき、TaylorMade公式記事では一致番手のcarry yardageも参照できます。",
+    "excerpt": "ネリー・コルダの2026年クラブセッティングとして、Qi4Dドライバーへの更新を含む最新参照ベースの内容と、PWまで含めた公式carry yardageを掲載しました。",
+    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年プレーヤーページと、直近で詳細が確認できるGolfWRXの2025年12月WITBをもとに更新しました。現在の大枠はQi4Dドライバー、Stealth 2フェアウェイウッド、PING G425ハイブリッド、P770とP7CBのコンボ、TaylorMadeとTitleistを組み合わせたウェッジ、TP Reserve B31 NK Protoパター、TaylorMade TP5xという流れです。2026年の公式ページではQi4DドライバーとP7CBアイアンの継続使用も確認でき、TaylorMade公式記事では一致番手のcarry yardageを3WからPW、ウェッジまで参照できます。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

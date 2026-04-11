@@ -9,11 +9,14 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
+    "head_speed_mps": 52.0,
+    "average_score": 69.55,
+    "best_score": 62,
     "ball_name": "TaylorMade TP5x pix 2024",
     "feature_1": "2025シーズン基準",
     "feature_2": "TaylorMade中心",
-    "feature_3": "14本確認済み",
-    "summary": "トミー・フリートウッドの最新クラブセッティングページ。ツアー選手権時点で確認できた14本の構成、使用ドライバー、使用ボール、TaylorMade中心のクラブ構成を確認できるように整理しています。",
+    "feature_3": "PGA TOUR公式スタッツ追加",
+    "summary": "トミー・フリートウッドのクラブセッティングページ。ツアー選手権時点で確認できた14本の構成に加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も確認できるように整理しています。",
     "latest_source_policy": "2025_season",
     "is_featured": true,
     "is_published": true,
@@ -31,7 +34,8 @@
       "shaft_model": "VENTUS TR BLUE",
       "shaft_flex": "X",
       "shaft_weight": "60g台",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "total_distance": 299,
+      "source_note": "Confirmed from GDO 2025 Tour Championship setting page. PGA TOUR公式2026 statsではDriving Distance 299.3yd。",
       "is_featured_item": true
     },
     {
@@ -198,6 +202,27 @@
   ],
   "sources": [
     {
+      "source_type": "official",
+      "source_url": "https://www.taylormadegolf.com/tourplayers/tommy-fleetwood.html?lang=en_US",
+      "source_title": "Tommy Fleetwood WITB | TaylorMade Golf",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "TaylorMade公式の現行プレーヤーページ。Qi4D LS Driver、R7 Quad Mini Driver、Qi4D Fairway、P7TW、MG5、Hi-Toe 4、Spider Tour、TP5x系の現行構成確認用。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/stats",
+      "source_title": "Tommy Fleetwood PGA TOUR Stats",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式2026 stats。Club Head Speed 116.41 mph、Driving Distance 299.3 yd、Scoring Average 69.55を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/career",
+      "source_title": "Tommy Fleetwood PGA TOUR Career",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式career。Lowest Round 62を確認。"
+    },
+    {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/6264/",
       "source_title": "GDO トミー・フリートウッド クラブセッティング 2025年 ツアー選手権",
@@ -207,9 +232,9 @@
   ],
   "article": {
     "slug": "tommy-fleetwood-2025-setting-update",
-    "title": "トミー・フリートウッドの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
-    "excerpt": "トミー・フリートウッドのクラブセッティングとして、ドライバー、ミニドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できた内容を掲載しました。",
-    "body": "トミー・フリートウッドのクラブセッティングを確認したい人向けに、ツアー選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。Qi35 Driver、r7 QUAD Mini Driver、Qi35 Fairway Wood、P7TW Iron、HI-TOE 4 Wedge、MG Prototype Wedge、Spider Tour Black Putter、TaylorMade TP5x pixという流れで、トミー・フリートウッドの現在のセッティングをページ内で一覧確認できます。",
+    "title": "トミー・フリートウッドの最新クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
+    "excerpt": "トミー・フリートウッドのクラブセッティングとして、14本構成に加えてPGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
+    "body": "トミー・フリートウッドのクラブセッティングを確認したい人向けに、ツアー選手権時点で確認できた14本のクラブ構成と使用ボールを維持しつつ、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追加しました。バッグ詳細はQi35 Driver、r7 QUAD Mini Driver、Qi35 Fairway Wood、P7TW Iron、HI-TOE 4 Wedge、MG Prototype Wedge、Spider Tour Black Putter、TaylorMade TP5x pixという流れで、数値面はPGA TOUR公式2026 stats/careerを参照しています。TaylorMade公式の現行プレーヤーページではQi4D LS DriverとR7 Quad Mini Driverを中心とした最新構成も確認できます。",
     "article_type": "update",
     "season_year": 2025,
     "published": true,
