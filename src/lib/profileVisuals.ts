@@ -1,4 +1,5 @@
 import { instagramProfileImages } from './instagramProfileImages';
+import { getProfileSocialOverride } from './profileSocials';
 
 export interface ProfilePortraitAttribution {
   creator: string;
@@ -37,6 +38,11 @@ export interface ProfileVisuals {
 
 export interface ProfileVisualOptions {
   preferInstagramPortrait?: boolean;
+}
+
+interface InstagramProfileImageEntry {
+  src: string;
+  handle?: string;
 }
 
 const portraitPlaceholder =
@@ -507,10 +513,23 @@ export const getProfileVisuals = (
   const base = visualPool[index];
   const override = reusableMediaBySlug[slug];
   const fallbackPortrait = override?.portraitMedia?.src || base.portrait;
-  const localInstagramImage = instagramProfileImages[slug];
+  const localInstagramImageEntry = instagramProfileImages[slug];
+  const normalizedInstagramHandle = instagramHandle?.replace(/^@/, '').trim().toLowerCase();
+  const localOverrideHandle = getProfileSocialOverride(slug)?.instagramHandle?.replace(/^@/, '').trim().toLowerCase();
+  const instagramImageData: InstagramProfileImageEntry | undefined =
+    typeof localInstagramImageEntry === 'string'
+      ? { src: localInstagramImageEntry }
+      : localInstagramImageEntry;
+  const cachedHandle = instagramImageData?.handle?.replace(/^@/, '').trim().toLowerCase();
+  const instagramImageSrc =
+    instagramImageData &&
+    (!normalizedInstagramHandle || !localOverrideHandle || normalizedInstagramHandle === localOverrideHandle) &&
+    (!normalizedInstagramHandle || !cachedHandle || normalizedInstagramHandle === cachedHandle)
+      ? instagramImageData.src
+      : undefined;
   const instagramPortrait =
-    instagramHandle && localInstagramImage
-      ? buildInstagramPortraitMedia(instagramHandle, localInstagramImage, fallbackPortrait)
+    instagramHandle && instagramImageSrc
+      ? buildInstagramPortraitMedia(instagramHandle, instagramImageSrc, fallbackPortrait)
       : undefined;
   const commonsPortrait = override?.portraitMedia
     ? { ...override.portraitMedia, fallbackSrc: base.portrait }
