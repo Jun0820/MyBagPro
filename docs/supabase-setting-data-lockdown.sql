@@ -6,6 +6,10 @@
 -- 前提:
 -- - docs/supabase-add-setting-profile-metadata-columns.sql 実行済み
 -- - 以後の更新は service role 経由のスクリプトに寄せる
+-- 注意:
+-- - これは「アプリやAPI経由の更新」を止めるSQL
+-- - Supabaseダッシュボードに入れる Team メンバーの権限までは制御しない
+-- - ダッシュボード上の編集権限も止めたい場合は Project Settings > Team で対象ユーザーを削除または Viewer へ変更する
 
 alter table public.setting_profiles enable row level security;
 alter table public.setting_bag_items enable row level security;
@@ -100,3 +104,8 @@ grant select on public.setting_profiles to anon, authenticated;
 grant select on public.setting_bag_items to anon, authenticated;
 grant select on public.content_sources to anon, authenticated;
 grant select on public.content_articles to anon, authenticated;
+
+-- 実行後の確認用:
+-- 1. anon / authenticated から update / insert / delete が失敗すること
+-- 2. service_role では従来どおり更新できること
+-- 3. ダッシュボード Team に不要な Editor / Developer 権限ユーザーが残っていないこと

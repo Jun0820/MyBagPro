@@ -35,6 +35,11 @@ npm run supabase:check
 - `setting_profiles / setting_bag_items / content_sources / content_articles` が public write 不可になる
 - 以後は `service_role` 付きスクリプト経由で安全に更新できる
 
+補足:
+- このSQLで防げるのは `anon / authenticated` のAPI更新
+- Supabaseダッシュボードに招待されている Team メンバーの編集権限は別管理
+- ダッシュボードの Table Editor から触らせたくない場合は `Project Settings > Team` で対象ユーザーを削除するか `Viewer` に変更する
+
 ## 4. `setting_profiles` にプロフィール項目を同期する
 
 ```bash
