@@ -9,14 +9,14 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
-    "head_speed_mps": 51.5,
+    "head_speed_mps": 51.4,
     "average_score": 68.67,
     "best_score": 61,
     "ball_name": "TaylorMade TP5 2024",
     "feature_1": "2025シーズン基準",
     "feature_2": "TaylorMade中心",
-    "feature_3": "14本確認済み",
-    "summary": "コリン・モリカワの最新クラブセッティングページ。ベイカレント C レクサス時点で確認できた14本の構成、使用ドライバー、使用ボール、テーラーメイド中心のクラブ構成を確認できるように整理しています。",
+    "feature_3": "TrackMan実測あり",
+    "summary": "コリン・モリカワの最新クラブセッティングページ。ベイカレント C レクサス時点で確認できた14本の構成に加えて、TaylorMade公式が公開したTrackMan実測データも確認できるように整理しています。",
     "latest_source_policy": "2025_season",
     "is_featured": true,
     "is_published": true,
@@ -32,8 +32,9 @@
       "shaft_brand": "Mitsubishi Chemical",
       "shaft_model": "Diamana D-LIMITED",
       "shaft_flex": "TX",
-      "total_distance": 306.5,
-      "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page. PGA TOUR公式ドライビングディスタンス平均は306.5yd。",
+      "carry_distance": 288,
+      "total_distance": 313,
+      "source_note": "TaylorMade公式 Pebble Beach記事のTrackMan実測では、Qi10 LS 9.0°でキャリー288yd、トータル313yd、クラブスピード115mph。クラブ構成自体はGDO 2025 Baycurrent C Lexus setting pageでも確認。",
       "is_featured_item": true
     },
     {
@@ -207,10 +208,17 @@
     },
     {
       "source_type": "official",
+      "source_url": "https://www.taylormadegolf.com/clubhouse/645086-team-taylormade-at-pebble-beach.html?lang=default",
+      "source_title": "Inside Practice Rounds at Pebble Beach with Rory McIlroy and Team TaylorMade | TaylorMade Golf",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "TaylorMade公式記事にTrackMan実測としてCollin MorikawaのQi10 LS 9.0°ドライバーでトータル313yd、キャリー288yd、ボールスピード171mph、クラブスピード115mphが掲載。"
+    },
+    {
+      "source_type": "official",
       "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/stats",
       "source_title": "Collin Morikawa PGA TOUR Stats",
       "checked_at": "2026-04-11T00:00:00.000Z",
-      "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード115.18mph、ドライビングディスタンス306.5yd、平均スコア68.67を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+      "notes": "PGA TOUR公式スタッツページ。平均スコア68.67を確認。ヘッドスピードと飛距離は公開TrackMan実測を優先し、ここではツアー公式スタッツを補助的に参照。"
     },
     {
       "source_type": "official",
@@ -223,8 +231,8 @@
   "article": {
     "slug": "collin-morikawa-2025-setting-update",
     "title": "コリン・モリカワの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
-    "excerpt": "コリン・モリカワのクラブセッティングに加えて、PGA TOUR公式のヘッドスピード、飛距離、平均スコア、ベストスコアも掲載しました。",
-    "body": "コリン・モリカワのクラブセッティングを確認したい人向けに、ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Qi10 LS Driver、SIM Fairway Wood、Qi10 Fairway Wood、P DHY、P7CB、P730、MG5 Wedge、Spider Tour X Putter、TaylorMade TP5という流れで、コリン・モリカワの現在のクラブセッティングをページ内で一覧確認できます。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
+    "excerpt": "コリン・モリカワのクラブセッティングに加えて、TaylorMade公式のTrackMan実測とPGA TOUR公式スタッツを掲載しました。",
+    "body": "コリン・モリカワのクラブセッティングを確認したい人向けに、ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Qi10 LS Driver、SIM Fairway Wood、Qi10 Fairway Wood、P DHY、P7CB、P730、MG5 Wedge、Spider Tour X Putter、TaylorMade TP5という流れで、コリン・モリカワの現在のクラブセッティングをページ内で一覧確認できます。あわせてTaylorMade公式記事で公開されたTrackMan実測として、Qi10 LSドライバーのキャリー288yd、トータル313yd、クラブスピード115mphを反映し、平均スコアと通算ベストラウンドはPGA TOUR公式スタッツで補完しています。",
     "article_type": "update",
     "season_year": 2025,
     "published": true,
