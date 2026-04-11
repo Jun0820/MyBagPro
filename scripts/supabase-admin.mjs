@@ -145,6 +145,13 @@ function finalizeTextValue(value, placeholder = '-') {
   return normalized || placeholder;
 }
 
+function toRoundedInteger(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return null;
+  return Math.round(numeric);
+}
+
 async function checkConnection() {
   const { supabaseUrl, serviceRoleKey, anonKey } = readConfig();
 
@@ -371,8 +378,21 @@ async function upsertSettingProfileFromFile(filepath) {
 
   if (bagItems.length > 0) {
     const bagPayload = bagItems.map((item) => ({
-      ...item,
       profile_id: upsertedProfile.id,
+      category: item.category || null,
+      slot_order: item.slot_order ?? null,
+      brand: item.brand || null,
+      model_name: item.model_name || null,
+      spec_label: item.spec_label || null,
+      loft_label: item.loft_label || null,
+      shaft_brand: item.shaft_brand || null,
+      shaft_model: item.shaft_model || null,
+      shaft_flex: item.shaft_flex || null,
+      shaft_weight: item.shaft_weight || null,
+      carry_distance: toRoundedInteger(item.carry_distance),
+      total_distance: toRoundedInteger(item.total_distance),
+      source_note: item.source_note || null,
+      is_featured_item: item.is_featured_item ?? false,
     }));
 
     const { error: bagError } = await supabase
@@ -398,8 +418,12 @@ async function upsertSettingProfileFromFile(filepath) {
 
     const newSources = sources
       .map((source) => ({
-        ...source,
         profile_id: upsertedProfile.id,
+        source_type: source.source_type || null,
+        source_url: source.source_url || null,
+        source_title: source.source_title || null,
+        checked_at: source.checked_at || null,
+        notes: source.notes || null,
       }))
       .filter((source) => {
         const key = `${source.source_type}__${source.source_url || ''}__${source.source_title || ''}`;

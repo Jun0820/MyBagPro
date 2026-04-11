@@ -9,6 +9,9 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 51.7,
+    "average_score": 69.75,
+    "best_score": 61,
     "ball_name": "Bridgestone TOUR B X 2026",
     "feature_1": "2026シーズン基準",
     "feature_2": "AVODA中心",
@@ -29,7 +32,8 @@
       "shaft_brand": "KBS",
       "shaft_model": "TG",
       "shaft_flex": "TXX",
-      "source_note": "Confirmed from GDO 2026 American Express setting page.",
+      "total_distance": 299.4,
+      "source_note": "Confirmed from GDO 2026 American Express setting page. PGA TOUR公式ドライビングディスタンス平均は299.4yd。",
       "is_featured_item": true
     },
     {
@@ -184,13 +188,27 @@
       "source_title": "GDO ジェイソン・デイ クラブセッティング 2026年 ザ・アメリカンエキスプレス",
       "checked_at": "2026-04-08T00:00:00.000Z",
       "notes": "Used for bio fields, 2026 full bag, and ball confirmation."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/28089/jason-day/stats",
+      "source_title": "Jason Day PGA TOUR Stats",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード115.68mph、ドライビングディスタンス299.4yd、平均スコア69.75を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/28089/jason-day/career",
+      "source_title": "Jason Day PGA TOUR Career",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
     }
   ],
   "article": {
     "slug": "jason-day-2026-setting-update",
     "title": "ジェイソン・デイの2026年クラブセッティングを掲載しました",
-    "excerpt": "2026シーズン基準で、ジェイソン・デイの14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "ジェイソン・デイのセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。AVODA中心の実戦セットとして今後も更新していきます。",
+    "excerpt": "2026シーズン基準で、ジェイソン・デイの14本のクラブセッティングとPGA TOUR公式スタッツを掲載しました。",
+    "body": "ジェイソン・デイのセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。AVODA中心の実戦セットとして今後も更新していきます。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

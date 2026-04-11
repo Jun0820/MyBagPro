@@ -10,6 +10,9 @@
     "profile_type": "tour_pro",
     "segment": "masters_2026_batch",
     "season_year": 2026,
+    "head_speed_mps": 49.4,
+    "average_score": 71.14,
+    "best_score": 61,
     "ball_name": "Titleist Pro V1",
     "feature_1": "2023全英オープン覇者",
     "feature_2": "レフティ",
@@ -21,7 +24,7 @@
     "verified_at": "2026-04-10T00:00:00.000Z"
   },
   "bagItems": [
-    { "category": "Driver", "slot_order": 1, "brand": "Titleist", "model_name": "TSi2 Driver", "loft_label": "9°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD IZ-5", "shaft_flex": "S", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": true },
+    { "category": "Driver", "slot_order": 1, "brand": "Titleist", "model_name": "TSi2 Driver", "loft_label": "9°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD IZ-5", "shaft_flex": "S", "total_distance": 293.8, "source_note": "Confirmed from 2025 WITB references. PGA TOUR公式ドライビングディスタンス平均は293.8yd。", "is_featured_item": true },
     { "category": "Fairway Wood", "slot_order": 2, "brand": "Titleist", "model_name": "TSi2 Fairway Wood", "spec_label": "3W", "loft_label": "13.5°", "shaft_brand": "Fujikura", "shaft_model": "Speeder 661 Evolution II", "shaft_flex": "S", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
     { "category": "Iron", "slot_order": 3, "brand": "Titleist", "model_name": "U500 Utility Iron", "spec_label": "3I", "shaft_brand": "Project X", "shaft_model": "HZRDUS Smoke Black", "shaft_flex": "90", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
     { "category": "Iron", "slot_order": 4, "brand": "Titleist", "model_name": "U500 Utility Iron", "spec_label": "4I", "shaft_brand": "Project X", "shaft_model": "HZRDUS Smoke Black", "shaft_flex": "90", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
@@ -37,13 +40,15 @@
   ],
   "sources": [
     { "source_type": "official", "source_url": "https://www.titleist.com/tour/brian-harman", "source_title": "Brian Harman | Titleist", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official Titleist player page used for contract context and ball confirmation." },
-    { "source_type": "article", "source_url": "https://www.golfwrx.com/781116/what-brian-harman-had-in-the-bag-for-his-valero-texas-open-victory/", "source_title": "What Brian Harman had in the bag for his Valero Texas Open victory - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for detailed bag composition." }
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/781116/what-brian-harman-had-in-the-bag-for-his-valero-texas-open-victory/", "source_title": "What Brian Harman had in the bag for his Valero Texas Open victory - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for detailed bag composition." },
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/27644/brian-harman/stats", "source_title": "Brian Harman PGA TOUR Stats", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード110.44mph、ドライビングディスタンス293.8yd、平均スコア71.14を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。" },
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/27644/brian-harman/career", "source_title": "Brian Harman PGA TOUR Career", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。" }
   ],
   "article": {
     "slug": "brian-harman-2026-setting-update",
     "title": "ブライアン・ハーマンのクラブセッティング【2026年マスターズ出場】",
-    "excerpt": "2026年マスターズ出場選手として、ブライアン・ハーマンの軽量・継続使用型セッティングを掲載しました。",
-    "body": "ブライアン・ハーマンのクラブセッティングについて、Valero Texas Open 優勝時点のWITBを中心に整理しました。Titleist TSi2ドライバーと3番ウッド、U500ユーティリティアイアン、620 CBアイアン、Vokeyウェッジ、TaylorMade Spider OS CBパターという構成で、軽量シャフトを生かした安定感重視のバッグが特徴です。",
+    "excerpt": "2026年マスターズ出場選手として、ブライアン・ハーマンの軽量・継続使用型セッティングとPGA TOUR公式スタッツを掲載しました。",
+    "body": "ブライアン・ハーマンのクラブセッティングについて、Valero Texas Open優勝時点のWITBを中心に整理しました。Titleist TSi2ドライバーと3番ウッド、U500ユーティリティアイアン、620 CBアイアン、Vokeyウェッジ、TaylorMade Spider OS CBパターという構成で、軽量シャフトを生かした安定感重視のバッグが特徴です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
