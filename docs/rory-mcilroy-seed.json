@@ -16,8 +16,8 @@
     "ball_name": "TaylorMade TP5",
     "feature_1": "2026年4月確認",
     "feature_2": "テーラーメイド中心",
-    "feature_3": "公式carry yardageあり",
-    "summary": "ローリー・マキロイの2026年クラブセッティングを、2026年4月時点のWITBに加えてTaylorMade公式のcarry yardage情報も確認できる形で整理したページです。",
+    "feature_3": "公式carry yardage詳細あり",
+    "summary": "ローリー・マキロイの2026年クラブセッティングを、2026年4月時点のWITBに加えてTaylorMade公式が公開した番手別carry yardageも確認できる形で整理したページです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
@@ -33,8 +33,9 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black 6",
       "shaft_flex": "X",
+      "carry_distance": 325,
       "total_distance": 316,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April).",
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事ではDriverのstock carry yardageは325yd。",
       "is_featured_item": true
     },
     {
@@ -73,8 +74,8 @@
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
-      "carry_distance": 240,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では4Iのstock carry yardageは240yd。",
+      "carry_distance": 245,
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では4Iのstock carry yardageは245yd。",
       "is_featured_item": false
     },
     {
@@ -99,7 +100,8 @@
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April).",
+      "carry_distance": 210,
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では6Iのstock carry yardageは210yd。",
       "is_featured_item": false
     },
     {
@@ -111,8 +113,8 @@
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
-      "carry_distance": 185,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では7Iのstock carry yardageは185yd。",
+      "carry_distance": 195,
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では7Iのstock carry yardageは195yd。",
       "is_featured_item": false
     },
     {
@@ -124,7 +126,8 @@
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April).",
+      "carry_distance": 180,
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では8Iのstock carry yardageは180yd。",
       "is_featured_item": false
     },
     {
@@ -136,7 +139,8 @@
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April).",
+      "carry_distance": 165,
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では9Iのstock carry yardageは165yd。",
       "is_featured_item": false
     },
     {
@@ -163,8 +167,8 @@
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "carry_distance": 135,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では50°のstock carry yardageは135yd。",
+      "carry_distance": 136,
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では50°のstock carry yardageは136yd。",
       "is_featured_item": false
     },
     {
@@ -177,8 +181,8 @@
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "carry_distance": 120,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では54°のstock carry yardageは120yd。",
+      "carry_distance": 125,
+      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では54°のstock carry yardageは125yd。",
       "is_featured_item": false
     },
     {
@@ -217,7 +221,7 @@
       "source_url": "https://www.taylormadegolf.com/clubhouse/1316691-what-rory-mcilroy-has-in-the-bag-at-the-arnold-palmer-invitational.html?lang=en_US",
       "source_title": "What Rory McIlroy has in the bag at the Arnold Palmer Invitational | TaylorMade Golf",
       "checked_at": "2026-04-11T00:00:00.000Z",
-      "notes": "TaylorMade公式記事のstock carry yardages。3W 295yd、4I 240yd、5I 225yd、7I 185yd、PW 150yd、50° 135yd、54° 120yd、60° 105ydを確認。公開TrackMan/GCQuad明記ではなく公式carry yardage。"
+      "notes": "TaylorMade公式記事のstock carry yardages。Driver 325yd、3W 295yd、4I 245yd、5I 225yd、6I 210yd、7I 195yd、8I 180yd、9I 165yd、46° 150yd、50° 136yd、54° 125yd、60° 105ydを確認。公開TrackMan/GCQuad明記ではなく公式carry yardage。"
     },
     {
       "source_type": "official",
