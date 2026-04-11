@@ -9,11 +9,14 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
+    "head_speed_mps": 52.7,
+    "average_score": 69.73,
+    "best_score": 59,
     "ball_name": "Titleist Pro V1x 2025",
     "feature_1": "2025シーズン基準",
     "feature_2": "Titleist中心",
-    "feature_3": "14本確認済み",
-    "summary": "2025年RBCヘリテージ時点で確認できたジャスティン・トーマスの14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "feature_3": "PGA TOUR公式スタッツ追加",
+    "summary": "2025年RBCヘリテージ時点で確認できたジャスティン・トーマスの14本のクラブセッティングに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も掲載するプロフィールです。",
     "latest_source_policy": "2025_season",
     "is_featured": true,
     "is_published": true,
@@ -28,7 +31,8 @@
       "loft_label": "10°",
       "shaft_brand": "Mitsubishi Chemical",
       "shaft_model": "Diamana Prototype",
-      "source_note": "Confirmed from GDO 2025 RBC Heritage setting page.",
+      "total_distance": 305,
+      "source_note": "Confirmed from GDO 2025 RBC Heritage setting page. PGA TOUR公式2026 statsではDriving Distance 305.3yd。",
       "is_featured_item": true
     },
     {
@@ -191,6 +195,20 @@
   ],
   "sources": [
     {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/33448/justin-thomas/stats",
+      "source_title": "Justin Thomas PGA TOUR Stats",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式2026 stats。Club Head Speed 117.90 mph、Driving Distance 305.3 yd、Scoring Average 69.73を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/33448/justin-thomas/career",
+      "source_title": "Justin Thomas PGA TOUR Career",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式career。Lowest Round 59を確認。"
+    },
+    {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/11392/2025/1/",
       "source_title": "GDO ジャスティン・トーマス クラブセッティング 2025年 RBCヘリテージ",
@@ -200,9 +218,9 @@
   ],
   "article": {
     "slug": "justin-thomas-2025-setting-update",
-    "title": "ジャスティン・トーマスの2025年クラブセッティングを掲載しました",
-    "excerpt": "2025シーズン基準で、ジャスティン・トーマスの14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "ジャスティン・トーマスのセッティングについて、2025年RBCヘリテージ時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
+    "title": "ジャスティン・トーマスの2025年クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
+    "excerpt": "2025シーズン基準で、ジャスティン・トーマスの14本のクラブセッティングに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
+    "body": "ジャスティン・トーマスのセッティングについて、2025年RBCヘリテージ時点で確認できた14本のクラブ構成と使用ボールを反映しました。今回はこれに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追記しています。バッグはTitleist中心の実戦セット、数値面はPGA TOUR公式stats/careerを参照しています。",
     "article_type": "update",
     "season_year": 2025,
     "published": true,
