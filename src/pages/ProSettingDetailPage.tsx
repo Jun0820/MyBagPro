@@ -513,7 +513,7 @@ export const ProSettingDetailPage = () => {
   const xChannelUrl = setting.xHandle ? toChannelUrl(setting.xHandle, 'x') : undefined;
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
-  const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: false });
+  const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: true });
   const profileIntro = `${setting.name}の${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}クラブセッティングを掲載しています。${driverClub ? `使用ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `使用ボールは${setting.ball}。` : ''}契約メーカーは${setting.contractDisplay}です。`;
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
