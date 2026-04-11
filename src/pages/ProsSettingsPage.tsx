@@ -21,6 +21,15 @@ const kanaGroups = [
   { id: 'latin', label: 'A-Z' },
 ] as const;
 
+const headSpeedGroups = [
+  { id: 'all', label: 'すべて' },
+  { id: 'lt40', label: '40m/s未満' },
+  { id: '40to44', label: '40-44.9m/s' },
+  { id: '45to49', label: '45-49.9m/s' },
+  { id: '50to54', label: '50-54.9m/s' },
+  { id: 'gte55', label: '55m/s以上' },
+] as const;
+
 const toHiragana = (value: string) =>
   value.replace(/[\u30a1-\u30f6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60));
 
@@ -50,6 +59,7 @@ export const ProsSettingsPage = () => {
   const [searchText, setSearchText] = useState(searchParams.get('search') || '');
   const activeCategory = (searchParams.get('category') as 'all' | ProfileCategory | null) || 'all';
   const activeKana = searchParams.get('kana') || 'all';
+  const activeHeadSpeed = searchParams.get('headSpeed') || 'all';
 
   useEffect(() => {
     let isMounted = true;
@@ -84,6 +94,15 @@ export const ProsSettingsPage = () => {
         if (activeKana !== 'all' && getKanaGroup(profile.kanaName || profile.name) !== activeKana) {
           return false;
         }
+        if (activeHeadSpeed !== 'all') {
+          const speed = profile.headSpeedMps;
+          if (speed === null || speed === undefined) return false;
+          if (activeHeadSpeed === 'lt40' && speed >= 40) return false;
+          if (activeHeadSpeed === '40to44' && (speed < 40 || speed >= 45)) return false;
+          if (activeHeadSpeed === '45to49' && (speed < 45 || speed >= 50)) return false;
+          if (activeHeadSpeed === '50to54' && (speed < 50 || speed >= 55)) return false;
+          if (activeHeadSpeed === 'gte55' && speed < 55) return false;
+        }
         if (!query) return true;
 
         const haystack = [profile.name, profile.kanaName || '', profile.categoryLabel, profile.contractDisplay]
@@ -93,14 +112,15 @@ export const ProsSettingsPage = () => {
         return haystack.includes(query);
       })
       .sort((a, b) => (a.kanaName || a.name).localeCompare(b.kanaName || b.name, 'ja'));
-  }, [activeCategory, activeKana, profiles, searchText]);
+  }, [activeCategory, activeHeadSpeed, activeKana, profiles, searchText]);
 
-  const applyFilters = (next: { search?: string; category?: string; kana?: string }) => {
+  const applyFilters = (next: { search?: string; category?: string; kana?: string; headSpeed?: string }) => {
     setSearchParams(
       {
         ...(next.search ? { search: next.search } : {}),
         ...(next.category && next.category !== 'all' ? { category: next.category } : {}),
         ...(next.kana && next.kana !== 'all' ? { kana: next.kana } : {}),
+        ...(next.headSpeed && next.headSpeed !== 'all' ? { headSpeed: next.headSpeed } : {}),
       },
       { replace: true }
     );
@@ -115,7 +135,7 @@ export const ProsSettingsPage = () => {
             <br />
             クラブセッティング一覧
           </h1>
-          <p className="mt-4 text-sm font-bold text-slate-500">選手名・クラブ名・カテゴリから絞り込めます。</p>
+          <p className="mt-4 text-sm font-bold text-slate-500">選手名・クラブ名・カテゴリ・ヘッドスピードから絞り込めます。</p>
 
           <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-sm">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
@@ -126,7 +146,7 @@ export const ProsSettingsPage = () => {
                   onChange={(event) => setSearchText(event.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
-                      applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana });
+                      applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
                     }
                   }}
                   placeholder="選手名・クラブ名で検索"
@@ -135,7 +155,7 @@ export const ProsSettingsPage = () => {
               </div>
               <div className="flex gap-3">
                 <button
-                  onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana })}
+                  onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed })}
                   className="rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
                 >
                   検索
@@ -143,7 +163,7 @@ export const ProsSettingsPage = () => {
                 <button
                   onClick={() => {
                     setSearchText('');
-                    applyFilters({ category: activeCategory, kana: activeKana });
+                    applyFilters({ category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
                   }}
                   className="rounded-full border border-slate-200 px-5 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-50"
                 >
@@ -157,7 +177,7 @@ export const ProsSettingsPage = () => {
             {profileCategories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => applyFilters({ search: searchText.trim(), category: category.id, kana: activeKana })}
+                onClick={() => applyFilters({ search: searchText.trim(), category: category.id, kana: activeKana, headSpeed: activeHeadSpeed })}
                 className={`rounded-full px-4 py-2 text-sm font-black transition ${
                   activeCategory === category.id
                     ? 'bg-trust-navy text-white'
@@ -173,10 +193,26 @@ export const ProsSettingsPage = () => {
             {kanaGroups.map((group) => (
               <button
                 key={group.id}
-                onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: group.id })}
+                onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: group.id, headSpeed: activeHeadSpeed })}
                 className={`rounded-full px-4 py-2 text-sm font-black transition ${
                   activeKana === group.id
                     ? 'bg-golf-700 text-white'
+                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                }`}
+              >
+                {group.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            {headSpeedGroups.map((group) => (
+              <button
+                key={group.id}
+                onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: group.id })}
+                className={`rounded-full px-4 py-2 text-sm font-black transition ${
+                  activeHeadSpeed === group.id
+                    ? 'bg-emerald-600 text-white'
                     : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
                 }`}
               >
@@ -191,7 +227,7 @@ export const ProsSettingsPage = () => {
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         {isLoading && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
             掲載プロフィールを読み込んでいます...
@@ -206,7 +242,7 @@ export const ProsSettingsPage = () => {
         )}
 
         {filteredProfiles.map((setting) => {
-          const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
+          const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: true });
 
           return (
             <button
@@ -219,50 +255,28 @@ export const ProsSettingsPage = () => {
                 });
                 navigate(`/settings/pros/${setting.slug}`);
               }}
-              className="rounded-[2rem] border border-slate-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
+              className="rounded-[1.5rem] border border-slate-200 bg-white p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
             >
-              <div className="p-5">
-                <div className="flex items-center gap-4">
-                  <img
-                    src={visuals.portrait}
-                    alt={`${setting.name}の写真またはプレースホルダー画像`}
-                    className={`h-16 w-16 rounded-full border border-slate-200 bg-white object-cover ${
-                      visuals.portraitMedia ? '' : 'p-2'
-                    }`}
-                    onError={(event) => {
-                      const fallbackSrc = visuals.portraitMedia?.fallbackSrc;
-                      if (!fallbackSrc) return;
-                      const target = event.currentTarget;
-                      if (target.src === fallbackSrc) return;
-                      target.src = fallbackSrc;
-                    }}
-                  />
-                  <div className="min-w-0">
-                    <div className="text-lg font-black text-trust-navy">{setting.name}</div>
-                    {setting.kanaName && <div className="mt-1 text-xs font-bold text-slate-500">{setting.kanaName}</div>}
-                    {visuals.portraitMedia && <div className="mt-1 text-[10px] font-black text-golf-700">CCライセンス画像あり</div>}
-                  </div>
+              <div className="flex items-center gap-4">
+                <img
+                  src={visuals.portrait}
+                  alt={`${setting.name}の写真またはプレースホルダー画像`}
+                  className={`h-14 w-14 rounded-full border border-slate-200 bg-white object-cover ${
+                    visuals.portraitMedia ? '' : 'p-2'
+                  }`}
+                  onError={(event) => {
+                    const fallbackSrc = visuals.portraitMedia?.fallbackSrc;
+                    if (!fallbackSrc) return;
+                    const target = event.currentTarget;
+                    if (target.src === fallbackSrc) return;
+                    target.src = fallbackSrc;
+                  }}
+                />
+                <div className="min-w-0">
+                  <div className="text-lg font-black text-trust-navy">{setting.name}</div>
+                  {setting.kanaName && <div className="mt-1 text-xs font-bold text-slate-500">{setting.kanaName}</div>}
                 </div>
-
-                <div className="mt-4 grid gap-2 sm:grid-cols-3">
-                  <div className="rounded-[1.25rem] bg-slate-50 px-4 py-3">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">カテゴリ</div>
-                    <div className="mt-1 text-sm font-black text-trust-navy">{setting.categoryLabel}</div>
-                  </div>
-                  <div className="rounded-[1.25rem] bg-slate-50 px-4 py-3">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">契約メーカー</div>
-                    <div className="mt-1 text-sm font-black text-trust-navy">{setting.contractDisplay}</div>
-                  </div>
-                  <div className="rounded-[1.25rem] bg-slate-50 px-4 py-3">
-                    <div className="text-[11px] font-black tracking-[0.12em] text-slate-400">年齢</div>
-                    <div className="mt-1 text-sm font-black text-trust-navy">{setting.age ?? '未公開'}</div>
-                  </div>
-                </div>
-
-                <div className="mt-5 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
-                  詳細を見る
-                  <ArrowRight size={16} />
-                </div>
+                <ArrowRight size={16} className="ml-auto shrink-0 text-slate-400" />
               </div>
             </button>
           );

@@ -35,6 +35,10 @@ export interface ProfileVisuals {
   socialEmbeds?: ProfileSocialEmbed[];
 }
 
+export interface ProfileVisualOptions {
+  preferInstagramPortrait?: boolean;
+}
+
 const portraitPlaceholder =
   "data:image/svg+xml;utf8," +
   encodeURIComponent(`
@@ -494,7 +498,11 @@ const buildInstagramPortraitMedia = (instagramHandle: string, profileImageSrc: s
   };
 };
 
-export const getProfileVisuals = (slug: string, instagramHandle?: string): ProfileVisuals => {
+export const getProfileVisuals = (
+  slug: string,
+  instagramHandle?: string,
+  options: ProfileVisualOptions = {}
+): ProfileVisuals => {
   const index = hashSlug(slug) % visualPool.length;
   const base = visualPool[index];
   const override = reusableMediaBySlug[slug];
@@ -504,11 +512,12 @@ export const getProfileVisuals = (slug: string, instagramHandle?: string): Profi
     instagramHandle && localInstagramImage
       ? buildInstagramPortraitMedia(instagramHandle, localInstagramImage, fallbackPortrait)
       : undefined;
-  const portraitMedia = instagramPortrait
-    ? instagramPortrait
-    : override?.portraitMedia
-      ? { ...override.portraitMedia, fallbackSrc: base.portrait }
-      : undefined;
+  const commonsPortrait = override?.portraitMedia
+    ? { ...override.portraitMedia, fallbackSrc: base.portrait }
+    : undefined;
+  const portraitMedia = options.preferInstagramPortrait
+    ? instagramPortrait || commonsPortrait
+    : commonsPortrait || instagramPortrait;
   const portrait = portraitMedia?.src || base.portrait;
 
   return {

@@ -542,10 +542,17 @@ async function syncProfileFields({ dryRun = false } = {}) {
 
   const { data: profiles, error } = await supabase
     .from('setting_profiles')
-    .select('id, slug, display_name, kana_name, birth_date, height_cm, birthplace, youtube_channel, instagram_handle, x_handle, website_url')
+    .select('id, slug, display_name, kana_name, birth_date, height_cm, birthplace, youtube_channel, instagram_handle, x_handle, website_url, category, contractStatus, contractMaker')
     .order('slug');
 
-  if (error) throw error;
+  if (error) {
+    if ((error.message || '').includes('setting_profiles.category does not exist')) {
+      throw new Error(
+        'setting_profiles に category / contractStatus / contractMaker 列がありません。先に docs/supabase-add-setting-profile-metadata-columns.sql を Supabase で実行してください。'
+      );
+    }
+    throw error;
+  }
 
   const profileMap = new Map((profiles || []).map((profile) => [profile.slug, profile]));
   const unresolved = [];
@@ -579,6 +586,9 @@ async function syncProfileFields({ dryRun = false } = {}) {
     const websiteUrl = finalizeTextValue(
       withFallback(overrides.website_url, seedProfile.website_url, profile.website_url)
     );
+    const category = withFallback(seedProfile.category, profile.category);
+    const contractStatus = withFallback(seedProfile.contractStatus, profile.contractStatus);
+    const contractMaker = withFallback(seedProfile.contractMaker, profile.contractMaker);
 
     if (!kanaName || !birthDate || !heightCm || !birthplace) {
       unresolved.push({
@@ -604,6 +614,9 @@ async function syncProfileFields({ dryRun = false } = {}) {
       instagram_handle: instagramHandle,
       x_handle: xHandle,
       website_url: websiteUrl,
+      category: category,
+      contractStatus: contractStatus,
+      contractMaker: contractMaker,
     };
 
     const hasChanged =
@@ -614,7 +627,10 @@ async function syncProfileFields({ dryRun = false } = {}) {
       profile.youtube_channel !== nextPayload.youtube_channel ||
       profile.instagram_handle !== nextPayload.instagram_handle ||
       profile.x_handle !== nextPayload.x_handle ||
-      profile.website_url !== nextPayload.website_url;
+      profile.website_url !== nextPayload.website_url ||
+      profile.category !== nextPayload.category ||
+      profile.contractStatus !== nextPayload.contractStatus ||
+      profile.contractMaker !== nextPayload.contractMaker;
 
     if (hasChanged) updates.push(nextPayload);
   }
@@ -636,6 +652,9 @@ async function syncProfileFields({ dryRun = false } = {}) {
           instagram_handle: update.instagram_handle,
           x_handle: update.x_handle,
           website_url: update.website_url,
+          category: update.category,
+          contractStatus: update.contractStatus,
+          contractMaker: update.contractMaker,
         })
         .eq('id', update.id);
 
@@ -649,7 +668,7 @@ async function syncProfileFields({ dryRun = false } = {}) {
     matchedProfiles: profiles?.length || 0,
     updatedProfiles: updates.length,
     unresolvedProfiles: unresolved.length,
-    sampleUpdates: updates.slice(0, 20).map(({ slug, display_name, kana_name, birth_date, height_cm, birthplace, youtube_channel, instagram_handle, x_handle, website_url }) => ({
+    sampleUpdates: updates.slice(0, 20).map(({ slug, display_name, kana_name, birth_date, height_cm, birthplace, youtube_channel, instagram_handle, x_handle, website_url, category, contractStatus, contractMaker }) => ({
       slug,
       display_name,
       kana_name,
@@ -660,6 +679,9 @@ async function syncProfileFields({ dryRun = false } = {}) {
       instagram_handle,
       x_handle,
       website_url,
+      category,
+      contractStatus,
+      contractMaker,
     })),
   }, null, 2));
 }

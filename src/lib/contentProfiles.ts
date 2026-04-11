@@ -1,5 +1,4 @@
 import { getProfileMetadata, type ContractStatus, type ProfileCategory } from './profileMetadata';
-import { getProfileSocialOverride } from './profileSocials';
 import { isSupabaseConfigured, supabase } from './supabase';
 
 export interface PublicBagClub {
@@ -13,6 +12,7 @@ export interface PublicBagClub {
   specLabel?: string;
   carryDistance?: number | null;
   totalDistance?: number | null;
+  sourceNote?: string;
   productSlug?: string;
 }
 
@@ -42,6 +42,7 @@ export interface PublicSettingProfile {
   genderLabel: string;
   birthplace?: string | null;
   nationality?: string | null;
+  headSpeedMps?: number | null;
   headSpeed: string;
   averageScore: string;
   bestScore?: string;
@@ -83,6 +84,9 @@ interface SettingProfileRow {
   latest_source_policy: string | null;
   is_featured: boolean;
   display_order?: number | null;
+  category?: ProfileCategory | null;
+  contractStatus?: ContractStatus | null;
+  contractMaker?: string | null;
 }
 
 interface BagItemRow {
@@ -97,6 +101,7 @@ interface BagItemRow {
   shaft_flex: string | null;
   carry_distance: number | null;
   total_distance: number | null;
+  source_note?: string | null;
   product_id?: string | null;
   slot_order: number;
 }
@@ -186,12 +191,28 @@ const buildProfiles = (
         shaftFlex: item.shaft_flex || undefined,
         carryDistance: item.carry_distance,
         totalDistance: item.total_distance,
+        sourceNote: normalizeOptionalText(item.source_note),
       }));
 
     const strengths = [profile.feature_1, profile.feature_2, profile.feature_3].filter(Boolean) as string[];
     const type = typeLabelMap[profile.profile_type];
-    const metadata = getProfileMetadata(profile.slug);
-    const socialOverride = getProfileSocialOverride(profile.slug);
+    const fallbackMetadata = getProfileMetadata(profile.slug);
+    const category = profile.category || fallbackMetadata.category;
+    const contractStatus = profile.contractStatus || fallbackMetadata.contractStatus;
+    const contractMaker = normalizeOptionalText(profile.contractMaker) || fallbackMetadata.contractMaker;
+    const categoryLabelMap: Record<ProfileCategory, string> = {
+      japan_men: '日本男子',
+      japan_women: '日本女子',
+      overseas_men: '海外男子',
+      overseas_women: '海外女子',
+      influencer: 'インフルエンサー',
+      lesson_pro: 'レッスンプロ',
+    };
+    const contractLabelMap: Record<ContractStatus, string> = {
+      club_contract: 'クラブ契約プロ',
+      free_contract: '契約フリー',
+      checking: '契約情報確認中',
+    };
     const sources = sourceRows
       .filter((source) => source.profile_id === profile.id && source.source_url)
       .map((source) => ({
@@ -207,22 +228,23 @@ const buildProfiles = (
       name: profile.display_name,
       kanaName: normalizeOptionalText(profile.kana_name),
       type,
-      category: metadata.category,
-      categoryLabel: metadata.categoryLabel,
-      contractStatus: metadata.contractStatus,
-      contractLabel: metadata.contractLabel,
-      contractMaker: metadata.contractMaker,
+      category,
+      categoryLabel: categoryLabelMap[category],
+      contractStatus,
+      contractLabel: contractLabelMap[contractStatus],
+      contractMaker,
       contractDisplay:
-        metadata.contractStatus === 'club_contract'
-          ? metadata.contractMaker || '契約メーカー確認中'
-          : metadata.contractLabel,
+        contractStatus === 'club_contract'
+          ? contractMaker || '契約メーカー確認中'
+          : contractLabelMap[contractStatus],
       tagline: inferTagline(strengths, type),
       summary: profile.summary || '2026シーズン基準で確認していく掲載用プロフィールです。',
       birthDate: normalizeOptionalText(profile.birth_date) || null,
       age: getAge(profile.birth_date),
-      genderLabel: getGenderLabel(metadata.category),
+      genderLabel: getGenderLabel(category),
       birthplace: normalizeOptionalText(profile.birthplace) || null,
       nationality: profile.nationality,
+      headSpeedMps: profile.head_speed_mps,
       headSpeed: formatHeadSpeed(profile.head_speed_mps),
       averageScore: formatAverageScore(profile.average_score),
       bestScore: formatBestScore(profile.best_score),
@@ -231,8 +253,8 @@ const buildProfiles = (
       strengths: strengths.length > 0 ? strengths : ['確認中'],
       clubs,
       youtubeChannel: normalizeOptionalText(profile.youtube_channel),
-      instagramHandle: normalizeOptionalText(profile.instagram_handle) || socialOverride?.instagramHandle || undefined,
-      xHandle: normalizeOptionalText(profile.x_handle) || socialOverride?.xHandle || undefined,
+      instagramHandle: normalizeOptionalText(profile.instagram_handle),
+      xHandle: normalizeOptionalText(profile.x_handle),
       websiteUrl: normalizeOptionalText(profile.website_url),
       sources,
       seasonYear: profile.season_year,
@@ -246,7 +268,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
   try {
     const { data: profiles, error } = await supabase
       .from('setting_profiles')
-      .select('id, slug, display_name, kana_name, birth_date, birthplace, nationality, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
+      .select('*')
       .eq('is_published', true)
       .order('is_featured', { ascending: false })
       .order('season_year', { ascending: false })
@@ -257,7 +279,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
     const profileIds = profiles.map((profile) => profile.id);
     const { data: bagItems } = await supabase
       .from('setting_bag_items')
-      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, slot_order')
+      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
       .in('profile_id', profileIds)
       .order('slot_order', { ascending: true });
 
@@ -283,7 +305,7 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
   try {
     const { data: profile, error } = await supabase
       .from('setting_profiles')
-      .select('id, slug, display_name, kana_name, birth_date, birthplace, nationality, profile_type, season_year, head_speed_mps, average_score, best_score, ball_name, youtube_channel, instagram_handle, x_handle, website_url, feature_1, feature_2, feature_3, summary, latest_source_policy, is_featured')
+      .select('*')
       .eq('slug', slug)
       .eq('is_published', true)
       .maybeSingle();
@@ -292,7 +314,7 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
 
     const { data: bagItems } = await supabase
       .from('setting_bag_items')
-      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, slot_order')
+      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
       .eq('profile_id', profile.id)
       .order('slot_order', { ascending: true });
 

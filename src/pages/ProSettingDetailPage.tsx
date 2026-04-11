@@ -15,14 +15,48 @@ const formatClubLabel = (category: string, specLabel?: string) => {
   return category;
 };
 
-const formatDistance = (carryDistance?: number | null, totalDistance?: number | null) => {
-  if (carryDistance && totalDistance) return `${carryDistance} / ${totalDistance}`;
-  if (carryDistance) return `${carryDistance}`;
-  if (totalDistance) return `${totalDistance}`;
+const formatDistanceForMode = (
+  mode: 'carry' | 'total',
+  carryDistance?: number | null,
+  totalDistance?: number | null
+) => {
+  const value = mode === 'carry' ? carryDistance : totalDistance;
+  if (typeof value === 'number') return `${value} yd`;
   return '未公開';
 };
 
 const formatStatLabel = (value?: string) => value || '未公開';
+
+const formatSourceTypeLabel = (type: string) => {
+  const labels: Record<string, string> = {
+    official: '公式',
+    article: '記事',
+    youtube: 'YouTube',
+    instagram: 'Instagram',
+    x: 'X',
+    manual: '手動確認',
+    tour_photo: '写真',
+  };
+  return labels[type] || type;
+};
+
+const simplifySourceNote = (value?: string | null) => {
+  if (!value) return undefined;
+
+  if (/trackman/i.test(value)) return 'TrackMan';
+  if (/gc\s*quad|gcquad|foresight/i.test(value)) return 'GCQuad';
+  if (/pga tour/i.test(value)) return 'PGA TOUR';
+  if (/lpga/i.test(value)) return 'LPGA';
+  if (/jgto/i.test(value)) return 'JGTO';
+  if (/jlpga/i.test(value)) return 'JLPGA';
+  if (/taylormade/i.test(value)) return 'TaylorMade';
+  if (/callaway/i.test(value)) return 'Callaway';
+  if (/titleist/i.test(value)) return 'Titleist';
+  if (/golfwrx/i.test(value)) return 'GolfWRX';
+  if (/gdo|golf digest/i.test(value)) return 'GDO';
+
+  return value.replace(/\s+/g, ' ').trim().slice(0, 36);
+};
 
 const formatBirthplace = (birthplace?: string | null, nationality?: string | null) => {
   const countryMap: Record<string, { label: string; flag: string }> = {
@@ -254,6 +288,7 @@ export const ProSettingDetailPage = () => {
   const [setting, setSetting] = useState<PublicSettingProfile | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<PublicArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [distanceMode, setDistanceMode] = useState<'carry' | 'total'>('carry');
 
   useEffect(() => {
     let isMounted = true;
@@ -478,7 +513,7 @@ export const ProSettingDetailPage = () => {
   const xChannelUrl = setting.xHandle ? toChannelUrl(setting.xHandle, 'x') : undefined;
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
-  const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
+  const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: false });
   const profileIntro = `${setting.name}の${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}クラブセッティングを掲載しています。${driverClub ? `使用ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `使用ボールは${setting.ball}。` : ''}契約メーカーは${setting.contractDisplay}です。`;
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
@@ -617,10 +652,33 @@ export const ProSettingDetailPage = () => {
 
       <section className="mt-8">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
+              <p className="mt-2 text-sm leading-7 text-slate-500">飛距離はキャリーと総距離を切り替えて確認できます。</p>
+            </div>
+            <div className="inline-flex rounded-full border border-slate-200 bg-slate-100 p-1">
+              {[
+                { id: 'carry', label: 'キャリー' },
+                { id: 'total', label: '総距離' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setDistanceMode(tab.id as 'carry' | 'total')}
+                  className={`rounded-full px-4 py-2 text-sm font-black transition ${
+                    distanceMode === tab.id
+                      ? 'bg-white text-trust-navy shadow-sm'
+                      : 'text-slate-500 hover:text-trust-navy'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-200">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
-              {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', '飛距離'].map((heading) => (
+              {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
                   {heading}
                 </div>
@@ -675,8 +733,15 @@ export const ProSettingDetailPage = () => {
                         <div className="text-sm font-bold text-slate-600">{club.shaftFlex || '未公開'}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">飛距離</div>
-                        <div className="text-sm font-bold text-slate-600">{formatDistance(club.carryDistance, club.totalDistance)}</div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">
+                          {distanceMode === 'carry' ? 'キャリー' : '総距離'}
+                        </div>
+                        <div className="text-sm font-bold text-slate-600">
+                          {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
+                        </div>
+                        {club.sourceNote && (
+                          <div className="mt-1 text-[10px] font-bold text-slate-400">{simplifySourceNote(club.sourceNote)}</div>
+                        )}
                       </div>
                     </div>
                   </button>
@@ -693,10 +758,10 @@ export const ProSettingDetailPage = () => {
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
-                <h2 className="mt-3 text-2xl font-black text-trust-navy">確認ソースと計測メモ</h2>
+                <h2 className="mt-3 text-2xl font-black text-trust-navy">確認ソース</h2>
               </div>
               <p className="text-sm leading-7 text-slate-500">
-                TrackMan、GCQuad、公式ツアースタッツなど、確認できた計測・参照元を残しています。
+                参照元だけを短くまとめています。
               </p>
             </div>
             <div className="mt-6 grid gap-4">
@@ -710,7 +775,7 @@ export const ProSettingDetailPage = () => {
                 >
                   <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                     <div>
-                      <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{source.type}</div>
+                      <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{formatSourceTypeLabel(source.type)}</div>
                       <div className="mt-1 text-base font-black text-trust-navy">{source.title}</div>
                     </div>
                     {source.checkedAt && (
@@ -719,7 +784,7 @@ export const ProSettingDetailPage = () => {
                       </div>
                     )}
                   </div>
-                  {source.notes && <p className="mt-3 text-sm leading-7 text-slate-600">{source.notes}</p>}
+                  {source.notes && <p className="mt-3 text-sm leading-7 text-slate-600">{simplifySourceNote(source.notes)}</p>}
                   <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
                     ソースを見る
                     <ArrowRight size={14} />
