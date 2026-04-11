@@ -2,6 +2,7 @@
 
 このプロジェクトは `VITE_SUPABASE_URL` と `VITE_SUPABASE_ANON_KEY` では読み取りしか安全に扱わない。
 VS Code から直接編集したい場合は、`SUPABASE_SERVICE_ROLE_KEY` をローカルにだけ置く。
+`setting_profiles` を正本にしたいので、プロフィール項目・SNS・カテゴリ・契約情報は最終的にここへ集約する。
 
 ## 1. `.env.local` を作る
 
@@ -22,13 +23,50 @@ npm run supabase:check
 
 成功すると、設定状態と `setting_profiles` の一部が表示される。
 
-## 3. プロフィールを公開する
+## 3. 最初にやるスキーマ更新
+
+`setting_profiles` に `category / contractStatus / contractMaker / category_reason` が無い環境では、先に Supabase SQL Editor で次を上から順に実行する。
+
+1. [supabase-add-setting-profile-metadata-columns.sql](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/supabase-add-setting-profile-metadata-columns.sql)
+2. [supabase-setting-data-lockdown.sql](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/supabase-setting-data-lockdown.sql)
+
+これで:
+- `setting_profiles` に集約用の追加列が入る
+- `setting_profiles / setting_bag_items / content_sources / content_articles` が public write 不可になる
+- 以後は `service_role` 付きスクリプト経由で安全に更新できる
+
+## 4. `setting_profiles` にプロフィール項目を同期する
+
+```bash
+npm run supabase:sync-profile-fields
+```
+
+確認だけなら:
+
+```bash
+node scripts/supabase-admin.mjs sync-profile-fields --dry-run
+```
+
+このコマンドは次を `setting_profiles` に寄せる。
+- `kana_name`
+- `birth_date`
+- `height_cm`
+- `birthplace`
+- `youtube_channel`
+- `instagram_handle`
+- `x_handle`
+- `website_url`
+- `category`
+- `contractStatus`
+- `contractMaker`
+
+## 5. プロフィールを公開する
 
 ```bash
 npm run supabase:publish-profile -- hideki-matsuyama
 ```
 
-## 4. 許容ソースを追加する
+## 6. 許容ソースを追加する
 
 ```bash
 npm run supabase:insert-source -- \
@@ -39,7 +77,7 @@ npm run supabase:insert-source -- \
   "Policy-approved source added before publish."
 ```
 
-## 5. 更新記事を追加する
+## 7. 更新記事を追加する
 
 ```bash
 npm run supabase:upsert-article -- \
@@ -51,7 +89,7 @@ npm run supabase:upsert-article -- \
   2026
 ```
 
-## 6. JSON 1つでプロフィールごと投入する
+## 8. JSON 1つでプロフィールごと投入する
 
 `profile`, `bagItems`, `sources`, `article` をまとめた JSON を用意すると、一括で投入できる。
 
@@ -68,5 +106,7 @@ npm run supabase:upsert-setting-profile -- docs/ishikawa-ryo-seed.json
 ## 注意
 
 - `service role key` は強い権限を持つので、`.env.local` にだけ置く
+- `setting_profiles` がプロフィール正本。ローカルの補助データは同期前提で扱う
+- SQL の実行順は `metadata columns` → `lockdown` → `sync-profile-fields`
 - 公開前の確認ルールは [how-to-publish-profile.md](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/how-to-publish-profile.md) に従う
 - `article` だけで公開判定しない

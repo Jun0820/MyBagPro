@@ -16,7 +16,8 @@
     "supabase:upsert-articles": "node scripts/supabase-admin.mjs upsert-articles",
     "supabase:upsert-setting-profile": "node scripts/supabase-admin.mjs upsert-setting-profile",
     "supabase:sync-social-overrides": "node scripts/supabase-admin.mjs sync-social-overrides",
-    "supabase:sync-profile-fields": "node scripts/supabase-admin.mjs sync-profile-fields"
+    "supabase:sync-profile-fields": "node scripts/supabase-admin.mjs sync-profile-fields",
+    "supabase:sync-profile-fields:dry-run": "node scripts/supabase-admin.mjs sync-profile-fields --dry-run"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

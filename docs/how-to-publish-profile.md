@@ -1,5 +1,8 @@
 # How To Publish a Profile
 
+このプロジェクトでは `setting_profiles` をプロフィールの正本として扱う。
+表示まわりの補助データがローカルに残っていても、公開前には `setting_profiles` 側へ同期する。
+
 ## 事前確認
 
 公開前に、少なくとも次を確認する。
@@ -7,6 +10,7 @@
 1. `setting_profiles` に対象プロフィールがある
 2. `setting_bag_items` に掲載するクラブ情報がある
 3. `content_sources` に許容ソースが入っている
+4. `setting_profiles` の `kana_name / birth_date / height_cm / birthplace / website_url / instagram_handle / x_handle / category / contractStatus / contractMaker` が埋まっている
 
 公開許容ソースの運用ルール:
 - `official`
@@ -16,6 +20,20 @@
 `article` は調査メモとしては保存してよいが、公開判定の主ソースにはしない。
 
 ## 6. `is_published = true` にする方法
+
+### 6-0. まだ migration を入れていない場合
+
+SQL Editor で次を順に流してから公開作業へ進む。
+
+1. [supabase-add-setting-profile-metadata-columns.sql](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/supabase-add-setting-profile-metadata-columns.sql)
+2. [supabase-setting-data-lockdown.sql](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/supabase-setting-data-lockdown.sql)
+
+その後、ローカルから:
+
+```bash
+cd /Users/tomitajunpei/Downloads/Obsidian/MyBagPro
+npm run supabase:sync-profile-fields
+```
 
 ### SQL Editor でやる方法
 ```sql
@@ -75,6 +93,7 @@ where slug = 'hideki-matsuyama';
 ### 公開してよい条件
 - `latest_source_policy` が今回の運用方針に合っている
 - `official / youtube / instagram` のいずれかでクラブ情報を確認できている
+- `setting_profiles` にプロフィール基本情報とカテゴリ/契約情報が同期済み
 - 不明項目は空欄のままで、推定値を入れていない
 
 ### まだ公開しない方がよい条件

@@ -3,11 +3,19 @@
 -- 1. setting_profiles / setting_bag_items / content_sources / content_articles を unrestricted 運用から外す
 -- 2. 公開データの参照は anon / authenticated に許可
 -- 3. 更新系は service_role のみ許可
+-- 前提:
+-- - docs/supabase-add-setting-profile-metadata-columns.sql 実行済み
+-- - 以後の更新は service role 経由のスクリプトに寄せる
 
 alter table public.setting_profiles enable row level security;
 alter table public.setting_bag_items enable row level security;
 alter table public.content_sources enable row level security;
 alter table public.content_articles enable row level security;
+
+alter table public.setting_profiles force row level security;
+alter table public.setting_bag_items force row level security;
+alter table public.content_sources force row level security;
+alter table public.content_articles force row level security;
 
 drop policy if exists "public read published setting_profiles" on public.setting_profiles;
 create policy "public read published setting_profiles"
