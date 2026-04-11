@@ -21,6 +21,21 @@ const decodeHtmlEntities = (value) =>
     .replace(/&#x27;/g, "'")
     .replace(/&quot;/g, '"');
 
+const extractProfilePicUrlHd = (html) => {
+  const directPatterns = [
+    /"profile_pic_url_hd":"([^"]+)"/i,
+    /"hd_profile_pic_url_info":\{"url":"([^"]+)"/i,
+    /"profile_pic_url":"([^"]+)"/i,
+  ];
+
+  for (const pattern of directPatterns) {
+    const match = html.match(pattern);
+    if (match?.[1]) return match[1];
+  }
+
+  return null;
+};
+
 const extractOgImage = (html) => {
   const marker = 'property="og:image"';
   const markerIndex = html.indexOf(marker);
@@ -55,7 +70,7 @@ for (const { slug, handle } of entries) {
     }
 
     const profileHtml = await profileResponse.text();
-    const imageUrlFromHtml = extractOgImage(profileHtml);
+    const imageUrlFromHtml = extractProfilePicUrlHd(profileHtml) || extractOgImage(profileHtml);
     if (!imageUrlFromHtml) {
       failures.push({ slug, handle, reason: 'og:image missing' });
       continue;

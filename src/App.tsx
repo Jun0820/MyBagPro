@@ -78,15 +78,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-3 md:px-8">
           <div className="flex items-center justify-between gap-4">
             <a href="/" className="flex items-center gap-3 cursor-pointer group min-w-0">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-golf-500 to-sky-700 shadow-lg">
-                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              <div className="min-w-0">
-                <div className="font-eng text-lg font-[900] tracking-tight text-trust-navy leading-none md:text-xl">
-                  My <span className="bg-gradient-to-r from-golf-600 to-sky-700 bg-clip-text text-transparent">Bag</span> Pro
-                </div>
+              <img
+                src="/branding/logo-wordmark.png"
+                alt="My Bag Pro"
+                className="h-11 w-auto shrink-0 rounded-xl shadow-sm md:h-12"
+              />
+              <div className="min-w-0 hidden sm:block">
                 <div className="mt-1 text-[11px] font-bold text-slate-500">診断・比較・購入までを、ひとつの流れで。</div>
               </div>
             </a>
@@ -171,8 +168,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <footer className="relative z-10 mt-auto border-t border-slate-900/20 bg-slate-950 px-4 py-12 text-white">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           <div>
-            <a href="/" className="font-eng text-2xl font-black tracking-tight text-white">
-              MY <span className="bg-gradient-to-r from-golf-400 to-sky-400 bg-clip-text text-transparent">BAG</span> PRO
+            <a href="/" className="inline-flex">
+              <img
+                src="/branding/logo-wordmark.png"
+                alt="My Bag Pro"
+                className="h-12 w-auto rounded-xl"
+              />
             </a>
             <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">
               プロや上級者のクラブセッティングを見て、自分のバッグと比べ、AI診断や購入導線までつなげるためのゴルフ情報サイトです。

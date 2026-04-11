@@ -64,7 +64,7 @@ export const profileSocialOverrides: Record<string, ProfileSocialOverride> = {
   'hinako-shibuno': { instagramHandle: 'pinacoooon' },
   'in-gee-chun': { instagramHandle: 'ingeechun_dumbo' },
   'justin-rose': { instagramHandle: 'justinprose99' },
-  'kanako-aoki': { instagramHandle: 'kanako_aoki' },
+  'kanako-aoki': { instagramHandle: 'knk_aoki' },
   'kanazawa-shina': { instagramHandle: 'shina_kanazawa' },
   'kaito-onishi': { instagramHandle: 'kaito_onishi' },
   'karen-fujita': { instagramHandle: 'fujitakaren_official' },
