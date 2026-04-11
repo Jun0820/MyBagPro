@@ -4,7 +4,10 @@
     "birthplace": "静岡県"
   },
   "ai-suzuki": {
-    "kana_name": "スズキ アイ"
+    "kana_name": "スズキ アイ",
+    "birth_date": "1994-05-09",
+    "height_cm": 161,
+    "birthplace": "徳島県三好市"
   },
   "alison-lee": {
     "kana_name": "アリソン・リー"
@@ -13,7 +16,10 @@
     "kana_name": "アリー・ユーイング"
   },
   "anna-nordqvist": {
-    "kana_name": "アンナ・ノルドクビスト"
+    "kana_name": "アンナ・ノルドクビスト",
+    "birth_date": "1987-06-10",
+    "height_cm": 183,
+    "birthplace": "スウェーデン エスキルストゥーナ"
   },
   "aoki-serena": {
     "height_cm": 153,
@@ -25,7 +31,10 @@
     "birthplace": "熊本県熊本市"
   },
   "ariya-jutanugarn": {
-    "kana_name": "アリヤ・ジュタヌガーン"
+    "kana_name": "アリヤ・ジュタヌガーン",
+    "birth_date": "1995-11-23",
+    "height_cm": 171,
+    "birthplace": "タイ バンコク"
   },
   "brooke-henderson": {
     "kana_name": "ブルック・ヘンダーソン"
@@ -35,25 +44,39 @@
     "birthplace": "アメリカ合衆国 ニューヨーク州スカーバラ"
   },
   "charley-hull": {
-    "kana_name": "チャーリー・ハル"
+    "kana_name": "チャーリー・ハル",
+    "birth_date": "1996-03-20",
+    "height_cm": 168,
+    "birthplace": "イングランド ケタリング"
   },
   "collin-morikawa": {
     "kana_name": "コリン・モリカワ"
   },
   "danielle-kang": {
-    "kana_name": "ダニエル・カン"
+    "kana_name": "ダニエル・カン",
+    "birth_date": "1992-10-20",
+    "height_cm": 168,
+    "birthplace": "アメリカ合衆国 カリフォルニア州サンフランシスコ"
   },
   "erika-hara": {
-    "height_cm": 173
+    "kana_name": "ハラ エリカ",
+    "birth_date": "1999-02-15",
+    "height_cm": 173,
+    "birthplace": "神奈川県横浜市"
   },
   "fukuda-mami": {
+    "kana_name": "フクダ マミ",
+    "birth_date": "1992-06-15",
     "height_cm": 168,
-    "birthplace": "福岡県福岡市"
+    "birthplace": "福岡県福岡市",
+    "website_url": "https://mamio-pan.com/"
   },
   "gaby-lopez": {
     "kana_name": "ガビー・ロペス"
   },
   "goto-miu": {
+    "kana_name": "ゴトウ ミユ",
+    "birth_date": "2000-09-29",
     "height_cm": 157,
     "birthplace": "福岡県北九州市"
   },
@@ -82,7 +105,10 @@
     "birthplace": "オーストラリア クイーンズランド州"
   },
   "jennifer-kupcho": {
-    "kana_name": "ジェニファー・カプチョ"
+    "kana_name": "ジェニファー・カプチョ",
+    "birth_date": "1997-05-14",
+    "height_cm": 167,
+    "birthplace": "アメリカ合衆国 コロラド州リトルトン"
   },
   "jordan-spieth": {
     "kana_name": "ジョーダン・スピース",
@@ -147,18 +173,32 @@
     "kana_name": "レクシー・トンプソン"
   },
   "leona-maguire": {
-    "kana_name": "レオナ・マグワイア"
+    "kana_name": "レオナ・マグワイア",
+    "birth_date": "1994-11-30",
+    "height_cm": 163,
+    "birthplace": "アイルランド キャバン"
   },
   "linn-grant": {
-    "kana_name": "リン・グラント"
+    "kana_name": "リン・グラント",
+    "birth_date": "1999-06-20",
+    "height_cm": 173,
+    "birthplace": "スウェーデン ヘルシンボリ"
   },
   "ludvig-aberg": {
-    "kana_name": "ルドビグ・オーベリ"
+    "kana_name": "ルドビグ・オーベリ",
+    "birth_date": "1999-10-31",
+    "height_cm": 190,
+    "birthplace": "スウェーデン エスロブ"
   },
   "maya-stark": {
-    "kana_name": "マヤ・スターク"
+    "kana_name": "マヤ・スターク",
+    "birth_date": "1999-12-10",
+    "height_cm": 175,
+    "birthplace": "スウェーデン スケーラハムン"
   },
   "matsuda-rei": {
+    "kana_name": "マツダ レイ",
+    "birth_date": "1998-01-24",
     "height_cm": 165,
     "birthplace": "滋賀県彦根市"
   },
@@ -167,8 +207,10 @@
     "birthplace": "大阪府"
   },
   "mikashima-kana": {
+    "kana_name": "ミカシマ カナ",
+    "birth_date": "1996-07-13",
     "height_cm": 164,
-    "birthplace": "福岡県糟屋郡"
+    "birthplace": "福岡県糟屋郡須恵町"
   },
   "mikumu-horikawa": {
     "kana_name": "ホリカワ ミクム",
@@ -176,9 +218,14 @@
     "youtube_channel": "https://www.youtube.com/@%E5%A0%80%E5%B7%9D%E6%9C%AA%E6%9D%A5%E5%A4%A2%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB"
   },
   "minjee-lee": {
+    "kana_name": "ミンジー・リー",
+    "birth_date": "1996-05-27",
+    "height_cm": 165,
     "birthplace": "オーストラリア パース"
   },
   "morita-haruka": {
+    "kana_name": "モリタ ハルカ",
+    "birth_date": "1996-07-19",
     "height_cm": 164,
     "birthplace": "香川県高松市"
   },
@@ -198,7 +245,10 @@
     "kana_name": "ナナ・コルツ・マドセン"
   },
   "nasa-hataoka": {
-    "kana_name": "ハタオカ ナサ"
+    "kana_name": "ハタオカ ナサ",
+    "birth_date": "1999-01-13",
+    "height_cm": 158,
+    "birthplace": "茨城県笠間市"
   },
   "nick-taylor": {
     "kana_name": "ニック・テイラー",
@@ -234,6 +284,8 @@
     "birthplace": "フィンランド"
   },
   "sato-miyu": {
+    "kana_name": "サトウ ミユ",
+    "birth_date": "2003-07-21",
     "height_cm": 161,
     "birthplace": "神奈川県小田原市"
   },
@@ -294,14 +346,20 @@
     "birthplace": "アメリカ合衆国 ユタ州"
   },
   "tsuruoka-karen": {
+    "kana_name": "ツルオカ カレン",
+    "birth_date": "1999-08-20",
     "height_cm": 165,
     "birthplace": "神奈川県横浜市"
   },
   "ueda-momoko": {
+    "kana_name": "ウエダ モモコ",
+    "birth_date": "1986-06-15",
     "height_cm": 161,
     "birthplace": "熊本県熊本市"
   },
   "usui-reika": {
+    "kana_name": "ウスイ レイカ",
+    "birth_date": "1998-12-07",
     "height_cm": 158,
     "birthplace": "栃木県鹿沼市"
   },
@@ -310,6 +368,8 @@
     "birthplace": "愛知県"
   },
   "wakimoto-hana": {
+    "kana_name": "ワキモト ハナ",
+    "birth_date": "1997-10-04",
     "height_cm": 174,
     "birthplace": "宮崎県小林市"
   },
@@ -320,10 +380,15 @@
     "birthplace": "鹿児島県鹿屋市"
   },
   "yoshimoto-hikaru": {
+    "kana_name": "ヨシモト ヒカル",
+    "birth_date": "1999-02-25",
     "height_cm": 152,
     "birthplace": "滋賀県"
   },
   "yui-kawamoto": {
+    "kana_name": "カワモト ユイ",
+    "birth_date": "1998-08-29",
+    "height_cm": 163,
     "birthplace": "愛媛県松山市"
   },
   "yuki-inamori": {
@@ -331,6 +396,8 @@
     "birthplace": "鹿児島県"
   },
   "yumeka-kobayashi": {
+    "kana_name": "コバヤシ ユメカ",
+    "birth_date": "2003-09-01",
     "height_cm": 167,
     "birthplace": "埼玉県"
   },
