@@ -9,11 +9,14 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 52.1,
+    "average_score": 70.0,
+    "best_score": 61,
     "ball_name": "Titleist Pro V1x 2025",
     "feature_1": "2026シーズン基準",
     "feature_2": "Titleist中心",
-    "feature_3": "14本確認済み",
-    "summary": "2026年WMフェニックスオープン時点で確認できたジョーダン・スピースの14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "feature_3": "PGA TOUR公式スタッツ追加",
+    "summary": "2026年WMフェニックスオープン時点で確認できたジョーダン・スピースの14本のクラブセッティングに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も掲載するプロフィールです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
@@ -30,7 +33,8 @@
       "shaft_model": "Ventus HB Black",
       "shaft_flex": "X",
       "shaft_weight": "60g台",
-      "source_note": "Confirmed from GDO 2026 WM Phoenix Open setting page.",
+      "total_distance": 307,
+      "source_note": "Confirmed from GDO 2026 WM Phoenix Open setting page. PGA TOUR公式2026 statsではDriving Distance 306.7yd。",
       "is_featured_item": true
     },
     {
@@ -205,6 +209,20 @@
   ],
   "sources": [
     {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/34046/jordan-spieth/stats",
+      "source_title": "Jordan Spieth PGA TOUR Stats",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式2026 stats。Club Head Speed 116.53 mph、Driving Distance 306.7 yd、Scoring Average (Actual) 70.00、Lowest Round 66を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/34046/jordan-spieth/career",
+      "source_title": "Jordan Spieth PGA TOUR Career",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式career。Career Lowest Round 61を確認。"
+    },
+    {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/8581/",
       "source_title": "GDO ジョーダン・スピース クラブセッティング 2026年 WMフェニックスオープン",
@@ -214,9 +232,9 @@
   ],
   "article": {
     "slug": "jordan-spieth-2026-setting-update",
-    "title": "ジョーダン・スピースの2026年クラブセッティングを掲載しました",
-    "excerpt": "2026シーズン基準で、ジョーダン・スピースの14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "ジョーダン・スピースのセッティングについて、2026年WMフェニックスオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
+    "title": "ジョーダン・スピースの2026年クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
+    "excerpt": "2026シーズン基準で、ジョーダン・スピースの14本のクラブセッティングに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
+    "body": "ジョーダン・スピースのセッティングについて、2026年WMフェニックスオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。今回はこれに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追記しています。バッグはTitleist中心の実戦セット、数値面はPGA TOUR公式stats/careerを参照しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
