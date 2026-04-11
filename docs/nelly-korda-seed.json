@@ -13,8 +13,8 @@
     "ball_name": "TaylorMade TP5x",
     "feature_1": "2026シーズン基準",
     "feature_2": "テーラーメイド中心",
-    "feature_3": "2026年参照を反映",
-    "summary": "ネリー・コルダの2026年クラブセッティングを、2025年末の詳細WITBと2026年のTaylorMade公式プレーヤーページをもとに、使用ドライバー、フェアウェイウッド、ハイブリッド、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるページです。",
+    "feature_3": "公式carry yardageあり",
+    "summary": "ネリー・コルダの2026年クラブセッティングを、2025年末の詳細WITBと2026年のTaylorMade公式プレーヤーページに加えて、公式carry yardageも確認できる形で整理したページです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
@@ -43,7 +43,8 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Red 7",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 232,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは3Wは232yd。",
       "is_featured_item": false
     },
     {
@@ -56,7 +57,8 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black 7",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 218,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは7Wは218yd。",
       "is_featured_item": false
     },
     {
@@ -69,7 +71,8 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Blue HB 7",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). Hybrid is set down to 25° in the source article.",
+      "carry_distance": 200,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). Hybrid is set down to 25° in the source article. TaylorMade公式stock carry yardageでは25°ハイブリッドは200yd。",
       "is_featured_item": false
     },
     {
@@ -81,7 +84,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 185,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは5Iは185yd。",
       "is_featured_item": false
     },
     {
@@ -93,7 +97,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 169,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは6Iは169yd。",
       "is_featured_item": false
     },
     {
@@ -105,7 +110,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 154,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは7Iは154yd。",
       "is_featured_item": false
     },
     {
@@ -117,7 +123,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 144,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは8Iは144yd。",
       "is_featured_item": false
     },
     {
@@ -129,7 +136,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 135,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは9Iは135yd。",
       "is_featured_item": false
     },
     {
@@ -154,7 +162,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i95",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 115,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは50°は115yd。",
       "is_featured_item": false
     },
     {
@@ -167,7 +176,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i95",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 100,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは54°は100yd。",
       "is_featured_item": false
     },
     {
@@ -180,7 +190,8 @@
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i95",
       "shaft_flex": "cw",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "carry_distance": 83,
+      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは58°は83yd。",
       "is_featured_item": false
     },
     {
@@ -199,6 +210,13 @@
       "source_title": "Nelly Korda WITB | TaylorMade Golf",
       "checked_at": "2026-04-09T00:00:00.000Z",
       "notes": "Official current player page used to confirm the current TaylorMade-centered setup, including Qi4D driver and TP5x ball."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.taylormadegolf.com/clubhouse/486885-whats-in-the-bag-winning-witb-team-taylormade.html?lang=en_US",
+      "source_title": "What Nelly Korda has in the bag at the Fir Hills Seri Pak Championship | TaylorMade Golf",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "TaylorMade公式記事のstock carry yardages。3W 232yd、7W 218yd、25°ハイブリッド 200yd、5I 185yd、6I 169yd、7I 154yd、8I 144yd、9I 135yd、50° 115yd、54° 100yd、58° 83ydを確認。公開TrackMan/GCQuad明記ではなく公式carry yardage。"
     },
     {
       "source_type": "official",
@@ -225,8 +243,8 @@
   "article": {
     "slug": "nelly-korda-2026-setting-update",
     "title": "ネリー・コルダの2026年クラブセッティングを掲載しました｜最新参照を反映",
-    "excerpt": "ネリー・コルダの2026年クラブセッティングとして、Qi4Dドライバーへの更新を含む最新参照ベースの内容を掲載しました。",
-    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年プレーヤーページと、直近で詳細が確認できるGolfWRXの2025年12月WITBをもとに更新しました。現在の大枠はQi4Dドライバー、Stealth 2フェアウェイウッド、PING G425ハイブリッド、P770とP7CBのコンボ、TaylorMadeとTitleistを組み合わせたウェッジ、TP Reserve B31 NK Protoパター、TaylorMade TP5xという流れです。2026年の公式ページではQi4DドライバーとP7CBアイアンの継続使用も確認できます。",
+    "excerpt": "ネリー・コルダの2026年クラブセッティングとして、Qi4Dドライバーへの更新を含む最新参照ベースの内容と公式carry yardageを掲載しました。",
+    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年プレーヤーページと、直近で詳細が確認できるGolfWRXの2025年12月WITBをもとに更新しました。現在の大枠はQi4Dドライバー、Stealth 2フェアウェイウッド、PING G425ハイブリッド、P770とP7CBのコンボ、TaylorMadeとTitleistを組み合わせたウェッジ、TP Reserve B31 NK Protoパター、TaylorMade TP5xという流れです。2026年の公式ページではQi4DドライバーとP7CBアイアンの継続使用も確認でき、TaylorMade公式記事では一致番手のcarry yardageも参照できます。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
