@@ -259,7 +259,7 @@ export const Home = () => {
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') handleSearch();
                     }}
-                    placeholder="選手名で検索"
+                    placeholder="選手名を入力"
                     className="min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400 md:text-base"
                   />
                 </div>

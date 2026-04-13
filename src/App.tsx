@@ -43,19 +43,19 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:px-6">
-            <a href="/" className="min-w-0 shrink cursor-pointer">
+        <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 md:gap-3 md:px-6">
+            <a href="/" className="w-[110px] shrink-0 cursor-pointer md:w-auto">
               <img
                 src="/branding/logo-wordmark.png"
                 alt="My Bag Pro"
-                className="h-10 w-auto rounded-xl shadow-sm md:h-11"
+                className="h-9 w-full rounded-xl object-contain shadow-sm md:h-11 md:w-auto"
               />
             </a>
 
-            <nav className="flex shrink-0 items-center gap-2">
+            <nav className="grid min-w-0 flex-1 grid-cols-3 gap-2 md:flex md:flex-1 md:justify-end">
               <button
                 onClick={() => navigate('/settings/pros')}
-                className="inline-flex h-10 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
+                className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-2 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
               >
                 <ShieldCheck size={14} />
                 <span>プロ</span>
@@ -63,7 +63,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
               <button
                 onClick={() => navigate('/diagnosis')}
-                className="inline-flex h-10 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
+                className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-2 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
               >
                 <Stethoscope size={14} />
                 <span>診断</span>
@@ -71,7 +71,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
               <button
                 onClick={handleMyPageClick}
-                className={`group inline-flex h-10 items-center gap-1.5 rounded-full px-3 text-xs font-black active:scale-95 transition-all duration-300 sm:gap-2 sm:px-4 sm:text-sm ${
+                className={`group inline-flex h-10 items-center justify-center gap-1.5 rounded-full px-2 text-xs font-black active:scale-95 transition-all duration-300 sm:gap-2 sm:px-4 sm:text-sm ${
                   user.isLoggedIn
                     ? 'bg-slate-900 text-white hover:bg-slate-800'
                     : 'bg-gradient-to-r from-golf-500 to-golf-600 text-white hover:shadow-golf-500/30'
@@ -84,7 +84,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-6 md:px-6 md:pt-8">
+      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-4 md:px-6 md:pt-8">
         {children}
       </main>
 
