@@ -37,7 +37,6 @@ const kanaGroups = [
   { id: 'ya', label: 'や' },
   { id: 'ra', label: 'ら' },
   { id: 'wa', label: 'わ' },
-  { id: 'latin', label: 'A-Z' },
 ] as const;
 
 const heroImage =
@@ -235,25 +234,22 @@ export const Home = () => {
 
         <div className="relative mx-auto flex min-h-[560px] max-w-7xl items-center px-5 py-12 md:min-h-[680px] md:px-10">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-white/90 backdrop-blur">
-              <Star size={14} className="text-emerald-300" />
-              GOLF CLUB SETTING PLATFORM
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/85 backdrop-blur">
+              <Star size={12} className="text-emerald-300" />
+              PRO SETTINGS
             </div>
 
-            <h1 className="mt-6 text-[2.4rem] font-black leading-[1.14] tracking-tight text-white md:text-6xl">
-              プロの14本から、
+            <h1 className="mt-5 max-w-3xl text-[2.1rem] font-black leading-[1.12] tracking-tight text-white md:mt-6 md:text-6xl">
+              プロのセッティングを見て、
               <br className="hidden md:block" />
-              自分の次の1本まで。
-              <br className="hidden md:block" />
-              比較しながら進める。
+              次の1本を決める。
             </h1>
 
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/90 md:mt-6 md:text-xl md:leading-8">
-              有名プロの最新セッティングを探し、ヘッドスピードやカテゴリで絞り込み、
-              診断や比較まで一気につなげるためのゴルフ情報サイトです。
+            <p className="mt-4 max-w-xl text-sm leading-6 text-white/90 md:mt-5 md:text-lg md:leading-8">
+              選手名やカテゴリからすぐ探して、比較や診断につなげられます。
             </p>
 
-            <div className="mt-8 max-w-2xl rounded-[1.75rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+            <div className="mt-6 max-w-2xl rounded-[1.5rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-8 md:p-4">
               <div className="flex flex-col gap-3 md:flex-row md:items-center">
                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1rem] bg-white px-4 py-3 shadow-lg shadow-slate-950/15">
                   <Search className="shrink-0 text-slate-400" size={20} />
@@ -269,12 +265,12 @@ export const Home = () => {
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="inline-flex items-center justify-center rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800 md:text-base"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-trust-navy px-5 text-sm font-black text-white transition hover:bg-slate-800 md:text-base"
                 >
                   検索する
                 </button>
               </div>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {profileCategories.map((category) => (
                   <button
                     key={category.id}
@@ -307,7 +303,7 @@ export const Home = () => {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
               <button
                 onClick={() => {
                   trackEvent('start_ai_diagnosis', {
@@ -316,7 +312,7 @@ export const Home = () => {
                   });
                   navigate('/diagnosis');
                 }}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-4 text-lg font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-600"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-base font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-600 md:px-8 md:py-4 md:text-lg"
               >
                 <WandSparkles size={18} />
                 診断を始める
@@ -330,7 +326,7 @@ export const Home = () => {
                   });
                   navigate('/settings/pros');
                 }}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-lg font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-700"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-base font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-700 md:px-8 md:py-4 md:text-lg"
               >
                 <Users size={18} />
                 プロのセッティングを見る

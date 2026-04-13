@@ -43,35 +43,35 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-8">
-            <a href="/" className="flex items-center gap-3 cursor-pointer group min-w-0">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:px-8">
+            <a href="/" className="min-w-0 shrink cursor-pointer">
               <img
                 src="/branding/logo-wordmark.png"
                 alt="My Bag Pro"
-                className="h-11 w-auto shrink-0 rounded-xl shadow-sm md:h-12"
+                className="h-10 w-auto rounded-xl shadow-sm md:h-11"
               />
             </a>
 
-            <nav className="flex items-center gap-2">
+            <nav className="flex shrink-0 items-center gap-2">
               <button
                 onClick={() => navigate('/settings/pros')}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700"
+                className="inline-flex h-10 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
               >
-                <ShieldCheck size={15} />
-                <span className="hidden sm:inline">プロセッティング</span>
+                <ShieldCheck size={14} />
+                <span>プロ</span>
               </button>
 
               <button
                 onClick={() => navigate('/diagnosis')}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700"
+                className="inline-flex h-10 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
               >
-                <Stethoscope size={15} />
-                <span className="hidden sm:inline">診断</span>
+                <Stethoscope size={14} />
+                <span>診断</span>
               </button>
 
               <button
                 onClick={handleMyPageClick}
-                className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-black active:scale-95 transition-all duration-300 ${
+                className={`group inline-flex h-10 items-center gap-1.5 rounded-full px-3 text-xs font-black active:scale-95 transition-all duration-300 sm:gap-2 sm:px-4 sm:text-sm ${
                   user.isLoggedIn
                     ? 'bg-slate-900 text-white hover:bg-slate-800'
                     : 'bg-gradient-to-r from-golf-500 to-golf-600 text-white hover:shadow-golf-500/30'
