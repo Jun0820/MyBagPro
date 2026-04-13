@@ -1,14 +1,14 @@
 import React from 'react';
 import { Instagram, Send, User, Globe, Share2, Download, Brain } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { type ClubSetting, TargetCategory } from '../../types/golf';
+import { type ClubSetting, type UserSocialLinks, TargetCategory } from '../../types/golf';
 import { generateBagImage } from '../../lib/shareImageGenerator';
 
 interface MyBagViewProps {
     setting: ClubSetting;
     headSpeed: number;
     userName: string;
-    snsLinks: { instagram?: string; x?: string };
+    snsLinks: UserSocialLinks;
     coverPhoto?: string;
     isPublic: boolean;
     onUpdateIsPublic: (v: boolean) => void;
@@ -75,7 +75,7 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
         }
     };
 
-    const shareUrl = userId ? `${window.location.origin}${window.location.pathname}#/bag?id=${userId}` : '';
+    const shareUrl = userId ? `${window.location.origin}/settings/users/${userId}` : '';
 
     const handleCopyUrl = () => {
         if (shareUrl) {
@@ -119,9 +119,14 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
                                 <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter drop-shadow-lg">
                                     {userName || 'Anonymous'}<span className="text-golf-400">'</span>s BAG
                                 </h2>
-                                <div className="flex gap-3 mt-2">
+                                <div className="flex flex-wrap gap-3 mt-2">
                                     {snsLinks.instagram && <div className="text-white/80 text-xs font-bold flex items-center gap-1 bg-black/20 backdrop-blur-sm px-2 py-1 rounded-lg"><Instagram size={12} /> {snsLinks.instagram}</div>}
                                     {snsLinks.x && <div className="text-white/80 text-xs font-bold flex items-center gap-1 bg-black/20 backdrop-blur-sm px-2 py-1 rounded-lg"><Send size={12} /> {snsLinks.x}</div>}
+                                    {(snsLinks.customLinks || []).slice(0, 2).map((link) => (
+                                        <div key={link.id} className="text-white/80 text-xs font-bold flex items-center gap-1 bg-black/20 backdrop-blur-sm px-2 py-1 rounded-lg">
+                                            <Globe size={12} /> {link.label}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -210,6 +215,26 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
                                     <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
                                 </label>
                             </div>
+                        </div>
+                    </div>
+                )}
+
+                {(snsLinks.customLinks || []).length > 0 && (
+                    <div className="border-t border-slate-100 bg-white px-6 py-5 md:px-8">
+                        <div className="mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Links</div>
+                        <div className="flex flex-wrap gap-3">
+                            {snsLinks.customLinks?.map((link) => (
+                                <a
+                                    key={link.id}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-trust-navy transition-colors hover:bg-slate-100"
+                                >
+                                    <Globe size={14} />
+                                    {link.label}
+                                </a>
+                            ))}
                         </div>
                     </div>
                 )}

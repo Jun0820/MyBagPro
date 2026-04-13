@@ -1,293 +1,352 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  AlertCircle,
+  ArrowLeft,
+  ExternalLink,
+  Globe,
+  Instagram,
+  Lock,
+  Send,
+  ShieldCheck,
+  UserRound,
+} from 'lucide-react';
 import { decodeBagData } from '../lib/urlData';
 import { type ClubSetting, TargetCategory } from '../types/golf';
-import { ArrowLeft, Instagram, Send, ExternalLink, ShieldCheck, AlertCircle, Lock } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { supabase } from '../lib/supabase';
+import { normalizeUserSocialLinks } from '../lib/userSocials';
+
+type PublicBagPayload = {
+  name: string;
+  sns: ReturnType<typeof normalizeUserSocialLinks>;
+  setting: ClubSetting;
+  headSpeed: number;
+  bestScore?: number;
+  averageScore?: number;
+  coverPhoto?: string;
+};
 
 export const SharedBag = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [data, setData] = useState<{
-        name: string,
-        sns: { instagram?: string, x?: string },
-        setting: ClubSetting,
-        headSpeed: number
-    } | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { id: routeId } = useParams();
+  const [data, setData] = useState<PublicBagPayload | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const query = new URLSearchParams(location.search);
-        const d = query.get('d');
-        const id = query.get('id');
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const encodedData = query.get('d');
+    const queryId = query.get('id');
+    const profileId = routeId || queryId;
 
-        const loadData = async () => {
-            setLoading(true);
-            setError(null);
+    const loadData = async () => {
+      setLoading(true);
+      setError(null);
 
-            if (id) {
-                // Fetch from Supabase
-                try {
-                    const { data: profile, error: pError } = await supabase
-                        .from('profiles')
-                        .select('*')
-                        .eq('id', id)
-                        .single();
+      if (profileId) {
+        try {
+          const { data: profile, error: profileError } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', profileId)
+            .single();
 
-                    if (pError || !profile) {
-                        setError('セッティングが見つからないか、非公開に設定されています。');
-                        setLoading(false);
-                        return;
-                    }
-
-                    if (!profile.is_public) {
-                        setError('このセッティングは非公開設定になっています。');
-                        setLoading(false);
-                        return;
-                    }
-
-                    const { data: clubs, error: cError } = await supabase
-                        .from('clubs')
-                        .select('*')
-                        .eq('user_id', id);
-
-                    if (cError) throw cError;
-
-                    setData({
-                        name: profile.name || 'Anonymous',
-                        sns: profile.sns_links || {},
-                        headSpeed: profile.head_speed || 0,
-                        setting: {
-                            clubs: (clubs || []).map(c => ({
-                                id: c.id,
-                                category: c.category,
-                                brand: c.brand || '',
-                                model: c.model || '',
-                                number: c.number || '',
-                                loft: c.loft || '',
-                                shaft: c.shaft || '',
-                                flex: c.flex || '',
-                                distance: c.distance || ''
-                            })),
-                            ball: profile.current_ball || ''
-                        }
-                    });
-                } catch (err) {
-                    console.error(err);
-                    setError('データの読み込み中にエラーが発生しました。');
-                }
-            } else if (d) {
-                // Legacy URL data
-                const decoded = decodeBagData(d);
-                if (decoded) {
-                    setData(decoded);
-                } else {
-                    setError('無効な共有リンクです。');
-                }
-            } else {
-                setError('共有リンクにデータが含まれていません。');
-            }
+          if (profileError || !profile) {
+            setError('セッティングが見つからないか、非公開に設定されています。');
             setLoading(false);
-        };
+            return;
+          }
 
-        loadData();
-    }, [location.search]);
+          if (!profile.is_public) {
+            setError('このセッティングは非公開設定になっています。');
+            setLoading(false);
+            return;
+          }
 
-    if (loading) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] text-slate-400">
-                <div className="animate-spin mb-4 text-2xl text-golf-500">⛳️</div>
-                <p className="font-bold text-sm">セッティングを読み込んでいます...</p>
-            </div>
-        );
-    }
+          const { data: clubs, error: clubsError } = await supabase
+            .from('clubs')
+            .select('*')
+            .eq('user_id', profileId);
 
-    if (error) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
-                <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mb-6">
-                    {error.includes('非公開') ? <Lock size={32} /> : <AlertCircle size={32} />}
-                </div>
-                <h2 className="text-xl font-bold text-trust-navy mb-2">読み込めませんでした</h2>
-                <p className="text-slate-500 text-sm mb-8 max-w-xs">{error}</p>
-                <button 
-                    onClick={() => navigate('/')} 
-                    className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-black transition-all"
-                >
-                    TOPへ戻る
-                </button>
-            </div>
-        );
-    }
+          if (clubsError) throw clubsError;
 
-    if (!data) return null;
+          const sns = normalizeUserSocialLinks(profile.sns_links);
 
-    const { name, sns, setting, headSpeed } = data;
+          setData({
+            name: profile.name || 'Anonymous Golfer',
+            sns,
+            headSpeed: profile.head_speed || 0,
+            bestScore: sns.profileStats?.bestScore,
+            averageScore: sns.profileStats?.averageScore,
+            coverPhoto: profile.cover_photo || undefined,
+            setting: {
+              clubs: (clubs || []).map((club) => ({
+                id: club.id,
+                category: club.category,
+                brand: club.brand || '',
+                model: club.model || '',
+                number: club.number || '',
+                loft: club.loft || '',
+                shaft: club.shaft || '',
+                flex: club.flex || '',
+                distance: club.distance || '',
+                worry: club.worry || '',
+              })),
+              ball: profile.current_ball || '',
+            },
+          });
+        } catch (currentError) {
+          console.error(currentError);
+          setError('データの読み込み中にエラーが発生しました。');
+        }
+      } else if (encodedData) {
+        const decoded = decodeBagData(encodedData);
+        if (decoded) {
+          setData({
+            ...decoded,
+            sns: normalizeUserSocialLinks(decoded.sns),
+          });
+        } else {
+          setError('無効な共有リンクです。');
+        }
+      } else {
+        setError('共有リンクにデータが含まれていません。');
+      }
+
+      setLoading(false);
+    };
+
+    loadData();
+  }, [location.search, routeId]);
+
+  const sortedClubs = useMemo(() => {
+    if (!data) return [];
 
     const categoryOrder = [
-        TargetCategory.DRIVER,
-        TargetCategory.FAIRWAY,
-        TargetCategory.UTILITY,
-        TargetCategory.IRON,
-        TargetCategory.WEDGE,
-        TargetCategory.PUTTER
+      TargetCategory.DRIVER,
+      TargetCategory.FAIRWAY,
+      TargetCategory.UTILITY,
+      TargetCategory.IRON,
+      TargetCategory.WEDGE,
+      TargetCategory.PUTTER,
     ];
 
-    const sortedClubs = [...setting.clubs].sort((a, b) =>
-        categoryOrder.indexOf(a.category as TargetCategory) - categoryOrder.indexOf(b.category as TargetCategory)
-    );
+    return [...data.setting.clubs].sort((a, b) => {
+      const orderA = categoryOrder.indexOf(a.category as TargetCategory);
+      const orderB = categoryOrder.indexOf(b.category as TargetCategory);
 
-    const getCatShort = (cat: string) => {
-        switch (cat) {
-            case TargetCategory.DRIVER: return '1W';
-            case TargetCategory.FAIRWAY: return 'FW';
-            case TargetCategory.UTILITY: return 'UT';
-            case TargetCategory.IRON: return 'IRON';
-            case TargetCategory.WEDGE: return 'WDG';
-            case TargetCategory.PUTTER: return 'PT';
-            default: return '—';
-        }
-    };
+      if (orderA !== orderB) return orderA - orderB;
+      return (a.number || '').localeCompare(b.number || '');
+    });
+  }, [data]);
 
-    const getCatBgColor = (cat: string) => {
-        switch (cat) {
-            case TargetCategory.DRIVER: return 'bg-emerald-500';
-            case TargetCategory.FAIRWAY: return 'bg-emerald-600';
-            case TargetCategory.UTILITY: return 'bg-teal-500';
-            case TargetCategory.IRON: return 'bg-blue-500';
-            case TargetCategory.WEDGE: return 'bg-indigo-500';
-            case TargetCategory.PUTTER: return 'bg-slate-500';
-            default: return 'bg-slate-400';
-        }
-    };
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case TargetCategory.DRIVER:
+        return 'bg-emerald-500';
+      case TargetCategory.FAIRWAY:
+        return 'bg-emerald-600';
+      case TargetCategory.UTILITY:
+        return 'bg-teal-500';
+      case TargetCategory.IRON:
+        return 'bg-blue-500';
+      case TargetCategory.WEDGE:
+        return 'bg-indigo-500';
+      case TargetCategory.PUTTER:
+        return 'bg-slate-500';
+      default:
+        return 'bg-slate-400';
+    }
+  };
 
+  if (loading) {
     return (
-        <div className="animate-fadeIn pb-20 max-w-4xl mx-auto">
-            <button 
-                onClick={() => navigate('/')} 
-                className="flex items-center gap-2 text-slate-500 hover:text-trust-navy font-bold mb-8 transition-colors"
-            >
-                <ArrowLeft size={18} /> TOPへ戻る
-            </button>
-
-            <div className="bg-white rounded-[40px] overflow-hidden shadow-2xl border border-slate-100">
-                {/* Header Section */}
-                <div className="relative bg-trust-navy text-white p-8 md:p-12 overflow-hidden">
-                    <div className="absolute inset-0 z-0">
-                        <img 
-                            src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=2070&auto=format&fit=crop" 
-                            className="w-full h-full object-cover opacity-20" 
-                            alt="Golf Background"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
-                    </div>
-
-                    <div className="relative z-10">
-                        <div className="flex items-center gap-2 text-golf-400 font-bold tracking-widest text-[10px] uppercase mb-4">
-                            <ShieldCheck size={14} /> Official My Bag Pro Profile
-                        </div>
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 uppercase">
-                            {name}<span className="text-golf-400">'</span>s SETTING
-                        </h1>
-                        
-                        <div className="flex flex-wrap gap-4">
-                            {sns.instagram && (
-                                <a 
-                                    href={`https://instagram.com/${sns.instagram.replace('@', '')}`} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full border border-white/10 transition-all text-sm font-bold"
-                                >
-                                    <Instagram size={16} /> {sns.instagram}
-                                </a>
-                            )}
-                            {sns.x && (
-                                <a 
-                                    href={`https://x.com/${sns.x.replace('@', '')}`} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full border border-white/10 transition-all text-sm font-bold"
-                                >
-                                    <Send size={16} /> {sns.x}
-                                </a>
-                            )}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Stats Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-100 border-b border-slate-100">
-                     <div className="bg-white p-6 text-center">
-                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Head Speed</div>
-                        <div className="text-3xl font-eng font-black text-trust-navy leading-none">{headSpeed} <span className="text-xs text-slate-400 font-bold">m/s</span></div>
-                    </div>
-                    <div className="bg-white p-6 text-center">
-                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Clubs</div>
-                        <div className="text-3xl font-eng font-black text-trust-navy leading-none">{setting.clubs.length} <span className="text-xs text-slate-400 font-bold">pcs</span></div>
-                    </div>
-                    <div className="bg-white p-6 text-center col-span-2">
-                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Current Ball</div>
-                        <div className="text-xl font-bold text-trust-navy leading-none truncate px-4">{setting.ball || '—'}</div>
-                    </div>
-                </div>
-
-                {/* Club List Table */}
-                <div className="p-0 overflow-x-auto">
-                    <table className="w-full border-collapse">
-                        <thead>
-                            <tr className="bg-slate-50/50 text-slate-400 font-black uppercase tracking-widest text-[9px] border-b border-slate-100">
-                                <th className="py-4 px-6 text-left">Category</th>
-                                <th className="py-4 px-6 text-left">Model / Spec</th>
-                                <th className="py-4 px-6 text-right">Carry</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {sortedClubs.map((c, i) => {
-                                const catLabel = getCatShort(c.category);
-                                const loftLabel = c.loft ? ` ${c.loft}` : '';
-                                return (
-                                    <tr key={i} className={cn("border-b border-slate-50 hover:bg-slate-50/50 transition-colors", i % 2 === 1 && "bg-slate-50/20")}>
-                                        <td className="py-5 px-6 whitespace-nowrap">
-                                            <span className={cn("inline-block text-white text-[10px] font-black px-2.5 py-1 rounded-md shadow-sm", getCatBgColor(c.category))}>
-                                                {catLabel}{loftLabel}
-                                            </span>
-                                        </td>
-                                        <td className="py-5 px-6">
-                                            <div className="font-bold text-trust-navy text-lg md:text-xl tracking-tight leading-tight">
-                                                {c.brand} {c.model}
-                                            </div>
-                                            <div className="text-xs text-slate-400 font-medium mt-1">
-                                                {c.shaft || '—'}
-                                            </div>
-                                        </td>
-                                        <td className="py-5 px-6 text-right">
-                                            <div className="font-eng font-black text-2xl text-golf-600 leading-none">
-                                                {c.distance || '—'}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                </div>
-
-                {/* Footer CTA */}
-                <div className="bg-slate-50 p-10 text-center">
-                    <p className="text-slate-400 text-sm mb-6 font-medium">あなたも最新のAI診断で最適なギアを見つけませんか？</p>
-                    <button 
-                        onClick={() => navigate('/ball-diagnosis')} 
-                        className="bg-trust-navy text-white px-8 py-4 rounded-full font-black tracking-tighter hover:bg-slate-800 transition-all hover:scale-105 shadow-xl shadow-trust-navy/20 flex items-center gap-3 mx-auto"
-                    >
-                        AIゴルフ診断をはじめる <ExternalLink size={20} />
-                    </button>
-                    <div className="mt-8">
-                        <span className="font-eng font-black text-xl tracking-tighter text-slate-200">MY BAG PRO</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div className="flex min-h-[60vh] flex-col items-center justify-center text-slate-400">
+        <div className="mb-4 text-2xl text-golf-500">⛳️</div>
+        <p className="text-sm font-bold">セッティングを読み込んでいます...</p>
+      </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
+        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-500">
+          {error.includes('非公開') ? <Lock size={32} /> : <AlertCircle size={32} />}
+        </div>
+        <h2 className="mb-2 text-xl font-bold text-trust-navy">読み込めませんでした</h2>
+        <p className="mb-8 max-w-xs text-sm text-slate-500">{error}</p>
+        <button onClick={() => navigate('/settings/users')} className="rounded-xl bg-slate-900 px-8 py-3 font-bold text-white transition-all hover:bg-black">
+          一覧へ戻る
+        </button>
+      </div>
+    );
+  }
+
+  if (!data) return null;
+
+  return (
+    <div className="mx-auto max-w-5xl animate-fadeIn pb-20">
+      <button
+        onClick={() => navigate('/settings/users')}
+        className="mb-8 flex items-center gap-2 font-bold text-slate-500 transition-colors hover:text-trust-navy"
+      >
+        <ArrowLeft size={18} />
+        みんなのMy Bagへ戻る
+      </button>
+
+      <div className="overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-2xl">
+        <div className="relative overflow-hidden bg-trust-navy px-6 py-10 text-white md:px-10 md:py-12">
+          <div className="absolute inset-0">
+            {data.coverPhoto ? (
+              <img src={data.coverPhoto} alt={data.name} className="h-full w-full object-cover opacity-35" />
+            ) : (
+              <div className="h-full w-full bg-gradient-to-br from-slate-900 via-trust-navy to-slate-800" />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/60 to-trust-navy/20" />
+          </div>
+
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-black text-golf-300">
+              <ShieldCheck size={14} />
+              PUBLIC MY BAG
+            </div>
+
+            <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-[2rem] border-4 border-white/80 bg-white shadow-xl">
+                  {data.coverPhoto ? (
+                    <img src={data.coverPhoto} alt={data.name} className="h-full w-full object-cover" />
+                  ) : (
+                    <UserRound size={40} className="text-slate-300" />
+                  )}
+                </div>
+                <div>
+                  <div className="text-sm font-bold uppercase tracking-[0.2em] text-golf-300">Golfer Profile</div>
+                  <h1 className="mt-2 text-3xl font-black tracking-tight md:text-5xl">{data.name}</h1>
+                  <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-200">
+                    自分のバッグを公開している一般ゴルファーのセッティングです。ヘッドスピード、使用ボール、SNSや外部リンクまでまとめて確認できます。
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                {data.sns.instagram && (
+                  <a
+                    href={`https://instagram.com/${data.sns.instagram}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-white/20"
+                  >
+                    <Instagram size={16} />
+                    @{data.sns.instagram}
+                  </a>
+                )}
+                {data.sns.x && (
+                  <a
+                    href={`https://x.com/${data.sns.x}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-white/20"
+                  >
+                    <Send size={16} />
+                    @{data.sns.x}
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-px border-b border-slate-100 bg-slate-100 md:grid-cols-4">
+          <div className="bg-white p-6 text-center">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Head Speed</div>
+            <div className="mt-2 text-3xl font-black text-trust-navy">{data.headSpeed || '—'}<span className="ml-1 text-xs text-slate-400">m/s</span></div>
+          </div>
+          <div className="bg-white p-6 text-center">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Current Ball</div>
+            <div className="mt-2 text-sm font-bold text-trust-navy">{data.setting.ball || '未設定'}</div>
+          </div>
+          <div className="bg-white p-6 text-center">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Best Score</div>
+            <div className="mt-2 text-3xl font-black text-golf-600">{data.bestScore || '—'}</div>
+          </div>
+          <div className="bg-white p-6 text-center">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Average Score</div>
+            <div className="mt-2 text-3xl font-black text-trust-navy">{data.averageScore || '—'}</div>
+          </div>
+        </div>
+
+        {(data.sns.customLinks || []).length > 0 && (
+          <div className="border-b border-slate-100 px-6 py-5 md:px-10">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">External Links</div>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {data.sns.customLinks?.map((link) => (
+                <a
+                  key={link.id}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-trust-navy transition-colors hover:bg-slate-100"
+                >
+                  <Globe size={14} />
+                  {link.label}
+                  <ExternalLink size={14} />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-slate-100 bg-slate-50 text-left text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+                <th className="px-6 py-4 md:px-10">Category</th>
+                <th className="px-6 py-4">Model / Spec</th>
+                <th className="px-6 py-4 text-right md:px-10">Distance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedClubs.map((club, index) => (
+                <tr key={club.id} className={cn('border-b border-slate-100', index % 2 === 1 && 'bg-slate-50/40')}>
+                  <td className="px-6 py-5 md:px-10">
+                    <div className="flex items-center gap-3">
+                      <span className={cn('inline-flex rounded-md px-2.5 py-1 text-[10px] font-black uppercase text-white', getCategoryColor(club.category))}>
+                        {club.number || club.category}
+                      </span>
+                      {club.loft && <span className="text-xs font-bold text-slate-400">{club.loft}°</span>}
+                    </div>
+                  </td>
+                  <td className="px-6 py-5">
+                    <div className="text-lg font-black tracking-tight text-trust-navy">
+                      {club.brand} {club.model}
+                    </div>
+                    <div className="mt-1 text-xs font-medium text-slate-400">{club.shaft || 'シャフト未登録'}</div>
+                  </td>
+                  <td className="px-6 py-5 text-right md:px-10">
+                    <div className="text-2xl font-black text-golf-600">{club.distance || '—'}</div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="bg-slate-50 px-6 py-8 text-center md:px-10">
+          <div className="text-sm text-slate-500">自分のセッティングも公開すると、比較や記録がもっとしやすくなります。</div>
+          <div className="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link to="/mybag/create" className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white">
+              自分のMy Bagを作る
+            </Link>
+            <Link to="/settings/pros" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700">
+              プロのセッティングも見る
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };

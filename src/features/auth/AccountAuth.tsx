@@ -3,6 +3,7 @@ import { User, Lock, Mail, Loader2, Calendar, Users, Trophy, Plus, Check } from 
 import { type UserAccount, INITIAL_PROFILE, type UserProfile, Gender, GolfHistory } from '../../types/golf';
 import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
+import { buildStoredSocialLinks } from '../../lib/userSocials';
 
 interface AccountAuthProps {
     onLogin: (account: UserAccount, profile?: UserProfile) => void;
@@ -66,9 +67,12 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                         id: userId,
                         name: name,
                         is_public: signUpProfile.isPublic,
-                        current_ball: signUpProfile.currentBall,
+                        current_ball: signUpProfile.myBag.ball || signUpProfile.currentBall || null,
                         head_speed: signUpProfile.headSpeed,
-                        sns_links: signUpProfile.snsLinks,
+                        sns_links: buildStoredSocialLinks(signUpProfile.snsLinks, {
+                            bestScore: signUpProfile.bestScore,
+                            averageScore: signUpProfile.averageScore,
+                        }),
                         age: signUpProfile.age,
                         gender: gender || signUpProfile.gender,
                         birthdate: birthdate || null, // Fix: send null instead of empty string

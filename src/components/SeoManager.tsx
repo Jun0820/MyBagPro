@@ -63,6 +63,13 @@ const getSeoForPath = (pathname: string) => {
     };
   }
 
+  if (pathname.startsWith('/settings/users/')) {
+    return {
+      title: 'みんなのMy Bag 詳細',
+      description: '一般ゴルファーの公開クラブセッティング詳細ページです。バッグ構成、使用ボール、SNSや外部リンクまで確認できます。',
+    };
+  }
+
   if (pathname.startsWith('/articles/')) {
     return {
       title: '更新記事',

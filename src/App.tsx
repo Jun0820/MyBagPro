@@ -250,6 +250,7 @@ function App() {
             <Route path="/settings/pros" element={<ProsSettingsPage />} />
             <Route path="/settings/pros/:slug" element={<ProSettingDetailPage />} />
             <Route path="/settings/users" element={<UsersSettingsPage />} />
+            <Route path="/settings/users/:id" element={<SharedBag />} />
             <Route path="/clubs/drivers" element={<DriversCatalogPage />} />
             <Route path="/clubs/drivers/:slug" element={<DriverDetailPage />} />
             <Route path="/buy/:category/:slug" element={<BuyPage />} />

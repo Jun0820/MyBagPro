@@ -6,6 +6,7 @@ import {
 import { generateFittingDiagnosis, type DiagnosisResult } from '../lib/gemini';
 import { convertProfileToCustomerData, sendToGoogleSheets } from '../lib/googleSheets';
 import { supabase } from '../lib/supabase';
+import { buildStoredSocialLinks, normalizeUserSocialLinks } from '../lib/userSocials';
 
 interface DiagnosisContextType {
     user: UserAccount;
@@ -96,6 +97,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 .single();
 
             if (profileData) {
+                const normalizedSocials = normalizeUserSocialLinks(profileData.sns_links);
                 setProfile(prev => ({
                     ...prev,
                     name: profileData.name || prev.name,
@@ -104,9 +106,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     headSpeed: profileData.head_speed || prev.headSpeed,
                     birthdate: profileData.birthdate || prev.birthdate,
                     golfHistory: profileData.golf_history || prev.golfHistory,
-                    snsLinks: profileData.sns_links || prev.snsLinks,
+                    snsLinks: normalizedSocials,
                     coverPhoto: profileData.cover_photo || prev.coverPhoto,
-                    isPublic: profileData.is_public ?? prev.isPublic
+                    isPublic: profileData.is_public ?? prev.isPublic,
+                    currentBall: profileData.current_ball || prev.currentBall,
+                    bestScore: normalizedSocials.profileStats?.bestScore ?? prev.bestScore,
+                    averageScore: normalizedSocials.profileStats?.averageScore ?? prev.averageScore,
+                    myBag: {
+                        ...prev.myBag,
+                        ball: profileData.current_ball || prev.myBag.ball,
+                    },
                 }));
             }
 
@@ -176,7 +185,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         head_speed: profile.headSpeed,
                         birthdate: profile.birthdate,
                         golf_history: profile.golfHistory,
-                        sns_links: profile.snsLinks,
+                        current_ball: profile.myBag.ball || profile.currentBall || null,
+                        sns_links: buildStoredSocialLinks(profile.snsLinks, {
+                            bestScore: profile.bestScore,
+                            averageScore: profile.averageScore,
+                        }),
                         cover_photo: profile.coverPhoto,
                         is_public: profile.isPublic,
                         updated_at: new Date().toISOString()
@@ -238,7 +251,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     head_speed: profile.headSpeed,
                     birthdate: profile.birthdate,
                     golf_history: profile.golfHistory,
-                    sns_links: profile.snsLinks,
+                    current_ball: profile.myBag.ball || profile.currentBall || null,
+                    sns_links: buildStoredSocialLinks(profile.snsLinks, {
+                        bestScore: profile.bestScore,
+                        averageScore: profile.averageScore,
+                    }),
                     cover_photo: profile.coverPhoto,
                     is_public: profile.isPublic,
                     updated_at: new Date().toISOString()

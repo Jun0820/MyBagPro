@@ -175,6 +175,22 @@ export interface ClubSetting {
     ball: string;
 }
 
+export interface UserCustomLink {
+    id: string;
+    label: string;
+    url: string;
+}
+
+export interface UserSocialLinks {
+    instagram?: string;
+    x?: string;
+    customLinks?: UserCustomLink[];
+    profileStats?: {
+        bestScore?: number;
+        averageScore?: number;
+    };
+}
+
 // ウェッジ詳細用途
 export interface WedgeUsage {
     pw: ('FULL' | 'GREENSIDE')[];
@@ -349,7 +365,7 @@ export interface UserProfile {
         priority: 'DISTANCE' | 'SPIN' | 'BALANCE';
     };
 
-    snsLinks?: { instagram?: string; x?: string };
+    snsLinks?: UserSocialLinks;
     coverPhoto?: string;
     bestScore?: number;
     averageScore?: number;

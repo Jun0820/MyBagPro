@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { User, Image, Instagram, Send, Globe, Check, Save, Loader2, CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import type { UserSocialLinks } from '../../types/golf';
 
 const BACKGROUND_TEMPLATES = [
     { id: 'default', name: 'Classic Green', url: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=2070' },
@@ -17,8 +18,8 @@ const BACKGROUND_TEMPLATES = [
 interface ProfileManagerProps {
     userName: string;
     onUpdateUserName: (name: string) => void;
-    snsLinks: { instagram?: string; x?: string };
-    onUpdateSnsLinks: (links: { instagram?: string; x?: string }) => void;
+    snsLinks: UserSocialLinks;
+    onUpdateSnsLinks: (links: UserSocialLinks) => void;
     coverPhoto?: string;
     onUpdateCoverPhoto: (dataUrl: string) => void;
     age: string | null;
@@ -51,6 +52,29 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
     saveStatus, onManualSave, onLogout
 }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const customLinks = snsLinks.customLinks || [];
+
+    const updateCustomLink = (index: number, field: 'label' | 'url', value: string) => {
+        const nextLinks = [...customLinks];
+        const current = nextLinks[index] || { id: `link-${index + 1}`, label: '', url: '' };
+        nextLinks[index] = { ...current, [field]: value };
+        onUpdateSnsLinks({ ...snsLinks, customLinks: nextLinks });
+    };
+
+    const addCustomLink = () => {
+        onUpdateSnsLinks({
+            ...snsLinks,
+            customLinks: [...customLinks, { id: `link-${Date.now()}`, label: '', url: '' }],
+        });
+    };
+
+    const removeCustomLink = (index: number) => {
+        onUpdateSnsLinks({
+            ...snsLinks,
+            customLinks: customLinks.filter((_, currentIndex) => currentIndex !== index),
+        });
+    };
 
     const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -259,6 +283,56 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                         className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-12 pr-4 py-2.5 text-sm font-bold text-trust-navy outline-none focus:border-cyan-400"
                                     />
                                 </div>
+                            </div>
+
+                            <div className="space-y-3 rounded-2xl border border-slate-100 bg-slate-50 p-4">
+                                <div className="flex items-center justify-between gap-3">
+                                    <div>
+                                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">自由URL</div>
+                                        <div className="mt-1 text-xs font-medium text-slate-500">ブログ、YouTube、予約ページなど好きな導線を追加できます。</div>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={addCustomLink}
+                                        className="rounded-full bg-trust-navy px-3 py-1.5 text-[11px] font-black text-white"
+                                    >
+                                        追加
+                                    </button>
+                                </div>
+
+                                {customLinks.length === 0 && (
+                                    <div className="rounded-xl border border-dashed border-slate-200 bg-white px-4 py-3 text-xs text-slate-400">
+                                        まだ自由URLはありません。
+                                    </div>
+                                )}
+
+                                {customLinks.map((link, index) => (
+                                    <div key={link.id} className="rounded-xl border border-slate-200 bg-white p-3">
+                                        <div className="grid gap-3 md:grid-cols-[1fr_1.4fr_auto]">
+                                            <input
+                                                type="text"
+                                                value={link.label}
+                                                onChange={(e) => updateCustomLink(index, 'label', e.target.value)}
+                                                placeholder="例: YouTube"
+                                                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-bold text-trust-navy outline-none focus:border-golf-500"
+                                            />
+                                            <input
+                                                type="url"
+                                                value={link.url}
+                                                onChange={(e) => updateCustomLink(index, 'url', e.target.value)}
+                                                placeholder="https://..."
+                                                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-bold text-trust-navy outline-none focus:border-golf-500"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => removeCustomLink(index)}
+                                                className="rounded-xl border border-red-100 bg-red-50 px-4 py-2.5 text-sm font-bold text-red-600"
+                                            >
+                                                削除
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
 
                             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-5 mt-4">
