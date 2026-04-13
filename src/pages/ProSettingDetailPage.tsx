@@ -514,7 +514,7 @@ export const ProSettingDetailPage = () => {
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
   const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: true });
-  const profileIntro = `${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}掲載。${driverClub ? `ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `ボールは${setting.ball}。` : ''}${setting.contractDisplay ? `契約は${setting.contractDisplay}。` : ''}`;
+  const profileIntro = `${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}掲載。${driverClub ? `ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `ボールは${setting.ball}。` : ''}`;
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
@@ -537,34 +537,33 @@ export const ProSettingDetailPage = () => {
         プロ一覧へ戻る
       </button>
 
-      <section className="overflow-hidden rounded-[2rem] bg-slate-950 text-white">
+      <section className="overflow-hidden rounded-[1.75rem] bg-slate-950 text-white md:rounded-[2rem]">
         <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="px-5 py-7 md:px-10 md:py-14">
+          <div className="px-4 py-5 md:px-10 md:py-12">
             <div className="max-w-4xl">
               <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-cyan-200">
                 {setting.type}
               </div>
               {setting.kanaName && <div className="mt-4 text-xs font-bold text-white/70 md:text-sm">{setting.kanaName}</div>}
-              <h1 className="mt-2 text-3xl font-black tracking-tight leading-tight md:text-6xl">
+              <h1 className="mt-2 text-[2rem] font-black tracking-tight leading-[1.08] md:text-6xl">
                 {setting.name}
                 <span className="ml-2 text-base font-bold text-white/75 md:ml-3 md:text-2xl">{setting.age ? `(${setting.age})` : ''}</span>
               </h1>
-              <p className="mt-3 text-base font-bold leading-6 text-cyan-200 md:mt-4 md:text-lg">{setting.tagline}</p>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:mt-5 md:text-base md:leading-7">{setting.summary}</p>
+              <p className="mt-3 text-sm font-bold leading-6 text-cyan-200 md:mt-4 md:text-lg">{setting.tagline}</p>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:mt-4 md:text-base md:leading-7">{setting.summary}</p>
 
-              <div className="mt-5 grid grid-cols-2 gap-3 md:mt-8 md:gap-4 md:grid-cols-2 xl:grid-cols-4">
-                {profileFacts.map((fact) => (
-                  <div key={fact.label} className="rounded-[1.125rem] border border-white/10 bg-white/5 px-3 py-3 md:rounded-[1.5rem] md:px-4 md:py-4">
-                    <div className="text-[11px] font-black text-slate-400">{fact.label}</div>
-                    <div className="mt-1.5 text-sm font-black leading-5 text-white md:mt-2 md:text-base">{fact.value}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/5 p-4 md:mt-8 md:rounded-[1.75rem] md:p-5">
-                <div className="text-[11px] font-black tracking-[0.14em] text-cyan-200">掲載概要</div>
-                <p className="mt-2.5 max-w-3xl text-sm leading-6 text-slate-200 md:mt-3 md:leading-7">{profileIntro}</p>
-                <div className="mt-4 flex flex-wrap gap-2 md:gap-3">
+              <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-4 md:mt-6">
+                <div className="text-[11px] font-black tracking-[0.14em] text-cyan-200">QUICK LOOK</div>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{profileIntro}</p>
+                <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-white/10 pt-4">
+                  {profileFacts.map((fact) => (
+                    <div key={fact.label}>
+                      <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{fact.label}</dt>
+                      <dd className="mt-1 text-sm font-black leading-5 text-white">{fact.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="mt-4 flex flex-wrap gap-2">
                   <button
                     onClick={() => navigate(`/settings/pros?category=${setting.category}`)}
                     className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/15 md:px-4 md:py-2 md:text-sm"
@@ -590,7 +589,7 @@ export const ProSettingDetailPage = () => {
             </div>
           </div>
 
-          <div className="relative min-h-[360px] overflow-hidden">
+          <div className="relative min-h-[260px] overflow-hidden md:min-h-[360px]">
             {visuals.portraitMedia ? (
               <div className="flex h-full flex-col bg-slate-100">
                 <div className="relative flex-1 overflow-hidden">
@@ -607,7 +606,7 @@ export const ProSettingDetailPage = () => {
                     }}
                   />
                 </div>
-                <div className="border-t border-slate-200 bg-white/95 px-5 py-4 backdrop-blur">
+                <div className="border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur">
                   <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>
                   <div className="mt-2 text-sm font-black text-trust-navy">{driverClub ? driverClub.model : '未公開'}</div>
                 </div>
@@ -628,34 +627,34 @@ export const ProSettingDetailPage = () => {
         </div>
       </section>
 
-      <section className="mt-6 md:mt-8">
-        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 md:rounded-[2rem] md:p-8">
+      <section className="mt-5 md:mt-7">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
-              <h2 className="mt-2 text-2xl font-black text-trust-navy md:mt-3">飛距離とスタッツ</h2>
+              <h2 className="mt-2 text-2xl font-black text-trust-navy">飛距離とスタッツ</h2>
             </div>
-            <p className="text-sm leading-6 text-slate-500 md:leading-7">
+            <p className="text-sm leading-6 text-slate-500">
               公開ソース確認分のみ掲載。
             </p>
           </div>
-          <div className="mt-5 grid gap-3 md:mt-6 md:gap-4 md:grid-cols-3">
+          <div className="mt-4 grid gap-2.5 md:mt-5 md:grid-cols-3">
             {statCards.map((card) => (
-              <div key={card.label} className="rounded-[1.125rem] bg-slate-50 px-4 py-4 md:rounded-[1.5rem] md:border md:border-slate-200 md:p-5">
+              <div key={card.label} className="rounded-[1.125rem] border border-slate-200 bg-slate-50 px-4 py-3.5 md:rounded-[1.25rem]">
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{card.label}</div>
-                <div className="mt-2 text-2xl font-black text-trust-navy md:mt-3">{card.value}</div>
+                <div className="mt-1.5 text-[1.75rem] font-black leading-none text-trust-navy md:text-2xl">{card.value}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mt-6 md:mt-8">
-        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 md:rounded-[2rem] md:p-8">
+      <section className="mt-5 md:mt-7">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-500 md:leading-7">飛距離はキャリーと総距離を切り替えて確認できます。</p>
+              <p className="mt-2 text-sm leading-6 text-slate-500">飛距離はキャリーと総距離を切り替えて確認できます。</p>
             </div>
             <div className="inline-flex rounded-full border border-slate-200 bg-slate-100 p-1 self-start">
               {[
@@ -676,7 +675,7 @@ export const ProSettingDetailPage = () => {
               ))}
             </div>
           </div>
-          <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-slate-200 md:mt-6 md:rounded-[1.5rem]">
+          <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200 md:mt-5 md:rounded-[1.5rem]">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
               {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
@@ -736,26 +735,26 @@ export const ProSettingDetailPage = () => {
                       </div>
                     </div>
 
-                    <div className="md:hidden px-4 py-4">
+                    <div className="md:hidden px-4 py-3">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
                             {formatClubLabel(club.category, club.specLabel)}
                           </div>
-                          <div className="mt-1 text-lg font-black leading-6 text-trust-navy">{club.model}</div>
-                          <div className="mt-1 text-sm font-bold text-slate-600">{club.brand || '未公開'}</div>
+                          <div className="mt-1 text-base font-black leading-5 text-trust-navy">{club.model}</div>
+                          <div className="mt-1 text-sm font-bold leading-5 text-slate-600">{club.brand || '未公開'}</div>
                         </div>
                         <div className="shrink-0 text-right">
                           <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">
                             {distanceMode === 'carry' ? 'キャリー' : '総距離'}
                           </div>
-                          <div className="mt-1 text-lg font-black text-golf-700">
+                          <div className="mt-1 text-base font-black text-golf-700">
                             {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      <div className="mt-2.5 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
                         <div>
                           <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">シャフト</div>
                           <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || '未公開'}</div>
@@ -781,41 +780,41 @@ export const ProSettingDetailPage = () => {
       </section>
 
       {setting.sources.length > 0 && (
-        <section className="mt-8">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+        <section className="mt-6 md:mt-8">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
-                <h2 className="mt-3 text-2xl font-black text-trust-navy">確認ソース</h2>
+                <h2 className="mt-2 text-2xl font-black text-trust-navy">確認ソース</h2>
               </div>
-              <p className="text-sm leading-7 text-slate-500">
+              <p className="text-sm leading-6 text-slate-500">
                 参照元だけを短くまとめています。
               </p>
             </div>
-            <div className="mt-6 grid gap-4">
+            <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200">
               {setting.sources.map((source) => (
                 <a
                   key={`${source.type}-${source.url}`}
                   href={source.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white"
+                  className="flex items-center justify-between gap-4 border-b border-slate-200 bg-white px-4 py-3 transition hover:bg-slate-50 last:border-b-0"
                 >
-                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{formatSourceTypeLabel(source.type)}</div>
-                      <div className="mt-1 text-base font-black text-trust-navy">{source.title}</div>
-                    </div>
+                  <div className="min-w-0">
+                    <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">{formatSourceTypeLabel(source.type)}</div>
+                    <div className="mt-1 truncate text-sm font-black text-trust-navy">{source.title}</div>
+                    {source.notes && <p className="mt-1 text-xs font-bold text-slate-500">{simplifySourceNote(source.notes)}</p>}
+                  </div>
+                  <div className="shrink-0 text-right">
                     {source.checkedAt && (
-                      <div className="text-xs font-bold text-slate-500">
-                        確認日 {new Intl.DateTimeFormat('ja-JP').format(new Date(source.checkedAt))}
+                      <div className="text-[11px] font-bold text-slate-500">
+                        {new Intl.DateTimeFormat('ja-JP').format(new Date(source.checkedAt))}
                       </div>
                     )}
-                  </div>
-                  {source.notes && <p className="mt-3 text-sm leading-7 text-slate-600">{simplifySourceNote(source.notes)}</p>}
-                  <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
-                    ソースを見る
-                    <ArrowRight size={14} />
+                    <div className="mt-1 inline-flex items-center gap-1 text-xs font-black text-golf-700">
+                      開く
+                      <ArrowRight size={12} />
+                    </div>
                   </div>
                 </a>
               ))}
@@ -824,9 +823,9 @@ export const ProSettingDetailPage = () => {
         </section>
       )}
 
-      <section className="mt-8">
-        <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 px-6 py-5 md:px-8">
+      <section className="mt-6 md:mt-8">
+        <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm md:rounded-[2rem]">
+          <div className="border-b border-slate-200 px-4 py-4 md:px-7">
             <h2 className="text-2xl font-black text-trust-navy">動画と公式リンク</h2>
           </div>
 
@@ -842,15 +841,15 @@ export const ProSettingDetailPage = () => {
               />
             </div>
           ) : (
-            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-6 py-10 text-white md:px-8 md:py-12">
+            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-4 py-7 text-white md:px-7 md:py-10">
               <div className="max-w-xl">
-                <h3 className="text-3xl font-black tracking-tight">動画は順次追加しています。</h3>
+                <h3 className="text-2xl font-black tracking-tight">動画は順次追加しています。</h3>
               </div>
             </div>
           )}
 
           {channelLinks.length > 0 && (
-            <div className="border-t border-slate-200 px-6 py-5 md:px-8">
+            <div className="border-t border-slate-200 px-4 py-4 md:px-7">
               <div className="flex flex-wrap gap-3">
                 {channelLinks.map((link) => {
                   const Icon = link.icon;
@@ -882,11 +881,11 @@ export const ProSettingDetailPage = () => {
       </section>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+        <section className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm md:mt-8 md:rounded-[2rem] md:p-7">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">ARTICLES</div>
-              <h2 className="mt-3 text-2xl font-black tracking-tight text-trust-navy">関連記事</h2>
+              <h2 className="mt-2 text-2xl font-black tracking-tight text-trust-navy">関連記事</h2>
             </div>
             <button
               onClick={() => navigate('/articles')}
@@ -896,22 +895,19 @@ export const ProSettingDetailPage = () => {
               <ArrowRight size={14} />
             </button>
           </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
             {relatedArticles.map((article) => (
               <button
                 key={article.slug}
                 onClick={() => navigate(`/articles/${article.slug}`)}
-                className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-left transition hover:-translate-y-0.5 hover:border-golf-300 hover:bg-white"
+                className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-golf-300 hover:bg-white"
               >
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
                   {articleTypeLabel[article.articleType]}
                 </div>
-                <h3 className="mt-3 text-lg font-black tracking-tight text-trust-navy">{article.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{article.excerpt}</p>
-                <div className="mt-3 text-xs font-bold text-slate-500">
-                  この記事から {setting.name} のクラブセッティング詳細ページへ進めます。
-                </div>
-                <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">{article.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{article.excerpt}</p>
+                <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
                   記事を読む
                   <ArrowRight size={14} />
                 </div>
@@ -922,11 +918,11 @@ export const ProSettingDetailPage = () => {
       )}
 
       {driverDetail && (
-        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+        <section className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm md:mt-8 md:rounded-[2rem] md:p-7">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">DRIVER DETAIL</div>
-              <h2 className="mt-3 text-2xl font-black tracking-tight text-trust-navy">
+              <h2 className="mt-2 text-2xl font-black tracking-tight text-trust-navy">
                 {driverDetail.brand} {driverDetail.name}
               </h2>
             </div>
@@ -942,37 +938,37 @@ export const ProSettingDetailPage = () => {
       )}
 
       {(visuals.portraitMedia || (visuals.socialEmbeds && visuals.socialEmbeds.length > 0)) && (
-        <section className="mt-8">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+        <section className="mt-6 md:mt-8">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PHOTO & POSTS</div>
-                <h2 className="mt-3 text-2xl font-black text-trust-navy">写真とSNS投稿</h2>
+                <h2 className="mt-2 text-2xl font-black text-trust-navy">写真とSNS投稿</h2>
               </div>
-              <p className="text-sm leading-7 text-slate-500">
-                再利用可能画像または公式埋め込みのみ掲載しています。表示できない場合は外部リンクを利用してください。
+              <p className="text-sm leading-6 text-slate-500">
+                再利用可能画像または公式埋め込みのみ掲載しています。
               </p>
             </div>
 
             {visuals.portraitMedia && (
-              <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+              <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
                   {visuals.portraitMedia.sourceType === 'instagram_profile' ? 'INSTAGRAM PROFILE' : 'COMMONS PHOTO'}
                 </div>
-                <h3 className="mt-3 text-xl font-black text-trust-navy">{setting.name}の掲載写真</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
+                <h3 className="mt-2 text-lg font-black text-trust-navy">{setting.name}の掲載写真</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
                   {visuals.portraitMedia.sourceType === 'instagram_profile'
-                    ? '公開Instagramアカウントのプロフィール画像を優先表示しています。プロフィール画像が使えない場合のみ、再利用可能画像へフォールバックします。'
-                    : 'Wikimedia Commons で再利用可能と明記された写真のみを使用しています。ページ上にも出典とライセンスを残しています。'}
+                    ? '公開Instagramアカウントの画像を掲載しています。'
+                    : 'Wikimedia Commons の再利用可能画像を掲載しています。'}
                 </p>
-                <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-white p-4">
+                <div className="mt-3 rounded-[1rem] border border-slate-200 bg-white p-3">
                   <AttributionLine attribution={visuals.portraitMedia.attribution} />
                 </div>
                 <a
                   href={visuals.portraitMedia.attribution.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
+                  className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
                 >
                   元画像ページを見る
                   <ArrowRight size={14} />

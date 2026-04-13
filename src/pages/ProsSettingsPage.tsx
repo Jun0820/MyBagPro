@@ -129,16 +129,24 @@ export const ProsSettingsPage = () => {
 
   return (
     <div className="min-h-screen space-y-8 pb-20">
-      <section className="rounded-[2.5rem] border border-slate-200 bg-white px-6 py-10 shadow-sm md:px-10 md:py-14">
-        <div className="mx-auto max-w-5xl">
-          <h1 className="text-4xl font-black tracking-tight text-trust-navy md:text-6xl">
-            有名プロの
-            <br />
-            クラブセッティング一覧
-          </h1>
-          <p className="mt-4 text-sm font-bold text-slate-500">選手名・クラブ名・カテゴリ・ヘッドスピードから絞り込めます。</p>
+      <section className="rounded-[2rem] border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-8 md:py-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">PRO SETTINGS</div>
+              <h1 className="mt-2 text-[2rem] font-black tracking-tight text-trust-navy md:text-5xl">
+                プロのクラブセッティング一覧
+              </h1>
+              <p className="mt-2 text-sm font-bold text-slate-500">
+                名前、カテゴリ、ヘッドスピードで素早く絞り込めます。
+              </p>
+            </div>
+            <div className="inline-flex self-start rounded-full bg-slate-100 px-4 py-2 text-sm font-black text-trust-navy">
+              {filteredProfiles.length}件
+            </div>
+          </div>
 
-          <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-3 md:mt-6 md:p-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="flex items-center gap-3 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 md:flex-1">
                 <Search size={18} className="text-slate-400" />
@@ -154,10 +162,10 @@ export const ProsSettingsPage = () => {
                   className="w-full bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400"
                 />
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 <button
                   onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed })}
-                  className="rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
+                  className="rounded-full bg-trust-navy px-4 py-3 text-sm font-black text-white transition hover:bg-slate-800"
                 >
                   検索
                 </button>
@@ -166,69 +174,81 @@ export const ProsSettingsPage = () => {
                     setSearchText('');
                     applyFilters({ category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
                   }}
-                  className="rounded-full border border-slate-200 px-5 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                  className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-50"
                 >
                   クリア
                 </button>
               </div>
             </div>
-          </div>
+            <div className="mt-4 space-y-3">
+              <div>
+                <div className="mb-2 text-[11px] font-black tracking-[0.14em] text-slate-400">カテゴリ</div>
+                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+                  {profileCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() =>
+                        applyFilters({ search: searchText.trim(), category: category.id, kana: activeKana, headSpeed: activeHeadSpeed })
+                      }
+                      className={`shrink-0 rounded-full px-4 py-2 text-sm font-black transition ${
+                        activeCategory === category.id
+                          ? 'bg-trust-navy text-white'
+                          : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                      }`}
+                    >
+                      {category.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            {profileCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => applyFilters({ search: searchText.trim(), category: category.id, kana: activeKana, headSpeed: activeHeadSpeed })}
-                className={`rounded-full px-4 py-2 text-sm font-black transition ${
-                  activeCategory === category.id
-                    ? 'bg-trust-navy text-white'
-                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </div>
+              <div>
+                <div className="mb-2 text-[11px] font-black tracking-[0.14em] text-slate-400">フリガナ</div>
+                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+                  {kanaGroups.map((group) => (
+                    <button
+                      key={group.id}
+                      onClick={() =>
+                        applyFilters({ search: searchText.trim(), category: activeCategory, kana: group.id, headSpeed: activeHeadSpeed })
+                      }
+                      className={`shrink-0 rounded-full px-4 py-2 text-sm font-black transition ${
+                        activeKana === group.id
+                          ? 'bg-golf-700 text-white'
+                          : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                      }`}
+                    >
+                      {group.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-          <div className="mt-4 flex flex-wrap gap-3">
-            {kanaGroups.map((group) => (
-              <button
-                key={group.id}
-                onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: group.id, headSpeed: activeHeadSpeed })}
-                className={`rounded-full px-4 py-2 text-sm font-black transition ${
-                  activeKana === group.id
-                    ? 'bg-golf-700 text-white'
-                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
-                }`}
-              >
-                {group.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-3">
-            {headSpeedGroups.map((group) => (
-              <button
-                key={group.id}
-                onClick={() => applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: group.id })}
-                className={`rounded-full px-4 py-2 text-sm font-black transition ${
-                  activeHeadSpeed === group.id
-                    ? 'bg-emerald-600 text-white'
-                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
-                }`}
-              >
-                {group.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-6 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-trust-navy inline-flex">
-            該当プロフィール {filteredProfiles.length}
+              <div>
+                <div className="mb-2 text-[11px] font-black tracking-[0.14em] text-slate-400">ヘッドスピード</div>
+                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+                  {headSpeedGroups.map((group) => (
+                    <button
+                      key={group.id}
+                      onClick={() =>
+                        applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: group.id })
+                      }
+                      className={`shrink-0 rounded-full px-4 py-2 text-sm font-black transition ${
+                        activeHeadSpeed === group.id
+                          ? 'bg-emerald-600 text-white'
+                          : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                      }`}
+                    >
+                      {group.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-2.5 md:grid-cols-2 xl:grid-cols-3">
         {isLoading && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
             掲載プロフィールを読み込んでいます...
@@ -256,13 +276,13 @@ export const ProsSettingsPage = () => {
                 });
                 navigate(`/settings/pros/${setting.slug}`);
               }}
-              className="rounded-[1.5rem] border border-slate-200 bg-white p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
+              className="rounded-[1.25rem] border border-slate-200 bg-white p-3.5 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md"
             >
               <div className="flex items-center gap-4">
                 <img
                   src={visuals.portrait}
                   alt={`${setting.name}の写真またはプレースホルダー画像`}
-                  className={`h-14 w-14 rounded-full border border-slate-200 bg-white object-cover ${
+                  className={`h-12 w-12 rounded-full border border-slate-200 bg-white object-cover ${
                     visuals.portraitMedia ? '' : 'p-2'
                   }`}
                   onError={(event) => {
@@ -274,8 +294,8 @@ export const ProsSettingsPage = () => {
                   }}
                 />
                 <div className="min-w-0">
-                  <div className="text-lg font-black text-trust-navy">{setting.name}</div>
-                  {setting.kanaName && <div className="mt-1 text-xs font-bold text-slate-500">{setting.kanaName}</div>}
+                  <div className="text-base font-black text-trust-navy md:text-lg">{setting.name}</div>
+                  {setting.kanaName && <div className="mt-0.5 text-[11px] font-bold text-slate-500 md:text-xs">{setting.kanaName}</div>}
                 </div>
                 <ArrowRight size={16} className="ml-auto shrink-0 text-slate-400" />
               </div>

@@ -222,8 +222,8 @@ export const Home = () => {
   };
 
   return (
-    <div className="min-h-screen space-y-10 pb-20 md:space-y-14">
-      <section className="relative isolate overflow-hidden rounded-[2.25rem] shadow-[0_24px_80px_rgba(15,23,42,0.18)]">
+    <div className="min-h-screen space-y-8 pb-16 md:space-y-12">
+      <section className="relative isolate overflow-hidden rounded-[2rem] shadow-[0_18px_60px_rgba(15,23,42,0.18)]">
         <img
           src={heroImage}
           alt="ゴルフバッグとクラブセッティングのイメージ"
@@ -232,24 +232,24 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative mx-auto flex min-h-[560px] max-w-7xl items-center px-5 py-12 md:min-h-[680px] md:px-10">
+        <div className="relative mx-auto flex min-h-[500px] max-w-7xl items-center px-4 py-8 md:min-h-[640px] md:px-10 md:py-12">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/85 backdrop-blur">
               <Star size={12} className="text-emerald-300" />
               PRO SETTINGS
             </div>
 
-            <h1 className="mt-5 max-w-3xl text-[2.1rem] font-black leading-[1.12] tracking-tight text-white md:mt-6 md:text-6xl">
-              プロのセッティングを見て、
+            <h1 className="mt-4 max-w-3xl text-[2rem] font-black leading-[1.08] tracking-tight text-white md:mt-6 md:text-6xl">
+              プロの14本から、
               <br className="hidden md:block" />
-              次の1本を決める。
+              自分の次の1本を見つける。
             </h1>
 
-            <p className="mt-4 max-w-xl text-sm leading-6 text-white/90 md:mt-5 md:text-lg md:leading-8">
-              選手名やカテゴリからすぐ探して、比較や診断につなげられます。
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/90 md:mt-5 md:text-lg md:leading-8">
+              プロのクラブを見て、条件で絞って、比較や診断まで一気につなげられます。
             </p>
 
-            <div className="mt-6 max-w-2xl rounded-[1.5rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-8 md:p-4">
+            <div className="mt-5 max-w-2xl rounded-[1.5rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-7 md:p-4">
               <div className="flex flex-col gap-3 md:flex-row md:items-center">
                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1rem] bg-white px-4 py-3 shadow-lg shadow-slate-950/15">
                   <Search className="shrink-0 text-slate-400" size={20} />
@@ -270,12 +270,12 @@ export const Home = () => {
                   検索する
                 </button>
               </div>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
                 {profileCategories.map((category) => (
                   <button
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
-                    className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
+                    className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-bold transition ${
                       activeCategory === category.id
                         ? 'bg-white text-trust-navy'
                         : 'border border-white/15 bg-white/10 text-white/80 hover:bg-white/20'
@@ -286,12 +286,12 @@ export const Home = () => {
                 ))}
               </div>
 
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-2 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
                 {kanaGroups.map((group) => (
                   <button
                     key={group.id}
                     onClick={() => setActiveKana(group.id)}
-                    className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
+                    className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-bold transition ${
                       activeKana === group.id
                         ? 'bg-emerald-300 text-trust-navy'
                         : 'border border-white/15 bg-white/10 text-white/80 hover:bg-white/20'
@@ -303,7 +303,7 @@ export const Home = () => {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-2.5 sm:mt-7 sm:flex-row">
               <button
                 onClick={() => {
                   trackEvent('start_ai_diagnosis', {
@@ -312,7 +312,7 @@ export const Home = () => {
                   });
                   navigate('/diagnosis');
                 }}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-base font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-600 md:px-8 md:py-4 md:text-lg"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-5 py-3 text-sm font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-600 md:px-8 md:py-4 md:text-lg"
               >
                 <WandSparkles size={18} />
                 診断を始める
@@ -326,7 +326,7 @@ export const Home = () => {
                   });
                   navigate('/settings/pros');
                 }}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-base font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-700 md:px-8 md:py-4 md:text-lg"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-700 md:px-8 md:py-4 md:text-lg"
               >
                 <Users size={18} />
                 プロのセッティングを見る
@@ -337,7 +337,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="rounded-[2.25rem] bg-white px-5 py-10 shadow-sm md:px-10 md:py-14">
+      <section className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
@@ -345,8 +345,8 @@ export const Home = () => {
               <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">
                 今週の大会で追うべき注目セッティング
               </h2>
-              <p className="mt-3 text-sm leading-7 text-gray-600 md:text-base">
-                2026年4月10日時点の開催中大会とオフ週の主要ツアーから、いま見ておきたい選手のクラブセッティング記事をまとめています。
+              <p className="mt-3 text-sm leading-6 text-gray-600 md:text-base md:leading-7">
+                今週の大会で見ておきたい選手のセッティング特集を、ツアー別にまとめています。
               </p>
             </div>
 
@@ -359,7 +359,7 @@ export const Home = () => {
             </button>
           </div>
 
-          <div className="mt-8 grid gap-4 xl:grid-cols-4">
+          <div className="mt-6 grid gap-3 xl:grid-cols-4">
             {tournamentSpotlights.map((spotlight) => (
               <button
                 key={spotlight.articleSlug}
@@ -371,7 +371,7 @@ export const Home = () => {
                   });
                   navigate(`/articles/${spotlight.articleSlug}`);
                 }}
-                className="group rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(160deg,#ffffff_0%,#f8fafc_55%,#eff6ff_100%)] p-5 text-left transition-all hover:-translate-y-1 hover:border-golf-300 hover:shadow-lg"
+                className="group rounded-[1.5rem] border border-slate-200 bg-[linear-gradient(160deg,#ffffff_0%,#f8fafc_55%,#eff6ff_100%)] p-4 text-left transition-all hover:-translate-y-1 hover:border-golf-300 hover:shadow-lg"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -407,14 +407,14 @@ export const Home = () => {
         </div>
       </section>
 
-      <section id="pro-settings" className="rounded-[2.25rem] bg-white px-5 py-10 shadow-sm md:px-10 md:py-14">
+      <section id="pro-settings" className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.18em] text-emerald-600">POPULAR SETTINGS</div>
               <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">よく見られているプロのセッティング</h2>
-              <p className="mt-3 text-sm leading-7 text-gray-600 md:text-base">
-                検索されやすい有名選手のページから、いま使われているクラブ構成をすぐ確認できます。
+              <p className="mt-3 text-sm leading-6 text-gray-600 md:text-base md:leading-7">
+                よく見られている選手から、いま使っているクラブ構成をすぐ確認できます。
               </p>
             </div>
 
@@ -427,13 +427,13 @@ export const Home = () => {
             </button>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {featuredProfiles.map((pro) => (
               <article
                 key={pro.slug}
-                className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="flex items-center gap-4 border-b border-gray-100 bg-white p-5">
+                <div className="flex items-center gap-4 border-b border-gray-100 bg-white p-4">
                   <img
                     src={getProfileVisuals(pro.slug, pro.instagramHandle, { preferInstagramPortrait: true }).portrait}
                     alt={`${pro.name}のプレースホルダー画像`}
@@ -454,11 +454,11 @@ export const Home = () => {
                       </div>
                       <div className="text-[11px] font-bold text-slate-500">{pro.contractLabel}</div>
                     </div>
-                    <h3 className="mt-2 text-xl font-black text-gray-900">{pro.name}</h3>
-                    <p className="mt-1 line-clamp-2 text-sm leading-6 text-gray-600">{pro.tagline}</p>
+                    <h3 className="mt-2 text-lg font-black text-gray-900">{pro.name}</h3>
+                    <p className="mt-1 line-clamp-2 text-sm leading-5 text-gray-600">{pro.tagline}</p>
                   </div>
                 </div>
-                <div className="p-5">
+                <div className="p-4">
                   <div className="grid gap-2">
                     {pro.clubs.slice(0, 3).map((club) => (
                       <div
@@ -491,37 +491,36 @@ export const Home = () => {
         </div>
       </section>
 
-      <section id="features" className="rounded-[2.25rem] bg-white px-6 py-12 shadow-sm md:px-10 md:py-16">
+      <section id="features" className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <div className="text-[11px] font-black tracking-[0.16em] text-emerald-600">WHY MY BAG PRO</div>
-            <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">探すだけで終わらせず、比較と判断まで進める</h2>
-            <p className="mt-4 text-base leading-7 text-gray-600">
-              My Bag Pro は、プロの14本を眺めるだけのサイトではなく、
-              自分に近い条件で候補を見つけて、次の1本の意思決定まで進めるための入口です。
+            <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">探す、絞る、比較するを1つに</h2>
+            <p className="mt-4 text-sm leading-6 text-gray-600 md:text-base md:leading-7">
+              まずはプロの14本を知り、自分に近い条件で候補を絞って、次の1本の判断につなげます。
             </p>
           </div>
 
-          <div className="mt-12 grid gap-10 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
                 <article key={feature.title} className="text-center">
-                  <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+                  <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm">
                     <img
                       src={feature.image}
                       alt={`${feature.title}をイメージしたプレースホルダー画像`}
-                      className="h-52 w-full object-cover"
+                      className="h-40 w-full object-cover"
                     />
-                    <div className="p-6">
-                      <div className={`mx-auto flex h-24 w-24 items-center justify-center rounded-full ${feature.accent}`}>
-                        <Icon size={40} />
+                    <div className="p-5">
+                      <div className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${feature.accent}`}>
+                        <Icon size={28} />
                       </div>
-                      <div className="mt-6 text-[11px] font-black tracking-[0.16em] text-slate-400">
+                      <div className="mt-4 text-[11px] font-black tracking-[0.16em] text-slate-400">
                         STEP {feature.step}
                       </div>
-                      <h3 className="mt-3 text-xl font-black text-gray-900">{feature.title}</h3>
-                      <p className="mt-4 text-sm leading-7 text-gray-600">{feature.description}</p>
+                      <h3 className="mt-2 text-xl font-black text-gray-900">{feature.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-gray-600">{feature.description}</p>
                       <button
                         onClick={() => navigate(feature.ctaHref)}
                         className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50"
