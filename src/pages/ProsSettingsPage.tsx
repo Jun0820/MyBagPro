@@ -130,7 +130,7 @@ export const ProsSettingsPage = () => {
   return (
     <div className="min-h-screen space-y-8 pb-20">
       <section className="rounded-[2rem] border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-8 md:py-10">
-        <div className="mx-auto max-w-6xl">
+        <div>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">PRO SETTINGS</div>

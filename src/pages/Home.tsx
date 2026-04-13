@@ -232,7 +232,7 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative mx-auto flex min-h-[500px] max-w-7xl items-center px-4 py-8 md:min-h-[640px] md:px-10 md:py-12">
+        <div className="relative flex min-h-[500px] items-center px-4 py-8 md:min-h-[640px] md:px-8 md:py-12">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/85 backdrop-blur">
               <Star size={12} className="text-emerald-300" />
@@ -338,7 +338,7 @@ export const Home = () => {
       </section>
 
       <section className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
-        <div className="mx-auto max-w-7xl">
+        <div>
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.18em] text-amber-600">TOURNAMENT SPOTLIGHT</div>
@@ -408,7 +408,7 @@ export const Home = () => {
       </section>
 
       <section id="pro-settings" className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
-        <div className="mx-auto max-w-7xl">
+        <div>
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.18em] text-emerald-600">POPULAR SETTINGS</div>
@@ -492,7 +492,7 @@ export const Home = () => {
       </section>
 
       <section id="features" className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
-        <div className="mx-auto max-w-7xl">
+        <div>
           <div className="text-center">
             <div className="text-[11px] font-black tracking-[0.16em] text-emerald-600">WHY MY BAG PRO</div>
             <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">探す、絞る、比較するを1つに</h2>

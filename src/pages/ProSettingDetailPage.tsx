@@ -729,9 +729,6 @@ export const ProSettingDetailPage = () => {
                         <div className="text-sm font-bold text-slate-600">
                           {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
                         </div>
-                        {club.sourceNote && (
-                          <div className="mt-1 text-[10px] font-bold text-slate-400">{simplifySourceNote(club.sourceNote)}</div>
-                        )}
                       </div>
                     </div>
 
@@ -767,9 +764,6 @@ export const ProSettingDetailPage = () => {
                         </div>
                       </div>
 
-                      {club.sourceNote && (
-                        <div className="mt-2 text-[11px] font-bold text-slate-400">{simplifySourceNote(club.sourceNote)}</div>
-                      )}
                     </div>
                   </button>
                 );

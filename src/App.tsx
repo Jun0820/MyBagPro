@@ -43,7 +43,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:px-8">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:px-6">
             <a href="/" className="min-w-0 shrink cursor-pointer">
               <img
                 src="/branding/logo-wordmark.png"
@@ -84,7 +84,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      <main className="relative z-10 mx-auto max-w-7xl px-4 pb-24 pt-8 md:px-8">
+      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-6 md:px-6 md:pt-8">
         {children}
       </main>
 
