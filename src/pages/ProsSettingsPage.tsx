@@ -158,7 +158,7 @@ export const ProsSettingsPage = () => {
                       applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
                     }
                   }}
-                  placeholder="選手名・クラブ名で検索"
+                  placeholder="選手名で検索"
                   className="w-full bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400"
                 />
               </div>

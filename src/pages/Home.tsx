@@ -246,7 +246,7 @@ export const Home = () => {
             </h1>
 
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/90 md:mt-5 md:text-lg md:leading-8">
-              プロのクラブを見て、条件で絞って、比較や診断まで一気につなげられます。
+              選手名やカテゴリから探して、比較や診断まで一気につなげられます。
             </p>
 
             <div className="mt-5 max-w-2xl rounded-[1.5rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-7 md:p-4">
@@ -259,7 +259,7 @@ export const Home = () => {
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') handleSearch();
                     }}
-                    placeholder="選手名・クラブ名で検索"
+                    placeholder="選手名で検索"
                     className="min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400 md:text-base"
                   />
                 </div>
