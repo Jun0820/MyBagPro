@@ -514,7 +514,7 @@ export const ProSettingDetailPage = () => {
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
   const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: true });
-  const profileIntro = `${setting.name}の${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}クラブセッティングを掲載しています。${driverClub ? `使用ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `使用ボールは${setting.ball}。` : ''}契約メーカーは${setting.contractDisplay}です。`;
+  const profileIntro = `${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}掲載。${driverClub ? `ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `ボールは${setting.ball}。` : ''}${setting.contractDisplay ? `契約は${setting.contractDisplay}。` : ''}`;
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
@@ -539,48 +539,48 @@ export const ProSettingDetailPage = () => {
 
       <section className="overflow-hidden rounded-[2rem] bg-slate-950 text-white">
         <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="px-6 py-10 md:px-10 md:py-14">
+          <div className="px-5 py-7 md:px-10 md:py-14">
             <div className="max-w-4xl">
-              <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black text-cyan-200">
+              <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-cyan-200">
                 {setting.type}
               </div>
-              {setting.kanaName && <div className="mt-5 text-sm font-bold text-white/70">{setting.kanaName}</div>}
-              <h1 className="mt-2 text-4xl font-black tracking-tight md:text-6xl">
+              {setting.kanaName && <div className="mt-4 text-xs font-bold text-white/70 md:text-sm">{setting.kanaName}</div>}
+              <h1 className="mt-2 text-3xl font-black tracking-tight leading-tight md:text-6xl">
                 {setting.name}
-                <span className="ml-3 text-lg font-bold text-white/75 md:text-2xl">{setting.age ? `(${setting.age})` : ''}</span>
+                <span className="ml-2 text-base font-bold text-white/75 md:ml-3 md:text-2xl">{setting.age ? `(${setting.age})` : ''}</span>
               </h1>
-              <p className="mt-4 text-lg font-bold text-cyan-200">{setting.tagline}</p>
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{setting.summary}</p>
+              <p className="mt-3 text-base font-bold leading-6 text-cyan-200 md:mt-4 md:text-lg">{setting.tagline}</p>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:mt-5 md:text-base md:leading-7">{setting.summary}</p>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-5 grid grid-cols-2 gap-3 md:mt-8 md:gap-4 md:grid-cols-2 xl:grid-cols-4">
                 {profileFacts.map((fact) => (
-                  <div key={fact.label} className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                  <div key={fact.label} className="rounded-[1.125rem] border border-white/10 bg-white/5 px-3 py-3 md:rounded-[1.5rem] md:px-4 md:py-4">
                     <div className="text-[11px] font-black text-slate-400">{fact.label}</div>
-                    <div className="mt-2 text-base font-black text-white">{fact.value}</div>
+                    <div className="mt-1.5 text-sm font-black leading-5 text-white md:mt-2 md:text-base">{fact.value}</div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
+              <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/5 p-4 md:mt-8 md:rounded-[1.75rem] md:p-5">
                 <div className="text-[11px] font-black tracking-[0.14em] text-cyan-200">掲載概要</div>
-                <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-200">{profileIntro}</p>
-                <div className="mt-4 flex flex-wrap gap-3">
+                <p className="mt-2.5 max-w-3xl text-sm leading-6 text-slate-200 md:mt-3 md:leading-7">{profileIntro}</p>
+                <div className="mt-4 flex flex-wrap gap-2 md:gap-3">
                   <button
                     onClick={() => navigate(`/settings/pros?category=${setting.category}`)}
-                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/15 md:px-4 md:py-2 md:text-sm"
                   >
                     {setting.categoryLabel}をもっと見る
                   </button>
                   <button
                     onClick={() => navigate('/settings/pros')}
-                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/15 md:px-4 md:py-2 md:text-sm"
                   >
                     一覧で探す
                   </button>
                   {relatedArticles.length > 0 && (
                     <button
                       onClick={() => navigate(`/articles/${relatedArticles[0].slug}`)}
-                      className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                      className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/15 md:px-4 md:py-2 md:text-sm"
                     >
                       関連記事へ
                     </button>
@@ -628,36 +628,36 @@ export const ProSettingDetailPage = () => {
         </div>
       </section>
 
-      <section className="mt-8">
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+      <section className="mt-6 md:mt-8">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 md:rounded-[2rem] md:p-8">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
-              <h2 className="mt-3 text-2xl font-black text-trust-navy">飛距離とスタッツ</h2>
+              <h2 className="mt-2 text-2xl font-black text-trust-navy md:mt-3">飛距離とスタッツ</h2>
             </div>
-            <p className="text-sm leading-7 text-slate-500">
-              公開ソースで確認できた値のみ掲載しています。単位や測定系はソースメモを確認してください。
+            <p className="text-sm leading-6 text-slate-500 md:leading-7">
+              公開ソース確認分のみ掲載。
             </p>
           </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:mt-6 md:gap-4 md:grid-cols-3">
             {statCards.map((card) => (
-              <div key={card.label} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+              <div key={card.label} className="rounded-[1.125rem] bg-slate-50 px-4 py-4 md:rounded-[1.5rem] md:border md:border-slate-200 md:p-5">
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{card.label}</div>
-                <div className="mt-3 text-2xl font-black text-trust-navy">{card.value}</div>
+                <div className="mt-2 text-2xl font-black text-trust-navy md:mt-3">{card.value}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mt-8">
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+      <section className="mt-6 md:mt-8">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 md:rounded-[2rem] md:p-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
-              <p className="mt-2 text-sm leading-7 text-slate-500">飛距離はキャリーと総距離を切り替えて確認できます。</p>
+              <p className="mt-2 text-sm leading-6 text-slate-500 md:leading-7">飛距離はキャリーと総距離を切り替えて確認できます。</p>
             </div>
-            <div className="inline-flex rounded-full border border-slate-200 bg-slate-100 p-1">
+            <div className="inline-flex rounded-full border border-slate-200 bg-slate-100 p-1 self-start">
               {[
                 { id: 'carry', label: 'キャリー' },
                 { id: 'total', label: '総距離' },
@@ -676,7 +676,7 @@ export const ProSettingDetailPage = () => {
               ))}
             </div>
           </div>
-          <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-200">
+          <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-slate-200 md:mt-6 md:rounded-[1.5rem]">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
               {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
@@ -707,35 +707,26 @@ export const ProSettingDetailPage = () => {
                     }}
                     className={`w-full text-left ${isDriver && driverDetail ? 'transition-colors hover:bg-cyan-50' : ''}`}
                   >
-                    <div className="grid gap-3 px-4 py-4 md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr] md:items-center">
+                    <div className="hidden gap-3 px-4 py-4 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr] md:items-center">
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">クラブ</div>
                         <div className="text-sm font-black text-trust-navy">{formatClubLabel(club.category, club.specLabel)}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">メーカー</div>
                         <div className="text-sm font-bold text-slate-600">{club.brand || '未公開'}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">クラブ名</div>
                         <div className="text-sm font-black text-trust-navy">{club.model}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">シャフト</div>
                         <div className="text-sm font-bold text-slate-600">{shaftLabel || '未公開'}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">ロフト</div>
                         <div className="text-sm font-bold text-slate-600">{club.loft || '未公開'}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">硬さ</div>
                         <div className="text-sm font-bold text-slate-600">{club.shaftFlex || '未公開'}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 md:hidden">
-                          {distanceMode === 'carry' ? 'キャリー' : '総距離'}
-                        </div>
                         <div className="text-sm font-bold text-slate-600">
                           {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
                         </div>
@@ -743,6 +734,43 @@ export const ProSettingDetailPage = () => {
                           <div className="mt-1 text-[10px] font-bold text-slate-400">{simplifySourceNote(club.sourceNote)}</div>
                         )}
                       </div>
+                    </div>
+
+                    <div className="md:hidden px-4 py-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <div className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+                            {formatClubLabel(club.category, club.specLabel)}
+                          </div>
+                          <div className="mt-1 text-lg font-black leading-6 text-trust-navy">{club.model}</div>
+                          <div className="mt-1 text-sm font-bold text-slate-600">{club.brand || '未公開'}</div>
+                        </div>
+                        <div className="shrink-0 text-right">
+                          <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">
+                            {distanceMode === 'carry' ? 'キャリー' : '総距離'}
+                          </div>
+                          <div className="mt-1 text-lg font-black text-golf-700">
+                            {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                        <div>
+                          <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">シャフト</div>
+                          <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || '未公開'}</div>
+                        </div>
+                        <div>
+                          <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">ロフト / 硬さ</div>
+                          <div className="mt-0.5 font-bold leading-5 text-slate-600">
+                            {[club.loft || '未公開', club.shaftFlex || '未公開'].join(' / ')}
+                          </div>
+                        </div>
+                      </div>
+
+                      {club.sourceNote && (
+                        <div className="mt-2 text-[11px] font-bold text-slate-400">{simplifySourceNote(club.sourceNote)}</div>
+                      )}
                     </div>
                   </button>
                 );
