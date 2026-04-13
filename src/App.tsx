@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { User, LogIn, Loader2, LogOut, Search, ShieldCheck, Stethoscope, UserRoundCog } from 'lucide-react';
+import { User, LogIn, ShieldCheck, Stethoscope } from 'lucide-react';
 import { DiagnosisProvider, useDiagnosis } from './context/DiagnosisContext';
 import { AccountAuth } from './features/auth/AccountAuth';
 import { LegalPage } from './components/LegalPage';
@@ -20,27 +20,13 @@ import { ArticleDetailPage } from './pages/ArticleDetailPage';
 import BallDiagnosisApp from './pages/ball-diagnosis/BallDiagnosisApp';
 import { Sitemap } from './pages/Sitemap';
 import { useState, useEffect } from 'react';
-import { INITIAL_PROFILE } from './types/golf';
-import { supabase } from './lib/supabase';
 import { SeoManager } from './components/SeoManager';
 
 // Layout Component (Internal to App for simplicity, could be separate)
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { user, profile, setUser, setProfile, showAuth, setShowAuth, saveStatus, resetDiagnosis } = useDiagnosis();
+  const { user, profile, setUser, setProfile, showAuth, setShowAuth } = useDiagnosis();
   const [showLegal, setShowLegal] = useState<'privacy' | 'terms' | null>(null);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const navigationItems = [
-    { label: 'プロセッティング', href: '/settings/pros', icon: ShieldCheck },
-    { label: '診断', href: '/diagnosis', icon: Stethoscope },
-    { label: 'マイページ', href: '/mypage', icon: UserRoundCog },
-  ];
-
-  const isActive = (href: string) => {
-    if (href === '/') return location.pathname === '/';
-    return location.pathname.startsWith(href);
-  };
 
   const handleMyPageClick = () => {
     if (user.isLoggedIn) {
@@ -50,24 +36,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const handleLogout = async () => {
-    if (!window.confirm('ログアウトしますか？\n保存されていない変更は失われます。')) return;
-    await supabase.auth.signOut();
-    setUser({ 
-        id: '',
-        email: '',
-        name: '',
-        memberSince: '',
-        isLoggedIn: false,
-        history: []
-    });
-    setProfile(INITIAL_PROFILE);
-    localStorage.removeItem('mybagpro_user');
-    localStorage.removeItem('mybagpro_profile');
-    resetDiagnosis();
-    navigate('/');
-  };
-
   return (
     <div className="min-h-screen w-full font-sans relative bg-slate-50/50 flex flex-col">
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0">
@@ -75,89 +43,44 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-3 md:px-8">
-          <div className="flex items-center justify-between gap-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-8">
             <a href="/" className="flex items-center gap-3 cursor-pointer group min-w-0">
               <img
                 src="/branding/logo-wordmark.png"
                 alt="My Bag Pro"
                 className="h-11 w-auto shrink-0 rounded-xl shadow-sm md:h-12"
               />
-              <div className="min-w-0 hidden sm:block">
-                <div className="mt-1 text-[11px] font-bold text-slate-500">診断・比較・購入までを、ひとつの流れで。</div>
-              </div>
             </a>
 
-            <div className="flex items-center gap-3">
-              <div className="hidden xl:flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-[11px] font-bold text-slate-500">
-                {saveStatus === 'saving' ? (
-                  <Loader2 size={12} className="animate-spin text-golf-500" />
-                ) : (
-                  <div
-                    className={`h-2 w-2 rounded-full ${
-                      saveStatus === 'saved'
-                        ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]'
-                        : saveStatus === 'error'
-                          ? 'bg-red-500'
-                          : 'bg-slate-300'
-                    }`}
-                  />
-                )}
-                <span>{saveStatus === 'saving' ? '保存中' : user.isLoggedIn ? 'アカウント保存' : 'ローカル保存'}</span>
-              </div>
-
+            <nav className="flex items-center gap-2">
               <button
                 onClick={() => navigate('/settings/pros')}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:border-golf-300 hover:text-golf-700"
-                title="プロセッティングを探す"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700"
               >
-                <Search size={18} />
+                <ShieldCheck size={15} />
+                <span className="hidden sm:inline">プロセッティング</span>
+              </button>
+
+              <button
+                onClick={() => navigate('/diagnosis')}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700"
+              >
+                <Stethoscope size={15} />
+                <span className="hidden sm:inline">診断</span>
               </button>
 
               <button
                 onClick={handleMyPageClick}
-                className={`group flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-black active:scale-95 transition-all duration-300 ${
-                  user.isLoggedIn 
-                  ? 'bg-slate-900 text-white hover:bg-slate-800' 
-                  : 'bg-gradient-to-r from-golf-500 to-golf-600 text-white hover:shadow-golf-500/30'
+                className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-black active:scale-95 transition-all duration-300 ${
+                  user.isLoggedIn
+                    ? 'bg-slate-900 text-white hover:bg-slate-800'
+                    : 'bg-gradient-to-r from-golf-500 to-golf-600 text-white hover:shadow-golf-500/30'
                 }`}
               >
-                {user.isLoggedIn ? <User size={14} className="group-hover:scale-110 transition-transform" /> : <LogIn size={14} />} 
+                {user.isLoggedIn ? <User size={14} className="group-hover:scale-110 transition-transform" /> : <LogIn size={14} />}
                 <span>{user.isLoggedIn ? 'マイページ' : 'ログイン'}</span>
-                {user.isLoggedIn && <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />}
               </button>
-
-              {user.isLoggedIn && (
-                <button
-                  onClick={handleLogout}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-red-100 bg-red-50 text-red-500 transition-all active:scale-95 hover:bg-red-100 group"
-                  title="ログアウト"
-                >
-                  <LogOut size={16} className="group-hover:scale-110 transition-transform" />
-                </button>
-              )}
-            </div>
-          </div>
-
-          <nav className="flex gap-2 overflow-x-auto pb-1">
-            {navigationItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.href}
-                  onClick={() => navigate(item.href)}
-                  className={`inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition-colors ${
-                    isActive(item.href)
-                      ? 'bg-trust-navy text-white'
-                      : 'text-slate-600 hover:bg-slate-100'
-                  }`}
-                >
-                  <Icon size={14} />
-                  {item.label}
-                </button>
-              );
-            })}
-          </nav>
+            </nav>
         </div>
       </header>
 

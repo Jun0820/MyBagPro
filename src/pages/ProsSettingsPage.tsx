@@ -18,7 +18,6 @@ const kanaGroups = [
   { id: 'ya', label: 'や' },
   { id: 'ra', label: 'ら' },
   { id: 'wa', label: 'わ' },
-  { id: 'latin', label: 'A-Z' },
 ] as const;
 
 const headSpeedGroups = [
@@ -40,7 +39,7 @@ const getKanaGroup = (name: string) => {
   const normalized = toHiragana(name.trim());
   const first = normalized.charAt(0);
   if (!first) return 'all';
-  if (/[A-Za-z]/.test(first)) return 'latin';
+  if (/[A-Za-z]/.test(first)) return 'a';
   if ('あいうえおぁぃぅぇぉ'.includes(first)) return 'a';
   if ('かがきぎくぐけげこご'.includes(first)) return 'ka';
   if ('さざしじすずせぜそぞ'.includes(first)) return 'sa';
