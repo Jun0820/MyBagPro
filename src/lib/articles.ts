@@ -29,6 +29,20 @@ interface FetchArticlesOptions {
   excludeSlug?: string;
 }
 
+interface FallbackArticleRow {
+  slug: string;
+  title: string;
+  excerpt: string;
+  body: string;
+  article_type: 'news' | 'update' | 'column';
+  published_at: string | null;
+  season_year: number | null;
+  related_profile_id?: string | null;
+}
+
+const FALLBACK_ARTICLES_PATH = '/published-articles-fallback.json';
+let fallbackArticlesPromise: Promise<PublicArticle[]> | null = null;
+
 const mapArticle = (row: ArticleRow): PublicArticle => ({
   slug: row.slug,
   title: row.title,
@@ -40,10 +54,34 @@ const mapArticle = (row: ArticleRow): PublicArticle => ({
   relatedProfileId: row.related_profile_id,
 });
 
+const loadPublishedArticlesFallback = async (): Promise<PublicArticle[]> => {
+  if (fallbackArticlesPromise) return fallbackArticlesPromise;
+
+  fallbackArticlesPromise = (async () => {
+    if (typeof fetch !== 'function') return [];
+
+    try {
+      const response = await fetch(FALLBACK_ARTICLES_PATH, { cache: 'force-cache' });
+      if (!response.ok) return [];
+      const payload = (await response.json()) as { articles?: FallbackArticleRow[] };
+      if (!payload.articles?.length) return [];
+      return payload.articles.map((row) => mapArticle(row as ArticleRow));
+    } catch (error) {
+      console.error('Failed to load published articles fallback:', error);
+      return [];
+    }
+  })();
+
+  return fallbackArticlesPromise;
+};
+
 export const fetchPublishedArticles = async (
   options: FetchArticlesOptions = {}
 ): Promise<PublicArticle[]> => {
-  if (!isSupabaseConfigured) return [];
+  if (!isSupabaseConfigured) {
+    const fallback = await loadPublishedArticlesFallback();
+    return options.excludeSlug ? fallback.filter((article) => article.slug !== options.excludeSlug).slice(0, options.limit ?? 50) : fallback.slice(0, options.limit ?? 50);
+  }
 
   const { limit = 50, excludeSlug } = options;
 
@@ -61,7 +99,11 @@ export const fetchPublishedArticles = async (
 
     const { data, error } = await query;
 
-    if (error || !data) return [];
+    if (error || !data) {
+      const fallback = await loadPublishedArticlesFallback();
+      const filtered = options.excludeSlug ? fallback.filter((article) => article.slug !== options.excludeSlug) : fallback;
+      return filtered.slice(0, limit);
+    }
     const articles = (data as ArticleRow[]).map(mapArticle);
     const profileIds = [...new Set(articles.map((article) => article.relatedProfileId).filter(Boolean))] as string[];
 
@@ -86,12 +128,17 @@ export const fetchPublishedArticles = async (
     });
   } catch (error) {
     console.error('Failed to fetch published articles:', error);
-    return [];
+    const fallback = await loadPublishedArticlesFallback();
+    const filtered = excludeSlug ? fallback.filter((article) => article.slug !== excludeSlug) : fallback;
+    return filtered.slice(0, limit);
   }
 };
 
 export const fetchPublishedArticleBySlug = async (slug: string): Promise<PublicArticle | null> => {
-  if (!isSupabaseConfigured) return null;
+  if (!isSupabaseConfigured) {
+    const fallback = await loadPublishedArticlesFallback();
+    return fallback.find((article) => article.slug === slug) || null;
+  }
 
   try {
     const { data, error } = await supabase
@@ -101,7 +148,10 @@ export const fetchPublishedArticleBySlug = async (slug: string): Promise<PublicA
       .eq('published', true)
       .maybeSingle();
 
-    if (error || !data) return null;
+    if (error || !data) {
+      const fallback = await loadPublishedArticlesFallback();
+      return fallback.find((article) => article.slug === slug) || null;
+    }
     const article = mapArticle(data as ArticleRow);
 
     if (!article.relatedProfileId) return article;
@@ -119,6 +169,7 @@ export const fetchPublishedArticleBySlug = async (slug: string): Promise<PublicA
     };
   } catch (error) {
     console.error('Failed to fetch published article:', error);
-    return null;
+    const fallback = await loadPublishedArticlesFallback();
+    return fallback.find((article) => article.slug === slug) || null;
   }
 };

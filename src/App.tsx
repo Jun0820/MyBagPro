@@ -37,25 +37,26 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="min-h-screen w-full font-sans relative bg-slate-50/50 flex flex-col">
+    <div className="min-h-screen w-full overflow-x-hidden font-sans relative bg-slate-50/50 flex flex-col">
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#0f172a_1px,transparent_1px)] [background-size:24px_24px]"></div>
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 md:gap-3 md:px-6">
-            <a href="/" className="w-[110px] shrink-0 cursor-pointer md:w-auto">
+      <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
+        <div className="mx-auto w-full max-w-6xl px-3 py-3 sm:px-4 md:px-6">
+          <div className="grid w-full grid-cols-4 items-center gap-2 md:flex md:gap-3">
+            <a href="/" className="min-w-0 cursor-pointer md:w-auto">
               <img
                 src="/branding/logo-wordmark.png"
                 alt="My Bag Pro"
-                className="h-9 w-full rounded-xl object-contain shadow-sm md:h-11 md:w-auto"
+                className="h-11 w-full rounded-xl object-contain shadow-sm md:h-11 md:w-auto"
               />
             </a>
 
-            <nav className="grid min-w-0 flex-1 grid-cols-3 gap-2 md:flex md:flex-1 md:justify-end">
+            <nav className="col-span-3 grid min-w-0 grid-cols-3 gap-2 md:flex md:flex-1 md:justify-end">
               <button
                 onClick={() => navigate('/settings/pros')}
-                className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-2 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
+                className="inline-flex h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full border border-slate-200 bg-white px-2 text-[10px] font-black leading-none text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
               >
                 <ShieldCheck size={14} />
                 <span>プロ</span>
@@ -63,7 +64,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
               <button
                 onClick={() => navigate('/diagnosis')}
-                className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-2 text-xs font-black text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
+                className="inline-flex h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full border border-slate-200 bg-white px-2 text-[10px] font-black leading-none text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:px-4 sm:text-sm"
               >
                 <Stethoscope size={14} />
                 <span>診断</span>
@@ -71,7 +72,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
               <button
                 onClick={handleMyPageClick}
-                className={`group inline-flex h-10 items-center justify-center gap-1.5 rounded-full px-2 text-xs font-black active:scale-95 transition-all duration-300 sm:gap-2 sm:px-4 sm:text-sm ${
+                className={`group inline-flex h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full px-2 text-[10px] font-black leading-none active:scale-95 transition-all duration-300 sm:gap-2 sm:px-4 sm:text-sm ${
                   user.isLoggedIn
                     ? 'bg-slate-900 text-white hover:bg-slate-800'
                     : 'bg-gradient-to-r from-golf-500 to-golf-600 text-white hover:shadow-golf-500/30'
@@ -81,10 +82,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <span>{user.isLoggedIn ? 'マイページ' : 'ログイン'}</span>
               </button>
             </nav>
+          </div>
         </div>
       </header>
 
-      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-4 md:px-6 md:pt-8">
+      <main className="relative z-10 mx-auto w-full max-w-6xl overflow-x-hidden px-3 pb-24 pt-4 sm:px-4 md:px-6 md:pt-8">
         {children}
       </main>
 

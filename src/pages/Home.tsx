@@ -25,20 +25,6 @@ const featuredSlugOrder = [
   'mao-saigo',
 ];
 
-const kanaGroups = [
-  { id: 'all', label: 'すべて' },
-  { id: 'a', label: 'あ' },
-  { id: 'ka', label: 'か' },
-  { id: 'sa', label: 'さ' },
-  { id: 'ta', label: 'た' },
-  { id: 'na', label: 'な' },
-  { id: 'ha', label: 'は' },
-  { id: 'ma', label: 'ま' },
-  { id: 'ya', label: 'や' },
-  { id: 'ra', label: 'ら' },
-  { id: 'wa', label: 'わ' },
-] as const;
-
 const heroImage =
   'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1920&q=80';
 
@@ -179,7 +165,6 @@ export const Home = () => {
   const navigate = useNavigate();
   const [searchName, setSearchName] = useState('');
   const [activeCategory, setActiveCategory] = useState<(typeof profileCategories)[number]['id']>('all');
-  const [activeKana, setActiveKana] = useState<(typeof kanaGroups)[number]['id']>('all');
   const [profiles, setProfiles] = useState<PublicSettingProfile[]>([]);
 
   useEffect(() => {
@@ -217,12 +202,11 @@ export const Home = () => {
     const params = new URLSearchParams();
     if (query) params.set('search', query);
     if (activeCategory !== 'all') params.set('category', activeCategory);
-    if (activeKana !== 'all') params.set('kana', activeKana);
     navigate(params.toString() ? `/settings/pros?${params.toString()}` : '/settings/pros');
   };
 
   return (
-    <div className="min-h-screen space-y-8 pb-16 md:space-y-12">
+    <div className="min-h-screen overflow-x-hidden space-y-8 pb-16 md:space-y-12">
       <section className="relative isolate overflow-hidden rounded-[2rem] shadow-[0_18px_60px_rgba(15,23,42,0.18)]">
         <img
           src={heroImage}
@@ -232,24 +216,24 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative flex min-h-[500px] items-center px-4 py-8 md:min-h-[640px] md:px-8 md:py-12">
+        <div className="relative flex min-h-[470px] items-center px-4 py-6 md:min-h-[640px] md:px-8 md:py-12">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/85 backdrop-blur">
               <Star size={12} className="text-emerald-300" />
               PRO SETTINGS
             </div>
 
-            <h1 className="mt-4 max-w-3xl text-[2rem] font-black leading-[1.08] tracking-tight text-white md:mt-6 md:text-6xl">
+            <h1 className="mt-4 max-w-3xl text-[clamp(2rem,8.8vw,4.5rem)] font-black leading-[1.02] tracking-tight text-white md:mt-6">
               プロの14本から、
               <br className="hidden md:block" />
               自分の次の1本を見つける。
             </h1>
 
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/90 md:mt-5 md:text-lg md:leading-8">
-              選手名やカテゴリから探して、比較や診断まで一気につなげられます。
+              選手名やカテゴリから、参考にしたい14本をすぐ見つけられます。
             </p>
 
-            <div className="mt-5 max-w-2xl rounded-[1.5rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-7 md:p-4">
+            <div className="mt-5 max-w-2xl overflow-hidden rounded-[1.5rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-7 md:p-4">
               <div className="flex flex-col gap-3 md:flex-row md:items-center">
                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1rem] bg-white px-4 py-3 shadow-lg shadow-slate-950/15">
                   <Search className="shrink-0 text-slate-400" size={20} />
@@ -270,7 +254,7 @@ export const Home = () => {
                   検索する
                 </button>
               </div>
-              <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+              <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {profileCategories.map((category) => (
                   <button
                     key={category.id}
@@ -285,25 +269,9 @@ export const Home = () => {
                   </button>
                 ))}
               </div>
-
-              <div className="mt-2 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
-                {kanaGroups.map((group) => (
-                  <button
-                    key={group.id}
-                    onClick={() => setActiveKana(group.id)}
-                    className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-bold transition ${
-                      activeKana === group.id
-                        ? 'bg-emerald-300 text-trust-navy'
-                        : 'border border-white/15 bg-white/10 text-white/80 hover:bg-white/20'
-                    }`}
-                  >
-                    {group.label}
-                  </button>
-                ))}
-              </div>
             </div>
 
-            <div className="mt-5 flex flex-col gap-2.5 sm:mt-7 sm:flex-row">
+            <div className="mt-4 flex flex-col gap-2.5 sm:mt-6 sm:flex-row">
               <button
                 onClick={() => {
                   trackEvent('start_ai_diagnosis', {

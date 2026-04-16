@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-published-profiles-fallback.mjs && node scripts/generate-published-articles-fallback.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "generate:published-profiles-fallback": "node scripts/generate-published-profiles-fallback.mjs",
+    "generate:published-articles-fallback": "node scripts/generate-published-articles-fallback.mjs",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "supabase:check": "node scripts/supabase-admin.mjs check",
     "supabase:publish-profile": "node scripts/supabase-admin.mjs publish-profile",

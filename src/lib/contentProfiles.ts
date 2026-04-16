@@ -115,6 +115,76 @@ interface SourceRow {
   notes: string | null;
 }
 
+interface SeedProfilePackage {
+  profile: {
+    slug: string;
+    display_name?: string;
+    kana_name?: string | null;
+    birth_date?: string | null;
+    birthplace?: string | null;
+    nationality?: string | null;
+    profile_type?: SettingProfileRow['profile_type'];
+    season_year?: number | null;
+    head_speed_mps?: number | null;
+    average_score?: number | null;
+    best_score?: number | null;
+    ball_name?: string | null;
+    youtube_channel?: string | null;
+    instagram_handle?: string | null;
+    x_handle?: string | null;
+    website_url?: string | null;
+    feature_1?: string | null;
+    feature_2?: string | null;
+    feature_3?: string | null;
+    summary?: string | null;
+    latest_source_policy?: string | null;
+    is_featured?: boolean;
+    display_order?: number | null;
+    category?: ProfileCategory | null;
+    contractStatus?: ContractStatus | null;
+    contractMaker?: string | null;
+    is_published?: boolean;
+  };
+  bagItems?: Array<{
+    category: string;
+    brand?: string | null;
+    model_name?: string;
+    spec_label?: string | null;
+    loft_label?: string | null;
+    shaft_brand?: string | null;
+    shaft_model?: string | null;
+    shaft_flex?: string | null;
+    carry_distance?: number | null;
+    total_distance?: number | null;
+    source_note?: string | null;
+    slot_order?: number;
+  }>;
+  bag_items?: Array<{
+    category: string;
+    brand?: string | null;
+    model_name?: string;
+    spec_label?: string | null;
+    loft_label?: string | null;
+    shaft_brand?: string | null;
+    shaft_model?: string | null;
+    shaft_flex?: string | null;
+    carry_distance?: number | null;
+    total_distance?: number | null;
+    source_note?: string | null;
+    slot_order?: number;
+  }>;
+  sources?: Array<{
+    source_type?: PublicProfileSource['type'];
+    source_url?: string | null;
+    source_title?: string | null;
+    checked_at?: string | null;
+    notes?: string | null;
+  }>;
+}
+
+const FALLBACK_PROFILES_PATH = '/published-profiles-fallback.json';
+let fallbackProfilesPromise: Promise<PublicSettingProfile[]> | null = null;
+
 const PROFILE_LIST_FETCH_LIMIT = 500;
 const PLACEHOLDER_VALUES = new Set(['-', '－', '—', '未公開']);
 
@@ -262,8 +332,106 @@ const buildProfiles = (
     };
   });
 
+const buildProfilesFromSeedPackages = (packages: SeedProfilePackage[]): PublicSettingProfile[] => {
+  const profiles: SettingProfileRow[] = [];
+  const bagItems: BagItemRow[] = [];
+  const sourceRows: SourceRow[] = [];
+
+  packages.forEach((entry) => {
+    const profile = entry.profile;
+    if (!profile?.slug || profile.is_published === false) return;
+
+    const profileId = profile.slug;
+    profiles.push({
+      id: profileId,
+      slug: profile.slug,
+      display_name: profile.display_name || profile.slug,
+      kana_name: profile.kana_name || null,
+      birth_date: profile.birth_date || null,
+      birthplace: profile.birthplace || null,
+      nationality: profile.nationality || null,
+      profile_type: profile.profile_type || 'tour_pro',
+      season_year: profile.season_year ?? null,
+      head_speed_mps: profile.head_speed_mps ?? null,
+      average_score: profile.average_score ?? null,
+      best_score: profile.best_score ?? null,
+      ball_name: profile.ball_name || null,
+      youtube_channel: profile.youtube_channel || null,
+      instagram_handle: profile.instagram_handle || null,
+      x_handle: profile.x_handle || null,
+      website_url: profile.website_url || null,
+      feature_1: profile.feature_1 || null,
+      feature_2: profile.feature_2 || null,
+      feature_3: profile.feature_3 || null,
+      summary: profile.summary || null,
+      latest_source_policy: profile.latest_source_policy || null,
+      is_featured: profile.is_featured ?? false,
+      display_order: profile.display_order ?? null,
+      category: profile.category ?? null,
+      contractStatus: profile.contractStatus ?? null,
+      contractMaker: profile.contractMaker ?? null,
+    });
+
+    (entry.bagItems || entry.bag_items || []).forEach((item, index) => {
+      if (!item.category || !item.model_name) return;
+      bagItems.push({
+        profile_id: profileId,
+        category: item.category,
+        brand: item.brand || null,
+        model_name: item.model_name,
+        spec_label: item.spec_label || null,
+        loft_label: item.loft_label || null,
+        shaft_brand: item.shaft_brand || null,
+        shaft_model: item.shaft_model || null,
+        shaft_flex: item.shaft_flex || null,
+        carry_distance: item.carry_distance ?? null,
+        total_distance: item.total_distance ?? null,
+        source_note: item.source_note || null,
+        slot_order: item.slot_order ?? index + 1,
+      });
+    });
+
+    (entry.sources || []).forEach((source) => {
+      if (!source.source_url) return;
+      sourceRows.push({
+        profile_id: profileId,
+        source_type: source.source_type || 'manual',
+        source_url: source.source_url,
+        source_title: source.source_title || '確認ソース',
+        checked_at: source.checked_at || null,
+        notes: source.notes || null,
+      });
+    });
+  });
+
+  return buildProfiles(profiles, bagItems, sourceRows);
+};
+
+const loadPublishedProfileFallback = async (): Promise<PublicSettingProfile[]> => {
+  if (fallbackProfilesPromise) return fallbackProfilesPromise;
+
+  fallbackProfilesPromise = (async () => {
+    if (typeof fetch !== 'function') return [];
+
+    try {
+      const response = await fetch(FALLBACK_PROFILES_PATH, { cache: 'force-cache' });
+      if (!response.ok) return [];
+
+      const payload = (await response.json()) as { profiles?: SeedProfilePackage[] };
+      if (!payload.profiles?.length) return [];
+
+      return buildProfilesFromSeedPackages(payload.profiles);
+    } catch (error) {
+      console.error('Failed to load published profile fallback:', error);
+      return [];
+    }
+  })();
+
+  return fallbackProfilesPromise;
+};
+
 export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProfile[]> => {
-  if (!isSupabaseConfigured) return [];
+  if (!isSupabaseConfigured) return loadPublishedProfileFallback();
 
   try {
     const { data: profiles, error } = await supabase
@@ -274,7 +442,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
       .order('season_year', { ascending: false })
       .limit(PROFILE_LIST_FETCH_LIMIT);
 
-    if (error || !profiles || profiles.length === 0) return [];
+    if (error || !profiles || profiles.length === 0) return loadPublishedProfileFallback();
 
     const profileIds = profiles.map((profile) => profile.id);
     const { data: bagItems } = await supabase
@@ -295,12 +463,15 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
     return buildProfiles(profiles as SettingProfileRow[], bagRows, sourceRows);
   } catch (error) {
     console.error('Failed to fetch published setting profiles:', error);
-    return [];
+    return loadPublishedProfileFallback();
   }
 };
 
 export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<PublicSettingProfile | null> => {
-  if (!isSupabaseConfigured) return null;
+  if (!isSupabaseConfigured) {
+    const fallbackProfiles = await loadPublishedProfileFallback();
+    return fallbackProfiles.find((profile) => profile.slug === slug) || null;
+  }
 
   try {
     const { data: profile, error } = await supabase
@@ -310,7 +481,10 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
       .eq('is_published', true)
       .maybeSingle();
 
-    if (error || !profile) return null;
+    if (error || !profile) {
+      const fallbackProfiles = await loadPublishedProfileFallback();
+      return fallbackProfiles.find((item) => item.slug === slug) || null;
+    }
 
     const { data: bagItems } = await supabase
       .from('setting_bag_items')
@@ -330,6 +504,7 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
     return buildProfiles([profile as SettingProfileRow], bagRows, sourceRows)[0] ?? null;
   } catch (error) {
     console.error('Failed to fetch setting profile by slug:', error);
-    return null;
+    const fallbackProfiles = await loadPublishedProfileFallback();
+    return fallbackProfiles.find((profile) => profile.slug === slug) || null;
   }
 };

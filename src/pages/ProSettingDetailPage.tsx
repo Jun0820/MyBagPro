@@ -528,7 +528,7 @@ export const ProSettingDetailPage = () => {
   ];
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen overflow-x-hidden pb-20">
       <button
         onClick={() => navigate('/settings/pros')}
         className="mb-6 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy"

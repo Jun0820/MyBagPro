@@ -128,7 +128,7 @@ export const ProsSettingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen space-y-8 pb-20">
+    <div className="min-h-screen overflow-x-hidden space-y-8 pb-20">
       <section className="rounded-[2rem] border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-8 md:py-10">
         <div>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -183,7 +183,7 @@ export const ProsSettingsPage = () => {
             <div className="mt-4 space-y-3">
               <div>
                 <div className="mb-2 text-[11px] font-black tracking-[0.14em] text-slate-400">カテゴリ</div>
-                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {profileCategories.map((category) => (
                     <button
                       key={category.id}
@@ -204,7 +204,7 @@ export const ProsSettingsPage = () => {
 
               <div>
                 <div className="mb-2 text-[11px] font-black tracking-[0.14em] text-slate-400">フリガナ</div>
-                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {kanaGroups.map((group) => (
                     <button
                       key={group.id}
@@ -225,7 +225,7 @@ export const ProsSettingsPage = () => {
 
               <div>
                 <div className="mb-2 text-[11px] font-black tracking-[0.14em] text-slate-400">ヘッドスピード</div>
-                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+                <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {headSpeedGroups.map((group) => (
                     <button
                       key={group.id}
