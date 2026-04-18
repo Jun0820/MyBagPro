@@ -1,4 +1,8 @@
 export const instagramProfileImages: Record<string, string | { src: string; handle?: string }> = {
+  "yuto-katsuragawa": {
+    "src": "/profile-images/yuto-katsuragawa.jpg",
+    "handle": "yutokatsu"
+  },
   "in-gee-chun": {
     "src": "/profile-images/in-gee-chun.jpg",
     "handle": "ingeechun_dumbo"
@@ -11,6 +15,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/riki-kawamoto.jpg",
     "handle": "rickygolf54_riki.kawamoto"
   },
+  "shugo-imahira": {
+    "src": "/profile-images/shugo-imahira.jpg",
+    "handle": "shugo_imahira05"
+  },
   "keita-nakajima": {
     "src": "/profile-images/keita-nakajima.jpg",
     "handle": "keita.nkjm"
@@ -19,9 +27,17 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/ryo-hisatsune.jpg",
     "handle": "ryo1499golf"
   },
+  "taiga-semikawa": {
+    "src": "/profile-images/taiga-semikawa.jpg",
+    "handle": "taiga.1.11"
+  },
   "hideki-matsuyama": {
     "src": "/profile-images/hideki-matsuyama.jpg",
     "handle": "hideki.matsuyama_official"
+  },
+  "yuki-inamori": {
+    "src": "/profile-images/yuki-inamori.jpg",
+    "handle": "inamori_yuki"
   },
   "kaito-onishi": {
     "src": "/profile-images/kaito-onishi.jpg",
@@ -35,13 +51,29 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/kaneda-kumiko.jpg",
     "handle": "kinkumiringo93"
   },
+  "kazuki-higa": {
+    "src": "/profile-images/kazuki-higa.jpg",
+    "handle": "kazuki_higa_official"
+  },
   "ryosuke-kinoshita": {
     "src": "/profile-images/ryosuke-kinoshita.jpg",
     "handle": "ryosukekinoshita"
   },
+  "aguri-iwasaki": {
+    "src": "/profile-images/aguri-iwasaki.jpg",
+    "handle": "aguriiwasaki"
+  },
+  "nick-taylor": {
+    "src": "/profile-images/nick-taylor.jpg",
+    "handle": "nicktaylorgolf"
+  },
   "rikuya-hoshino": {
     "src": "/profile-images/rikuya-hoshino.jpg",
     "handle": "hoshinorikuya"
+  },
+  "peter-malnati": {
+    "src": "/profile-images/peter-malnati.jpg",
+    "handle": "peter_malnati"
   },
   "tatsunori-shogenji": {
     "src": "/profile-images/tatsunori-shogenji.jpg",
@@ -59,6 +91,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/cameron-young.jpg",
     "handle": "cameron_young"
   },
+  "taichi-nabetani": {
+    "src": "/profile-images/taichi-nabetani.jpg",
+    "handle": "taichinabetani"
+  },
   "sahith-theegala": {
     "src": "/profile-images/sahith-theegala.jpg",
     "handle": "srtheegala"
@@ -66,6 +102,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "ayaka-furue": {
     "src": "/profile-images/ayaka-furue.jpg",
     "handle": "ayaka_furue27"
+  },
+  "sami-valimaki": {
+    "src": "/profile-images/sami-valimaki.jpg",
+    "handle": "samioskarii"
   },
   "thorbjorn-olesen": {
     "src": "/profile-images/thorbjorn-olesen.jpg",
@@ -87,6 +127,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/tiger-woods.jpg",
     "handle": "tigerwoods"
   },
+  "takamitsu-tokimatsu": {
+    "src": "/profile-images/takamitsu-tokimatsu.jpg",
+    "handle": "genzo_tokimatsu"
+  },
   "minjee-lee": {
     "src": "/profile-images/minjee-lee.jpg",
     "handle": "minjee27"
@@ -94,6 +138,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "yui-kawamoto": {
     "src": "/profile-images/yui-kawamoto.jpg",
     "handle": "kawamotoyui_official"
+  },
+  "tomoharu-otsuki": {
+    "src": "/profile-images/tomoharu-otsuki.jpg",
+    "handle": "tomoharu.otsuki"
   },
   "thomas-detry": {
     "src": "/profile-images/thomas-detry.jpg",
@@ -109,7 +157,7 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   },
   "ludvig-aberg": {
     "src": "/profile-images/ludvig-aberg.jpg",
-    "handle": "ludvig_aberg"
+    "handle": "luddeaberg"
   },
   "tony-finau": {
     "src": "/profile-images/tony-finau.jpg",
@@ -123,233 +171,377 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/xander-schauffele.jpg",
     "handle": "xanderschauffele"
   },
+  "rio-takeda": {
+    "src": "/profile-images/rio-takeda.jpg",
+    "handle": "rio_tkd402"
+  },
   "yuka-saso": {
     "src": "/profile-images/yuka-saso.jpg",
     "handle": "yukasaso_official"
   },
+  "jason-day": {
+    "src": "/profile-images/jason-day.jpg",
+    "handle": "jasondayofficial"
+  },
   "kokona-sakurai": {
-    "src": "/profile-images/kokona-sakurai.jpg",
+    "src": "/profile-images/kokona-sakurai.png",
     "handle": "skr_coconut"
   },
   "nelly-korda": {
-    "src": "/profile-images/nelly-korda.jpg",
+    "src": "/profile-images/nelly-korda.png",
     "handle": "nellykorda"
   },
+  "nana-suganuma": {
+    "src": "/profile-images/nana-suganuma.png",
+    "handle": "nanasuganuma_official"
+  },
+  "erika-kikuchi": {
+    "src": "/profile-images/erika-kikuchi.png",
+    "handle": "erika_kikuchi_official"
+  },
   "mao-saigo": {
-    "src": "/profile-images/mao-saigo.jpg",
+    "src": "/profile-images/mao-saigo.png",
     "handle": "maomao_golf"
   },
   "sakura-koiwai": {
-    "src": "/profile-images/sakura-koiwai.jpg",
+    "src": "/profile-images/sakura-koiwai.png",
     "handle": "sakura_koiwai_official"
   },
+  "chisato-iwai": {
+    "src": "/profile-images/chisato-iwai.png",
+    "handle": "chisato.iwai_101"
+  },
   "hannah-green": {
-    "src": "/profile-images/hannah-green.jpg",
+    "src": "/profile-images/hannah-green.png",
     "handle": "hannahgreengolf"
   },
+  "jeeno-thitikul": {
+    "src": "/profile-images/jeeno-thitikul.png",
+    "handle": "jeeno.atthaya"
+  },
   "lilia-vu": {
-    "src": "/profile-images/lilia-vu.jpg",
+    "src": "/profile-images/lilia-vu.png",
     "handle": "liliavu"
   },
   "akie-iwai": {
-    "src": "/profile-images/akie-iwai.jpg",
+    "src": "/profile-images/akie-iwai.png",
     "handle": "akie.iwai"
   },
   "nasa-hataoka": {
-    "src": "/profile-images/nasa-hataoka.jpg",
+    "src": "/profile-images/nasa-hataoka.png",
     "handle": "nasahataoka"
   },
   "hinako-shibuno": {
-    "src": "/profile-images/hinako-shibuno.jpg",
+    "src": "/profile-images/hinako-shibuno.png",
     "handle": "pinacoooon"
   },
   "charley-hull": {
-    "src": "/profile-images/charley-hull.jpg",
+    "src": "/profile-images/charley-hull.png",
     "handle": "charley.hull"
   },
+  "hyo-joo-kim": {
+    "src": "/profile-images/hyo-joo-kim.png",
+    "handle": "hyojookim"
+  },
   "leona-maguire": {
-    "src": "/profile-images/leona-maguire.jpg",
+    "src": "/profile-images/leona-maguire.png",
     "handle": "leonamaguire"
   },
   "hina-arakaki": {
-    "src": "/profile-images/hina-arakaki.jpg",
+    "src": "/profile-images/hina-arakaki.png",
     "handle": "hina_arakaki"
   },
   "ruoning-yin": {
-    "src": "/profile-images/ruoning-yin.jpg",
+    "src": "/profile-images/ruoning-yin.png",
     "handle": "ruoningyin1"
   },
+  "haruka-kawasaki": {
+    "src": "/profile-images/haruka-kawasaki.png",
+    "handle": "with_harugolfer_days"
+  },
   "celine-boutier": {
-    "src": "/profile-images/celine-boutier.jpg",
+    "src": "/profile-images/celine-boutier.png",
     "handle": "celineboutier"
   },
   "ayaka-watanabe": {
-    "src": "/profile-images/ayaka-watanabe.jpg",
+    "src": "/profile-images/ayaka-watanabe.png",
     "handle": "watanabeayaka_official"
   },
   "saiki-fujita": {
-    "src": "/profile-images/saiki-fujita.jpg",
+    "src": "/profile-images/saiki-fujita.png",
     "handle": "saiki_fujita"
   },
+  "ai-suzuki": {
+    "src": "/profile-images/ai-suzuki.png",
+    "handle": "suzuki_ai_official"
+  },
   "jin-young-ko": {
-    "src": "/profile-images/jin-young-ko.jpg",
+    "src": "/profile-images/jin-young-ko.png",
     "handle": "jinyoungko_official"
   },
+  "mone-inami": {
+    "src": "/profile-images/mone-inami.png",
+    "handle": "mone173.golf"
+  },
+  "angel-yin": {
+    "src": "/profile-images/angel-yin.png",
+    "handle": "angelyin"
+  },
+  "yuna-nishimura": {
+    "src": "/profile-images/yuna-nishimura.png",
+    "handle": "yunapan_02"
+  },
+  "asuka-kashiwabara": {
+    "src": "/profile-images/asuka-kashiwabara.png",
+    "handle": "asuka_____official"
+  },
   "minami-katsu": {
-    "src": "/profile-images/minami-katsu.jpg",
+    "src": "/profile-images/minami-katsu.png",
     "handle": "minami_katsu"
   },
+  "amy-yang": {
+    "src": "/profile-images/amy-yang.png",
+    "handle": "amy_yang_golf"
+  },
+  "katsumasa-miyamoto": {
+    "src": "/profile-images/katsumasa-miyamoto.png",
+    "handle": "katsumasa_miyamoto"
+  },
+  "megan-khang": {
+    "src": "/profile-images/megan-khang.png",
+    "handle": "megan_khan"
+  },
+  "patty-tavatanakit": {
+    "src": "/profile-images/patty-tavatanakit.png",
+    "handle": "impattyt"
+  },
   "georgia-hall": {
-    "src": "/profile-images/georgia-hall.jpg",
+    "src": "/profile-images/georgia-hall.png",
     "handle": "georgiahall23"
   },
   "linn-grant": {
-    "src": "/profile-images/linn-grant.jpg",
+    "src": "/profile-images/linn-grant.png",
     "handle": "linngrant"
   },
   "ryann-odtoole": {
-    "src": "/profile-images/ryann-odtoole.jpg",
+    "src": "/profile-images/ryann-odtoole.png",
     "handle": "ryannotoole"
   },
   "nanna-koerstz-madsen": {
-    "src": "/profile-images/nanna-koerstz-madsen.jpg",
+    "src": "/profile-images/nanna-koerstz-madsen.png",
     "handle": "nannakoerstzmadsen"
   },
   "danielle-kang": {
-    "src": "/profile-images/danielle-kang.jpg",
+    "src": "/profile-images/danielle-kang.png",
     "handle": "daniellekang"
   },
   "gaby-lopez": {
-    "src": "/profile-images/gaby-lopez.jpg",
+    "src": "/profile-images/gaby-lopez.png",
     "handle": "gabylopezgolf"
   },
-  "moriya-jutanugarn": {
-    "src": "/profile-images/moriya-jutanugarn.jpg",
-    "handle": "mo_moriya"
-  },
   "ally-ewing": {
-    "src": "/profile-images/ally-ewing.jpg",
+    "src": "/profile-images/ally-ewing.png",
     "handle": "a_mc10"
   },
+  "moriya-jutanugarn": {
+    "src": "/profile-images/moriya-jutanugarn.png",
+    "handle": "mo_moriya"
+  },
+  "carlota-ciganda": {
+    "src": "/profile-images/carlota-ciganda.png",
+    "handle": "carlotagolf"
+  },
+  "alison-lee": {
+    "src": "/profile-images/alison-lee.png",
+    "handle": "thealisonlee"
+  },
+  "inbee-park": {
+    "src": "/profile-images/inbee-park.png",
+    "handle": "inbeelievable"
+  },
   "rose-zhang": {
-    "src": "/profile-images/rose-zhang.jpg",
+    "src": "/profile-images/rose-zhang.png",
     "handle": "rosezhang"
   },
+  "lauren-coughlin": {
+    "src": "/profile-images/lauren-coughlin.png",
+    "handle": "l_coughlin"
+  },
+  "maya-stark": {
+    "src": "/profile-images/maya-stark.png",
+    "handle": "majastark1"
+  },
   "haeran-ryu": {
-    "src": "/profile-images/haeran-ryu.jpg",
+    "src": "/profile-images/haeran-ryu.png",
     "handle": "haeran_ryu"
   },
   "ashleigh-buhai": {
-    "src": "/profile-images/ashleigh-buhai.jpg",
+    "src": "/profile-images/ashleigh-buhai.png",
     "handle": "ashbuhaigolf"
   },
   "ariya-jutanugarn": {
-    "src": "/profile-images/ariya-jutanugarn.jpg",
+    "src": "/profile-images/ariya-jutanugarn.png",
     "handle": "mayariya"
   },
   "kamiya-sora": {
-    "src": "/profile-images/kamiya-sora.jpg",
+    "src": "/profile-images/kamiya-sora.png",
     "handle": "s_o_r_a_18_"
   },
   "usui-reika": {
-    "src": "/profile-images/usui-reika.jpg",
+    "src": "/profile-images/usui-reika.png",
     "handle": "usuireika54"
   },
   "kudo-haruka": {
-    "src": "/profile-images/kudo-haruka.jpg",
+    "src": "/profile-images/kudo-haruka.png",
     "handle": "harukakudo1118"
   },
-  "matsuda-rei": {
-    "src": "/profile-images/matsuda-rei.jpg",
-    "handle": "reimatsuda01"
+  "morita-haruka": {
+    "src": "/profile-images/morita-haruka.jpg",
+    "handle": "moritaharuka5588"
   },
   "mikashima-kana": {
-    "src": "/profile-images/mikashima-kana.jpg",
+    "src": "/profile-images/mikashima-kana.png",
     "handle": "kanayan0713_official"
   },
   "sakuma-akari": {
-    "src": "/profile-images/sakuma-akari.jpg",
+    "src": "/profile-images/sakuma-akari.png",
     "handle": "s_golf1211"
   },
   "suga-fuka": {
-    "src": "/profile-images/suga-fuka.jpg",
+    "src": "/profile-images/suga-fuka.png",
     "handle": "fukagolf17"
   },
+  "kasa-ritsuko": {
+    "src": "/profile-images/kasa-ritsuko.png",
+    "handle": "ryuritsuko"
+  },
+  "kawagishi-fumika": {
+    "src": "/profile-images/kawagishi-fumika.png",
+    "handle": "fumikakawagishi"
+  },
   "tsuruoka-karen": {
-    "src": "/profile-images/tsuruoka-karen.jpg",
+    "src": "/profile-images/tsuruoka-karen.png",
     "handle": "tsurukare"
   },
   "arimura-chie": {
-    "src": "/profile-images/arimura-chie.jpg",
+    "src": "/profile-images/arimura-chie.png",
     "handle": "chiearimura"
   },
   "nagai-kana": {
-    "src": "/profile-images/nagai-kana.jpg",
+    "src": "/profile-images/nagai-kana.png",
     "handle": "kana._.0616"
   },
   "yokomine-sakura": {
-    "src": "/profile-images/yokomine-sakura.jpg",
+    "src": "/profile-images/yokomine-sakura.png",
     "handle": "sakura_yokomine"
   },
   "hori-kotone": {
-    "src": "/profile-images/hori-kotone.jpg",
+    "src": "/profile-images/hori-kotone.png",
     "handle": "kotokotohori"
   },
+  "erika-hara": {
+    "src": "/profile-images/erika-hara.png",
+    "handle": "warriorsmilerika_9"
+  },
   "kanazawa-shina": {
-    "src": "/profile-images/kanazawa-shina.jpg",
+    "src": "/profile-images/kanazawa-shina.png",
     "handle": "shina_kanazawa"
   },
+  "kotaki-mion": {
+    "src": "/profile-images/kotaki-mion.png",
+    "handle": "ochobo36mio"
+  },
+  "matsuda-rei": {
+    "src": "/profile-images/matsuda-rei.png",
+    "handle": "rei_matsuda.official"
+  },
   "wakimoto-hana": {
-    "src": "/profile-images/wakimoto-hana.jpg",
+    "src": "/profile-images/wakimoto-hana.png",
     "handle": "hana.wakimoto"
   },
   "rin-yoshida": {
-    "src": "/profile-images/rin-yoshida.jpg",
+    "src": "/profile-images/rin-yoshida.png",
     "handle": "rin____tnk"
   },
   "fukuda-mami": {
-    "src": "/profile-images/fukuda-mami.jpg",
+    "src": "/profile-images/fukuda-mami.png",
     "handle": "fukudamami32"
   },
   "higa-mamiko": {
-    "src": "/profile-images/higa-mamiko.jpg",
+    "src": "/profile-images/higa-mamiko.png",
     "handle": "mamiko_higa_official"
   },
   "aoki-serena": {
-    "src": "/profile-images/aoki-serena.jpg",
+    "src": "/profile-images/aoki-serena.png",
     "handle": "serenaaoki_official"
   },
   "ueda-momoko": {
-    "src": "/profile-images/ueda-momoko.jpg",
+    "src": "/profile-images/ueda-momoko.png",
     "handle": "momoko3030"
   },
   "wakana-kamiya": {
-    "src": "/profile-images/wakana-kamiya.jpg",
+    "src": "/profile-images/wakana-kamiya.png",
     "handle": "wakana.kamiya"
   },
+  "andrea-lee": {
+    "src": "/profile-images/andrea-lee.png",
+    "handle": "andrealee"
+  },
+  "kido-ai": {
+    "src": "/profile-images/kido-ai.png",
+    "handle": "megumikidoofficial"
+  },
   "kokone-yoshimoto": {
-    "src": "/profile-images/kokone-yoshimoto.jpg",
+    "src": "/profile-images/kokone-yoshimoto.png",
     "handle": "kokone_yoshimoto"
   },
   "yumeka-kobayashi": {
-    "src": "/profile-images/yumeka-kobayashi.jpg",
+    "src": "/profile-images/yumeka-kobayashi.png",
     "handle": "yumeka___036"
   },
+  "goto-miu": {
+    "src": "/profile-images/goto-miu.png",
+    "handle": "mg____0929"
+  },
   "seira-oki": {
-    "src": "/profile-images/seira-oki.jpg",
+    "src": "/profile-images/seira-oki.png",
     "handle": "seira_oki"
   },
+  "allisen-corpuz": {
+    "src": "/profile-images/allisen-corpuz.png",
+    "handle": "allysoncorpuz"
+  },
+  "morita-rikako": {
+    "src": "/profile-images/morita-rikako.png",
+    "handle": "1_rikako"
+  },
+  "haruka-amamoto": {
+    "src": "/profile-images/haruka-amamoto.png",
+    "handle": "haruka.no.1"
+  },
+  "karen-fujita": {
+    "src": "/profile-images/karen-fujita.png",
+    "handle": "karenman_14"
+  },
+  "kozuma-kotono": {
+    "src": "/profile-images/kozuma-kotono.png",
+    "handle": "kotonokozuma"
+  },
   "jordan-spieth": {
-    "src": "/profile-images/jordan-spieth.jpg",
+    "src": "/profile-images/jordan-spieth.png",
     "handle": "jordanspieth"
   },
   "kano-nakamura": {
-    "src": "/profile-images/kano-nakamura.jpg",
+    "src": "/profile-images/kano-nakamura.png",
     "handle": "kanonakamura_"
   },
-  "yoshimoto-hikaru": {
-    "src": "/profile-images/yoshimoto-hikaru.jpg",
-    "handle": "hikaru_yoshimoto_"
+  "eri-okayama": {
+    "src": "/profile-images/eri-okayama.png",
+    "handle": "eri.okayama1996"
+  },
+  "kotoko-uchida": {
+    "src": "/profile-images/kotoko-uchida.png",
+    "handle": "kotoko__uchida"
   },
   "yumeno-masada": {
     "src": "/profile-images/yumeno-masada.jpg",
@@ -363,9 +555,25 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/yuri-yoshida.jpg",
     "handle": "yuri_yoshida__"
   },
+  "amiyu-ozeki": {
+    "src": "/profile-images/amiyu-ozeki.jpg",
+    "handle": "z.amiyu616"
+  },
+  "ayako-kimura": {
+    "src": "/profile-images/ayako-kimura.jpg",
+    "handle": "ayako___kimura"
+  },
   "yuna-araki": {
     "src": "/profile-images/yuna-araki.jpg",
     "handle": "_ark_yuuna"
+  },
+  "shiho-kuwaki": {
+    "src": "/profile-images/shiho-kuwaki.jpg",
+    "handle": "kuwashiho"
+  },
+  "sayaka-takahashi": {
+    "src": "/profile-images/sayaka-takahashi.jpg",
+    "handle": "t_sayaka724"
   },
   "yuta-sugiura": {
     "src": "/profile-images/yuta-sugiura.jpg",
@@ -375,9 +583,21 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/miyuki-takeuchi.jpg",
     "handle": "takeuchi2512"
   },
+  "mikiya-akutsu": {
+    "src": "/profile-images/mikiya-akutsu.jpg",
+    "handle": "micky_ak317"
+  },
+  "hibiki-iriya": {
+    "src": "/profile-images/hibiki-iriya.jpg",
+    "handle": "roihibiki"
+  },
   "nanoko-hayashi": {
     "src": "/profile-images/nanoko-hayashi.jpg",
     "handle": "h._.nanoko24"
+  },
+  "nozomi-uetake": {
+    "src": "/profile-images/nozomi-uetake.jpg",
+    "handle": "nozoooomi_nonsuke"
   },
   "kanako-aoki": {
     "src": "/profile-images/kanako-aoki.jpg",
@@ -387,9 +607,13 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/taisei-shimizu.jpg",
     "handle": "taiseishimizu"
   },
-  "toru-taniguchi": {
-    "src": "/profile-images/toru-taniguchi.jpg",
-    "handle": "torutaniguchi"
+  "daijiro-izumida": {
+    "src": "/profile-images/daijiro-izumida.jpg",
+    "handle": "dai26insta"
+  },
+  "hideto-tanihara": {
+    "src": "/profile-images/hideto-tanihara.jpg",
+    "handle": "hidetotanihara"
   },
   "ren-yonezawa": {
     "src": "/profile-images/ren-yonezawa.jpg",
@@ -423,17 +647,33 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/justin-rose.jpg",
     "handle": "justinprose99"
   },
+  "shingo-katayama": {
+    "src": "/profile-images/shingo-katayama.jpg",
+    "handle": "shingo_katayama45"
+  },
   "yuuka-yasuda": {
     "src": "/profile-images/yuuka-yasuda.jpg",
     "handle": "oo_______yuka"
+  },
+  "yuta-ikeda": {
+    "src": "/profile-images/yuta-ikeda.jpg",
+    "handle": "yutaikeda33_official"
   },
   "tomohiro-ishizaka": {
     "src": "/profile-images/tomohiro-ishizaka.jpg",
     "handle": "tomohiro.ishizaka"
   },
+  "shota-akiyoshi": {
+    "src": "/profile-images/shota-akiyoshi.jpg",
+    "handle": "shota.akiyoshi"
+  },
   "takahiro-hataji": {
     "src": "/profile-images/takahiro-hataji.jpg",
     "handle": "taka3yan3"
+  },
+  "jinichiro-kozuma": {
+    "src": "/profile-images/jinichiro-kozuma.jpg",
+    "handle": "kozumajinichiro"
   },
   "viktor-hovland": {
     "src": "/profile-images/viktor-hovland.jpg",
@@ -466,6 +706,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "matt-fitzpatrick": {
     "src": "/profile-images/matt-fitzpatrick.jpg",
     "handle": "mattfitz94"
+  },
+  "ayano-yasuda": {
+    "src": "/profile-images/ayano-yasuda.jpg",
+    "handle": "yasuda.ayano"
   },
   "min-woo-lee": {
     "src": "/profile-images/min-woo-lee.jpg",
@@ -510,6 +754,14 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "wyndham-clark": {
     "src": "/profile-images/wyndham-clark.jpg",
     "handle": "wyndhamclark"
+  },
+  "konosuke-nakazato": {
+    "src": "/profile-images/konosuke-nakazato.jpg",
+    "handle": "konosukenakazato"
+  },
+  "aaron-rai": {
+    "src": "/profile-images/aaron-rai.jpg",
+    "handle": "aaron.rai1"
   },
   "keegan-bradley": {
     "src": "/profile-images/keegan-bradley.jpg",

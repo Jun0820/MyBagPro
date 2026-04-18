@@ -1,7 +1,7 @@
 {
   "profile": {
     "slug": "takamitsu-tokimatsu",
-    "display_name": "時松 隆光",
+    "display_name": "時松 源蔵",
     "nationality": "Japan",
     "birthplace": "Fukuoka, Japan",
     "birth_date": "1993-09-19",
@@ -13,12 +13,12 @@
     "feature_1": "2025シーズン基準",
     "feature_2": "Titleist中心",
     "feature_3": "14本確認済み",
-    "summary": "2025年ブリヂストンオープン時点で確認できた時松隆光の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+    "summary": "2025年ブリヂストンオープン時点で確認できた時松源蔵の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
     "latest_source_policy": "2025_season",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-08T00:00:00.000Z",
-    "kana_name": "トキマツ リュウコウ"
+    "kana_name": "トキマツ ゲンゾウ"
   },
   "bagItems": [
     {
@@ -202,9 +202,9 @@
   ],
   "article": {
     "slug": "takamitsu-tokimatsu-2025-setting-update",
-    "title": "時松隆光の2025年クラブセッティングを掲載しました",
-    "excerpt": "2025シーズン基準で、時松隆光の14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "時松隆光のセッティングについて、2025年ブリヂストンオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
+    "title": "時松源蔵の2025年クラブセッティングを掲載しました",
+    "excerpt": "2025シーズン基準で、時松源蔵の14本のクラブセッティングと使用ボールを掲載しました。",
+    "body": "時松源蔵のセッティングについて、2025年ブリヂストンオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
     "article_type": "update",
     "season_year": 2025,
     "published": true,
