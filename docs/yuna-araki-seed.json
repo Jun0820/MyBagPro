@@ -38,6 +38,8 @@
       "slot_order": 2,
       "brand": "PING",
       "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
       "shaft_brand": "Fujikura",
       "shaft_model": "Speeder NX Violet",
       "shaft_flex": "S",
@@ -46,8 +48,22 @@
       "is_featured_item": false
     },
     {
-      "category": "Utility",
+      "category": "Fairway Wood",
       "slot_order": 3,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "19°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder NX Violet",
+      "shaft_flex": "S",
+      "shaft_weight": "60g",
+      "source_note": "e!Golf 2025年優勝時セッティングより確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
       "brand": "PING",
       "model_name": "G440 Hybrid Utility",
       "spec_label": "4U",
@@ -60,7 +76,7 @@
     },
     {
       "category": "Utility",
-      "slot_order": 4,
+      "slot_order": 5,
       "brand": "PING",
       "model_name": "G440 Hybrid Utility",
       "spec_label": "5U",
@@ -73,7 +89,7 @@
     },
     {
       "category": "Iron",
-      "slot_order": 5,
+      "slot_order": 6,
       "brand": "Yonex",
       "model_name": "EZONE CB511 Forged Iron",
       "spec_label": "5I",
@@ -85,7 +101,7 @@
     },
     {
       "category": "Iron",
-      "slot_order": 6,
+      "slot_order": 7,
       "brand": "Yonex",
       "model_name": "EZONE CB511 Forged Iron",
       "spec_label": "6I",
@@ -97,7 +113,7 @@
     },
     {
       "category": "Iron",
-      "slot_order": 7,
+      "slot_order": 8,
       "brand": "Yonex",
       "model_name": "EZONE CB511 Forged Iron",
       "spec_label": "7I",
@@ -109,7 +125,7 @@
     },
     {
       "category": "Iron",
-      "slot_order": 8,
+      "slot_order": 9,
       "brand": "Yonex",
       "model_name": "EZONE CB511 Forged Iron",
       "spec_label": "8I",
@@ -121,7 +137,7 @@
     },
     {
       "category": "Iron",
-      "slot_order": 9,
+      "slot_order": 10,
       "brand": "Yonex",
       "model_name": "EZONE CB511 Forged Iron",
       "spec_label": "9I",
@@ -133,7 +149,7 @@
     },
     {
       "category": "Iron",
-      "slot_order": 10,
+      "slot_order": 11,
       "brand": "Yonex",
       "model_name": "EZONE CB511 Forged Iron",
       "spec_label": "PW",
@@ -145,7 +161,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 11,
+      "slot_order": 12,
       "brand": "Bridgestone",
       "model_name": "BRM2 HF Wedge",
       "spec_label": "AW",
@@ -158,7 +174,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 12,
+      "slot_order": 13,
       "brand": "Bridgestone",
       "model_name": "BITING SPIN Wedge",
       "spec_label": "LW",
@@ -171,7 +187,7 @@
     },
     {
       "category": "Putter",
-      "slot_order": 13,
+      "slot_order": 14,
       "brand": "Odyssey",
       "model_name": "Ai-ONE TRI-BEAM 2-BALL Putter",
       "source_note": "Confirmed from GDO 2025 setting page.",
@@ -185,13 +201,20 @@
       "source_title": "GDO 荒木優奈 クラブセッティング 2025年 ゴルフ5レディス",
       "checked_at": "2026-04-09T00:00:00.000Z",
       "notes": "Used for bag and ball confirmation."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://egolf.jp/gear/202021/2/",
+      "source_title": "初優勝の20歳・荒木優奈は日米ミックスセット！ - e!Golf",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "2025年優勝時の最新構成として3W・5W、4U・5U、5I-PWを確認。"
     }
   ],
   "article": {
     "slug": "yuna-araki-2026-setting-update",
     "title": "荒木優奈のクラブセッティングを掲載しました",
-    "excerpt": "2025年ゴルフ5レディス取材をもとに、荒木優奈の主要セッティングを掲載しました。",
-    "body": "荒木優奈のクラブセッティングを掲載しました。公開ソースをもとに、使用クラブとボールを整理しています。",
+    "excerpt": "2025年ゴルフ5レディス取材と優勝時のギア記事をもとに、荒木優奈の14本全体が見えるセッティングへ更新しました。",
+    "body": "荒木優奈のクラブセッティングを掲載しました。GDOの大会取材に加えて、優勝時のe!Golf記事で確認できた5番ウッドを反映し、ウッド・ユーティリティ・アイアン・ウェッジ・パターまで14本全体が追いやすい形に整理しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

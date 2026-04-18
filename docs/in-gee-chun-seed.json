@@ -26,25 +26,30 @@
   },
   "bagItems": [
     { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G430 LST", "loft_label": "10.5°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
-    { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G430 MAX", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Fairway Wood", "slot_order": 3, "brand": "PING", "model_name": "G430 MAX", "spec_label": "5W", "loft_label": "18°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Fairway Wood", "slot_order": 4, "brand": "PING", "model_name": "G430 MAX", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Utility", "slot_order": 5, "brand": "PING", "model_name": "G430 Hybrid", "spec_label": "4U", "loft_label": "22°", "shaft_brand": "KBS", "shaft_model": "Tour Hybrid", "shaft_flex": "S", "shaft_weight": "70g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 6, "brand": "PING", "model_name": "i230", "spec_label": "5I-PW", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
-    { "category": "Wedge", "slot_order": 7, "brand": "PING", "model_name": "s159", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 8, "brand": "PING", "model_name": "s159", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 9, "brand": "PING", "model_name": "s159", "spec_label": "LW", "loft_label": "58°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 10, "brand": "PING", "model_name": "PLD Anser", "source_note": "GolfWRX WITBより確認。", "is_featured_item": true }
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G430 MAX", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Red", "shaft_flex": "5S", "shaft_weight": "50g台", "source_note": "PING公式および補助WITBソースより確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "PING", "model_name": "G430 Hybrid", "spec_label": "3U", "loft_label": "19°", "shaft_brand": "KBS", "shaft_model": "Tour Hybrid", "shaft_flex": "S", "shaft_weight": "70g台", "source_note": "補助WITBソースで3H/3Uを確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "PING", "model_name": "G430 Hybrid", "spec_label": "4U", "loft_label": "22°", "shaft_brand": "KBS", "shaft_model": "Tour Hybrid", "shaft_flex": "S", "shaft_weight": "70g台", "source_note": "PING公式および補助WITBソースより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "PING", "model_name": "i230", "spec_label": "5I", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースの5I-PW表記を番手ごとに展開。", "is_featured_item": true },
+    { "category": "Iron", "slot_order": 6, "brand": "PING", "model_name": "i230", "spec_label": "6I", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースの5I-PW表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "PING", "model_name": "i230", "spec_label": "7I", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースの5I-PW表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "PING", "model_name": "i230", "spec_label": "8I", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースの5I-PW表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "PING", "model_name": "i230", "spec_label": "9I", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースの5I-PW表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "PING", "model_name": "i230", "spec_label": "PW", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースの5I-PW表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "PING", "model_name": "s159", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "PING", "model_name": "s159", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "PING", "model_name": "s159", "spec_label": "LW", "loft_label": "58°", "shaft_brand": "Nippon Shaft", "shaft_model": "N.S.PRO 950GH neo", "shaft_flex": "S", "shaft_weight": "90g台", "source_note": "補助WITBソースより確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "PING", "model_name": "PLD Anser", "source_note": "補助WITBソースより確認。", "is_featured_item": true }
   ],
   "sources": [
     { "source_type": "official", "source_url": "https://ping.com/en-us/tour/pros/in-gee-chun", "source_title": "In Gee Chun - PING", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "契約情報と主要クラブ確認用。" },
-    { "source_type": "article", "source_url": "https://www.golfwrx.com/732972/in-gee-chun-witb-2024/", "source_title": "In Gee Chun WITB - GolfWRX", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "詳細セッティング確認用。" }
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/732972/in-gee-chun-witb-2024/", "source_title": "In Gee Chun WITB - GolfWRX", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "詳細セッティング確認用。" },
+    { "source_type": "article", "source_url": "https://inthegolfbag.com/players/in-gee-chun/", "source_title": "In Gee Chun WITB 2024 - In The Golf Bag", "checked_at": "2026-04-18T00:00:00.000Z", "notes": "14本全体の番手構成を補うための補助WITBソース。" }
   ],
   "article": {
     "slug": "in-gee-chun-2026-setting-update",
     "title": "チョン・インジのクラブセッティング【2026年最新】",
-    "excerpt": "PING契約のチョン・インジの2026シーズン基準セッティングを掲載しました。",
-    "body": "チョン・インジのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAXウッド、i230アイアン、s159ウェッジを中心にした構成です。",
+    "excerpt": "PING契約のチョン・インジについて、14本全体が見える2026シーズン基準セッティングへ更新しました。",
+    "body": "チョン・インジのクラブセッティングについて、PING公式とGolfWRXをベースにしつつ、14本全体の番手構成は補助WITBソースで補完して整理しました。G430 LSTドライバー、G430 MAX 3番ウッド、G430ハイブリッド2本、i230の5I-PW、s159ウェッジ、PLDパターまで全体の流れが追いやすいページに更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
