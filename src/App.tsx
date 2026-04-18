@@ -1,26 +1,61 @@
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { User, LogIn, ShieldCheck, Stethoscope } from 'lucide-react';
 import { DiagnosisProvider, useDiagnosis } from './context/DiagnosisContext';
 import { AccountAuth } from './features/auth/AccountAuth';
 import { LegalPage } from './components/LegalPage';
 import { Home } from './pages/Home';
-import { DiagnosisWizard } from './pages/DiagnosisWizard';
-import { ResultPage } from './pages/ResultPage';
-import { MyGearPage } from './pages/MyGearPage';
-import { SharedBag } from './pages/SharedBag';
-import { ProsSettingsPage } from './pages/ProsSettingsPage';
-import { UsersSettingsPage } from './pages/UsersSettingsPage';
-import { DriversCatalogPage } from './pages/DriversCatalogPage';
-import { ProSettingDetailPage } from './pages/ProSettingDetailPage';
-import { DriverDetailPage } from './pages/DriverDetailPage';
-import { BuyPage } from './pages/BuyPage';
-import { ComparePage } from './pages/ComparePage';
-import { ArticlesPage } from './pages/ArticlesPage';
-import { ArticleDetailPage } from './pages/ArticleDetailPage';
-import BallDiagnosisApp from './pages/ball-diagnosis/BallDiagnosisApp';
-import { Sitemap } from './pages/Sitemap';
-import { useState, useEffect } from 'react';
 import { SeoManager } from './components/SeoManager';
+
+const DiagnosisWizard = lazy(() =>
+  import('./pages/DiagnosisWizard').then((module) => ({ default: module.DiagnosisWizard }))
+);
+const ResultPage = lazy(() =>
+  import('./pages/ResultPage').then((module) => ({ default: module.ResultPage }))
+);
+const MyGearPage = lazy(() =>
+  import('./pages/MyGearPage').then((module) => ({ default: module.MyGearPage }))
+);
+const SharedBag = lazy(() =>
+  import('./pages/SharedBag').then((module) => ({ default: module.SharedBag }))
+);
+const ProsSettingsPage = lazy(() =>
+  import('./pages/ProsSettingsPage').then((module) => ({ default: module.ProsSettingsPage }))
+);
+const UsersSettingsPage = lazy(() =>
+  import('./pages/UsersSettingsPage').then((module) => ({ default: module.UsersSettingsPage }))
+);
+const DriversCatalogPage = lazy(() =>
+  import('./pages/DriversCatalogPage').then((module) => ({ default: module.DriversCatalogPage }))
+);
+const ProSettingDetailPage = lazy(() =>
+  import('./pages/ProSettingDetailPage').then((module) => ({ default: module.ProSettingDetailPage }))
+);
+const DriverDetailPage = lazy(() =>
+  import('./pages/DriverDetailPage').then((module) => ({ default: module.DriverDetailPage }))
+);
+const BuyPage = lazy(() =>
+  import('./pages/BuyPage').then((module) => ({ default: module.BuyPage }))
+);
+const ComparePage = lazy(() =>
+  import('./pages/ComparePage').then((module) => ({ default: module.ComparePage }))
+);
+const ArticlesPage = lazy(() =>
+  import('./pages/ArticlesPage').then((module) => ({ default: module.ArticlesPage }))
+);
+const ArticleDetailPage = lazy(() =>
+  import('./pages/ArticleDetailPage').then((module) => ({ default: module.ArticleDetailPage }))
+);
+const BallDiagnosisApp = lazy(() => import('./pages/ball-diagnosis/BallDiagnosisApp'));
+const Sitemap = lazy(() =>
+  import('./pages/Sitemap').then((module) => ({ default: module.Sitemap }))
+);
+
+const RouteLoading = () => (
+  <div className="flex min-h-[40vh] items-center justify-center rounded-[2rem] border border-slate-200 bg-white text-sm font-bold text-slate-500 shadow-sm">
+    ページを読み込んでいます...
+  </div>
+);
 
 // Layout Component (Internal to App for simplicity, could be separate)
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -170,29 +205,31 @@ function App() {
         <SeoManager />
         <ScrollToTop />
         <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/settings/pros" element={<ProsSettingsPage />} />
-            <Route path="/settings/pros/:slug" element={<ProSettingDetailPage />} />
-            <Route path="/settings/users" element={<UsersSettingsPage />} />
-            <Route path="/settings/users/:id" element={<SharedBag />} />
-            <Route path="/clubs/drivers" element={<DriversCatalogPage />} />
-            <Route path="/clubs/drivers/:slug" element={<DriverDetailPage />} />
-            <Route path="/buy/:category/:slug" element={<BuyPage />} />
-            <Route path="/compare" element={<ComparePage />} />
-            <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/articles/:slug" element={<ArticleDetailPage />} />
-            <Route path="/ball-diagnosis" element={<BallDiagnosisApp />} />
-            <Route path="/diagnosis" element={<DiagnosisWizard />} />
-            <Route path="/diagnosis/:category" element={<DiagnosisWizard />} />
-            <Route path="/result" element={<ResultPage />} />
-            <Route path="/result/:club" element={<ResultPage />} />
-            <Route path="/result/:club/:mode" element={<ResultPage />} />
-            <Route path="/mypage" element={<MyGearPage />} />
-            <Route path="/mybag/create" element={<MyGearPage />} />
-            <Route path="/bag" element={<SharedBag />} />
-            <Route path="/sitemap" element={<Sitemap />} />
-          </Routes>
+          <Suspense fallback={<RouteLoading />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/settings/pros" element={<ProsSettingsPage />} />
+              <Route path="/settings/pros/:slug" element={<ProSettingDetailPage />} />
+              <Route path="/settings/users" element={<UsersSettingsPage />} />
+              <Route path="/settings/users/:id" element={<SharedBag />} />
+              <Route path="/clubs/drivers" element={<DriversCatalogPage />} />
+              <Route path="/clubs/drivers/:slug" element={<DriverDetailPage />} />
+              <Route path="/buy/:category/:slug" element={<BuyPage />} />
+              <Route path="/compare" element={<ComparePage />} />
+              <Route path="/articles" element={<ArticlesPage />} />
+              <Route path="/articles/:slug" element={<ArticleDetailPage />} />
+              <Route path="/ball-diagnosis" element={<BallDiagnosisApp />} />
+              <Route path="/diagnosis" element={<DiagnosisWizard />} />
+              <Route path="/diagnosis/:category" element={<DiagnosisWizard />} />
+              <Route path="/result" element={<ResultPage />} />
+              <Route path="/result/:club" element={<ResultPage />} />
+              <Route path="/result/:club/:mode" element={<ResultPage />} />
+              <Route path="/mypage" element={<MyGearPage />} />
+              <Route path="/mybag/create" element={<MyGearPage />} />
+              <Route path="/bag" element={<SharedBag />} />
+              <Route path="/sitemap" element={<Sitemap />} />
+            </Routes>
+          </Suspense>
         </Layout>
       </BrowserRouter>
     </DiagnosisProvider>
