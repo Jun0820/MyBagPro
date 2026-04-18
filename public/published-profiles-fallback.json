@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-18T04:28:58.112Z",
+  "generatedAt": "2026-04-18T04:37:27.378Z",
   "source": "supabase",
   "count": 214,
   "profiles": [
@@ -382,6 +382,152 @@
           "source_title": "GDO 桂川有人 クラブセッティング 2026年 ヒーローインディアンオープン",
           "checked_at": "2026-04-08T00:00:00+00:00",
           "notes": "Used for bio fields, 2026 full bag, and ball confirmation."
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+        "slug": "ryo-ishikawa",
+        "display_name": "石川 遼",
+        "kana_name": "イシカワ リョウ",
+        "birth_date": "1991-09-17",
+        "height_cm": 175,
+        "birthplace": "埼玉県松伏町",
+        "nationality": "Japan",
+        "profile_type": "tour_pro",
+        "segment": "launch10",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "ryo.ishikawa_official",
+        "x_handle": "-",
+        "website_url": "https://ryo-ishikawa.jp/profile/",
+        "head_speed_mps": null,
+        "average_score": 70.5,
+        "best_score": 58,
+        "ball_name": "Titleist Pro V1x",
+        "feature_1": "2026シーズン基準",
+        "feature_2": "キャロウェイ中心",
+        "feature_3": "JGTO公式平均スコア反映",
+        "summary": "石川遼の2026シーズン基準クラブセッティング。2026年クラブカー選手権時点で確認できた14本に、JGTO公式の平均スコアとベストスコアをあわせて整理しています。",
+        "verified_at": "2026-04-18T00:00:00+00:00",
+        "latest_source_policy": "2026_season",
+        "is_featured": true,
+        "is_published": true,
+        "created_at": "2026-04-07T09:06:05.649043+00:00",
+        "updated_at": "2026-04-18T04:36:59.861286+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "category": "Driver",
+          "brand": "Callaway",
+          "model_name": "QUANTUM Triple Diamond",
+          "spec_label": null,
+          "loft_label": "9°",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD GC",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": 301,
+          "source_note": "GDO 2026年クラブカー選手権とJGTO公式スタッツより確認。平均飛距離は300.59yd。",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "category": "Fairway Wood",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Max",
+          "spec_label": "3W",
+          "loft_label": "15°（14°）",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD GC",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026年クラブカー選手権セッティングページより確認。",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "APEX UW 2022",
+          "spec_label": "3U",
+          "loft_label": "19°",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD UB",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026年クラブカー選手権セッティングページより確認。",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "APEX UW 2025",
+          "spec_label": "4U",
+          "loft_label": "23°",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD UB",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026年クラブカー選手権セッティングページより確認。",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "category": "Iron",
+          "brand": "Callaway",
+          "model_name": "APEX MB Forged",
+          "spec_label": "5I",
+          "loft_label": null,
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "Modus System3+ Prototype",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026年クラブカー選手権セッティングページより確認。",
+          "slot_order": 5
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/15422/stats",
+          "source_title": "JGTO 石川遼スタッツ",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "2025年平均飛距離300.59yd、平均ストローク70.529確認用。"
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/15422/profile",
+          "source_title": "JGTO 石川遼プロフィール",
+          "checked_at": "2026-04-07T00:00:00+00:00",
+          "notes": "Used to support official player profile fields."
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "source_type": "official",
+          "source_url": "https://ryo-ishikawa.jp/profile/",
+          "source_title": "石川遼 オフィシャルサイト プロフィール",
+          "checked_at": "2026-04-07T00:00:00+00:00",
+          "notes": "Used for bio fields and best score."
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/100/2026/1/",
+          "source_title": "GDO 石川遼 クラブセッティング 2026年 クラブカー選手権",
+          "checked_at": "2026-04-07T00:00:00+00:00",
+          "notes": "Used for 2026 driver, shaft, and ball confirmation."
         }
       ]
     },
@@ -792,14 +938,6 @@
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career",
-          "source_title": "Hideki Matsuyama PGA TOUR Career",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Career page confirms all-time career low round and PGA TOUR career context."
-        },
-        {
-          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/stats",
           "source_title": "Hideki Matsuyama PGA TOUR Stats",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -808,6 +946,14 @@
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
           "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career",
+          "source_title": "Hideki Matsuyama PGA TOUR Career",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Career page confirms all-time career low round and PGA TOUR career context."
+        },
+        {
+          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
+          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama",
           "source_title": "PGA TOUR player profile",
           "checked_at": "2026-04-07T08:39:24.890986+00:00",
@@ -852,144 +998,6 @@
           "source_title": "GolfWRX WITB 2026 (February)",
           "checked_at": "2026-04-07T07:53:09.032919+00:00",
           "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
-        }
-      ]
-    },
-    {
-      "profile": {
-        "id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-        "slug": "ryo-ishikawa",
-        "display_name": "石川 遼",
-        "kana_name": "イシカワ リョウ",
-        "birth_date": "1991-09-17",
-        "height_cm": 175,
-        "birthplace": "埼玉県松伏町",
-        "nationality": "Japan",
-        "profile_type": "tour_pro",
-        "segment": "launch10",
-        "season_year": 2026,
-        "youtube_channel": "-",
-        "instagram_handle": "ryo.ishikawa_official",
-        "x_handle": "-",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": 58,
-        "ball_name": "Titleist Pro V1x",
-        "feature_1": "2026シーズン基準",
-        "feature_2": "キャロウェイ中心",
-        "feature_3": "14本確認済み",
-        "summary": "2026年クラブカー選手権時点で確認できた石川遼の14本のクラブセッティング。ドライバー、ユーティリティ、アイアン、ウェッジ、パター、使用ボールまで掲載しています。",
-        "verified_at": "2026-04-07T00:00:00+00:00",
-        "latest_source_policy": "2026_season",
-        "is_featured": true,
-        "is_published": true,
-        "created_at": "2026-04-07T09:06:05.649043+00:00",
-        "updated_at": "2026-04-10T17:25:28.101346+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "category": "Driver",
-          "brand": "Callaway",
-          "model_name": "QUANTUM Triple Diamond",
-          "spec_label": null,
-          "loft_label": "9 degrees",
-          "shaft_brand": "Graphite Design",
-          "shaft_model": "Tour AD GC",
-          "shaft_flex": "S",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "category": "Fairway Wood",
-          "brand": "Callaway",
-          "model_name": "Paradym Ai Smoke Max",
-          "spec_label": "3W",
-          "loft_label": "15 degrees tuned to 14",
-          "shaft_brand": "Graphite Design",
-          "shaft_model": "Tour AD GC",
-          "shaft_flex": "X",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
-          "slot_order": 2
-        },
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "APEX UW 2022",
-          "spec_label": "3U",
-          "loft_label": "19 degrees",
-          "shaft_brand": "Graphite Design",
-          "shaft_model": "Tour AD UB",
-          "shaft_flex": "X",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
-          "slot_order": 3
-        },
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "APEX UW 2025",
-          "spec_label": "4U",
-          "loft_label": "23 degrees",
-          "shaft_brand": "Graphite Design",
-          "shaft_model": "Tour AD UB",
-          "shaft_flex": "X",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "category": "Iron",
-          "brand": "Callaway",
-          "model_name": "APEX MB Forged",
-          "spec_label": "5I",
-          "loft_label": null,
-          "shaft_brand": "Nippon Shaft",
-          "shaft_model": "Modus System3+ Prototype",
-          "shaft_flex": "S",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2026 Club Car Championship setting page.",
-          "slot_order": 5
-        }
-      ],
-      "sources": [
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "source_type": "official",
-          "source_url": "https://www.jgto.org/player/15422/profile",
-          "source_title": "JGTO 石川遼プロフィール",
-          "checked_at": "2026-04-07T00:00:00+00:00",
-          "notes": "Used to support official player profile fields."
-        },
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "source_type": "official",
-          "source_url": "https://ryo-ishikawa.jp/profile/",
-          "source_title": "石川遼 オフィシャルサイト プロフィール",
-          "checked_at": "2026-04-07T00:00:00+00:00",
-          "notes": "Used for bio fields and best score."
-        },
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/100/2026/1/",
-          "source_title": "GDO 石川遼 クラブセッティング 2026年 クラブカー選手権",
-          "checked_at": "2026-04-07T00:00:00+00:00",
-          "notes": "Used for 2026 driver, shaft, and ball confirmation."
         }
       ]
     },
@@ -1352,14 +1360,6 @@
         {
           "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/career",
-          "source_title": "Sahith Theegala PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
-        },
-        {
-          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/stats",
           "source_title": "Sahith Theegala PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
@@ -1380,6 +1380,14 @@
           "source_title": "Sahith Theegala - PING",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "契約情報と主要クラブ確認用。"
+        },
+        {
+          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/career",
+          "source_title": "Sahith Theegala PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
         }
       ]
     },
@@ -2448,18 +2456,18 @@
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/nelly-korda/98350/stats",
-          "source_title": "Nelly Korda | Statistics | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
-        },
-        {
-          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/nelly-korda/98350/results",
           "source_title": "Nelly Korda | Results | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "LPGA official results page used for current-season low round 64."
+        },
+        {
+          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/nelly-korda/98350/stats",
+          "source_title": "Nelly Korda | Statistics | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
         },
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
@@ -4250,14 +4258,6 @@
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/17786/",
-          "source_title": "GDO スコッティ・シェフラー クラブセッティング 2025年 全英オープン",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for profile and 2025 full bag confirmation."
-        },
-        {
-          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
-          "source_type": "article",
           "source_url": "https://www.golfwrx.com/763621/bks-breakdowns-scottie-schefflers-witb-from-the-2025-open-championship/",
           "source_title": "GolfWRX Scottie Scheffler WITB 2025 Open Championship",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -4294,6 +4294,14 @@
           "source_title": "Scottie Scheffler PGA TOUR Stats",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "PGA TOUR official stats page used for club head speed 120.30 mph, driving distance 312.3 yd, scoring average 67.85 and lowest round 63. These are official tour stats, not public TrackMan or GCQuad session data."
+        },
+        {
+          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/17786/",
+          "source_title": "GDO スコッティ・シェフラー クラブセッティング 2025年 全英オープン",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for profile and 2025 full bag confirmation."
         }
       ]
     },
@@ -8457,6 +8465,128 @@
     },
     {
       "profile": {
+        "id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
+        "slug": "naoyuki-kataoka",
+        "display_name": "片岡 尚之",
+        "kana_name": "カタオカ ナオユキ",
+        "birth_date": "1997-12-28",
+        "height_cm": 171,
+        "birthplace": "北海道江別市",
+        "nationality": "Japan",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2025,
+        "youtube_channel": "-",
+        "instagram_handle": "naoyuki.k363672",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": null,
+        "ball_name": "スリクソン Z-STAR XV ボール",
+        "feature_1": "2025シーズン基準",
+        "feature_2": "日本オープン実戦セット",
+        "feature_3": "14本確認済み",
+        "summary": "2025年日本オープン時点で確認できた片岡尚之の14本セッティングを掲載するプロフィール。",
+        "verified_at": "2026-04-10T00:00:00+00:00",
+        "latest_source_policy": "2025_season",
+        "is_featured": true,
+        "is_published": true,
+        "created_at": "2026-04-10T01:24:28.251689+00:00",
+        "updated_at": "2026-04-11T08:39:32.052882+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
+          "category": "Driver",
+          "brand": "Srixon",
+          "model_name": "ZXi LS Driver",
+          "spec_label": null,
+          "loft_label": "9°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana WS",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
+          "category": "Fairway Wood",
+          "brand": "Srixon",
+          "model_name": "ZX Mk II Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana GT",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
+          "category": "Fairway Wood",
+          "brand": "Srixon",
+          "model_name": "ZX Mk II Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana GT",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
+          "category": "Fairway Wood",
+          "brand": "Srixon",
+          "model_name": "ZX Mk II Fairway Wood",
+          "spec_label": "7W",
+          "loft_label": "21°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana GT",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
+          "category": "Iron",
+          "brand": "Srixon",
+          "model_name": "ZXi5 Iron",
+          "spec_label": "4I",
+          "loft_label": null,
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO Prototype",
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
+          "slot_order": 5
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/16203/2025/1/",
+          "source_title": "GDO 片岡尚之 クラブセッティング 2025年 日本オープン",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for bio fields, 2025 setting, and ball confirmation."
+        }
+      ]
+    },
+    {
+      "profile": {
         "id": "bf4de32a-2c94-4038-9731-6878b3d4fa87",
         "slug": "shugo-imahira",
         "display_name": "今平 周吾",
@@ -8712,128 +8842,6 @@
           "source_title": "JGTO 蝉川泰果プロフィール",
           "checked_at": "2026-04-08T00:00:00+00:00",
           "notes": "Used for bio fields, club maker context, and official lowest round."
-        }
-      ]
-    },
-    {
-      "profile": {
-        "id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
-        "slug": "naoyuki-kataoka",
-        "display_name": "片岡 尚之",
-        "kana_name": "カタオカ ナオユキ",
-        "birth_date": "1997-12-28",
-        "height_cm": 171,
-        "birthplace": "北海道江別市",
-        "nationality": "Japan",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2025,
-        "youtube_channel": "-",
-        "instagram_handle": "naoyuki.k363672",
-        "x_handle": "-",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": null,
-        "ball_name": "スリクソン Z-STAR XV ボール",
-        "feature_1": "2025シーズン基準",
-        "feature_2": "日本オープン実戦セット",
-        "feature_3": "14本確認済み",
-        "summary": "2025年日本オープン時点で確認できた片岡尚之の14本セッティングを掲載するプロフィール。",
-        "verified_at": "2026-04-10T00:00:00+00:00",
-        "latest_source_policy": "2025_season",
-        "is_featured": true,
-        "is_published": true,
-        "created_at": "2026-04-10T01:24:28.251689+00:00",
-        "updated_at": "2026-04-11T08:39:32.052882+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [
-        {
-          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
-          "category": "Driver",
-          "brand": "Srixon",
-          "model_name": "ZXi LS Driver",
-          "spec_label": null,
-          "loft_label": "9°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana WS",
-          "shaft_flex": "X",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
-          "category": "Fairway Wood",
-          "brand": "Srixon",
-          "model_name": "ZX Mk II Fairway Wood",
-          "spec_label": "3W",
-          "loft_label": "15°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana GT",
-          "shaft_flex": "X",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
-          "slot_order": 2
-        },
-        {
-          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
-          "category": "Fairway Wood",
-          "brand": "Srixon",
-          "model_name": "ZX Mk II Fairway Wood",
-          "spec_label": "5W",
-          "loft_label": "18°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana GT",
-          "shaft_flex": "X",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
-          "slot_order": 3
-        },
-        {
-          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
-          "category": "Fairway Wood",
-          "brand": "Srixon",
-          "model_name": "ZX Mk II Fairway Wood",
-          "spec_label": "7W",
-          "loft_label": "21°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana GT",
-          "shaft_flex": "X",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
-          "category": "Iron",
-          "brand": "Srixon",
-          "model_name": "ZXi5 Iron",
-          "spec_label": "4I",
-          "loft_label": null,
-          "shaft_brand": "Nippon Shaft",
-          "shaft_model": "NS PRO Prototype",
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Japan Open setting page.",
-          "slot_order": 5
-        }
-      ],
-      "sources": [
-        {
-          "profile_id": "85e90fdd-fd68-48bc-a540-f5342ad6aa90",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/16203/2025/1/",
-          "source_title": "GDO 片岡尚之 クラブセッティング 2025年 日本オープン",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for bio fields, 2025 setting, and ball confirmation."
         }
       ]
     },
@@ -20611,18 +20619,18 @@
         {
           "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/results",
-          "source_title": "Hinako Shibuno | Results | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official results page used for current-season low round 65."
-        },
-        {
-          "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/stats",
           "source_title": "Hinako Shibuno | Statistics | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
+        },
+        {
+          "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/results",
+          "source_title": "Hinako Shibuno | Results | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official results page used for current-season low round 65."
         },
         {
           "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
@@ -23197,18 +23205,18 @@
         {
           "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012/stats",
-          "source_title": "LPGA Statistics: Patty Tavatanakit",
-          "checked_at": "2026-04-18T00:00:00+00:00",
-          "notes": "LPGA official stats page used for driving distance reference around 280 yd."
-        },
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012",
           "source_title": "LPGA Profile: Patty Tavatanakit",
           "checked_at": "2026-04-18T00:00:00+00:00",
           "notes": "LPGA official player profile used for lowest round 61 reference."
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012/stats",
+          "source_title": "LPGA Statistics: Patty Tavatanakit",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "LPGA official stats page used for driving distance reference around 280 yd."
         },
         {
           "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
@@ -24677,18 +24685,18 @@
         {
           "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/players/rose-zhang/100072/stats",
-          "source_title": "LPGA Statistics: Rose Zhang",
-          "checked_at": "2026-04-18T00:00:00+00:00",
-          "notes": "LPGA official stats page used for driving distance reference around 270 yd."
-        },
-        {
-          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/players/rose-zhang/100072",
           "source_title": "LPGA Profile: Rose Zhang",
           "checked_at": "2026-04-18T00:00:00+00:00",
           "notes": "LPGA official player profile used for lowest round 62 reference."
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/rose-zhang/100072/stats",
+          "source_title": "LPGA Statistics: Rose Zhang",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "LPGA official stats page used for driving distance reference around 270 yd."
         },
         {
           "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
