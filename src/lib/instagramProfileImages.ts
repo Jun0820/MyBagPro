@@ -167,6 +167,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/charley-hull.jpg",
     "handle": "charley.hull"
   },
+  "leona-maguire": {
+    "src": "/profile-images/leona-maguire.jpg",
+    "handle": "leonamaguire"
+  },
   "hina-arakaki": {
     "src": "/profile-images/hina-arakaki.jpg",
     "handle": "hina_arakaki"
@@ -186,10 +190,6 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "saiki-fujita": {
     "src": "/profile-images/saiki-fujita.jpg",
     "handle": "saiki_fujita"
-  },
-  "leona-maguire": {
-    "src": "/profile-images/leona-maguire.jpg",
-    "handle": "leonamaguire"
   },
   "jin-young-ko": {
     "src": "/profile-images/jin-young-ko.jpg",
@@ -229,7 +229,7 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   },
   "ally-ewing": {
     "src": "/profile-images/ally-ewing.jpg",
-    "handle": "allymc10"
+    "handle": "a_mc10"
   },
   "rose-zhang": {
     "src": "/profile-images/rose-zhang.jpg",
@@ -427,13 +427,13 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/yuuka-yasuda.jpg",
     "handle": "oo_______yuka"
   },
-  "takahiro-hataji": {
-    "src": "/profile-images/takahiro-hataji.jpg",
-    "handle": "taka3yan3"
-  },
   "tomohiro-ishizaka": {
     "src": "/profile-images/tomohiro-ishizaka.jpg",
     "handle": "tomohiro.ishizaka"
+  },
+  "takahiro-hataji": {
+    "src": "/profile-images/takahiro-hataji.jpg",
+    "handle": "taka3yan3"
   },
   "viktor-hovland": {
     "src": "/profile-images/viktor-hovland.jpg",

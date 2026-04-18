@@ -9,7 +9,7 @@ export const profileSocialOverrides: Record<string, ProfileSocialOverride> = {
   'ai-suzuki': { instagramHandle: 'ai_suzuki59' },
   'akie-iwai': { instagramHandle: 'akie.iwai' },
   'allisen-corpuz': { instagramHandle: 'allisencorpuz', xHandle: 'allisencorpuz' },
-  'ally-ewing': { instagramHandle: 'allymc10', xHandle: 'allyewing' },
+  'ally-ewing': { instagramHandle: 'a_mc10', xHandle: 'allyewing' },
   'amiyu-ozeki': { instagramHandle: 'amiyu_ozeki' },
   'amy-yang': { instagramHandle: 'amy_yang_golf' },
   'andrea-lee': { instagramHandle: 'andrea_lee54', xHandle: 'andrea_lee54' },
