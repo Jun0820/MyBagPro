@@ -4,16 +4,55 @@
     "display_name": "藤田かれん",
     "kana_name": "フジタ カレン",
     "nationality": "Japan",
+    "birthplace": "滋賀県",
+    "height_cm": 165,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "summary": "2026シーズン基準で掲載している藤田かれんのプロフィール。",
-    "latest_source_policy": "2026_season",
+    "ball_name": "プロ V1x ボール",
+    "feature_1": "PING契約",
+    "feature_2": "2026年3月確認",
+    "feature_3": "14本構成確認済み",
+    "summary": "PING公式で2026年3月4日時点に確認できた藤田かれんの14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-04-09T00:00:00.000Z",
     "birth_date": "2000-06-21"
   },
-  "bagItems": [],
-  "sources": []
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G440 MAX Driver", "loft_label": "9度", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G430 MAX Fairway Wood", "spec_label": "#3", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "PING", "model_name": "G440 Hybrid", "spec_label": "#3", "loft_label": "20度", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "PING", "model_name": "G440 Hybrid", "spec_label": "#4", "loft_label": "23度", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "PING", "model_name": "i240 Iron", "spec_label": "#5", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "PING", "model_name": "i240 Iron", "spec_label": "#6", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "PING", "model_name": "i240 Iron", "spec_label": "#7", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "PING", "model_name": "i240 Iron", "spec_label": "#8", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "PING", "model_name": "i240 Iron", "spec_label": "#9", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "PING", "model_name": "i240 Iron", "spec_label": "PW", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "PING", "model_name": "s259 Wedge", "spec_label": "GW", "loft_label": "48度S", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "PING", "model_name": "s259 Wedge", "spec_label": "SW", "loft_label": "52度S", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "PING", "model_name": "s259 Wedge", "spec_label": "LW", "loft_label": "58度B", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "PING", "model_name": "PLD OSLO C (カスタム)", "source_note": "PING公式 2026年3月4日情報。", "is_featured_item": true }
+  ],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://clubping.jp/tourpros/fujita.html",
+      "source_title": "ツアープロ情報 藤田かれん選手│CLUB PING",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "2026年3月4日時点の使用クラブ構成。"
+    }
+  ],
+  "article": {
+    "slug": "karen-fujita-2026-setting-update",
+    "title": "藤田かれんのクラブセッティングを掲載しました",
+    "excerpt": "PING公式の2026年3月4日情報をもとに、藤田かれんの14本セッティングを掲載しました。",
+    "body": "藤田かれんについて、PING公式のツアープロ情報をもとに14本全体を整理しました。ドライバー、FW、ハイブリッド、i240のアイアン、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-19T00:00:00.000Z"
+  }
 }

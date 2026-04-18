@@ -1,8 +1,38 @@
 {
-  "generatedAt": "2026-04-18T23:00:06.738Z",
+  "generatedAt": "2026-04-18T23:24:45.305Z",
   "source": "supabase",
-  "count": 248,
+  "count": 252,
   "articles": [
+    {
+      "slug": "yumeka-kobayashi-2026-setting-update",
+      "title": "小林夢果のクラブセッティングを掲載しました",
+      "excerpt": "PRGR公式と用具紹介記事をもとに、小林夢果の14本セッティングを掲載しました。",
+      "body": "小林夢果について、PRGR公式プロフィールと用具紹介記事をもとに14本全体を整理しました。ドライバー、3Wと5W、2本のユーティリティ、5I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-19T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "88b50303-650a-4e69-afa3-1f93c562574e"
+    },
+    {
+      "slug": "kokone-yoshimoto-2026-setting-update",
+      "title": "吉本ここねのクラブセッティングを掲載しました",
+      "excerpt": "GDOの2025年アクサレディス取材をもとに、吉本ここねの14本構成を掲載しました。",
+      "body": "吉本ここねについて、GDOの2025年アクサレディス取材で確認できた内容をもとにセッティング全体を整理しました。ゼクシオ中心の構成で、FW、複数のハイブリッド、8番-PW、ウェッジ、パターまで流れが追える14本ページに更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-19T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "6e8e9093-de76-48a0-876b-3fe9d0a96665"
+    },
+    {
+      "slug": "karen-fujita-2026-setting-update",
+      "title": "藤田かれんのクラブセッティングを掲載しました",
+      "excerpt": "PING公式の2026年3月4日情報をもとに、藤田かれんの14本セッティングを掲載しました。",
+      "body": "藤田かれんについて、PING公式のツアープロ情報をもとに14本全体を整理しました。ドライバー、FW、ハイブリッド、i240のアイアン、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-19T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "275d03db-9d10-4f80-98f7-30a5d6c94daa"
+    },
     {
       "slug": "kkt-vantelin-ladies-2026-spotlight",
       "title": "KKT杯バンテリンレディスオープン2026の注目選手クラブセッティング",
@@ -74,16 +104,6 @@
       "related_profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36"
     },
     {
-      "slug": "kaito-onishi-2026-setting-update",
-      "title": "大西魁斗のクラブセッティング【2026年最新】",
-      "excerpt": "大西魁斗の2026シーズン基準クラブセッティングを14本全体で掲載しました。",
-      "body": "大西魁斗のクラブセッティングについて、GDOのセッティング記事をもとに2026シーズン基準で整理しました。TSR3ドライバーとフェアウェイウッド、Apex UW、T100の4I-9I、Vokeyウェッジ、Scotty Cameronパターまで、14本全体が追いやすい構成に更新しています。",
-      "article_type": "update",
-      "published_at": "2026-04-11T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "cafad024-9c84-438b-a23c-20fb0c353ad4"
-    },
-    {
       "slug": "joaquin-niemann-2026-setting-update",
       "title": "ホアキン・ニーマンのクラブセッティング【2026年最新】",
       "excerpt": "PING契約で戦うホアキン・ニーマンの2026シーズン基準セッティングを、14本構成で掲載しました。",
@@ -92,6 +112,26 @@
       "published_at": "2026-04-11T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "13968bb6-6697-441a-9392-a8d365933d2d"
+    },
+    {
+      "slug": "in-gee-chun-2026-setting-update",
+      "title": "チョン・インジのクラブセッティング【2026年最新】",
+      "excerpt": "PING契約のチョン・インジについて、14本全体が見える2026シーズン基準セッティングへ更新しました。",
+      "body": "チョン・インジのクラブセッティングについて、PING公式とGolfWRXをベースにしつつ、14本全体の番手構成は補助WITBソースで補完して整理しました。G430 LSTドライバー、G430 MAX 3番ウッド、G430ハイブリッド2本、i230の5I-PW、s159ウェッジ、PLDパターまで全体の流れが追いやすいページに更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-11T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f"
+    },
+    {
+      "slug": "kaito-onishi-2026-setting-update",
+      "title": "大西魁斗のクラブセッティング【2026年最新】",
+      "excerpt": "大西魁斗の2026シーズン基準クラブセッティングを14本全体で掲載しました。",
+      "body": "大西魁斗のクラブセッティングについて、GDOのセッティング記事をもとに2026シーズン基準で整理しました。TSR3ドライバーとフェアウェイウッド、Apex UW、T100の4I-9I、Vokeyウェッジ、Scotty Cameronパターまで、14本全体が追いやすい構成に更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-11T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "cafad024-9c84-438b-a23c-20fb0c353ad4"
     },
     {
       "slug": "sahith-theegala-2026-setting-update",
@@ -112,16 +152,6 @@
       "published_at": "2026-04-11T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "ea96c235-ad67-4165-8d8f-2c4f689c58ab"
-    },
-    {
-      "slug": "in-gee-chun-2026-setting-update",
-      "title": "チョン・インジのクラブセッティング【2026年最新】",
-      "excerpt": "PING契約のチョン・インジについて、14本全体が見える2026シーズン基準セッティングへ更新しました。",
-      "body": "チョン・インジのクラブセッティングについて、PING公式とGolfWRXをベースにしつつ、14本全体の番手構成は補助WITBソースで補完して整理しました。G430 LSTドライバー、G430 MAX 3番ウッド、G430ハイブリッド2本、i230の5I-PW、s159ウェッジ、PLDパターまで全体の流れが追いやすいページに更新しています。",
-      "article_type": "update",
-      "published_at": "2026-04-11T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f"
     },
     {
       "slug": "fujifilm-studio-alice-2026-spotlight",
@@ -164,44 +194,14 @@
       "related_profile_id": null
     },
     {
-      "slug": "ryutaro-nagano-2026-setting-update",
-      "title": "永野竜太郎のクラブセッティングを掲載しました",
-      "excerpt": "GDOの2019年東建ホームメイトカップ取材をもとに、永野竜太郎の14本セッティングを掲載しました。",
-      "body": "永野竜太郎について、GDOの2019年東建ホームメイトカップ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3W、2U、4I-PW、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+      "slug": "shingo-katayama-profile-published",
+      "title": "片山晋呉のプロフィールを掲載しました",
+      "excerpt": "片山晋呉の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "片山晋呉について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
       "article_type": "update",
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "f6c1a693-9b0a-4b49-a8b0-527202f74a85"
-    },
-    {
-      "slug": "max-homa-2026-setting-update",
-      "title": "マックス・ホーマのクラブセッティング【2026年マスターズ出場】",
-      "excerpt": "2026年マスターズ出場選手として、マックス・ホーマの14本全体が見える最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
-      "body": "マックス・ホーマのクラブセッティングについて、2025年9月時点で確認できたWITBをもとに整理しました。Cobra DS-Adapt Xドライバーと3番ウッド、TaylorMade Qi10 7番ウッド、Cobra 3DP TourとKing CB/MBのコンボアイアン、6I-PWの流れが見えるアイアン帯、SnakebiteとVokey/WedgeWorksのウェッジ、Scotty Cameron T-5.5 Tour Prototypeパター、Titleist Pro V1という構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594"
-    },
-    {
-      "slug": "patrick-cantlay-2026-setting-update",
-      "title": "パトリック・キャントレーのクラブセッティング【2026年マスターズ出場】",
-      "excerpt": "2026年マスターズ出場選手として、パトリック・キャントレーの最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
-      "body": "パトリック・キャントレーのクラブセッティングについて、2025年8月時点で確認できたWITBをもとに整理しました。Titleist GT2ドライバー、915F 3番ウッド、TS2 7番ウッド、Srixon ZX5 Mk II 4番アイアン、Titleist 718 AP2アイアン、Vokeyウェッジ、Scotty Cameron Phantom 7.2 Tour Prototypeパター、Titleist Pro V1xという構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa"
-    },
-    {
-      "slug": "tomohiro-ishizaka-profile-published",
-      "title": "石坂友宏のプロフィールを掲載しました",
-      "excerpt": "石坂友宏の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "石坂友宏について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b"
+      "related_profile_id": "245d740f-5c0c-4659-a831-18c8eb926416"
     },
     {
       "slug": "aaron-rai-2026-setting-update",
@@ -212,6 +212,26 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "eb973a3d-0a3a-4c5f-95e6-2a5872324278"
+    },
+    {
+      "slug": "konosuke-nakazato-profile-published",
+      "title": "中里光之介のプロフィールを掲載しました",
+      "excerpt": "中里光之介の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "中里光之介について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "d1826148-a1bb-41fa-8ce1-5748be7764ec"
+    },
+    {
+      "slug": "ryutaro-nagano-profile-published",
+      "title": "永野竜太郎のプロフィールを掲載しました",
+      "excerpt": "永野竜太郎の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "永野竜太郎について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "f6c1a693-9b0a-4b49-a8b0-527202f74a85"
     },
     {
       "slug": "keegan-bradley-2026-setting-update",
@@ -252,26 +272,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "39063999-911e-45f5-a26c-2147c2089d75"
-    },
-    {
-      "slug": "shota-akiyoshi-profile-published",
-      "title": "秋吉翔太のプロフィールを掲載しました",
-      "excerpt": "秋吉翔太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "秋吉翔太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "77301635-8184-46fe-916f-6870c5cd5ebc"
-    },
-    {
-      "slug": "takashi-ogiso-2025-setting-update",
-      "title": "小木曽喬の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、小木曽喬の14本セッティングと使用ボールを掲載しました。",
-      "body": "小木曽喬のセッティングについて、2025年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "b400caa9-51a5-48c5-a6fd-db4ade6768f0"
     },
     {
       "slug": "cameron-smith-2026-setting-update",
@@ -324,6 +324,16 @@
       "related_profile_id": "42cef182-2d33-4f74-9ae6-b4e241e514ba"
     },
     {
+      "slug": "ryosuke-kinoshita-2024-setting-update",
+      "title": "木下稜介の2024年クラブセッティングを掲載しました",
+      "excerpt": "2024シーズン基準で、木下稜介のクラブセッティングと使用ボールを掲載しました。",
+      "body": "木下稜介のセッティングについて、2024年ミズノオープン時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2024,
+      "related_profile_id": "cc50a89d-a426-4a13-b40a-58a6a554247e"
+    },
+    {
       "slug": "patrick-reed-2026-setting-update",
       "title": "パトリック・リードのクラブセッティング【2026年マスターズ出場】",
       "excerpt": "2026年マスターズ出場選手として、パトリック・リードの契約フリーらしいミックスセッティングを掲載しました。",
@@ -354,16 +364,6 @@
       "related_profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75"
     },
     {
-      "slug": "jinichiro-kozuma-2025-setting-update",
-      "title": "香妻陣一朗の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、香妻陣一朗の14本セッティングと使用ボールを掲載しました。",
-      "body": "香妻陣一朗のセッティングについて、2025年LIVコリア時点で確認できた14本のクラブ構成と使用ボールを反映しました。日本人選手の最新セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755"
-    },
-    {
       "slug": "rory-mcilroy-2025-setting-update",
       "title": "ローリー・マキロイ クラブセッティング 2025年版 14本と使用ドライバー",
       "excerpt": "ローリー・マキロイの2025年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
@@ -372,16 +372,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "4248a629-c191-486d-b513-cbdb16e04315"
-    },
-    {
-      "slug": "ryosuke-kinoshita-2024-setting-update",
-      "title": "木下稜介の2024年クラブセッティングを掲載しました",
-      "excerpt": "2024シーズン基準で、木下稜介のクラブセッティングと使用ボールを掲載しました。",
-      "body": "木下稜介のセッティングについて、2024年ミズノオープン時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2024,
-      "related_profile_id": "cc50a89d-a426-4a13-b40a-58a6a554247e"
     },
     {
       "slug": "jon-rahm-2026-setting-update",
@@ -412,36 +402,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "98173523-0c58-41ed-9bf1-78b7cde2f9e2"
-    },
-    {
-      "slug": "brooks-koepka-2026-setting-update",
-      "title": "ブルックス・ケプカのクラブセッティング【2026年マスターズ出場】",
-      "excerpt": "2026年マスターズ出場選手として、ブルックス・ケプカの2026年4月時点の最新WITBを掲載しました。",
-      "body": "ブルックス・ケプカのクラブセッティングについて、2026年4月時点で確認できたWITBをもとに整理しました。Titleist GT4ドライバー、長年使うTaylorMade M2 Tourの3番ウッド、Nike Vapor Fly Pro 3番アイアン、Srixon ZX7 Mk IIアイアン、TaylorMade Milled Grind 4ウェッジ、Nike Method 001パター、Srixon Z-Star Diamondという構成です。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "01ea7141-fb8e-4068-a61a-f9d99763c813"
-    },
-    {
-      "slug": "min-woo-lee-2026-setting-update",
-      "title": "ミンウ・リーのクラブセッティング【2026年マスターズ出場】",
-      "excerpt": "2026年マスターズ出場選手として、ミンウ・リーの2026年3月時点の最新WITBを掲載しました。",
-      "body": "ミンウ・リーのクラブセッティングについて、2026年3月時点で確認できたWITBをもとに整理しました。Callaway Elyte Triple Diamondドライバー、TaylorMade BRNR Mini Driver Copper、Callaway Apex UW、Apex TCBアイアン、Jaws Rawウェッジ、Odyssey Ai-ONE Cruiser Jailbirdパター、Callaway Chrome Tour Xという構成です。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "06bf00a1-241f-4de7-9dcb-8165e058b572"
-    },
-    {
-      "slug": "katsumasa-miyamoto-profile-published",
-      "title": "宮本勝昌のプロフィールを掲載しました",
-      "excerpt": "宮本勝昌の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "宮本勝昌について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895"
     },
     {
       "slug": "yuta-sugiura-2025-setting-update",
@@ -554,16 +514,6 @@
       "related_profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839"
     },
     {
-      "slug": "yuji-igarashi-profile-published",
-      "title": "五十嵐雄二のプロフィールを掲載しました",
-      "excerpt": "五十嵐雄二の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "五十嵐雄二について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "0a753415-be74-443a-a572-e14db3330aa6"
-    },
-    {
       "slug": "takahiro-hataji-2025-setting-update",
       "title": "幡地隆寛の2025年クラブセッティングを掲載しました",
       "excerpt": "2025シーズン基準で、幡地隆寛のクラブセッティングと使用ボールを掲載しました。",
@@ -572,6 +522,106 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "9491996c-476a-4b8d-ad59-ac00a4179240"
+    },
+    {
+      "slug": "jinichiro-kozuma-2025-setting-update",
+      "title": "香妻陣一朗の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、香妻陣一朗の14本セッティングと使用ボールを掲載しました。",
+      "body": "香妻陣一朗のセッティングについて、2025年LIVコリア時点で確認できた14本のクラブ構成と使用ボールを反映しました。日本人選手の最新セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755"
+    },
+    {
+      "slug": "takashi-ogiso-2025-setting-update",
+      "title": "小木曽喬の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、小木曽喬の14本セッティングと使用ボールを掲載しました。",
+      "body": "小木曽喬のセッティングについて、2025年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "b400caa9-51a5-48c5-a6fd-db4ade6768f0"
+    },
+    {
+      "slug": "shota-akiyoshi-profile-published",
+      "title": "秋吉翔太のプロフィールを掲載しました",
+      "excerpt": "秋吉翔太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "秋吉翔太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "77301635-8184-46fe-916f-6870c5cd5ebc"
+    },
+    {
+      "slug": "tomohiro-ishizaka-profile-published",
+      "title": "石坂友宏のプロフィールを掲載しました",
+      "excerpt": "石坂友宏の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "石坂友宏について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b"
+    },
+    {
+      "slug": "brooks-koepka-2026-setting-update",
+      "title": "ブルックス・ケプカのクラブセッティング【2026年マスターズ出場】",
+      "excerpt": "2026年マスターズ出場選手として、ブルックス・ケプカの2026年4月時点の最新WITBを掲載しました。",
+      "body": "ブルックス・ケプカのクラブセッティングについて、2026年4月時点で確認できたWITBをもとに整理しました。Titleist GT4ドライバー、長年使うTaylorMade M2 Tourの3番ウッド、Nike Vapor Fly Pro 3番アイアン、Srixon ZX7 Mk IIアイアン、TaylorMade Milled Grind 4ウェッジ、Nike Method 001パター、Srixon Z-Star Diamondという構成です。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "01ea7141-fb8e-4068-a61a-f9d99763c813"
+    },
+    {
+      "slug": "yuta-ikeda-profile-published",
+      "title": "池田勇太のプロフィールを掲載しました",
+      "excerpt": "池田勇太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "池田勇太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "84642540-aeea-4e78-8cba-6ed97687b468"
+    },
+    {
+      "slug": "min-woo-lee-2026-setting-update",
+      "title": "ミンウ・リーのクラブセッティング【2026年マスターズ出場】",
+      "excerpt": "2026年マスターズ出場選手として、ミンウ・リーの2026年3月時点の最新WITBを掲載しました。",
+      "body": "ミンウ・リーのクラブセッティングについて、2026年3月時点で確認できたWITBをもとに整理しました。Callaway Elyte Triple Diamondドライバー、TaylorMade BRNR Mini Driver Copper、Callaway Apex UW、Apex TCBアイアン、Jaws Rawウェッジ、Odyssey Ai-ONE Cruiser Jailbirdパター、Callaway Chrome Tour Xという構成です。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "06bf00a1-241f-4de7-9dcb-8165e058b572"
+    },
+    {
+      "slug": "katsumasa-miyamoto-profile-published",
+      "title": "宮本勝昌のプロフィールを掲載しました",
+      "excerpt": "宮本勝昌の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "宮本勝昌について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895"
+    },
+    {
+      "slug": "yuji-igarashi-2026-setting-update",
+      "title": "五十嵐雄二のクラブセッティングを掲載しました",
+      "excerpt": "GDOの2009年日本オープン練習日取材をもとに、五十嵐雄二の14本セッティングを掲載しました。",
+      "body": "五十嵐雄二について、GDOの2009年日本オープン練習日取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3W、2U、3I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "0a753415-be74-443a-a572-e14db3330aa6"
+    },
+    {
+      "slug": "yuji-igarashi-profile-published",
+      "title": "五十嵐雄二のプロフィールを掲載しました",
+      "excerpt": "五十嵐雄二の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "五十嵐雄二について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "0a753415-be74-443a-a572-e14db3330aa6"
     },
     {
       "slug": "yuwa-kosaihira-profile-published",
@@ -584,26 +634,6 @@
       "related_profile_id": "e3872ea2-37e1-43a6-852e-f13b4bd4c745"
     },
     {
-      "slug": "yusaku-miyazato-profile-published",
-      "title": "宮里優作のプロフィールを掲載しました",
-      "excerpt": "宮里優作の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "宮里優作について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "f882a424-3824-4603-8d71-04c3fc6901c5"
-    },
-    {
-      "slug": "shingo-katayama-profile-published",
-      "title": "片山晋呉のプロフィールを掲載しました",
-      "excerpt": "片山晋呉の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "片山晋呉について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "245d740f-5c0c-4659-a831-18c8eb926416"
-    },
-    {
       "slug": "yuta-ikeda-2026-setting-update",
       "title": "池田勇太のクラブセッティングを掲載しました",
       "excerpt": "GDOの2017年日本オープン最終日取材をもとに、池田勇太の14本セッティングを掲載しました。",
@@ -612,6 +642,16 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "84642540-aeea-4e78-8cba-6ed97687b468"
+    },
+    {
+      "slug": "yusaku-miyazato-profile-published",
+      "title": "宮里優作のプロフィールを掲載しました",
+      "excerpt": "宮里優作の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "宮里優作について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "f882a424-3824-4603-8d71-04c3fc6901c5"
     },
     {
       "slug": "katsumasa-miyamoto-2026-setting-update",
@@ -644,26 +684,6 @@
       "related_profile_id": "77301635-8184-46fe-916f-6870c5cd5ebc"
     },
     {
-      "slug": "konosuke-nakazato-profile-published",
-      "title": "中里光之介のプロフィールを掲載しました",
-      "excerpt": "中里光之介の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "中里光之介について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "d1826148-a1bb-41fa-8ce1-5748be7764ec"
-    },
-    {
-      "slug": "ryutaro-nagano-profile-published",
-      "title": "永野竜太郎のプロフィールを掲載しました",
-      "excerpt": "永野竜太郎の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "永野竜太郎について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "f6c1a693-9b0a-4b49-a8b0-527202f74a85"
-    },
-    {
       "slug": "konosuke-nakazato-2026-setting-update",
       "title": "中里光之介のクラブセッティングを掲載しました",
       "excerpt": "GDOの2019年東建ホームメイトカップ取材をもとに、中里光之介のバッグ全体を掲載しました。",
@@ -672,16 +692,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "d1826148-a1bb-41fa-8ce1-5748be7764ec"
-    },
-    {
-      "slug": "yuta-ikeda-profile-published",
-      "title": "池田勇太のプロフィールを掲載しました",
-      "excerpt": "池田勇太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "池田勇太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "84642540-aeea-4e78-8cba-6ed97687b468"
     },
     {
       "slug": "yusaku-miyazato-2026-setting-update",
@@ -724,44 +734,34 @@
       "related_profile_id": "4248a629-c191-486d-b513-cbdb16e04315"
     },
     {
-      "slug": "kaneda-kumiko-2026-setting-update",
-      "title": "金田久美子の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、金田久美子の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "金田久美子のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "slug": "ryutaro-nagano-2026-setting-update",
+      "title": "永野竜太郎のクラブセッティングを掲載しました",
+      "excerpt": "GDOの2019年東建ホームメイトカップ取材をもとに、永野竜太郎の14本セッティングを掲載しました。",
+      "body": "永野竜太郎について、GDOの2019年東建ホームメイトカップ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3W、2U、4I-PW、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
       "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
+      "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "58e1be67-5459-4317-9576-3576c6dcb81c"
+      "related_profile_id": "f6c1a693-9b0a-4b49-a8b0-527202f74a85"
     },
     {
-      "slug": "kotaki-mion-2026-setting-update",
-      "title": "小滝水音の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、小滝水音の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "小滝水音のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "slug": "max-homa-2026-setting-update",
+      "title": "マックス・ホーマのクラブセッティング【2026年マスターズ出場】",
+      "excerpt": "2026年マスターズ出場選手として、マックス・ホーマの14本全体が見える最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
+      "body": "マックス・ホーマのクラブセッティングについて、2025年9月時点で確認できたWITBをもとに整理しました。Cobra DS-Adapt Xドライバーと3番ウッド、TaylorMade Qi10 7番ウッド、Cobra 3DP TourとKing CB/MBのコンボアイアン、6I-PWの流れが見えるアイアン帯、SnakebiteとVokey/WedgeWorksのウェッジ、Scotty Cameron T-5.5 Tour Prototypeパター、Titleist Pro V1という構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
       "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
+      "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "145497a9-de6d-4c44-9203-9cbbda992538"
+      "related_profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594"
     },
     {
-      "slug": "tsuruoka-karen-2026-setting-update",
-      "title": "鶴岡果恋の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、鶴岡果恋の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "鶴岡果恋のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "slug": "patrick-cantlay-2026-setting-update",
+      "title": "パトリック・キャントレーのクラブセッティング【2026年マスターズ出場】",
+      "excerpt": "2026年マスターズ出場選手として、パトリック・キャントレーの最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
+      "body": "パトリック・キャントレーのクラブセッティングについて、2025年8月時点で確認できたWITBをもとに整理しました。Titleist GT2ドライバー、915F 3番ウッド、TS2 7番ウッド、Srixon ZX5 Mk II 4番アイアン、Titleist 718 AP2アイアン、Vokeyウェッジ、Scotty Cameron Phantom 7.2 Tour Prototypeパター、Titleist Pro V1xという構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
       "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
+      "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "0cdd3d8b-9c76-440e-a609-f4c50321649e"
-    },
-    {
-      "slug": "usui-reika-2026-setting-update",
-      "title": "臼井麗香の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、臼井麗香の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "臼井麗香のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
-      "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "fbaef6b7-46a6-4f98-b0b4-5e4ee5568e08"
+      "related_profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa"
     },
     {
       "slug": "amy-yang-2026-setting-update",
@@ -964,6 +964,16 @@
       "related_profile_id": "d6009495-3fd9-498e-8777-dc0d557906b1"
     },
     {
+      "slug": "eri-okayama-setting-update",
+      "title": "岡山絵里のクラブセッティングを掲載しました",
+      "excerpt": "GDOの公開セッティング記事をもとに、岡山絵里のクラブ構成を掲載しました。",
+      "body": "岡山絵里のクラブセッティングについて、公開されているGDOのセッティング記事をもとに反映しました。確認できた最新の公開ソースベースで掲載しています。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "7b59825f-b262-4c15-807f-53a83c9990bd"
+    },
+    {
       "slug": "rin-yoshida-2026-setting-update",
       "title": "吉田鈴の最新クラブセッティングを掲載しました",
       "excerpt": "2026年ホンダLPGA取材をもとに、吉田鈴の14本セッティングを掲載しました。",
@@ -975,9 +985,9 @@
     },
     {
       "slug": "nanoko-hayashi-2026-setting-update",
-      "title": "林菜乃子のクラブセッティングを掲載しました",
-      "excerpt": "2024年ミヤギテレビ杯ダンロップ女子オープン取材をもとに、林菜乃子の主要セッティングを掲載しました。",
-      "body": "林菜乃子のクラブセッティングを掲載しました。本間ゴルフ中心の構成と使用ボールを公開ソースから整理しています。",
+      "title": "林菜乃子のクラブセッティングを更新しました",
+      "excerpt": "Myゴルフダイジェストの2021年記事をもとに、林菜乃子の14本セッティングを掲載しました。",
+      "body": "林菜乃子について、Myゴルフダイジェストで公開された14本構成をもとにセッティング全体を整理しました。ドライバー、3本のフェアウェイウッド、2本のユーティリティ、6I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
       "article_type": "update",
       "published_at": "2026-04-09T00:00:00+00:00",
       "season_year": 2026,
@@ -1054,14 +1064,14 @@
       "related_profile_id": "4047f4fd-f591-48fe-94a9-c3280afceaaf"
     },
     {
-      "slug": "eri-okayama-setting-update",
-      "title": "岡山絵里のクラブセッティングを掲載しました",
-      "excerpt": "GDOの公開セッティング記事をもとに、岡山絵里のクラブ構成を掲載しました。",
-      "body": "岡山絵里のクラブセッティングについて、公開されているGDOのセッティング記事をもとに反映しました。確認できた最新の公開ソースベースで掲載しています。",
+      "slug": "ayaka-furue-2026-setting-update",
+      "title": "古江彩佳の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、古江彩佳の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "古江彩佳の2026年クラブセッティングについて、2026年ホンダLPGA時点で確認できた14本の構成を反映しました。使用ドライバーはBridgestone BX2HT Driver、使用ボールはTOUR B XSです。掲載ページではフェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パターまで一覧で確認できます。古江彩佳の現在のクラブセッティングを確認したい人向けに、メーカー、クラブ名、シャフト、ロフトまで整理して掲載しています。",
       "article_type": "update",
       "published_at": "2026-04-09T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "7b59825f-b262-4c15-807f-53a83c9990bd"
+      "related_profile_id": "ae12f542-2bfc-403c-af81-9b9fa055d1fe"
     },
     {
       "slug": "akie-iwai-2026-setting-update",
@@ -1774,14 +1784,44 @@
       "related_profile_id": "494ae705-8a24-4c9a-adb5-417e1bfd4ef3"
     },
     {
-      "slug": "ayaka-furue-2026-setting-update",
-      "title": "古江彩佳の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、古江彩佳の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "古江彩佳の2026年クラブセッティングについて、2026年ホンダLPGA時点で確認できた14本の構成を反映しました。使用ドライバーはBridgestone BX2HT Driver、使用ボールはTOUR B XSです。掲載ページではフェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パターまで一覧で確認できます。古江彩佳の現在のクラブセッティングを確認したい人向けに、メーカー、クラブ名、シャフト、ロフトまで整理して掲載しています。",
+      "slug": "kaneda-kumiko-2026-setting-update",
+      "title": "金田久美子の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、金田久美子の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "金田久美子のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
       "article_type": "update",
       "published_at": "2026-04-09T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "ae12f542-2bfc-403c-af81-9b9fa055d1fe"
+      "related_profile_id": "58e1be67-5459-4317-9576-3576c6dcb81c"
+    },
+    {
+      "slug": "kotaki-mion-2026-setting-update",
+      "title": "小滝水音の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、小滝水音の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "小滝水音のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "145497a9-de6d-4c44-9203-9cbbda992538"
+    },
+    {
+      "slug": "tsuruoka-karen-2026-setting-update",
+      "title": "鶴岡果恋の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、鶴岡果恋の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "鶴岡果恋のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "0cdd3d8b-9c76-440e-a609-f4c50321649e"
+    },
+    {
+      "slug": "usui-reika-2026-setting-update",
+      "title": "臼井麗香の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、臼井麗香の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "臼井麗香のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "fbaef6b7-46a6-4f98-b0b4-5e4ee5568e08"
     },
     {
       "slug": "rio-takeda-2026-setting-update",
@@ -2064,6 +2104,46 @@
       "related_profile_id": null
     },
     {
+      "slug": "mikumu-horikawa-2024-setting-update",
+      "title": "堀川未来夢の2024年クラブセッティングを掲載しました",
+      "excerpt": "2024シーズン基準で、堀川未来夢の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "堀川未来夢のセッティングについて、2024年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。ブリヂストン中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2024,
+      "related_profile_id": "a6fc97d7-c45b-4eb6-90b2-e429aff66592"
+    },
+    {
+      "slug": "cameron-young-2025-setting-update",
+      "title": "キャメロン・ヤングの2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、キャメロン・ヤングの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "キャメロン・ヤングのセッティングについて、ウィンダム選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。PGA TOURのTitleist中心セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "b08b49c8-0404-4d0a-bc14-6958b474251a"
+    },
+    {
+      "slug": "takamitsu-tokimatsu-2025-setting-update",
+      "title": "時松源蔵の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、時松源蔵の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "時松源蔵のセッティングについて、2025年ブリヂストンオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "6f92292d-f6c7-437a-95d3-a20115cfdd1e"
+    },
+    {
+      "slug": "rikuya-hoshino-2025-setting-update",
+      "title": "星野陸也の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、星野陸也の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "星野陸也のセッティングについて、バンテリン東海C時点で確認できた14本のクラブ構成と使用ボールを反映しました。スリクソン中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "32261765-8b42-4094-9b1e-b6f26fc1cb26"
+    },
+    {
       "slug": "sami-valimaki-2025-setting-update",
       "title": "サミ・バリマキの2025年クラブセッティングを掲載しました",
       "excerpt": "2025シーズン基準で、サミ・バリマキの14本のクラブセッティングと使用ボールを掲載しました。",
@@ -2072,6 +2152,16 @@
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "344919f8-53d3-4113-8452-0083db28172b"
+    },
+    {
+      "slug": "tatsunori-shogenji-2025-setting-update",
+      "title": "生源寺龍憲の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、生源寺龍憲の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "生源寺龍憲のセッティングについて、ジャパンプレーヤーズチャンピオンシップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。藤本技工中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "4efcc31e-625e-4a86-9a84-a7ce1b5e51fc"
     },
     {
       "slug": "riki-kawamoto-2025-setting-update",
@@ -2104,6 +2194,16 @@
       "related_profile_id": "638cfcca-17aa-41a6-a7d8-98c24ad8590f"
     },
     {
+      "slug": "xander-schauffele-2025-setting-update",
+      "title": "ザンダー・シャウフェレの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
+      "excerpt": "ザンダー・シャウフェレのクラブセッティングに加えて、PGA TOUR公式のヘッドスピード、飛距離、平均スコア、ベストスコアも掲載しました。",
+      "body": "ザンダー・シャウフェレのクラブセッティングを確認したい人向けに、ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Paradym Ai Smoke Triple Diamond Driver、ELYTE Triple Diamond Fairway Wood、APEX UW、APEX TCB Iron、OPUS SP Wedge、Vokey Wedge、Toulon Las Vegas Prototype 7CH Putterという流れで、ザンダー・シャウフェレの現在のセッティングをページ内で一覧確認できます。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "72d41277-a092-432c-a3bc-c922c83d9365"
+    },
+    {
       "slug": "yuki-inamori-2025-setting-update",
       "title": "稲森佑貴の2025年クラブセッティングを掲載しました",
       "excerpt": "2025シーズン基準で、稲森佑貴の14本のクラブセッティングと使用ボールを掲載しました。",
@@ -2112,16 +2212,6 @@
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "530a24a4-1ce9-4856-96da-e0085e1bc904"
-    },
-    {
-      "slug": "takamitsu-tokimatsu-2025-setting-update",
-      "title": "時松源蔵の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、時松源蔵の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "時松源蔵のセッティングについて、2025年ブリヂストンオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "6f92292d-f6c7-437a-95d3-a20115cfdd1e"
     },
     {
       "slug": "kensei-hirata-2025-setting-update",
@@ -2154,16 +2244,6 @@
       "related_profile_id": "3a7dc7da-a283-4ed0-a70e-9bb381100a56"
     },
     {
-      "slug": "xander-schauffele-2025-setting-update",
-      "title": "ザンダー・シャウフェレの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
-      "excerpt": "ザンダー・シャウフェレのクラブセッティングに加えて、PGA TOUR公式のヘッドスピード、飛距離、平均スコア、ベストスコアも掲載しました。",
-      "body": "ザンダー・シャウフェレのクラブセッティングを確認したい人向けに、ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Paradym Ai Smoke Triple Diamond Driver、ELYTE Triple Diamond Fairway Wood、APEX UW、APEX TCB Iron、OPUS SP Wedge、Vokey Wedge、Toulon Las Vegas Prototype 7CH Putterという流れで、ザンダー・シャウフェレの現在のセッティングをページ内で一覧確認できます。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "72d41277-a092-432c-a3bc-c922c83d9365"
-    },
-    {
       "slug": "taiga-semikawa-2025-setting-update",
       "title": "蝉川泰果の2025年クラブセッティングを掲載しました",
       "excerpt": "2025シーズン基準で、蝉川泰果の14本のクラブセッティングと使用ボールを掲載しました。",
@@ -2172,176 +2252,6 @@
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "b0ec2489-1118-4d33-833c-dee974dcbd82"
-    },
-    {
-      "slug": "nick-taylor-2025-setting-update",
-      "title": "ニック・テイラーの2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、ニック・テイラーの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "ニック・テイラーのセッティングについて、ソニーオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。PGA TOURの実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "5da82bae-989a-4bfa-badc-089f62e35c20"
-    },
-    {
-      "slug": "tommy-fleetwood-2025-setting-update",
-      "title": "トミー・フリートウッドの最新クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
-      "excerpt": "トミー・フリートウッドのクラブセッティングとして、14本構成に加えてPGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
-      "body": "トミー・フリートウッドのクラブセッティングを確認したい人向けに、ツアー選手権時点で確認できた14本のクラブ構成と使用ボールを維持しつつ、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追加しました。バッグ詳細はQi35 Driver、r7 QUAD Mini Driver、Qi35 Fairway Wood、P7TW Iron、HI-TOE 4 Wedge、MG Prototype Wedge、Spider Tour Black Putter、TaylorMade TP5x pixという流れで、数値面はPGA TOUR公式2026 stats/careerを参照しています。TaylorMade公式の現行プレーヤーページではQi4D LS DriverとR7 Quad Mini Driverを中心とした最新構成も確認できます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e"
-    },
-    {
-      "slug": "tatsunori-shogenji-2025-setting-update",
-      "title": "生源寺龍憲の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、生源寺龍憲の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "生源寺龍憲のセッティングについて、ジャパンプレーヤーズチャンピオンシップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。藤本技工中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "4efcc31e-625e-4a86-9a84-a7ce1b5e51fc"
-    },
-    {
-      "slug": "viktor-hovland-2026-setting-update",
-      "title": "ビクトル・ホブランの2026年クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
-      "excerpt": "ビクトル・ホブランの2026年クラブセッティングとして、ドライバー、フェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パター、使用ボールまで確認できた内容を掲載しました。",
-      "body": "ビクトル・ホブランの2026年クラブセッティングを確認したい人向けに、WMフェニックスオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。PING G440 K Driver、Qi35 Fairway Wood、PING iDi Hybrid、i210 Iron、s259 Wedge、PLD DS 72 Prototype、Titleist Pro V1という流れで、ビクトル・ホブランの現在のクラブセッティングをまとめています。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "ab17344d-822e-453e-a51e-77f127e236ef"
-    },
-    {
-      "slug": "yui-kawamoto-2025-setting-update",
-      "title": "河本結の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、河本結の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "河本結のセッティングについて、2025年スタンレーレディスホンダ時点で確認できた14本のクラブ構成と使用ボールを反映しました。Callaway中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "da7d1b6a-e88b-4eb6-b145-c8a30e64d532"
-    },
-    {
-      "slug": "thomas-detry-2025-setting-update",
-      "title": "トーマス・デトリー クラブセッティング 2025年版 14本と使用ドライバー",
-      "excerpt": "トーマス・デトリーの2025年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
-      "body": "トーマス・デトリーのクラブセッティングについて、2025年WMフェニックスオープン時点で確認できた14本の構成を反映しました。Callaway中心の実戦セットで、Paradym Ai Smoke Triple Diamondドライバー、フェアウェイウッド、Epic Utility、APEX PROとAPEX MBのアイアン、OPUSウェッジ、Odysseyパター、CHROME TOUR Xまで確認できます。詳細ページでは各番手のメーカー、クラブ名、シャフト、ロフトを一覧で確認できます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "7f887268-c2ed-4af1-960a-45b94277831d"
-    },
-    {
-      "slug": "jordan-spieth-2026-setting-update",
-      "title": "ジョーダン・スピースの2026年クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
-      "excerpt": "2026シーズン基準で、ジョーダン・スピースの14本のクラブセッティングに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
-      "body": "ジョーダン・スピースのセッティングについて、2026年WMフェニックスオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。今回はこれに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追記しています。バッグはTitleist中心の実戦セット、数値面はPGA TOUR公式stats/careerを参照しています。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "53ea76f0-f39f-44aa-8789-e2e0e31cc688"
-    },
-    {
-      "slug": "tom-kim-2025-setting-update",
-      "title": "トム・キムの2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、トム・キムの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "トム・キムのセッティングについて、2025年ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "316b87a0-aac5-4856-869b-77af3eb84417"
-    },
-    {
-      "slug": "sepp-straka-2025-setting-update",
-      "title": "セップ・ストラカの2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、セップ・ストラカの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "セップ・ストラカのセッティングについて、2025年プレーヤーズ選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。Srixon中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "f05367e5-4890-4aa5-9d8b-e01d0257d99b"
-    },
-    {
-      "slug": "collin-morikawa-2025-setting-update",
-      "title": "コリン・モリカワの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
-      "excerpt": "コリン・モリカワのクラブセッティングに加えて、TaylorMade公式のTrackMan実測とPGA TOUR公式スタッツを掲載しました。",
-      "body": "コリン・モリカワのクラブセッティングを確認したい人向けに、ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Qi10 LS Driver、SIM Fairway Wood、Qi10 Fairway Wood、P DHY、P7CB、P730、MG5 Wedge、Spider Tour X Putter、TaylorMade TP5という流れで、コリン・モリカワの現在のクラブセッティングをページ内で一覧確認できます。あわせてTaylorMade公式記事で公開されたTrackMan実測として、Qi10 LSドライバーのキャリー288yd、トータル313yd、クラブスピード115mphを反映し、平均スコアと通算ベストラウンドはPGA TOUR公式スタッツで補完しています。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a"
-    },
-    {
-      "slug": "adam-scott-2025-setting-update",
-      "title": "アダム・スコットの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
-      "excerpt": "アダム・スコットのクラブセッティングとして、ドライバー、ミニドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できた内容を掲載しました。",
-      "body": "アダム・スコットのクラブセッティングを確認したい人向けに、日本オープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。GT2 Driver、BRNR Mini Driver、Qi10 Fairway Wood、T250 Iron 2025、Callaway Muscleback Prototype Iron、Vokey Wedge、LAB Golf Mezz.1 Max Prototype Putter、Titleist PRO V1という流れで、アダム・スコットの現在のセッティングをページ内で一覧確認できます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "73056993-fbf0-4d86-8283-a60cf057862b"
-    },
-    {
-      "slug": "tony-finau-2025-setting-update",
-      "title": "トニー・フィナウの2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、トニー・フィナウの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "トニー・フィナウのセッティングについて、2025年フェデックスセントジュード選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。Callaway中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "cc3731bb-f221-481a-8edc-c72796e02418"
-    },
-    {
-      "slug": "peter-malnati-2024-setting-update",
-      "title": "ピーター・マルナチ クラブセッティング 2024年版 14本と使用ドライバー",
-      "excerpt": "ピーター・マルナチの2024年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
-      "body": "ピーター・マルナチのクラブセッティングについて、2024年バルスパー選手権時点で確認できた14本の構成を反映しました。Titleist中心の実戦セットで、TSR3ドライバー、TSi3フェアウェイウッド、T100系アイアン、ボーケイウェッジ、スコッティキャメロンのパター、Titleist Pro V1xまで確認できます。記事から詳細ページへ移動すると、各番手のメーカー、クラブ名、シャフト、ロフトを一覧で確認できます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2024,
-      "related_profile_id": "7c4e6b3a-7f05-4b91-9c3d-4bcdf498615d"
-    },
-    {
-      "slug": "takumi-kanaya-2026-setting-update",
-      "title": "金谷拓実の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、金谷拓実の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "金谷拓実のセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。PING中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "ab3d81c7-700e-4190-95c1-0bf78c408cbc"
-    },
-    {
-      "slug": "tomoharu-otsuki-2023-setting-update",
-      "title": "大槻智春の2023年クラブセッティングを掲載しました",
-      "excerpt": "2023シーズン基準で、大槻智春の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "大槻智春のセッティングについて、2023年パナソニックオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2023,
-      "related_profile_id": "fb6b43e6-f2ce-4811-8e88-49d6d7a9389a"
-    },
-    {
-      "slug": "yosuke-tsukada-2025-setting-update",
-      "title": "塚田よおすけの2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、塚田よおすけの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "塚田よおすけのセッティングについて、ダンロップフェニックス時点で確認できた14本のクラブ構成と使用ボールを反映しました。スリクソン中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "27dce300-0dcc-4151-ae65-55afab56f014"
-    },
-    {
-      "slug": "jason-day-2026-setting-update",
-      "title": "ジェイソン・デイの2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、ジェイソン・デイの14本のクラブセッティングとPGA TOUR公式スタッツを掲載しました。",
-      "body": "ジェイソン・デイのセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。AVODA中心の実戦セットとして今後も更新していきます。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "fb8a26b9-65c2-4e53-b08c-e3f3743e6b81"
     },
     {
       "slug": "taichi-nabetani-2024-setting-update",
@@ -2354,14 +2264,174 @@
       "related_profile_id": "89cb089b-6e75-46fa-9cc8-f5bb9c43ab1d"
     },
     {
-      "slug": "aguri-iwasaki-2025-setting-update",
-      "title": "岩崎亜久竜の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、岩崎亜久竜の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "岩崎亜久竜のセッティングについて、2025年リシャール・ミル チャリティトーナメント時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "slug": "jason-day-2026-setting-update",
+      "title": "ジェイソン・デイの2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、ジェイソン・デイの14本のクラブセッティングとPGA TOUR公式スタッツを掲載しました。",
+      "body": "ジェイソン・デイのセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。AVODA中心の実戦セットとして今後も更新していきます。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "fb8a26b9-65c2-4e53-b08c-e3f3743e6b81"
+    },
+    {
+      "slug": "yosuke-tsukada-2025-setting-update",
+      "title": "塚田よおすけの2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、塚田よおすけの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "塚田よおすけのセッティングについて、ダンロップフェニックス時点で確認できた14本のクラブ構成と使用ボールを反映しました。スリクソン中心の実戦セットとして今後も更新していきます。",
       "article_type": "update",
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
-      "related_profile_id": "f5cc86f3-70b8-4509-8a72-087aca5b60de"
+      "related_profile_id": "27dce300-0dcc-4151-ae65-55afab56f014"
+    },
+    {
+      "slug": "tomoharu-otsuki-2023-setting-update",
+      "title": "大槻智春の2023年クラブセッティングを掲載しました",
+      "excerpt": "2023シーズン基準で、大槻智春の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "大槻智春のセッティングについて、2023年パナソニックオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2023,
+      "related_profile_id": "fb6b43e6-f2ce-4811-8e88-49d6d7a9389a"
+    },
+    {
+      "slug": "takumi-kanaya-2026-setting-update",
+      "title": "金谷拓実の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、金谷拓実の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "金谷拓実のセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。PING中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "ab3d81c7-700e-4190-95c1-0bf78c408cbc"
+    },
+    {
+      "slug": "tommy-fleetwood-2025-setting-update",
+      "title": "トミー・フリートウッドの最新クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
+      "excerpt": "トミー・フリートウッドのクラブセッティングとして、14本構成に加えてPGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
+      "body": "トミー・フリートウッドのクラブセッティングを確認したい人向けに、ツアー選手権時点で確認できた14本のクラブ構成と使用ボールを維持しつつ、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追加しました。バッグ詳細はQi35 Driver、r7 QUAD Mini Driver、Qi35 Fairway Wood、P7TW Iron、HI-TOE 4 Wedge、MG Prototype Wedge、Spider Tour Black Putter、TaylorMade TP5x pixという流れで、数値面はPGA TOUR公式2026 stats/careerを参照しています。TaylorMade公式の現行プレーヤーページではQi4D LS DriverとR7 Quad Mini Driverを中心とした最新構成も確認できます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e"
+    },
+    {
+      "slug": "nick-taylor-2025-setting-update",
+      "title": "ニック・テイラーの2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、ニック・テイラーの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "ニック・テイラーのセッティングについて、ソニーオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。PGA TOURの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "5da82bae-989a-4bfa-badc-089f62e35c20"
+    },
+    {
+      "slug": "tony-finau-2025-setting-update",
+      "title": "トニー・フィナウの2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、トニー・フィナウの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "トニー・フィナウのセッティングについて、2025年フェデックスセントジュード選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。Callaway中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "cc3731bb-f221-481a-8edc-c72796e02418"
+    },
+    {
+      "slug": "sepp-straka-2025-setting-update",
+      "title": "セップ・ストラカの2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、セップ・ストラカの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "セップ・ストラカのセッティングについて、2025年プレーヤーズ選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。Srixon中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "f05367e5-4890-4aa5-9d8b-e01d0257d99b"
+    },
+    {
+      "slug": "tom-kim-2025-setting-update",
+      "title": "トム・キムの2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、トム・キムの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "トム・キムのセッティングについて、2025年ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Titleist中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "316b87a0-aac5-4856-869b-77af3eb84417"
+    },
+    {
+      "slug": "jordan-spieth-2026-setting-update",
+      "title": "ジョーダン・スピースの2026年クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
+      "excerpt": "2026シーズン基準で、ジョーダン・スピースの14本のクラブセッティングに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
+      "body": "ジョーダン・スピースのセッティングについて、2026年WMフェニックスオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。今回はこれに加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追記しています。バッグはTitleist中心の実戦セット、数値面はPGA TOUR公式stats/careerを参照しています。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "53ea76f0-f39f-44aa-8789-e2e0e31cc688"
+    },
+    {
+      "slug": "peter-malnati-2024-setting-update",
+      "title": "ピーター・マルナチ クラブセッティング 2024年版 14本と使用ドライバー",
+      "excerpt": "ピーター・マルナチの2024年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
+      "body": "ピーター・マルナチのクラブセッティングについて、2024年バルスパー選手権時点で確認できた14本の構成を反映しました。Titleist中心の実戦セットで、TSR3ドライバー、TSi3フェアウェイウッド、T100系アイアン、ボーケイウェッジ、スコッティキャメロンのパター、Titleist Pro V1xまで確認できます。記事から詳細ページへ移動すると、各番手のメーカー、クラブ名、シャフト、ロフトを一覧で確認できます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2024,
+      "related_profile_id": "7c4e6b3a-7f05-4b91-9c3d-4bcdf498615d"
+    },
+    {
+      "slug": "thomas-detry-2025-setting-update",
+      "title": "トーマス・デトリー クラブセッティング 2025年版 14本と使用ドライバー",
+      "excerpt": "トーマス・デトリーの2025年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
+      "body": "トーマス・デトリーのクラブセッティングについて、2025年WMフェニックスオープン時点で確認できた14本の構成を反映しました。Callaway中心の実戦セットで、Paradym Ai Smoke Triple Diamondドライバー、フェアウェイウッド、Epic Utility、APEX PROとAPEX MBのアイアン、OPUSウェッジ、Odysseyパター、CHROME TOUR Xまで確認できます。詳細ページでは各番手のメーカー、クラブ名、シャフト、ロフトを一覧で確認できます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "7f887268-c2ed-4af1-960a-45b94277831d"
+    },
+    {
+      "slug": "adam-scott-2025-setting-update",
+      "title": "アダム・スコットの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
+      "excerpt": "アダム・スコットのクラブセッティングとして、ドライバー、ミニドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できた内容を掲載しました。",
+      "body": "アダム・スコットのクラブセッティングを確認したい人向けに、日本オープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。GT2 Driver、BRNR Mini Driver、Qi10 Fairway Wood、T250 Iron 2025、Callaway Muscleback Prototype Iron、Vokey Wedge、LAB Golf Mezz.1 Max Prototype Putter、Titleist PRO V1という流れで、アダム・スコットの現在のセッティングをページ内で一覧確認できます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "73056993-fbf0-4d86-8283-a60cf057862b"
+    },
+    {
+      "slug": "collin-morikawa-2025-setting-update",
+      "title": "コリン・モリカワの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
+      "excerpt": "コリン・モリカワのクラブセッティングに加えて、TaylorMade公式のTrackMan実測とPGA TOUR公式スタッツを掲載しました。",
+      "body": "コリン・モリカワのクラブセッティングを確認したい人向けに、ベイカレント C レクサス時点で確認できた14本のクラブ構成と使用ボールを反映しました。Qi10 LS Driver、SIM Fairway Wood、Qi10 Fairway Wood、P DHY、P7CB、P730、MG5 Wedge、Spider Tour X Putter、TaylorMade TP5という流れで、コリン・モリカワの現在のクラブセッティングをページ内で一覧確認できます。あわせてTaylorMade公式記事で公開されたTrackMan実測として、Qi10 LSドライバーのキャリー288yd、トータル313yd、クラブスピード115mphを反映し、平均スコアと通算ベストラウンドはPGA TOUR公式スタッツで補完しています。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a"
+    },
+    {
+      "slug": "yui-kawamoto-2025-setting-update",
+      "title": "河本結の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、河本結の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "河本結のセッティングについて、2025年スタンレーレディスホンダ時点で確認できた14本のクラブ構成と使用ボールを反映しました。Callaway中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "da7d1b6a-e88b-4eb6-b145-c8a30e64d532"
+    },
+    {
+      "slug": "viktor-hovland-2026-setting-update",
+      "title": "ビクトル・ホブランの2026年クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
+      "excerpt": "ビクトル・ホブランの2026年クラブセッティングとして、ドライバー、フェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パター、使用ボールまで確認できた内容を掲載しました。",
+      "body": "ビクトル・ホブランの2026年クラブセッティングを確認したい人向けに、WMフェニックスオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。PING G440 K Driver、Qi35 Fairway Wood、PING iDi Hybrid、i210 Iron、s259 Wedge、PLD DS 72 Prototype、Titleist Pro V1という流れで、ビクトル・ホブランの現在のクラブセッティングをまとめています。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "ab17344d-822e-453e-a51e-77f127e236ef"
+    },
+    {
+      "slug": "ludvig-aberg-2025-setting-update",
+      "title": "ルドビグ・オーベリの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
+      "excerpt": "ルドビグ・オーベリのクラブセッティングとして、ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できた内容を掲載しました。",
+      "body": "ルドビグ・オーベリのクラブセッティングを確認したい人向けに、ザ・ジェネシス招待時点で確認できた14本のクラブ構成と使用ボールを反映しました。TSR2 Driver、Stealth 2 Fairway Wood、T100 Iron、Vokey SM10 Wedge、White Hot Versa #1 Putter、Titleist Pro V1xという流れで、ルドビグ・オーベリの現在のセッティングをページ内で一覧確認できます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "a490a181-e95c-44db-ba47-6a40bc32af3f"
     },
     {
       "slug": "wyndham-clark-2024-setting-update",
@@ -2384,44 +2454,14 @@
       "related_profile_id": "e55d9108-ba56-49c1-b478-7ef8a394664f"
     },
     {
-      "slug": "mikumu-horikawa-2024-setting-update",
-      "title": "堀川未来夢の2024年クラブセッティングを掲載しました",
-      "excerpt": "2024シーズン基準で、堀川未来夢の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "堀川未来夢のセッティングについて、2024年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。ブリヂストン中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2024,
-      "related_profile_id": "a6fc97d7-c45b-4eb6-90b2-e429aff66592"
-    },
-    {
-      "slug": "cameron-young-2025-setting-update",
-      "title": "キャメロン・ヤングの2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、キャメロン・ヤングの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "キャメロン・ヤングのセッティングについて、ウィンダム選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。PGA TOURのTitleist中心セットとして今後も更新していきます。",
+      "slug": "aguri-iwasaki-2025-setting-update",
+      "title": "岩崎亜久竜の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、岩崎亜久竜の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "岩崎亜久竜のセッティングについて、2025年リシャール・ミル チャリティトーナメント時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
       "article_type": "update",
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
-      "related_profile_id": "b08b49c8-0404-4d0a-bc14-6958b474251a"
-    },
-    {
-      "slug": "rikuya-hoshino-2025-setting-update",
-      "title": "星野陸也の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、星野陸也の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "星野陸也のセッティングについて、バンテリン東海C時点で確認できた14本のクラブ構成と使用ボールを反映しました。スリクソン中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "32261765-8b42-4094-9b1e-b6f26fc1cb26"
-    },
-    {
-      "slug": "ludvig-aberg-2025-setting-update",
-      "title": "ルドビグ・オーベリの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
-      "excerpt": "ルドビグ・オーベリのクラブセッティングとして、ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できた内容を掲載しました。",
-      "body": "ルドビグ・オーベリのクラブセッティングを確認したい人向けに、ザ・ジェネシス招待時点で確認できた14本のクラブ構成と使用ボールを反映しました。TSR2 Driver、Stealth 2 Fairway Wood、T100 Iron、Vokey SM10 Wedge、White Hot Versa #1 Putter、Titleist Pro V1xという流れで、ルドビグ・オーベリの現在のセッティングをページ内で一覧確認できます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "a490a181-e95c-44db-ba47-6a40bc32af3f"
+      "related_profile_id": "f5cc86f3-70b8-4509-8a72-087aca5b60de"
     },
     {
       "slug": "minjee-lee-2025-setting-update",

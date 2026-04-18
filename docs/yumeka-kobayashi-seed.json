@@ -4,16 +4,62 @@
     "display_name": "小林夢果",
     "kana_name": "コバヤシ ユメカ",
     "nationality": "Japan",
+    "birthplace": "埼玉県",
+    "height_cm": 167,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "summary": "2026シーズン基準で掲載している小林夢果のプロフィール。",
-    "latest_source_policy": "2026_season",
+    "ball_name": "プロ V1x ボール",
+    "feature_1": "PRGR契約",
+    "feature_2": "2024年末確認",
+    "feature_3": "14本構成確認済み",
+    "summary": "PRGR公式と用具紹介記事をもとに整理した小林夢果の14本セッティング。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-04-09T00:00:00.000Z",
     "birth_date": "2003-09-01"
   },
-  "bagItems": [],
-  "sources": []
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "PRGR", "model_name": "RS Driver", "loft_label": "10.5度", "source_note": "ゴルフイーグルカフェ 2024年末記事より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "PRGR", "model_name": "RS PROTOTYPE ツークローバー FW", "spec_label": "3W", "source_note": "PRGR公式プロフィールより確認。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "PRGR", "model_name": "RS Fairway Wood", "spec_label": "5W", "source_note": "PRGR公式プロフィールより確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "PRGR", "model_name": "RS Utility", "spec_label": "4UT", "source_note": "PRGR公式プロフィールより確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 5, "brand": "PRGR", "model_name": "RS Utility", "spec_label": "5UT", "loft_label": "25度", "source_note": "PRGR公式とゴルフイーグルカフェ記事より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "PRGR", "model_name": "PRGR 01 IRON", "spec_label": "5I", "source_note": "ゴルフイーグルカフェの(#5-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "PRGR", "model_name": "PRGR 01 IRON", "spec_label": "6I", "source_note": "ゴルフイーグルカフェの(#5-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "PRGR", "model_name": "PRGR 01 IRON", "spec_label": "7I", "source_note": "ゴルフイーグルカフェの(#5-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "PRGR", "model_name": "PRGR 01 IRON", "spec_label": "8I", "source_note": "ゴルフイーグルカフェの(#5-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "PRGR", "model_name": "PRGR 01 IRON", "spec_label": "9I", "source_note": "ゴルフイーグルカフェの(#5-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 11, "brand": "PRGR", "model_name": "PRGR 01 IRON", "spec_label": "PW", "source_note": "ゴルフイーグルカフェの(#5-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "PRGR", "model_name": "PRGR 0 TOUR WEDGE", "loft_label": "48度", "source_note": "PRGR公式とゴルフイーグルカフェ記事より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "PRGR", "model_name": "PRGR 0 TOUR WEDGE", "loft_label": "53度", "source_note": "PRGR公式プロフィールより確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "TaylorMade", "model_name": "TP Collection Putter", "source_note": "ゴルフイーグルカフェ 2024年末記事より確認。", "is_featured_item": true }
+  ],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.prgr-golf.com/pro/kobayashi/",
+      "source_title": "小林 夢果 | プロギア（PRGR）オフィシャルサイト",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "PRGR公式の現行クラブ構成確認。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://golfeaglecafe.com/kobayashi-yumeka/",
+      "source_title": "小林夢果プロ クラブセッティング パター ボール紹介2025 | ゴルフイーグルカフェ",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "ボールとパター、番手補完用。"
+    }
+  ],
+  "article": {
+    "slug": "yumeka-kobayashi-2026-setting-update",
+    "title": "小林夢果のクラブセッティングを掲載しました",
+    "excerpt": "PRGR公式と用具紹介記事をもとに、小林夢果の14本セッティングを掲載しました。",
+    "body": "小林夢果について、PRGR公式プロフィールと用具紹介記事をもとに14本全体を整理しました。ドライバー、3Wと5W、2本のユーティリティ、5I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-19T00:00:00.000Z"
+  }
 }

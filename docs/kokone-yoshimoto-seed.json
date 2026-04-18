@@ -4,16 +4,55 @@
     "display_name": "吉本ここね",
     "kana_name": "ヨシモト ココネ",
     "nationality": "Japan",
+    "birthplace": "北海道",
+    "height_cm": 167,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "summary": "2026シーズン基準で掲載している吉本ここねのプロフィール。",
-    "latest_source_policy": "2026_season",
+    "ball_name": "スリクソン Z-STAR ボール",
+    "feature_1": "2025年取材",
+    "feature_2": "ゼクシオ中心",
+    "feature_3": "14本構成掲載",
+    "summary": "2025年アクサレディス時点で確認できた吉本ここねの14本構成を掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-04-09T00:00:00.000Z",
     "birth_date": "2000-01-05"
   },
-  "bagItems": [],
-  "sources": []
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Dunlop", "model_name": "XXIO 13 Driver", "loft_label": "9.5度", "shaft_brand": "Fujikura", "shaft_model": "24 VENTUS BLUE", "shaft_weight": "50g台", "shaft_flex": "S", "source_note": "GDOニュース 2025年アクサレディス取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Dunlop", "model_name": "XXIO 13 Fairway Wood", "spec_label": "3W", "source_note": "GDOニュースの(3番、5番、7番)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "Dunlop", "model_name": "XXIO 13 Fairway Wood", "spec_label": "5W", "source_note": "GDOニュースの(3番、5番、7番)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 4, "brand": "Dunlop", "model_name": "XXIO 13 Fairway Wood", "spec_label": "7W", "source_note": "GDOニュースの(3番、5番、7番)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 5, "brand": "Dunlop", "model_name": "XXIO 13 Hybrid", "spec_label": "5U", "source_note": "GDOニュース記事より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 6, "brand": "Dunlop", "model_name": "XXIO 13 Hybrid", "spec_label": "6U", "source_note": "GDOニュース記事より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 7, "brand": "Dunlop", "model_name": "XXIO 13 Ladies Hybrid", "spec_label": "6U", "source_note": "GDOニュース記事より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 8, "brand": "Dunlop", "model_name": "XXIO 13 Ladies Hybrid", "spec_label": "7U", "source_note": "GDOニュース記事より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Dunlop", "model_name": "XXIO 13 Iron", "spec_label": "8I", "source_note": "GDOニュースの(8番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Dunlop", "model_name": "XXIO 13 Iron", "spec_label": "9I", "source_note": "GDOニュースの(8番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 11, "brand": "Dunlop", "model_name": "XXIO 13 Iron", "spec_label": "PW", "source_note": "GDOニュースの(8番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Cleveland", "model_name": "CVX ZIPCORE Wedge", "spec_label": "GW", "loft_label": "50度", "source_note": "GDOニュースの(50度、56度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Cleveland", "model_name": "CVX ZIPCORE Wedge", "spec_label": "SW", "loft_label": "56度", "source_note": "GDOニュースの(50度、56度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "PING", "model_name": "FETCH Putter", "source_note": "GDOニュース記事より確認。", "is_featured_item": true }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/178185/1/",
+      "source_title": "日本一曲げない女子プロのセッティング 吉本ここねはレディースクラブも愛用 - GDO",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "2025年アクサレディス時点の構成確認用。"
+    }
+  ],
+  "article": {
+    "slug": "kokone-yoshimoto-2026-setting-update",
+    "title": "吉本ここねのクラブセッティングを掲載しました",
+    "excerpt": "GDOの2025年アクサレディス取材をもとに、吉本ここねの14本構成を掲載しました。",
+    "body": "吉本ここねについて、GDOの2025年アクサレディス取材で確認できた内容をもとにセッティング全体を整理しました。ゼクシオ中心の構成で、FW、複数のハイブリッド、8番-PW、ウェッジ、パターまで流れが追える14本ページに更新しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-19T00:00:00.000Z"
+  }
 }
