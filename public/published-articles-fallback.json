@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-18T03:52:58.145Z",
+  "generatedAt": "2026-04-18T04:01:36.357Z",
   "source": "supabase",
   "count": 241,
   "articles": [
@@ -74,24 +74,34 @@
       "related_profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f"
     },
     {
+      "slug": "joaquin-niemann-2026-setting-update",
+      "title": "ホアキン・ニーマンのクラブセッティング【2026年最新】",
+      "excerpt": "PING契約で戦うホアキン・ニーマンの2026シーズン基準セッティングを、14本構成で掲載しました。",
+      "body": "ホアキン・ニーマンのクラブセッティングについて、PING公式とGolfWRXのWITB 2024 (May)をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAX 3番ウッド、G425 MAX 7番ウッド、G430ハイブリッド、Blueprint S 5番〜PW、s159ウェッジ、PLD Anser Prototypeパターという14本構成です。",
+      "article_type": "update",
+      "published_at": "2026-04-11T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "13968bb6-6697-441a-9392-a8d365933d2d"
+    },
+    {
       "slug": "sahith-theegala-2026-setting-update",
       "title": "サヒス・ティーガラのクラブセッティング【2026年最新】",
-      "excerpt": "PING契約のサヒス・ティーガラの2026シーズン基準セッティングと、PGA TOUR公式スタッツを掲載しました。",
-      "body": "サヒス・ティーガラのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、Blueprint Sアイアン、s159ウェッジを中心にした構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも反映しています。",
+      "excerpt": "PING契約のサヒス・ティーガラの2026シーズン基準セッティングを、14本構成で掲載しました。",
+      "body": "サヒス・ティーガラのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAX 3番ウッド、i210 3番アイアン、Blueprint S 4番〜PW、s159ウェッジ、PLD Anser Prototypeパターという14本構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも反映しています。",
       "article_type": "update",
       "published_at": "2026-04-11T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87"
     },
     {
-      "slug": "joaquin-niemann-2026-setting-update",
-      "title": "ホアキン・ニーマンのクラブセッティング【2026年最新】",
-      "excerpt": "PING契約で戦うホアキン・ニーマンの2026シーズン基準セッティングを掲載しました。",
-      "body": "ホアキン・ニーマンのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAXフェアウェイウッド、Blueprint Tアイアン、s159ウェッジを中心にした構成です。",
+      "slug": "tiger-woods-2026-setting-update",
+      "title": "タイガー・ウッズのクラブセッティング【2026年最新】",
+      "excerpt": "タイガー・ウッズの2026シーズン基準クラブセッティングを、14本構成で整理して掲載しました。",
+      "body": "タイガー・ウッズのクラブセッティングについて、TaylorMade公式とGolfWRXのWITB 2024 (May)をもとに2026シーズン基準で整理しました。Qi10 LSドライバー、Qi10 Tour 3番ウッド、M3 5番ウッド、P770 3番アイアン、P7TW 4番〜PW、MG4 Rawウェッジ、Scotty Cameron Newport 2 GSSという14本構成です。",
       "article_type": "update",
       "published_at": "2026-04-11T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "13968bb6-6697-441a-9392-a8d365933d2d"
+      "related_profile_id": "ea96c235-ad67-4165-8d8f-2c4f689c58ab"
     },
     {
       "slug": "kaito-onishi-2026-setting-update",
@@ -102,16 +112,6 @@
       "published_at": "2026-04-11T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "cafad024-9c84-438b-a23c-20fb0c353ad4"
-    },
-    {
-      "slug": "tiger-woods-2026-setting-update",
-      "title": "タイガー・ウッズのクラブセッティング【2026年最新】",
-      "excerpt": "タイガー・ウッズの2026シーズン基準クラブセッティングを掲載しました。",
-      "body": "タイガー・ウッズのクラブセッティングについて、TaylorMade公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。Qi10 LSドライバー、Qi10 Tourフェアウェイウッド、P7TWアイアン、MG4 Rawウェッジ、Scotty Cameron Newport 2 GSSという構成です。",
-      "article_type": "update",
-      "published_at": "2026-04-11T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "ea96c235-ad67-4165-8d8f-2c4f689c58ab"
     },
     {
       "slug": "fujifilm-studio-alice-2026-spotlight",

@@ -25,25 +25,30 @@
     "website_url": "-"
   },
   "bagItems": [
-    { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G430 LST", "loft_label": "10.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-6", "shaft_flex": "X", "shaft_weight": "60g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
-    { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G430 MAX", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-8", "shaft_flex": "X", "shaft_weight": "80g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Fairway Wood", "slot_order": 3, "brand": "PING", "model_name": "G430 MAX", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-8", "shaft_flex": "X", "shaft_weight": "80g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 4, "brand": "PING", "model_name": "i230", "spec_label": "3I", "shaft_brand": "Project X", "shaft_model": "6.0", "shaft_flex": "S+", "shaft_weight": "120g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 5, "brand": "PING", "model_name": "Blueprint T", "spec_label": "5I-PW", "shaft_brand": "Project X", "shaft_model": "6.0", "shaft_flex": "S+", "shaft_weight": "120g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
-    { "category": "Wedge", "slot_order": 6, "brand": "PING", "model_name": "s159", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "Project X", "shaft_model": "6.0", "shaft_flex": "S+", "shaft_weight": "120g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 7, "brand": "PING", "model_name": "s159", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "Project X", "shaft_model": "6.0", "shaft_flex": "S+", "shaft_weight": "120g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 8, "brand": "PING", "model_name": "s159", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "Project X", "shaft_model": "6.0", "shaft_flex": "S+", "shaft_weight": "120g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 9, "brand": "PING", "model_name": "PLD Anser Prototype", "source_note": "GolfWRX WITBより確認。", "is_featured_item": true }
+    { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G430 LST", "loft_label": "10.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-6", "shaft_flex": "X", "shaft_weight": "60g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G430 MAX", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-8", "shaft_flex": "X", "shaft_weight": "80g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "PING", "model_name": "G425 MAX", "spec_label": "7W", "loft_label": "20.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-8", "shaft_flex": "X", "shaft_weight": "80g台", "source_note": "GolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "PING", "model_name": "G430 Hybrid", "spec_label": "4H", "loft_label": "26°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI Hybrid", "source_note": "GolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "PING", "model_name": "Blueprint S", "spec_label": "5I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": true },
+    { "category": "Iron", "slot_order": 6, "brand": "PING", "model_name": "Blueprint S", "spec_label": "6I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "PING", "model_name": "Blueprint S", "spec_label": "7I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "PING", "model_name": "Blueprint S", "spec_label": "8I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "PING", "model_name": "Blueprint S", "spec_label": "9I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "PING", "model_name": "Blueprint S", "spec_label": "PW", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "PING", "model_name": "s159", "spec_label": "GW", "loft_label": "52°", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "PING", "model_name": "s159", "spec_label": "SW", "loft_label": "56°", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "PING", "model_name": "s159", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "120g台", "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "PING", "model_name": "PLD Anser Prototype", "source_note": "GolfWRX WITB 2024 (May)より確認。", "is_featured_item": true }
   ],
   "sources": [
     { "source_type": "official", "source_url": "https://ping.com/en-us/tour/pros/joaquin-niemann", "source_title": "Joaquin Niemann - PING", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "契約情報と主要クラブ確認用。" },
-    { "source_type": "article", "source_url": "https://www.golfwrx.com/732875/joaquin-niemann-witb-2024/", "source_title": "Joaquin Niemann WITB - GolfWRX", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "詳細セッティング確認用。" }
+    { "source_type": "article", "source_url": "https://www.golfwrx.com/740308/joaquin-niemann-witb-2024-may/", "source_title": "Joaquin Niemann WITB 2024 (May) - GolfWRX", "checked_at": "2026-04-18T00:00:00.000Z", "notes": "PGA Championship週の詳細セッティング確認用。" }
   ],
   "article": {
     "slug": "joaquin-niemann-2026-setting-update",
     "title": "ホアキン・ニーマンのクラブセッティング【2026年最新】",
-    "excerpt": "PING契約で戦うホアキン・ニーマンの2026シーズン基準セッティングを掲載しました。",
-    "body": "ホアキン・ニーマンのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAXフェアウェイウッド、Blueprint Tアイアン、s159ウェッジを中心にした構成です。",
+    "excerpt": "PING契約で戦うホアキン・ニーマンの2026シーズン基準セッティングを、14本構成で掲載しました。",
+    "body": "ホアキン・ニーマンのクラブセッティングについて、PING公式とGolfWRXのWITB 2024 (May)をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAX 3番ウッド、G425 MAX 7番ウッド、G430ハイブリッド、Blueprint S 5番〜PW、s159ウェッジ、PLD Anser Prototypeパターという14本構成です。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

@@ -31,11 +31,17 @@
     { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G430 LST", "loft_label": "9.0°", "shaft_brand": "Project X", "shaft_model": "HZRDUS Black", "shaft_flex": "60 TX", "shaft_weight": "60g台", "total_distance": 305.4, "source_note": "PING公式およびGolfWRX WITBより確認。PGA TOUR公式ドライビングディスタンス平均は305.4yd。", "is_featured_item": true },
     { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G430 MAX", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI-8", "shaft_flex": "X", "shaft_weight": "80g台", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
     { "category": "Iron", "slot_order": 3, "brand": "PING", "model_name": "i210", "spec_label": "3I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 4, "brand": "PING", "model_name": "Blueprint S", "spec_label": "4I-PW", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
-    { "category": "Wedge", "slot_order": 5, "brand": "PING", "model_name": "s159", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 6, "brand": "PING", "model_name": "s159", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 7, "brand": "PING", "model_name": "s159", "spec_label": "LW", "loft_label": "58°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 8, "brand": "PING", "model_name": "PLD Anser Prototype", "source_note": "GolfWRX WITBより確認。", "is_featured_item": true }
+    { "category": "Iron", "slot_order": 4, "brand": "PING", "model_name": "Blueprint S", "spec_label": "4I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": true },
+    { "category": "Iron", "slot_order": 5, "brand": "PING", "model_name": "Blueprint S", "spec_label": "5I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "PING", "model_name": "Blueprint S", "spec_label": "6I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "PING", "model_name": "Blueprint S", "spec_label": "7I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "PING", "model_name": "Blueprint S", "spec_label": "8I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "PING", "model_name": "Blueprint S", "spec_label": "9I", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "PING", "model_name": "Blueprint S", "spec_label": "PW", "shaft_brand": "Project X", "shaft_model": "6.5", "shaft_flex": "X", "shaft_weight": "125g", "source_note": "PING公式およびGolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "PING", "model_name": "s159", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "PING", "model_name": "s159", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "PING", "model_name": "s159", "spec_label": "LW", "loft_label": "58°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "shaft_weight": "132g", "source_note": "GolfWRX WITBより確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "PING", "model_name": "PLD Anser Prototype", "source_note": "GolfWRX WITBより確認。", "is_featured_item": true }
   ],
   "sources": [
     { "source_type": "official", "source_url": "https://ping.com/en-us/tour/pros/sahith-theegala", "source_title": "Sahith Theegala - PING", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "契約情報と主要クラブ確認用。" },
@@ -46,8 +52,8 @@
   "article": {
     "slug": "sahith-theegala-2026-setting-update",
     "title": "サヒス・ティーガラのクラブセッティング【2026年最新】",
-    "excerpt": "PING契約のサヒス・ティーガラの2026シーズン基準セッティングと、PGA TOUR公式スタッツを掲載しました。",
-    "body": "サヒス・ティーガラのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、Blueprint Sアイアン、s159ウェッジを中心にした構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも反映しています。",
+    "excerpt": "PING契約のサヒス・ティーガラの2026シーズン基準セッティングを、14本構成で掲載しました。",
+    "body": "サヒス・ティーガラのクラブセッティングについて、PING公式とGolfWRXのWITB情報をもとに2026シーズン基準で整理しました。G430 LSTドライバー、G430 MAX 3番ウッド、i210 3番アイアン、Blueprint S 4番〜PW、s159ウェッジ、PLD Anser Prototypeパターという14本構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも反映しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
