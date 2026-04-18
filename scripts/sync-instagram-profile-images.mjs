@@ -86,6 +86,19 @@ const decodeHtmlEntities = (value) =>
     .replace(/&#x27;/g, "'")
     .replace(/&quot;/g, '"');
 
+const isLikelyGenericInstagramAsset = (value) => {
+  if (!value) return true;
+  const normalized = value.toLowerCase();
+  return (
+    normalized.includes('/rsrc.php/') ||
+    normalized.includes('/static/images/') ||
+    normalized.includes('instagram_logo') ||
+    normalized.includes('instagram/assets') ||
+    normalized.includes('apple-touch-icon') ||
+    normalized.includes('favicon')
+  );
+};
+
 const extractProfilePicUrlHd = (html) => {
   const directPatterns = [
     /"profile_pic_url_hd":"([^"]+)"/i,
@@ -142,6 +155,10 @@ for (const { slug, handle } of entries) {
     }
 
     const imageUrl = decodeHtmlEntities(imageUrlFromHtml);
+    if (isLikelyGenericInstagramAsset(imageUrl)) {
+      failures.push({ slug, handle, reason: 'generic instagram asset' });
+      continue;
+    }
     const imageResponse = await fetch(imageUrl, {
       headers: {
         ...browserHeaders,
