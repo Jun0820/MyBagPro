@@ -79,11 +79,11 @@
       "slot_order": 5,
       "brand": "Bridgestone",
       "model_name": "241CB Iron",
-      "spec_label": "7I",
+      "spec_label": "5I",
       "shaft_brand": "Nippon Shaft",
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2025 setting page.",
+      "source_note": "GDOでは7I-PW、ブリヂストン公式では5I-PWを確認。",
       "is_featured_item": false
     },
     {
@@ -91,11 +91,11 @@
       "slot_order": 6,
       "brand": "Bridgestone",
       "model_name": "241CB Iron",
-      "spec_label": "8I",
+      "spec_label": "6I",
       "shaft_brand": "Nippon Shaft",
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2025 setting page.",
+      "source_note": "GDOでは7I-PW、ブリヂストン公式では5I-PWを確認。",
       "is_featured_item": false
     },
     {
@@ -103,7 +103,7 @@
       "slot_order": 7,
       "brand": "Bridgestone",
       "model_name": "241CB Iron",
-      "spec_label": "9I",
+      "spec_label": "7I",
       "shaft_brand": "Nippon Shaft",
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
@@ -115,6 +115,30 @@
       "slot_order": 8,
       "brand": "Bridgestone",
       "model_name": "241CB Iron",
+      "spec_label": "8I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Bridgestone",
+      "model_name": "241CB Iron",
+      "spec_label": "9I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2025 setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Bridgestone",
+      "model_name": "241CB Iron",
       "spec_label": "PW",
       "shaft_brand": "Nippon Shaft",
       "shaft_model": "N.S.PRO 850GH",
@@ -124,7 +148,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 9,
+      "slot_order": 11,
       "brand": "Bridgestone",
       "model_name": "BRM2 Wedge",
       "spec_label": "AW",
@@ -137,7 +161,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 10,
+      "slot_order": 12,
       "brand": "Bridgestone",
       "model_name": "BRM2 Wedge",
       "spec_label": "SW",
@@ -150,7 +174,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 11,
+      "slot_order": 13,
       "brand": "Bridgestone",
       "model_name": "BRM2 Wedge",
       "spec_label": "LW",
@@ -163,7 +187,7 @@
     },
     {
       "category": "Putter",
-      "slot_order": 12,
+      "slot_order": 14,
       "brand": "PING",
       "model_name": "PLD Milled ANSER 2 Putter",
       "source_note": "Confirmed from GDO 2025 setting page. Source listed this competition setup.",
@@ -177,13 +201,20 @@
       "source_title": "GDO 桑木志帆 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
       "checked_at": "2026-04-09T00:00:00.000Z",
       "notes": "Source listed 12本構成として確認できたクラブのみ反映。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://jp.golf.bridgestone/pro/member/shiho_kuwaki",
+      "source_title": "桑木志帆 チームブリヂストン",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "2025年8月22日現在の使用アイテムとして241CB 5I-PWを確認。"
     }
   ],
   "article": {
     "slug": "shiho-kuwaki-2026-setting-update",
     "title": "桑木志帆の最新クラブセッティングを掲載しました",
-    "excerpt": "GDOの2025年ミヤギテレビ杯ダンロップ女子オープン取材をもとに、桑木志帆の確認できたクラブセッティングを更新しました。",
-    "body": "桑木志帆のクラブセッティングについて、GDOの2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認できた内容を反映しました。掲載本数は公開ソースで確認できた構成に合わせています。",
+    "excerpt": "GDOの2025年ミヤギテレビ杯ダンロップ女子オープン取材とブリヂストン公式をもとに、桑木志帆の14本全体が見えるクラブセッティングへ更新しました。",
+    "body": "桑木志帆のクラブセッティングについて、GDOの2025年ミヤギテレビ杯ダンロップ女子オープン取材をベースにしつつ、ブリヂストン公式で確認できた241CBの5I-PW構成を反映しました。これにより、ウッドやユーティリティだけでなく、アイアン帯まで含めた全体像が追いやすくなっています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

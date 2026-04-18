@@ -109,15 +109,64 @@
       "slot_order": 7,
       "brand": "Jucie",
       "model_name": "tQ Iron",
+      "spec_label": "6I",
       "shaft_brand": "Nippon Shaft",
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2025 setting page. Iron range not individually specified in source.",
+      "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Jucie",
+      "model_name": "tQ Iron",
+      "spec_label": "7I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 950GH",
+      "shaft_flex": "S",
+      "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Jucie",
+      "model_name": "tQ Iron",
+      "spec_label": "8I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 950GH",
+      "shaft_flex": "S",
+      "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Jucie",
+      "model_name": "tQ Iron",
+      "spec_label": "9I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 950GH",
+      "shaft_flex": "S",
+      "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 11,
+      "brand": "Jucie",
+      "model_name": "tQ Iron",
+      "spec_label": "PW",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 950GH",
+      "shaft_flex": "S",
+      "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
       "is_featured_item": false
     },
     {
       "category": "Wedge",
-      "slot_order": 8,
+      "slot_order": 12,
       "brand": "Titleist",
       "model_name": "Vokey SM10 Wedge",
       "spec_label": "AW",
@@ -130,7 +179,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 9,
+      "slot_order": 13,
       "brand": "Titleist",
       "model_name": "Vokey SM10 Wedge",
       "spec_label": "SW",
@@ -143,7 +192,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 10,
+      "slot_order": 14,
       "brand": "Titleist",
       "model_name": "Vokey SM10 Wedge",
       "spec_label": "LW",
@@ -156,7 +205,7 @@
     },
     {
       "category": "Putter",
-      "slot_order": 11,
+      "slot_order": 15,
       "brand": "Scotty Cameron",
       "model_name": "PHANTOM X 9.5 Putter Prototype",
       "source_note": "Confirmed from GDO 2025 setting page. Practice-day setup listed 15 clubs.",
@@ -169,14 +218,14 @@
       "source_url": "https://news.golfdigest.co.jp/players/setting/16561/2025/1/",
       "source_title": "GDO 稲見萌寧 クラブセッティング 2025年 ダイキンオーキッドレディス",
       "checked_at": "2026-04-09T00:00:00.000Z",
-      "notes": "練習日取材で15本表記。公開ソースで確認できた内容を反映。"
+      "notes": "練習日取材で15本表記。アイアン番手は明記がないため、全15本構成に整合する6I-PWとして展開。"
     }
   ],
   "article": {
     "slug": "mone-inami-2026-setting-update",
     "title": "稲見萌寧の最新クラブセッティングを掲載しました",
-    "excerpt": "GDOの2025年ダイキンオーキッドレディス練習日取材をもとに、稲見萌寧の確認できたクラブセッティングを更新しました。",
-    "body": "稲見萌寧のクラブセッティングについて、GDOの2025年ダイキンオーキッドレディス練習日取材で確認できた内容を反映しました。公開ソース上は15本構成として紹介されています。",
+    "excerpt": "GDOの2025年ダイキンオーキッドレディス練習日取材をもとに、稲見萌寧の15本全体が追いやすいクラブセッティングへ更新しました。",
+    "body": "稲見萌寧のクラブセッティングについて、GDOの2025年ダイキンオーキッドレディス練習日取材で確認できた内容を反映しました。公開ソース上は15本構成として紹介されているため、記載のtQ Ironは全体本数との整合から6I-PWの5本帯として整理し、バッグ全体が見えるようにしています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
