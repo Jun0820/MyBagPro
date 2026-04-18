@@ -14,7 +14,7 @@
     "summary": "2026年シーズン基準で確認した佐藤心結の14本セッティング。",
     "latest_source_policy": "2026_season",
     "is_featured": false,
-    "is_published": true,
+    "is_published": false,
     "verified_at": "2026-04-09T00:00:00.000Z",
     "kana_name": "サトウ ミユ",
     "birth_date": "2003-07-21"
@@ -173,7 +173,7 @@
     "body": "佐藤心結のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
     "article_type": "update",
     "season_year": 2026,
-    "published": true,
+    "published": false,
     "published_at": "2026-04-09T00:00:00.000Z"
   }
 }

@@ -259,6 +259,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/haruka-kawasaki.jpg",
     "handle": "with_harugolfer_days"
   },
+  "momoko-osato": {
+    "src": "/profile-images/momoko-osato.jpg",
+    "handle": "chanmomo810"
+  },
   "celine-boutier": {
     "src": "/profile-images/celine-boutier.jpg",
     "handle": "celineboutier"
@@ -298,6 +302,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "minami-katsu": {
     "src": "/profile-images/minami-katsu.jpg",
     "handle": "minami_katsu"
+  },
+  "megan-khang": {
+    "src": "/profile-images/megan-khang.jpg",
+    "handle": "megan_khang"
   },
   "patty-tavatanakit": {
     "src": "/profile-images/patty-tavatanakit.jpg",
@@ -371,6 +379,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/ariya-jutanugarn.jpg",
     "handle": "mayariya"
   },
+  "madelene-sagstrom": {
+    "src": "/profile-images/madelene-sagstrom.jpg",
+    "handle": "madelenesagstrom"
+  },
   "kamiya-sora": {
     "src": "/profile-images/kamiya-sora.jpg",
     "handle": "s_o_r_a_18_"
@@ -422,6 +434,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "hori-kotone": {
     "src": "/profile-images/hori-kotone.jpg",
     "handle": "kotokotohori"
+  },
+  "matsuda-rei": {
+    "src": "/profile-images/matsuda-rei.jpg",
+    "handle": "reimatsuda01"
   },
   "erika-hara": {
     "src": "/profile-images/erika-hara.jpg",
@@ -479,6 +495,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/yumeka-kobayashi.jpg",
     "handle": "yumeka___036"
   },
+  "mei-takagi": {
+    "src": "/profile-images/mei-takagi.jpg",
+    "handle": "mei__takagi"
+  },
   "goto-miu": {
     "src": "/profile-images/goto-miu.jpg",
     "handle": "mg____0929"
@@ -535,6 +555,14 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/lexi-thompson.jpg",
     "handle": "lexi"
   },
+  "miyuu-abe": {
+    "src": "/profile-images/miyuu-abe.jpg",
+    "handle": "miyuu_abe_"
+  },
+  "miyu-sato": {
+    "src": "/profile-images/miyu-sato.jpg",
+    "handle": "miyu__sato0721"
+  },
   "yuri-yoshida": {
     "src": "/profile-images/yuri-yoshida.jpg",
     "handle": "yuri_yoshida__"
@@ -590,6 +618,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "taisei-shimizu": {
     "src": "/profile-images/taisei-shimizu.jpg",
     "handle": "taiseishimizu"
+  },
+  "mizuki-oide": {
+    "src": "/profile-images/mizuki-oide.jpg",
+    "handle": "miichaaaaan16"
   },
   "daijiro-izumida": {
     "src": "/profile-images/daijiro-izumida.jpg",
