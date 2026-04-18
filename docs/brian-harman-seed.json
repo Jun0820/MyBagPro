@@ -33,10 +33,11 @@
     { "category": "Iron", "slot_order": 7, "brand": "Titleist", "model_name": "620 CB Iron", "spec_label": "7I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S300", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
     { "category": "Iron", "slot_order": 8, "brand": "Titleist", "model_name": "620 CB Iron", "spec_label": "8I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S300", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
     { "category": "Iron", "slot_order": 9, "brand": "Titleist", "model_name": "620 CB Iron", "spec_label": "9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S300", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 10, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 13, "brand": "TaylorMade", "model_name": "Spider OS CB", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": true }
+    { "category": "Iron", "slot_order": 10, "brand": "Titleist", "model_name": "620 CB Iron", "spec_label": "PW", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S300", "source_note": "GolfWRX/Titleist系の6I-PW構成に合わせてPWを追加。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "loft_label": "54°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "TaylorMade", "model_name": "Spider OS CB", "source_note": "Confirmed from 2025 WITB references.", "is_featured_item": true }
   ],
   "sources": [
     { "source_type": "official", "source_url": "https://www.titleist.com/tour/brian-harman", "source_title": "Brian Harman | Titleist", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official Titleist player page used for contract context and ball confirmation." },
@@ -47,8 +48,8 @@
   "article": {
     "slug": "brian-harman-2026-setting-update",
     "title": "ブライアン・ハーマンのクラブセッティング【2026年マスターズ出場】",
-    "excerpt": "2026年マスターズ出場選手として、ブライアン・ハーマンの軽量・継続使用型セッティングとPGA TOUR公式スタッツを掲載しました。",
-    "body": "ブライアン・ハーマンのクラブセッティングについて、Valero Texas Open優勝時点のWITBを中心に整理しました。Titleist TSi2ドライバーと3番ウッド、U500ユーティリティアイアン、620 CBアイアン、Vokeyウェッジ、TaylorMade Spider OS CBパターという構成で、軽量シャフトを生かした安定感重視のバッグが特徴です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
+    "excerpt": "2026年マスターズ出場選手として、ブライアン・ハーマンの14本全体が見える軽量・継続使用型セッティングとPGA TOUR公式スタッツを掲載しました。",
+    "body": "ブライアン・ハーマンのクラブセッティングについて、Valero Texas Open優勝時点のWITBを中心に整理しました。Titleist TSi2ドライバーと3番ウッド、U500ユーティリティアイアン、620 CBの6I-PW、Vokeyウェッジ、TaylorMade Spider OS CBパターという構成で、軽量シャフトを生かした安定感重視のバッグが特徴です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

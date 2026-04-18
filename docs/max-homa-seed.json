@@ -33,10 +33,11 @@
     { "category": "Iron", "slot_order": 7, "brand": "Cobra", "model_name": "King MB Iron", "spec_label": "7I", "shaft_brand": "KBS", "shaft_model": "$-Taper 130", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
     { "category": "Iron", "slot_order": 8, "brand": "Cobra", "model_name": "King MB Iron", "spec_label": "8I", "shaft_brand": "KBS", "shaft_model": "$-Taper 130", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
     { "category": "Iron", "slot_order": 9, "brand": "Cobra", "model_name": "King MB Iron", "spec_label": "9I", "shaft_brand": "KBS", "shaft_model": "$-Taper 130", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 10, "brand": "Cobra", "model_name": "Snakebite Wedge", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "KBS", "shaft_model": "Hi-Rev 2.0 135", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "shaft_brand": "KBS", "shaft_model": "Hi-Rev 2.0 135", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "WedgeWorks Prototype", "spec_label": "LW", "shaft_brand": "KBS", "shaft_model": "Hi-Rev 2.0 125", "shaft_flex": "S", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 13, "brand": "Scotty Cameron", "model_name": "T-5.5 Tour Prototype", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": true }
+    { "category": "Iron", "slot_order": 10, "brand": "Cobra", "model_name": "King MB Iron", "spec_label": "PW", "shaft_brand": "KBS", "shaft_model": "$-Taper 130", "shaft_flex": "X", "source_note": "GolfWRXの6I-PW表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Cobra", "model_name": "Snakebite Wedge", "spec_label": "AW", "loft_label": "50°", "shaft_brand": "KBS", "shaft_model": "Hi-Rev 2.0 135", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "shaft_brand": "KBS", "shaft_model": "Hi-Rev 2.0 135", "shaft_flex": "X", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "WedgeWorks Prototype", "spec_label": "LW", "shaft_brand": "KBS", "shaft_model": "Hi-Rev 2.0 125", "shaft_flex": "S", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "T-5.5 Tour Prototype", "source_note": "Confirmed from GolfWRX Max Homa WITB 2025 (September).", "is_featured_item": true }
   ],
   "sources": [
     { "source_type": "article", "source_url": "https://www.golfwrx.com/766329/max-homa-witb-2025-september/", "source_title": "Max Homa WITB 2025 (September) - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for latest detailed bag breakdown." },
@@ -47,8 +48,8 @@
   "article": {
     "slug": "max-homa-2026-setting-update",
     "title": "マックス・ホーマのクラブセッティング【2026年マスターズ出場】",
-    "excerpt": "2026年マスターズ出場選手として、マックス・ホーマの最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
-    "body": "マックス・ホーマのクラブセッティングについて、2025年9月時点で確認できたWITBをもとに整理しました。Cobra DS-Adapt Xドライバーと3番ウッド、TaylorMade Qi10 7番ウッド、Cobra 3DP TourとKing CB/MBのコンボアイアン、SnakebiteとVokey/WedgeWorksのウェッジ、Scotty Cameron T-5.5 Tour Prototypeパター、Titleist Pro V1という構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
+    "excerpt": "2026年マスターズ出場選手として、マックス・ホーマの14本全体が見える最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
+    "body": "マックス・ホーマのクラブセッティングについて、2025年9月時点で確認できたWITBをもとに整理しました。Cobra DS-Adapt Xドライバーと3番ウッド、TaylorMade Qi10 7番ウッド、Cobra 3DP TourとKing CB/MBのコンボアイアン、6I-PWの流れが見えるアイアン帯、SnakebiteとVokey/WedgeWorksのウェッジ、Scotty Cameron T-5.5 Tour Prototypeパター、Titleist Pro V1という構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
