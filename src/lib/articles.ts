@@ -78,12 +78,14 @@ const loadPublishedArticlesFallback = async (): Promise<PublicArticle[]> => {
 export const fetchPublishedArticles = async (
   options: FetchArticlesOptions = {}
 ): Promise<PublicArticle[]> => {
-  if (!isSupabaseConfigured) {
-    const fallback = await loadPublishedArticlesFallback();
-    return options.excludeSlug ? fallback.filter((article) => article.slug !== options.excludeSlug).slice(0, options.limit ?? 50) : fallback.slice(0, options.limit ?? 50);
-  }
-
   const { limit = 50, excludeSlug } = options;
+  const fallback = await loadPublishedArticlesFallback();
+  const filteredFallback = excludeSlug ? fallback.filter((article) => article.slug !== excludeSlug) : fallback;
+
+  if (filteredFallback.length > 0) {
+    return filteredFallback.slice(0, limit);
+  }
+  if (!isSupabaseConfigured) return [];
 
   try {
     let query = supabase
@@ -99,11 +101,7 @@ export const fetchPublishedArticles = async (
 
     const { data, error } = await query;
 
-    if (error || !data) {
-      const fallback = await loadPublishedArticlesFallback();
-      const filtered = options.excludeSlug ? fallback.filter((article) => article.slug !== options.excludeSlug) : fallback;
-      return filtered.slice(0, limit);
-    }
+    if (error || !data) return [];
     const articles = (data as ArticleRow[]).map(mapArticle);
     const profileIds = [...new Set(articles.map((article) => article.relatedProfileId).filter(Boolean))] as string[];
 
@@ -128,17 +126,15 @@ export const fetchPublishedArticles = async (
     });
   } catch (error) {
     console.error('Failed to fetch published articles:', error);
-    const fallback = await loadPublishedArticlesFallback();
-    const filtered = excludeSlug ? fallback.filter((article) => article.slug !== excludeSlug) : fallback;
-    return filtered.slice(0, limit);
+    return [];
   }
 };
 
 export const fetchPublishedArticleBySlug = async (slug: string): Promise<PublicArticle | null> => {
-  if (!isSupabaseConfigured) {
-    const fallback = await loadPublishedArticlesFallback();
-    return fallback.find((article) => article.slug === slug) || null;
-  }
+  const fallback = await loadPublishedArticlesFallback();
+  const fallbackMatch = fallback.find((article) => article.slug === slug) || null;
+  if (fallbackMatch) return fallbackMatch;
+  if (!isSupabaseConfigured) return null;
 
   try {
     const { data, error } = await supabase
@@ -148,10 +144,7 @@ export const fetchPublishedArticleBySlug = async (slug: string): Promise<PublicA
       .eq('published', true)
       .maybeSingle();
 
-    if (error || !data) {
-      const fallback = await loadPublishedArticlesFallback();
-      return fallback.find((article) => article.slug === slug) || null;
-    }
+    if (error || !data) return null;
     const article = mapArticle(data as ArticleRow);
 
     if (!article.relatedProfileId) return article;
@@ -169,7 +162,6 @@ export const fetchPublishedArticleBySlug = async (slug: string): Promise<PublicA
     };
   } catch (error) {
     console.error('Failed to fetch published article:', error);
-    const fallback = await loadPublishedArticlesFallback();
-    return fallback.find((article) => article.slug === slug) || null;
+    return null;
   }
 };

@@ -431,7 +431,9 @@ const loadPublishedProfileFallback = async (): Promise<PublicSettingProfile[]> =
 };
 
 export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProfile[]> => {
-  if (!isSupabaseConfigured) return loadPublishedProfileFallback();
+  const fallbackProfiles = await loadPublishedProfileFallback();
+  if (fallbackProfiles.length > 0) return fallbackProfiles;
+  if (!isSupabaseConfigured) return [];
 
   try {
     const { data: profiles, error } = await supabase
@@ -442,7 +444,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
       .order('season_year', { ascending: false })
       .limit(PROFILE_LIST_FETCH_LIMIT);
 
-    if (error || !profiles || profiles.length === 0) return loadPublishedProfileFallback();
+    if (error || !profiles || profiles.length === 0) return [];
 
     const profileIds = profiles.map((profile) => profile.id);
     const { data: bagItems } = await supabase
@@ -463,15 +465,15 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
     return buildProfiles(profiles as SettingProfileRow[], bagRows, sourceRows);
   } catch (error) {
     console.error('Failed to fetch published setting profiles:', error);
-    return loadPublishedProfileFallback();
+    return [];
   }
 };
 
 export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<PublicSettingProfile | null> => {
-  if (!isSupabaseConfigured) {
-    const fallbackProfiles = await loadPublishedProfileFallback();
-    return fallbackProfiles.find((profile) => profile.slug === slug) || null;
-  }
+  const fallbackProfiles = await loadPublishedProfileFallback();
+  const fallbackMatch = fallbackProfiles.find((profile) => profile.slug === slug) || null;
+  if (fallbackMatch) return fallbackMatch;
+  if (!isSupabaseConfigured) return null;
 
   try {
     const { data: profile, error } = await supabase
@@ -481,10 +483,7 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
       .eq('is_published', true)
       .maybeSingle();
 
-    if (error || !profile) {
-      const fallbackProfiles = await loadPublishedProfileFallback();
-      return fallbackProfiles.find((item) => item.slug === slug) || null;
-    }
+    if (error || !profile) return null;
 
     const { data: bagItems } = await supabase
       .from('setting_bag_items')
@@ -504,7 +503,6 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
     return buildProfiles([profile as SettingProfileRow], bagRows, sourceRows)[0] ?? null;
   } catch (error) {
     console.error('Failed to fetch setting profile by slug:', error);
-    const fallbackProfiles = await loadPublishedProfileFallback();
-    return fallbackProfiles.find((profile) => profile.slug === slug) || null;
+    return null;
   }
 };
