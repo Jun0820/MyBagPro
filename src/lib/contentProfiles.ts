@@ -186,6 +186,7 @@ const FALLBACK_PROFILES_PATH = '/published-profiles-fallback.json';
 let fallbackProfilesPromise: Promise<PublicSettingProfile[]> | null = null;
 
 const PROFILE_LIST_FETCH_LIMIT = 500;
+const SUPABASE_PAGE_SIZE = 1000;
 const PLACEHOLDER_VALUES = new Set(['-', '－', '—', '未公開']);
 
 const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfile['type']> = {
@@ -430,6 +431,27 @@ const loadPublishedProfileFallback = async (): Promise<PublicSettingProfile[]> =
   return fallbackProfilesPromise;
 };
 
+async function fetchAllSupabaseRows<T>(
+  queryFactory: (from: number, to: number) => { then: (onfulfilled?: (value: { data: T[] | null; error: unknown }) => unknown, onrejected?: (reason: unknown) => unknown) => unknown }
+): Promise<T[]> {
+  const rows: T[] = [];
+  let from = 0;
+
+  while (true) {
+    const to = from + SUPABASE_PAGE_SIZE - 1;
+    const { data, error } = await queryFactory(from, to);
+    if (error) throw error;
+
+    const chunk = (data || []) as T[];
+    rows.push(...chunk);
+
+    if (chunk.length < SUPABASE_PAGE_SIZE) break;
+    from += SUPABASE_PAGE_SIZE;
+  }
+
+  return rows;
+}
+
 export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProfile[]> => {
   const fallbackProfiles = await loadPublishedProfileFallback();
   if (fallbackProfiles.length > 0) return fallbackProfiles;
@@ -447,20 +469,26 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
     if (error || !profiles || profiles.length === 0) return [];
 
     const profileIds = profiles.map((profile) => profile.id);
-    const { data: bagItems } = await supabase
-      .from('setting_bag_items')
-      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
-      .in('profile_id', profileIds)
-      .order('slot_order', { ascending: true });
-
-    const { data: sources } = await supabase
-      .from('content_sources')
-      .select('profile_id, source_type, source_url, source_title, checked_at, notes')
-      .in('profile_id', profileIds)
-      .order('checked_at', { ascending: false });
-
-    const bagRows = (bagItems || []) as BagItemRow[];
-    const sourceRows = (sources || []) as SourceRow[];
+    const [bagRows, sourceRows] = await Promise.all([
+      fetchAllSupabaseRows<BagItemRow>((from, to) =>
+        supabase
+          .from('setting_bag_items')
+          .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
+          .in('profile_id', profileIds)
+          .order('profile_id', { ascending: true })
+          .order('slot_order', { ascending: true })
+          .range(from, to)
+      ),
+      fetchAllSupabaseRows<SourceRow>((from, to) =>
+        supabase
+          .from('content_sources')
+          .select('profile_id, source_type, source_url, source_title, checked_at, notes')
+          .in('profile_id', profileIds)
+          .order('profile_id', { ascending: true })
+          .order('checked_at', { ascending: false })
+          .range(from, to)
+      ),
+    ]);
 
     return buildProfiles(profiles as SettingProfileRow[], bagRows, sourceRows);
   } catch (error) {

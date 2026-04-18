@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 
 const projectRoot = path.resolve(process.cwd());
 const outputPath = path.join(projectRoot, 'public', 'published-profiles-fallback.json');
+const SUPABASE_PAGE_SIZE = 1000;
 
 function loadEnvFile(filename) {
   const filepath = path.join(projectRoot, filename);
@@ -44,6 +45,25 @@ function readConfig() {
   return { supabaseUrl, anonKey };
 }
 
+async function fetchAllRows(queryFactory) {
+  const rows = [];
+  let from = 0;
+
+  while (true) {
+    const to = from + SUPABASE_PAGE_SIZE - 1;
+    const { data, error } = await queryFactory(from, to);
+    if (error) throw error;
+
+    const chunk = data || [];
+    rows.push(...chunk);
+
+    if (chunk.length < SUPABASE_PAGE_SIZE) break;
+    from += SUPABASE_PAGE_SIZE;
+  }
+
+  return rows;
+}
+
 async function main() {
   const { supabaseUrl, anonKey } = readConfig();
 
@@ -73,21 +93,26 @@ async function main() {
 
   const profileIds = profiles.map((profile) => profile.id);
 
-  const [{ data: bagItems, error: bagError }, { data: sources, error: sourceError }] = await Promise.all([
-    supabase
-      .from('setting_bag_items')
-      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
-      .in('profile_id', profileIds)
-      .order('slot_order', { ascending: true }),
-    supabase
-      .from('content_sources')
-      .select('profile_id, source_type, source_url, source_title, checked_at, notes')
-      .in('profile_id', profileIds)
-      .order('checked_at', { ascending: false }),
+  const [bagItems, sources] = await Promise.all([
+    fetchAllRows((from, to) =>
+      supabase
+        .from('setting_bag_items')
+        .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
+        .in('profile_id', profileIds)
+        .order('profile_id', { ascending: true })
+        .order('slot_order', { ascending: true })
+        .range(from, to)
+    ),
+    fetchAllRows((from, to) =>
+      supabase
+        .from('content_sources')
+        .select('profile_id, source_type, source_url, source_title, checked_at, notes')
+        .in('profile_id', profileIds)
+        .order('profile_id', { ascending: true })
+        .order('checked_at', { ascending: false })
+        .range(from, to)
+    ),
   ]);
-
-  if (bagError) throw bagError;
-  if (sourceError) throw sourceError;
 
   const packages = profiles.map((profile) => ({
     profile: {
