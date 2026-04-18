@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-18T22:39:02.102Z",
+  "generatedAt": "2026-04-18T22:47:53.946Z",
   "source": "supabase",
-  "count": 246,
+  "count": 248,
   "articles": [
     {
       "slug": "kkt-vantelin-ladies-2026-spotlight",
@@ -74,6 +74,16 @@
       "related_profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36"
     },
     {
+      "slug": "kaito-onishi-2026-setting-update",
+      "title": "大西魁斗のクラブセッティング【2026年最新】",
+      "excerpt": "大西魁斗の2026シーズン基準クラブセッティングを14本全体で掲載しました。",
+      "body": "大西魁斗のクラブセッティングについて、GDOのセッティング記事をもとに2026シーズン基準で整理しました。TSR3ドライバーとフェアウェイウッド、Apex UW、T100の4I-9I、Vokeyウェッジ、Scotty Cameronパターまで、14本全体が追いやすい構成に更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-11T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "cafad024-9c84-438b-a23c-20fb0c353ad4"
+    },
+    {
       "slug": "joaquin-niemann-2026-setting-update",
       "title": "ホアキン・ニーマンのクラブセッティング【2026年最新】",
       "excerpt": "PING契約で戦うホアキン・ニーマンの2026シーズン基準セッティングを、14本構成で掲載しました。",
@@ -112,16 +122,6 @@
       "published_at": "2026-04-11T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f"
-    },
-    {
-      "slug": "kaito-onishi-2026-setting-update",
-      "title": "大西魁斗のクラブセッティング【2026年最新】",
-      "excerpt": "大西魁斗の2026シーズン基準クラブセッティングを14本全体で掲載しました。",
-      "body": "大西魁斗のクラブセッティングについて、GDOのセッティング記事をもとに2026シーズン基準で整理しました。TSR3ドライバーとフェアウェイウッド、Apex UW、T100の4I-9I、Vokeyウェッジ、Scotty Cameronパターまで、14本全体が追いやすい構成に更新しています。",
-      "article_type": "update",
-      "published_at": "2026-04-11T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "cafad024-9c84-438b-a23c-20fb0c353ad4"
     },
     {
       "slug": "fujifilm-studio-alice-2026-spotlight",
@@ -164,6 +164,26 @@
       "related_profile_id": null
     },
     {
+      "slug": "ryutaro-nagano-2026-setting-update",
+      "title": "永野竜太郎のクラブセッティングを掲載しました",
+      "excerpt": "GDOの2019年東建ホームメイトカップ取材をもとに、永野竜太郎の14本セッティングを掲載しました。",
+      "body": "永野竜太郎について、GDOの2019年東建ホームメイトカップ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3W、2U、4I-PW、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "f6c1a693-9b0a-4b49-a8b0-527202f74a85"
+    },
+    {
+      "slug": "max-homa-2026-setting-update",
+      "title": "マックス・ホーマのクラブセッティング【2026年マスターズ出場】",
+      "excerpt": "2026年マスターズ出場選手として、マックス・ホーマの14本全体が見える最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
+      "body": "マックス・ホーマのクラブセッティングについて、2025年9月時点で確認できたWITBをもとに整理しました。Cobra DS-Adapt Xドライバーと3番ウッド、TaylorMade Qi10 7番ウッド、Cobra 3DP TourとKing CB/MBのコンボアイアン、6I-PWの流れが見えるアイアン帯、SnakebiteとVokey/WedgeWorksのウェッジ、Scotty Cameron T-5.5 Tour Prototypeパター、Titleist Pro V1という構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594"
+    },
+    {
       "slug": "patrick-cantlay-2026-setting-update",
       "title": "パトリック・キャントレーのクラブセッティング【2026年マスターズ出場】",
       "excerpt": "2026年マスターズ出場選手として、パトリック・キャントレーの最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
@@ -172,6 +192,16 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa"
+    },
+    {
+      "slug": "tomohiro-ishizaka-profile-published",
+      "title": "石坂友宏のプロフィールを掲載しました",
+      "excerpt": "石坂友宏の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "石坂友宏について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b"
     },
     {
       "slug": "aaron-rai-2026-setting-update",
@@ -192,16 +222,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "936537b7-16ce-4e8a-bc36-7fd808549920"
-    },
-    {
-      "slug": "takashi-ogiso-2025-setting-update",
-      "title": "小木曽喬の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、小木曽喬の14本セッティングと使用ボールを掲載しました。",
-      "body": "小木曽喬のセッティングについて、2025年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "b400caa9-51a5-48c5-a6fd-db4ade6768f0"
     },
     {
       "slug": "hideki-matsuyama-2026-setting-update",
@@ -234,6 +254,26 @@
       "related_profile_id": "39063999-911e-45f5-a26c-2147c2089d75"
     },
     {
+      "slug": "shota-akiyoshi-profile-published",
+      "title": "秋吉翔太のプロフィールを掲載しました",
+      "excerpt": "秋吉翔太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "秋吉翔太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "77301635-8184-46fe-916f-6870c5cd5ebc"
+    },
+    {
+      "slug": "takashi-ogiso-2025-setting-update",
+      "title": "小木曽喬の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、小木曽喬の14本セッティングと使用ボールを掲載しました。",
+      "body": "小木曽喬のセッティングについて、2025年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "b400caa9-51a5-48c5-a6fd-db4ade6768f0"
+    },
+    {
       "slug": "cameron-smith-2026-setting-update",
       "title": "キャメロン・スミスのクラブセッティング【2026年マスターズ出場】",
       "excerpt": "2026年マスターズ出場選手として、キャメロン・スミスの2025年5月時点の最新WITBを掲載しました。",
@@ -252,26 +292,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "698cd82e-c851-4f30-a7ee-e35b100d44eb"
-    },
-    {
-      "slug": "jinichiro-kozuma-2025-setting-update",
-      "title": "香妻陣一朗の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、香妻陣一朗の14本セッティングと使用ボールを掲載しました。",
-      "body": "香妻陣一朗のセッティングについて、2025年LIVコリア時点で確認できた14本のクラブ構成と使用ボールを反映しました。日本人選手の最新セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755"
-    },
-    {
-      "slug": "takahiro-hataji-2025-setting-update",
-      "title": "幡地隆寛の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、幡地隆寛のクラブセッティングと使用ボールを掲載しました。",
-      "body": "幡地隆寛のセッティングについて、2025年東建ホームメイトカップ練習日時点で確認できたクラブ構成と使用ボールを反映しました。より新しい実戦ソースが確認でき次第更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "9491996c-476a-4b8d-ad59-ac00a4179240"
     },
     {
       "slug": "matt-fitzpatrick-2026-setting-update",
@@ -334,14 +354,14 @@
       "related_profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75"
     },
     {
-      "slug": "tomoyo-ikemura-2025-setting-update",
-      "title": "池村寛世の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、池村寛世のクラブセッティングと使用ボールを掲載しました。",
-      "body": "池村寛世のセッティングについて、2025年リシャール・ミル チャリティトーナメント時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "slug": "jinichiro-kozuma-2025-setting-update",
+      "title": "香妻陣一朗の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、香妻陣一朗の14本セッティングと使用ボールを掲載しました。",
+      "body": "香妻陣一朗のセッティングについて、2025年LIVコリア時点で確認できた14本のクラブ構成と使用ボールを反映しました。日本人選手の最新セットとして今後も更新していきます。",
       "article_type": "update",
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2025,
-      "related_profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839"
+      "related_profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755"
     },
     {
       "slug": "rory-mcilroy-2025-setting-update",
@@ -352,6 +372,16 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "4248a629-c191-486d-b513-cbdb16e04315"
+    },
+    {
+      "slug": "ryosuke-kinoshita-2024-setting-update",
+      "title": "木下稜介の2024年クラブセッティングを掲載しました",
+      "excerpt": "2024シーズン基準で、木下稜介のクラブセッティングと使用ボールを掲載しました。",
+      "body": "木下稜介のセッティングについて、2024年ミズノオープン時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2024,
+      "related_profile_id": "cc50a89d-a426-4a13-b40a-58a6a554247e"
     },
     {
       "slug": "jon-rahm-2026-setting-update",
@@ -372,16 +402,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "353b0380-abaf-4418-80ed-8816954f68da"
-    },
-    {
-      "slug": "ryosuke-kinoshita-2024-setting-update",
-      "title": "木下稜介の2024年クラブセッティングを掲載しました",
-      "excerpt": "2024シーズン基準で、木下稜介のクラブセッティングと使用ボールを掲載しました。",
-      "body": "木下稜介のセッティングについて、2024年ミズノオープン時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2024,
-      "related_profile_id": "cc50a89d-a426-4a13-b40a-58a6a554247e"
     },
     {
       "slug": "nicolai-hojgaard-2025-setting-update",
@@ -422,26 +442,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895"
-    },
-    {
-      "slug": "yuji-igarashi-profile-published",
-      "title": "五十嵐雄二のプロフィールを掲載しました",
-      "excerpt": "五十嵐雄二の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "五十嵐雄二について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "0a753415-be74-443a-a572-e14db3330aa6"
-    },
-    {
-      "slug": "yuwa-kosaihira-profile-published",
-      "title": "小斉平優和のプロフィールを掲載しました",
-      "excerpt": "小斉平優和の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "小斉平優和について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "e3872ea2-37e1-43a6-852e-f13b4bd4c745"
     },
     {
       "slug": "yuta-sugiura-2025-setting-update",
@@ -534,16 +534,6 @@
       "related_profile_id": "47ed50a8-0f3f-488f-b971-e9894c11d4dc"
     },
     {
-      "slug": "yusaku-miyazato-profile-published",
-      "title": "宮里優作のプロフィールを掲載しました",
-      "excerpt": "宮里優作の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "宮里優作について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "f882a424-3824-4603-8d71-04c3fc6901c5"
-    },
-    {
       "slug": "shunya-takeyasu-setting-update",
       "title": "竹安俊也のクラブセッティングを掲載しました",
       "excerpt": "公開確認できた実ソースをもとに、竹安俊也の14本セッティングと使用ボールを掲載しました。",
@@ -554,6 +544,56 @@
       "related_profile_id": "2d257520-3a5e-4a52-b921-af2cc3177973"
     },
     {
+      "slug": "tomoyo-ikemura-2025-setting-update",
+      "title": "池村寛世の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、池村寛世のクラブセッティングと使用ボールを掲載しました。",
+      "body": "池村寛世のセッティングについて、2025年リシャール・ミル チャリティトーナメント時点で確認できたクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839"
+    },
+    {
+      "slug": "yuji-igarashi-profile-published",
+      "title": "五十嵐雄二のプロフィールを掲載しました",
+      "excerpt": "五十嵐雄二の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "五十嵐雄二について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "0a753415-be74-443a-a572-e14db3330aa6"
+    },
+    {
+      "slug": "takahiro-hataji-2025-setting-update",
+      "title": "幡地隆寛の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、幡地隆寛のクラブセッティングと使用ボールを掲載しました。",
+      "body": "幡地隆寛のセッティングについて、2025年東建ホームメイトカップ練習日時点で確認できたクラブ構成と使用ボールを反映しました。より新しい実戦ソースが確認でき次第更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "9491996c-476a-4b8d-ad59-ac00a4179240"
+    },
+    {
+      "slug": "yuwa-kosaihira-profile-published",
+      "title": "小斉平優和のプロフィールを掲載しました",
+      "excerpt": "小斉平優和の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "小斉平優和について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "e3872ea2-37e1-43a6-852e-f13b4bd4c745"
+    },
+    {
+      "slug": "yusaku-miyazato-profile-published",
+      "title": "宮里優作のプロフィールを掲載しました",
+      "excerpt": "宮里優作の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "宮里優作について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "f882a424-3824-4603-8d71-04c3fc6901c5"
+    },
+    {
       "slug": "shingo-katayama-profile-published",
       "title": "片山晋呉のプロフィールを掲載しました",
       "excerpt": "片山晋呉の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
@@ -562,26 +602,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "245d740f-5c0c-4659-a831-18c8eb926416"
-    },
-    {
-      "slug": "konosuke-nakazato-profile-published",
-      "title": "中里光之介のプロフィールを掲載しました",
-      "excerpt": "中里光之介の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "中里光之介について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "d1826148-a1bb-41fa-8ce1-5748be7764ec"
-    },
-    {
-      "slug": "ryutaro-nagano-profile-published",
-      "title": "永野竜太郎のプロフィールを掲載しました",
-      "excerpt": "永野竜太郎の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "永野竜太郎について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "f6c1a693-9b0a-4b49-a8b0-527202f74a85"
     },
     {
       "slug": "yuta-ikeda-2026-setting-update",
@@ -624,24 +644,24 @@
       "related_profile_id": "77301635-8184-46fe-916f-6870c5cd5ebc"
     },
     {
-      "slug": "yuta-ikeda-profile-published",
-      "title": "池田勇太のプロフィールを掲載しました",
-      "excerpt": "池田勇太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "池田勇太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "slug": "konosuke-nakazato-profile-published",
+      "title": "中里光之介のプロフィールを掲載しました",
+      "excerpt": "中里光之介の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "中里光之介について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
       "article_type": "update",
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "84642540-aeea-4e78-8cba-6ed97687b468"
+      "related_profile_id": "d1826148-a1bb-41fa-8ce1-5748be7764ec"
     },
     {
-      "slug": "tomohiro-ishizaka-profile-published",
-      "title": "石坂友宏のプロフィールを掲載しました",
-      "excerpt": "石坂友宏の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "石坂友宏について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "slug": "ryutaro-nagano-profile-published",
+      "title": "永野竜太郎のプロフィールを掲載しました",
+      "excerpt": "永野竜太郎の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "永野竜太郎について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
       "article_type": "update",
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b"
+      "related_profile_id": "f6c1a693-9b0a-4b49-a8b0-527202f74a85"
     },
     {
       "slug": "konosuke-nakazato-2026-setting-update",
@@ -654,14 +674,14 @@
       "related_profile_id": "d1826148-a1bb-41fa-8ce1-5748be7764ec"
     },
     {
-      "slug": "shota-akiyoshi-profile-published",
-      "title": "秋吉翔太のプロフィールを掲載しました",
-      "excerpt": "秋吉翔太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-      "body": "秋吉翔太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+      "slug": "yuta-ikeda-profile-published",
+      "title": "池田勇太のプロフィールを掲載しました",
+      "excerpt": "池田勇太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
+      "body": "池田勇太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
       "article_type": "update",
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "77301635-8184-46fe-916f-6870c5cd5ebc"
+      "related_profile_id": "84642540-aeea-4e78-8cba-6ed97687b468"
     },
     {
       "slug": "yusaku-miyazato-2026-setting-update",
@@ -684,6 +704,16 @@
       "related_profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b"
     },
     {
+      "slug": "yuwa-kosaihira-2026-setting-update",
+      "title": "小斉平優和のクラブセッティングを掲載しました",
+      "excerpt": "GDOの2025年KBCオーガスタ取材をもとに、小斉平優和の14本セッティングを掲載しました。",
+      "body": "小斉平優和について、GDOの2025年KBCオーガスタ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、5W、7W、4I-PW、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+      "article_type": "update",
+      "published_at": "2026-04-10T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "e3872ea2-37e1-43a6-852e-f13b4bd4c745"
+    },
+    {
       "slug": "rory-mcilroy-2026-setting-update",
       "title": "ローリー・マキロイ クラブセッティング 2026年版 14本と使用ドライバー",
       "excerpt": "ローリー・マキロイの2026年クラブセッティングを、14本の構成に加えてTaylorMade公式carry yardage付きで掲載しました。",
@@ -692,36 +722,6 @@
       "published_at": "2026-04-10T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "4248a629-c191-486d-b513-cbdb16e04315"
-    },
-    {
-      "slug": "max-homa-2026-setting-update",
-      "title": "マックス・ホーマのクラブセッティング【2026年マスターズ出場】",
-      "excerpt": "2026年マスターズ出場選手として、マックス・ホーマの14本全体が見える最新WITBに加えてPGA TOUR公式スタッツも掲載しました。",
-      "body": "マックス・ホーマのクラブセッティングについて、2025年9月時点で確認できたWITBをもとに整理しました。Cobra DS-Adapt Xドライバーと3番ウッド、TaylorMade Qi10 7番ウッド、Cobra 3DP TourとKing CB/MBのコンボアイアン、6I-PWの流れが見えるアイアン帯、SnakebiteとVokey/WedgeWorksのウェッジ、Scotty Cameron T-5.5 Tour Prototypeパター、Titleist Pro V1という構成です。あわせてPGA TOUR公式スタッツからヘッドスピード、ドライビングディスタンス、平均スコア、通算ベストラウンドも追記しています。",
-      "article_type": "update",
-      "published_at": "2026-04-10T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594"
-    },
-    {
-      "slug": "sakuma-akari-2026-setting-update",
-      "title": "佐久間朱莉の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、佐久間朱莉の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "佐久間朱莉のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
-      "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "850ac2e7-7526-482b-b209-5b2d88c81c93"
-    },
-    {
-      "slug": "yoshimoto-hikaru-2026-setting-update",
-      "title": "吉本ひかるの2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、吉本ひかるの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "吉本ひかるのセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
-      "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "494ae705-8a24-4c9a-adb5-417e1bfd4ef3"
     },
     {
       "slug": "kaneda-kumiko-2026-setting-update",
@@ -944,6 +944,16 @@
       "related_profile_id": "697b21ca-cdd1-4159-bd47-28364e0b9e5f"
     },
     {
+      "slug": "ayako-kimura-2026-setting-update",
+      "title": "木村彩子の最新クラブセッティングを掲載しました",
+      "excerpt": "GDOの2025年富士通レディース取材をもとに、木村彩子の14本セッティングを掲載しました。",
+      "body": "木村彩子のクラブセッティングについて、GDOの2025年富士通レディース取材で確認できた14本と使用ボールを反映しました。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "1031a583-8bbc-4780-8ccf-91cb010e6499"
+    },
+    {
       "slug": "sayaka-takahashi-2026-setting-update",
       "title": "高橋彩華の最新クラブセッティングを掲載しました",
       "excerpt": "GDOの2025年ミヤギテレビ杯ダンロップ女子オープン取材をもとに、高橋彩華の14本セッティングを掲載しました。",
@@ -952,16 +962,6 @@
       "published_at": "2026-04-09T00:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "d6009495-3fd9-498e-8777-dc0d557906b1"
-    },
-    {
-      "slug": "eri-okayama-setting-update",
-      "title": "岡山絵里のクラブセッティングを掲載しました",
-      "excerpt": "GDOの公開セッティング記事をもとに、岡山絵里のクラブ構成を掲載しました。",
-      "body": "岡山絵里のクラブセッティングについて、公開されているGDOのセッティング記事をもとに反映しました。確認できた最新の公開ソースベースで掲載しています。",
-      "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "7b59825f-b262-4c15-807f-53a83c9990bd"
     },
     {
       "slug": "rin-yoshida-2026-setting-update",
@@ -1054,14 +1054,14 @@
       "related_profile_id": "4047f4fd-f591-48fe-94a9-c3280afceaaf"
     },
     {
-      "slug": "ayako-kimura-2026-setting-update",
-      "title": "木村彩子の最新クラブセッティングを掲載しました",
-      "excerpt": "GDOの2025年富士通レディース取材をもとに、木村彩子の14本セッティングを掲載しました。",
-      "body": "木村彩子のクラブセッティングについて、GDOの2025年富士通レディース取材で確認できた14本と使用ボールを反映しました。",
+      "slug": "eri-okayama-setting-update",
+      "title": "岡山絵里のクラブセッティングを掲載しました",
+      "excerpt": "GDOの公開セッティング記事をもとに、岡山絵里のクラブ構成を掲載しました。",
+      "body": "岡山絵里のクラブセッティングについて、公開されているGDOのセッティング記事をもとに反映しました。確認できた最新の公開ソースベースで掲載しています。",
       "article_type": "update",
       "published_at": "2026-04-09T00:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": "1031a583-8bbc-4780-8ccf-91cb010e6499"
+      "related_profile_id": "7b59825f-b262-4c15-807f-53a83c9990bd"
     },
     {
       "slug": "akie-iwai-2026-setting-update",
@@ -1754,6 +1754,26 @@
       "related_profile_id": "d537a5a1-d50b-4308-8c1b-67635472f00b"
     },
     {
+      "slug": "sakuma-akari-2026-setting-update",
+      "title": "佐久間朱莉の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、佐久間朱莉の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "佐久間朱莉のセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "850ac2e7-7526-482b-b209-5b2d88c81c93"
+    },
+    {
+      "slug": "yoshimoto-hikaru-2026-setting-update",
+      "title": "吉本ひかるの2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、吉本ひかるの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "吉本ひかるのセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "494ae705-8a24-4c9a-adb5-417e1bfd4ef3"
+    },
+    {
       "slug": "ayaka-furue-2026-setting-update",
       "title": "古江彩佳の2026年クラブセッティングを掲載しました",
       "excerpt": "2026シーズン基準で、古江彩佳の14本のクラブセッティングと使用ボールを掲載しました。",
@@ -2094,16 +2114,6 @@
       "related_profile_id": "530a24a4-1ce9-4856-96da-e0085e1bc904"
     },
     {
-      "slug": "kensei-hirata-2025-setting-update",
-      "title": "平田憲聖の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、平田憲聖の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "平田憲聖のセッティングについて、KBCオーガスタ時点で確認できた14本のクラブ構成と使用ボールを反映しました。ミズノ中心の実戦セットとして、今後も確認できた内容から更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "46dafbd4-449d-4ca9-b118-863c1d73d4b5"
-    },
-    {
       "slug": "takamitsu-tokimatsu-2025-setting-update",
       "title": "時松源蔵の2025年クラブセッティングを掲載しました",
       "excerpt": "2025シーズン基準で、時松源蔵の14本のクラブセッティングと使用ボールを掲載しました。",
@@ -2114,14 +2124,24 @@
       "related_profile_id": "6f92292d-f6c7-437a-95d3-a20115cfdd1e"
     },
     {
-      "slug": "tatsunori-shogenji-2025-setting-update",
-      "title": "生源寺龍憲の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、生源寺龍憲の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "生源寺龍憲のセッティングについて、ジャパンプレーヤーズチャンピオンシップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。藤本技工中心の実戦セットとして今後も更新していきます。",
+      "slug": "kensei-hirata-2025-setting-update",
+      "title": "平田憲聖の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、平田憲聖の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "平田憲聖のセッティングについて、KBCオーガスタ時点で確認できた14本のクラブ構成と使用ボールを反映しました。ミズノ中心の実戦セットとして、今後も確認できた内容から更新していきます。",
       "article_type": "update",
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
-      "related_profile_id": "4efcc31e-625e-4a86-9a84-a7ce1b5e51fc"
+      "related_profile_id": "46dafbd4-449d-4ca9-b118-863c1d73d4b5"
+    },
+    {
+      "slug": "shugo-imahira-2025-setting-update",
+      "title": "今平周吾の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、今平周吾の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "今平周吾のセッティングについて、東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。精度重視の実戦セットとして、今後も確認できた内容から更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "bf4de32a-2c94-4038-9731-6878b3d4fa87"
     },
     {
       "slug": "ryo-hisatsune-2026-setting-update",
@@ -2134,16 +2154,6 @@
       "related_profile_id": "3a7dc7da-a283-4ed0-a70e-9bb381100a56"
     },
     {
-      "slug": "taiga-semikawa-2025-setting-update",
-      "title": "蝉川泰果の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、蝉川泰果の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "蝉川泰果のセッティングについて、中日クラウンズ時点で確認できた14本のクラブ構成と使用ボールを反映しました。2026シーズンの確認が取れた内容から、今後さらに更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "b0ec2489-1118-4d33-833c-dee974dcbd82"
-    },
-    {
       "slug": "xander-schauffele-2025-setting-update",
       "title": "ザンダー・シャウフェレの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
       "excerpt": "ザンダー・シャウフェレのクラブセッティングに加えて、PGA TOUR公式のヘッドスピード、飛距離、平均スコア、ベストスコアも掲載しました。",
@@ -2152,6 +2162,16 @@
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
       "related_profile_id": "72d41277-a092-432c-a3bc-c922c83d9365"
+    },
+    {
+      "slug": "taiga-semikawa-2025-setting-update",
+      "title": "蝉川泰果の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、蝉川泰果の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "蝉川泰果のセッティングについて、中日クラウンズ時点で確認できた14本のクラブ構成と使用ボールを反映しました。2026シーズンの確認が取れた内容から、今後さらに更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2025,
+      "related_profile_id": "b0ec2489-1118-4d33-833c-dee974dcbd82"
     },
     {
       "slug": "nick-taylor-2025-setting-update",
@@ -2174,14 +2194,14 @@
       "related_profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e"
     },
     {
-      "slug": "shugo-imahira-2025-setting-update",
-      "title": "今平周吾の2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、今平周吾の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "今平周吾のセッティングについて、東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。精度重視の実戦セットとして、今後も確認できた内容から更新していきます。",
+      "slug": "tatsunori-shogenji-2025-setting-update",
+      "title": "生源寺龍憲の2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、生源寺龍憲の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "生源寺龍憲のセッティングについて、ジャパンプレーヤーズチャンピオンシップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。藤本技工中心の実戦セットとして今後も更新していきます。",
       "article_type": "update",
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2025,
-      "related_profile_id": "bf4de32a-2c94-4038-9731-6878b3d4fa87"
+      "related_profile_id": "4efcc31e-625e-4a86-9a84-a7ce1b5e51fc"
     },
     {
       "slug": "viktor-hovland-2026-setting-update",
@@ -2244,26 +2264,6 @@
       "related_profile_id": "f05367e5-4890-4aa5-9d8b-e01d0257d99b"
     },
     {
-      "slug": "tony-finau-2025-setting-update",
-      "title": "トニー・フィナウの2025年クラブセッティングを掲載しました",
-      "excerpt": "2025シーズン基準で、トニー・フィナウの14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "トニー・フィナウのセッティングについて、2025年フェデックスセントジュード選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。Callaway中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2025,
-      "related_profile_id": "cc3731bb-f221-481a-8edc-c72796e02418"
-    },
-    {
-      "slug": "takumi-kanaya-2026-setting-update",
-      "title": "金谷拓実の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、金谷拓実の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "金谷拓実のセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。PING中心の実戦セットとして今後も更新していきます。",
-      "article_type": "update",
-      "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "ab3d81c7-700e-4190-95c1-0bf78c408cbc"
-    },
-    {
       "slug": "collin-morikawa-2025-setting-update",
       "title": "コリン・モリカワの最新クラブセッティングを掲載しました｜使用ドライバー・14本構成を確認",
       "excerpt": "コリン・モリカワのクラブセッティングに加えて、TaylorMade公式のTrackMan実測とPGA TOUR公式スタッツを掲載しました。",
@@ -2284,14 +2284,14 @@
       "related_profile_id": "73056993-fbf0-4d86-8283-a60cf057862b"
     },
     {
-      "slug": "tomoharu-otsuki-2023-setting-update",
-      "title": "大槻智春の2023年クラブセッティングを掲載しました",
-      "excerpt": "2023シーズン基準で、大槻智春の14本のクラブセッティングと使用ボールを掲載しました。",
-      "body": "大槻智春のセッティングについて、2023年パナソニックオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "slug": "tony-finau-2025-setting-update",
+      "title": "トニー・フィナウの2025年クラブセッティングを掲載しました",
+      "excerpt": "2025シーズン基準で、トニー・フィナウの14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "トニー・フィナウのセッティングについて、2025年フェデックスセントジュード選手権時点で確認できた14本のクラブ構成と使用ボールを反映しました。Callaway中心の実戦セットとして今後も更新していきます。",
       "article_type": "update",
       "published_at": "2026-04-08T00:00:00+00:00",
-      "season_year": 2023,
-      "related_profile_id": "fb6b43e6-f2ce-4811-8e88-49d6d7a9389a"
+      "season_year": 2025,
+      "related_profile_id": "cc3731bb-f221-481a-8edc-c72796e02418"
     },
     {
       "slug": "peter-malnati-2024-setting-update",
@@ -2302,6 +2302,26 @@
       "published_at": "2026-04-08T00:00:00+00:00",
       "season_year": 2024,
       "related_profile_id": "7c4e6b3a-7f05-4b91-9c3d-4bcdf498615d"
+    },
+    {
+      "slug": "takumi-kanaya-2026-setting-update",
+      "title": "金谷拓実の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、金谷拓実の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "金谷拓実のセッティングについて、2026年ザ・アメリカンエキスプレス時点で確認できた14本のクラブ構成と使用ボールを反映しました。PING中心の実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "ab3d81c7-700e-4190-95c1-0bf78c408cbc"
+    },
+    {
+      "slug": "tomoharu-otsuki-2023-setting-update",
+      "title": "大槻智春の2023年クラブセッティングを掲載しました",
+      "excerpt": "2023シーズン基準で、大槻智春の14本のクラブセッティングと使用ボールを掲載しました。",
+      "body": "大槻智春のセッティングについて、2023年パナソニックオープン時点で確認できた14本のクラブ構成と使用ボールを反映しました。国内男子ツアーの実戦セットとして今後も更新していきます。",
+      "article_type": "update",
+      "published_at": "2026-04-08T00:00:00+00:00",
+      "season_year": 2023,
+      "related_profile_id": "fb6b43e6-f2ce-4811-8e88-49d6d7a9389a"
     },
     {
       "slug": "yosuke-tsukada-2025-setting-update",
