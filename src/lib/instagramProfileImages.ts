@@ -100,7 +100,7 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "handle": "tonyfinaugolf"
   },
   "matt-mccarty": {
-    "src": "/profile-images/matt-mccarty.png",
+    "src": "/profile-images/matt-mccarty.jpg",
     "handle": "mattmccarty21"
   },
   "xander-schauffele": {
@@ -179,10 +179,6 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/ruoning-yin.jpg",
     "handle": "ruoningyin1"
   },
-  "ayaka-watanabe": {
-    "src": "/profile-images/ayaka-watanabe.png",
-    "handle": "ayaka_watanabe_official"
-  },
   "celine-boutier": {
     "src": "/profile-images/celine-boutier.jpg",
     "handle": "celineboutier"
@@ -202,6 +198,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "minami-katsu": {
     "src": "/profile-images/minami-katsu.jpg",
     "handle": "minami_katsu"
+  },
+  "patty-tavatanakit": {
+    "src": "/profile-images/patty-tavatanakit.jpg",
+    "handle": "impattyt"
   },
   "georgia-hall": {
     "src": "/profile-images/georgia-hall.jpg",
@@ -235,17 +235,13 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/moriya-jutanugarn.jpg",
     "handle": "mo_moriya"
   },
+  "ally-ewing": {
+    "src": "/profile-images/ally-ewing.jpg",
+    "handle": "a_mc10"
+  },
   "rose-zhang": {
     "src": "/profile-images/rose-zhang.jpg",
     "handle": "rosezhang"
-  },
-  "ally-ewing": {
-    "src": "/profile-images/ally-ewing.jpg",
-    "handle": "allymc10"
-  },
-  "patty-tavatanakit": {
-    "src": "/profile-images/patty-tavatanakit.jpg",
-    "handle": "impattyt"
   },
   "carlota-ciganda": {
     "src": "/profile-images/carlota-ciganda.jpg",
@@ -292,7 +288,7 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "handle": "fukagolf17"
   },
   "tsuruoka-karen": {
-    "src": "/profile-images/tsuruoka-karen.png",
+    "src": "/profile-images/tsuruoka-karen.jpg",
     "handle": "tsurukare"
   },
   "arimura-chie": {
@@ -355,10 +351,6 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/yumeka-kobayashi.jpg",
     "handle": "yumeka___036"
   },
-  "morita-rikako": {
-    "src": "/profile-images/morita-rikako.png",
-    "handle": "rikakomorita_official"
-  },
   "seira-oki": {
     "src": "/profile-images/seira-oki.jpg",
     "handle": "seira_oki"
@@ -380,7 +372,7 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "handle": "kanonakamura_"
   },
   "yoshimoto-hikaru": {
-    "src": "/profile-images/yoshimoto-hikaru.png",
+    "src": "/profile-images/yoshimoto-hikaru.jpg",
     "handle": "hikaru_yoshimoto_"
   },
   "yumeno-masada": {
@@ -418,10 +410,6 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "nanoko-hayashi": {
     "src": "/profile-images/nanoko-hayashi.jpg",
     "handle": "h._.nanoko24"
-  },
-  "mikiya-akutsu": {
-    "src": "/profile-images/mikiya-akutsu.png",
-    "handle": "mikiya_akutsu"
   },
   "kanako-aoki": {
     "src": "/profile-images/kanako-aoki.jpg",
@@ -540,7 +528,7 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "handle": "patrickcantlay"
   },
   "shunya-takeyasu": {
-    "src": "/profile-images/shunya-takeyasu.png",
+    "src": "/profile-images/shunya-takeyasu.jpg",
     "handle": "shunyatakeyasu"
   },
   "anna-nordqvist": {
@@ -576,7 +564,7 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "handle": "jonrahm"
   },
   "mikumu-horikawa": {
-    "src": "/profile-images/mikumu-horikawa.png",
+    "src": "/profile-images/mikumu-horikawa.jpg",
     "handle": "mikumu.h"
   },
   "adam-scott": {
