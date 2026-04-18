@@ -266,7 +266,7 @@ export const ProsSettingsPage = () => {
         )}
 
         {filteredProfiles.map((setting) => {
-          const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: true });
+          const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
 
           return (
             <button
