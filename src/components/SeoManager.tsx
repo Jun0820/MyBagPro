@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { initAnalytics, trackPageView } from '../lib/analytics';
 import { applySeo, getSeoPath } from '../lib/seo';
 
+const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined;
+
 const routeSeoMap: Record<string, { title: string; description: string; noindex?: boolean }> = {
   '/': {
     title: 'プロのクラブセッティング検索サイト',
@@ -10,7 +12,7 @@ const routeSeoMap: Record<string, { title: string; description: string; noindex?
   },
   '/settings/pros': {
     title: 'プロのクラブセッティング一覧',
-    description: '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名やクラブ名、五十音で検索できます。',
+    description: '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名、カテゴリ、フリガナ、ヘッドスピードで絞り込めます。',
   },
   '/settings/users': {
     title: 'みんなのMy Bag',
@@ -115,6 +117,26 @@ export const SeoManager = () => {
     });
     trackPageView(seoPath, `${seo.title} | My Bag Pro`);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const selector = 'meta[name="google-site-verification"]';
+    const existing = document.head.querySelector<HTMLMetaElement>(selector);
+
+    if (!googleSiteVerification) {
+      existing?.remove();
+      return;
+    }
+
+    if (existing) {
+      existing.setAttribute('content', googleSiteVerification);
+      return;
+    }
+
+    const meta = document.createElement('meta');
+    meta.setAttribute('name', 'google-site-verification');
+    meta.setAttribute('content', googleSiteVerification);
+    document.head.appendChild(meta);
+  }, []);
 
   return null;
 };

@@ -257,8 +257,11 @@ export const ProsSettingsPage = () => {
 
         {!isLoading && profiles.length === 0 && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8">
-            <h2 className="text-2xl font-black text-trust-navy">公開準備中です。</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">公開プロフィールを読み込めませんでした。少し時間を置いて再読み込みしてください。</p>
+            <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">読み込みエラー</div>
+            <h2 className="mt-3 text-2xl font-black text-trust-navy">プロフィールを取得できませんでした。</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              一時的な通信エラーの可能性があります。少し時間を置いて再読み込みするか、トップページからもう一度アクセスしてください。
+            </p>
           </div>
         )}
 

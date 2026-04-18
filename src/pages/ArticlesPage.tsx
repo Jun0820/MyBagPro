@@ -112,10 +112,10 @@ export const ArticlesPage = () => {
 
         {!isLoading && articles.length === 0 && (
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8">
-            <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">公開準備中</div>
-            <h2 className="mt-3 text-2xl font-black text-trust-navy">公開済み記事はまだありません。</h2>
+            <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">記事が見つかりません</div>
+            <h2 className="mt-3 text-2xl font-black text-trust-navy">公開中の記事を取得できませんでした。</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              掲載内容の更新や、セッティングの見方に関する記事が公開されるとここに並びます。
+              一時的な取得エラーか、まだ公開記事がない状態です。時間を置いて再読み込みすると表示される場合があります。
             </p>
           </div>
         )}
