@@ -29,10 +29,11 @@ npm run supabase:check
 
 1. [supabase-add-setting-profile-metadata-columns.sql](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/supabase-add-setting-profile-metadata-columns.sql)
 2. [supabase-setting-data-lockdown.sql](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/supabase-setting-data-lockdown.sql)
+3. [supabase-security-audit.sql](/Users/tomitajunpei/Downloads/Obsidian/MyBagPro/docs/supabase-security-audit.sql)
 
 これで:
 - `setting_profiles` に集約用の追加列が入る
-- `setting_profiles / setting_bag_items / content_sources / content_articles` が public write 不可になる
+- `setting_profiles / setting_bag_items / content_sources / content_articles / profiles / clubs` が RLS 管理に寄る
 - 以後は `service_role` 付きスクリプト経由で安全に更新できる
 
 補足:
