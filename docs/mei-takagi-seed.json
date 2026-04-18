@@ -4,16 +4,26 @@
     "display_name": "高木萌衣",
     "kana_name": "タカギ メイ",
     "nationality": "Japan",
+    "birthplace": "大阪府堺市",
+    "height_cm": 163,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
     "summary": "2026シーズン基準で掲載している高木萌衣のプロフィール。",
-    "latest_source_policy": "2026_season",
+    "latest_source_policy": "verified_source_available",
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-04-09T00:00:00.000Z",
-    "birth_date": "2000-12-27"
+    "birth_date": "1996-12-19"
   },
   "bagItems": [],
-  "sources": []
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.alba.co.jp/tour/players/2130/",
+      "source_title": "高木萌衣 プロフィール｜ALBA Net",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "生年月日、出身地、身長の確認用。"
+    }
+  ]
 }

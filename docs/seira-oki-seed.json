@@ -4,16 +4,60 @@
     "display_name": "沖せいら",
     "kana_name": "オキ セイラ",
     "nationality": "Japan",
+    "birthplace": "山口県防府市",
+    "height_cm": 161,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "summary": "2026シーズン基準で掲載している沖せいらのプロフィール。",
-    "latest_source_policy": "2026_season",
+    "ball_name": "TOUR B X ボール",
+    "feature_1": "キャロウェイ中心",
+    "feature_2": "2026年2月記事",
+    "feature_3": "公開範囲で構成整理",
+    "summary": "公開ギア紹介記事をもとに整理した沖せいらのセッティング。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-04-09T00:00:00.000Z",
-    "birth_date": "1992-09-20"
+    "birth_date": "1992-09-25"
   },
-  "bagItems": [],
-  "sources": []
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Callaway", "model_name": "PARADYM Driver", "loft_label": "10.5度", "shaft_brand": "Mitsubishi Chemical", "shaft_model": "TENSEI TM70", "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Yamaha", "model_name": "RMX VD Fairway Wood", "spec_label": "3W", "loft_label": "15度", "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "Callaway", "model_name": "PARADYM X Fairway Wood", "spec_label": "7W", "loft_label": "21度", "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "Callaway", "model_name": "PARADYM Utility", "spec_label": "5U", "loft_label": "24度", "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Cobra", "model_name": "KING FORGED TOUR IRON", "spec_label": "4I", "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Cobra", "model_name": "KING FORGED TOUR IRON", "spec_label": "5I", "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Cobra", "model_name": "KING FORGED TOUR IRON", "spec_label": "6I", "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Cobra", "model_name": "KING FORGED TOUR IRON", "spec_label": "7I", "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Cobra", "model_name": "KING FORGED TOUR IRON", "spec_label": "8I", "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Cobra", "model_name": "KING FORGED TOUR IRON", "spec_label": "9I", "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 11, "brand": "Cobra", "model_name": "KING FORGED TOUR IRON", "spec_label": "PW", "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "TaylorMade", "model_name": "M2 Wedge", "loft_label": "48度", "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。", "is_featured_item": false }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://golfeaglecafe.com/seira-oki/",
+      "source_title": "沖せいらプロ クラブセッティング パター ボール紹介2026 | ゴルフイーグルカフェ",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "公開確認できたドライバーからウェッジ、使用ボールまでの構成整理用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.alba.co.jp/tour/players/2901/",
+      "source_title": "沖せいら プロフィール｜ALBA Net",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "生年月日、出身地、身長の確認用。"
+    }
+  ],
+  "article": {
+    "slug": "seira-oki-2026-setting-update",
+    "title": "沖せいらのクラブセッティングを掲載しました",
+    "excerpt": "公開ギア紹介記事をもとに、沖せいらの公開確認できたセッティングを掲載しました。",
+    "body": "沖せいらについて、公開ギア紹介記事で確認できた内容をもとにセッティングを整理しました。ドライバー、3W、7W、5U、4I-PW、48度ウェッジまで、公開確認できた範囲の流れが追えるページに更新しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-04-19T00:00:00.000Z"
+  }
 }
