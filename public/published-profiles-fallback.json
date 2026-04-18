@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-18T15:03:13.643Z",
+  "generatedAt": "2026-04-18T22:39:00.881Z",
   "source": "supabase",
   "count": 213,
   "profiles": [
@@ -1237,22 +1237,6 @@
       "sources": [
         {
           "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/career",
-          "source_title": "Sahith Theegala PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
-        },
-        {
-          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/stats",
-          "source_title": "Sahith Theegala PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード117.55mph、ドライビングディスタンス305.4yd、平均スコア68.71を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
-        },
-        {
-          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
           "source_type": "article",
           "source_url": "https://www.golfwrx.com/732873/sahith-theegala-witb-2024/",
           "source_title": "Sahith Theegala WITB - GolfWRX",
@@ -1266,6 +1250,22 @@
           "source_title": "Sahith Theegala - PING",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "契約情報と主要クラブ確認用。"
+        },
+        {
+          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/career",
+          "source_title": "Sahith Theegala PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
+        },
+        {
+          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/stats",
+          "source_title": "Sahith Theegala PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード117.55mph、ドライビングディスタンス305.4yd、平均スコア68.71を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
         }
       ]
     },
@@ -1485,6 +1485,21 @@
           "total_distance": null,
           "source_note": "GolfWRX WITB 2024 (May)より確認。",
           "slot_order": 4
+        },
+        {
+          "profile_id": "13968bb6-6697-441a-9392-a8d365933d2d",
+          "category": "Iron",
+          "brand": "PING",
+          "model_name": "Blueprint S",
+          "spec_label": "5I",
+          "loft_label": null,
+          "shaft_brand": "Project X",
+          "shaft_model": "6.5",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "PING公式およびGolfWRX WITB 2024 (May)より確認。",
+          "slot_order": 5
         }
       ],
       "sources": [
@@ -1905,18 +1920,18 @@
         {
           "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/39977/max-homa/stats",
-          "source_title": "Max Homa PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード121.09mph、ドライビングディスタンス306.1yd、平均スコア70.62を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
-        },
-        {
-          "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/39977/max-homa/career",
           "source_title": "Max Homa PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
+        },
+        {
+          "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/39977/max-homa/stats",
+          "source_title": "Max Homa PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード121.09mph、ドライビングディスタンス306.1yd、平均スコア70.62を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
         },
         {
           "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
@@ -2776,22 +2791,91 @@
         "head_speed_mps": null,
         "average_score": null,
         "best_score": null,
-        "ball_name": "",
+        "ball_name": "TOUR B X ボール＜2024年＞",
         "feature_1": "日本男子ツアー",
         "feature_2": "ツアー12勝",
         "feature_3": "ベテラン実力者",
-        "summary": "JGTO公式プロフィールをもとに掲載する宮本勝昌のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
+        "summary": "2024年東建ホームメイトカップで確認できた宮本勝昌の14本セッティングを掲載しています。",
         "verified_at": "2026-04-10T00:00:00+00:00",
-        "latest_source_policy": "2026_profile",
+        "latest_source_policy": "verified_source_available",
         "is_featured": true,
         "is_published": true,
         "created_at": "2026-04-10T08:34:24.405468+00:00",
-        "updated_at": "2026-04-18T13:42:22.458885+00:00",
+        "updated_at": "2026-04-18T22:38:32.492281+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
-      "bagItems": [],
+      "bagItems": [
+        {
+          "profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895",
+          "category": "Driver",
+          "brand": "Bridgestone",
+          "model_name": "B2HT Driver",
+          "spec_label": null,
+          "loft_label": "9.5°",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD VF",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2024年東建ホームメイトカップ取材より確認。",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD CQ",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO記事のQi10フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18°",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD CQ",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO記事のQi10フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895",
+          "category": "Utility",
+          "brand": "Honma",
+          "model_name": "Tour World TW-U Forged",
+          "spec_label": "3U",
+          "loft_label": "19°",
+          "shaft_brand": "N.S.PRO",
+          "shaft_model": "Modus3 System3 Tour125",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2024年東建ホームメイトカップ取材より確認。",
+          "slot_order": 4
+        }
+      ],
       "sources": [
+        {
+          "profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/24/",
+          "source_title": "宮本勝昌 クラブセッティング 2024年 東建ホームメイトカップ - GDO",
+          "checked_at": "2026-04-19T00:00:00+00:00",
+          "notes": "14本全体の構成確認用。"
+        },
         {
           "profile_id": "8fab8dc7-4749-48a9-9caf-f2c7146e8895",
           "source_type": "official",
@@ -2937,6 +3021,136 @@
           "source_title": "GDO ジョーダン・スピース クラブセッティング 2026年 WMフェニックスオープン",
           "checked_at": "2026-04-08T00:00:00+00:00",
           "notes": "Used for bio fields, 2026 full bag, and ball confirmation."
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "84642540-aeea-4e78-8cba-6ed97687b468",
+        "slug": "yuta-ikeda",
+        "display_name": "池田 勇太",
+        "kana_name": "イケダ ユウタ",
+        "birth_date": "1985-12-22",
+        "height_cm": 177,
+        "birthplace": "千葉県",
+        "nationality": "Japan",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "yutaikeda33_official",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": null,
+        "ball_name": "ツアー B330X ボール",
+        "feature_1": "日本男子ツアー",
+        "feature_2": "賞金王経験者",
+        "feature_3": "2026年継続確認中",
+        "summary": "2017年日本オープン最終日で確認できた池田勇太の14本セッティングを掲載しています。",
+        "verified_at": "2026-04-10T00:00:00+00:00",
+        "latest_source_policy": "verified_source_available",
+        "is_featured": true,
+        "is_published": true,
+        "created_at": "2026-04-10T07:24:36.869188+00:00",
+        "updated_at": "2026-04-18T22:38:32.497092+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
+          "category": "Driver",
+          "brand": "TaylorMade",
+          "model_name": "M1 440 Driver",
+          "spec_label": null,
+          "loft_label": "9.5°",
+          "shaft_brand": "Mitsubishi Rayon",
+          "shaft_model": "Diamana BF",
+          "shaft_flex": "TX",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2017年日本オープン最終日取材より確認。",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "M2 Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO記事のM2フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "M2 Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO記事のM2フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "GBB Epic Utility",
+          "spec_label": "3U",
+          "loft_label": "20°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2017年日本オープン最終日取材より確認。",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
+          "category": "Iron",
+          "brand": "Yonex",
+          "model_name": "N1-CB Forged Iron",
+          "spec_label": "4I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。",
+          "slot_order": 5
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/120/2017/1/",
+          "source_title": "池田勇太 クラブセッティング 2017年 日本オープンゴルフ選手権競技 最終日 - GDO",
+          "checked_at": "2026-04-19T00:00:00+00:00",
+          "notes": "14本全体の構成確認用。"
+        },
+        {
+          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/15400/profile",
+          "source_title": "JGTO 池田勇太 プロフィール",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
         }
       ]
     },
@@ -3164,98 +3378,6 @@
     },
     {
       "profile": {
-        "id": "245d740f-5c0c-4659-a831-18c8eb926416",
-        "slug": "shingo-katayama",
-        "display_name": "片山 晋呉",
-        "kana_name": "カタヤマ シンゴ",
-        "birth_date": "1973-01-31",
-        "height_cm": 171,
-        "birthplace": "茨城県",
-        "nationality": "Japan",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2026,
-        "youtube_channel": "-",
-        "instagram_handle": "shingo_katayama45",
-        "x_handle": "-",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": null,
-        "ball_name": "",
-        "feature_1": "日本男子ツアー",
-        "feature_2": "賞金王5回",
-        "feature_3": "ツアー31勝",
-        "summary": "JGTO公式プロフィールをもとに掲載する片山晋呉のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-        "verified_at": "2026-04-10T00:00:00+00:00",
-        "latest_source_policy": "2026_profile",
-        "is_featured": true,
-        "is_published": true,
-        "created_at": "2026-04-10T08:34:24.405705+00:00",
-        "updated_at": "2026-04-18T12:05:23.369669+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [],
-      "sources": [
-        {
-          "profile_id": "245d740f-5c0c-4659-a831-18c8eb926416",
-          "source_type": "official",
-          "source_url": "https://www.jgto.org/player/2162/profile",
-          "source_title": "JGTO 片山晋呉 プロフィール",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
-        }
-      ]
-    },
-    {
-      "profile": {
-        "id": "84642540-aeea-4e78-8cba-6ed97687b468",
-        "slug": "yuta-ikeda",
-        "display_name": "池田 勇太",
-        "kana_name": "イケダ ユウタ",
-        "birth_date": "1985-12-22",
-        "height_cm": 177,
-        "birthplace": "千葉県",
-        "nationality": "Japan",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2026,
-        "youtube_channel": "-",
-        "instagram_handle": "yutaikeda33_official",
-        "x_handle": "-",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": null,
-        "ball_name": "",
-        "feature_1": "日本男子ツアー",
-        "feature_2": "賞金王経験者",
-        "feature_3": "2026年継続確認中",
-        "summary": "JGTO公式プロフィールをもとに掲載する池田勇太のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-        "verified_at": "2026-04-10T00:00:00+00:00",
-        "latest_source_policy": "2026_profile",
-        "is_featured": true,
-        "is_published": true,
-        "created_at": "2026-04-10T07:24:36.869188+00:00",
-        "updated_at": "2026-04-18T12:05:24.063971+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [],
-      "sources": [
-        {
-          "profile_id": "84642540-aeea-4e78-8cba-6ed97687b468",
-          "source_type": "official",
-          "source_url": "https://www.jgto.org/player/15400/profile",
-          "source_title": "JGTO 池田勇太 プロフィール",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
-        }
-      ]
-    },
-    {
-      "profile": {
         "id": "77301635-8184-46fe-916f-6870c5cd5ebc",
         "slug": "shota-akiyoshi",
         "display_name": "秋吉 翔太",
@@ -3379,6 +3501,121 @@
           "source_type": "official",
           "source_url": "https://www.jgto.org/player/15617/profile",
           "source_title": "JGTO 秋吉翔太 プロフィール",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "245d740f-5c0c-4659-a831-18c8eb926416",
+        "slug": "shingo-katayama",
+        "display_name": "片山 晋呉",
+        "kana_name": "カタヤマ シンゴ",
+        "birth_date": "1973-01-31",
+        "height_cm": 171,
+        "birthplace": "茨城県",
+        "nationality": "Japan",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "shingo_katayama45",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": null,
+        "ball_name": "ダイワ オノフ ボール",
+        "feature_1": "日本男子ツアー",
+        "feature_2": "賞金王5回",
+        "feature_3": "ツアー31勝",
+        "summary": "2013年東建ホームメイトカップで確認できた片山晋呉の14本セッティングを掲載しています。",
+        "verified_at": "2026-04-10T00:00:00+00:00",
+        "latest_source_policy": "verified_source_available",
+        "is_featured": true,
+        "is_published": true,
+        "created_at": "2026-04-10T08:34:24.405705+00:00",
+        "updated_at": "2026-04-18T22:38:32.493013+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "245d740f-5c0c-4659-a831-18c8eb926416",
+          "category": "Driver",
+          "brand": "ONOFF",
+          "model_name": "Driver Type-D",
+          "spec_label": null,
+          "loft_label": "9°",
+          "shaft_brand": "Daiwa",
+          "shaft_model": "Labospec 358",
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2013年東建ホームメイトカップ取材より確認。",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "245d740f-5c0c-4659-a831-18c8eb926416",
+          "category": "Fairway Wood",
+          "brand": "ONOFF",
+          "model_name": "SF-206 Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO記事のSF-206フェアウェイウッド(3番5番)表記を番手ごとに展開。",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "245d740f-5c0c-4659-a831-18c8eb926416",
+          "category": "Fairway Wood",
+          "brand": "ONOFF",
+          "model_name": "SF-206 Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO記事のSF-206フェアウェイウッド(3番5番)表記を番手ごとに展開。",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "245d740f-5c0c-4659-a831-18c8eb926416",
+          "category": "Fairway Wood",
+          "brand": "ONOFF",
+          "model_name": "Fairway Arms Type-S Black",
+          "spec_label": "5W",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2013年東建ホームメイトカップ取材より確認。",
+          "slot_order": 4
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "245d740f-5c0c-4659-a831-18c8eb926416",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/47/2013/1/",
+          "source_title": "片山晋呉 クラブセッティング 2013年 東建ホームメイトカップ - GDO",
+          "checked_at": "2026-04-19T00:00:00+00:00",
+          "notes": "14本全体の構成確認用。"
+        },
+        {
+          "profile_id": "245d740f-5c0c-4659-a831-18c8eb926416",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/2162/profile",
+          "source_title": "JGTO 片山晋呉 プロフィール",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
         }
@@ -4092,21 +4329,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GolfWRX Sungjae Im WITB 2026 (March).",
           "slot_order": 4
-        },
-        {
-          "profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75",
-          "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "T100 Iron",
-          "spec_label": "5I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "AMT Tour White",
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GolfWRX Sungjae Im WITB 2026 (March).",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -4275,18 +4497,18 @@
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/career",
-          "source_title": "Scottie Scheffler PGA TOUR Career",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Career page also confirms all-time lowest round reference."
-        },
-        {
-          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/stats",
           "source_title": "Scottie Scheffler PGA TOUR Stats",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "PGA TOUR official stats page used for club head speed 120.30 mph, driving distance 312.3 yd, scoring average 67.85 and lowest round 63. These are official tour stats, not public TrackMan or GCQuad session data."
+        },
+        {
+          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/career",
+          "source_title": "Scottie Scheffler PGA TOUR Career",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Career page also confirms all-time lowest round reference."
         }
       ]
     },
@@ -4384,21 +4606,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GolfWRX Brooks Koepka WITB 2026 (April).",
           "slot_order": 4
-        },
-        {
-          "profile_id": "01ea7141-fb8e-4068-a61a-f9d99763c813",
-          "category": "Iron",
-          "brand": "Srixon",
-          "model_name": "ZX7 Mk II Iron",
-          "spec_label": "5I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold Tour Issue",
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GolfWRX Brooks Koepka WITB 2026 (April).",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -5716,21 +5923,6 @@
           "total_distance": null,
           "source_note": "GDO記事のローグ プロ(5I-9I)表記を番手ごとに展開。",
           "slot_order": 4
-        },
-        {
-          "profile_id": "d1826148-a1bb-41fa-8ce1-5748be7764ec",
-          "category": "Iron",
-          "brand": "Callaway",
-          "model_name": "Rogue Pro Iron",
-          "spec_label": "6I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "GDO記事のローグ プロ(5I-9I)表記を番手ごとに展開。",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -8209,121 +8401,121 @@
     },
     {
       "profile": {
-        "id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
-        "slug": "jinichiro-kozuma",
-        "display_name": "香妻 陣一朗",
-        "kana_name": "コウヅマ ジンイチロウ",
-        "birth_date": "1994-07-07",
-        "height_cm": 165,
+        "id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
+        "slug": "tomoyo-ikemura",
+        "display_name": "池村 寛世",
+        "kana_name": "イケムラ トモヨ",
+        "birth_date": "1995-08-30",
+        "height_cm": 166,
         "birthplace": "鹿児島県",
         "nationality": "Japan",
         "profile_type": "tour_pro",
         "segment": "verified_batch",
         "season_year": 2025,
         "youtube_channel": "-",
-        "instagram_handle": "kozumajinichiro",
+        "instagram_handle": "ikemuratomoyo_official",
         "x_handle": "-",
         "website_url": "-",
         "head_speed_mps": null,
         "average_score": null,
         "best_score": null,
-        "ball_name": "スリクソン Z-STAR ボール〈2025年〉",
+        "ball_name": "PRO V1 ボール＜2025年＞",
         "feature_1": "2025シーズン基準",
-        "feature_2": "LIVコリア実戦セット",
-        "feature_3": "14本確認済み",
-        "summary": "2025年LIVコリア時点で確認できた香妻陣一朗の14本セッティングを掲載するプロフィール。",
+        "feature_2": "国内男子ツアー実戦セット",
+        "feature_3": "公開ソース確認済み",
+        "summary": "2025年リシャール・ミル チャリティトーナメント時点で確認できた池村寛世のクラブセッティングを掲載するプロフィール。",
         "verified_at": "2026-04-10T00:00:00+00:00",
         "latest_source_policy": "2025_season",
         "is_featured": true,
         "is_published": true,
-        "created_at": "2026-04-10T05:52:07.756132+00:00",
-        "updated_at": "2026-04-18T12:05:21.269703+00:00",
+        "created_at": "2026-04-10T05:52:07.771888+00:00",
+        "updated_at": "2026-04-11T08:26:16.126766+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
       "bagItems": [
         {
-          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
+          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
           "category": "Driver",
-          "brand": "Callaway",
-          "model_name": "ELYTE Triple Diamond TD Driver",
+          "brand": "BALDO",
+          "model_name": "GT5 Driver",
           "spec_label": null,
-          "loft_label": "9°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "VENTUS TR BLUE",
-          "shaft_flex": "X",
+          "loft_label": "10.5°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana Black Prototype",
+          "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
+          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
           "slot_order": 1
         },
         {
-          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
-          "category": "Fairway Wood",
-          "brand": "PING",
-          "model_name": "G440 MAX Fairway Wood",
-          "spec_label": "3W",
-          "loft_label": "15°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "VENTUS TR BLUE",
+          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
+          "category": "Driver",
+          "brand": "TaylorMade",
+          "model_name": "r7 QUAD Mini Driver",
+          "spec_label": null,
+          "loft_label": "13.5°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana WB",
           "shaft_flex": "X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
+          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
           "slot_order": 2
         },
         {
-          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "APEX UW＜2023年＞",
-          "spec_label": "UW",
-          "loft_label": "19°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "VENTUS TR BLUE",
-          "shaft_flex": "X",
+          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Stealth 2 Fairway Wood",
+          "spec_label": "7W",
+          "loft_label": "21°",
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO Prototype",
+          "shaft_flex": "TX",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
+          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
           "slot_order": 3
         },
         {
-          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
-          "category": "Iron",
-          "brand": "Callaway",
-          "model_name": "X FORGED Iron＜2024年＞",
-          "spec_label": "4I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold EX Tour Issue",
-          "shaft_flex": "X100",
+          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi35 Fairway Wood",
+          "spec_label": "9W",
+          "loft_label": "24°",
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO Prototype",
+          "shaft_flex": "TX",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
+          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
           "slot_order": 4
         },
         {
-          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
+          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
           "category": "Iron",
           "brand": "Callaway",
           "model_name": "X FORGED Iron＜2024年＞",
-          "spec_label": "5I",
+          "spec_label": "6I",
           "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold EX Tour Issue",
-          "shaft_flex": "X100",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "OT Tour i110",
+          "shaft_flex": "S",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
+          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
           "slot_order": 5
         }
       ],
       "sources": [
         {
-          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
+          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/6526/",
-          "source_title": "GDO 香妻陣一朗 クラブセッティング 2025年 LIVコリア",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/16068/2025/1/",
+          "source_title": "GDO 池村寛世 クラブセッティング 2025年 リシャール・ミル チャリティトーナメント",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for bio fields, 2025 setting, and ball confirmation."
         }
@@ -9041,21 +9233,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "530a24a4-1ce9-4856-96da-e0085e1bc904",
-          "category": "Utility",
-          "brand": "Srixon",
-          "model_name": "ZX Hybrid",
-          "spec_label": "4U",
-          "loft_label": "22 degrees",
-          "shaft_brand": "SteelFiber",
-          "shaft_model": "i95",
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Token Homemate Cup setting page.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -10537,21 +10714,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "76b280e0-dd74-4ebc-b06c-76065d0f7170",
-          "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "T200 Iron＜2023年＞",
-          "spec_label": "5I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -10912,21 +11074,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2025 RBC Heritage setting page.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "9f7d0830-2940-4759-a30e-4521b3196443",
-          "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "620 MB Iron",
-          "spec_label": "5I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold Tour Issue",
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 RBC Heritage setting page.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -10958,121 +11105,121 @@
     },
     {
       "profile": {
-        "id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
-        "slug": "tomoyo-ikemura",
-        "display_name": "池村 寛世",
-        "kana_name": "イケムラ トモヨ",
-        "birth_date": "1995-08-30",
-        "height_cm": 166,
+        "id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
+        "slug": "jinichiro-kozuma",
+        "display_name": "香妻 陣一朗",
+        "kana_name": "コウヅマ ジンイチロウ",
+        "birth_date": "1994-07-07",
+        "height_cm": 165,
         "birthplace": "鹿児島県",
         "nationality": "Japan",
         "profile_type": "tour_pro",
         "segment": "verified_batch",
         "season_year": 2025,
         "youtube_channel": "-",
-        "instagram_handle": "ikemuratomoyo_official",
+        "instagram_handle": "kozumajinichiro",
         "x_handle": "-",
         "website_url": "-",
         "head_speed_mps": null,
         "average_score": null,
         "best_score": null,
-        "ball_name": "PRO V1 ボール＜2025年＞",
+        "ball_name": "スリクソン Z-STAR ボール〈2025年〉",
         "feature_1": "2025シーズン基準",
-        "feature_2": "国内男子ツアー実戦セット",
-        "feature_3": "公開ソース確認済み",
-        "summary": "2025年リシャール・ミル チャリティトーナメント時点で確認できた池村寛世のクラブセッティングを掲載するプロフィール。",
+        "feature_2": "LIVコリア実戦セット",
+        "feature_3": "14本確認済み",
+        "summary": "2025年LIVコリア時点で確認できた香妻陣一朗の14本セッティングを掲載するプロフィール。",
         "verified_at": "2026-04-10T00:00:00+00:00",
         "latest_source_policy": "2025_season",
         "is_featured": true,
         "is_published": true,
-        "created_at": "2026-04-10T05:52:07.771888+00:00",
-        "updated_at": "2026-04-11T08:26:16.126766+00:00",
+        "created_at": "2026-04-10T05:52:07.756132+00:00",
+        "updated_at": "2026-04-18T12:05:21.269703+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
       "bagItems": [
         {
-          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
+          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
           "category": "Driver",
-          "brand": "BALDO",
-          "model_name": "GT5 Driver",
+          "brand": "Callaway",
+          "model_name": "ELYTE Triple Diamond TD Driver",
           "spec_label": null,
-          "loft_label": "10.5°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana Black Prototype",
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
-          "category": "Driver",
-          "brand": "TaylorMade",
-          "model_name": "r7 QUAD Mini Driver",
-          "spec_label": null,
-          "loft_label": "13.5°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana WB",
+          "loft_label": "9°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "VENTUS TR BLUE",
           "shaft_flex": "X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
+          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
+          "category": "Fairway Wood",
+          "brand": "PING",
+          "model_name": "G440 MAX Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "VENTUS TR BLUE",
+          "shaft_flex": "X",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
           "slot_order": 2
         },
         {
-          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
-          "category": "Fairway Wood",
-          "brand": "TaylorMade",
-          "model_name": "Stealth 2 Fairway Wood",
-          "spec_label": "7W",
-          "loft_label": "21°",
-          "shaft_brand": "Nippon Shaft",
-          "shaft_model": "NS PRO Prototype",
-          "shaft_flex": "TX",
+          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "APEX UW＜2023年＞",
+          "spec_label": "UW",
+          "loft_label": "19°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "VENTUS TR BLUE",
+          "shaft_flex": "X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
+          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
           "slot_order": 3
         },
         {
-          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
-          "category": "Fairway Wood",
-          "brand": "TaylorMade",
-          "model_name": "Qi35 Fairway Wood",
-          "spec_label": "9W",
-          "loft_label": "24°",
-          "shaft_brand": "Nippon Shaft",
-          "shaft_model": "NS PRO Prototype",
-          "shaft_flex": "TX",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
+          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
           "category": "Iron",
           "brand": "Callaway",
           "model_name": "X FORGED Iron＜2024年＞",
-          "spec_label": "6I",
+          "spec_label": "4I",
           "loft_label": null,
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "OT Tour i110",
-          "shaft_flex": "S",
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold EX Tour Issue",
+          "shaft_flex": "X100",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Richard Mille Charity Tournament setting page.",
+          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
+          "category": "Iron",
+          "brand": "Callaway",
+          "model_name": "X FORGED Iron＜2024年＞",
+          "spec_label": "5I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold EX Tour Issue",
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 LIV Korea setting page.",
           "slot_order": 5
         }
       ],
       "sources": [
         {
-          "profile_id": "b0a58a6f-1853-4875-9043-cbf3bc2e8839",
+          "profile_id": "c7eb734b-96ba-4c1d-aec6-12e291aac755",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/16068/2025/1/",
-          "source_title": "GDO 池村寛世 クラブセッティング 2025年 リシャール・ミル チャリティトーナメント",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/6526/",
+          "source_title": "GDO 香妻陣一朗 クラブセッティング 2025年 LIVコリア",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for bio fields, 2025 setting, and ball confirmation."
         }
@@ -11416,21 +11563,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "5a8c169e-ac4a-4b54-93a0-107742020e91",
-          "category": "Iron",
-          "brand": "Yonex",
-          "model_name": "EZONE CB702 Forged Iron",
-          "spec_label": "4I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "AMT Tour White",
-          "shaft_flex": "S400",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -12766,21 +12898,6 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "6d7f2233-3ff0-4585-8863-32081eabed26",
-          "category": "Utility",
-          "brand": "Titleist",
-          "model_name": "GT2 Hybrid",
-          "spec_label": "5H",
-          "loft_label": "25°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -13620,21 +13737,6 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "d537a5a1-d50b-4308-8c1b-67635472f00b",
-          "category": "Utility",
-          "brand": "Titleist",
-          "model_name": "GT2 Hybrid",
-          "spec_label": "5H",
-          "loft_label": "25°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -14718,21 +14820,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2026 setting page.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "f397cebc-47b7-4c8f-8bc5-e3bc6b5cbbaa",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "Paradym Utility",
-          "spec_label": "5U",
-          "loft_label": "24°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "DIAMOND SPEEDER",
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2026 setting page.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -17524,18 +17611,18 @@
         {
           "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/16327/2025/1/",
-          "source_title": "GDO 吉田優利 クラブセッティング 2025年 ファウンダーズカップ",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used for full bag and ball confirmation."
-        },
-        {
-          "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
-          "source_type": "article",
           "source_url": "https://www.lpga.com/players/yuri-yoshida/98611",
           "source_title": "LPGA Player Profile: Yuri Yoshida",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
+        },
+        {
+          "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/16327/2025/1/",
+          "source_title": "GDO 吉田優利 クラブセッティング 2025年 ファウンダーズカップ",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used for full bag and ball confirmation."
         }
       ]
     },
@@ -17755,21 +17842,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2025 setting page.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "1031a583-8bbc-4780-8ccf-91cb010e6499",
-          "category": "Utility",
-          "brand": "PING",
-          "model_name": "G425 Hybrid",
-          "spec_label": "5U",
-          "loft_label": "26°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "SPEEDER NX HB",
-          "shaft_flex": "S",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 setting page.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -18251,21 +18323,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2022 setting page.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "ee03c655-0cf8-4c71-97c1-8af9e1e9f3f5",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "APEX Utility",
-          "spec_label": "6U",
-          "loft_label": "27°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2022 setting page.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -19378,18 +19435,18 @@
         {
           "profile_id": "084ef678-7ea5-492f-882e-53df481cd247",
           "source_type": "article",
-          "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
-          "source_title": "スポーツナビ 国内女子クラブセッティング一覧（安田祐香）",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        },
-        {
-          "profile_id": "084ef678-7ea5-492f-882e-53df481cd247",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/17793/2025/3/",
           "source_title": "GDO 安田祐香 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for full bag and ball confirmation."
+        },
+        {
+          "profile_id": "084ef678-7ea5-492f-882e-53df481cd247",
+          "source_type": "article",
+          "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
+          "source_title": "スポーツナビ 国内女子クラブセッティング一覧（安田祐香）",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
         }
       ]
     },
@@ -20243,21 +20300,6 @@
           "total_distance": null,
           "source_note": "Confirmed from latest 2026 references.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "a3f19991-b7f8-4b29-a7b8-bc9388391f2e",
-          "category": "Utility",
-          "brand": "Titleist",
-          "model_name": "GT2 Utility Metal",
-          "spec_label": "5U",
-          "loft_label": "24°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest 2026 references.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -23224,18 +23266,18 @@
         {
           "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012/stats",
-          "source_title": "LPGA Statistics: Patty Tavatanakit",
-          "checked_at": "2026-04-18T00:00:00+00:00",
-          "notes": "LPGA official stats page used for driving distance reference around 280 yd."
-        },
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012",
           "source_title": "LPGA Profile: Patty Tavatanakit",
           "checked_at": "2026-04-18T00:00:00+00:00",
           "notes": "LPGA official player profile used for lowest round 61 reference."
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012/stats",
+          "source_title": "LPGA Statistics: Patty Tavatanakit",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "LPGA official stats page used for driving distance reference around 280 yd."
         },
         {
           "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
@@ -23585,21 +23627,6 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "db194de7-0b80-49a8-b98a-4b4ad91ab61f",
-          "category": "Utility",
-          "brand": "Titleist",
-          "model_name": "GT3 Hybrid",
-          "spec_label": "5H",
-          "loft_label": "25°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -24561,21 +24588,6 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 4
-        },
-        {
-          "profile_id": "0c7e7ecb-4652-4dd9-a980-52e60d2d208f",
-          "category": "Utility",
-          "brand": "Srixon",
-          "model_name": "ZX5 Mk II Hybrid",
-          "spec_label": "5H",
-          "loft_label": "25°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 5
         }
       ],
       "sources": [
@@ -24683,6 +24695,21 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 4
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
+          "spec_label": "5H",
+          "loft_label": "25°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 5
         }
       ],
       "sources": [

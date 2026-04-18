@@ -9,32 +9,54 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "ball_name": "",
+    "ball_name": "ダイワ オノフ ボール",
     "feature_1": "日本男子ツアー",
     "feature_2": "賞金王5回",
     "feature_3": "ツアー31勝",
-    "summary": "JGTO公式プロフィールをもとに掲載する片山晋呉のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-    "latest_source_policy": "2026_profile",
+    "summary": "2013年東建ホームメイトカップで確認できた片山晋呉の14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z",
     "kana_name": "カタヤマ シンゴ"
   },
-  "bagItems": [],
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "ONOFF", "model_name": "Driver Type-D", "loft_label": "9°", "shaft_brand": "Daiwa", "shaft_model": "Labospec 358", "source_note": "GDO 2013年東建ホームメイトカップ取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "ONOFF", "model_name": "SF-206 Fairway Wood", "spec_label": "3W", "source_note": "GDO記事のSF-206フェアウェイウッド(3番5番)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "ONOFF", "model_name": "SF-206 Fairway Wood", "spec_label": "5W", "source_note": "GDO記事のSF-206フェアウェイウッド(3番5番)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 4, "brand": "ONOFF", "model_name": "Fairway Arms Type-S Black", "spec_label": "5W", "source_note": "GDO 2013年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 5, "brand": "ONOFF", "model_name": "Fairway Wings Type-S Black", "spec_label": "4U", "loft_label": "21°", "source_note": "GDO記事のフェアウェイウィングス(21度、24度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 6, "brand": "ONOFF", "model_name": "Fairway Wings Type-S Black", "spec_label": "5U", "loft_label": "24°", "source_note": "GDO記事のフェアウェイウィングス(21度、24度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "ONOFF", "model_name": "Forged Iron", "spec_label": "6I", "source_note": "GDO記事の(6番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "ONOFF", "model_name": "Forged Iron", "spec_label": "7I", "source_note": "GDO記事の(6番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "ONOFF", "model_name": "Forged Iron", "spec_label": "8I", "source_note": "GDO記事の(6番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "ONOFF", "model_name": "Forged Iron", "spec_label": "9I", "source_note": "GDO記事の(6番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 11, "brand": "ONOFF", "model_name": "Forged Iron", "spec_label": "PW", "source_note": "GDO記事の(6番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "ONOFF", "model_name": "S-Forged Wedge", "spec_label": "GW", "loft_label": "53°", "source_note": "GDO記事のオノフ S-フォージド ウェッジ(53度、59度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "ONOFF", "model_name": "S-Forged Wedge", "spec_label": "LW", "loft_label": "59°", "source_note": "GDO記事のオノフ S-フォージド ウェッジ(53度、59度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "Back Strike 2-Ball Putter", "source_note": "GDO 2013年東建ホームメイトカップ取材より確認。", "is_featured_item": true }
+  ],
   "sources": [
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/2162/profile",
       "source_title": "JGTO 片山晋呉 プロフィール",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+      "notes": "Used for basic bio fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/47/2013/1/",
+      "source_title": "片山晋呉 クラブセッティング 2013年 東建ホームメイトカップ - GDO",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "14本全体の構成確認用。"
     }
   ],
   "article": {
-    "slug": "shingo-katayama-profile-published",
-    "title": "片山晋呉のプロフィールを掲載しました",
-    "excerpt": "片山晋呉の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-    "body": "片山晋呉について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "slug": "shingo-katayama-2026-setting-update",
+    "title": "片山晋呉のクラブセッティングを掲載しました",
+    "excerpt": "GDOの2013年東建ホームメイトカップ取材をもとに、片山晋呉の14本セッティングを掲載しました。",
+    "body": "片山晋呉について、GDOの2013年東建ホームメイトカップ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3本のフェアウェイウッド、2本のユーティリティ、6I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

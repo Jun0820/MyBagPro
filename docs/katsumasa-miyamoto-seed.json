@@ -9,32 +9,54 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "ball_name": "",
+    "ball_name": "TOUR B X ボール＜2024年＞",
     "feature_1": "日本男子ツアー",
     "feature_2": "ツアー12勝",
     "feature_3": "ベテラン実力者",
-    "summary": "JGTO公式プロフィールをもとに掲載する宮本勝昌のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-    "latest_source_policy": "2026_profile",
+    "summary": "2024年東建ホームメイトカップで確認できた宮本勝昌の14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z",
     "kana_name": "ミヤモト カツマサ"
   },
-  "bagItems": [],
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Bridgestone", "model_name": "B2HT Driver", "loft_label": "9.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD VF", "shaft_weight": "70g台", "shaft_flex": "X", "source_note": "GDO 2024年東建ホームメイトカップ取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi10 Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD CQ", "shaft_weight": "70g台", "shaft_flex": "X", "source_note": "GDO記事のQi10フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "TaylorMade", "model_name": "Qi10 Fairway Wood", "spec_label": "5W", "loft_label": "18°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD CQ", "shaft_weight": "80g台", "shaft_flex": "X", "source_note": "GDO記事のQi10フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "Honma", "model_name": "Tour World TW-U Forged", "spec_label": "3U", "loft_label": "19°", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO 2024年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Bridgestone", "model_name": "222CB+ Iron", "spec_label": "4I", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事の222CB+アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Bridgestone", "model_name": "222CB+ Iron", "spec_label": "5I", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事の222CB+アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Bridgestone", "model_name": "222CB+ Iron", "spec_label": "6I", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事の222CB+アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Bridgestone", "model_name": "222CB+ Iron", "spec_label": "7I", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事の222CB+アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Bridgestone", "model_name": "222CB+ Iron", "spec_label": "8I", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事の222CB+アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Bridgestone", "model_name": "222CB+ Iron", "spec_label": "9I", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事の222CB+アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 11, "brand": "Bridgestone", "model_name": "222CB+ Iron", "spec_label": "PW", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事の222CB+アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Bridgestone", "model_name": "BRM2 Wedge", "spec_label": "GW", "loft_label": "52°", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事のBRM2ウェッジ(52度、58度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Bridgestone", "model_name": "BRM2 Wedge", "spec_label": "LW", "loft_label": "58°", "shaft_brand": "N.S.PRO", "shaft_model": "Modus3 System3 Tour125", "shaft_flex": "X", "source_note": "GDO記事のBRM2ウェッジ(52度、58度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "Phantom X 11 Putter", "source_note": "GDO 2024年東建ホームメイトカップ取材より確認。", "is_featured_item": true }
+  ],
   "sources": [
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/2178/profile",
       "source_title": "JGTO 宮本勝昌 プロフィール",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+      "notes": "Used for basic bio fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/24/",
+      "source_title": "宮本勝昌 クラブセッティング 2024年 東建ホームメイトカップ - GDO",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "14本全体の構成確認用。"
     }
   ],
   "article": {
-    "slug": "katsumasa-miyamoto-profile-published",
-    "title": "宮本勝昌のプロフィールを掲載しました",
-    "excerpt": "宮本勝昌の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-    "body": "宮本勝昌について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "slug": "katsumasa-miyamoto-2026-setting-update",
+    "title": "宮本勝昌のクラブセッティングを掲載しました",
+    "excerpt": "GDOの2024年東建ホームメイトカップ取材をもとに、宮本勝昌の14本セッティングを掲載しました。",
+    "body": "宮本勝昌について、GDOの2024年東建ホームメイトカップ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3W、5W、3U、4I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

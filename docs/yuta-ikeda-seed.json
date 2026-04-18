@@ -9,32 +9,54 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "ball_name": "",
+    "ball_name": "ツアー B330X ボール",
     "feature_1": "日本男子ツアー",
     "feature_2": "賞金王経験者",
     "feature_3": "2026年継続確認中",
-    "summary": "JGTO公式プロフィールをもとに掲載する池田勇太のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-    "latest_source_policy": "2026_profile",
+    "summary": "2017年日本オープン最終日で確認できた池田勇太の14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z",
     "kana_name": "イケダ ユウタ"
   },
-  "bagItems": [],
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "TaylorMade", "model_name": "M1 440 Driver", "loft_label": "9.5°", "shaft_brand": "Mitsubishi Rayon", "shaft_model": "Diamana BF", "shaft_flex": "TX", "length_label": "45.5インチ", "source_note": "GDO 2017年日本オープン最終日取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "M2 Fairway Wood", "spec_label": "3W", "loft_label": "15°", "source_note": "GDO記事のM2フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "TaylorMade", "model_name": "M2 Fairway Wood", "spec_label": "5W", "loft_label": "18°", "source_note": "GDO記事のM2フェアウェイウッド(3番15度、5番18度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "Callaway", "model_name": "GBB Epic Utility", "spec_label": "3U", "loft_label": "20°", "source_note": "GDO 2017年日本オープン最終日取材より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Yonex", "model_name": "N1-CB Forged Iron", "spec_label": "4I", "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Yonex", "model_name": "N1-CB Forged Iron", "spec_label": "5I", "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Yonex", "model_name": "N1-CB Forged Iron", "spec_label": "6I", "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Yonex", "model_name": "N1-CB Forged Iron", "spec_label": "7I", "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Yonex", "model_name": "N1-CB Forged Iron", "spec_label": "8I", "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Yonex", "model_name": "N1-CB Forged Iron", "spec_label": "9I", "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 11, "brand": "Yonex", "model_name": "N1-CB Forged Iron", "spec_label": "PW", "source_note": "GDO記事のN1-CBフォージドアイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Yonex", "model_name": "N1-CB Forged Prototype Wedge", "spec_label": "GW", "loft_label": "52°", "source_note": "GDO 2017年日本オープン最終日取材より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey Design SM5 Wedge", "spec_label": "LW", "loft_label": "59°", "source_note": "GDO 2017年日本オープン最終日取材より確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "O-Works Black #3T Putter", "source_note": "GDO 2017年日本オープン最終日取材より確認。", "is_featured_item": true }
+  ],
   "sources": [
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/15400/profile",
       "source_title": "JGTO 池田勇太 プロフィール",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+      "notes": "Used for basic bio fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/120/2017/1/",
+      "source_title": "池田勇太 クラブセッティング 2017年 日本オープンゴルフ選手権競技 最終日 - GDO",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "14本全体の構成確認用。"
     }
   ],
   "article": {
-    "slug": "yuta-ikeda-profile-published",
-    "title": "池田勇太のプロフィールを掲載しました",
-    "excerpt": "池田勇太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-    "body": "池田勇太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "slug": "yuta-ikeda-2026-setting-update",
+    "title": "池田勇太のクラブセッティングを掲載しました",
+    "excerpt": "GDOの2017年日本オープン最終日取材をもとに、池田勇太の14本セッティングを掲載しました。",
+    "body": "池田勇太について、GDOの2017年日本オープン最終日取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3W、5W、3U、4I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
