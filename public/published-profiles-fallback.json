@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-18T01:08:39.106Z",
+  "generatedAt": "2026-04-18T01:35:07.456Z",
   "source": "supabase",
   "count": 214,
   "profiles": [
@@ -900,21 +900,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GolfWRX Min Woo Lee WITB 2026 (March).",
           "slot_order": 5
-        },
-        {
-          "profile_id": "06bf00a1-241f-4de7-9dcb-8165e058b572",
-          "category": "Iron",
-          "brand": "Callaway",
-          "model_name": "Apex TCB Iron",
-          "spec_label": "6I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold Tour Issue",
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GolfWRX Min Woo Lee WITB 2026 (March).",
-          "slot_order": 6
         }
       ],
       "sources": [
@@ -2254,14 +2239,6 @@
       "sources": [
         {
           "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
-          "source_type": "official",
-          "source_url": "https://www.jgto.org/player/16853/profile",
-          "source_title": "JGTO 石坂友宏 プロフィール",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
-        },
-        {
-          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
           "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/16715/",
           "source_title": "石坂友宏 クラブセッティング - GDO",
@@ -2291,6 +2268,14 @@
           "source_title": "石坂友宏 - キャロウェイゴルフ",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Callaway official player page used for current contract and equipment context."
+        },
+        {
+          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/16853/profile",
+          "source_title": "JGTO 石坂友宏 プロフィール",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
         }
       ]
     },
@@ -2763,6 +2748,21 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2026 WM Phoenix Open setting page.",
           "slot_order": 5
+        },
+        {
+          "profile_id": "53ea76f0-f39f-44aa-8789-e2e0e31cc688",
+          "category": "Iron",
+          "brand": "Titleist",
+          "model_name": "T100 Iron 2025",
+          "spec_label": "6I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Project X",
+          "shaft_flex": "6.5",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2026 WM Phoenix Open setting page.",
+          "slot_order": 6
         }
       ],
       "sources": [
@@ -3781,18 +3781,18 @@
         {
           "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/stats",
-          "source_title": "Lydia Ko | Statistics | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
-        },
-        {
-          "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/results",
           "source_title": "Lydia Ko | Results | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "LPGA official results page used for current-season low round 64."
+        },
+        {
+          "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/stats",
+          "source_title": "Lydia Ko | Statistics | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
         },
         {
           "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
@@ -5214,19 +5214,19 @@
       "sources": [
         {
           "profile_id": "39063999-911e-45f5-a26c-2147c2089d75",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/760840/corey-conners-witb-2025-may/",
-          "source_title": "Corey Conners WITB 2025 (May) - GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed bag breakdown."
-        },
-        {
-          "profile_id": "39063999-911e-45f5-a26c-2147c2089d75",
           "source_type": "official",
           "source_url": "https://ping.com/en-us/tour/pros/corey-conners",
           "source_title": "Corey Conners - PING",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Official PING player page used for contract context."
+        },
+        {
+          "profile_id": "39063999-911e-45f5-a26c-2147c2089d75",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/760840/corey-conners-witb-2025-may/",
+          "source_title": "Corey Conners WITB 2025 (May) - GolfWRX",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed bag breakdown."
         }
       ]
     },
@@ -5605,18 +5605,18 @@
         {
           "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/39977/max-homa/career",
-          "source_title": "Max Homa PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
-        },
-        {
-          "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/39977/max-homa/stats",
           "source_title": "Max Homa PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード121.09mph、ドライビングディスタンス306.1yd、平均スコア70.62を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+        },
+        {
+          "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/39977/max-homa/career",
+          "source_title": "Max Homa PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
         },
         {
           "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
@@ -5745,21 +5745,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2026 Honda LPGA setting page.",
           "slot_order": 5
-        },
-        {
-          "profile_id": "c647d87e-42dc-4d59-8424-bede31f74144",
-          "category": "Iron",
-          "brand": "Callaway",
-          "model_name": "APEX MB Iron",
-          "spec_label": "6I",
-          "loft_label": null,
-          "shaft_brand": "Nippon Shaft",
-          "shaft_model": "NS PRO Prototype",
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2026 Honda LPGA setting page.",
-          "slot_order": 6
         }
       ],
       "sources": [
@@ -12450,6 +12435,21 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2019 Token Homemate Cup setting page.",
           "slot_order": 5
+        },
+        {
+          "profile_id": "2d257520-3a5e-4a52-b921-af2cc3177973",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P760 Iron",
+          "spec_label": "5I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2019 Token Homemate Cup setting page.",
+          "slot_order": 6
         }
       ],
       "sources": [
@@ -12578,18 +12578,18 @@
         {
           "profile_id": "e094bd11-5efd-4f0e-8d2a-b67bb00663ed",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/18007/2026/1/",
-          "source_title": "GDO 神谷そら クラブセッティング 2026年 ダイキンオーキッドレディス",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used for 2026 full bag and ball confirmation."
-        },
-        {
-          "profile_id": "e094bd11-5efd-4f0e-8d2a-b67bb00663ed",
-          "source_type": "article",
           "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
           "source_title": "スポーツナビ 国内女子クラブセッティング一覧（神谷そら）",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
+        },
+        {
+          "profile_id": "e094bd11-5efd-4f0e-8d2a-b67bb00663ed",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/18007/2026/1/",
+          "source_title": "GDO 神谷そら クラブセッティング 2026年 ダイキンオーキッドレディス",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used for 2026 full bag and ball confirmation."
         }
       ]
     },
@@ -14166,6 +14166,21 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 5
+        },
+        {
+          "profile_id": "6d7f2233-3ff0-4585-8863-32081eabed26",
+          "category": "Iron",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "spec_label": "6I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 6
         }
       ],
       "sources": [
@@ -15952,21 +15967,6 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 5
-        },
-        {
-          "profile_id": "2e01cfc2-32f0-4c12-a2a8-4ebbceb8a7fe",
-          "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "T100 Iron",
-          "spec_label": "6I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 6
         }
       ],
       "sources": [
@@ -16980,21 +16980,6 @@
           "total_distance": null,
           "source_note": "Confirmed from GDO 2025 setting page.",
           "slot_order": 5
-        },
-        {
-          "profile_id": "1031a583-8bbc-4780-8ccf-91cb010e6499",
-          "category": "Iron",
-          "brand": "Callaway",
-          "model_name": "APEX Iron 2016",
-          "spec_label": "6I",
-          "loft_label": null,
-          "shaft_brand": "Nippon Shaft",
-          "shaft_model": "N.S.PRO 750GH Wrap Tech",
-          "shaft_flex": "S",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 setting page.",
-          "slot_order": 6
         }
       ],
       "sources": [
@@ -21555,18 +21540,18 @@
         {
           "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/stats",
-          "source_title": "Hinako Shibuno | Statistics | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
-        },
-        {
-          "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/results",
           "source_title": "Hinako Shibuno | Results | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "LPGA official results page used for current-season low round 65."
+        },
+        {
+          "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/stats",
+          "source_title": "Hinako Shibuno | Statistics | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
         },
         {
           "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
@@ -22710,20 +22695,20 @@
     },
     {
       "profile": {
-        "id": "dd08de02-f890-4da0-80e8-ed0529921176",
-        "slug": "gaby-lopez",
-        "display_name": "ガビー・ロペス",
-        "kana_name": "ガビー・ロペス",
-        "birth_date": "1993-11-09",
-        "height_cm": 173,
-        "birthplace": "メキシコシティ（メキシコ）",
-        "nationality": "Mexico",
+        "id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
+        "slug": "danielle-kang",
+        "display_name": "ダニエル・カン",
+        "kana_name": "ダニエル・カン",
+        "birth_date": "1992-10-20",
+        "height_cm": 168,
+        "birthplace": "カリフォルニア州サンフランシスコ（アメリカ）",
+        "nationality": "United States",
         "profile_type": "tour_pro",
         "segment": "verified_batch",
         "season_year": 2026,
         "youtube_channel": "-",
-        "instagram_handle": "gabylopezgolf",
-        "x_handle": "GabyLopezGOLF",
+        "instagram_handle": "daniellekang",
+        "x_handle": "daniellekang",
         "website_url": "-",
         "head_speed_mps": null,
         "average_score": null,
@@ -22732,19 +22717,141 @@
         "feature_1": "2026シーズン基準",
         "feature_2": "女子ツアー実戦構成",
         "feature_3": "14本確認済み",
-        "summary": "2026年シーズン基準で確認したガビー・ロペスの14本セッティング。",
+        "summary": "2026年シーズン基準で確認したダニエル・カンの14本セッティング。",
         "verified_at": "2026-04-09T00:00:00+00:00",
         "latest_source_policy": "2026_season",
         "is_featured": false,
         "is_published": true,
-        "created_at": "2026-04-09T07:07:31.807389+00:00",
-        "updated_at": "2026-04-10T17:25:26.4384+00:00",
+        "created_at": "2026-04-09T07:02:32.438326+00:00",
+        "updated_at": "2026-04-10T17:25:25.957375+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
       "bagItems": [
         {
-          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
+          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
+          "category": "Driver",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS",
+          "spec_label": null,
+          "loft_label": "10.5°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "VENTUS BLUE",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
+          "category": "Utility",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "spec_label": "4H",
+          "loft_label": "22°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
+          "category": "Utility",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "spec_label": "5H",
+          "loft_label": "25°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 5
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
+          "source_type": "article",
+          "source_url": "https://www.lpga.com/players/danielle-kang/98145",
+          "source_title": "LPGA Player Profile: Danielle Kang",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "9a057381-201f-4739-8935-875a4657c59b",
+        "slug": "lauren-coughlin",
+        "display_name": "ローレン・コフリン",
+        "kana_name": "ローレン・コフリン",
+        "birth_date": "1992-09-23",
+        "height_cm": 173,
+        "birthplace": "バージニア州チェサピーク（アメリカ）",
+        "nationality": "United States",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "l_coughlin",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": null,
+        "ball_name": "Titleist Pro V1",
+        "feature_1": "2026シーズン基準",
+        "feature_2": "女子ツアー実戦構成",
+        "feature_3": "14本確認済み",
+        "summary": "2026年シーズン基準で確認したローレン・コフリンの14本セッティング。",
+        "verified_at": "2026-04-09T00:00:00+00:00",
+        "latest_source_policy": "2026_season",
+        "is_featured": false,
+        "is_published": true,
+        "created_at": "2026-04-09T07:07:12.696559+00:00",
+        "updated_at": "2026-04-11T08:33:36.460648+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
           "category": "Driver",
           "brand": "Titleist",
           "model_name": "GT2",
@@ -22759,7 +22866,7 @@
           "slot_order": 1
         },
         {
-          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
+          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
           "category": "Fairway Wood",
           "brand": "Titleist",
           "model_name": "GT2 Fairway Wood",
@@ -22774,7 +22881,7 @@
           "slot_order": 2
         },
         {
-          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
+          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
           "category": "Fairway Wood",
           "brand": "Titleist",
           "model_name": "GT2 Fairway Wood",
@@ -22789,7 +22896,7 @@
           "slot_order": 3
         },
         {
-          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
+          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
           "category": "Utility",
           "brand": "Titleist",
           "model_name": "GT2 Hybrid",
@@ -22804,7 +22911,7 @@
           "slot_order": 4
         },
         {
-          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
+          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
           "category": "Utility",
           "brand": "Titleist",
           "model_name": "GT2 Hybrid",
@@ -22821,10 +22928,10 @@
       ],
       "sources": [
         {
-          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
+          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
           "source_type": "article",
-          "source_url": "https://www.lpga.com/players/gaby-lopez/98123",
-          "source_title": "LPGA Player Profile: Gaby Lopez",
+          "source_url": "https://www.lpga.com/players/lauren-coughlin/98295",
+          "source_title": "LPGA Player Profile: Lauren Coughlin",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
         }
@@ -23076,128 +23183,6 @@
     },
     {
       "profile": {
-        "id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-        "slug": "rose-zhang",
-        "display_name": "ローズ・チャン",
-        "kana_name": "ローズ・チャン",
-        "birth_date": "2003-05-24",
-        "height_cm": 168,
-        "birthplace": "カリフォルニア州アーバイン（アメリカ）",
-        "nationality": "United States",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2026,
-        "youtube_channel": "-",
-        "instagram_handle": "rosezhang",
-        "x_handle": "rosezhang",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": null,
-        "ball_name": "Callaway Chrome Tour X",
-        "feature_1": "2026シーズン基準",
-        "feature_2": "女子ツアー実戦構成",
-        "feature_3": "14本確認済み",
-        "summary": "2026年シーズン基準で確認したローズ・チャンの14本セッティング。",
-        "verified_at": "2026-04-09T00:00:00+00:00",
-        "latest_source_policy": "2026_season",
-        "is_featured": false,
-        "is_published": true,
-        "created_at": "2026-04-09T07:02:50.086536+00:00",
-        "updated_at": "2026-04-10T17:25:35.928379+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [
-        {
-          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-          "category": "Driver",
-          "brand": "Callaway",
-          "model_name": "Paradym Ai Smoke Triple Diamond",
-          "spec_label": null,
-          "loft_label": "10.5°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "VENTUS BLUE",
-          "shaft_flex": "S",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-          "category": "Fairway Wood",
-          "brand": "Callaway",
-          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
-          "spec_label": "3W",
-          "loft_label": "15°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 2
-        },
-        {
-          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-          "category": "Fairway Wood",
-          "brand": "Callaway",
-          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
-          "spec_label": "5W",
-          "loft_label": "18°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 3
-        },
-        {
-          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
-          "spec_label": "4H",
-          "loft_label": "22°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
-          "spec_label": "5H",
-          "loft_label": "25°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 5
-        }
-      ],
-      "sources": [
-        {
-          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
-          "source_type": "article",
-          "source_url": "https://www.lpga.com/players/rose-zhang/98787",
-          "source_title": "LPGA Player Profile: Rose Zhang",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        }
-      ]
-    },
-    {
-      "profile": {
         "id": "e5d32315-1990-4ed5-a49a-c8f2d01ff774",
         "slug": "ally-ewing",
         "display_name": "アリー・ユーイング",
@@ -23320,6 +23305,144 @@
     },
     {
       "profile": {
+        "id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+        "slug": "rose-zhang",
+        "display_name": "ローズ・チャン",
+        "kana_name": "ローズ・チャン",
+        "birth_date": "2003-05-24",
+        "height_cm": 168,
+        "birthplace": "カリフォルニア州アーバイン（アメリカ）",
+        "nationality": "United States",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "rosezhang",
+        "x_handle": "rosezhang",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": 62,
+        "ball_name": "Callaway Chrome Tour X",
+        "feature_1": "2026シーズン基準",
+        "feature_2": "女子ツアー実戦構成",
+        "feature_3": "14本確認済み",
+        "summary": "2026年シーズン基準で確認したローズ・チャンの14本セッティング。",
+        "verified_at": "2026-04-09T00:00:00+00:00",
+        "latest_source_policy": "2026_season",
+        "is_featured": false,
+        "is_published": true,
+        "created_at": "2026-04-09T07:02:50.086536+00:00",
+        "updated_at": "2026-04-18T01:34:29.673935+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "category": "Driver",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond",
+          "spec_label": null,
+          "loft_label": "10.5°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "VENTUS BLUE",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": 270,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "category": "Fairway Wood",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "category": "Fairway Wood",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
+          "spec_label": "4H",
+          "loft_label": "22°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
+          "spec_label": "5H",
+          "loft_label": "25°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 5
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/rose-zhang/100072/stats",
+          "source_title": "LPGA Statistics: Rose Zhang",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "LPGA official stats page used for driving distance reference around 270 yd."
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/rose-zhang/100072",
+          "source_title": "LPGA Profile: Rose Zhang",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "LPGA official player profile used for lowest round 62 reference."
+        },
+        {
+          "profile_id": "dcafd8c2-d6fa-4045-b7e6-1d670e9ba18b",
+          "source_type": "article",
+          "source_url": "https://www.lpga.com/players/rose-zhang/98787",
+          "source_title": "LPGA Player Profile: Rose Zhang",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
+        }
+      ]
+    },
+    {
+      "profile": {
         "id": "0c7e7ecb-4652-4dd9-a980-52e60d2d208f",
         "slug": "inbee-park",
         "display_name": "パク・インビ",
@@ -23435,128 +23558,6 @@
           "source_type": "article",
           "source_url": "https://www.lpga.com/players/inbee-park/98107",
           "source_title": "LPGA Player Profile: Inbee Park",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        }
-      ]
-    },
-    {
-      "profile": {
-        "id": "b3acc0eb-eed4-44a5-9863-492927062453",
-        "slug": "patty-tavatanakit",
-        "display_name": "パティ・タバタナキット",
-        "kana_name": "パティ・タバタナキット",
-        "birth_date": "1999-10-11",
-        "height_cm": 173,
-        "birthplace": "バンコク（タイ）",
-        "nationality": "Thailand",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2026,
-        "youtube_channel": "-",
-        "instagram_handle": "impattyt",
-        "x_handle": "-",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": null,
-        "ball_name": "Titleist Pro V1x",
-        "feature_1": "2026シーズン基準",
-        "feature_2": "女子ツアー実戦構成",
-        "feature_3": "14本確認済み",
-        "summary": "2026年シーズン基準で確認したパティ・タバタナキットの14本セッティング。",
-        "verified_at": "2026-04-09T00:00:00+00:00",
-        "latest_source_policy": "2026_season",
-        "is_featured": false,
-        "is_published": true,
-        "created_at": "2026-04-09T07:02:50.090533+00:00",
-        "updated_at": "2026-04-11T08:25:03.979407+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "category": "Driver",
-          "brand": "Titleist",
-          "model_name": "GT3",
-          "spec_label": null,
-          "loft_label": "10.5°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "VENTUS BLUE",
-          "shaft_flex": "S",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "category": "Fairway Wood",
-          "brand": "Titleist",
-          "model_name": "GT3 Fairway Wood",
-          "spec_label": "3W",
-          "loft_label": "15°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 2
-        },
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "category": "Fairway Wood",
-          "brand": "Titleist",
-          "model_name": "GT3 Fairway Wood",
-          "spec_label": "5W",
-          "loft_label": "18°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 3
-        },
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "category": "Utility",
-          "brand": "Titleist",
-          "model_name": "GT3 Hybrid",
-          "spec_label": "4H",
-          "loft_label": "22°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "category": "Utility",
-          "brand": "Titleist",
-          "model_name": "GT3 Hybrid",
-          "spec_label": "5H",
-          "loft_label": "25°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 5
-        }
-      ],
-      "sources": [
-        {
-          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
-          "source_type": "article",
-          "source_url": "https://www.lpga.com/players/patty-tavatanakit/98470",
-          "source_title": "LPGA Player Profile: Patty Tavatanakit",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
         }
@@ -24174,20 +24175,20 @@
     },
     {
       "profile": {
-        "id": "9a057381-201f-4739-8935-875a4657c59b",
-        "slug": "lauren-coughlin",
-        "display_name": "ローレン・コフリン",
-        "kana_name": "ローレン・コフリン",
-        "birth_date": "1992-09-23",
+        "id": "dd08de02-f890-4da0-80e8-ed0529921176",
+        "slug": "gaby-lopez",
+        "display_name": "ガビー・ロペス",
+        "kana_name": "ガビー・ロペス",
+        "birth_date": "1993-11-09",
         "height_cm": 173,
-        "birthplace": "バージニア州チェサピーク（アメリカ）",
-        "nationality": "United States",
+        "birthplace": "メキシコシティ（メキシコ）",
+        "nationality": "Mexico",
         "profile_type": "tour_pro",
         "segment": "verified_batch",
         "season_year": 2026,
         "youtube_channel": "-",
-        "instagram_handle": "l_coughlin",
-        "x_handle": "-",
+        "instagram_handle": "gabylopezgolf",
+        "x_handle": "GabyLopezGOLF",
         "website_url": "-",
         "head_speed_mps": null,
         "average_score": null,
@@ -24196,19 +24197,19 @@
         "feature_1": "2026シーズン基準",
         "feature_2": "女子ツアー実戦構成",
         "feature_3": "14本確認済み",
-        "summary": "2026年シーズン基準で確認したローレン・コフリンの14本セッティング。",
+        "summary": "2026年シーズン基準で確認したガビー・ロペスの14本セッティング。",
         "verified_at": "2026-04-09T00:00:00+00:00",
         "latest_source_policy": "2026_season",
         "is_featured": false,
         "is_published": true,
-        "created_at": "2026-04-09T07:07:12.696559+00:00",
-        "updated_at": "2026-04-11T08:33:36.460648+00:00",
+        "created_at": "2026-04-09T07:07:31.807389+00:00",
+        "updated_at": "2026-04-10T17:25:26.4384+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
       "bagItems": [
         {
-          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
+          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
           "category": "Driver",
           "brand": "Titleist",
           "model_name": "GT2",
@@ -24223,7 +24224,7 @@
           "slot_order": 1
         },
         {
-          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
+          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
           "category": "Fairway Wood",
           "brand": "Titleist",
           "model_name": "GT2 Fairway Wood",
@@ -24238,7 +24239,7 @@
           "slot_order": 2
         },
         {
-          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
+          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
           "category": "Fairway Wood",
           "brand": "Titleist",
           "model_name": "GT2 Fairway Wood",
@@ -24253,7 +24254,7 @@
           "slot_order": 3
         },
         {
-          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
+          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
           "category": "Utility",
           "brand": "Titleist",
           "model_name": "GT2 Hybrid",
@@ -24268,7 +24269,7 @@
           "slot_order": 4
         },
         {
-          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
+          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
           "category": "Utility",
           "brand": "Titleist",
           "model_name": "GT2 Hybrid",
@@ -24285,10 +24286,10 @@
       ],
       "sources": [
         {
-          "profile_id": "9a057381-201f-4739-8935-875a4657c59b",
+          "profile_id": "dd08de02-f890-4da0-80e8-ed0529921176",
           "source_type": "article",
-          "source_url": "https://www.lpga.com/players/lauren-coughlin/98295",
-          "source_title": "LPGA Player Profile: Lauren Coughlin",
+          "source_url": "https://www.lpga.com/players/gaby-lopez/98123",
+          "source_title": "LPGA Player Profile: Gaby Lopez",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
         }
@@ -24647,6 +24648,21 @@
           "total_distance": null,
           "source_note": "Confirmed from latest season setting references.",
           "slot_order": 5
+        },
+        {
+          "profile_id": "1216a051-17d7-4a3d-8c05-74a57ed92152",
+          "category": "Iron",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "spec_label": "6I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 6
         }
       ],
       "sources": [
@@ -25021,6 +25037,144 @@
           "source_type": "article",
           "source_url": "https://www.lpga.com/players/megan-khang/98337",
           "source_title": "LPGA Player Profile: Megan Khang",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "b3acc0eb-eed4-44a5-9863-492927062453",
+        "slug": "patty-tavatanakit",
+        "display_name": "パティ・タバタナキット",
+        "kana_name": "パティ・タバタナキット",
+        "birth_date": "1999-10-11",
+        "height_cm": 173,
+        "birthplace": "バンコク（タイ）",
+        "nationality": "Thailand",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "impattyt",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": 61,
+        "ball_name": "Titleist Pro V1x",
+        "feature_1": "2026シーズン基準",
+        "feature_2": "女子ツアー実戦構成",
+        "feature_3": "14本確認済み",
+        "summary": "2026年シーズン基準で確認したパティ・タバタナキットの14本セッティング。",
+        "verified_at": "2026-04-09T00:00:00+00:00",
+        "latest_source_policy": "2026_season",
+        "is_featured": false,
+        "is_published": true,
+        "created_at": "2026-04-09T07:02:50.090533+00:00",
+        "updated_at": "2026-04-18T01:34:29.67699+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "spec_label": null,
+          "loft_label": "10.5°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "VENTUS BLUE",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": 280,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "category": "Fairway Wood",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "category": "Fairway Wood",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "category": "Utility",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "spec_label": "4H",
+          "loft_label": "22°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "category": "Utility",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "spec_label": "5H",
+          "loft_label": "25°",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from latest season setting references.",
+          "slot_order": 5
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012/stats",
+          "source_title": "LPGA Statistics: Patty Tavatanakit",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "LPGA official stats page used for driving distance reference around 280 yd."
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012",
+          "source_title": "LPGA Profile: Patty Tavatanakit",
+          "checked_at": "2026-04-18T00:00:00+00:00",
+          "notes": "LPGA official player profile used for lowest round 61 reference."
+        },
+        {
+          "profile_id": "b3acc0eb-eed4-44a5-9863-492927062453",
+          "source_type": "article",
+          "source_url": "https://www.lpga.com/players/patty-tavatanakit/98470",
+          "source_title": "LPGA Player Profile: Patty Tavatanakit",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
         }
@@ -25631,128 +25785,6 @@
           "source_type": "article",
           "source_url": "https://www.lpga.com/players/nanna-koerstz-madsen/98220",
           "source_title": "LPGA Player Profile: Nanna Koerstz Madsen",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        }
-      ]
-    },
-    {
-      "profile": {
-        "id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
-        "slug": "danielle-kang",
-        "display_name": "ダニエル・カン",
-        "kana_name": "ダニエル・カン",
-        "birth_date": "1992-10-20",
-        "height_cm": 168,
-        "birthplace": "カリフォルニア州サンフランシスコ（アメリカ）",
-        "nationality": "United States",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2026,
-        "youtube_channel": "-",
-        "instagram_handle": "daniellekang",
-        "x_handle": "daniellekang",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": null,
-        "ball_name": "Titleist Pro V1",
-        "feature_1": "2026シーズン基準",
-        "feature_2": "女子ツアー実戦構成",
-        "feature_3": "14本確認済み",
-        "summary": "2026年シーズン基準で確認したダニエル・カンの14本セッティング。",
-        "verified_at": "2026-04-09T00:00:00+00:00",
-        "latest_source_policy": "2026_season",
-        "is_featured": false,
-        "is_published": true,
-        "created_at": "2026-04-09T07:02:32.438326+00:00",
-        "updated_at": "2026-04-10T17:25:25.957375+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [
-        {
-          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
-          "category": "Driver",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 LS",
-          "spec_label": null,
-          "loft_label": "10.5°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "VENTUS BLUE",
-          "shaft_flex": "S",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
-          "category": "Fairway Wood",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 LS Fairway Wood",
-          "spec_label": "3W",
-          "loft_label": "15°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 2
-        },
-        {
-          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
-          "category": "Fairway Wood",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 LS Fairway Wood",
-          "spec_label": "5W",
-          "loft_label": "18°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 3
-        },
-        {
-          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
-          "category": "Utility",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 LS Hybrid",
-          "spec_label": "4H",
-          "loft_label": "22°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
-          "category": "Utility",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 LS Hybrid",
-          "spec_label": "5H",
-          "loft_label": "25°",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from latest season setting references.",
-          "slot_order": 5
-        }
-      ],
-      "sources": [
-        {
-          "profile_id": "b46669e0-0a11-4cc8-896c-e6b6c840e4bf",
-          "source_type": "article",
-          "source_url": "https://www.lpga.com/players/danielle-kang/98145",
-          "source_title": "LPGA Player Profile: Danielle Kang",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
         }

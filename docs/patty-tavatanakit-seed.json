@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "best_score": 61,
     "ball_name": "Titleist Pro V1x",
     "feature_1": "2026シーズン基準",
     "feature_2": "女子ツアー実戦構成",
@@ -29,6 +30,7 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "VENTUS BLUE",
       "shaft_flex": "S",
+      "total_distance": 280,
       "source_note": "Confirmed from latest season setting references.",
       "is_featured_item": true
     },
@@ -159,21 +161,28 @@
   ],
   "sources": [
     {
-      "source_type": "article",
-      "source_url": "https://www.lpga.com/players/patty-tavatanakit/98470",
-      "source_title": "LPGA Player Profile: Patty Tavatanakit",
-      "checked_at": "2026-04-09T00:00:00.000Z",
-      "notes": "Used as latest season reference."
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012/stats",
+      "source_title": "LPGA Statistics: Patty Tavatanakit",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "LPGA official stats page used for driving distance reference around 280 yd."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/players/patty-tavatanakit/100012",
+      "source_title": "LPGA Profile: Patty Tavatanakit",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "LPGA official player profile used for lowest round 61 reference."
     }
   ],
   "article": {
     "slug": "patty-tavatanakit-2026-setting-update",
     "title": "パティ・タバタナキットの2026年クラブセッティングを掲載しました",
-    "excerpt": "2026シーズン基準で、パティ・タバタナキットの14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "パティ・タバタナキットのセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+    "excerpt": "2026シーズン基準で、パティ・タバタナキットの14本のクラブセッティングと使用ボール、LPGA公式で確認できる飛距離メモを掲載しました。",
+    "body": "パティ・タバタナキットのセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。あわせてLPGA公式で確認できるドライバー飛距離の目安やベストスコアも追加し、クラブ構成だけでなく実戦でのパフォーマンス像も追いやすくしています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-09T00:00:00.000Z"
+    "published_at": "2026-04-18T00:00:00.000Z"
   }
 }

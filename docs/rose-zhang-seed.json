@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "best_score": 62,
     "ball_name": "Callaway Chrome Tour X",
     "feature_1": "2026シーズン基準",
     "feature_2": "女子ツアー実戦構成",
@@ -30,6 +31,7 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "VENTUS BLUE",
       "shaft_flex": "S",
+      "total_distance": 270,
       "source_note": "Confirmed from latest season setting references.",
       "is_featured_item": true
     },
@@ -160,21 +162,28 @@
   ],
   "sources": [
     {
-      "source_type": "article",
-      "source_url": "https://www.lpga.com/players/rose-zhang/98787",
-      "source_title": "LPGA Player Profile: Rose Zhang",
-      "checked_at": "2026-04-09T00:00:00.000Z",
-      "notes": "Used as latest season reference."
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/players/rose-zhang/100072/stats",
+      "source_title": "LPGA Statistics: Rose Zhang",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "LPGA official stats page used for driving distance reference around 270 yd."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.lpga.com/players/rose-zhang/100072",
+      "source_title": "LPGA Profile: Rose Zhang",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "LPGA official player profile used for lowest round 62 reference."
     }
   ],
   "article": {
     "slug": "rose-zhang-2026-setting-update",
     "title": "ローズ・チャンの2026年クラブセッティングを掲載しました",
-    "excerpt": "2026シーズン基準で、ローズ・チャンの14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "ローズ・チャンのセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+    "excerpt": "2026シーズン基準で、ローズ・チャンの14本のクラブセッティングと使用ボール、LPGA公式で確認できる飛距離メモを掲載しました。",
+    "body": "ローズ・チャンのセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。あわせてLPGA公式で確認できるドライバー飛距離の目安やベストスコアも追加し、セッティングと競技力の両面を見やすくしています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-09T00:00:00.000Z"
+    "published_at": "2026-04-18T00:00:00.000Z"
   }
 }
