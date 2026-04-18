@@ -10,32 +10,54 @@
     "segment": "verified_batch",
     "season_year": 2026,
     "website_url": "http://konosuke-nakazato.jp/",
-    "ball_name": "",
+    "ball_name": "クロムソフト X ボール",
     "feature_1": "日本男子ツアー",
     "feature_2": "ACNツアー実績",
     "feature_3": "プロフィール公開中",
-    "summary": "JGTO公式プロフィールをもとに掲載する中里光之介のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-    "latest_source_policy": "2026_profile",
+    "summary": "2019年東建ホームメイトカップで確認できた中里光之介の14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z",
     "kana_name": "ナカザト コウノスケ"
   },
-  "bagItems": [],
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Callaway", "model_name": "Epic Flash Sub Zero Driver", "shaft_brand": "Fujikura", "shaft_model": "Speeder TR757", "shaft_flex": "X", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Callaway", "model_name": "Epic Flash Fairway Wood", "spec_label": "3W", "loft_label": "15°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "Callaway", "model_name": "GBB Epic Utility", "spec_label": "2U", "loft_label": "18°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Callaway", "model_name": "Rogue Pro Iron", "spec_label": "5I", "source_note": "GDO記事のローグ プロ(5I-9I)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Callaway", "model_name": "Rogue Pro Iron", "spec_label": "6I", "source_note": "GDO記事のローグ プロ(5I-9I)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Callaway", "model_name": "Rogue Pro Iron", "spec_label": "7I", "source_note": "GDO記事のローグ プロ(5I-9I)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Callaway", "model_name": "Rogue Pro Iron", "spec_label": "8I", "source_note": "GDO記事のローグ プロ(5I-9I)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Callaway", "model_name": "Rogue Pro Iron", "spec_label": "9I", "source_note": "GDO記事ではローグ プロを5I-9Iと記載。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Callaway", "model_name": "Apex MB Iron", "spec_label": "9I", "source_note": "GDO記事ではApex MBも9I-PWと記載。9Iを2本入れる実戦構成としてそのまま反映。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Callaway", "model_name": "Apex MB Iron", "spec_label": "PW", "source_note": "GDO記事ではApex MBを9I-PWと記載。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Callaway", "model_name": "Mack Daddy Forged Wedge", "spec_label": "AW", "loft_label": "52°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Callaway", "model_name": "Mack Daddy Forged Wedge", "spec_label": "SW", "loft_label": "56°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Callaway", "model_name": "Mack Daddy Forged Wedge", "spec_label": "LW", "loft_label": "60°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "Works Marksman Fang Tank Putter", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": true }
+  ],
   "sources": [
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/15784/profile",
       "source_title": "JGTO 中里光之介 プロフィール",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+      "notes": "Used for basic bio fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6708/",
+      "source_title": "中里光之介 クラブセッティング 2019年 東建ホームメイトカップ - GDO",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "14本全体の構成確認用。記事記載どおり9Iを2本入れるコンボ構成として反映。"
     }
   ],
   "article": {
-    "slug": "konosuke-nakazato-profile-published",
-    "title": "中里光之介のプロフィールを掲載しました",
-    "excerpt": "中里光之介の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-    "body": "中里光之介について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "slug": "konosuke-nakazato-2026-setting-update",
+    "title": "中里光之介のクラブセッティングを掲載しました",
+    "excerpt": "GDOの2019年東建ホームメイトカップ取材をもとに、中里光之介のバッグ全体を掲載しました。",
+    "body": "中里光之介について、GDOの2019年東建ホームメイトカップ取材で確認できた内容をもとにバッグ全体を整理しました。ドライバー、3W、2U、コンボアイアン、3本のウェッジ、パターまで流れが追える形に更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

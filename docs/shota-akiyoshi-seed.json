@@ -9,32 +9,54 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "ball_name": "",
+    "ball_name": "スリクソン Zスター ボール",
     "feature_1": "日本男子ツアー",
     "feature_2": "ツアー2勝",
     "feature_3": "プロフィール公開中",
-    "summary": "JGTO公式プロフィールをもとに掲載する秋吉翔太のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-    "latest_source_policy": "2026_profile",
+    "summary": "2019年東建ホームメイトカップで確認できた秋吉翔太の14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z",
     "kana_name": "アキヨシ ショウタ"
   },
-  "bagItems": [],
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "Z785 Driver", "loft_label": "9.5°", "shaft_brand": "Fujikura", "shaft_model": "Speeder Evolution 2 757", "shaft_flex": "TX", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Srixon", "model_name": "Z F85 Fairway Wood", "spec_label": "3W", "loft_label": "13.5°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "Srixon", "model_name": "Z U45 Utility", "spec_label": "2U", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "Z785 Iron", "spec_label": "4I", "source_note": "GDO 2019年東建ホームメイトカップ取材で4I-PWと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Srixon", "model_name": "Z785 Iron", "spec_label": "5I", "source_note": "GDO 2019年東建ホームメイトカップ取材で4I-PWと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Srixon", "model_name": "Z785 Iron", "spec_label": "6I", "source_note": "GDO 2019年東建ホームメイトカップ取材で4I-PWと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Srixon", "model_name": "Z785 Iron", "spec_label": "7I", "source_note": "GDO 2019年東建ホームメイトカップ取材で4I-PWと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Srixon", "model_name": "Z785 Iron", "spec_label": "8I", "source_note": "GDO 2019年東建ホームメイトカップ取材で4I-PWと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Srixon", "model_name": "Z785 Iron", "spec_label": "9I", "source_note": "GDO 2019年東建ホームメイトカップ取材で4I-PWと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Srixon", "model_name": "Z785 Iron", "spec_label": "PW", "source_note": "GDO 2019年東建ホームメイトカップ取材で4I-PWと確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Cleveland", "model_name": "RTX4 Forged Wedge", "spec_label": "AW", "loft_label": "50°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Cleveland", "model_name": "RTX4 Forged Wedge", "spec_label": "SW", "loft_label": "54°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Cleveland", "model_name": "RTX4 Forged Wedge", "spec_label": "LW", "loft_label": "60°", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "EXO Seven Putter", "source_note": "GDO 2019年東建ホームメイトカップ取材より確認。", "is_featured_item": true }
+  ],
   "sources": [
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/15617/profile",
       "source_title": "JGTO 秋吉翔太 プロフィール",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+      "notes": "Used for basic bio fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6579/",
+      "source_title": "秋吉翔太 クラブセッティング 2019年 東建ホームメイトカップ - GDO",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "14本全体の構成確認用。"
     }
   ],
   "article": {
-    "slug": "shota-akiyoshi-profile-published",
-    "title": "秋吉翔太のプロフィールを掲載しました",
-    "excerpt": "秋吉翔太の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-    "body": "秋吉翔太について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "slug": "shota-akiyoshi-2026-setting-update",
+    "title": "秋吉翔太のクラブセッティングを掲載しました",
+    "excerpt": "GDOの2019年東建ホームメイトカップ取材をもとに、秋吉翔太の14本セッティングを掲載しました。",
+    "body": "秋吉翔太について、GDOの2019年東建ホームメイトカップ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3W、2U、4I-PW、3本のウェッジ、パターまで全体の流れが追える形に更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

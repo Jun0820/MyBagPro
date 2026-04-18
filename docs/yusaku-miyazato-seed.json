@@ -10,32 +10,54 @@
     "segment": "verified_batch",
     "season_year": 2026,
     "website_url": "http://yusakumiyazato.com",
-    "ball_name": "",
+    "ball_name": "ツアーB X ボール",
     "feature_1": "日本男子ツアー",
     "feature_2": "賞金王経験者",
     "feature_3": "ツアー7勝",
-    "summary": "JGTO公式プロフィールをもとに掲載する宮里優作のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-    "latest_source_policy": "2026_profile",
+    "summary": "2017年ホンマツアーワールドカップで確認できた宮里優作の14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z",
     "kana_name": "ミヤザト ユウサク"
   },
-  "bagItems": [],
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G400 LS Tec Driver", "loft_label": "8.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD MJ-7", "shaft_flex": "TX", "source_note": "GDO 2017年ホンマツアーワールドカップ取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "PING", "model_name": "G Fairway Wood", "spec_label": "3W", "loft_label": "14.5°", "source_note": "GDO 2017年ホンマツアーワールドカップ取材より確認。", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "PING", "model_name": "G400 Crossover", "spec_label": "2U", "loft_label": "17°", "source_note": "GDO 2017年ホンマツアーワールドカップ取材より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "PING", "model_name": "i200 Iron", "spec_label": "4I", "source_note": "GDO 2017年ホンマツアーワールドカップ取材で4I-Wと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "PING", "model_name": "i200 Iron", "spec_label": "5I", "source_note": "GDO 2017年ホンマツアーワールドカップ取材で4I-Wと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "PING", "model_name": "i200 Iron", "spec_label": "6I", "source_note": "GDO 2017年ホンマツアーワールドカップ取材で4I-Wと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "PING", "model_name": "i200 Iron", "spec_label": "7I", "source_note": "GDO 2017年ホンマツアーワールドカップ取材で4I-Wと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "PING", "model_name": "i200 Iron", "spec_label": "8I", "source_note": "GDO 2017年ホンマツアーワールドカップ取材で4I-Wと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "PING", "model_name": "i200 Iron", "spec_label": "9I", "source_note": "GDO 2017年ホンマツアーワールドカップ取材で4I-Wと確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "PING", "model_name": "i200 Iron", "spec_label": "PW", "source_note": "GDO 2017年ホンマツアーワールドカップ取材で4I-Wと確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Bridgestone", "model_name": "Tour B XW-1 Wedge", "spec_label": "AW", "loft_label": "48°", "source_note": "GDO 2017年ホンマツアーワールドカップ取材より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Bridgestone", "model_name": "Tour B XW-1 Wedge", "spec_label": "SW", "loft_label": "52°", "source_note": "GDO 2017年ホンマツアーワールドカップ取材より確認。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Bridgestone", "model_name": "Tour B XW-1 Wedge", "spec_label": "LW", "loft_label": "59°", "source_note": "GDO 2017年ホンマツアーワールドカップ取材より確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "T5CS Putter", "source_note": "GDO 2017年ホンマツアーワールドカップ取材より確認。", "is_featured_item": true }
+  ],
   "sources": [
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/2692/profile",
       "source_title": "JGTO 宮里優作 プロフィール",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+      "notes": "Used for basic bio fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/70/2017/4/",
+      "source_title": "宮里優作 クラブセッティング 2017年 ホンマツアーワールドカップ - GDO",
+      "checked_at": "2026-04-18T00:00:00.000Z",
+      "notes": "14本全体の構成確認用。"
     }
   ],
   "article": {
-    "slug": "yusaku-miyazato-profile-published",
-    "title": "宮里優作のプロフィールを掲載しました",
-    "excerpt": "宮里優作の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-    "body": "宮里優作について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "slug": "yusaku-miyazato-2026-setting-update",
+    "title": "宮里優作のクラブセッティングを掲載しました",
+    "excerpt": "GDOの2017年ホンマツアーワールドカップ取材をもとに、宮里優作の14本セッティングを掲載しました。",
+    "body": "宮里優作について、GDOの2017年ホンマツアーワールドカップ取材で確認できた内容をもとに14本全体を整理しました。G400 LS Tecドライバー、3W、2U、i200の4I-PW、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
