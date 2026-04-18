@@ -9,7 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "ball_name": "タイトリスト Pro V1x ボール",
+    "ball_name": "タイトリスト Pro V1 ボール",
     "feature_1": "ミズノ中心",
     "feature_2": "2024年取材",
     "feature_3": "公開範囲で構成整理",
@@ -36,7 +36,7 @@
       "category": "Fairway Wood",
       "slot_order": 2,
       "brand": "Mizuno",
-      "model_name": "ST-X 230 Fairway Wood",
+      "model_name": "ST-G Fairway Wood",
       "spec_label": "3W",
       "loft_label": "15度",
       "source_note": "Rookie Golf Girls のギア紹介記事より確認。",
@@ -98,17 +98,8 @@
       "is_featured_item": false
     },
     {
-      "category": "Iron",
-      "slot_order": 9,
-      "brand": "Mizuno",
-      "model_name": "JPX 923 HOT METAL Iron",
-      "spec_label": "PW",
-      "source_note": "Rookie Golf Girls の(5I-PW)表記を番手ごとに展開。",
-      "is_featured_item": false
-    },
-    {
       "category": "Wedge",
-      "slot_order": 10,
+      "slot_order": 9,
       "brand": "Mizuno",
       "model_name": "Mizuno T22 Wedge",
       "spec_label": "AW",
@@ -118,7 +109,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 11,
+      "slot_order": 10,
       "brand": "Mizuno",
       "model_name": "Mizuno T22 Wedge",
       "spec_label": "GW",
@@ -128,7 +119,7 @@
     },
     {
       "category": "Wedge",
-      "slot_order": 12,
+      "slot_order": 11,
       "brand": "Mizuno",
       "model_name": "Mizuno T22 Wedge",
       "spec_label": "SW",
@@ -138,7 +129,7 @@
     },
     {
       "category": "Putter",
-      "slot_order": 13,
+      "slot_order": 12,
       "brand": "PING",
       "model_name": "Kushin 4 Putter",
       "source_note": "Rookie Golf Girls のギア紹介記事より確認。",
@@ -151,14 +142,14 @@
       "source_url": "https://rookiegolfgirls.com/wakana-kamiya/",
       "source_title": "神谷和奏プロ クラブセッティング パター ボール紹介2024 | Rookie Golf Girls",
       "checked_at": "2026-04-19T00:00:00.000Z",
-      "notes": "ドライバーからパター、使用ボールまでの構成確認用。"
+      "notes": "ドライバーからパター、使用ボールまでの構成確認用。5I-9I表記を採用。"
     }
   ],
   "article": {
     "slug": "wakana-kamiya-2026-setting-update",
     "title": "神谷和奏のクラブセッティングを掲載しました",
     "excerpt": "公開ギア紹介記事をもとに、神谷和奏のセッティングを掲載しました。",
-    "body": "神谷和奏について、公開ギア紹介記事で確認できた内容をもとにセッティング全体を整理しました。ドライバー、3W、4U、5I-PW、3本のウェッジ、パターまで、公開確認できた範囲の流れが追えるページに更新しています。",
+    "body": "神谷和奏について、公開ギア紹介記事で確認できた内容をもとにセッティング全体を整理しました。ドライバー、3W、4U、5I-9I、3本のウェッジ、パターまで、公開確認できた範囲の流れが追えるページに更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
