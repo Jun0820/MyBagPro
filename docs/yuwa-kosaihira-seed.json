@@ -9,32 +9,54 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "ball_name": "",
+    "ball_name": "PRO V1x ボール＜2025年＞",
     "feature_1": "日本男子ツアー",
     "feature_2": "初優勝経験者",
     "feature_3": "2026年出場確認",
-    "summary": "JGTO公式プロフィールをもとに掲載する小斉平優和のプロフィール。クラブセッティング詳細は追加確認後に更新します。",
-    "latest_source_policy": "2026_profile",
+    "summary": "2025年KBCオーガスタで確認できた小斉平優和の14本セッティングを掲載しています。",
+    "latest_source_policy": "verified_source_available",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-04-10T00:00:00.000Z",
     "kana_name": "コサイヒラ ユウワ"
   },
-  "bagItems": [],
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "PING", "model_name": "G440 LST Driver", "loft_label": "10.5°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS TR BLUE", "shaft_weight": "60g台", "shaft_flex": "X", "source_note": "GDO 2025年KBCオーガスタ取材より確認。", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Stealth 2 Fairway Wood", "spec_label": "5W", "loft_label": "18°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLUE", "shaft_weight": "80g台", "shaft_flex": "X", "source_note": "GDO 2025年KBCオーガスタ取材より確認。", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "TaylorMade", "model_name": "Stealth 2 Fairway Wood", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS TR BLUE", "shaft_weight": "90g台", "shaft_flex": "X", "source_note": "GDO 2025年KBCオーガスタ取材より確認。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Yonex", "model_name": "EZONE CB 301 Forged Iron", "spec_label": "4I", "shaft_brand": "N.S.PRO", "shaft_model": "Prototype", "shaft_flex": "X", "source_note": "GDO記事のEZONE CB 301 フォージド アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Yonex", "model_name": "EZONE CB 301 Forged Iron", "spec_label": "5I", "shaft_brand": "N.S.PRO", "shaft_model": "Prototype", "shaft_flex": "X", "source_note": "GDO記事のEZONE CB 301 フォージド アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Yonex", "model_name": "EZONE CB 301 Forged Iron", "spec_label": "6I", "shaft_brand": "N.S.PRO", "shaft_model": "Prototype", "shaft_flex": "X", "source_note": "GDO記事のEZONE CB 301 フォージド アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Yonex", "model_name": "EZONE CB 301 Forged Iron", "spec_label": "7I", "shaft_brand": "N.S.PRO", "shaft_model": "Prototype", "shaft_flex": "X", "source_note": "GDO記事のEZONE CB 301 フォージド アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Yonex", "model_name": "EZONE CB 301 Forged Iron", "spec_label": "8I", "shaft_brand": "N.S.PRO", "shaft_model": "Prototype", "shaft_flex": "X", "source_note": "GDO記事のEZONE CB 301 フォージド アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Yonex", "model_name": "EZONE CB 301 Forged Iron", "spec_label": "9I", "shaft_brand": "N.S.PRO", "shaft_model": "Prototype", "shaft_flex": "X", "source_note": "GDO記事のEZONE CB 301 フォージド アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Yonex", "model_name": "EZONE CB 301 Forged Iron", "spec_label": "PW", "shaft_brand": "N.S.PRO", "shaft_model": "Prototype", "shaft_flex": "X", "source_note": "GDO記事のEZONE CB 301 フォージド アイアン(4番-PW)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey SM10 Wedge", "spec_label": "GW", "loft_label": "50°", "source_note": "GDO記事のSM10ウェッジ(50度、54度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey SM10 Wedge", "spec_label": "SW", "loft_label": "54°", "source_note": "GDO記事のSM10ウェッジ(50度、54度)表記を番手ごとに展開。", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "WedgeWorks Prototype Wedge", "spec_label": "LW", "loft_label": "58°", "source_note": "GDO 2025年KBCオーガスタ取材より確認。", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "Ai-ONE GIRAFFE-BEAM #7 Putter", "source_note": "GDO 2025年KBCオーガスタ取材より確認。", "is_featured_item": true }
+  ],
   "sources": [
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/16500/profile",
       "source_title": "JGTO 小斉平優和 プロフィール",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+      "notes": "Used for basic bio fields."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/10193/",
+      "source_title": "小斉平優和 クラブセッティング 2025年 KBCオーガスタ - GDO",
+      "checked_at": "2026-04-19T00:00:00.000Z",
+      "notes": "14本全体の構成確認用。"
     }
   ],
   "article": {
-    "slug": "yuwa-kosaihira-profile-published",
-    "title": "小斉平優和のプロフィールを掲載しました",
-    "excerpt": "小斉平優和の基本プロフィールを公開しました。クラブセッティング詳細は確認後に更新します。",
-    "body": "小斉平優和について、JGTO公式プロフィールをもとに基本情報を掲載しました。クラブセッティングの詳細は追加ソース確認後に順次反映します。",
+    "slug": "yuwa-kosaihira-2026-setting-update",
+    "title": "小斉平優和のクラブセッティングを掲載しました",
+    "excerpt": "GDOの2025年KBCオーガスタ取材をもとに、小斉平優和の14本セッティングを掲載しました。",
+    "body": "小斉平優和について、GDOの2025年KBCオーガスタ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、5W、7W、4I-PW、3本のウェッジ、パターまで構成全体が見えるページに更新しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
