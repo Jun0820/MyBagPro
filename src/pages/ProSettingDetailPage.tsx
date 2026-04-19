@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Globe, Instagram, PlayCircle, ShoppingBag, Twitter } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronDown, Globe, Instagram, PlayCircle, ShoppingBag, Twitter } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
@@ -199,6 +199,8 @@ export const ProSettingDetailPage = () => {
   const [relatedArticles, setRelatedArticles] = useState<PublicArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [distanceMode, setDistanceMode] = useState<'carry' | 'total'>('carry');
+  const [isMediaSectionOpen, setIsMediaSectionOpen] = useState(false);
+  const [isRelatedArticlesOpen, setIsRelatedArticlesOpen] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -680,102 +682,128 @@ export const ProSettingDetailPage = () => {
         </section>
       )}
 
-      <section className="mt-6 md:mt-8">
+      <section className="mt-4 md:mt-6">
         <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm md:rounded-[2rem]">
-          <div className="border-b border-slate-200 px-4 py-4 md:px-7">
+          <button
+            type="button"
+            onClick={() => setIsMediaSectionOpen((open) => !open)}
+            className="flex w-full items-center justify-between gap-4 border-b border-slate-200 px-4 py-4 text-left md:px-7"
+          >
             <h2 className="text-2xl font-black text-trust-navy">動画と公式リンク</h2>
-          </div>
+            <span className="inline-flex items-center gap-2 text-sm font-black text-slate-500">
+              {isMediaSectionOpen ? '閉じる' : '開く'}
+              <ChevronDown size={18} className={`transition-transform ${isMediaSectionOpen ? 'rotate-180' : ''}`} />
+            </span>
+          </button>
 
-          {primaryYoutubeEmbed ? (
-            <div className="aspect-video w-full bg-slate-950">
-              <iframe
-                src={primaryYoutubeEmbed}
-                title={`${setting.name}のスイングまたはセッティング動画`}
-                className="h-full w-full"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          ) : (
-            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-4 py-7 text-white md:px-7 md:py-10">
-              <div className="max-w-xl">
-                <h3 className="text-2xl font-black tracking-tight">動画は順次追加しています。</h3>
-              </div>
-            </div>
-          )}
+          {isMediaSectionOpen && (
+            <>
+              {primaryYoutubeEmbed ? (
+                <div className="aspect-video w-full bg-slate-950">
+                  <iframe
+                    src={primaryYoutubeEmbed}
+                    title={`${setting.name}のスイングまたはセッティング動画`}
+                    className="h-full w-full"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ) : (
+                <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_35%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#0b1120_100%)] px-4 py-7 text-white md:px-7 md:py-10">
+                  <div className="max-w-xl">
+                    <h3 className="text-2xl font-black tracking-tight">動画は順次追加しています。</h3>
+                  </div>
+                </div>
+              )}
 
-          {channelLinks.length > 0 && (
-            <div className="border-t border-slate-200 px-4 py-4 md:px-7">
-              <div className="flex flex-wrap gap-3">
-                {channelLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <a
-                      key={link.label}
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() =>
-                        trackEvent('open_profile_channel', {
-                          source_page: 'pro_setting_detail',
-                          profile_slug: setting.slug,
-                          profile_name: setting.name,
-                          channel_label: link.label,
-                        })
-                      }
-                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:bg-white"
-                    >
-                      <Icon size={15} />
-                      {link.label}
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
+              {channelLinks.length > 0 && (
+                <div className="border-t border-slate-200 px-4 py-4 md:px-7">
+                  <div className="flex flex-wrap gap-3">
+                    {channelLinks.map((link) => {
+                      const Icon = link.icon;
+                      return (
+                        <a
+                          key={link.label}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() =>
+                            trackEvent('open_profile_channel', {
+                              source_page: 'pro_setting_detail',
+                              profile_slug: setting.slug,
+                              profile_name: setting.name,
+                              channel_label: link.label,
+                            })
+                          }
+                          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:bg-white"
+                        >
+                          <Icon size={15} />
+                          {link.label}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm md:mt-8 md:rounded-[2rem] md:p-7">
-          <div className="flex items-center justify-between gap-4">
+        <section className="mt-4 rounded-[1.5rem] border border-slate-200 bg-white shadow-sm md:mt-6 md:rounded-[2rem]">
+          <button
+            type="button"
+            onClick={() => setIsRelatedArticlesOpen((open) => !open)}
+            className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left md:px-6"
+          >
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">ARTICLES</div>
-              <h2 className="mt-2 text-2xl font-black tracking-tight text-trust-navy">関連記事</h2>
+              <h2 className="mt-1.5 text-2xl font-black tracking-tight text-trust-navy">関連記事</h2>
             </div>
-            <button
-              onClick={() => navigate('/articles')}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-slate-600 transition hover:bg-slate-50"
-            >
-              記事一覧
-              <ArrowRight size={14} />
-            </button>
-          </div>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            {relatedArticles.map((article) => (
-              <button
-                key={article.slug}
-                onClick={() => navigate(`/articles/${article.slug}`)}
-                className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-golf-300 hover:bg-white"
-              >
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
-                  {articleTypeLabel[article.articleType]}
-                </div>
-                <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">{article.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{article.excerpt}</p>
-                <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
-                  記事を読む
+            <span className="inline-flex items-center gap-2 text-sm font-black text-slate-500">
+              {isRelatedArticlesOpen ? '閉じる' : '開く'}
+              <ChevronDown size={18} className={`transition-transform ${isRelatedArticlesOpen ? 'rotate-180' : ''}`} />
+            </span>
+          </button>
+          {isRelatedArticlesOpen && (
+            <div className="border-t border-slate-200 px-4 py-4 md:px-6">
+              <div className="mb-4 flex justify-end">
+                <button
+                  onClick={() => navigate('/articles')}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                >
+                  記事一覧
                   <ArrowRight size={14} />
-                </div>
-              </button>
-            ))}
-          </div>
+                </button>
+              </div>
+              <div className="grid gap-3 md:grid-cols-3">
+                {relatedArticles.map((article) => (
+                  <button
+                    key={article.slug}
+                    onClick={() => navigate(`/articles/${article.slug}`)}
+                    className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-golf-300 hover:bg-white"
+                  >
+                    <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
+                      {articleTypeLabel[article.articleType]}
+                    </div>
+                    <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">{article.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{article.excerpt}</p>
+                    <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                      記事を読む
+                      <ArrowRight size={14} />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       )}
 
       {driverDetail && (
-        <section className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm md:mt-8 md:rounded-[2rem] md:p-7">
+        <section className="mt-4 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm md:mt-6 md:rounded-[2rem] md:p-6">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">DRIVER DETAIL</div>
