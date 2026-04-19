@@ -215,8 +215,8 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative flex min-h-[430px] items-center px-4 py-5 md:min-h-[600px] md:px-8 md:py-10">
-          <div className="max-w-4xl">
+        <div className="relative flex min-h-[430px] items-center justify-center px-4 py-5 md:min-h-[600px] md:px-8 md:py-10">
+          <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center md:items-start md:text-left">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/85 backdrop-blur">
               <Star size={12} className="text-emerald-300" />
               PRO SETTINGS
@@ -232,7 +232,7 @@ export const Home = () => {
               選手名やカテゴリから、参考にしたい14本をすぐ見つけられます。
             </p>
 
-            <div className="mt-4 max-w-2xl overflow-hidden rounded-[1.35rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-6 md:p-4">
+            <div className="mx-auto mt-4 w-full max-w-2xl overflow-hidden rounded-[1.35rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mx-0 md:mt-6 md:p-4">
               <div className="flex flex-col gap-3 md:flex-row md:items-center">
                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1rem] bg-white px-4 py-3 shadow-lg shadow-slate-950/15">
                   <Search className="shrink-0 text-slate-400" size={20} />
@@ -253,7 +253,7 @@ export const Home = () => {
                   検索する
                 </button>
               </div>
-              <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="mt-3 -mx-1 flex justify-center gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:justify-start">
                 {profileCategories.map((category) => (
                   <button
                     key={category.id}
@@ -270,7 +270,7 @@ export const Home = () => {
               </div>
             </div>
 
-            <div className="mt-4 flex flex-col gap-2.5 sm:mt-5 sm:flex-row">
+            <div className="mt-4 flex w-full max-w-2xl flex-col gap-2.5 sm:mt-5 sm:flex-row md:max-w-none">
               <button
                 onClick={() => {
                   trackEvent('select_content_group', {
