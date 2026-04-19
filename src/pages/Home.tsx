@@ -3,7 +3,6 @@ import {
   BarChart3,
   BrainCircuit,
   Search,
-  ShoppingCart,
   Star,
   Users,
   WandSparkles,
@@ -130,7 +129,7 @@ const features = [
     step: '01',
     title: '今の14本を一気に把握',
     description:
-      '有名プロがいま使っているドライバー、アイアン、ボール、飛距離の目安まで、1ページで素早く確認できます。',
+      '有名プロがいま使っている14本を、1ページで素早く確認できます。',
     image: marketingScene('library'),
     icon: Search,
     accent: 'bg-emerald-50 text-emerald-600',
@@ -141,7 +140,7 @@ const features = [
     step: '02',
     title: '自分に近い条件で絞る',
     description:
-      'ヘッドスピードやカテゴリから候補を絞り、参考にすべきセッティングを最短で見つけられます。',
+      'ヘッドスピードやカテゴリから、参考にすべきセッティングをすぐ絞れます。',
     image: marketingScene('filter'),
     icon: BrainCircuit,
     accent: 'bg-blue-50 text-blue-600',
@@ -152,7 +151,7 @@ const features = [
     step: '03',
     title: '比較して次の1本を決める',
     description:
-      '気になるプロやクラブを比較しながら、自分のバッグに落とし込む候補整理までつなげられます。',
+      '気になる候補を比較しながら、次の1本を決めやすくします。',
     image: marketingScene('compare'),
     icon: BarChart3,
     accent: 'bg-amber-50 text-amber-500',
@@ -206,7 +205,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden space-y-8 pb-16 md:space-y-12">
+    <div className="min-h-screen overflow-x-hidden space-y-6 pb-12 md:space-y-10">
       <section className="relative isolate overflow-hidden rounded-[2rem] shadow-[0_18px_60px_rgba(15,23,42,0.18)]">
         <img
           src={heroImage}
@@ -216,7 +215,7 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.28),transparent_28%)]" />
 
-        <div className="relative flex min-h-[470px] items-center px-4 py-6 md:min-h-[640px] md:px-8 md:py-12">
+        <div className="relative flex min-h-[430px] items-center px-4 py-5 md:min-h-[600px] md:px-8 md:py-10">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/85 backdrop-blur">
               <Star size={12} className="text-emerald-300" />
@@ -233,7 +232,7 @@ export const Home = () => {
               選手名やカテゴリから、参考にしたい14本をすぐ見つけられます。
             </p>
 
-            <div className="mt-5 max-w-2xl overflow-hidden rounded-[1.5rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-7 md:p-4">
+            <div className="mt-4 max-w-2xl overflow-hidden rounded-[1.35rem] border border-white/15 bg-white/10 p-3 backdrop-blur md:mt-6 md:p-4">
               <div className="flex flex-col gap-3 md:flex-row md:items-center">
                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-[1rem] bg-white px-4 py-3 shadow-lg shadow-slate-950/15">
                   <Search className="shrink-0 text-slate-400" size={20} />
@@ -271,21 +270,7 @@ export const Home = () => {
               </div>
             </div>
 
-            <div className="mt-4 flex flex-col gap-2.5 sm:mt-6 sm:flex-row">
-              <button
-                onClick={() => {
-                  trackEvent('start_ai_diagnosis', {
-                    source_page: 'home_hero',
-                    destination: 'diagnosis',
-                  });
-                  navigate('/diagnosis');
-                }}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-5 py-3 text-sm font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-600 md:px-8 md:py-4 md:text-lg"
-              >
-                <WandSparkles size={18} />
-                診断を始める
-              </button>
-
+            <div className="mt-4 flex flex-col gap-2.5 sm:mt-5 sm:flex-row">
               <button
                 onClick={() => {
                   trackEvent('select_content_group', {
@@ -299,20 +284,32 @@ export const Home = () => {
                 <Users size={18} />
                 プロのセッティングを見る
               </button>
+
+              <button
+                onClick={() => {
+                  trackEvent('start_ai_diagnosis', {
+                    source_page: 'home_hero',
+                    destination: 'diagnosis',
+                  });
+                  navigate('/diagnosis');
+                }}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-5 py-3 text-sm font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-600 md:px-8 md:py-4 md:text-lg"
+              >
+                <WandSparkles size={18} />
+                診断を始める
+              </button>
             </div>
 
           </div>
         </div>
       </section>
 
-      <section className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
+      <section className="rounded-[2rem] bg-white px-4 py-7 shadow-sm md:px-10 md:py-10">
         <div>
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.18em] text-amber-600">TOURNAMENT SPOTLIGHT</div>
-              <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">
-                今週の大会で追うべき注目セッティング
-              </h2>
+              <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">今週の大会の注目セッティング</h2>
               <p className="mt-3 text-sm leading-6 text-gray-600 md:text-base md:leading-7">
                 今週の大会で見ておきたい選手のセッティング特集を、ツアー別にまとめています。
               </p>
@@ -327,7 +324,7 @@ export const Home = () => {
             </button>
           </div>
 
-          <div className="mt-6 grid gap-3 xl:grid-cols-4">
+          <div className="mt-5 grid gap-3 xl:grid-cols-4">
             {tournamentSpotlights.map((spotlight) => (
               <button
                 key={spotlight.articleSlug}
@@ -351,7 +348,6 @@ export const Home = () => {
                   </span>
                 </div>
                 <div className="mt-4 text-sm font-bold text-slate-500">{spotlight.eventDates}</div>
-                <p className="mt-4 text-sm leading-7 text-slate-600">{spotlight.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {spotlight.featuredPlayerSlugs.slice(0, 3).map((playerSlug) => {
                     const profile = profiles.find((item) => item.slug === playerSlug);
@@ -375,12 +371,12 @@ export const Home = () => {
         </div>
       </section>
 
-      <section id="pro-settings" className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
+      <section id="pro-settings" className="rounded-[2rem] bg-white px-4 py-7 shadow-sm md:px-10 md:py-10">
         <div>
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.18em] text-emerald-600">POPULAR SETTINGS</div>
-              <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">よく見られているプロのセッティング</h2>
+              <h2 className="mt-3 text-3xl font-black text-gray-900 md:text-4xl">注目プロのセッティング</h2>
               <p className="mt-3 text-sm leading-6 text-gray-600 md:text-base md:leading-7">
                 よく見られている選手から、いま使っているクラブ構成をすぐ確認できます。
               </p>
@@ -395,13 +391,13 @@ export const Home = () => {
             </button>
           </div>
 
-          <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {featuredProfiles.map((pro) => (
               <article
                 key={pro.slug}
                 className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="flex items-center gap-4 border-b border-gray-100 bg-white p-4">
+                <div className="flex items-center gap-4 bg-white p-4">
                   <img
                     src={getProfileVisuals(pro.slug, pro.instagramHandle, { preferInstagramPortrait: true }).portrait}
                     alt={`${pro.name}のプレースホルダー画像`}
@@ -423,22 +419,10 @@ export const Home = () => {
                       <div className="text-[11px] font-bold text-slate-500">{pro.contractLabel}</div>
                     </div>
                     <h3 className="mt-2 text-lg font-black text-gray-900">{pro.name}</h3>
-                    <p className="mt-1 line-clamp-2 text-sm leading-5 text-gray-600">{pro.tagline}</p>
+                    <p className="mt-1 line-clamp-1 text-sm leading-5 text-gray-600">{pro.tagline}</p>
                   </div>
                 </div>
-                <div className="p-4">
-                  <div className="grid gap-2">
-                    {pro.clubs.slice(0, 3).map((club) => (
-                      <div
-                        key={`${pro.slug}-${club.category}`}
-                        className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-2.5 text-sm"
-                      >
-                        <span className="shrink-0 font-bold text-slate-900">{club.specLabel || club.category}</span>
-                        <span className="truncate text-right text-slate-600">{club.model}</span>
-                      </div>
-                    ))}
-                  </div>
-
+                <div className="px-4 pb-4">
                   <button
                     onClick={() => {
                       trackEvent('select_setting_profile', {
@@ -447,7 +431,7 @@ export const Home = () => {
                       });
                       navigate(`/settings/pros/${pro.slug}`);
                     }}
-                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-trust-navy py-3 font-black text-white transition hover:bg-slate-800"
+                    className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-trust-navy py-3 font-black text-white transition hover:bg-slate-800"
                   >
                     詳細を見る
                     <ArrowRight size={16} />
@@ -459,7 +443,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section id="features" className="rounded-[2rem] bg-white px-4 py-8 shadow-sm md:px-10 md:py-12">
+      <section id="features" className="rounded-[2rem] bg-white px-4 py-7 shadow-sm md:px-10 md:py-9">
         <div>
           <div className="text-center">
             <div className="text-[11px] font-black tracking-[0.16em] text-emerald-600">WHY MY BAG PRO</div>
@@ -469,7 +453,7 @@ export const Home = () => {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
@@ -478,20 +462,20 @@ export const Home = () => {
                     <img
                       src={feature.image}
                       alt={`${feature.title}をイメージしたプレースホルダー画像`}
-                      className="h-40 w-full object-cover"
+                      className="h-28 w-full object-cover md:h-32"
                     />
-                    <div className="p-5">
-                      <div className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${feature.accent}`}>
-                        <Icon size={28} />
+                    <div className="p-4">
+                      <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${feature.accent}`}>
+                        <Icon size={22} />
                       </div>
                       <div className="mt-4 text-[11px] font-black tracking-[0.16em] text-slate-400">
                         STEP {feature.step}
                       </div>
-                      <h3 className="mt-2 text-xl font-black text-gray-900">{feature.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-gray-600">{feature.description}</p>
+                      <h3 className="mt-2 text-lg font-black text-gray-900">{feature.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-gray-600">{feature.description}</p>
                       <button
                         onClick={() => navigate(feature.ctaHref)}
-                        className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50"
+                        className="mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50"
                       >
                         {feature.ctaLabel}
                         <ArrowRight size={15} />
@@ -503,36 +487,6 @@ export const Home = () => {
             })}
           </div>
 
-          <div className="mt-10 grid gap-4 rounded-[2rem] bg-slate-950 p-5 text-white md:grid-cols-3 md:p-6">
-            {[
-              {
-                icon: Search,
-                title: '探して知る',
-                text: 'まずは気になる選手やブランドから入り、今どのモデルが実戦投入されているかを素早く把握する。',
-              },
-              {
-                icon: BrainCircuit,
-                title: '自分に当てはめる',
-                text: 'ヘッドスピードや好みの系統に照らして、自分が参考にすべきセッティングだけに絞り込む。',
-              },
-              {
-                icon: ShoppingCart,
-                title: '比較して検討する',
-                text: '候補の違いを整理しながら、比較・診断・購入検討へそのままつなげて迷いを減らす。',
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.title} className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-emerald-300">
-                    <Icon size={22} />
-                  </div>
-                  <h3 className="mt-4 text-xl font-black">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/80">{item.text}</p>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
     </div>
