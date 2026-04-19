@@ -93,7 +93,15 @@ const PrivacyPolicyContent = () => (
         </section>
 
         <section>
-            <h3 className="font-bold text-lg text-trust-navy mb-2">8. お問い合わせ</h3>
+            <h3 className="font-bold text-lg text-trust-navy mb-2">8. 写真・外部メディアの掲載</h3>
+            <p>
+                本サービスでは、Wikimedia Commons など再利用条件が確認できる写真素材、または選手本人・公式アカウントに紐づく公開プロフィール画像や公式リンク情報を表示する場合があります。
+                権利は各権利者に帰属し、掲載形式や表示内容に関するお問い合わせがある場合は、確認のうえ修正または非表示対応を行います。
+            </p>
+        </section>
+
+        <section>
+            <h3 className="font-bold text-lg text-trust-navy mb-2">9. お問い合わせ</h3>
             <p>
                 個人情報の取り扱いに関するお問い合わせは、サービス内のお問い合わせフォームよりご連絡ください。
             </p>

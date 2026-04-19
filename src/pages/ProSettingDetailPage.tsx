@@ -5,7 +5,7 @@ import { getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
-import { getProfileVisuals, type ProfilePortraitAttribution, type ProfileSocialEmbed } from '../lib/profileVisuals';
+import { getProfileVisuals } from '../lib/profileVisuals';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const formatClubLabel = (category: string, specLabel?: string) => {
@@ -57,6 +57,38 @@ const simplifySourceNote = (value?: string | null) => {
 
   return value.replace(/\s+/g, ' ').trim().slice(0, 36);
 };
+
+const extractSourcePeriodTag = (setting: PublicSettingProfile) => {
+  const summaryMonthMatch = setting.summary.match(/(20\d{2}年\d{1,2}月)/);
+  if (summaryMonthMatch?.[1]) return summaryMonthMatch[1];
+
+  const summaryYearMatch = setting.summary.match(/(20\d{2}年)/);
+  if (summaryYearMatch?.[1]) return summaryYearMatch[1];
+
+  const checkedAt = setting.sources.find((source) => source.checkedAt)?.checkedAt;
+  if (!checkedAt) return setting.seasonYear ? `${setting.seasonYear}年` : null;
+
+  const date = new Date(checkedAt);
+  if (Number.isNaN(date.getTime())) return setting.seasonYear ? `${setting.seasonYear}年` : null;
+  return `${date.getFullYear()}年${date.getMonth() + 1}月`;
+};
+
+const shortenTagline = (tagline: string) =>
+  tagline
+    .replace(/^\d{4}年取材・/, '')
+    .replace(/^\d{4}年掲載・/, '')
+    .replace(/注目セッティング/g, '注目')
+    .trim();
+
+const shortenSummary = (summary: string, name: string) =>
+  summary
+    .replace(new RegExp(`${name}の`, 'g'), '')
+    .replace(/^\d{4}年[^。]*で確認できた/, '')
+    .replace(/^\d{4}年[^。]*掲載。?/, '')
+    .replace(/14本セッティング。?$/, '14本')
+    .replace(/セッティング/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 
 const formatBirthplace = (birthplace?: string | null, nationality?: string | null) => {
   const countryMap: Record<string, { label: string; flag: string }> = {
@@ -159,128 +191,6 @@ const pickRecommendedArticles = (articles: PublicArticle[], profileName: string)
     .filter((article, index, self) => self.findIndex((item) => item.slug === article.slug) === index)
     .slice(0, 3);
 };
-
-const ensureExternalScript = (id: string, src: string) =>
-  new Promise<void>((resolve, reject) => {
-    if (typeof document === 'undefined') {
-      resolve();
-      return;
-    }
-
-    const existing = document.getElementById(id) as HTMLScriptElement | null;
-    if (existing) {
-      if (existing.dataset.loaded === 'true') {
-        resolve();
-        return;
-      }
-      existing.addEventListener('load', () => resolve(), { once: true });
-      existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.id = id;
-    script.src = src;
-    script.async = true;
-    script.onload = () => {
-      script.dataset.loaded = 'true';
-      resolve();
-    };
-    script.onerror = () => reject(new Error(`Failed to load ${src}`));
-    document.body.appendChild(script);
-  });
-
-const SocialEmbedCard = ({ embed }: { embed: ProfileSocialEmbed }) => {
-  if (embed.platform === 'instagram') {
-    return (
-      <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
-          <Instagram size={16} />
-          {embed.accountLabel}
-        </div>
-        <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50 p-2">
-          <blockquote
-            className="instagram-media mx-auto !min-w-0"
-            data-instgrm-captioned=""
-            data-instgrm-permalink={embed.postUrl}
-            data-instgrm-version="14"
-          >
-            <a href={embed.postUrl} target="_blank" rel="noopener noreferrer">
-              {embed.title}
-            </a>
-          </blockquote>
-        </div>
-        <p className="mt-3 text-xs leading-6 text-slate-500">
-          {embed.note || '公式Instagram投稿への埋め込みです。表示できない場合は下のリンクを開いてください。'}
-        </p>
-        <a
-          href={embed.postUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
-        >
-          Instagramで開く
-          <ArrowRight size={14} />
-        </a>
-      </div>
-    );
-  }
-
-  return (
-    <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
-        <Twitter size={16} />
-        {embed.accountLabel}
-      </div>
-      <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50 p-3">
-        <blockquote className="twitter-tweet" data-dnt="true" data-theme="light">
-          <a href={embed.postUrl} target="_blank" rel="noopener noreferrer">
-            {embed.title}
-          </a>
-        </blockquote>
-      </div>
-      <p className="mt-3 text-xs leading-6 text-slate-500">
-        {embed.note || '公式X投稿への埋め込みです。表示できない場合は下のリンクを開いてください。'}
-      </p>
-      <a
-        href={embed.postUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
-      >
-        Xで開く
-        <ArrowRight size={14} />
-      </a>
-    </div>
-  );
-};
-
-const AttributionLine = ({ attribution }: { attribution: ProfilePortraitAttribution }) => (
-  <div className="space-y-1 text-xs leading-6 text-slate-500">
-    <p>
-      写真: {attribution.creatorUrl ? (
-        <a href={attribution.creatorUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-trust-navy">
-          {attribution.creator}
-        </a>
-      ) : (
-        <span className="font-bold text-trust-navy">{attribution.creator}</span>
-      )}{' '}
-      /{' '}
-      <a href={attribution.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-trust-navy">
-        {attribution.sourceLabel}
-      </a>{' '}
-      /{' '}
-      {attribution.licenseUrl ? (
-        <a href={attribution.licenseUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-trust-navy">
-          {attribution.licenseLabel}
-        </a>
-      ) : (
-        <span className="font-bold text-trust-navy">{attribution.licenseLabel}</span>
-      )}
-    </p>
-    {attribution.note && <p>{attribution.note}</p>}
-  </div>
-);
 
 export const ProSettingDetailPage = () => {
   const navigate = useNavigate();
@@ -448,36 +358,6 @@ export const ProSettingDetailPage = () => {
     };
   }, [setting]);
 
-  useEffect(() => {
-    if (!setting) return;
-
-    const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
-    const embeds = visuals.socialEmbeds || [];
-    const hasInstagram = embeds.some((embed) => embed.platform === 'instagram');
-    const hasX = embeds.some((embed) => embed.platform === 'x');
-
-    if (!hasInstagram && !hasX) return;
-
-    const loadEmbeds = async () => {
-      try {
-        if (hasInstagram) {
-          await ensureExternalScript('instagram-embed-script', 'https://www.instagram.com/embed.js');
-          const instagram = (window as Window & { instgrm?: { Embeds?: { process: () => void } } }).instgrm;
-          instagram?.Embeds?.process?.();
-        }
-        if (hasX) {
-          await ensureExternalScript('x-embed-script', 'https://platform.twitter.com/widgets.js');
-          const twitter = (window as Window & { twttr?: { widgets?: { load: () => void } } }).twttr;
-          twitter?.widgets?.load?.();
-        }
-      } catch {
-        // Fail silently and keep the fallback links visible.
-      }
-    };
-
-    void loadEmbeds();
-  }, [setting]);
-
   if (isLoading) {
     return (
       <div className="min-h-[60vh] rounded-[2rem] border border-slate-200 bg-white p-10 text-center">
@@ -514,18 +394,20 @@ export const ProSettingDetailPage = () => {
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
   const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
-  const profileIntro = `${setting.seasonYear ? `${setting.seasonYear}年` : '最新'}掲載。${driverClub ? `ドライバーは${driverClub.model}。` : ''}${setting.ball && setting.ball !== '未公開' ? `ボールは${setting.ball}。` : ''}`;
+  const sourcePeriodTag = extractSourcePeriodTag(setting);
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
-    { label: '契約メーカー', value: setting.contractDisplay },
-    { label: '使用ボール', value: setting.ball },
+    { label: '契約', value: setting.contractDisplay },
+    { label: 'ボール', value: setting.ball },
   ];
   const statCards = [
     { label: 'ヘッドスピード', value: formatStatLabel(setting.headSpeed) },
     { label: '平均スコア', value: formatStatLabel(setting.averageScore) },
     { label: 'ベストスコア', value: formatStatLabel(setting.bestScore) },
   ];
+  const compactTagline = shortenTagline(setting.tagline);
+  const compactSummary = shortenSummary(setting.summary, setting.name);
 
   return (
     <div className="min-h-screen overflow-x-hidden pb-20">
@@ -538,101 +420,89 @@ export const ProSettingDetailPage = () => {
       </button>
 
       <section className="overflow-hidden rounded-[1.75rem] bg-slate-950 text-white md:rounded-[2rem]">
-        <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="px-4 py-5 md:px-10 md:py-12">
-            <div className="max-w-4xl">
-              <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-cyan-200">
-                {setting.type}
+        <div className="px-4 py-5 md:px-8 md:py-8">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-cyan-200">
+              {setting.type}
+            </div>
+            {sourcePeriodTag && (
+              <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-white/75">
+                {sourcePeriodTag}
               </div>
-              {setting.kanaName && <div className="mt-4 text-xs font-bold text-white/70 md:text-sm">{setting.kanaName}</div>}
-              <h1 className="mt-2 text-[2rem] font-black tracking-tight leading-[1.08] md:text-6xl">
-                {setting.name}
-                <span className="ml-2 text-base font-bold text-white/75 md:ml-3 md:text-2xl">{setting.age ? `(${setting.age})` : ''}</span>
-              </h1>
-              <p className="mt-3 text-sm font-bold leading-6 text-cyan-200 md:mt-4 md:text-lg">{setting.tagline}</p>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:mt-4 md:text-base md:leading-7">{setting.summary}</p>
+            )}
+          </div>
 
-              <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-4 md:mt-6">
-                <div className="text-[11px] font-black tracking-[0.14em] text-cyan-200">QUICK LOOK</div>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{profileIntro}</p>
-                <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-white/10 pt-4">
-                  {profileFacts.map((fact) => (
-                    <div key={fact.label}>
-                      <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{fact.label}</dt>
-                      <dd className="mt-1 text-sm font-black leading-5 text-white">{fact.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <button
-                    onClick={() => navigate(`/settings/pros?category=${setting.category}`)}
-                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/15 md:px-4 md:py-2 md:text-sm"
-                  >
-                    {setting.categoryLabel}をもっと見る
-                  </button>
-                  <button
-                    onClick={() => navigate('/settings/pros')}
-                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/15 md:px-4 md:py-2 md:text-sm"
-                  >
-                    一覧で探す
-                  </button>
-                  {relatedArticles.length > 0 && (
-                    <button
-                      onClick={() => navigate(`/articles/${relatedArticles[0].slug}`)}
-                      className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/15 md:px-4 md:py-2 md:text-sm"
-                    >
-                      関連記事へ
-                    </button>
-                  )}
-                </div>
-              </div>
+          <div className="mt-4 flex items-start gap-3 md:gap-4">
+            <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/10 bg-slate-200 md:h-24 md:w-24">
+              {visuals.portraitMedia ? (
+                <img
+                  src={visuals.portraitMedia.src}
+                  alt={visuals.portraitMedia.alt}
+                  className="h-full w-full object-cover object-top"
+                  onError={(event) => {
+                    const fallbackSrc = visuals.portraitMedia?.fallbackSrc;
+                    if (!fallbackSrc) return;
+                    const target = event.currentTarget;
+                    if (target.src === fallbackSrc) return;
+                    target.src = fallbackSrc;
+                  }}
+                />
+              ) : (
+                <img src={visuals.hero} alt="" className="h-full w-full object-cover object-top" />
+              )}
+            </div>
+
+            <div className="min-w-0 flex-1">
+              {setting.kanaName && <div className="text-[11px] font-bold text-white/65 md:text-xs">{setting.kanaName}</div>}
+              <h1 className="mt-1 text-[1.9rem] font-black leading-[1.03] tracking-tight md:text-5xl">
+                {setting.name}
+                {setting.age ? <span className="ml-2 text-base font-bold text-white/65 md:text-xl">({setting.age})</span> : null}
+              </h1>
+              <p className="mt-2 text-sm font-bold leading-6 text-cyan-200 md:text-base">{compactTagline}</p>
+              <p className="mt-1.5 text-sm leading-6 text-slate-300 md:max-w-3xl">{compactSummary}</p>
             </div>
           </div>
 
-          <div className="relative min-h-[260px] overflow-hidden md:min-h-[360px]">
-            {visuals.portraitMedia ? (
-              <div className="flex h-full flex-col bg-slate-100">
-                <div className="relative flex-1 overflow-hidden">
-                  <img
-                    src={visuals.portraitMedia.src}
-                    alt={visuals.portraitMedia.alt}
-                    className="h-full w-full object-cover object-top"
-                    onError={(event) => {
-                      const fallbackSrc = visuals.portraitMedia?.fallbackSrc;
-                      if (!fallbackSrc) return;
-                      const target = event.currentTarget;
-                      if (target.src === fallbackSrc) return;
-                      target.src = fallbackSrc;
-                    }}
-                  />
-                </div>
-                <div className="border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur">
-                  <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>
-                  <div className="mt-2 text-sm font-black text-trust-navy">{driverClub ? driverClub.model : '未公開'}</div>
-                </div>
+          <dl className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4">
+            {profileFacts.map((fact) => (
+              <div key={fact.label} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">
+                <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{fact.label}</dt>
+                <dd className="mt-1 text-sm font-black leading-5 text-white">{fact.value}</dd>
               </div>
-            ) : (
-              <>
-                <img src={visuals.hero} alt="" className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.72)_100%)]" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/55 px-4 py-4 backdrop-blur">
-                    <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">使用ドライバー</div>
-                    <div className="mt-2 text-sm font-black text-white">{driverClub ? driverClub.model : '未公開'}</div>
-                  </div>
-                </div>
-              </>
+            ))}
+          </dl>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              onClick={() => navigate(`/settings/pros?category=${setting.category}`)}
+              className="rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-black text-white transition hover:bg-white/15 md:text-sm"
+            >
+              {setting.categoryLabel}
+            </button>
+            <button
+              onClick={() => navigate('/settings/pros')}
+              className="rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-black text-white transition hover:bg-white/15 md:text-sm"
+            >
+              一覧で探す
+            </button>
+            {relatedArticles.length > 0 && (
+              <button
+                onClick={() => navigate(`/articles/${relatedArticles[0].slug}`)}
+                className="rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-black text-white transition hover:bg-white/15 md:text-sm"
+              >
+                関連記事
+              </button>
             )}
           </div>
         </div>
       </section>
 
-      <section className="mt-5 md:mt-7">
-        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
+      <section className="mt-4 md:mt-6">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
-              <h2 className="mt-2 text-2xl font-black text-trust-navy">飛距離とスタッツ</h2>
+              <h2 className="mt-2 text-2xl font-black text-trust-navy">スイングとスコア</h2>
             </div>
             <p className="text-sm leading-6 text-slate-500">
               公開ソース確認分のみ掲載。
@@ -649,8 +519,8 @@ export const ProSettingDetailPage = () => {
         </div>
       </section>
 
-      <section className="mt-5 md:mt-7">
-        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
+      <section className="mt-4 md:mt-6">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
@@ -774,43 +644,36 @@ export const ProSettingDetailPage = () => {
       </section>
 
       {setting.sources.length > 0 && (
-        <section className="mt-6 md:mt-8">
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
-            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <section className="mt-4 md:mt-6">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
+            <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
-                <h2 className="mt-2 text-2xl font-black text-trust-navy">確認ソース</h2>
+                <h2 className="mt-1.5 text-xl font-black text-trust-navy">確認ソース</h2>
               </div>
-              <p className="text-sm leading-6 text-slate-500">
-                参照元だけを短くまとめています。
+              <p className="text-xs leading-5 text-slate-500">
+                要点のみ表示
               </p>
             </div>
-            <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200">
+            <div className="mt-4 grid gap-2">
               {setting.sources.map((source) => (
-                <a
+                <div
                   key={`${source.type}-${source.url}`}
-                  href={source.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-between gap-4 border-b border-slate-200 bg-white px-4 py-3 transition hover:bg-slate-50 last:border-b-0"
+                  className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5"
                 >
-                  <div className="min-w-0">
-                    <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">{formatSourceTypeLabel(source.type)}</div>
-                    <div className="mt-1 truncate text-sm font-black text-trust-navy">{source.title}</div>
-                    {source.notes && <p className="mt-1 text-xs font-bold text-slate-500">{simplifySourceNote(source.notes)}</p>}
-                  </div>
-                  <div className="shrink-0 text-right">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">{formatSourceTypeLabel(source.type)}</div>
+                      <div className="mt-1 truncate text-sm font-black text-trust-navy">{source.title}</div>
+                    </div>
                     {source.checkedAt && (
-                      <div className="text-[11px] font-bold text-slate-500">
+                      <div className="shrink-0 text-[11px] font-bold text-slate-500">
                         {new Intl.DateTimeFormat('ja-JP').format(new Date(source.checkedAt))}
                       </div>
                     )}
-                    <div className="mt-1 inline-flex items-center gap-1 text-xs font-black text-golf-700">
-                      開く
-                      <ArrowRight size={12} />
-                    </div>
                   </div>
-                </a>
+                  {source.notes && <p className="mt-1 text-xs font-bold text-slate-500">{simplifySourceNote(source.notes)}</p>}
+                </div>
               ))}
             </div>
           </div>
@@ -931,55 +794,6 @@ export const ProSettingDetailPage = () => {
         </section>
       )}
 
-      {(visuals.portraitMedia || (visuals.socialEmbeds && visuals.socialEmbeds.length > 0)) && (
-        <section className="mt-6 md:mt-8">
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-7">
-            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-              <div>
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PHOTO & POSTS</div>
-                <h2 className="mt-2 text-2xl font-black text-trust-navy">写真とSNS投稿</h2>
-              </div>
-              <p className="text-sm leading-6 text-slate-500">
-                再利用可能画像または公式埋め込みのみ掲載しています。
-              </p>
-            </div>
-
-            {visuals.portraitMedia && (
-              <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
-                  {visuals.portraitMedia.sourceType === 'instagram_profile' ? 'INSTAGRAM PROFILE' : 'COMMONS PHOTO'}
-                </div>
-                <h3 className="mt-2 text-lg font-black text-trust-navy">{setting.name}の掲載写真</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {visuals.portraitMedia.sourceType === 'instagram_profile'
-                    ? '公開Instagramアカウントの画像を掲載しています。'
-                    : 'Wikimedia Commons の再利用可能画像を掲載しています。'}
-                </p>
-                <div className="mt-3 rounded-[1rem] border border-slate-200 bg-white p-3">
-                  <AttributionLine attribution={visuals.portraitMedia.attribution} />
-                </div>
-                <a
-                  href={visuals.portraitMedia.attribution.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy"
-                >
-                  元画像ページを見る
-                  <ArrowRight size={14} />
-                </a>
-              </div>
-            )}
-
-            {visuals.socialEmbeds && visuals.socialEmbeds.length > 0 && (
-              <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                {visuals.socialEmbeds.map((embed) => (
-                  <SocialEmbedCard key={`${setting.slug}-${embed.platform}-${embed.postUrl}`} embed={embed} />
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      )}
     </div>
   );
 };
