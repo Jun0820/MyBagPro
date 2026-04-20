@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
+    "head_speed_mps": 55.1,
     "ball_name": "Titleist PRO V1 2025",
     "feature_1": "2025シーズン基準",
     "feature_2": "Titleist・TaylorMade混成",
@@ -203,6 +204,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/24502/adam-scott/stats?deviceId=493fc8a9-6c36-438d-94e2-618d95379cb2",
+      "source_title": "Adam Scott PGA TOUR Stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 123.18 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/265/2025/1/",

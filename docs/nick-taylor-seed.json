@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "launch10",
     "season_year": 2025,
+    "head_speed_mps": 50.7,
     "ball_name": "Titleist Pro V1x",
     "feature_1": "2025シーズン基準",
     "feature_2": "PGA TOUR",
@@ -191,6 +192,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/25493/nick-taylor/stats?deviceId=0180d24e-fac3-45c3-9955-041bc84d3df6",
+      "source_title": "Nick Taylor PGA TOUR Stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 113.36 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/3706/",

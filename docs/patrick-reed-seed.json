@@ -10,6 +10,7 @@
     "profile_type": "tour_pro",
     "segment": "masters_2026_batch",
     "season_year": 2026,
+    "head_speed_mps": 51.6,
     "ball_name": "Titleist Pro V1",
     "feature_1": "2018マスターズ覇者",
     "feature_2": "契約フリー",
@@ -37,6 +38,7 @@
     { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "White Hot Pro 3", "source_note": "Confirmed from Patrick Reed WITB 2025 references.", "is_featured_item": true }
   ],
   "sources": [
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/34360/Patrick-Reed/stats", "source_title": "Patrick Reed PGA TOUR Stats", "checked_at": "2026-04-20T00:00:00.000Z", "notes": "PGA TOUR公式statsでClub Head Speed 115.53 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。" },
     { "source_type": "article", "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-patrick-reeds-bag", "source_title": "What’s in Patrick Reed’s bag? - Golf Monthly", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for mixed-bag configuration and club details." },
     { "source_type": "article", "source_url": "https://www.golfpost.com/equipment/patrick-reed-witb", "source_title": "Patrick Reed WITB - Golf Post", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used as supporting source for lofts and club mix." }
   ],

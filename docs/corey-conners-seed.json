@@ -10,6 +10,7 @@
     "profile_type": "tour_pro",
     "segment": "masters_2026_batch",
     "season_year": 2026,
+    "head_speed_mps": 51.3,
     "ball_name": "Titleist Pro V1",
     "feature_1": "マスターズ上位常連",
     "feature_2": "2025年5月WITB",
@@ -37,6 +38,7 @@
     { "category": "Putter", "slot_order": 14, "brand": "Ping", "model_name": "PLD Prime Tyne S", "source_note": "Confirmed from GolfWRX Corey Conners WITB 2025 (May).", "is_featured_item": true }
   ],
   "sources": [
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/39997/corey-conners/stats", "source_title": "Corey Conners PGA TOUR Stats", "checked_at": "2026-04-20T00:00:00.000Z", "notes": "PGA TOUR公式statsでClub Head Speed 114.83 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。" },
     { "source_type": "article", "source_url": "https://www.golfwrx.com/760840/corey-conners-witb-2025-may/", "source_title": "Corey Conners WITB 2025 (May) - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for latest detailed bag breakdown." },
     { "source_type": "official", "source_url": "https://ping.com/en-us/tour/pros/corey-conners", "source_title": "Corey Conners - PING", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official PING player page used for contract context." }
   ],

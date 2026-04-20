@@ -10,6 +10,7 @@
     "profile_type": "tour_pro",
     "segment": "masters_2026_batch",
     "season_year": 2026,
+    "head_speed_mps": 55.3,
     "ball_name": "Callaway Chrome Tour X",
     "feature_1": "2026年3月WITB",
     "feature_2": "キャロウェイ契約",
@@ -38,6 +39,7 @@
     { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "Ai-ONE Cruiser Jailbird", "source_note": "Confirmed from GolfWRX Min Woo Lee WITB 2026 (March).", "is_featured_item": true }
   ],
   "sources": [
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/37378/min-woo-lee/stats?deviceId=10ac6cce-956c-491e-af8b-dffbfd6bf06d", "source_title": "Min Woo Lee PGA TOUR Stats", "checked_at": "2026-04-20T00:00:00.000Z", "notes": "PGA TOUR公式statsでClub Head Speed 123.80 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。" },
     { "source_type": "official", "source_url": "https://www.callawaygolf.com/tour-team/min-woo-lee/", "source_title": "Min Woo Lee - Callaway Golf", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official Callaway team page used for player context and contract status." },
     { "source_type": "article", "source_url": "https://www.golfwrx.com/774826/min-woo-lee-witb-2026-march/", "source_title": "Min Woo Lee WITB 2026 (March) - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for latest detailed bag breakdown." }
   ],
