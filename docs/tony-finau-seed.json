@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
+    "head_speed_mps": 54.8,
     "ball_name": "Callaway Chrome Tour X",
     "feature_1": "2025シーズン基準",
     "feature_2": "Callaway中心",
@@ -192,6 +193,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/29725/tony-finau/stats?deviceId=6cce1fe7-56ce-49fd-a36e-e250340e7334",
+      "source_title": "Tony Finau PGA TOUR Stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 122.49 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/7141/",

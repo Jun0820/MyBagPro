@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2024,
+    "head_speed_mps": 54.2,
     "ball_name": "Titleist Pro V1x",
     "feature_1": "2024シーズン基準",
     "feature_2": "メジャーチャンプ実戦セット",
@@ -179,6 +180,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/51766/wyndham-clark/stats",
+      "source_title": "Wyndham Clark PGA TOUR Stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 121.32 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/17847/",

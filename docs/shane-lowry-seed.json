@@ -10,6 +10,7 @@
     "profile_type": "tour_pro",
     "segment": "masters_2026_batch",
     "season_year": 2026,
+    "head_speed_mps": 51.2,
     "ball_name": "Srixon Z-Star XV",
     "feature_1": "2019全英オープン覇者",
     "feature_2": "2026年3月WITB",
@@ -38,6 +39,7 @@
     { "category": "Putter", "slot_order": 14, "brand": "TaylorMade", "model_name": "Spider Tour Z", "source_note": "Confirmed from GolfWRX Shane Lowry WITB 2026 (March).", "is_featured_item": true }
   ],
   "sources": [
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/33204/shane-lowry/stats?deviceId=cfd0ec51-f96b-4bbf-881a-8abd3d88d08f", "source_title": "Shane Lowry PGA TOUR Stats", "checked_at": "2026-04-20T00:00:00.000Z", "notes": "PGA TOUR公式statsでClub Head Speed 114.49 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。" },
     { "source_type": "official", "source_url": "https://www.srixon.com/us/tour-team.html", "source_title": "Tour Team - Srixon", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official brand team page used for contract context." },
     { "source_type": "article", "source_url": "https://www.golfwrx.com/773954/shane-lowry-witb-2026-march/", "source_title": "Shane Lowry WITB 2026 (March) – GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for latest detailed 14-club breakdown." }
   ],
