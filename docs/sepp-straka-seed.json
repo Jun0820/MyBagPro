@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
+    "head_speed_mps": 50.5,
     "ball_name": "Srixon Z-Star Diamond",
     "feature_1": "2025シーズン基準",
     "feature_2": "Srixon中心",
@@ -192,6 +193,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/52372/sepp-straka/stats",
+      "source_title": "Sepp Straka | Stats | PGA TOUR",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 113.09 mphを確認。m/s換算で50.5。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/14687/",

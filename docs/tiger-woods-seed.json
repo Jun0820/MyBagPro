@@ -10,6 +10,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 52.3,
     "ball_name": "Bridgestone Tour B X",
     "feature_1": "メジャー15勝",
     "feature_2": "ゴルフ界のレジェンド",
@@ -41,6 +42,7 @@
     { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "Newport 2 GSS", "spec_label": "Prototype", "source_note": "GolfWRX WITB 2024 (May)より確認。", "is_featured_item": true }
   ],
   "sources": [
+    { "source_type": "official", "source_url": "https://www.pgatour.com/player/08793/tiger-woods/stats", "source_title": "Tiger Woods | Stats | PGA TOUR", "checked_at": "2026-04-20T00:00:00.000Z", "notes": "PGA TOUR公式statsでClub Head Speed 117.01 mphを確認。m/s換算で52.3。" },
     { "source_type": "official", "source_url": "https://www.taylormadegolf.com/tour-team/tiger-woods.html", "source_title": "Tiger Woods - TaylorMade Golf", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "契約情報と主要クラブ確認用。" },
     { "source_type": "article", "source_url": "https://www.golfwrx.com/739214/tiger-woods-witb-2024-may/", "source_title": "Tiger Woods WITB 2024 (May) - GolfWRX", "checked_at": "2026-04-18T00:00:00.000Z", "notes": "PGA Championship週の詳細セッティング確認用。" }
   ],

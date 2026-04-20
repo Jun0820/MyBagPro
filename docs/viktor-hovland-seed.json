@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 51.1,
     "ball_name": "Titleist Pro V1",
     "feature_1": "2026シーズン基準",
     "feature_2": "PING中心",
@@ -201,6 +202,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/46717/viktor-hovland/stats",
+      "source_title": "Viktor Hovland | Stats | PGA TOUR",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 114.30 mphを確認。m/s換算で51.1。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/18041/2026/1/",

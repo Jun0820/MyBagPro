@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2024,
+    "head_speed_mps": 51.9,
     "ball_name": "Prototype",
     "feature_1": "2024シーズン基準",
     "feature_2": "TaylorMade中心",
@@ -149,6 +150,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/34021/thorbjorn-olesen/stats",
+      "source_title": "Thorbjorn Olesen | Stats | PGA TOUR",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 116.15 mphを確認。m/s換算で51.9。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/8035/2024/1/",

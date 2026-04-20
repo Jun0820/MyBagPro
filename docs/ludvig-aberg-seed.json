@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
+    "head_speed_mps": 53.2,
     "ball_name": "Titleist Pro V1x 2025",
     "feature_1": "2025シーズン基準",
     "feature_2": "Titleist中心",
@@ -194,6 +195,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/60000/ludvig-aberg/stats",
+      "source_title": "Ludvig Aberg | Stats | PGA TOUR",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 118.93 mphを確認。m/s換算で53.2。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/18797/2025/1/",
