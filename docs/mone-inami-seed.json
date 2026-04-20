@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 41.0,
     "ball_name": "TOUR B X ボール＜2024年＞",
     "feature_1": "2025年ダイキン練習日",
     "feature_2": "15本構成",
@@ -213,6 +214,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://ladies-golf.jp/head-speed/",
+      "source_title": "女子プロゴルフ 飛距離とヘッドスピードランキング",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "女子ゴルフマガジンの2023年比較記事で稲見萌寧のヘッドスピード41 m/sと掲載。最新公式計測値ではなく比較記事ベース。"
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/16561/2025/1/",

@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 43.0,
     "ball_name": "Titleist Pro V1x",
     "feature_1": "2026シーズン基準",
     "feature_2": "2025シェブロン選手権優勝",
@@ -196,6 +197,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://ladies-golf.jp/head-speed/",
+      "source_title": "女子プロゴルフ 飛距離とヘッドスピードランキング",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "女子ゴルフマガジンの2023年比較記事で西郷真央のヘッドスピード43 m/sと掲載。最新公式計測値ではなく比較記事ベース。"
+    },
     {
       "source_type": "official",
       "source_url": "https://www.lpga.com/athletes/mao-saigo/101918/overview",
