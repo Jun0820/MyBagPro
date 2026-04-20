@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "launch10",
     "season_year": 2025,
+    "head_speed_mps": 51.5,
     "ball_name": "Srixon Z-STAR Diamond",
     "feature_1": "2025シーズン基準",
     "feature_2": "スリクソン中心",
@@ -189,6 +190,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/47056/rikuya-hoshino/stats",
+      "source_title": "PGA TOUR Rikuya Hoshino stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "Club Head Speed 115.23 mph confirmed on PGA TOUR stats page and converted to 51.5 m/s."
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/16365/",

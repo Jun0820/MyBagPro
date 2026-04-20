@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "launch10",
     "season_year": 2026,
+    "head_speed_mps": 51.4,
     "average_score": 69.12,
     "best_score": 61,
     "ball_name": "TaylorMade TP5x",
@@ -197,6 +198,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/51287/ryo-hisatsune/stats",
+      "source_title": "PGA TOUR Ryo Hisatsune stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "Club Head Speed 114.89 mph confirmed on PGA TOUR stats page and converted to 51.4 m/s."
+    },
     {
       "source_type": "official",
       "source_url": "https://www.pgatour.com/player/51287/ryo-hisatsune",

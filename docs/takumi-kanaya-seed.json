@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 49.8,
     "ball_name": "Bridgestone TOUR B X 2026",
     "feature_1": "2026シーズン基準",
     "feature_2": "PING中心",
@@ -188,6 +189,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/47917/takumi-kanaya/stats",
+      "source_title": "PGA TOUR Takumi Kanaya stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "Club Head Speed 111.39 mph confirmed on PGA TOUR stats page and converted to 49.8 m/s."
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/16803/2026/1/",

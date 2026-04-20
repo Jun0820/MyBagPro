@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "launch10",
     "season_year": 2026,
+    "head_speed_mps": 52.3,
     "ball_name": "TaylorMade TP5",
     "feature_1": "2026シーズン基準",
     "feature_2": "米ツアー対応セット",
@@ -196,6 +197,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/49228/keita-nakajima/stats",
+      "source_title": "PGA TOUR Keita Nakajima stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "Club Head Speed 116.95 mph confirmed on PGA TOUR stats page and converted to 52.3 m/s."
+    },
     {
       "source_type": "official",
       "source_url": "https://www.jgto.org/player/100452/profile",
