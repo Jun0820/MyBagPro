@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 41.0,
     "ball_name": "TOUR B XS",
     "feature_1": "2026シーズン基準",
     "feature_2": "ブリヂストン中心",
@@ -202,6 +203,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.alba.co.jp/articles/category/gear/post/column-161/",
+      "source_title": "飛ばしのヒミツはボディーターン! 古江彩佳のスウィングを徹底分析",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "ALBA article states her head speed is around 41 m/s."
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/17824/",
