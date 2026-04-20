@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 46.5,
     "ball_name": "Chrome Tour X",
     "feature_1": "2026シーズン基準",
     "feature_2": "キャロウェイ中心",
@@ -184,6 +185,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfdigest-minna.jp/_ct/17384857",
+      "source_title": "ヘッドスピードは男子プロ並みの46.5m/s！ 笹生優花のスウィングを分析",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "Golf Digest Minna article cites a measured driver head speed of 46.5 m/s."
+    },
     {
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/16822/",

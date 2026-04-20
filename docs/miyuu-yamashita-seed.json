@@ -9,6 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
+    "head_speed_mps": 41.0,
     "best_score": 67,
     "ball_name": "Srixon Z-STAR XV",
     "feature_1": "2026シーズン基準",
@@ -161,6 +162,13 @@
     }
   ],
   "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfdigest-minna.jp/_ct/17630272",
+      "source_title": "山下美夢有が7打差圧勝! ヘッドスピードが38から41m/sに!",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "Golf Digest Minna article reports her head speed increased to around 41 m/s."
+    },
     {
       "source_type": "official",
       "source_url": "https://sports.dunlop.co.jp/golf/tour/player/yamashita_miyuu/",
