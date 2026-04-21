@@ -2,7 +2,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { UserProfile } from '../types/golf';
 import { TargetCategory } from '../types/golf';
 import { generateAiPrompt, generateBallAiPrompt } from './aiPromptGenerator';
-import { validateBallDiagnosisPayload, validateClubDiagnosisPayload } from './diagnosisCandidates';
+import {
+    buildFallbackBallDiagnosis,
+    buildFallbackClubDiagnosis,
+    validateBallDiagnosisPayload,
+    validateClubDiagnosisPayload,
+} from './diagnosisCandidates';
 
 export interface DiagnosisResult {
     result: any;
@@ -17,10 +22,8 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
     console.log("Generating Production AI Diagnosis using Gemini API...");
     const genAI = new GoogleGenerativeAI(apiKey);
     
-    // Attempt with multiple model identifiers to be exhaustive.
-    // Models listed in preference order. 
-    // "gemini-1.5-flash" is the current standard name.
-    const modelNames = ["gemini-1.5-flash", "gemini-1.5-flash-latest", "gemini-2.0-flash"];
+    // Current production-oriented Gemini model candidates.
+    const modelNames = ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.0-flash"];
     let lastError: any = null;
 
     for (const modelName of modelNames) {
@@ -88,6 +91,19 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
         }
     }
 
-    console.error("Critical: All Gemini models failed.", lastError);
-    throw lastError || new Error("AI analysis failed with all attempted models.");
+    console.error("Critical: All Gemini models failed. Falling back to deterministic diagnosis.", lastError);
+
+    const isBall = profile.targetCategory === TargetCategory.BALL;
+    const fallbackResult = isBall ? buildFallbackBallDiagnosis() : buildFallbackClubDiagnosis(profile);
+
+    return {
+        result: {
+            category: profile.targetCategory,
+            type: isBall ? "BALL" : "CLUB",
+            ...fallbackResult,
+            aiPromptText: isBall ? generateBallAiPrompt(profile) : generateAiPrompt(profile),
+            usedFallback: true,
+        },
+        groundingMetadata: null,
+    };
 };

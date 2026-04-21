@@ -286,6 +286,111 @@ export const validateClubDiagnosisPayload = (profile: UserProfile, payload: Club
     };
 };
 
+const buildFallbackSwingType = (profile: UserProfile) => {
+    const headSpeed = Number(profile.headSpeed || 0);
+    const missText = (profile.missTendencies || []).join(' / ') || '方向性と再現性';
+
+    if (headSpeed >= 50) {
+        return {
+            type: 'ハイスピード・強弾道タイプ',
+            description: `ヘッドスピード ${headSpeed}m/s 前後の強いインパクトを活かしつつ、${missText}を整えるとスコアに直結しやすいタイプです。`,
+            keyNeeds: ['低スピンになりすぎない安定感', '左右ブレを抑える再現性', '振り切っても暴れにくい設計'],
+        };
+    }
+
+    if (headSpeed >= 42) {
+        return {
+            type: 'バランス重視タイプ',
+            description: `ヘッドスピード ${headSpeed}m/s 前後なら、飛距離とやさしさのバランスが合うと結果が安定しやすいタイプです。`,
+            keyNeeds: ['つかまりと直進性の両立', 'ミスへの寛容性', '高さを出しやすい設計'],
+        };
+    }
+
+    return {
+        type: 'やさしさ重視タイプ',
+        description: `ヘッドスピード ${headSpeed || '未回答'}m/s の条件では、無理にハードなモデルへ寄せるより、上がりやすさとやさしさを優先した方が再現性を作りやすいです。`,
+        keyNeeds: ['上がりやすさ', '芯を外したときのやさしさ', '軽快に振れる設計'],
+    };
+};
+
+const scoreModelForProfile = (profile: UserProfile, brand: string, modelName: string, index: number) => {
+    const headSpeed = Number(profile.headSpeed || 0);
+    const text = `${brand} ${modelName}`.toLowerCase();
+    let score = 82 - index * 3;
+
+    if (headSpeed >= 50) {
+        if (/(ls|triple diamond|td|tour|gt3|gt4|lst|zxi7|blueprint t|pro)/.test(text)) score += 9;
+        if (/(max fast|max-d|sft)/.test(text)) score -= 6;
+    } else if (headSpeed >= 42) {
+        if (/(max|x|gt2|t150|t200|i240|i540|zxi5|ai200|ai300)/.test(text)) score += 7;
+        if (/(triple diamond|ls|tour|gt4)/.test(text)) score -= 2;
+    } else {
+        if (/(max fast|max-d|sft|g440|qi|elyte x|t350|hot metal|242cb)/.test(text)) score += 10;
+        if (/(triple diamond|ls|tour|gt4|blueprint t|z forged)/.test(text)) score -= 8;
+    }
+
+    return Math.max(70, Math.min(97, score));
+};
+
+export const buildFallbackClubDiagnosis = (profile: UserProfile) => {
+    const { modelsByBrand } = buildModelLookup(profile);
+    const { shafts } = buildShaftLookup(profile);
+    const swingDna = buildFallbackSwingType(profile);
+
+    const candidates = Array.from(modelsByBrand.entries()).flatMap(([brand, models]) =>
+        models.map((modelName, index) => ({
+            brand,
+            modelName,
+            score: scoreModelForProfile(profile, brand, modelName, index),
+        })),
+    );
+
+    const rankings = candidates
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map((item, index) =>
+            buildSafeRankingCopy(
+                {
+                    rank: index + 1,
+                    brand: item.brand,
+                    modelName: item.modelName,
+                    matchPercentage: item.score,
+                    loft: profile.targetCategory === TargetCategory.DRIVER ? '10.5' : undefined,
+                    shafts: shafts.slice(0, 2),
+                },
+                index + 1,
+                swingDna.keyNeeds,
+            ),
+        );
+
+    if (rankings.length === 0) {
+        throw new Error('診断候補データを用意できませんでした。');
+    }
+
+    return {
+        aiResponseText: buildValidatedClubNarrative({
+            userSwingDna: swingDna,
+            currentGearAnalysis: {
+                matchPercentage: 74,
+                pros: '現在の入力条件から大きく外れた危険な組み合わせではありません。',
+                cons: 'AI応答が不安定だったため、候補リストベースの安全な提案へ切り替えています。',
+                typeDescription: swingDna.type,
+            },
+            rankings,
+            advice: 'まずは1位候補から比較し、打感や高さの好みを確認しながら絞るのがおすすめです。',
+        }),
+        userSwingDna: swingDna,
+        currentGearAnalysis: {
+            matchPercentage: 74,
+            pros: '現在の入力条件に対して大きなミスマッチは見えていません。',
+            cons: '一部条件が未入力、またはAI応答が不安定だったため、安全側の候補を優先しています。',
+            typeDescription: swingDna.type,
+        },
+        rankings,
+        advice: 'まずは1位候補を軸に比較し、必要ならボール診断やカテゴリ別診断で絞り込むと精度が上がります。',
+    };
+};
+
 const getAllowedBallModels = () => {
     const allowed = BALL_DB.filter((ball) => ball.releaseYear >= 2024);
     const lookup = new Map<string, { brand: string; modelName: string }>();
@@ -339,6 +444,40 @@ export const validateBallDiagnosisPayload = (payload: BallDiagnosisPayload) => {
             name: matchedRecommended.modelName,
         },
         alternatives,
+    };
+};
+
+export const buildFallbackBallDiagnosis = () => {
+    const { allowed } = getAllowedBallModels();
+    const recommended = allowed.find((ball) => ball.brand === 'Titleist' && ball.modelName === 'Pro V1') || allowed[0];
+    const alternatives = allowed
+        .filter((ball) => ball.modelName !== recommended.modelName)
+        .slice(0, 2)
+        .map((ball, index) => ({
+            type: index === 0 ? 'SOFT' : 'FIRM',
+            name: ball.modelName,
+            brand: ball.brand,
+            reason: 'AI応答が不安定だったため、現行ボール候補から安全な代替案として提示しています。',
+        }));
+
+    return {
+        recommendedBall: {
+            name: recommended.modelName,
+            brand: recommended.brand,
+            matchScore: 90,
+            catchphrase: 'まず比較の起点にしやすい現行ボール',
+            description: 'AI応答が不安定だったため、現行ラインナップから汎用性の高い候補を安全に提示しています。',
+            radarChart: {
+                飛距離: 8,
+                スピン: 8,
+                打感: 7,
+                直進性: 8,
+                コストパフォーマンス: 6,
+            },
+            expertOpinion: 'まずはこのボールを基準に、打感とスピン量の好みを確認する進め方が安全です。',
+        },
+        alternatives,
+        gearSynergyAdvice: 'まずは現在のクラブとのつながりが自然な現行ボールから比較するのがおすすめです。',
     };
 };
 
