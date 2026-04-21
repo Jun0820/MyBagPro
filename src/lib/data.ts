@@ -7,8 +7,8 @@ export { CLUB_DATABASE };
 export const SHAFT_MODELS = [
     // ドライバー用 - カスタムカーボン
     "Tour AD GC", "Tour AD VF", "Tour AD CQ", "Tour AD UB", "Tour AD DI", "Tour AD PT",
-    "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
-    "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green", "Speeder NX Black", "Speeder 661 Evolution VII", "Speeder Evolution VI",
+    "26 VENTUS TR Blue", "26 VENTUS TR Black", "26 VENTUS TR Red", "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
+    "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green", "Speeder NX Black", "Speeder NX FW", "Speeder NX HB", "Speeder 661 Evolution VII", "Speeder Evolution VI",
     "TENSEI 1K Black", "TENSEI 1K Blue", "TENSEI 1K White", "TENSEI 1K Red", "TENSEI 1K Pro Orange",
     "Diamana RB", "Diamana BB", "Diamana WB", "Diamana PD", "Diamana GT", "Diamana ZF",
     "The ATTAS V2", "The ATTAS V3", "ATTAS DAAAS", "ATTAS King",
@@ -30,7 +30,7 @@ export const SHAFT_MODELS = [
     "Retio X", "XP",
 
     // アイアン用 - スチール
-    "Dynamic Gold Tour Issue", "Dynamic Gold MID 100", "Dynamic Gold MID 115", "Dynamic Gold MID 130 Tour Issue",
+    "Dynamic Gold Tour Issue", "Dynamic Gold MID 90", "Dynamic Gold MID 100", "Dynamic Gold MID 115", "Dynamic Gold MID 130 Tour Issue",
     "Dynamic Gold", "Dynamic Gold 120", "Dynamic Gold 105", "Dynamic Gold 95",
     "Dynamic Gold S200", "Dynamic Gold X100",
     "N.S.PRO 950GH neo", "N.S.PRO 950GH", "N.S.PRO 850GH", "N.S.PRO 750GH",
@@ -43,7 +43,7 @@ export const SHAFT_MODELS = [
     // アイアン用 - カーボン
     "N.S.PRO Zelos 6", "N.S.PRO Zelos 7", "N.S.PRO Zelos 8",
     "ATTAS IRON", "Diamana Thump i",
-    "FUBUKI AX i", "FUBUKI AI II i", "MCI", "MCI BLACK", "MCI SILVER",
+    "FUBUKI AX i", "FUBUKI AI II i", "New MCI", "MCI", "MCI BLACK", "MCI SILVER", "TRAVIL IRON",
     "Air Speeder for Iron",
 
     // XXIO/純正
@@ -59,8 +59,8 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     DRIVER: [
         // カスタム
         "Tour AD GC", "Tour AD VF", "Tour AD CQ", "Tour AD UB", "Tour AD DI", "Tour AD PT",
-        "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
-        "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green", "Speeder NX Black", "Speeder 661 Evolution VII", "Speeder Evolution VI",
+        "26 VENTUS TR Blue", "26 VENTUS TR Black", "26 VENTUS TR Red", "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
+        "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green", "Speeder NX Black", "Speeder NX FW", "Speeder NX HB", "Speeder 661 Evolution VII", "Speeder Evolution VI",
         "TENSEI 1K Black", "TENSEI 1K Blue", "TENSEI 1K White", "TENSEI 1K Red", "TENSEI 1K Pro Orange",
         "Diamana RB", "Diamana BB", "Diamana WB", "Diamana PD", "Diamana GT", "Diamana ZF",
         "The ATTAS V2", "The ATTAS V3", "ATTAS DAAAS", "ATTAS King",
@@ -82,8 +82,8 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     FAIRWAY: [
         // カスタム
         "Tour AD GC", "Tour AD VF", "Tour AD CQ", "Tour AD UB",
-        "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
-        "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green",
+        "26 VENTUS TR Blue", "26 VENTUS TR Black", "26 VENTUS TR Red", "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
+        "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green", "Speeder NX FW",
         "TENSEI 1K Black", "TENSEI 1K Blue", "TENSEI 1K White", "TENSEI 1K Red",
         "Diamana RB", "Diamana BB", "Diamana WB", "Diamana PD",
         "Denali Black", "Denali Blue", "Denali Red",
@@ -98,7 +98,7 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     UTILITY: [
         // カスタム
         "Tour AD HY", "Tour AD DI-HY", "Tour AD VF Hybrid",
-        "Ventus HY", "Speeder HY", "MCI", "MCI BLACK",
+        "Ventus HY", "Speeder HY", "Speeder NX HB", "New MCI", "MCI", "MCI BLACK",
         "N.S.PRO Modus3 Hybrid", "N.S.PRO Modus3 Hybrid GOST",
         // 純正
         "FUBUKI AX f/w", "FUBUKI MV",
@@ -109,7 +109,7 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     ],
     IRON: [
         // スチール
-        "Dynamic Gold Tour Issue", "Dynamic Gold MID 100", "Dynamic Gold MID 115", "Dynamic Gold MID 130 Tour Issue",
+        "Dynamic Gold Tour Issue", "Dynamic Gold MID 90", "Dynamic Gold MID 100", "Dynamic Gold MID 115", "Dynamic Gold MID 130 Tour Issue",
         "Dynamic Gold", "Dynamic Gold 120", "Dynamic Gold 105", "Dynamic Gold 95",
         "Dynamic Gold S200", "Dynamic Gold X100",
         "N.S.PRO 950GH neo", "N.S.PRO 950GH", "N.S.PRO 850GH", "N.S.PRO 750GH",
@@ -120,7 +120,7 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
         // カーボン
         "N.S.PRO Zelos 6", "N.S.PRO Zelos 7", "N.S.PRO Zelos 8",
         "ATTAS IRON", "Diamana Thump i",
-        "FUBUKI AX i", "FUBUKI AI II i", "MCI", "MCI BLACK", "MCI SILVER",
+        "FUBUKI AX i", "FUBUKI AI II i", "New MCI", "MCI", "MCI BLACK", "MCI SILVER", "TRAVIL IRON",
         "Air Speeder for Iron",
         "MP1300", "MP1200", "MP1100",
         "純正カーボン"
