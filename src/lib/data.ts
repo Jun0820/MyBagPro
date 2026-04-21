@@ -6,12 +6,13 @@ export { CLUB_DATABASE };
 
 export const SHAFT_MODELS = [
     // ドライバー用 - カスタムカーボン
-    "Tour AD VF", "Tour AD CQ", "Tour AD UB", "Tour AD DI", "Tour AD GP",
-    "Ventus Black", "Ventus Blue", "Ventus Red", "Ventus TR Red", "Ventus TR Blue",
-    "Speeder NX Violet", "Speeder NX Green", "Speeder 661 Evolution VII", "Speeder Evolution V", "Speeder Evolution VI",
-    "Tensei 1K Pro Orange", "Tensei CK Pro White", "Tensei AV Raw Blue", "Tensei Pro Red 1K",
-    "Diamana BB", "Diamana WB", "Diamana PD", "Diamana TB", "Diamana GT", "Diamana ZF",
-    "The ATTAS V3", "ATTAS DAAAS", "ATTAS 11", "ATTAS King",
+    "Tour AD GC", "Tour AD VF", "Tour AD CQ", "Tour AD UB", "Tour AD DI", "Tour AD PT",
+    "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
+    "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green", "Speeder NX Black", "Speeder 661 Evolution VII", "Speeder Evolution VI",
+    "TENSEI 1K Black", "TENSEI 1K Blue", "TENSEI 1K White", "TENSEI 1K Red", "TENSEI 1K Pro Orange",
+    "Diamana RB", "Diamana BB", "Diamana WB", "Diamana PD", "Diamana GT", "Diamana ZF",
+    "The ATTAS V2", "The ATTAS V3", "ATTAS DAAAS", "ATTAS King",
+    "Denali Black", "Denali Blue", "Denali Red", "Denali Frost Blue CB",
     "KUROKAGE Black", "KUROKAGE XD",
     "Fujikura VENTUS TR", "Fujikura Speeder NX",
 
@@ -29,11 +30,12 @@ export const SHAFT_MODELS = [
     "Retio X", "XP",
 
     // アイアン用 - スチール
+    "Dynamic Gold Tour Issue", "Dynamic Gold MID 100", "Dynamic Gold MID 115", "Dynamic Gold MID 130 Tour Issue",
     "Dynamic Gold", "Dynamic Gold 120", "Dynamic Gold 105", "Dynamic Gold 95",
     "Dynamic Gold S200", "Dynamic Gold X100",
     "N.S.PRO 950GH neo", "N.S.PRO 950GH", "N.S.PRO 850GH", "N.S.PRO 750GH",
-    "N.S.PRO Modus3 Tour 105", "N.S.PRO Modus3 Tour 120", "N.S.PRO Modus3 Tour 130",
-    "N.S.PRO Modus3 System3 Tour 125",
+    "N.S.PRO Modus3 Tour 105", "N.S.PRO Modus3 Tour 115", "N.S.PRO Modus3 Tour 120", "N.S.PRO Modus3 Tour 125", "N.S.PRO Modus3 Tour 130",
+    "N.S.PRO Modus3 System3 Tour 125", "N.S.PRO Modus3 Hybrid GOST",
     "Project X LZ", "Project X 6.0", "Project X 5.5", "Project X IO",
     "True Temper AMT", "True Temper XP 95", "True Temper XP 105",
     "KBS Tour", "KBS Tour 90", "KBS Tour V", "KBS C-Taper", "KBS $ Taper",
@@ -41,7 +43,7 @@ export const SHAFT_MODELS = [
     // アイアン用 - カーボン
     "N.S.PRO Zelos 6", "N.S.PRO Zelos 7", "N.S.PRO Zelos 8",
     "ATTAS IRON", "Diamana Thump i",
-    "FUBUKI AX i", "FUBUKI AI II i",
+    "FUBUKI AX i", "FUBUKI AI II i", "MCI", "MCI BLACK", "MCI SILVER",
     "Air Speeder for Iron",
 
     // XXIO/純正
@@ -56,12 +58,13 @@ export const SHAFT_MODELS = [
 export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     DRIVER: [
         // カスタム
-        "Tour AD VF", "Tour AD CQ", "Tour AD UB", "Tour AD DI", "Tour AD GP",
-        "Ventus Black", "Ventus Blue", "Ventus Red", "Ventus TR Red", "Ventus TR Blue",
-        "Speeder NX Violet", "Speeder NX Green", "Speeder 661 Evolution VII", "Speeder Evolution V", "Speeder Evolution VI",
-        "Tensei 1K Pro Orange", "Tensei CK Pro White", "Tensei AV Raw Blue", "Tensei Pro Red 1K",
-        "Diamana BB", "Diamana WB", "Diamana PD", "Diamana TB", "Diamana GT", "Diamana ZF",
-        "The ATTAS V3", "ATTAS DAAAS", "ATTAS 11", "ATTAS King",
+        "Tour AD GC", "Tour AD VF", "Tour AD CQ", "Tour AD UB", "Tour AD DI", "Tour AD PT",
+        "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
+        "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green", "Speeder NX Black", "Speeder 661 Evolution VII", "Speeder Evolution VI",
+        "TENSEI 1K Black", "TENSEI 1K Blue", "TENSEI 1K White", "TENSEI 1K Red", "TENSEI 1K Pro Orange",
+        "Diamana RB", "Diamana BB", "Diamana WB", "Diamana PD", "Diamana GT", "Diamana ZF",
+        "The ATTAS V2", "The ATTAS V3", "ATTAS DAAAS", "ATTAS King",
+        "Denali Black", "Denali Blue", "Denali Red", "Denali Frost Blue CB",
         "KUROKAGE Black", "KUROKAGE XD",
         // 純正
         "FUBUKI AX f/w", "FUBUKI MV", "FUBUKI AI III", "FUBUKI V-SERIES", "FUBUKI DC", "FUBUKI TM-5",
@@ -78,10 +81,12 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     ],
     FAIRWAY: [
         // カスタム
-        "Tour AD VF", "Tour AD CQ", "Tour AD UB",
-        "Ventus Black", "Ventus Blue", "Ventus Red",
-        "Speeder NX Violet", "Speeder NX Green", "Speeder Evolution V",
-        "Diamana PD", "Diamana TB", "Diamana ZF",
+        "Tour AD GC", "Tour AD VF", "Tour AD CQ", "Tour AD UB",
+        "24 VENTUS Blue", "24 VENTUS Black", "24 VENTUS Red", "VENTUS TR Black", "VENTUS TR Blue", "VENTUS TR Red",
+        "Speeder BOOST", "Speeder NX Violet", "Speeder NX Gold", "Speeder NX Green",
+        "TENSEI 1K Black", "TENSEI 1K Blue", "TENSEI 1K White", "TENSEI 1K Red",
+        "Diamana RB", "Diamana BB", "Diamana WB", "Diamana PD",
+        "Denali Black", "Denali Blue", "Denali Red",
         // 純正
         "FUBUKI AX f/w", "FUBUKI MV", "FUBUKI AI III",
         "ALTA J CB BLACK", "ALTA J CB SLATE",
@@ -92,9 +97,9 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     ],
     UTILITY: [
         // カスタム
-        "Tour AD HY", "Tour AD DI-HY",
-        "Ventus HY", "Speeder HY",
-        "N.S.PRO Modus3 Hybrid",
+        "Tour AD HY", "Tour AD DI-HY", "Tour AD VF Hybrid",
+        "Ventus HY", "Speeder HY", "MCI", "MCI BLACK",
+        "N.S.PRO Modus3 Hybrid", "N.S.PRO Modus3 Hybrid GOST",
         // 純正
         "FUBUKI AX f/w", "FUBUKI MV",
         "ALTA J CB",
@@ -104,17 +109,18 @@ export const SHAFT_MODELS_BY_CATEGORY: Record<string, string[]> = {
     ],
     IRON: [
         // スチール
+        "Dynamic Gold Tour Issue", "Dynamic Gold MID 100", "Dynamic Gold MID 115", "Dynamic Gold MID 130 Tour Issue",
         "Dynamic Gold", "Dynamic Gold 120", "Dynamic Gold 105", "Dynamic Gold 95",
         "Dynamic Gold S200", "Dynamic Gold X100",
         "N.S.PRO 950GH neo", "N.S.PRO 950GH", "N.S.PRO 850GH", "N.S.PRO 750GH",
-        "N.S.PRO Modus3 Tour 105", "N.S.PRO Modus3 Tour 120", "N.S.PRO Modus3 Tour 130",
-        "N.S.PRO Modus3 System3 Tour 125",
+        "N.S.PRO Modus3 Tour 105", "N.S.PRO Modus3 Tour 115", "N.S.PRO Modus3 Tour 120", "N.S.PRO Modus3 Tour 125", "N.S.PRO Modus3 Tour 130",
+        "N.S.PRO Modus3 System3 Tour 125", "N.S.PRO Modus3 Hybrid GOST",
         "Project X LZ", "Project X 6.0", "Project X IO",
         "KBS Tour", "KBS Tour 90", "KBS C-Taper", "KBS $ Taper",
         // カーボン
         "N.S.PRO Zelos 6", "N.S.PRO Zelos 7", "N.S.PRO Zelos 8",
         "ATTAS IRON", "Diamana Thump i",
-        "FUBUKI AX i", "FUBUKI AI II i",
+        "FUBUKI AX i", "FUBUKI AI II i", "MCI", "MCI BLACK", "MCI SILVER",
         "Air Speeder for Iron",
         "MP1300", "MP1200", "MP1100",
         "純正カーボン"
