@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import {
-    type UserAccount, type UserProfile,
+    type UserAccount, type UserProfile, type DiagnosisHistoryItem,
     INITIAL_ACCOUNT, INITIAL_PROFILE
 } from '../types/golf';
 import { generateFittingDiagnosis, type DiagnosisResult } from '../lib/gemini';
@@ -24,6 +24,7 @@ interface DiagnosisContextType {
     resultData: DiagnosisResult | null;
     runDiagnosis: () => Promise<boolean>;
     resetDiagnosis: () => void;
+    restoreDiagnosisResult: (historyItem: DiagnosisHistoryItem) => void;
 
     // UI State
     showAuth: boolean;
@@ -410,6 +411,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         setProfile(prev => ({ ...prev, shotData: undefined, ballPreferences: undefined }));
     };
 
+    const restoreDiagnosisResult = (historyItem: DiagnosisHistoryItem) => {
+        setDiagnosisError(null);
+        setStep(1);
+        setProfile(historyItem.profile);
+        const restoredResult = { result: historyItem.result } as DiagnosisResult;
+        setResultData(restoredResult);
+        localStorage.setItem('mybagpro_result_data', JSON.stringify(restoredResult));
+        localStorage.setItem('mybagpro_profile', JSON.stringify(historyItem.profile));
+    };
+
     return (
         <DiagnosisContext.Provider value={{
             user, setUser,
@@ -420,6 +431,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             resultData,
             runDiagnosis,
             resetDiagnosis,
+            restoreDiagnosisResult,
             showAuth, setShowAuth,
             showMyPage, setShowMyPage,
             saveStatus,

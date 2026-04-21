@@ -3,11 +3,25 @@ import { useDiagnosis } from '../context/DiagnosisContext';
 import { MyBagView } from '../features/gear/MyBagView';
 import { MyBagManager } from '../features/gear/MyBagManager';
 import { ProfileManager } from '../features/gear/ProfileManager';
-import { ArrowLeft, Edit3, User, Eye, Loader2, CheckCircle2 } from 'lucide-react';
+import {
+    ArrowLeft,
+    Edit3,
+    User,
+    Eye,
+    Loader2,
+    CheckCircle2,
+    Brain,
+    CircleGauge,
+    Sparkles,
+    ArrowRight,
+    LogIn,
+    History,
+    Trophy,
+} from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { TargetCategory } from '../types/golf';
+import { TargetCategory, type DiagnosisHistoryItem } from '../types/golf';
 
 const categoryToDiagnosisPath = (category?: string | null) => {
     switch (category) {
@@ -31,54 +45,128 @@ const categoryToDiagnosisPath = (category?: string | null) => {
 };
 
 export const MyGearPage = () => {
-    const { profile, updateProfile, user, saveStatus, setStep, manualSave } = useDiagnosis();
+    const {
+        profile,
+        updateProfile,
+        user,
+        saveStatus,
+        setStep,
+        manualSave,
+        setShowAuth,
+        restoreDiagnosisResult,
+    } = useDiagnosis();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<'view' | 'clubs' | 'profile'>('view');
+
+    const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
+    const essentialCategories = [
+        TargetCategory.DRIVER,
+        TargetCategory.IRON,
+        TargetCategory.WEDGE,
+        TargetCategory.PUTTER,
+    ];
+    const completedEssentials = essentialCategories.filter((category) => registeredCategories.has(category)).length;
+    const completionPoints = [
+        completedEssentials > 0 ? 1 : 0,
+        profile.myBag.ball ? 1 : 0,
+        profile.headSpeed > 0 ? 1 : 0,
+        profile.averageScore ? 1 : 0,
+        profile.myBag.clubs.length >= 8 ? 1 : 0,
+    ].reduce((sum, current) => sum + current, 0);
+    const completionPercent = Math.round((completionPoints / 5) * 100);
+    const recentHistory = (user.history || []).slice(0, 3);
+
+    const analysisPoints = [
+        profile.myBag.ball
+            ? `使用ボールは「${profile.myBag.ball}」です。ボール診断までつなげると、今のHSに対する相性が見えます。`
+            : '使用ボールが未登録です。ボールを入れると自動分析と診断の精度が上がります。',
+        profile.myBag.clubs.length >= 10
+            ? `クラブは ${profile.myBag.clubs.length} 本登録済みです。セッティング全体を見た提案がしやすい状態です。`
+            : `クラブ登録は ${profile.myBag.clubs.length} 本です。まずはドライバー・アイアン・パターが入ると分析しやすくなります。`,
+        profile.headSpeed >= 48
+            ? 'ヘッドスピードは高めです。低スピンに寄りすぎない組み合わせの確認が効きます。'
+            : profile.headSpeed >= 42
+            ? 'ヘッドスピードは標準帯です。やさしさとつかまりのバランス確認が効きます。'
+            : 'ヘッドスピードはやや低めです。球の上がりやすさとボール選びの最適化が効きます。',
+    ];
+
+    const nextActions = [
+        !registeredCategories.has(TargetCategory.DRIVER)
+            ? {
+                label: 'ドライバーを登録する',
+                description: 'まずは1本入れて診断精度を上げる',
+                onClick: () => setActiveTab('clubs'),
+            }
+            : !profile.myBag.ball
+            ? {
+                label: 'ボールを登録する',
+                description: '今のボールを入れて分析を完成させる',
+                onClick: () => setActiveTab('clubs'),
+            }
+            : {
+                label: 'ボール診断をする',
+                description: '今のHSとバッグから相性を見る',
+                onClick: () => navigate('/ball-diagnosis'),
+            },
+        {
+            label: '比較ページを見る',
+            description: '今のバッグとプロの差を並べて確認する',
+            onClick: () => navigate('/compare'),
+        },
+        {
+            label: 'プロのセッティングを探す',
+            description: '近い条件のプロを参考にする',
+            onClick: () => navigate('/settings/pros'),
+        },
+    ];
 
     const handleClose = () => {
         navigate('/');
     };
 
+    const openSavedDiagnosis = (item: DiagnosisHistoryItem) => {
+        restoreDiagnosisResult(item);
+        navigate('/result');
+    };
 
     return (
         <div className="min-h-screen bg-slate-50">
-            {/* Sticky Header with Navigation */}
-            <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200">
-                <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-                    <button 
+            <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
+                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+                    <button
                         onClick={handleClose}
-                        className="flex items-center gap-2 text-slate-500 hover:text-trust-navy font-bold text-xs transition-colors"
+                        className="flex items-center gap-2 text-xs font-bold text-slate-500 transition-colors hover:text-trust-navy"
                     >
                         <ArrowLeft size={16} />
                         HOME
                     </button>
 
-                    <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200 shadow-inner">
-                        <button 
+                    <div className="flex rounded-2xl border border-slate-200 bg-slate-100 p-1 shadow-inner">
+                        <button
                             onClick={() => setActiveTab('view')}
                             className={cn(
-                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all",
-                                activeTab === 'view' ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
+                                'flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-black transition-all',
+                                activeTab === 'view' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
                             )}
                         >
                             <Eye size={14} />
-                            VIEW
+                            HOME
                         </button>
-                        <button 
+                        <button
                             onClick={() => setActiveTab('clubs')}
                             className={cn(
-                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all",
-                                activeTab === 'clubs' ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
+                                'flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-black transition-all',
+                                activeTab === 'clubs' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
                             )}
                         >
                             <Edit3 size={14} />
-                            CLUBS
+                            BAG
                         </button>
-                        <button 
+                        <button
                             onClick={() => setActiveTab('profile')}
                             className={cn(
-                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all",
-                                activeTab === 'profile' ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
+                                'flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-black transition-all',
+                                activeTab === 'profile' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
                             )}
                         >
                             <User size={14} />
@@ -87,53 +175,215 @@ export const MyGearPage = () => {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <div className="hidden md:flex items-center gap-2">
-                             {saveStatus === 'saving' ? (
-                                <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 animate-pulse">
+                        <div className="hidden items-center gap-2 md:flex">
+                            {saveStatus === 'saving' ? (
+                                <div className="flex animate-pulse items-center gap-1.5 text-[10px] font-bold text-slate-400">
                                     <Loader2 size={12} className="animate-spin" /> 同期中...
                                 </div>
-                             ) : saveStatus === 'saved' ? (
+                            ) : saveStatus === 'saved' ? (
                                 <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-500">
                                     <CheckCircle2 size={12} /> 同期完了
                                 </div>
-                             ) : null}
+                            ) : null}
                         </div>
                     </div>
                 </div>
             </div>
 
-            <main className="max-w-7xl mx-auto px-4 pt-8">
+            <main className="mx-auto max-w-7xl px-4 pt-8">
                 {activeTab === 'view' && (
-                    <MyBagView 
-                        setting={profile.myBag}
-                        headSpeed={profile.headSpeed}
-                        userName={profile.name}
-                        snsLinks={profile.snsLinks || {}}
-                        coverPhoto={profile.coverPhoto}
-                        isPublic={profile.isPublic}
-                        onUpdateIsPublic={(v: boolean) => updateProfile('isPublic', v)}
-                        userId={user.id}
-                        bestScore={profile.bestScore}
-                        averageScore={profile.averageScore}
-                    />
+                    <div className="space-y-6 pb-12">
+                        <section className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+                            <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
+                                <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                                    <div className="space-y-3">
+                                        <div className="inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
+                                            <Sparkles size={12} />
+                                            My Golf Home
+                                        </div>
+                                        <div>
+                                            <h1 className="text-3xl font-black tracking-tight text-trust-navy md:text-4xl">
+                                                {profile.name || 'あなた'}の現在地
+                                            </h1>
+                                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
+                                                セッティング登録を起点に、自動分析、診断、比較、購入までつなげるためのホームです。
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {!user.isLoggedIn && (
+                                        <button
+                                            onClick={() => setShowAuth(true)}
+                                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-trust-navy px-5 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                                        >
+                                            <LogIn size={16} />
+                                            保存して続きから使う
+                                        </button>
+                                    )}
+                                </div>
+
+                                <div className="mt-6 grid gap-4 md:grid-cols-4">
+                                    <div className="rounded-2xl bg-slate-50 p-4">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Head Speed</div>
+                                        <div className="mt-2 text-2xl font-black text-trust-navy">
+                                            {profile.headSpeed}
+                                            <span className="ml-1 text-xs text-slate-400">m/s</span>
+                                        </div>
+                                    </div>
+                                    <div className="rounded-2xl bg-slate-50 p-4">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Average</div>
+                                        <div className="mt-2 text-2xl font-black text-trust-navy">{profile.averageScore || '—'}</div>
+                                    </div>
+                                    <div className="rounded-2xl bg-slate-50 p-4">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Ball</div>
+                                        <div className="mt-2 line-clamp-2 text-sm font-black text-trust-navy">{profile.myBag.ball || '未登録'}</div>
+                                    </div>
+                                    <div className="rounded-2xl bg-slate-50 p-4">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Bag 完成度</div>
+                                        <div className="mt-2 text-2xl font-black text-golf-700">
+                                            {completionPercent}
+                                            <span className="ml-1 text-xs text-slate-400">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-5">
+                                    <div className="mb-2 flex items-center justify-between text-[11px] font-bold text-slate-400">
+                                        <span>登録状況</span>
+                                        <span>{completionPercent}%</span>
+                                    </div>
+                                    <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+                                        <div
+                                            className="h-full rounded-full bg-gradient-to-r from-golf-500 to-emerald-500 transition-all"
+                                            style={{ width: `${completionPercent}%` }}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="mt-6 grid gap-3 md:grid-cols-3">
+                                    <button
+                                        onClick={() => setActiveTab('clubs')}
+                                        className="rounded-2xl bg-golf-600 px-5 py-4 text-left text-white transition-colors hover:bg-golf-700"
+                                    >
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">Next</div>
+                                        <div className="mt-1 text-base font-black">不足クラブを登録する</div>
+                                    </button>
+                                    <button
+                                        onClick={() => navigate('/ball-diagnosis')}
+                                        className="rounded-2xl bg-trust-navy px-5 py-4 text-left text-white transition-colors hover:bg-slate-800"
+                                    >
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">Diagnosis</div>
+                                        <div className="mt-1 text-base font-black">ボール診断をする</div>
+                                    </button>
+                                    <button
+                                        onClick={() => (recentHistory[0] ? openSavedDiagnosis(recentHistory[0]) : navigate('/diagnosis'))}
+                                        className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-100"
+                                    >
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Saved</div>
+                                        <div className="mt-1 text-base font-black">
+                                            {recentHistory[0] ? '保存した診断を見る' : '無料診断を始める'}
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
+                                    <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
+                                        <Brain size={14} />
+                                        自動分析
+                                    </div>
+                                    <div className="mt-4 space-y-3">
+                                        {analysisPoints.map((point) => (
+                                            <div key={point} className="rounded-2xl bg-slate-50 p-4 text-sm font-medium leading-relaxed text-slate-600">
+                                                {point}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
+                                    <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
+                                        <CircleGauge size={14} />
+                                        次にやること
+                                    </div>
+                                    <div className="mt-4 space-y-3">
+                                        {nextActions.map((action) => (
+                                            <button
+                                                key={action.label}
+                                                onClick={action.onClick}
+                                                className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-colors hover:bg-slate-100"
+                                            >
+                                                <div>
+                                                    <div className="text-sm font-black text-trust-navy">{action.label}</div>
+                                                    <div className="mt-1 text-xs text-slate-500">{action.description}</div>
+                                                </div>
+                                                <ArrowRight size={16} className="text-slate-400" />
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {recentHistory.length > 0 && (
+                            <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
+                                <div className="mb-4 flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
+                                    <History size={14} />
+                                    保存した診断結果
+                                </div>
+                                <div className="grid gap-4 md:grid-cols-3">
+                                    {recentHistory.map((item) => (
+                                        <button
+                                            key={item.id}
+                                            onClick={() => openSavedDiagnosis(item)}
+                                            className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-colors hover:bg-slate-100"
+                                        >
+                                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                {item.category}
+                                            </div>
+                                            <div className="mt-2 line-clamp-2 text-base font-black text-trust-navy">
+                                                {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '診断結果'}
+                                            </div>
+                                            <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
+                                                <Trophy size={12} />
+                                                {new Date(item.date).toLocaleDateString('ja-JP')}
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        <MyBagView
+                            setting={profile.myBag}
+                            headSpeed={profile.headSpeed}
+                            userName={profile.name}
+                            snsLinks={profile.snsLinks || {}}
+                            coverPhoto={profile.coverPhoto}
+                            isPublic={profile.isPublic}
+                            onUpdateIsPublic={(v: boolean) => updateProfile('isPublic', v)}
+                            userId={user.id}
+                            bestScore={profile.bestScore}
+                            averageScore={profile.averageScore}
+                        />
+                    </div>
                 )}
 
                 {activeTab === 'clubs' && (
-                    <MyBagManager 
+                    <MyBagManager
                         setting={profile.myBag}
                         onUpdate={(b: any) => updateProfile('myBag', b)}
                         onDiagnose={(club) => {
-                            // ピンポイント診断の準備
                             updateProfile('targetCategory', club.category);
                             updateProfile('currentBrand', club.brand);
                             updateProfile('currentModel', club.model);
                             updateProfile('currentShaftModel', club.shaft);
                             updateProfile('currentLoft', club.loft);
                             updateProfile('freeComments', club.worry || '');
-                            
-                            // 基本プロフィールが入力済みなら、カテゴリー選択をスキップして詳細質問へ
+
                             if (profile.headSpeed > 0 && profile.gender) {
-                                setStep(2); // カテゴリー選択済みの状態から開始
+                                setStep(2);
                             } else {
                                 setStep(1);
                             }
@@ -146,7 +396,7 @@ export const MyGearPage = () => {
                 )}
 
                 {activeTab === 'profile' && (
-                    <ProfileManager 
+                    <ProfileManager
                         userName={profile.name}
                         onUpdateUserName={(n: string) => updateProfile('name', n)}
                         snsLinks={profile.snsLinks || {}}
@@ -174,7 +424,7 @@ export const MyGearPage = () => {
                         onLogout={async () => {
                             if (window.confirm('ログアウトしますか？')) {
                                 await supabase.auth.signOut();
-                                window.location.href = '#/'; // Back to Home
+                                window.location.href = '#/';
                             }
                         }}
                     />
