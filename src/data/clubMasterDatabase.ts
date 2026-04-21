@@ -2,7 +2,9 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
     // === 海外メジャーブランド ===
     "TaylorMade": {
         "DRIVER": [
-            "Qi10 MAX 2", "Qi10 Successor", "Qi10 MAX", "Qi10", "Qi10 LS",
+            "Qi4D", "Qi4D LS", "Qi4D MAX", "Qi4D MAX LITE",
+            "Qi35", "Qi35 LS", "Qi35 MAX", "Qi35 MAX LITE",
+            "Qi10 MAX", "Qi10", "Qi10 LS",
             "Stealth 2", "Stealth 2 Plus", "Stealth 2 HD", "Stealth Gloire",
             "Stealth", "Stealth Plus", "Stealth HD",
             "SIM2 MAX", "SIM2", "SIM2 MAX-D", "SIM MAX", "SIM", "SIM MAX-D", "SIM Gloire",
@@ -11,12 +13,15 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
             "R15", "SLDR", "RBZ Stage 2", "RBZ (RocketBallz)", "R11S", "R11", "R9"
         ],
         "FAIRWAY": [
+            "Qi4D FW", "Qi4D MAX FW", "Qi4D TOUR FW",
+            "Qi35 FW", "Qi35 MAX FW", "Qi35 Tour FW",
             "Qi10 FW", "Qi10 MAX FW", "Qi10 Tour FW", "Stealth 2 FW", "Stealth 2 Plus FW", "Stealth 2 HD FW", "Stealth Gloire FW",
             "Stealth FW", "Stealth Plus FW", "SIM2 MAX FW", "SIM2 Ti FW", "SIM MAX FW", "SIM FW",
             "M6 FW", "M5 FW", "M4 FW", "M3 FW", "M2 FW", "M1 FW", "RBZ FW", "V-Steel"
         ],
         "UTILITY": [
-            "Qi10 Rescue", "Qi10 MAX Rescue", "Qi10 Tour Rescue", "Stealth 2 Rescue", "Stealth 2 Plus Rescue",
+            "Qi4D Rescue",
+            "Qi35 Rescue", "Qi35 MAX Rescue", "Qi10 Rescue", "Qi10 MAX Rescue", "Qi10 Tour Rescue", "Stealth 2 Rescue", "Stealth 2 Plus Rescue",
             "Stealth Rescue", "Stealth Plus Rescue", "SIM2 MAX Rescue", "SIM MAX Rescue", 
             "M6 Rescue", "M4 Rescue", "M2 Rescue", "RBZ Rescue", "Rescue Mid", "GAPR MID", "GAPR LO", "GAPR HI"
         ],
@@ -38,7 +43,8 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
     },
     "Callaway": {
         "DRIVER": [
-            "Paradym Ai Smoke 2", "Paradym Ai Smoke MAX", "Paradym Ai Smoke Triple Diamond", "Paradym Ai Smoke MAX D", "Paradym Ai Smoke MAX Fast",
+            "ELYTE Driver", "ELYTE X Driver", "ELYTE MAX FAST Driver", "ELYTE Triple Diamond Driver", "ELYTE Triple Diamond TD Driver", "ELYTE MINI Driver",
+            "Paradym Ai Smoke MAX", "Paradym Ai Smoke Triple Diamond", "Paradym Ai Smoke MAX D", "Paradym Ai Smoke MAX Fast",
             "Paradym", "Paradym X", "Paradym Triple Diamond", "Paradym MAX Fast",
             "Rogue ST MAX", "Rogue ST MAX LS", "Rogue ST MAX D", "Rogue ST MAX Fast",
             "Epic Speed", "Epic MAX", "Epic MAX LS", "Epic MAX Fast",
@@ -48,14 +54,17 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
             "GBB Epic Star", "GBB Epic Sub Zero", "XR 16", "XR", "Big Bertha Alpha 816", "X2 Hot", "Legacy"
         ],
         "FAIRWAY": [
+            "ELYTE FW", "ELYTE X FW", "ELYTE MAX FAST FW", "ELYTE TITANIUM FW", "ELYTE Triple Diamond FW", "ELYTE Tour FW",
             "Paradym Ai Smoke FW", "Paradym Ai Smoke MAX FW", "Paradym Ai Smoke TD FW",
             "Paradym FW", "Paradym X FW", "Rogue ST MAX FW", "Epic Speed FW", "Mavrik FW", "Epic Flash FW", "Rogue Star FW", "Steelhead XR", "X2 Hot"
         ],
         "UTILITY": [
+            "ELYTE Utility", "ELYTE X Utility", "ELYTE MAX FAST Utility",
             "Paradym Ai Smoke Hybrid", "Paradym Hybrid", "Rogue ST MAX Hybrid", "Epic MAX Fast Utility",
             "Mavrik Hybrid", "Apex Hybrid", "Apex Pro Hybrid", "Epic Flash Star Utility", "X Forged UT"
         ],
         "IRON": [
+            "ELYTE Iron", "ELYTE X Iron",
             "Apex Pro (2024)", "Apex CB (2024)", "Apex MB (2024)", "Apex Ai200", "Apex Ai300",
             "Paradym Ai Smoke", "Paradym", "Apex (2021)", "Apex DCB", "Apex TCB", "Apex MB",
             "Rogue ST Pro", "Rogue ST MAX", "Epic Forged Star", "X Forged Star", "X Forged", "Legacy Black"
@@ -73,29 +82,32 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
     },
     "Ping": {
         "DRIVER": [
-            "G440 MAX", "G430 MAX 10K", "G430 MAX", "G430 LST", "G430 SFT", "G430 HL",
+            "G440 MAX", "G440 SFT", "G440 LST", "G440 K", "G440 HL", "G440 K HL",
+            "G430 MAX 10K", "G430 MAX", "G430 LST", "G430 SFT", "G430 HL",
             "G425 MAX", "G425 LST", "G425 SFT",
             "G410 Plus", "G410 LST", "G410 SFT",
             "G400 MAX", "G400 LST", "G400 SFT", "G400",
             "G", "G30", "G25", "G20", "i20", "K15"
         ],
         "FAIRWAY": [
+            "G440 MAX FW", "G440 SFT FW", "G440 LST FW", "G440 HL FW",
             "G430 MAX FW", "G430 SFT FW", "G430 LST FW",
             "G425 MAX FW", "G425 LST FW", "G410 FW", "G400 FW", "G30 FW"
         ],
         "UTILITY": [
+            "G440 Hybrid", "G440 HL Hybrid",
             "G430 Hybrid", "G425 Hybrid", "G410 Hybrid", "G400 Hybrid", 
             "G430 Crossover", "iCrossover", "G425 Crossover", "G410 Crossover"
         ],
         "IRON": [
-            "Blueprint S", "Blueprint T", "i530", "G730", "i230", "G430", 
+            "G440", "Blueprint S", "Blueprint T", "i540", "i530", "G730", "i240", "i230", "G430", 
             "i525", "G425", "i210", "i500", "Blueprint", "G410", "G710", "iBlade", "G700", "i200"
         ],
         "WEDGE": [
-            "s159", "Glide 4.0", "Glide 3.0", "Glide Forged Pro", "Glide Forged", "Glide 2.0"
+            "s259", "s159", "Glide 4.0", "Glide 3.0", "Glide Forged Pro", "Glide Forged", "Glide 2.0"
         ],
         "PUTTER": [
-            "PLD Milled Anser", "PLD Milled DS72", "PLD Milled Prime Tyne", 
+            "SCOTTSDALE TEC", "SCOTTSDALE", "PLD Milled Anser", "PLD Milled DS72", "PLD Milled Prime Tyne", 
             "2023 Anser", "2023 DS72", "2023 Tyne G", "Heppler", "Sigma 2", "Vault 2.0", "Sigma G", "Cadence TR"
         ]
     },
@@ -149,7 +161,7 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
         "DRIVER": ["ST-MAX 230", "ST-Z 230", "ST-X 230", "ST-Z 220", "ST-X 220", "ST-G 220", "ST200", "ST200X", "Mizuno Pro Model-E", "Mizuno Pro Model-S", "MP Type-1", "MP Type-2"],
         "FAIRWAY": ["ST-Z 230 FW", "ST-X 230 FW", "ST-Z 220 FW", "ST-X 220 FW"],
         "UTILITY": ["ST-Z 230 Hybrid", "ST-X 230 Hybrid", "CLK Hybrid", "Fly-Hi", "MP FLI-HI"],
-        "IRON": ["Mizuno Pro 241", "Mizuno Pro 243", "Mizuno Pro 245", "Mizuno Pro 225", "Mizuno Pro 223", "Mizuno Pro 221", "JPX 923 Tour", "JPX 923 Forged", "JPX 923 Hot Metal", "JPX 921", "MP-20", "MP-18", "MP-66", "MP-55", "MP-5"],
+        "IRON": ["JPX 925 Forged", "JPX 925 Hot Metal", "JPX 925 Hot Metal Pro", "JPX 925 Hot Metal HL", "JPX FLI-HI", "Mizuno Pro 241", "Mizuno Pro 243", "Mizuno Pro 245", "Mizuno Pro 225", "Mizuno Pro 223", "Mizuno Pro 221", "JPX 923 Tour", "JPX 923 Forged", "JPX 923 Hot Metal", "JPX 921", "MP-20", "MP-18", "MP-66", "MP-55", "MP-5"],
         "WEDGE": ["T24", "T22", "T20", "S23", "S18"],
         "PUTTER": ["M.Craft OMOI", "M.Craft"]
     },
@@ -166,10 +178,10 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
         "PUTTER": ["HB SOFT 2", "Frontline Elite", "Huntington Beach"]
     },
     "Cobra": {
-        "DRIVER": ["Darkspeed MAX", "Darkspeed X", "Darkspeed LS", "AEROJET", "AEROJET MAX", "AEROJET LS", "LTDx", "LTDx MAX", "LTDx LS", "RADSPEED", "SPEEDZONE", "F9 Speedback"],
-        "FAIRWAY": ["Darkspeed FW", "AEROJET FW", "LTDx FW"],
-        "UTILITY": ["Darkspeed Hybrid", "AEROJET Hybrid", "LTDx Hybrid", "King TEC Utility"],
-        "IRON": ["Darkspeed", "AEROJET", "King Forged TEC", "King Tour", "King CB/MB", "LTDx", "RADSPEED"]
+        "DRIVER": ["DS-ADAPT LS", "DS-ADAPT X", "DS-ADAPT MAX-K", "DS-ADAPT MAX-D", "Darkspeed MAX", "Darkspeed X", "Darkspeed LS", "AEROJET", "AEROJET MAX", "AEROJET LS", "LTDx", "LTDx MAX", "LTDx LS", "RADSPEED", "SPEEDZONE", "F9 Speedback"],
+        "FAIRWAY": ["DS-ADAPT LS Fairway", "DS-ADAPT X Fairway", "DS-ADAPT MAX Fairway", "Darkspeed FW", "AEROJET FW", "LTDx FW"],
+        "UTILITY": ["DS-ADAPT Hybrid", "Darkspeed Hybrid", "AEROJET Hybrid", "LTDx Hybrid", "King TEC Utility"],
+        "IRON": ["DS-ADAPT Irons", "Darkspeed", "AEROJET", "King Forged TEC", "King Tour", "King CB/MB", "LTDx", "RADSPEED"]
     },
     "PRGR": {
         "DRIVER": ["RS F (2024)", "RS MAX", "RS (2024)", "RS JUST", "RS5", "RS5+", "RS F (2020)", "LS", "egg 44", "egg 5500", "RS (2018)", "RS F (2018)", "RS (2017)"],

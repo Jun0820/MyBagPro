@@ -1,6 +1,43 @@
 import type { UserProfile } from '../types/golf';
 import { TargetCategory } from '../types/golf';
 
+const LATEST_CLUB_REFERENCE = `### 【2026年の最新クラブ参照ライン】
+- TaylorMade: Qi35 / Qi35 LS / Qi35 MAX / Qi4D / Qi4D LS / Qi4D MAX
+- Callaway: ELYTE Driver / ELYTE X / ELYTE Triple Diamond / ELYTE MAX FAST
+- Ping: G440 MAX / G440 LST / G440 SFT / G440 K
+- Titleist: GT2 / GT3 / GT4
+- Cobra: DS-ADAPT LS / DS-ADAPT X / DS-ADAPT MAX-K / DS-ADAPT MAX-D
+- Srixon: ZXi5 / ZXi7 / ZXi FW / ZXi Hybrid
+- Mizuno: ST-MAX 230 / ST-Z 230 / ST-X 230 / JPX 925 Forged / JPX 925 Hot Metal
+- Bridgestone: B3 MAX / B3 LS / B3 FW / 241CB / 242CB+
+
+### 【2026年の最新アイアン参照ライン】
+- TaylorMade: P790 (2025) / P770 (2025) / Qi
+- Callaway: ELYTE Iron / ELYTE X Iron / Apex Ai200 / Apex Ai300 / Apex Pro (2024)
+- Ping: i240 / i540 / Blueprint S / Blueprint T / G440
+- Titleist: T100 / T150 / T200 / T350
+- Srixon: ZXi5 / ZXi7 / Z-Forged II
+- Mizuno: Mizuno Pro 241 / 243 / 245 / JPX 925 Forged / JPX 925 Hot Metal
+- Bridgestone: 241CB / 242CB+ / 221CB / 222CB+
+
+### 【2026年の最新ウェッジ・ボール参照ライン】
+- Wedge: Vokey SM10 / Opus / Opus Platinum / s159 / s259 / MG4 / T24 / RTX 6 ZipCore / RM-W
+- Ball: Pro V1 / Pro V1x / Chrome Tour / Chrome Tour X / TP5 / TP5x / TOUR B X / TOUR B XS / Z-Star / Z-Star XV
+`;
+
+const LATEST_BALL_REFERENCE = `### 【2026年の最新ボール参照ライン】
+- Titleist: Pro V1 / Pro V1x / AVX / Tour Speed
+- Callaway: Chrome Tour / Chrome Tour X / Chrome Soft / Chrome Soft X / Chrome Soft X LS
+- TaylorMade: TP5 / TP5x / Tour Response
+- Bridgestone: TOUR B X / TOUR B XS / TOUR B RX / TOUR B RXS
+- Srixon: Z-Star / Z-Star XV / Z-Star Diamond
+- Mizuno: RB Tour X / RB Tour
+
+### 【ボール提案ルール】
+- 2026年時点で現行販売・現行流通しているモデル名を優先する
+- 旧モデルは「中古で安く試しやすい」「打感比較用」など明確な理由がある場合だけ補助候補として使う
+`;
+
 /**
  * ユーザーの診断プロファイルから、Gemini APIへ送信するためのプロンプト文字列を生成します。
  */
@@ -16,6 +53,11 @@ export const generateAiPrompt = (profile: UserProfile): string => {
 3. **アフィリエイト購入導線**: 買い替えを提案する際は、ユーザーがその場で「買いたい！」と思えるような魅力的な解説を加えてください。
 4. **最新 vs 名器**: 最新2026年モデルのテクノロジーと、一生モノの「中古名器」を戦略的に使い分けてください。
 5. **JSON厳守**: 出力は必ず指定のJSONフォーマットのみで行ってください。
+6. **モデル名の正確性**: 存在しない仮称や曖昧な後継モデル名を作らず、現行正式モデル名だけを使ってください。
+
+---
+
+${LATEST_CLUB_REFERENCE}
 
 ---
 
@@ -115,6 +157,10 @@ export const generateBallAiPrompt = (profile: UserProfile): string => {
 2. **打感と数値の両立**: HSだけでなく、ユーザーが求める「打感」と、実際に必要な「スピン量・初速」のギャップを埋めるアドバイスをしてください。
 3. **アフィリエイト購入導線**: 提案するボールごとに、なぜそれが「買い」なのかを専門家視点で魅力的に解説してください。
 4. **JSON厳守**: 出力は必ず指定のJSONフォーマットのみで行ってください。
+
+---
+
+${LATEST_BALL_REFERENCE}
 
 ---
 
