@@ -425,8 +425,16 @@ export const MyGearPage = () => {
 
                                     {compareShortlist.length > 0 && (
                                         <div>
-                                            <div className="mb-3 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                比較候補
+                                            <div className="mb-3 flex items-center justify-between gap-3">
+                                                <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                    比較候補
+                                                </div>
+                                                <button
+                                                    onClick={() => navigate('/compare?mode=shortlist')}
+                                                    className="text-[11px] font-black text-trust-navy transition-colors hover:text-slate-700"
+                                                >
+                                                    比較ページで開く
+                                                </button>
                                             </div>
                                             <div className="space-y-4">
                                                 {compareShortlist.map((item) => (

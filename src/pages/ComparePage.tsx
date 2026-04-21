@@ -2,9 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, ArrowRight, BarChart3, GitCompareArrows, ShoppingBag } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
-import { getDriverDetailBySlug } from '../data/featuredSettings';
+import { driverDetails, getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
+import { getCompareShortlist } from '../lib/diagnosisCompare';
 
 const parseHeadSpeedValue = (value: string) => {
   const match = value.match(/\d+/);
@@ -26,6 +27,8 @@ export const ComparePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const settingSlug = searchParams.get('setting');
+  const shortlistMode = searchParams.get('mode') === 'shortlist';
+  const shortlist = useMemo(() => getCompareShortlist(), []);
 
   useEffect(() => {
     let isMounted = true;
@@ -52,11 +55,144 @@ export const ComparePage = () => {
     };
   }, [settingSlug]);
 
-  if (isLoading) {
+  if (isLoading && !shortlistMode) {
     return (
       <div className="min-h-[60vh] rounded-[2rem] border border-slate-200 bg-white p-10 text-center">
         <h1 className="text-3xl font-black text-trust-navy">比較対象を読み込んでいます。</h1>
         <p className="mt-3 text-sm text-slate-600">確認済みの掲載データを取得中です。</p>
+      </div>
+    );
+  }
+
+  if (shortlistMode) {
+    return (
+      <div className="min-h-screen space-y-8 pb-20">
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy"
+        >
+          <ArrowLeft size={16} />
+          前のページへ戻る
+        </button>
+
+        <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-xs font-black text-cyan-700">
+            <GitCompareArrows size={14} />
+            比較候補
+          </div>
+          <h1 className="mt-5 text-4xl font-black tracking-tight text-trust-navy md:text-6xl">
+            診断で残した
+            <span className="text-golf-700">比較候補</span>
+            を見比べる
+          </h1>
+          <p className="mt-5 max-w-3xl text-sm leading-8 text-slate-600 md:text-base">
+            診断で保存した候補を並べて、次に詳しく見るモデルを絞るためのページです。まずは上位候補から詳細を開いて、購入比較や再診断につなげていきます。
+          </p>
+        </section>
+
+        {shortlist.length === 0 ? (
+          <div className="min-h-[40vh] rounded-[2rem] border border-slate-200 bg-white p-10 text-center">
+            <h2 className="text-3xl font-black text-trust-navy">比較候補がまだありません。</h2>
+            <p className="mt-3 text-sm text-slate-600">診断結果ページで候補を保存すると、このページで見比べられます。</p>
+            <button
+              onClick={() => navigate('/diagnosis')}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
+            >
+              診断を始める
+            </button>
+          </div>
+        ) : (
+          <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+              <div className="flex items-center gap-2 text-xs font-black text-slate-400">
+                <BarChart3 size={14} />
+                保存した候補
+              </div>
+              <div className="mt-6 space-y-4">
+                {shortlist.map((item) => {
+                  const matchedDriver = driverDetails.find(
+                    (driver) =>
+                      driver.brand === item.brand &&
+                      (driver.name === item.modelName || `${driver.brand} ${driver.name}` === `${item.brand} ${item.modelName}`),
+                  );
+
+                  return (
+                    <div key={item.id} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+                      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                        <div>
+                          <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+                            {item.sourceCategory} / Rank {item.rank}
+                          </div>
+                          <h2 className="mt-2 text-xl font-black text-trust-navy">
+                            {item.brand} {item.modelName}
+                          </h2>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            <span className="rounded-full bg-white px-3 py-1.5 text-[11px] font-black text-slate-500">
+                              適合率 {item.matchPercentage.toFixed(1)}%
+                            </span>
+                            {item.shaft && (
+                              <span className="rounded-full bg-white px-3 py-1.5 text-[11px] font-black text-slate-500">
+                                {item.shaft}
+                              </span>
+                            )}
+                            {item.loft && (
+                              <span className="rounded-full bg-white px-3 py-1.5 text-[11px] font-black text-slate-500">
+                                {item.loft}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => {
+                            if (matchedDriver) {
+                              navigate(`/clubs/drivers/${matchedDriver.slug}`);
+                              return;
+                            }
+                            navigate('/clubs/drivers');
+                          }}
+                          className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
+                        >
+                          詳細を見る
+                          <ArrowRight size={16} />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <section className="rounded-[2rem] border border-cyan-100 bg-cyan-50 p-6">
+                <h2 className="text-2xl font-black text-trust-navy">次にやるといいこと</h2>
+                <div className="mt-5 space-y-4">
+                  <div className="rounded-[1.5rem] bg-white p-5 ring-1 ring-cyan-100">
+                    <h3 className="text-lg font-black text-trust-navy">上位候補の詳細を見る</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">まずは1位か2位のモデル詳細を開いて、価格と使っている人を確認するのがおすすめです。</p>
+                    <button
+                      onClick={() => navigate('/clubs/drivers')}
+                      className="mt-4 inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700"
+                    >
+                      人気ドライバーを見る
+                      <ArrowRight size={16} />
+                    </button>
+                  </div>
+                  <div className="rounded-[1.5rem] bg-white p-5 ring-1 ring-cyan-100">
+                    <h3 className="text-lg font-black text-trust-navy">条件を変えて再診断する</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">候補が近いときは、ミス傾向や球筋を変えて再診断すると違いが見えやすくなります。</p>
+                    <button
+                      onClick={() => navigate('/diagnosis')}
+                      className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-600 px-5 py-3 text-sm font-black text-white"
+                    >
+                      AI診断へ進む
+                      <ArrowRight size={16} />
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+        )}
       </div>
     );
   }
