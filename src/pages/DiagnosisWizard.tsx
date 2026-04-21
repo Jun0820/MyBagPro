@@ -27,6 +27,13 @@ export const DiagnosisWizard = () => {
     const { category } = useParams<{ category: string }>();
     const [manualBackNavigation, setManualBackNavigation] = useState(false);
 
+    const goToDiagnosisEntry = () => {
+        setManualBackNavigation(true);
+        setStep(1);
+        navigate('/diagnosis', { replace: true });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     const prevStep = () => {
@@ -35,12 +42,15 @@ export const DiagnosisWizard = () => {
             current_step: step,
             has_category_param: Boolean(category),
         });
+
+        if (step === 2) {
+            goToDiagnosisEntry();
+            return;
+        }
+
         setManualBackNavigation(true);
         if (step <= 1) {
             navigate('/');
-        } else if (step === 2 && (category || profile.targetCategory)) {
-            setStep(1);
-            navigate('/diagnosis');
         } else if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
             // Total Setting back logic
             if (step === 20) {

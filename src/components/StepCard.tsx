@@ -15,6 +15,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
             <div className="mb-4 md:mb-6 px-1 md:px-0">
                 {!isFirst && onBack && (
                     <button
+                        type="button"
                         onClick={onBack}
                         className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-500 transition-colors active:scale-95 origin-left hover:border-golf-300 hover:text-golf-700"
                     >
