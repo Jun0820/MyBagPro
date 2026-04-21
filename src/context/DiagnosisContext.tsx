@@ -7,6 +7,7 @@ import { generateFittingDiagnosis, type DiagnosisResult } from '../lib/gemini';
 import { convertProfileToCustomerData, sendToGoogleSheets } from '../lib/googleSheets';
 import { supabase } from '../lib/supabase';
 import { buildStoredSocialLinks, normalizeUserSocialLinks } from '../lib/userSocials';
+import { trackEvent } from '../lib/analytics';
 
 interface DiagnosisContextType {
     user: UserAccount;
@@ -337,10 +338,26 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         setDiagnosisError(null);
         // API Key logic matched from App.tsx
         const apiKey = import.meta.env.VITE_GEMINI_API_KEY || (window as any).process?.env?.API_KEY || '';
+        const diagnosisCategory = profile.targetCategory || 'unknown';
+        const diagnosisMode = profile.diagnosisMode || 'unknown';
+
+        trackEvent('diagnosis_submit', {
+            diagnosis_category: diagnosisCategory,
+            diagnosis_mode: diagnosisMode,
+            head_speed: profile.headSpeed || 0,
+            is_logged_in: user.isLoggedIn,
+            has_measurement_data: profile.hasMeasurementData,
+        });
 
         try {
             const response = await generateFittingDiagnosis(profile, apiKey);
             setResultData(response);
+            trackEvent('diagnosis_success', {
+                diagnosis_category: diagnosisCategory,
+                diagnosis_mode: diagnosisMode,
+                result_type: response?.result?.type || 'unknown',
+                is_logged_in: user.isLoggedIn,
+            });
 
             // Google Sheetsにデータを送信（管理者用）
             const customerData = convertProfileToCustomerData(
@@ -369,7 +386,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return true;
         } catch (error: any) {
             console.error("Diagnosis error:", error);
-            setDiagnosisError(translateDiagnosisError(error));
+            const translatedError = translateDiagnosisError(error);
+            const rawMessage = String(error?.message || error || 'unknown_error');
+            setDiagnosisError(translatedError);
+            trackEvent('diagnosis_error', {
+                diagnosis_category: diagnosisCategory,
+                diagnosis_mode: diagnosisMode,
+                error_message: rawMessage.slice(0, 120),
+                translated_error: translatedError,
+                is_logged_in: user.isLoggedIn,
+            });
             return false;
         } finally {
             setIsAnalyzing(false);

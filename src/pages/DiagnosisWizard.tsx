@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 import { BrandSelector } from '../components/BrandSelector';
 import { getShaftModels, getShaftWeightOptions } from '../lib/data';
 import { CLUB_SPECIFIC_MISS_TYPES, CLUB_MEASUREMENT_FIELDS } from '../components/ClubSpecificQuestions';
+import { trackEvent } from '../lib/analytics';
 
 // シャフトメーカー定義
 const SHAFT_MANUFACTURERS = [
@@ -29,6 +30,11 @@ export const DiagnosisWizard = () => {
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     const prevStep = () => {
+        trackEvent('diagnosis_back_click', {
+            diagnosis_category: profile.targetCategory || 'entry',
+            current_step: step,
+            has_category_param: Boolean(category),
+        });
         setManualBackNavigation(true);
         if (step <= 1) {
             navigate('/');
@@ -1915,10 +1921,23 @@ export const DiagnosisWizard = () => {
             const modePath = getModePath();
             // ボールとパターはモード不要
             if (profile.targetCategory === TargetCategory.BALL) {
+                trackEvent('diagnosis_result_navigate', {
+                    diagnosis_category: 'ball',
+                    destination: '/result/ball',
+                });
                 navigate(`/result/ball`);
             } else if (profile.targetCategory === TargetCategory.PUTTER) {
+                trackEvent('diagnosis_result_navigate', {
+                    diagnosis_category: 'putter',
+                    destination: '/result/putter/head',
+                });
                 navigate(`/result/putter/head`);
             } else {
+                trackEvent('diagnosis_result_navigate', {
+                    diagnosis_category: clubPath,
+                    diagnosis_mode: modePath,
+                    destination: `/result/${clubPath}/${modePath}`,
+                });
                 navigate(`/result/${clubPath}/${modePath}`);
             }
         };

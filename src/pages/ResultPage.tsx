@@ -1,6 +1,6 @@
 import { Activity, Dumbbell, Zap, Stethoscope, Wrench, AlertTriangle, ChevronDown, Share2, X, Download } from 'lucide-react';
 import { useDiagnosis } from '../context/DiagnosisContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { RadarChart } from '../components/RadarChart';
 import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
@@ -8,6 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { INITIAL_PROFILE, TargetCategory } from '../types/golf';
 import { AiResponseDisplay } from '../components/AiResponseDisplay';
 import { BagShareCard } from '../features/share/BagShareCard';
+import { trackEvent } from '../lib/analytics';
 
 // Trajectory Animation Component (Local or Imported)
 const TrajectoryAnimation = () => (
@@ -104,6 +105,16 @@ export const ResultPage = () => {
     // カテゴリ整合性チェック（警告用）
     const isMismatch = expectedTypeFromUrl && resultType !== expectedTypeFromUrl &&
         !(expectedTypeFromUrl === 'CLUB' && (resultType === 'DRIVER' || resultType === 'IRON')); // CLUBはDRIVER/IRONも許容
+
+    useEffect(() => {
+        if (!resultData?.result) return;
+        trackEvent('diagnosis_result_view', {
+            diagnosis_category: profile.targetCategory || club || 'unknown',
+            result_type: resultType,
+            expected_type: expectedTypeFromUrl || 'none',
+            has_ai_response: Boolean(result.aiResponseText),
+        });
+    }, [resultData, profile.targetCategory, club, resultType, expectedTypeFromUrl, result.aiResponseText]);
 
     const handleRestart = () => {
         resetDiagnosis();
