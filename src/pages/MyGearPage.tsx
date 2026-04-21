@@ -81,6 +81,7 @@ export const MyGearPage = () => {
     ].reduce((sum, current) => sum + current, 0);
     const completionPercent = Math.round((completionPoints / 5) * 100);
     const recentHistory = (user.history || []).slice(0, 3);
+    const considerationCount = compareShortlist.length + recentHistory.length + recentlyViewed.length;
 
     useEffect(() => {
         setCompareShortlist(getCompareShortlist());
@@ -356,42 +357,52 @@ export const MyGearPage = () => {
                             </div>
                         </section>
 
-                        {recentHistory.length > 0 && (
+                        {(compareShortlist.length > 0 || recentlyViewed.length > 0 || recentHistory.length > 0) && (
                             <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
-                                <div className="mb-4 flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
-                                    <History size={14} />
-                                    保存した診断結果
+                                <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
+                                            <Sparkles size={14} />
+                                            検討中
+                                        </div>
+                                        <p className="mt-2 text-sm text-slate-500">
+                                            保存した診断、比較候補、最近見たものをまとめて見返せます。
+                                        </p>
+                                    </div>
+                                    <div className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                        {considerationCount} Items
+                                    </div>
                                 </div>
-                                <div className="grid gap-4 md:grid-cols-3">
-                                    {recentHistory.map((item) => (
-                                        <button
-                                            key={item.id}
-                                            onClick={() => openSavedDiagnosis(item)}
-                                            className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-colors hover:bg-slate-100"
-                                        >
-                                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                {item.category}
+                                <div className="grid gap-6 xl:grid-cols-3">
+                                    {recentHistory.length > 0 && (
+                                        <div>
+                                            <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                <History size={13} />
+                                                保存した診断
                                             </div>
-                                            <div className="mt-2 line-clamp-2 text-base font-black text-trust-navy">
-                                                {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '診断結果'}
+                                            <div className="space-y-3">
+                                                {recentHistory.map((item) => (
+                                                    <button
+                                                        key={item.id}
+                                                        onClick={() => openSavedDiagnosis(item)}
+                                                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-colors hover:bg-slate-100"
+                                                    >
+                                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                            {item.category}
+                                                        </div>
+                                                        <div className="mt-2 line-clamp-2 text-base font-black text-trust-navy">
+                                                            {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '診断結果'}
+                                                        </div>
+                                                        <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
+                                                            <Trophy size={12} />
+                                                            {new Date(item.date).toLocaleDateString('ja-JP')}
+                                                        </div>
+                                                    </button>
+                                                ))}
                                             </div>
-                                            <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
-                                                <Trophy size={12} />
-                                                {new Date(item.date).toLocaleDateString('ja-JP')}
-                                            </div>
-                                        </button>
-                                    ))}
-                                </div>
-                            </section>
-                        )}
+                                        </div>
+                                    )}
 
-                        {(compareShortlist.length > 0 || recentlyViewed.length > 0) && (
-                            <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
-                                <div className="mb-4 flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
-                                    <Sparkles size={14} />
-                                    検討中
-                                </div>
-                                <div className="grid gap-6 lg:grid-cols-2">
                                     {compareShortlist.length > 0 && (
                                         <div>
                                             <div className="mb-3 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
