@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, ArrowRight, BarChart3, GitCompareArrows, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BarChart3, GitCompareArrows, Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { driverDetails, getDriverDetailBySlug } from '../data/featuredSettings';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
 import { getCompareShortlist } from '../lib/diagnosisCompare';
+import { saveFavoriteClub } from '../lib/favoriteClubs';
+import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
 
 const parseHeadSpeedValue = (value: string) => {
   const match = value.match(/\d+/);
@@ -29,6 +31,7 @@ export const ComparePage = () => {
   const settingSlug = searchParams.get('setting');
   const shortlistMode = searchParams.get('mode') === 'shortlist';
   const shortlist = useMemo(() => getCompareShortlist(), []);
+  const primaryShop = AFFILIATE_SHOPS[0];
 
   useEffect(() => {
     let isMounted = true;
@@ -142,19 +145,59 @@ export const ComparePage = () => {
                             )}
                           </div>
                         </div>
-                        <button
-                          onClick={() => {
-                            if (matchedDriver) {
-                              navigate(`/clubs/drivers/${matchedDriver.slug}`);
-                              return;
-                            }
-                            navigate('/clubs/drivers');
-                          }}
-                          className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
-                        >
-                          詳細を見る
-                          <ArrowRight size={16} />
-                        </button>
+                        <div className="flex flex-wrap gap-3">
+                          <button
+                            onClick={() => {
+                              if (matchedDriver) {
+                                navigate(`/clubs/drivers/${matchedDriver.slug}`);
+                                return;
+                              }
+                              navigate('/clubs/drivers');
+                            }}
+                            className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
+                          >
+                            詳細を見る
+                            <ArrowRight size={16} />
+                          </button>
+                          <button
+                            onClick={() => {
+                              saveFavoriteClub({
+                                id: item.id,
+                                brand: item.brand,
+                                modelName: item.modelName,
+                                category: item.sourceCategory,
+                                shaft: item.shaft,
+                                loft: item.loft,
+                              });
+                              trackEvent('save_favorite_club', {
+                                source_page: 'compare_shortlist',
+                                brand: item.brand,
+                                model_name: item.modelName,
+                              });
+                              alert('✅ お気に入りに保存しました。');
+                            }}
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700"
+                          >
+                            <Heart size={16} />
+                            お気に入りに保存
+                          </button>
+                          <button
+                            onClick={() => {
+                              trackEvent('click_affiliate_shop', {
+                                source_page: 'compare_shortlist',
+                                shop_id: primaryShop.id,
+                                shop_name: primaryShop.name,
+                                brand: item.brand,
+                                model_name: item.modelName,
+                              });
+                              window.open(getAffiliateUrl(item.brand, item.modelName, primaryShop.id), '_blank', 'noopener,noreferrer');
+                            }}
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700"
+                          >
+                            <ShoppingBag size={16} />
+                            価格を見る
+                          </button>
+                        </div>
                       </div>
                     </div>
                   );

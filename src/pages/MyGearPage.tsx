@@ -18,6 +18,7 @@ import {
     History,
     Trophy,
     BookOpen,
+    Heart,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useEffect, useState } from 'react';
@@ -27,6 +28,7 @@ import { driverDetails } from '../data/featuredSettings';
 import { getCompareShortlist, removeCompareShortlistItem, type CompareShortlistItem } from '../lib/diagnosisCompare';
 import { saveDiagnosisRankingsToCompare } from '../lib/diagnosisCompare';
 import { getRecentlyViewed, type RecentlyViewedItem } from '../lib/recentlyViewed';
+import { getFavoriteClubs, removeFavoriteClub, type FavoriteClubItem } from '../lib/favoriteClubs';
 
 const categoryToDiagnosisPath = (category?: string | null) => {
     switch (category) {
@@ -64,6 +66,7 @@ export const MyGearPage = () => {
     const [activeTab, setActiveTab] = useState<'view' | 'clubs' | 'profile'>('view');
     const [compareShortlist, setCompareShortlist] = useState<CompareShortlistItem[]>([]);
     const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
+    const [favoriteClubs, setFavoriteClubs] = useState<FavoriteClubItem[]>([]);
 
     const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
     const essentialCategories = [
@@ -82,11 +85,12 @@ export const MyGearPage = () => {
     ].reduce((sum, current) => sum + current, 0);
     const completionPercent = Math.round((completionPoints / 5) * 100);
     const recentHistory = (user.history || []).slice(0, 3);
-    const considerationCount = compareShortlist.length + recentHistory.length + recentlyViewed.length;
+    const considerationCount = compareShortlist.length + recentHistory.length + recentlyViewed.length + favoriteClubs.length;
 
     useEffect(() => {
         setCompareShortlist(getCompareShortlist());
         setRecentlyViewed(getRecentlyViewed());
+        setFavoriteClubs(getFavoriteClubs());
     }, []);
 
     const analysisPoints = [
@@ -364,7 +368,7 @@ export const MyGearPage = () => {
                             </div>
                         </section>
 
-                        {(compareShortlist.length > 0 || recentlyViewed.length > 0 || recentHistory.length > 0) && (
+                        {(compareShortlist.length > 0 || recentlyViewed.length > 0 || recentHistory.length > 0 || favoriteClubs.length > 0) && (
                             <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
                                 <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                                     <div>
@@ -380,7 +384,7 @@ export const MyGearPage = () => {
                                         {considerationCount} Items
                                     </div>
                                 </div>
-                                <div className="grid gap-6 xl:grid-cols-3">
+                                <div className="grid gap-6 xl:grid-cols-4">
                                     {recentHistory.length > 0 && (
                                         <div>
                                             <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
@@ -475,6 +479,49 @@ export const MyGearPage = () => {
                                                             候補を見る
                                                             <ArrowRight size={14} />
                                                         </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {favoriteClubs.length > 0 && (
+                                        <div>
+                                            <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                <Heart size={13} />
+                                                お気に入り
+                                            </div>
+                                            <div className="space-y-3">
+                                                {favoriteClubs.slice(0, 4).map((item) => (
+                                                    <div
+                                                        key={item.id}
+                                                        className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                                                    >
+                                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                            {item.category}
+                                                        </div>
+                                                        <div className="mt-1 text-sm font-black text-trust-navy">
+                                                            {item.brand} {item.modelName}
+                                                        </div>
+                                                        {(item.shaft || item.loft) && (
+                                                            <div className="mt-1 text-xs text-slate-500">
+                                                                {[item.shaft, item.loft].filter(Boolean).join(' / ')}
+                                                            </div>
+                                                        )}
+                                                        <div className="mt-3 flex items-center justify-between gap-3">
+                                                            <button
+                                                                onClick={() => navigate('/compare?mode=shortlist')}
+                                                                className="text-xs font-black text-trust-navy transition-colors hover:text-slate-700"
+                                                            >
+                                                                比較へ戻る
+                                                            </button>
+                                                            <button
+                                                                onClick={() => setFavoriteClubs(removeFavoriteClub(item.id))}
+                                                                className="text-xs font-black text-slate-400 transition-colors hover:text-slate-600"
+                                                            >
+                                                                削除
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 ))}
                                             </div>
