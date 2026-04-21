@@ -7,6 +7,28 @@ import { ArrowLeft, Edit3, User, Eye, Loader2, CheckCircle2 } from 'lucide-react
 import { cn } from '../lib/utils';
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { TargetCategory } from '../types/golf';
+
+const categoryToDiagnosisPath = (category?: string | null) => {
+    switch (category) {
+        case TargetCategory.DRIVER:
+            return '/diagnosis/driver';
+        case TargetCategory.FAIRWAY:
+            return '/diagnosis/fairway';
+        case TargetCategory.UTILITY:
+            return '/diagnosis/utility';
+        case TargetCategory.IRON:
+            return '/diagnosis/iron';
+        case TargetCategory.WEDGE:
+            return '/diagnosis/wedge';
+        case TargetCategory.PUTTER:
+            return '/diagnosis/putter';
+        case TargetCategory.BALL:
+            return '/diagnosis/ball';
+        default:
+            return '/diagnosis';
+    }
+};
 
 export const MyGearPage = () => {
     const { profile, updateProfile, user, saveStatus, setStep, manualSave } = useDiagnosis();
@@ -115,8 +137,8 @@ export const MyGearPage = () => {
                             } else {
                                 setStep(1);
                             }
-                            
-                            navigate('/diagnosis');
+
+                            navigate(categoryToDiagnosisPath(club.category));
                         }}
                         saveStatus={saveStatus}
                         onManualSave={manualSave}

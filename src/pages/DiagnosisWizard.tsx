@@ -485,10 +485,9 @@ export const DiagnosisWizard = () => {
         }));
     };
 
-    // Initial category setup from URL or profile.targetCategory (pre-set by My Page)
+    // Initial category setup from URL
     useEffect(() => {
         if (step === 1) {
-            // URL parameter has priority
             if (category) {
                 const validCategory = Object.values(TargetCategory).find(c => c === category) ||
                     Object.entries(TargetCategory).find(([k, _v]) => k.toLowerCase() === category?.toLowerCase())?.[1];
@@ -499,13 +498,8 @@ export const DiagnosisWizard = () => {
                     return;
                 }
             }
-            
-            // If targetCategory was pre-set (e.g. via MyPage's onDiagnose)
-            if (profile.targetCategory) {
-                setStep(2);
-            }
         }
-    }, [category, step, profile.targetCategory]);
+    }, [category, step]);
 
     useEffect(() => {
         if (step === 4 && profile.gender && profile.skillLevel && profile.bestScore && profile.averageScore) {
