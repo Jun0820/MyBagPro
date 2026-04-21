@@ -57,6 +57,15 @@ export const ResultPage = () => {
     const navigate = useNavigate();
     const { club, mode } = useParams<{ club?: string; mode?: string }>();
     const [showShareModal, setShowShareModal] = useState(false);
+    const fallbackResultData = !resultData ? (() => {
+        try {
+            const saved = localStorage.getItem('mybagpro_result_data');
+            return saved ? JSON.parse(saved) : null;
+        } catch {
+            return null;
+        }
+    })() : null;
+    const activeResultData = resultData || fallbackResultData;
 
     if (diagnosisError) {
         return (
@@ -86,7 +95,7 @@ export const ResultPage = () => {
         );
     }
 
-    if (!resultData) {
+    if (!activeResultData) {
         return (
             <div className="text-center py-20 bg-slate-50 min-h-screen">
                 <p className="text-slate-600 mb-4">保存された診断結果がありません。</p>
@@ -95,7 +104,7 @@ export const ResultPage = () => {
         );
     }
 
-    const { result } = resultData;
+    const { result } = activeResultData;
 
     // URLカテゴリとの整合性チェック（新形式: /result/:club/:mode）
     const expectedTypeFromUrl = getExpectedTypeFromUrl(club, mode);
@@ -107,14 +116,14 @@ export const ResultPage = () => {
         !(expectedTypeFromUrl === 'CLUB' && (resultType === 'DRIVER' || resultType === 'IRON')); // CLUBはDRIVER/IRONも許容
 
     useEffect(() => {
-        if (!resultData?.result) return;
+        if (!activeResultData?.result) return;
         trackEvent('diagnosis_result_view', {
             diagnosis_category: profile.targetCategory || club || 'unknown',
             result_type: resultType,
             expected_type: expectedTypeFromUrl || 'none',
             has_ai_response: Boolean(result.aiResponseText),
         });
-    }, [resultData, profile.targetCategory, club, resultType, expectedTypeFromUrl, result.aiResponseText]);
+    }, [activeResultData, profile.targetCategory, club, resultType, expectedTypeFromUrl, result.aiResponseText]);
 
     const handleRestart = () => {
         resetDiagnosis();

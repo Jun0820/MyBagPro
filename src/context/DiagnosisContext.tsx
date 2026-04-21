@@ -352,6 +352,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         try {
             const response = await generateFittingDiagnosis(profile, apiKey);
             setResultData(response);
+            localStorage.setItem('mybagpro_result_data', JSON.stringify(response));
             trackEvent('diagnosis_success', {
                 diagnosis_category: diagnosisCategory,
                 diagnosis_mode: diagnosisMode,

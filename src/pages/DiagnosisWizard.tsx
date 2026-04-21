@@ -629,14 +629,22 @@ export const DiagnosisWizard = () => {
                 <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">OTHER DIAGNOSIS</div>
-                        <div className="mt-1 text-sm font-bold text-slate-600">他カテゴリの診断は順次公開中です。</div>
+                        <div className="mt-1 text-sm font-bold text-slate-600">クラブ以外では、ボール診断も使えます。</div>
                     </div>
-                    <button
-                        onClick={() => navigate('/settings/pros')}
-                        className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
-                    >
-                        先にプロを見る
-                    </button>
+                    <div className="flex flex-wrap gap-2">
+                        <button
+                            onClick={() => navigate('/ball-diagnosis')}
+                            className="inline-flex items-center justify-center gap-2 rounded-full bg-golf-500 px-4 py-2 text-sm font-black text-white transition-colors hover:bg-golf-600"
+                        >
+                            ゴルフボール診断へ
+                        </button>
+                        <button
+                            onClick={() => navigate('/settings/pros')}
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
+                        >
+                            先にプロを見る
+                        </button>
+                    </div>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                     {['フェアウェイウッド', 'ユーティリティ', 'アイアン', 'ウェッジ', 'パター'].map((item) => (
