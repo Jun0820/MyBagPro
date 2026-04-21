@@ -18,6 +18,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
   const [showCard, setShowCard] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const fallbackDiagnosis = calculateDiagnosis(answers);
 
   // Consider Pro Mode / MyBag context
   const isProMode = answers.useMyBag && profile.myBag && profile.myBag.clubs.length > 0;
@@ -40,7 +41,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
     );
 
     // Find the GolfBall interface object for radar/img
-    const fullBallData = calculateDiagnosis(answers).ball; // Just for fallback structure
+    const fullBallData = fallbackDiagnosis.ball; // Just for fallback structure
 
     recommendedBall = ballInDb ? {
       ...fullBallData, // Use structure as template
@@ -59,10 +60,40 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
     aiSynergyAdvice = aiResult.gearSynergyAdvice;
   } else {
     // Fallback to local 2026 models calculation
-    const diagnosisResult = calculateDiagnosis(answers);
-    recommendedBall = diagnosisResult.ball;
-    matchScore = diagnosisResult.matchScore;
+    recommendedBall = fallbackDiagnosis.ball;
+    matchScore = fallbackDiagnosis.matchScore;
   }
+
+  const getDistanceLabel = (value: number) => {
+    if (value >= 4.8) return '飛距離をしっかり伸ばしやすい';
+    if (value >= 4.2) return '飛距離と安定感のバランスが良い';
+    return '無理なく距離を出しやすい';
+  };
+
+  const getSpinLabel = (value: number) => {
+    if (value >= 4.8) return 'グリーン周りで止めやすい';
+    if (value >= 4.0) return 'スピン量をコントロールしやすい';
+    return 'スピンを抑えて前に進めやすい';
+  };
+
+  const getFeelLabel = (value: number) => {
+    if (value >= 4.8) return 'かなりソフトな打感';
+    if (value >= 4.0) return 'やわらかめで扱いやすい打感';
+    if (value >= 3.2) return 'しっかり感のある打感';
+    return '硬めで弾き感のある打感';
+  };
+
+  const getConcernLabel = (value: string | null) => {
+    const map: Record<string, string> = {
+      slice: '右へのミス',
+      hook: '左へのミス',
+      distance: '飛距離不足',
+      spin: 'スピン不足',
+      trajectory: '弾道の高さ',
+      feel: '打感'
+    };
+    return value ? (map[value] || value) : null;
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setShowCard(true), 100);
@@ -101,6 +132,37 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
       default: return 'スタンダードな';
     }
   };
+
+  const summaryPoints = [
+    getDistanceLabel(recommendedBall.radar.distance),
+    getSpinLabel(recommendedBall.radar.spin),
+    getFeelLabel(recommendedBall.radar.feel),
+  ];
+
+  const fitSummary = isProMode
+    ? `登録済みのマイバッグとヘッドスピード ${answers.headSpeed}m/s をもとに整理すると、${recommendedBall.name} は今のセッティングにつながりやすく、使い始めの違和感も出にくい候補です。`
+    : `ヘッドスピード ${answers.headSpeed}m/s と「${getPriorityLabel(answers.priority)}」重視の条件なら、${recommendedBall.name} は性能の向きが合いやすい候補です。`;
+
+  const playStyleSummary = [
+    answers.approachStyle ? `アプローチは「${getStyleLabel(answers.approachStyle)}」派` : null,
+    answers.trajectory ? `弾道傾向は「${answers.trajectory}」寄り` : null,
+    getConcernLabel(answers.concern) ? `気になるのは「${getConcernLabel(answers.concern)}」` : null,
+  ].filter(Boolean).join(' / ');
+
+  const displayedAlternatives = aiResult?.alternatives?.length
+    ? aiResult.alternatives
+    : [
+        fallbackDiagnosis.softAlternative ? {
+          type: 'SOFT FEEL',
+          name: fallbackDiagnosis.softAlternative.name,
+          reason: 'よりソフトな打感を優先したい場合の候補です。'
+        } : null,
+        fallbackDiagnosis.hardAlternative ? {
+          type: 'FIRM FEEL',
+          name: fallbackDiagnosis.hardAlternative.name,
+          reason: 'もう少ししっかりした打感を求める場合の候補です。'
+        } : null,
+      ].filter(Boolean);
 
   const handleShare = async () => {
     if (!cardRef.current || isSharing) return;
@@ -205,9 +267,21 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
               </div>
             </div>
 
-            <p className="text-base text-slate-300 leading-relaxed mb-8 text-center px-4 md:px-8">
-              {recommendedBall.desc}
-            </p>
+            <div className="mb-8 px-4 md:px-8">
+              <p className="text-base text-slate-300 leading-relaxed text-center mb-4">
+                {fitSummary}
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {summaryPoints.map((point) => (
+                  <span
+                    key={point}
+                    className="rounded-full border border-white/10 bg-slate-800/70 px-3 py-1 text-xs font-semibold text-slate-200"
+                  >
+                    {point}
+                  </span>
+                ))}
+              </div>
+            </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-2 py-4 border-t border-b border-slate-700/50 mb-6">
@@ -233,18 +307,17 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
               {isProMode ? <Layers className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" /> : <Flag className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />}
               <div>
                 <div className={`text-xs font-bold mb-1 ${isProMode ? 'text-emerald-300' : 'text-slate-200'}`}>
-                  {isProMode ? '【プロ解析】マイバッグ統合診断' : '【解析結果】あなたのスイング傾向'}
+                  {isProMode ? 'マイバッグ連携で見た相性' : '今回の条件整理'}
                 </div>
                  <div className="text-xs text-slate-400 leading-tight">
                   {isProMode ? (
                     <>
-                      登録された{profile.myBag.clubs.length}本のクラブセッティングと、HS {answers.headSpeed}m/sのパワーを統合分析。
-                      「{recommendedBall.name}」はあなたのギア構成において最も飛距離効率とスピンバランスを最大化します。
+                      登録された{profile.myBag.clubs.length}本のクラブ構成と、HS {answers.headSpeed}m/s をもとに見ると、
+                      {recommendedBall.name} は今のギアとのつながりが取りやすい候補です。
                     </>
                   ) : (
                     <>
-                      「{getPriorityLabel(answers.priority)}」を重視し、
-                      アプローチでは「{getStyleLabel(answers.approachStyle)}」スタイルで攻めるプレーヤーに。
+                      {playStyleSummary || '入力された条件をもとに、ボールの方向性を整理しました。'}
                     </>
                   )}
                 </div>
@@ -260,14 +333,14 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
                    </div>
                    <div className="relative z-10">
                     <h4 className="text-[10px] font-black text-emerald-400 tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-                       <Activity className="w-3 h-3" /> AI Expert Analysis
+                       <Activity className="w-3 h-3" /> AI コメント
                     </h4>
                     <p className="text-xs text-slate-300 leading-relaxed italic">
                       {aiExpertAnalysis}
                     </p>
                     {aiSynergyAdvice && (
                       <div className="mt-3 pt-3 border-t border-white/5">
-                        <div className="text-[9px] font-bold text-cyan-400 uppercase tracking-widest mb-1">Gear Synergy Advice</div>
+                        <div className="text-[9px] font-bold text-cyan-400 uppercase tracking-widest mb-1">相性メモ</div>
                         <p className="text-[11px] text-slate-400 leading-snug">
                           {aiSynergyAdvice}
                         </p>
@@ -282,7 +355,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
       </div>
 
       {/* Alternatives Section */}
-      {(aiResult?.alternatives || recommendedBall) && (
+      {(displayedAlternatives.length > 0 || recommendedBall) && (
         <div className="mt-8 mb-4 animate-fadeIn" style={{ animationDelay: '400ms' }}>
           <div className="flex items-center gap-2 mb-4 px-1">
             <Layers className="w-4 h-4 text-cyan-400" />
@@ -290,7 +363,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {(aiResult?.alternatives || []).map((alt: any, idx: number) => (
+            {displayedAlternatives.map((alt: any, idx: number) => (
               <div key={idx} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center group hover:bg-slate-800/60 transition-all hover:-translate-y-1">
                 <div className="text-[10px] font-black text-cyan-400 mb-2 tracking-widest uppercase">{alt.type}</div>
                 <div className="w-16 h-16 rounded-full bg-white mb-3 shadow-lg overflow-hidden flex items-center justify-center p-2 text-slate-800 font-bold text-[10px] transform group-hover:scale-110 transition-transform">
@@ -357,4 +430,3 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
 };
 
 export default ResultScreen;
-
