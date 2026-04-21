@@ -290,6 +290,48 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         setProfile(prev => ({ ...prev, [field]: value }));
     };
 
+    const translateDiagnosisError = (error: any) => {
+        const message = String(error?.message || error || '');
+        const lower = message.toLowerCase();
+
+        if (!message) return '診断中に不明なエラーが発生しました。時間をおいて再度お試しください。';
+        if (lower.includes('api key is missing')) {
+            return '診断設定の読み込みに失敗しました。しばらくしてから再度お試しください。';
+        }
+        if (
+            lower.includes('failed to fetch') ||
+            lower.includes('networkerror') ||
+            lower.includes('network request failed')
+        ) {
+            return '通信が不安定なため診断を完了できませんでした。通信環境を確認して再度お試しください。';
+        }
+        if (
+            lower.includes('429') ||
+            lower.includes('quota') ||
+            lower.includes('resource has been exhausted') ||
+            lower.includes('rate limit')
+        ) {
+            return '診断の利用が集中しています。少し時間をおいて再度お試しください。';
+        }
+        if (
+            lower.includes('json') ||
+            lower.includes('unexpected token') ||
+            lower.includes('unterminated')
+        ) {
+            return '診断結果の整形に失敗しました。もう一度診断すると改善する場合があります。';
+        }
+        if (
+            lower.includes('503') ||
+            lower.includes('unavailable') ||
+            lower.includes('overloaded') ||
+            lower.includes('internal')
+        ) {
+            return '診断サーバーが一時的に不安定です。少し時間をおいて再度お試しください。';
+        }
+
+        return '診断中にエラーが発生しました。時間をおいて再度お試しください。';
+    };
+
     const runDiagnosis = async () => {
         setIsAnalyzing(true);
         setDiagnosisError(null);
@@ -327,7 +369,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return true;
         } catch (error: any) {
             console.error("Diagnosis error:", error);
-            setDiagnosisError(error.message || "AI解析中にエラーが発生しました。");
+            setDiagnosisError(translateDiagnosisError(error));
             return false;
         } finally {
             setIsAnalyzing(false);

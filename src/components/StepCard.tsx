@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Info } from 'lucide-react';
 
 interface StepCardProps {
     title: string;
@@ -26,6 +26,12 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                 {subtitle && <p className="max-w-2xl text-slate-500 text-sm md:text-base leading-7">{subtitle}</p>}
             </div>
             <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-10 shadow-sm">
+                <div className="mb-5 flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                    <Info size={16} className="mt-0.5 shrink-0 text-amber-600" />
+                    <div className="font-bold">
+                        この診断はβ版です。精度向上中です。
+                    </div>
+                </div>
                 {children}
             </div>
         </div>

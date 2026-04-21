@@ -21,14 +21,15 @@ const SHAFT_MANUFACTURERS = [
 ];
 
 export const DiagnosisWizard = () => {
-    const { step, setStep, profile, updateProfile, runDiagnosis, isAnalyzing, setProfile, user, setShowAuth } = useDiagnosis();
+    const { step, setStep, profile, updateProfile, runDiagnosis, isAnalyzing, diagnosisError, setProfile, user, setShowAuth } = useDiagnosis();
     const navigate = useNavigate();
     const { category } = useParams<{ category: string }>();
+    const [manualBackNavigation, setManualBackNavigation] = useState(false);
 
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     // エラーハンドリング: prevStepが未定義の場合の修正と、ナビゲーションループの解消
     const prevStep = () => {
-        setBackwards(true);
+        setManualBackNavigation(true);
         if (step <= 1) {
             navigate('/');
         } else if (step === 2 && (category || profile.targetCategory)) {
@@ -50,6 +51,7 @@ export const DiagnosisWizard = () => {
 
     // Helper to handle profile updates and navigation
     const handleNext = (updates: Partial<UserProfile>, autoAdvance = true) => {
+        setManualBackNavigation(false);
         Object.entries(updates).forEach(([key, value]) => {
             updateProfile(key as keyof UserProfile, value);
         });
@@ -489,57 +491,51 @@ export const DiagnosisWizard = () => {
         }
     }, [category, step, profile.targetCategory]);
 
-    // Auto-advance Step 4 (Profile) if data already exists
-    // [FIX] Only auto-advance if we didn't just come back from a later step
-    const [backwards, setBackwards] = useState(false);
-
     useEffect(() => {
         if (step === 4 && profile.gender && profile.skillLevel && profile.bestScore && profile.averageScore) {
-            if (!backwards) {
+            if (!manualBackNavigation) {
                 setStep(step + 1);
             }
         }
-        // Reset backwards flag when moving away from step 4 or changing step
-        if (step !== 4) setBackwards(false);
-    }, [step, profile.gender, profile.skillLevel, profile.bestScore, profile.averageScore, backwards]);
+    }, [step, profile.gender, profile.skillLevel, profile.bestScore, profile.averageScore, manualBackNavigation]);
 
     useEffect(() => {
-        if (step === 4 && profile.gender && profile.skillLevel && profile.headSpeed > 0 && !backwards) {
+        if (step === 4 && profile.gender && profile.skillLevel && profile.headSpeed > 0 && !manualBackNavigation) {
             setStep(step + 1);
         }
-    }, [step, profile.gender, profile.skillLevel, profile.headSpeed, backwards]);
+    }, [step, profile.gender, profile.skillLevel, profile.headSpeed, manualBackNavigation]);
 
     useEffect(() => {
-        if (step === 4 && profile.gender && profile.skillLevel && profile.bestScore && !backwards) {
+        if (step === 4 && profile.gender && profile.skillLevel && profile.bestScore && !manualBackNavigation) {
             setStep(step + 1);
         }
-    }, [step, profile.gender, profile.skillLevel, profile.bestScore, backwards]);
+    }, [step, profile.gender, profile.skillLevel, profile.bestScore, manualBackNavigation]);
 
     useEffect(() => {
-        if (step === 3 && !backwards) {
+        if (step === 3 && !manualBackNavigation) {
             const hasCurrentGear = profile.currentBrand && profile.currentModel;
             if (hasCurrentGear && profile.targetCategory !== TargetCategory.TOTAL_SETTING && profile.targetCategory !== TargetCategory.WEDGE) {
                 setStep(step + 1);
             }
         }
-    }, [step, profile.currentBrand, profile.currentModel, profile.targetCategory, backwards]);
+    }, [step, profile.currentBrand, profile.currentModel, profile.targetCategory, manualBackNavigation]);
 
     useEffect(() => {
-        if (profile.missTendencies && profile.missTendencies.length > 0 && !backwards) {
+        if (profile.missTendencies && profile.missTendencies.length > 0 && !manualBackNavigation) {
            if (step === 5 && profile.targetCategory !== TargetCategory.WEDGE && profile.targetCategory !== TargetCategory.PUTTER) {
                setStep(step + 1);
            }
         }
-    }, [step, profile.missTendencies, profile.targetCategory, backwards]);
+    }, [step, profile.missTendencies, profile.targetCategory, manualBackNavigation]);
 
     // [NEW] Handle auto-advance for TOTAL_SETTING
     useEffect(() => {
         if (profile.targetCategory === TargetCategory.TOTAL_SETTING) {
-            if (step === 2 || step === 3) {
+            if ((step === 2 || step === 3) && !manualBackNavigation) {
                 setStep(4);
             }
         }
-    }, [step, profile.targetCategory]);
+    }, [step, profile.targetCategory, manualBackNavigation]);
 
 
     // Step 1: Target Selection (Default if no category param)
@@ -591,6 +587,13 @@ export const DiagnosisWizard = () => {
                                 >
                                     先にプロのセッティングを見る
                                 </button>
+                            </div>
+
+                            <div className="mt-5 inline-flex max-w-xl items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-left text-sm text-amber-900">
+                                <div className="mt-0.5 text-base">ℹ️</div>
+                                <div className="font-bold">
+                                    この診断はβ版です。精度向上中です。
+                                </div>
                             </div>
                         </div>
 
@@ -1905,6 +1908,7 @@ export const DiagnosisWizard = () => {
 
         const handleSubmit = async () => {
             if (isAnalyzing) return; // 二重送信防止
+            setManualBackNavigation(false);
             const success = await runDiagnosis();
             if (!success) return; // エラー時はナビゲートしない
             const clubPath = getClubPath();
@@ -1941,8 +1945,17 @@ export const DiagnosisWizard = () => {
         }
 
         return (
-            <StepCard title="最終確認" subtitle="最後にいくつか確認させてください" onBack={() => setStep(step - 1)}>
+            <StepCard title="最終確認" subtitle="最後にいくつか確認させてください" onBack={prevStep}>
                 <div className="space-y-6">
+                    {diagnosisError && (
+                        <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-4 text-sm leading-6 text-red-800">
+                            <div className="font-black">診断を完了できませんでした</div>
+                            <div className="mt-1">{diagnosisError}</div>
+                            <div className="mt-2 text-xs font-bold text-red-700">
+                                入力内容は残っています。少し時間をおいて再試行してください。
+                            </div>
+                        </div>
+                    )}
                     <div>
                         <label className="font-bold block mb-2">Free Comments (その他要望)</label>
                         <textarea

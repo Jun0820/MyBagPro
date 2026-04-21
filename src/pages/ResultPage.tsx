@@ -68,10 +68,10 @@ export const ResultPage = () => {
                     <p className="text-slate-500 mb-8 text-sm leading-relaxed">{diagnosisError}</p>
                     <div className="flex flex-col gap-3">
                         <button 
-                            onClick={() => window.location.reload()} 
+                            onClick={() => navigate('/diagnosis')} 
                             className="w-full bg-trust-navy text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-slate-800 transition-colors"
                         >
-                            再試行する
+                            診断画面に戻る
                         </button>
                         <button 
                             onClick={() => navigate('/')} 
@@ -113,6 +113,9 @@ export const ResultPage = () => {
 
     return (
         <div className="animate-fadeIn pb-20 bg-[#f8fafc] min-h-screen text-slate-900">
+            <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 md:mb-6">
+                この診断はβ版です。精度向上中です。
+            </div>
             {/* Hero Section: High-Tech Trajectory Visualization - Kept dark for contrast with effects */}
             <div className="relative mb-6 md:mb-12 h-48 md:h-72 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-900/20 group">
                 {/* Background: Deep Space Navy */}
