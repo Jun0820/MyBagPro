@@ -122,6 +122,55 @@ export const ResultPage = () => {
         navigate('/');
     };
 
+    const topModel = result.rankings[0];
+    const primaryShop = AFFILIATE_SHOPS[0];
+
+    const handleSaveTopModel = () => {
+        if (!topModel) return;
+        const category = profile.targetCategory || TargetCategory.DRIVER;
+        const newClub = {
+            id: Math.random().toString(36),
+            category: category as string,
+            brand: topModel.brand || '',
+            model: topModel.modelName || '',
+            number: topModel.modelName || '',
+            flex: '',
+            shaft: typeof topModel.shafts?.[0] === 'string' ? topModel.shafts[0] : topModel.shafts?.[0]?.modelName || '',
+            loft: topModel.loft ? `${topModel.loft}°` : '',
+            distance: '',
+        };
+        const currentBag = profile.myBag || { clubs: [], ball: '' };
+        setProfile({
+            ...profile,
+            myBag: {
+                ...currentBag,
+                clubs: [...currentBag.clubs, newClub],
+            },
+        });
+        trackEvent('save_diagnosis_recommendation', {
+            diagnosis_category: profile.targetCategory || 'unknown',
+            product_brand: topModel.brand || '',
+            product_name: topModel.modelName || '',
+            is_logged_in: user.isLoggedIn,
+        });
+        alert(`✅ ${topModel.brand} ${topModel.modelName} をMy Bagに登録しました！`);
+    };
+
+    const handleBuyClick = (shopId: typeof AFFILIATE_SHOPS[number]['id']) => {
+        if (!topModel) return;
+        const shop = AFFILIATE_SHOPS.find((item) => item.id === shopId);
+        if (!shop) return;
+        trackEvent('click_affiliate_shop', {
+            source_page: 'diagnosis_result',
+            diagnosis_category: profile.targetCategory || 'unknown',
+            shop_id: shop.id,
+            shop_name: shop.name,
+            brand: topModel.brand || '',
+            model_name: topModel.modelName || '',
+        });
+        window.open(getAffiliateUrl(topModel.brand, topModel.modelName, shop.id), '_blank', 'noopener,noreferrer');
+    };
+
     return (
         <div className="animate-fadeIn pb-20 bg-[#f8fafc] min-h-screen text-slate-900">
             <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 md:mb-6">
@@ -167,6 +216,70 @@ export const ResultPage = () => {
                         正しい診断結果を表示していますか？
                     </div>
                 </div>
+            )}
+
+            {topModel && (
+                <section className="mb-8 rounded-[2rem] border border-slate-200 bg-white px-5 py-5 shadow-xl shadow-slate-200/40 md:px-8 md:py-7">
+                    <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                        <div className="min-w-0">
+                            <div className="text-[11px] font-black tracking-[0.18em] text-golf-700">BEST MATCH</div>
+                            <h3 className="mt-2 text-2xl font-black text-trust-navy md:text-3xl">
+                                {topModel.brand} {topModel.modelName}
+                            </h3>
+                            <p className="mt-2 text-sm leading-6 text-slate-600 md:text-base">
+                                適合率 {topModel.matchPercentage.toFixed(1)}%。まずはこの1本を保存するか、価格を確認するのが次の一手です。
+                            </p>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                                <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600">
+                                    {result.userSwingDna?.type || '診断結果'}
+                                </span>
+                                {topModel.shafts?.[0] && (
+                                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600">
+                                        {typeof topModel.shafts[0] === 'string' ? topModel.shafts[0] : topModel.shafts[0].modelName}
+                                    </span>
+                                )}
+                                {topModel.loft && (
+                                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600">
+                                        ロフト {topModel.loft}°
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="grid gap-3 md:min-w-[320px]">
+                            <button
+                                onClick={() => {
+                                    if (user.isLoggedIn) {
+                                        handleSaveTopModel();
+                                    } else {
+                                        trackEvent('open_auth_from_result', {
+                                            diagnosis_category: profile.targetCategory || 'unknown',
+                                            product_name: topModel.modelName || '',
+                                        });
+                                        setShowAuth(true);
+                                    }
+                                }}
+                                className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3.5 text-sm font-black text-white transition hover:bg-slate-800"
+                            >
+                                {user.isLoggedIn ? 'おすすめを保存する' : 'ログインして結果を保存'}
+                            </button>
+
+                            <button
+                                onClick={() => handleBuyClick(primaryShop.id)}
+                                className="inline-flex items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3.5 text-sm font-black text-white transition hover:bg-golf-600"
+                            >
+                                {primaryShop.name}で価格を見る
+                            </button>
+
+                            <button
+                                onClick={() => navigate('/diagnosis')}
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                            >
+                                条件を変えてもう一度診断
+                            </button>
+                        </div>
+                    </div>
+                </section>
             )}
 
             {/* AIのテキスト提案をスマホファーストでリッチに表示 */}
@@ -944,29 +1057,14 @@ export const ResultPage = () => {
                 {result.rankings.length > 0 && (
                     <button
                         onClick={() => {
-                            const topModel = result.rankings[0];
-                            if (topModel) {
-                                const category = profile.targetCategory || TargetCategory.DRIVER;
-                                const newClub = {
-                                    id: Math.random().toString(36),
-                                    category: (category as string),
-                                    brand: topModel.brand || '',
-                                    model: topModel.modelName || '',
-                                    number: topModel.modelName || '', 
-                                    flex: '',
-                                    shaft: typeof topModel.shafts?.[0] === 'string' ? topModel.shafts[0] : topModel.shafts?.[0]?.modelName || '',
-                                    loft: topModel.loft ? `${topModel.loft}°` : '',
-                                    distance: ''
-                                };
-                                const currentBag = profile.myBag || { clubs: [], ball: '' };
-                                setProfile({
-                                    ...profile,
-                                    myBag: {
-                                        ...currentBag,
-                                        clubs: [...currentBag.clubs, newClub]
-                                    }
+                            if (user.isLoggedIn) {
+                                handleSaveTopModel();
+                            } else {
+                                trackEvent('open_auth_from_result', {
+                                    diagnosis_category: profile.targetCategory || 'unknown',
+                                    product_name: topModel?.modelName || '',
                                 });
-                                alert(`✅ ${topModel.brand} ${topModel.modelName} をMy Bagに登録しました！`);
+                                setShowAuth(true);
                             }
                         }}
                         className="w-full relative group overflow-hidden bg-gradient-to-r from-golf-600 to-golf-700 text-white font-bold py-5 px-8 rounded-2xl shadow-xl shadow-golf-600/30 hover:shadow-golf-600/50 transition-all active:scale-95 flex items-center justify-between"
