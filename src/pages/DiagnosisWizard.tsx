@@ -547,99 +547,98 @@ export const DiagnosisWizard = () => {
     // Step 1: Target Selection (Default if no category param)
     if (step === 1) return (
         <div className="w-full max-w-6xl mx-auto animate-fadeIn">
-            <section className="overflow-hidden rounded-[2.5rem] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_48%,#eef6f1_100%)] shadow-sm">
-                <div className="relative px-6 py-12 md:px-10 md:py-16">
+            <section className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_54%,#eef6f1_100%)] shadow-sm">
+                <div className="relative px-5 py-8 md:px-10 md:py-12">
                     <div className="absolute inset-y-0 right-[-10%] hidden w-[42%] rounded-full bg-[radial-gradient(circle,_rgba(39,174,96,0.16),_rgba(255,255,255,0)_68%)] blur-2xl lg:block" />
-                    <div className="relative grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
-                        <div>
-                            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-slate-500">
-                                <Sparkles size={14} className="text-golf-700" />
-                                AI CLUB DIAGNOSIS
-                            </div>
-                            <h1 className="mt-6 text-4xl font-black leading-tight tracking-tight text-trust-navy md:text-6xl">
-                                まずは、
-                                <br />
-                                ドライバーから。
-                            </h1>
-                            <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
-                                いくつか答えるだけで、選ぶべき方向が見えてくる。
-                            </p>
+                    <div className="relative">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-slate-500">
+                            <Sparkles size={14} className="text-golf-700" />
+                            AI CLUB DIAGNOSIS
+                        </div>
+                        <h1 className="mt-5 text-[2.3rem] font-black leading-[1.05] tracking-tight text-trust-navy md:text-6xl">
+                            まずは10秒で、
+                            <br />
+                            自分に合う方向を知る。
+                        </h1>
+                        <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
+                            いまのミス傾向と振り方から、候補を一気に絞ります。ログインなしで始められて、あとで保存もできます。
+                        </p>
 
-                            <div className="mt-7 space-y-3">
-                                {['右に抜ける不安を減らしたい', '捕まりすぎを抑えたい', '今より候補を早く絞りたい'].map((point) => (
-                                    <div key={point} className="flex items-center gap-3 text-sm font-bold text-slate-700">
-                                        <CheckCircle2 size={18} className="text-golf-700" />
-                                        {point}
+                        <div className="mt-5 flex flex-wrap gap-2">
+                            {['ログイン不要', '入力は途中で保持', '結果はあとで保存可能'].map((chip) => (
+                                <div key={chip} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-black text-slate-600">
+                                    {chip}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-6 grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+                            <div className="grid gap-3 sm:grid-cols-3">
+                                {[
+                                    '右に抜ける不安を減らしたい',
+                                    '捕まりすぎを抑えたい',
+                                    '今より候補を早く絞りたい',
+                                ].map((point) => (
+                                    <div key={point} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-bold text-slate-700">
+                                        <CheckCircle2 size={18} className="shrink-0 text-golf-700" />
+                                        <span>{point}</span>
                                     </div>
                                 ))}
                             </div>
-
-                            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                                <button
-                                    onClick={() => {
-                                        resetCategorySpecificData();
-                                        updateProfile('targetCategory', TargetCategory.DRIVER);
-                                        setStep(2);
-                                        navigate('/diagnosis/driver');
-                                    }}
-                                    className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-7 py-4 text-sm font-black text-white transition-transform hover:-translate-y-0.5"
-                                >
-                                    10秒でドライバー診断を始める
-                                    <ArrowRight size={16} />
-                                </button>
-                                <button
-                                    onClick={() => navigate('/settings/pros')}
-                                    className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-7 py-4 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
-                                >
-                                    先にプロのセッティングを見る
-                                </button>
-                            </div>
-
-                            <div className="mt-5 inline-flex max-w-xl items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-left text-sm text-amber-900">
-                                <div className="mt-0.5 text-base">ℹ️</div>
-                                <div className="font-bold">
-                                    この診断はβ版です。精度向上中です。
-                                </div>
+                            <div className="rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-sm font-bold text-white">
+                                3問前後で候補を整理
                             </div>
                         </div>
 
-                        <div className="rounded-[2rem] bg-slate-950 p-6 text-white">
-                            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                                <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">QUESTION 01</div>
-                                <div className="mt-3 text-2xl font-black">いまのミスはどれに近いですか？</div>
-                                <div className="mt-5 space-y-3">
-                                    {['右に抜ける', '左に行きすぎる', '高さが出ない'].map((choice, index) => (
-                                        <div
-                                            key={choice}
-                                            className={`rounded-[1.25rem] px-4 py-4 text-sm font-black ${
-                                                index === 0 ? 'bg-white text-trust-navy' : 'bg-white/5 text-slate-300'
-                                            }`}
-                                        >
-                                            {choice}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                            <button
+                                onClick={() => {
+                                    resetCategorySpecificData();
+                                    updateProfile('targetCategory', TargetCategory.DRIVER);
+                                    setStep(2);
+                                    navigate('/diagnosis/driver');
+                                }}
+                                className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-7 py-4 text-sm font-black text-white transition-transform hover:-translate-y-0.5"
+                            >
+                                10秒でドライバー診断を始める
+                                <ArrowRight size={16} />
+                            </button>
+                            <button
+                                onClick={() => navigate('/settings/pros')}
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-7 py-4 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
+                            >
+                                先にプロのセッティングを見る
+                            </button>
+                        </div>
 
-                            <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                                <div className="text-[11px] font-black tracking-[0.16em] text-cyan-200">NEXT</div>
-                                <div className="mt-3 text-2xl font-black">相性の良い方向を3本まで絞り込む</div>
-                                <p className="mt-3 text-sm leading-7 text-slate-300">
-                                    まずは候補を狭める。細かいスペックはそのあとで大丈夫です。
-                                </p>
+                        <div className="mt-4 inline-flex max-w-xl items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-left text-sm text-amber-900">
+                            <div className="mt-0.5 text-base">ℹ️</div>
+                            <div className="font-bold">
+                                この診断はβ版です。精度向上中です。
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">OTHER DIAGNOSIS</div>
-                <div className="mt-3 flex flex-wrap gap-3">
+            <section className="mt-5 rounded-[1.75rem] border border-slate-200 bg-white p-5 md:p-6">
+                <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">OTHER DIAGNOSIS</div>
+                        <div className="mt-1 text-sm font-bold text-slate-600">他カテゴリの診断は順次公開中です。</div>
+                    </div>
+                    <button
+                        onClick={() => navigate('/settings/pros')}
+                        className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
+                    >
+                        先にプロを見る
+                    </button>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
                     {['フェアウェイウッド', 'ユーティリティ', 'アイアン', 'ウェッジ', 'パター'].map((item) => (
                         <div
                             key={item}
-                            className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-500"
+                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold text-slate-500 md:text-sm"
                         >
                             {item} は順次公開予定
                         </div>
@@ -671,7 +670,7 @@ export const DiagnosisWizard = () => {
 
         if (profile.targetCategory === TargetCategory.PUTTER) {
             return (
-                <StepCard title="このまま診断を始めます" subtitle="パターは最適化モードでそのまま進みます。" onBack={() => setStep(step - 1)}>
+                <StepCard title="このまま診断を始めます" subtitle="パターは最適化モードでそのまま進みます。" onBack={prevStep}>
                     <div className="py-6 md:py-10">
                         <div className="rounded-[1.75rem] bg-slate-50 p-6 text-center">
                             <div className="text-5xl mb-5">🤖</div>
@@ -686,7 +685,7 @@ export const DiagnosisWizard = () => {
             );
         }
         return (
-            <StepCard title="どう診断したいですか？" subtitle="まずは、どこまで見直したいかを選ぶだけで大丈夫です。" onBack={() => setStep(step - 1)}>
+            <StepCard title="どう診断したいですか？" subtitle="まずは、どこまで見直したいかを選ぶだけで大丈夫です。" onBack={prevStep}>
                 <div className="space-y-4">
                     <OptionButton
                         label="フルで見直す"
@@ -738,7 +737,7 @@ export const DiagnosisWizard = () => {
             };
 
             return (
-                <StepCard title="ユーティリティ設定" subtitle="現在のユーティリティ構成を教えてください" onBack={() => setStep(step - 1)}>
+                <StepCard title="ユーティリティ設定" subtitle="現在のユーティリティ構成を教えてください" onBack={prevStep}>
                     <div className="space-y-6">
                         {/* 1. 現在のUT構成 */}
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
@@ -885,7 +884,7 @@ export const DiagnosisWizard = () => {
 
         // その他のクラブ種別（ドライバー、FW、アイアン、ボール）のデフォルトStep 3
         return (
-            <StepCard title="現在のギア" subtitle="現在使用中のモデルを教えてください" onBack={() => setStep(step - 1)}>
+            <StepCard title="現在のギア" subtitle="現在使用中のモデルを教えてください" onBack={prevStep}>
                 <div className="space-y-6">
                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                         <label className="text-xs font-bold text-slate-400 mb-4 block flex items-center gap-2">
@@ -1029,7 +1028,7 @@ export const DiagnosisWizard = () => {
 
     // Step 4: User Profile
     if (step === 4) return (
-        <StepCard title="ユーザープロフィール" subtitle="あなたのプロフィール" onBack={() => setStep(step - 1)}>
+        <StepCard title="ユーザープロフィール" subtitle="あなたのプロフィール" onBack={prevStep}>
             <div className="space-y-6">
                 <div>
                     <label className="block text-xs font-bold text-slate-500 mb-2">性別</label>
@@ -1120,7 +1119,7 @@ export const DiagnosisWizard = () => {
             const recommended = getRecommendedPutter();
 
             return (
-                <StepCard title="パター診断" subtitle="パッティングスタイルを分析します" onBack={() => setStep(step - 1)}>
+                <StepCard title="パター診断" subtitle="パッティングスタイルを分析します" onBack={prevStep}>
                     {/* 1. ストロークタイプ（最重要質問） */}
                     <div className="mb-8">
                         <label className="font-bold block mb-2 text-trust-navy text-lg">1. あなたのストロークタイプ</label>
@@ -1636,7 +1635,7 @@ export const DiagnosisWizard = () => {
     if (step === 6) {
         if (profile.targetCategory === TargetCategory.BALL) {
             return (
-                <StepCard title="ボールの好み" subtitle="好みと重要視するポイント" onBack={() => setStep(step - 1)}>
+                <StepCard title="ボールの好み" subtitle="好みと重要視するポイント" onBack={prevStep}>
                     <BallPreferenceSelector
                         preferences={profile.ballPreferences}
                         userProfile={profile}
@@ -1654,7 +1653,7 @@ export const DiagnosisWizard = () => {
         const clubMissTypes = CLUB_SPECIFIC_MISS_TYPES[profile.targetCategory || TargetCategory.DRIVER] || [];
 
         return (
-            <StepCard title="詳細分析" subtitle={`${profile.targetCategory || 'クラブ'}の悩みやミスの傾向`} onBack={() => setStep(step - 1)}>
+            <StepCard title="詳細分析" subtitle={`${profile.targetCategory || 'クラブ'}の悩みやミスの傾向`} onBack={prevStep}>
                 <div className="space-y-6">
                     <div>
                         <label className="font-bold block mb-3">ミス傾向 (複数選択可)</label>
@@ -1693,7 +1692,7 @@ export const DiagnosisWizard = () => {
     if (step === 7) {
         if (profile.targetCategory === TargetCategory.BALL) {
             return (
-                <StepCard title="計測データ（任意）" subtitle="計測データがあれば入力してください" onBack={() => setStep(step - 1)}>
+                <StepCard title="計測データ（任意）" subtitle="計測データがあれば入力してください" onBack={prevStep}>
                     <AdvancedShotInput
                         data={profile.shotData}
                         onChange={v => updateProfile('shotData', v)}
@@ -1713,7 +1712,7 @@ export const DiagnosisWizard = () => {
         };
 
         return (
-            <StepCard title="計測データ" subtitle={`${profile.targetCategory || 'クラブ'}の計測データ（任意）`} onBack={() => setStep(step - 1)}>
+            <StepCard title="計測データ" subtitle={`${profile.targetCategory || 'クラブ'}の計測データ（任意）`} onBack={prevStep}>
                 <div className="mb-6">
                     <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -1794,7 +1793,7 @@ export const DiagnosisWizard = () => {
         const finalCanProceed = isHeadValid;
 
         return (
-            <StepCard title="メーカー選択" subtitle="こだわりメーカーはありますか？" onBack={() => setStep(step - 1)}>
+            <StepCard title="メーカー選択" subtitle="こだわりメーカーはありますか？" onBack={prevStep}>
                 <div className="space-y-8">
                     {/* Head Brands */}
                     {showHeadBrands && (
