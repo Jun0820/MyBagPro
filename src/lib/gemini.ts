@@ -15,8 +15,23 @@ export interface DiagnosisResult {
 }
 
 export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: string) => {
-    if (!apiKey) {
-        throw new Error("Gemini API Key is missing. Please check your environment variables.");
+    const isBall = profile.targetCategory === TargetCategory.BALL;
+    const fallbackPrompt = isBall ? generateBallAiPrompt(profile) : generateAiPrompt(profile);
+    const hasUsableApiKey = Boolean(apiKey) && !apiKey.startsWith('PLACEHOLDER');
+
+    if (!hasUsableApiKey) {
+        console.warn("Gemini API Key is missing or placeholder. Falling back to deterministic diagnosis.");
+        const fallbackResult = isBall ? buildFallbackBallDiagnosis() : buildFallbackClubDiagnosis(profile);
+        return {
+            result: {
+                category: profile.targetCategory,
+                type: isBall ? "BALL" : "CLUB",
+                ...fallbackResult,
+                aiPromptText: fallbackPrompt,
+                usedFallback: true,
+            },
+            groundingMetadata: null,
+        };
     }
 
     console.log("Generating Production AI Diagnosis using Gemini API...");
@@ -36,7 +51,6 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
                 }
             });
 
-            const isBall = profile.targetCategory === TargetCategory.BALL;
             const prompt = isBall ? generateBallAiPrompt(profile) : generateAiPrompt(profile);
 
             const parseAndValidate = async (inputPrompt: string) => {
@@ -93,7 +107,6 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
 
     console.error("Critical: All Gemini models failed. Falling back to deterministic diagnosis.", lastError);
 
-    const isBall = profile.targetCategory === TargetCategory.BALL;
     const fallbackResult = isBall ? buildFallbackBallDiagnosis() : buildFallbackClubDiagnosis(profile);
 
     return {
@@ -101,7 +114,7 @@ export const generateFittingDiagnosis = async (profile: UserProfile, apiKey: str
             category: profile.targetCategory,
             type: isBall ? "BALL" : "CLUB",
             ...fallbackResult,
-            aiPromptText: isBall ? generateBallAiPrompt(profile) : generateAiPrompt(profile),
+            aiPromptText: fallbackPrompt,
             usedFallback: true,
         },
         groundingMetadata: null,
