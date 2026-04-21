@@ -259,6 +259,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, o
         return 0;
     });
 
+    const registeredCategories = new Set(setting.clubs.map((club) => club.category));
+    const starterSlots = [
+        { title: 'ドライバー', category: TargetCategory.DRIVER, number: '1W', description: 'まずは1本。診断の精度が一番上がります。', color: 'bg-golf-600' },
+        { title: 'アイアン', category: TargetCategory.IRON, number: '7I', description: '代表番手を1本入れるだけでも分析しやすくなります。', color: 'bg-blue-600' },
+        { title: 'パター', category: TargetCategory.PUTTER, number: 'PT', description: '最後にスコアへ効きやすい番手です。', color: 'bg-slate-600' },
+    ];
+    const completedStarterCount = starterSlots.filter((slot) => registeredCategories.has(slot.category)).length;
+    const starterPercent = Math.round((completedStarterCount / starterSlots.length) * 100);
+
     const updateClub = useCallback((updated: Club) => {
         onUpdate({
             ...setting,
@@ -291,6 +300,29 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, o
             }]
         });
         setAddCategory('');
+    };
+
+    const handleQuickAddStarter = (category: TargetCategory, number: string) => {
+        const existing = setting.clubs.find((club) => club.category === category && (club.number || '') === number);
+        if (existing) return;
+
+        onUpdate({
+            ...setting,
+            clubs: [
+                ...setting.clubs,
+                {
+                    id: Math.random().toString(36).substring(7),
+                    category,
+                    brand: '',
+                    model: '',
+                    shaft: '',
+                    flex: '',
+                    number,
+                    loft: '',
+                    distance: '',
+                },
+            ],
+        });
     };
 
     const toggleLoft = (val: string) => {
@@ -349,6 +381,63 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, o
 
     return (
         <div className="space-y-6 animate-fadeIn">
+            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
+                <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                    <div className="space-y-2">
+                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Quick Start</div>
+                        <h3 className="text-xl font-black tracking-tight text-trust-navy">最初は3本だけでも大丈夫です</h3>
+                        <p className="max-w-2xl text-sm leading-relaxed text-slate-500">
+                            まずはドライバー、アイアン、パターのどれか1本から始めれば十分です。あとで少しずつ増やしていけます。
+                        </p>
+                    </div>
+                    <div className="min-w-[180px] rounded-2xl bg-slate-50 p-4">
+                        <div className="flex items-center justify-between text-[11px] font-bold text-slate-400">
+                            <span>スタート登録</span>
+                            <span>{starterPercent}%</span>
+                        </div>
+                        <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-slate-200">
+                            <div
+                                className="h-full rounded-full bg-gradient-to-r from-golf-500 to-emerald-500 transition-all"
+                                style={{ width: `${starterPercent}%` }}
+                            />
+                        </div>
+                        <div className="mt-2 text-xs font-medium text-slate-500">
+                            {completedStarterCount} / {starterSlots.length} クリア
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                    {starterSlots.map((slot) => {
+                        const isDone = registeredCategories.has(slot.category);
+                        return (
+                            <button
+                                key={slot.title}
+                                onClick={() => handleQuickAddStarter(slot.category, slot.number)}
+                                disabled={isDone}
+                                className={cn(
+                                    'rounded-2xl border p-4 text-left transition-all',
+                                    isDone
+                                        ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
+                                )}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div className={cn('rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-white', slot.color)}>
+                                        {slot.number}
+                                    </div>
+                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                        {isDone ? '登録済み' : 'まず追加'}
+                                    </div>
+                                </div>
+                                <div className="mt-3 text-base font-black text-trust-navy">{slot.title}</div>
+                                <div className="mt-1 text-xs leading-relaxed text-slate-500">{slot.description}</div>
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+
             {/* クラブ一覧 & 編集部 */}
             <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-4 md:p-6">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 border-b border-slate-100 pb-4 gap-4">
@@ -379,6 +468,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, o
                         <div className="col-span-full text-center py-16 border-2 border-dashed border-slate-100 rounded-2xl text-slate-300">
                              <Plus size={48} className="mx-auto mb-4 opacity-10" />
                              <p className="text-sm font-bold">まだクラブが登録されていません</p>
+                             <p className="mt-2 text-xs font-medium text-slate-400">上のクイックスタートから 1W / 7I / パター のどれか1本を追加すると始めやすいです。</p>
                         </div>
                     )}
                 </div>
