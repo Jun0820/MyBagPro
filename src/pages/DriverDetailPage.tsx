@@ -1,8 +1,20 @@
 import { ArrowLeft, ShoppingBag } from 'lucide-react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { saveRecentlyViewed } from '../lib/recentlyViewed';
 
 export const DriverDetailPage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    saveRecentlyViewed({
+      id: 'club:drivers-catalog',
+      type: 'club',
+      title: '人気ドライバー詳細',
+      subtitle: '確認済みモデルのみ順次公開',
+      href: '/clubs/drivers',
+    });
+  }, []);
 
   return (
     <div className="min-h-screen pb-20">

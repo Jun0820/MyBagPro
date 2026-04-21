@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPublishedArticleBySlug, fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
+import { saveRecentlyViewed } from '../lib/recentlyViewed';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 import { getTournamentSpotlightByArticleSlug } from '../lib/tournamentSpotlights';
 
@@ -55,6 +56,17 @@ export const ArticleDetailPage = () => {
       isMounted = false;
     };
   }, [slug]);
+
+  useEffect(() => {
+    if (!article || !slug) return;
+    saveRecentlyViewed({
+      id: `article:${slug}`,
+      type: 'article',
+      title: article.title,
+      subtitle: article.excerpt || article.articleType,
+      href: `/articles/${slug}`,
+    });
+  }, [article, slug]);
 
   useEffect(() => {
     if (!slug) return;

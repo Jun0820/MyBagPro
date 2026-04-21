@@ -6,6 +6,7 @@ import { trackEvent } from '../lib/analytics';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
 import { getProfileVisuals } from '../lib/profileVisuals';
+import { saveRecentlyViewed } from '../lib/recentlyViewed';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 
 const formatClubLabel = (category: string, specLabel?: string) => {
@@ -224,6 +225,17 @@ export const ProSettingDetailPage = () => {
       isMounted = false;
     };
   }, [slug]);
+
+  useEffect(() => {
+    if (!setting) return;
+    saveRecentlyViewed({
+      id: `profile:${setting.slug}`,
+      type: 'profile',
+      title: setting.name,
+      subtitle: setting.style || setting.tagline,
+      href: `/settings/pros/${setting.slug}`,
+    });
+  }, [setting]);
 
   useEffect(() => {
     if (!slug) return;
