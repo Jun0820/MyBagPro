@@ -34,7 +34,7 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
             "MG4", "MG3", "MG2", "Milled Grind", "MG3 TW",
             "Hi-Toe 3", "Hi-Toe RAW", "Hi-Toe", "Hi-Toe Big Foot"
         ],
-        "BALL": ["TP5 (2024)", "TP5x (2024)", "Tour Response", "Tour Response Stripe", "TP5 (2021)", "TP5x (2021)", "Distance+ Soft"],
+        "BALL": ["TP5 (2026)", "TP5x (2026)", "Tour Response (2026)", "Tour Response Stripe (2026)", "SpeedSoft", "Distance+"],
         "PUTTER": [
             "Spider GT", "Spider GTX", "Spider Tour X", "Spider Tour", "Spider EX", "Spider FCG", "Spider X",
             "TP Collection Soto", "TP Collection Juno", "TP Collection Bandon",
@@ -73,7 +73,7 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
             "Opus", "Opus Platinum",
             "Jaws Raw", "Jaws Full Toe", "Jaws MD5", "Mack Daddy 4", "Mack Daddy CB", "Mack Daddy Forged"
         ],
-        "BALL": ["Chrome Tour (2024)", "Chrome Tour X", "Chrome Soft", "Chrome Soft X", "Chrome Soft X LS", "ERC Soft", "Supersoft"],
+        "BALL": ["Chrome Tour", "Chrome Tour X", "Chrome Tour Triple Diamond", "Chrome Soft", "ERC Soft", "Supersoft"],
         "PUTTER": [
             "Ai-ONE #1", "Ai-ONE #2", "Ai-ONE #7", "Ai-ONE Milled",
             "Tri-Hot 5K", "White Hot OG", "Target 2-Ball", "White Hot RX", "O-Works", "Stroke Lab",
@@ -134,7 +134,7 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
         "WEDGE": [
             "Vokey SM10", "Vokey SM9", "Vokey SM8", "Vokey SM7", "Vokey SM6", "Vokey SM5", "Vokey Forged", "WedgeWorks"
         ],
-        "BALL": ["Pro V1 (2025)", "Pro V1x (2025)", "Pro V1 (2023)", "Pro V1x (2023)", "Pro V1x Left Dash", "AVX", "Tour Speed", "Tour Soft"],
+        "BALL": ["Pro V1 (2025)", "Pro V1x (2025)", "Pro V1x Left Dash", "AVX (2026)", "Tour Soft (2026)", "Velocity", "TruFeel"],
         "PUTTER": [
             "Scotty Cameron Super Select Newport", "Super Select Newport 2", "Super Select Squareback 2", 
             "Scotty Cameron Phantom X 5", "Phantom X 7", "Phantom X 9", "Phantom X 11",
@@ -148,7 +148,7 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
         "UTILITY": ["ZXi Hybrid", "ZX Hybrid Mk II", "ZX Utility Mk II", "ZX Hybrid", "Z U85", "Z H85"],
         "IRON": ["ZXi7", "ZXi5", "ZX5 Mk II", "ZX7 Mk II", "Z-Forged II", "ZX5", "ZX7", "Z-Forged", "Z785", "Z585", "Z965", "Z765"],
         "WEDGE": ["ZX7 MK II", "ZX Forged", "Z-Forged", "RTX (Clevelandコラボ)"],
-        "BALL": ["Z-Star (2025)", "Z-Star XV (2025)", "Z-Star Diamond", "Z-Star (2023)", "X3", "Soft Feel"]
+        "BALL": ["Z-STAR (2025)", "Z-STAR XV (2025)", "Z-STAR Diamond", "Soft Feel"]
     },
     "XXIO": {
         "DRIVER": ["XXIO 14", "XXIO 13", "XXIO X -eks- (2024)", "XXIO 12", "XXIO X -eks- (2022)", "XXIO 11", "XXIO X", "XXIO 10", "XXIO 9", "XXIO 8", "XXIO 7", "XXIO Prime"],
@@ -170,7 +170,7 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
         "FAIRWAY": ["B3 MAX FW", "B3 FW", "B2 MAX FW", "B1 ST FW", "TOUR B JGR FW"],
         "UTILITY": ["B3 UT", "B2 HT UT", "B1 ST UT", "TOUR B JGR HY"],
         "IRON": ["241CB", "242CB+", "221CB", "222CB+", "223CB", "B3 MAX", "TOUR B X-CB", "TOUR B JGR HF3"],
-        "BALL": ["TOUR B X", "TOUR B XS", "TOUR B RX", "TOUR B RXS", "e12 Contact", "Phyz"]
+        "BALL": ["TOUR B X", "TOUR B XS", "TOUR B RX", "TOUR B RXS", "e12 HiLaunch", "e12 Straight", "e12 Speed"]
     },
     "Cleveland": {
         "DRIVER": ["Launcher XL", "Launcher XL HALO", "Launcher Turbo"],
@@ -199,7 +199,8 @@ export const CLUB_DATABASE: Record<string, Record<string, string[]>> = {
         "DRIVER": ["TW757 TYPE-D", "TW757 TYPE-S", "TR20 460", "TR20 440", "TW747 460", "TW747 455", "GS", "BERES", "BERES NX"],
         "FAIRWAY": ["TW757 FW", "TR21 FW", "TW747 FW", "GS FW"],
         "UTILITY": ["TW757 UT", "TR21 UT", "TW747 UT"],
-        "IRON": ["TW757 P", "TW757 Vx", "TW757 B", "TR20 V", "TR20 P", "TW-BM", "GS", "BERES"]
+        "IRON": ["TW757 P", "TW757 Vx", "TW757 B", "TR20 V", "TR20 P", "TW-BM", "GS", "BERES"],
+        "BALL": ["TW-X"]
     },
     "ONOFF": {
         "DRIVER": ["KURO", "AKA", "LABOSPEC PLUS"],

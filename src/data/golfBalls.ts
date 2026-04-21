@@ -20,11 +20,11 @@ export interface GolfBall {
   };
 }
 
-// 2026 Latest Premium Golf Balls Database
+// 2026 Latest Golf Balls Database
 export const BALL_DATABASE: GolfBall[] = [
   {
     id: 'prov1x-2025',
-    name: 'Pro V1x (2025/2026 Model)',
+    name: 'Pro V1x',
     brand: 'Titleist',
     type: 'スピン系・高弾道',
     img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
@@ -39,7 +39,7 @@ export const BALL_DATABASE: GolfBall[] = [
   },
   {
     id: 'prov1-2025',
-    name: 'Pro V1 (2025/2026 Model)',
+    name: 'Pro V1',
     brand: 'Titleist',
     type: 'スピン系・中弾道',
     img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80',
@@ -53,8 +53,8 @@ export const BALL_DATABASE: GolfBall[] = [
     radar: { distance: 4.5, spin: 5, feel: 5 },
   },
   {
-    id: 'tp5-2024',
-    name: 'TP5 (2024/2026 Model)',
+    id: 'tp5-2026',
+    name: 'TP5',
     brand: 'TaylorMade',
     type: '5ピース・スピン系',
     img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80',
@@ -68,8 +68,8 @@ export const BALL_DATABASE: GolfBall[] = [
     radar: { distance: 4, spin: 5, feel: 5 },
   },
   {
-    id: 'tp5x-2024',
-    name: 'TP5x (2024/2026 Model)',
+    id: 'tp5x-2026',
+    name: 'TP5x',
     brand: 'TaylorMade',
     type: '5ピース・ディスタンス',
     img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
@@ -98,6 +98,21 @@ export const BALL_DATABASE: GolfBall[] = [
     radar: { distance: 4.8, spin: 4.8, feel: 4.5 },
   },
   {
+    id: 'chrome-tour-td-2025',
+    name: 'Chrome Tour Triple Diamond',
+    brand: 'Callaway',
+    type: '低スピン・強弾道',
+    img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
+    desc: 'Callawayの現行低スピンツアーボール。速いスイングで、吹け上がりを抑えながら前に強く飛ばしたいプレーヤー向け。',
+    profiles: {
+      targetSpeed: ['48-49', 'over50'],
+      targetScore: ['under80', '80s'],
+      targetConcern: ['distance', 'stability'],
+      targetTrajectory: ['straight', 'hook'],
+    },
+    radar: { distance: 5, spin: 4, feel: 3.5 },
+  },
+  {
     id: 'zstar-diamond-2025',
     name: 'Z-STAR ◆ (Diamond)',
     brand: 'Srixon',
@@ -113,7 +128,7 @@ export const BALL_DATABASE: GolfBall[] = [
     radar: { distance: 4.5, spin: 5, feel: 4 },
   },
   {
-    id: 'avx-2024',
+    id: 'avx-2026',
     name: 'AVX',
     brand: 'Titleist',
     type: '低弾道・低スピン',
@@ -126,6 +141,51 @@ export const BALL_DATABASE: GolfBall[] = [
       targetTrajectory: ['slice', 'hook'],
     },
     radar: { distance: 4.5, spin: 3, feel: 5 },
+  },
+  {
+    id: 'tour-response-2026',
+    name: 'Tour Response',
+    brand: 'TaylorMade',
+    type: 'ウレタン系・バランス重視',
+    img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80',
+    desc: 'ツアー系ボールの性能に近づけつつ、価格とやさしさのバランスを取りたい人向け。ソフトな打感で幅広く使いやすいモデル。',
+    profiles: {
+      targetSpeed: ['40-43', '44-47'],
+      targetScore: ['80s', '90s', 'over100'],
+      targetConcern: ['feel', 'spin', 'stability'],
+      targetTrajectory: ['straight', 'slice'],
+    },
+    radar: { distance: 4, spin: 4, feel: 4.5 },
+  },
+  {
+    id: 'speedsoft-2026',
+    name: 'SpeedSoft',
+    brand: 'TaylorMade',
+    type: 'ソフト系・やさしい飛距離',
+    img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80',
+    desc: 'TaylorMadeの現行ソフト系ディスタンスボール。低めのヘッドスピードでもつぶしやすく、楽に飛距離を出したい人向け。',
+    profiles: {
+      targetSpeed: ['under40', '40-43'],
+      targetScore: ['90s', 'over100'],
+      targetConcern: ['distance', 'feel'],
+      targetTrajectory: ['slice', 'straight'],
+    },
+    radar: { distance: 4, spin: 2.5, feel: 5 },
+  },
+  {
+    id: 'e12-straight-2025',
+    name: 'e12 Straight',
+    brand: 'Bridgestone',
+    type: '直進性・曲がり軽減',
+    img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
+    desc: 'Bridgestoneの現行e12シリーズ。フックやスライスを減らしながら前に進む弾道を求める人向け。',
+    profiles: {
+      targetSpeed: ['under40', '40-43', '44-47'],
+      targetScore: ['90s', 'over100'],
+      targetConcern: ['stability', 'distance'],
+      targetTrajectory: ['slice', 'hook'],
+    },
+    radar: { distance: 4.3, spin: 2.5, feel: 4 },
   }
 ];
 
