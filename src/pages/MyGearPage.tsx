@@ -25,6 +25,7 @@ import { supabase } from '../lib/supabase';
 import { TargetCategory, type DiagnosisHistoryItem } from '../types/golf';
 import { driverDetails } from '../data/featuredSettings';
 import { getCompareShortlist, removeCompareShortlistItem, type CompareShortlistItem } from '../lib/diagnosisCompare';
+import { saveDiagnosisRankingsToCompare } from '../lib/diagnosisCompare';
 import { getRecentlyViewed, type RecentlyViewedItem } from '../lib/recentlyViewed';
 
 const categoryToDiagnosisPath = (category?: string | null) => {
@@ -158,6 +159,12 @@ export const MyGearPage = () => {
 
     const openRecentlyViewed = (item: RecentlyViewedItem) => {
         navigate(item.href);
+    };
+
+    const addSavedDiagnosisToCompare = (item: DiagnosisHistoryItem) => {
+        if (!Array.isArray(item.result?.rankings) || item.result.rankings.length === 0) return;
+        const next = saveDiagnosisRankingsToCompare(item.profile, item.result.rankings);
+        setCompareShortlist(next);
     };
 
     return (
@@ -382,22 +389,35 @@ export const MyGearPage = () => {
                                             </div>
                                             <div className="space-y-3">
                                                 {recentHistory.map((item) => (
-                                                    <button
+                                                    <div
                                                         key={item.id}
-                                                        onClick={() => openSavedDiagnosis(item)}
-                                                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-colors hover:bg-slate-100"
+                                                        className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
                                                     >
-                                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                            {item.category}
-                                                        </div>
-                                                        <div className="mt-2 line-clamp-2 text-base font-black text-trust-navy">
-                                                            {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '診断結果'}
-                                                        </div>
-                                                        <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
-                                                            <Trophy size={12} />
-                                                            {new Date(item.date).toLocaleDateString('ja-JP')}
-                                                        </div>
-                                                    </button>
+                                                        <button
+                                                            onClick={() => openSavedDiagnosis(item)}
+                                                            className="w-full text-left transition-colors hover:opacity-80"
+                                                        >
+                                                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                                {item.category}
+                                                            </div>
+                                                            <div className="mt-2 line-clamp-2 text-base font-black text-trust-navy">
+                                                                {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '診断結果'}
+                                                            </div>
+                                                            <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
+                                                                <Trophy size={12} />
+                                                                {new Date(item.date).toLocaleDateString('ja-JP')}
+                                                            </div>
+                                                        </button>
+                                                        {Array.isArray(item.result?.rankings) && item.result.rankings.length > 0 && (
+                                                            <button
+                                                                onClick={() => addSavedDiagnosisToCompare(item)}
+                                                                className="mt-4 inline-flex items-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                                                            >
+                                                                比較候補に追加
+                                                                <ArrowRight size={14} />
+                                                            </button>
+                                                        )}
+                                                    </div>
                                                 ))}
                                             </div>
                                         </div>
