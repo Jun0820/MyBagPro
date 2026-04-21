@@ -9,6 +9,7 @@ import { INITIAL_PROFILE, TargetCategory } from '../types/golf';
 import { AiResponseDisplay } from '../components/AiResponseDisplay';
 import { BagShareCard } from '../features/share/BagShareCard';
 import { trackEvent } from '../lib/analytics';
+import { saveDiagnosisRankingsToCompare } from '../lib/diagnosisCompare';
 
 // Trajectory Animation Component (Local or Imported)
 const TrajectoryAnimation = () => (
@@ -180,6 +181,18 @@ export const ResultPage = () => {
         window.open(getAffiliateUrl(topModel.brand, topModel.modelName, shop.id), '_blank', 'noopener,noreferrer');
     };
 
+    const handleSaveCompareShortlist = () => {
+        if (!Array.isArray(result.rankings) || result.rankings.length === 0) return;
+        saveDiagnosisRankingsToCompare(profile, result.rankings);
+        trackEvent('save_compare_shortlist', {
+            diagnosis_category: profile.targetCategory || 'unknown',
+            shortlist_count: Math.min(result.rankings.length, 3),
+            top_product_name: topModel?.modelName || '',
+        });
+        alert('✅ 比較候補をマイページに保存しました。');
+        navigate('/mypage');
+    };
+
     return (
         <div className="animate-fadeIn pb-20 bg-[#f8fafc] min-h-screen text-slate-900">
             <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 md:mb-6">
@@ -256,6 +269,13 @@ export const ResultPage = () => {
                         </div>
 
                         <div className="grid gap-3 md:min-w-[320px]">
+                            <button
+                                onClick={handleSaveCompareShortlist}
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                            >
+                                比較候補を残す
+                            </button>
+
                             <button
                                 onClick={() => {
                                     if (user.isLoggedIn) {

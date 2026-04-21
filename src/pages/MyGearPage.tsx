@@ -19,9 +19,11 @@ import {
     Trophy,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { TargetCategory, type DiagnosisHistoryItem } from '../types/golf';
+import { driverDetails } from '../data/featuredSettings';
+import { getCompareShortlist, removeCompareShortlistItem, type CompareShortlistItem } from '../lib/diagnosisCompare';
 
 const categoryToDiagnosisPath = (category?: string | null) => {
     switch (category) {
@@ -57,6 +59,7 @@ export const MyGearPage = () => {
     } = useDiagnosis();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<'view' | 'clubs' | 'profile'>('view');
+    const [compareShortlist, setCompareShortlist] = useState<CompareShortlistItem[]>([]);
 
     const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
     const essentialCategories = [
@@ -75,6 +78,10 @@ export const MyGearPage = () => {
     ].reduce((sum, current) => sum + current, 0);
     const completionPercent = Math.round((completionPoints / 5) * 100);
     const recentHistory = (user.history || []).slice(0, 3);
+
+    useEffect(() => {
+        setCompareShortlist(getCompareShortlist());
+    }, []);
 
     const analysisPoints = [
         profile.myBag.ball
@@ -127,6 +134,21 @@ export const MyGearPage = () => {
     const openSavedDiagnosis = (item: DiagnosisHistoryItem) => {
         restoreDiagnosisResult(item);
         navigate('/result');
+    };
+
+    const openCompareCandidate = (item: CompareShortlistItem) => {
+        const matchedDriver = driverDetails.find(
+            (driver) =>
+                driver.brand === item.brand &&
+                (driver.name === item.modelName || `${driver.brand} ${driver.name}` === `${item.brand} ${item.modelName}`),
+        );
+
+        if (matchedDriver) {
+            navigate(`/buy/drivers/${matchedDriver.slug}`);
+            return;
+        }
+
+        navigate('/compare');
     };
 
     return (
@@ -350,6 +372,57 @@ export const MyGearPage = () => {
                                                 {new Date(item.date).toLocaleDateString('ja-JP')}
                                             </div>
                                         </button>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {compareShortlist.length > 0 && (
+                            <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
+                                <div className="mb-4 flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
+                                    <Sparkles size={14} />
+                                    比較候補
+                                </div>
+                                <div className="grid gap-4 md:grid-cols-3">
+                                    {compareShortlist.map((item) => (
+                                        <div
+                                            key={item.id}
+                                            className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                                        >
+                                            <div className="flex items-start justify-between gap-3">
+                                                <div>
+                                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                        {item.sourceCategory}
+                                                    </div>
+                                                    <div className="mt-2 line-clamp-2 text-base font-black text-trust-navy">
+                                                        {item.brand} {item.modelName}
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    onClick={() => setCompareShortlist(removeCompareShortlistItem(item.id))}
+                                                    className="text-[11px] font-black text-slate-400 transition-colors hover:text-slate-600"
+                                                >
+                                                    削除
+                                                </button>
+                                            </div>
+                                            <div className="mt-3 flex flex-wrap gap-2">
+                                                <span className="rounded-full bg-white px-3 py-1 text-[11px] font-black text-slate-500">
+                                                    適合率 {item.matchPercentage.toFixed(1)}%
+                                                </span>
+                                                {item.shaft && (
+                                                    <span className="rounded-full bg-white px-3 py-1 text-[11px] font-black text-slate-500">
+                                                        {item.shaft}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <button
+                                                onClick={() => openCompareCandidate(item)}
+                                                className="mt-4 inline-flex items-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                                            >
+                                                候補を見る
+                                                <ArrowRight size={14} />
+                                            </button>
+                                        </div>
                                     ))}
                                 </div>
                             </section>
