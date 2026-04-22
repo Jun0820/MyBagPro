@@ -78,20 +78,23 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto w-full max-w-6xl px-3 py-3 sm:px-4 md:px-6">
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-3">
-            <a href="/" className="mx-auto min-w-0 cursor-pointer md:mx-0 md:w-auto">
+        <div className="mx-auto w-full max-w-6xl px-3 py-2.5 sm:px-4 md:px-6 md:py-3">
+          <div className="flex flex-col gap-2.5 md:flex-row md:items-center md:justify-between md:gap-4">
+            <a
+              href="/"
+              className="mx-auto inline-flex min-w-0 items-center justify-center rounded-[1.35rem] border border-slate-900/10 bg-slate-950 px-3 py-2 shadow-[0_12px_30px_-20px_rgba(15,23,42,0.75)] transition-transform hover:scale-[1.01] md:mx-0"
+            >
               <img
                 src="/branding/logo-header.svg"
                 alt="My Bag Pro"
-                className="h-11 w-auto object-contain shadow-sm"
+                className="h-9 w-auto object-contain sm:h-10"
               />
             </a>
 
-            <nav className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-4 md:flex md:flex-1 md:justify-end">
+            <nav className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-4 md:flex md:flex-1 md:justify-end md:gap-2.5">
               <button
                 onClick={() => navigate('/settings/pros')}
-                className="inline-flex h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 text-[11px] font-black leading-none text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:text-sm"
+                className="inline-flex h-11 min-w-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-slate-200 bg-white px-3.5 text-[11px] font-black leading-none text-slate-700 shadow-[0_8px_22px_-18px_rgba(15,23,42,0.55)] transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:text-sm"
               >
                 <ShieldCheck size={14} />
                 <span>プロのセッティング</span>
@@ -99,7 +102,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
               <button
                 onClick={() => navigate('/articles')}
-                className="inline-flex h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 text-[11px] font-black leading-none text-slate-700 transition-colors hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:text-sm"
+                className="inline-flex h-11 min-w-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-slate-200 bg-white px-3.5 text-[11px] font-black leading-none text-slate-700 shadow-[0_8px_22px_-18px_rgba(15,23,42,0.55)] transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:text-golf-700 sm:gap-2 sm:text-sm"
               >
                 <CircleHelp size={14} />
                 <span>悩みから探す</span>
@@ -107,10 +110,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
               <button
                 onClick={handleMyPageClick}
-                className={`group inline-flex h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full px-3 text-[11px] font-black leading-none active:scale-95 transition-all duration-300 sm:gap-2 sm:text-sm ${
+                className={`group inline-flex h-11 min-w-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-3.5 text-[11px] font-black leading-none shadow-[0_10px_22px_-18px_rgba(15,23,42,0.65)] active:scale-95 transition-all duration-300 sm:gap-2 sm:text-sm ${
                   user.isLoggedIn
-                    ? 'bg-slate-900 text-white hover:bg-slate-800'
-                    : 'border border-slate-200 bg-white text-slate-700 hover:border-golf-300 hover:text-golf-700'
+                    ? 'bg-slate-900 text-white hover:-translate-y-0.5 hover:bg-slate-800'
+                    : 'border border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-golf-300 hover:text-golf-700'
                 }`}
               >
                 {user.isLoggedIn ? <User size={14} className="group-hover:scale-110 transition-transform" /> : <LogIn size={14} />}
@@ -119,7 +122,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
               <button
                 onClick={() => navigate('/diagnosis')}
-                className="inline-flex h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-golf-500 px-3 text-[11px] font-black leading-none text-white shadow-sm transition-all duration-300 hover:bg-golf-600 hover:shadow-golf-500/30 sm:gap-2 sm:text-sm"
+                className="inline-flex h-11 min-w-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-golf-500 px-3.5 text-[11px] font-black leading-none text-white shadow-[0_14px_26px_-18px_rgba(34,197,94,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-golf-600 hover:shadow-golf-500/30 sm:gap-2 sm:text-sm"
               >
                 <Stethoscope size={14} />
                 <span>無料診断</span>
