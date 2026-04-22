@@ -216,7 +216,7 @@ export const MyGearPage = () => {
             ? {
                 label: 'ボールを登録する',
                 description: '今のボールを入れて分析を完成させる',
-                onClick: () => setActiveTab('clubs'),
+                onClick: () => openBagTabWithFocus('ball-first'),
             }
             : {
                 label: 'ボール診断をする',
@@ -830,7 +830,9 @@ export const MyGearPage = () => {
                             returnTo
                                 ? async () => {
                                       await manualSave();
-                                      navigate(returnTo);
+                                      const nextReturn = new URL(returnTo, window.location.origin);
+                                      nextReturn.searchParams.set('refreshed', '1');
+                                      navigate(`${nextReturn.pathname}${nextReturn.search}${nextReturn.hash}`);
                                   }
                                 : undefined
                         }

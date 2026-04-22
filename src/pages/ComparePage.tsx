@@ -30,7 +30,6 @@ export const ComparePage = () => {
 
   const settingSlug = searchParams.get('setting');
   const shortlistMode = searchParams.get('mode') === 'shortlist';
-  const compareReturnTarget = `/compare${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
   const shortlist = useMemo(() => getCompareShortlist(), []);
   const primaryShop = AFFILIATE_SHOPS[0];
 
@@ -288,8 +287,20 @@ export const ComparePage = () => {
   const missingCount = comparisonRows.filter((row) => row.current === '未登録').length;
   const differenceCount = comparisonRows.filter((row) => !row.matched && row.current !== '未登録' && row.target !== '未掲載').length;
   const matchPercent = comparisonRows.length > 0 ? Math.round((matchedCount / comparisonRows.length) * 100) : 0;
+  const hasPreviousMissingCount = searchParams.has('previousMissing');
+  const hasPreviousMatchPercent = searchParams.has('previousMatch');
+  const previousMissingCount = hasPreviousMissingCount ? Number(searchParams.get('previousMissing')) : null;
+  const previousMatchPercent = hasPreviousMatchPercent ? Number(searchParams.get('previousMatch')) : null;
+  const refreshedFromBag = searchParams.get('refreshed') === '1';
   const targetDriver = targetSetting.clubs.find((club) => club.category === 'Driver');
   const targetDriverDetail = targetDriver?.productSlug ? getDriverDetailBySlug(targetDriver.productSlug) : undefined;
+  const compareReturnTarget = (() => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete('refreshed');
+    nextParams.set('previousMissing', String(missingCount));
+    nextParams.set('previousMatch', String(matchPercent));
+    return `/compare${nextParams.toString() ? `?${nextParams.toString()}` : ''}`;
+  })();
   const comparisonInsights = [
     currentBagCount >= 8
       ? `自分のバッグは ${currentBagCount} 本登録済みです。かなり全体像を見ながら比較できる状態です。`
@@ -308,6 +319,18 @@ export const ComparePage = () => {
   ];
   const missingBall = currentBall === '未登録';
   const needsBagSetup = currentBagCount < 8 || missingCount > 0;
+  const missingImprovement = typeof previousMissingCount === 'number' ? previousMissingCount - missingCount : 0;
+  const matchImprovement = typeof previousMatchPercent === 'number' ? matchPercent - previousMatchPercent : 0;
+  const compareRefreshMessage =
+    refreshedFromBag && (missingImprovement !== 0 || matchImprovement !== 0)
+      ? missingImprovement > 0
+        ? `比較に戻りました。未登録カテゴリが ${missingImprovement} 件減って、いまは ${missingCount} 件です。`
+        : matchImprovement > 0
+        ? `比較に戻りました。一致率が ${matchImprovement}% 上がって、いまは ${matchPercent}% です。`
+        : `比較に戻りました。いまのバッグ内容を反映しています。`
+      : refreshedFromBag
+      ? '比較に戻りました。いまのバッグ内容を反映しています。'
+      : null;
 
   const nextActions = useMemo(() => {
     const actions: Array<{
@@ -417,6 +440,11 @@ export const ComparePage = () => {
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:mt-5 md:text-base md:leading-8">
           どこが同じで、どこが違うのかを整理するページです。まず全体の近さを見て、そのあと差分の大きいカテゴリから見直すと使いやすいです。
         </p>
+        {compareRefreshMessage && (
+          <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold leading-relaxed text-emerald-800">
+            {compareRefreshMessage}
+          </div>
+        )}
 
         <div className="mt-8 grid gap-4 md:grid-cols-4">
           <div className="rounded-[1.5rem] bg-slate-50 p-5">
