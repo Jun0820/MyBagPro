@@ -19,6 +19,7 @@ import {
     Trophy,
     BookOpen,
     Heart,
+    ShoppingCart,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useEffect, useState } from 'react';
@@ -29,6 +30,8 @@ import { getCompareShortlist, removeCompareShortlistItem, type CompareShortlistI
 import { saveDiagnosisRankingsToCompare } from '../lib/diagnosisCompare';
 import { getRecentlyViewed, type RecentlyViewedItem } from '../lib/recentlyViewed';
 import { getFavoriteClubs, removeFavoriteClub, type FavoriteClubItem } from '../lib/favoriteClubs';
+import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
+import { trackEvent } from '../lib/analytics';
 
 const categoryToDiagnosisPath = (category?: string | null) => {
     switch (category) {
@@ -51,6 +54,20 @@ const categoryToDiagnosisPath = (category?: string | null) => {
     }
 };
 
+const favoriteCategoryToDiagnosisPath = (category?: string | null) => {
+    const normalized = category?.toLowerCase() || '';
+
+    if (normalized.includes('driver')) return '/diagnosis/driver';
+    if (normalized.includes('fairway')) return '/diagnosis/fairway';
+    if (normalized.includes('utility')) return '/diagnosis/utility';
+    if (normalized.includes('iron')) return '/diagnosis/iron';
+    if (normalized.includes('wedge')) return '/diagnosis/wedge';
+    if (normalized.includes('putter')) return '/diagnosis/putter';
+    if (normalized.includes('ball')) return '/diagnosis/ball';
+
+    return '/diagnosis';
+};
+
 export const MyGearPage = () => {
     const {
         profile,
@@ -67,6 +84,7 @@ export const MyGearPage = () => {
     const [compareShortlist, setCompareShortlist] = useState<CompareShortlistItem[]>([]);
     const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
     const [favoriteClubs, setFavoriteClubs] = useState<FavoriteClubItem[]>([]);
+    const primaryShop = AFFILIATE_SHOPS[0];
 
     const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
     const essentialCategories = [
@@ -169,6 +187,27 @@ export const MyGearPage = () => {
         if (!Array.isArray(item.result?.rankings) || item.result.rankings.length === 0) return;
         const next = saveDiagnosisRankingsToCompare(item.profile, item.result.rankings);
         setCompareShortlist(next);
+    };
+
+    const openFavoriteBuy = (item: FavoriteClubItem) => {
+        trackEvent('click_affiliate_shop', {
+            source_page: 'my_page_favorites',
+            shop_id: primaryShop.id,
+            shop_name: primaryShop.name,
+            brand: item.brand,
+            model_name: item.modelName,
+        });
+        window.open(getAffiliateUrl(item.brand, item.modelName, primaryShop.id), '_blank', 'noopener,noreferrer');
+    };
+
+    const rediagnoseFavorite = (item: FavoriteClubItem) => {
+        trackEvent('restart_diagnosis_from_favorite', {
+            source_page: 'my_page_favorites',
+            category: item.category,
+            brand: item.brand,
+            model_name: item.modelName,
+        });
+        navigate(favoriteCategoryToDiagnosisPath(item.category));
     };
 
     return (
@@ -508,16 +547,29 @@ export const MyGearPage = () => {
                                                                 {[item.shaft, item.loft].filter(Boolean).join(' / ')}
                                                             </div>
                                                         )}
-                                                        <div className="mt-3 flex items-center justify-between gap-3">
+                                                        <div className="mt-3 flex flex-wrap gap-2">
+                                                            <button
+                                                                onClick={() => openFavoriteBuy(item)}
+                                                                className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-3 py-2 text-xs font-black text-white transition-colors hover:bg-slate-800"
+                                                            >
+                                                                <ShoppingCart size={13} />
+                                                                価格を見る
+                                                            </button>
+                                                            <button
+                                                                onClick={() => rediagnoseFavorite(item)}
+                                                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
+                                                            >
+                                                                再診断する
+                                                            </button>
                                                             <button
                                                                 onClick={() => navigate('/compare?mode=shortlist')}
-                                                                className="text-xs font-black text-trust-navy transition-colors hover:text-slate-700"
+                                                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
                                                             >
                                                                 比較へ戻る
                                                             </button>
                                                             <button
                                                                 onClick={() => setFavoriteClubs(removeFavoriteClub(item.id))}
-                                                                className="text-xs font-black text-slate-400 transition-colors hover:text-slate-600"
+                                                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
                                                             >
                                                                 削除
                                                             </button>
