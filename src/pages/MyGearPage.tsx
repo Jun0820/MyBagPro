@@ -125,6 +125,34 @@ export const MyGearPage = () => {
             : 'ヘッドスピードはやや低めです。球の上がりやすさとボール選びの最適化が効きます。',
     ];
 
+    const analysisActions = [
+        compareShortlist.length > 0
+            ? {
+                label: '比較候補を見に行く',
+                description: `${compareShortlist.length} 件の候補を保存済みです。比較ページで見比べられます。`,
+                onClick: () => navigate('/compare?mode=shortlist'),
+            }
+            : null,
+        favoriteClubs.length > 0
+            ? {
+                label: 'お気に入りを見直す',
+                description: `${favoriteClubs.length} 件のお気に入りがあります。価格確認や再診断につなげられます。`,
+                onClick: () => setActiveTab('view'),
+            }
+            : null,
+        profile.myBag.ball
+            ? {
+                label: 'ボール診断で相性を確認する',
+                description: '今のボールが本当に合っているか、HSとバッグから見直します。',
+                onClick: () => navigate('/ball-diagnosis'),
+            }
+            : {
+                label: 'ボールを登録して分析を完成させる',
+                description: '使用ボールを入れると、分析と診断の精度が上がります。',
+                onClick: () => setActiveTab('clubs'),
+            },
+    ].filter(Boolean) as Array<{ label: string; description: string; onClick: () => void }>;
+
     const nextActions = [
         !registeredCategories.has(TargetCategory.DRIVER)
             ? {
@@ -379,6 +407,21 @@ export const MyGearPage = () => {
                                             <div key={point} className="rounded-2xl bg-slate-50 p-4 text-sm font-medium leading-relaxed text-slate-600">
                                                 {point}
                                             </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-5 space-y-3">
+                                        {analysisActions.map((action) => (
+                                            <button
+                                                key={action.label}
+                                                onClick={action.onClick}
+                                                className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 text-left transition-colors hover:bg-slate-50"
+                                            >
+                                                <div>
+                                                    <div className="text-sm font-black text-trust-navy">{action.label}</div>
+                                                    <div className="mt-1 text-xs text-slate-500">{action.description}</div>
+                                                </div>
+                                                <ArrowRight size={16} className="text-slate-400" />
+                                            </button>
                                         ))}
                                     </div>
                                 </div>
