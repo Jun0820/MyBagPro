@@ -199,8 +199,8 @@ export const ResultPage = () => {
             <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 md:mb-6">
                 この診断はβ版です。精度向上中です。
             </div>
-            {/* Hero Section: High-Tech Trajectory Visualization - Kept dark for contrast with effects */}
-            <div className="group relative mb-5 h-36 overflow-hidden rounded-[1.75rem] shadow-2xl shadow-slate-900/20 md:mb-12 md:h-72 md:rounded-[2.5rem]">
+            {/* Hero Section */}
+            <div className="group relative mb-5 h-28 overflow-hidden rounded-[1.5rem] shadow-2xl shadow-slate-900/20 md:mb-8 md:h-56 md:rounded-[2.25rem]">
                 {/* Background: Deep Space Navy */}
                 <div className="absolute inset-0 bg-[#020617]"></div>
 
@@ -216,15 +216,15 @@ export const ResultPage = () => {
                 <TrajectoryAnimation />
 
                 {/* Content Overlay */}
-                <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-300 shadow-lg shadow-black/20 backdrop-blur-md md:mb-4 md:px-4 md:text-xs md:tracking-[0.2em]">
+                <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
+                    <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-300 shadow-lg shadow-black/20 backdrop-blur-md md:mb-3 md:px-4 md:text-xs md:tracking-[0.2em]">
                         <Zap size={12} className="text-slate-400" fill="currentColor" />
                         AI Performance Analysis
                     </div>
-                    <h2 className="mb-2 text-[1.7rem] font-black tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] font-eng md:text-6xl">
+                    <h2 className="mb-1 text-[1.45rem] font-black tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] font-eng md:text-5xl">
                         IDEAL TRAJECTORY
                     </h2>
-                    <p className="text-slate-400 text-xs md:text-sm font-medium tracking-wider uppercase">
+                    <p className="text-[10px] font-medium tracking-wider uppercase text-slate-400 md:text-sm">
                         Optimized for your swing DNA
                     </p>
                 </div>
@@ -243,14 +243,29 @@ export const ResultPage = () => {
 
             {topModel && (
                 <section className="mb-6 rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-xl shadow-slate-200/40 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
-                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                        <div className="min-w-0">
+                    <div className="mb-4 grid gap-2 md:grid-cols-3">
+                        <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
+                            <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">BEST MATCH</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">{topModel.brand}</div>
+                        </div>
+                        <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
+                            <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">MATCH SCORE</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">{topModel.matchPercentage.toFixed(1)}%</div>
+                        </div>
+                        <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
+                            <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">NEXT STEP</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">保存 or 比較</div>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                        <div className="min-w-0 md:max-w-[58%]">
                             <div className="text-[11px] font-black tracking-[0.18em] text-golf-700">BEST MATCH</div>
                             <h3 className="mt-2 text-xl font-black text-trust-navy md:text-3xl">
                                 {topModel.brand} {topModel.modelName}
                             </h3>
                             <p className="mt-2 text-sm leading-6 text-slate-600 md:text-base">
-                                適合率 {topModel.matchPercentage.toFixed(1)}%。まずはこの1本を保存するか、価格を確認するのが次の一手です。
+                                適合率 {topModel.matchPercentage.toFixed(1)}%。まずはこの1本を保存するか、比較候補に残してから価格を確認するのがおすすめです。
                             </p>
                             <div className="mt-3 flex flex-wrap gap-2">
                                 <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600">
@@ -269,7 +284,14 @@ export const ResultPage = () => {
                             </div>
                         </div>
 
-                        <div className="grid gap-2.5 md:min-w-[320px]">
+                        <div className="grid gap-2.5 md:min-w-[320px] md:max-w-[360px]">
+                            <button
+                                onClick={() => handleBuyClick(primaryShop.id)}
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3.5 text-sm font-black text-white transition hover:bg-golf-600"
+                            >
+                                {primaryShop.name}で価格を見る
+                            </button>
+
                             <button
                                 onClick={handleSaveCompareShortlist}
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
@@ -292,13 +314,6 @@ export const ResultPage = () => {
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3.5 text-sm font-black text-white transition hover:bg-slate-800"
                             >
                                 {user.isLoggedIn ? 'おすすめを保存する' : 'ログインして結果を保存'}
-                            </button>
-
-                            <button
-                                onClick={() => handleBuyClick(primaryShop.id)}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3.5 text-sm font-black text-white transition hover:bg-golf-600"
-                            >
-                                {primaryShop.name}で価格を見る
                             </button>
 
                             <button
