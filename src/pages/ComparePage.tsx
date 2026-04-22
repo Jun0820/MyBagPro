@@ -258,6 +258,14 @@ export const ComparePage = () => {
   const currentBag = profile.myBag?.clubs ?? [];
   const currentHeadSpeed = profile.headSpeed || null;
   const targetHeadSpeed = parseHeadSpeedValue(targetSetting.headSpeed);
+  const currentBall = profile.myBag?.ball || '未登録';
+  const currentBagCount = currentBag.length;
+  const currentDistanceCount = currentBag.filter((club) => String(club.distance || '').trim() !== '').length;
+  const currentDistanceCoverage = currentBagCount > 0 ? Math.round((currentDistanceCount / currentBagCount) * 100) : 0;
+  const currentFairwayCount = currentBag.filter((club) => club.category === 'フェアウェイウッド').length;
+  const currentUtilityCount = currentBag.filter((club) => club.category === 'ユーティリティ').length;
+  const currentWedgeCount = currentBag.filter((club) => club.category === 'ウェッジ').length;
+  const currentPutterCount = currentBag.filter((club) => club.category === 'パター').length;
 
   const comparisonRows = useMemo(() => {
     const targetClubMap = new Map(targetSetting.clubs.map((club) => [club.category, club.model]));
@@ -278,8 +286,25 @@ export const ComparePage = () => {
   const matchedCount = comparisonRows.filter((row) => row.matched).length;
   const missingCount = comparisonRows.filter((row) => row.current === '未登録').length;
   const differenceCount = comparisonRows.filter((row) => !row.matched && row.current !== '未登録' && row.target !== '未掲載').length;
+  const matchPercent = comparisonRows.length > 0 ? Math.round((matchedCount / comparisonRows.length) * 100) : 0;
   const targetDriver = targetSetting.clubs.find((club) => club.category === 'Driver');
   const targetDriverDetail = targetDriver?.productSlug ? getDriverDetailBySlug(targetDriver.productSlug) : undefined;
+  const comparisonInsights = [
+    currentBagCount >= 8
+      ? `自分のバッグは ${currentBagCount} 本登録済みです。かなり全体像を見ながら比較できる状態です。`
+      : `自分のバッグは ${currentBagCount} 本登録です。まずは代表番手を埋めると比較の精度が上がります。`,
+    currentDistanceCoverage >= 70
+      ? `飛距離入力は ${currentDistanceCoverage}% 入っています。番手間の差もかなり追いやすいです。`
+      : currentDistanceCoverage > 0
+      ? `飛距離入力は ${currentDistanceCoverage}% です。代表番手の飛距離が増えると差分判断がしやすくなります。`
+      : '飛距離が未入力なので、モデル差は見えても番手のつながりはまだ読みづらい状態です。',
+    currentFairwayCount + currentUtilityCount >= 3
+      ? `ロングゲーム側は FW ${currentFairwayCount} 本 / UT ${currentUtilityCount} 本で比較しやすい構成です。`
+      : `ロングゲーム側は FW ${currentFairwayCount} 本 / UT ${currentUtilityCount} 本です。ロングゲームの差分はまだ大きく出やすいです。`,
+    currentWedgeCount >= 2 && currentPutterCount >= 1
+      ? `ショートゲーム側は WEDGE ${currentWedgeCount} 本 + パターでかなり整っています。`
+      : `ショートゲーム側は WEDGE ${currentWedgeCount} 本 / パター ${currentPutterCount} 本です。ここを埋めるとスコア側の比較が具体化します。`,
+  ];
 
   const nextActions = useMemo(() => {
     const actions: Array<{
@@ -400,6 +425,37 @@ export const ComparePage = () => {
 
       <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+          <div className="mb-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 md:p-5">
+            <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
+              <GitCompareArrows size={14} />
+              あなたの現在地
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl bg-white p-4">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">バッグ登録</div>
+                <div className="mt-2 text-2xl font-black text-trust-navy">{currentBagCount}本</div>
+                <div className="mt-2 text-xs leading-relaxed text-slate-500">比較対象との差分を見る土台です。</div>
+              </div>
+              <div className="rounded-2xl bg-white p-4">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">飛距離入力</div>
+                <div className="mt-2 text-2xl font-black text-trust-navy">{currentDistanceCoverage}%</div>
+                <div className="mt-2 text-xs leading-relaxed text-slate-500">番手のつながりを読む材料です。</div>
+              </div>
+              <div className="rounded-2xl bg-white p-4">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">使用ボール</div>
+                <div className="mt-2 text-base font-black text-trust-navy">{currentBall}</div>
+                <div className="mt-2 text-xs leading-relaxed text-slate-500">クラブだけでなく相性確認にも効きます。</div>
+              </div>
+            </div>
+            <div className="mt-4 space-y-3">
+              {comparisonInsights.map((point) => (
+                <div key={point} className="rounded-2xl border border-slate-200 bg-white p-4 text-sm leading-relaxed text-slate-600">
+                  {point}
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="inline-flex items-center gap-2 text-xs font-black text-slate-400">
             <BarChart3 size={14} />
             比較の見方
@@ -446,6 +502,23 @@ export const ComparePage = () => {
 
         <div className="space-y-6">
           <section className="rounded-[2rem] border border-cyan-100 bg-cyan-50 p-6">
+            <div className="mb-4 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl bg-white p-4 ring-1 ring-cyan-100">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">一致率</div>
+                <div className="mt-2 text-2xl font-black text-trust-navy">{matchPercent}%</div>
+                <div className="mt-2 text-xs leading-relaxed text-slate-500">同じ方向性の強さです。</div>
+              </div>
+              <div className="rounded-2xl bg-white p-4 ring-1 ring-cyan-100">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">差分</div>
+                <div className="mt-2 text-2xl font-black text-trust-navy">{differenceCount}</div>
+                <div className="mt-2 text-xs leading-relaxed text-slate-500">先に見直す候補です。</div>
+              </div>
+              <div className="rounded-2xl bg-white p-4 ring-1 ring-cyan-100">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">未登録</div>
+                <div className="mt-2 text-2xl font-black text-trust-navy">{missingCount}</div>
+                <div className="mt-2 text-xs leading-relaxed text-slate-500">先に埋めると精度が上がります。</div>
+              </div>
+            </div>
             <h2 className="text-2xl font-black text-trust-navy">次にやるといいこと</h2>
             <div className="mt-5 space-y-4">
               {nextActions.map((action) => (
