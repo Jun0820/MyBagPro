@@ -1,10 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2 } from 'lucide-react';
+import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2, Sparkles, ArrowRight, Target } from 'lucide-react';
 import { type ClubSetting, type Club, TargetCategory } from '../../types/golf';
 import { BrandModelInput } from '../../components/BrandModelInput';
 import { DetailedShaftInput } from '../../components/DetailedShaftInput';
 import { cn } from '../../lib/utils';
 import { ShareImageExporter } from '../../components/ShareImageExporter';
+import { BALL_MASTER_DATA } from '../../data/ballMasterData';
 
 // Helper for Category Colors
 const getCategoryColor = (cat: string) => {
@@ -219,9 +220,29 @@ interface MyBagManagerProps {
     onDiagnose?: (club: Club) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     onManualSave?: () => void;
+    onOpenBallDiagnosis?: () => void;
+    onOpenCompare?: () => void;
 }
 
-export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, onDiagnose, saveStatus, onManualSave }) => {
+const BALL_MODEL_SUGGESTIONS = Array.from(
+    new Set(
+        BALL_MASTER_DATA.flatMap((brand) =>
+            brand.models
+                .map((model) => model.name)
+                .filter((name) => name !== 'わからない・相談したい'),
+        ),
+    ),
+).sort((a, b) => a.localeCompare(b));
+
+export const MyBagManager: React.FC<MyBagManagerProps> = ({
+    setting,
+    onUpdate,
+    onDiagnose,
+    saveStatus,
+    onManualSave,
+    onOpenBallDiagnosis,
+    onOpenCompare,
+}) => {
     const [addCategory, setAddCategory] = useState('');
     const [selectedLofts, setSelectedLofts] = useState<string[]>([]);
     const [batchPreset, setBatchPreset] = useState({
@@ -267,6 +288,23 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, o
     ];
     const completedStarterCount = starterSlots.filter((slot) => registeredCategories.has(slot.category)).length;
     const starterPercent = Math.round((completedStarterCount / starterSlots.length) * 100);
+    const missingEssentials = starterSlots.filter((slot) => !registeredCategories.has(slot.category));
+    const hasBall = Boolean(setting.ball?.trim());
+    const bagCoverageTone =
+        setting.clubs.length >= 10
+            ? `クラブは ${setting.clubs.length} 本登録済みです。かなり全体像が見える状態です。`
+            : setting.clubs.length >= 5
+            ? `クラブは ${setting.clubs.length} 本登録済みです。代表番手はかなり見えています。`
+            : setting.clubs.length > 0
+            ? `クラブは ${setting.clubs.length} 本登録済みです。あと数本で分析の精度が上がります。`
+            : 'まだクラブが未登録です。まずは1Wか7Iからで十分です。';
+    const linkageTone = hasBall
+        ? `使用ボールは「${setting.ball}」です。クラブとのつながりまで見ながら診断できます。`
+        : '使用ボールが未登録です。ボールまで入ると、診断と自動分析の精度がさらに上がります。';
+    const structureTone =
+        missingEssentials.length === 0
+            ? 'ドライバー・アイアン・パターがそろっているので、いまのバッグ傾向をかなり見やすい状態です。'
+            : `不足している代表番手は ${missingEssentials.map((slot) => slot.title).join(' / ')} です。ここを埋めると提案が安定します。`;
 
     const updateClub = useCallback((updated: Club) => {
         onUpdate({
@@ -435,6 +473,109 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({ setting, onUpdate, o
                             </button>
                         );
                     })}
+                </div>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div className="space-y-2">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
+                            <Sparkles size={12} />
+                            Auto Analysis
+                        </div>
+                        <div>
+                            <h3 className="text-xl font-black tracking-tight text-trust-navy">登録した内容から、いまの傾向を自動で整理します</h3>
+                            <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-500">
+                                まずは代表番手とボールが入っていれば十分です。登録した直後に、次に見るべき診断や比較が分かるようにしています。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl bg-slate-50 p-4 md:min-w-[240px]">
+                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">現在の使用ボール</div>
+                        <input
+                            list="mybag-ball-suggestions"
+                            value={setting.ball || ''}
+                            onChange={(e) => onUpdate({ ...setting, ball: e.target.value })}
+                            placeholder="例: Pro V1 / TP5 / Chrome Tour"
+                            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
+                        />
+                        <datalist id="mybag-ball-suggestions">
+                            {BALL_MODEL_SUGGESTIONS.map((ballName) => (
+                                <option key={ballName} value={ballName} />
+                            ))}
+                        </datalist>
+                        <button
+                            onClick={() => onManualSave?.()}
+                            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
+                        >
+                            <Save size={14} />
+                            ボールも含めて保存
+                        </button>
+                    </div>
+                </div>
+
+                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                    {[bagCoverageTone, structureTone, linkageTone].map((point) => (
+                        <div key={point} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <div className="flex items-start gap-3">
+                                <div className="mt-0.5 rounded-full bg-white p-2 text-golf-600 shadow-sm">
+                                    <Sparkles size={14} />
+                                </div>
+                                <p className="text-sm leading-relaxed text-slate-600">{point}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                    <button
+                        onClick={() => onOpenBallDiagnosis?.()}
+                        className="rounded-2xl bg-trust-navy px-5 py-4 text-left text-white transition-colors hover:bg-slate-800"
+                    >
+                        <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/70">
+                            <Target size={12} />
+                            Next
+                        </div>
+                        <div className="mt-2 text-base font-black">ボール診断へ進む</div>
+                        <div className="mt-1 text-xs leading-relaxed text-white/80">
+                            {hasBall ? 'いまのボールが本当に合っているか確認できます。' : '登録したボール候補や悩みから、相性をすぐ見直せます。'}
+                        </div>
+                    </button>
+
+                    <button
+                        onClick={() => onOpenCompare?.()}
+                        className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-100"
+                    >
+                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Compare</div>
+                        <div className="mt-2 text-base font-black">比較ページで差を見る</div>
+                        <div className="mt-1 text-xs leading-relaxed text-slate-500">
+                            プロや診断候補と見比べながら、次に変える番手を絞り込みます。
+                        </div>
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            if (missingEssentials[0]) {
+                                handleQuickAddStarter(missingEssentials[0].category, missingEssentials[0].number);
+                            }
+                        }}
+                        disabled={!missingEssentials[0]}
+                        className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                        <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                            <ArrowRight size={12} />
+                            Improve
+                        </div>
+                        <div className="mt-2 text-base font-black">
+                            {missingEssentials[0] ? `${missingEssentials[0].title} を追加する` : '代表番手はそろっています'}
+                        </div>
+                        <div className="mt-1 text-xs leading-relaxed text-slate-500">
+                            {missingEssentials[0]
+                                ? '不足している代表番手を先に埋めると、自動分析と診断結果の精度が安定します。'
+                                : '次は飛距離やロフト差、ボール相性まで見直すのがおすすめです。'}
+                        </div>
+                    </button>
                 </div>
             </div>
 

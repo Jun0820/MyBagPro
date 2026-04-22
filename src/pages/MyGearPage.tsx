@@ -731,6 +731,8 @@ export const MyGearPage = () => {
                     <MyBagManager
                         setting={profile.myBag}
                         onUpdate={(b: any) => updateProfile('myBag', b)}
+                        onOpenBallDiagnosis={() => navigate('/ball-diagnosis')}
+                        onOpenCompare={() => navigate('/compare')}
                         onDiagnose={(club) => {
                             updateProfile('targetCategory', club.category);
                             updateProfile('currentBrand', club.brand);
