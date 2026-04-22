@@ -305,6 +305,8 @@ export const ComparePage = () => {
       ? `ショートゲーム側は WEDGE ${currentWedgeCount} 本 + パターでかなり整っています。`
       : `ショートゲーム側は WEDGE ${currentWedgeCount} 本 / パター ${currentPutterCount} 本です。ここを埋めるとスコア側の比較が具体化します。`,
   ];
+  const missingBall = currentBall === '未登録';
+  const needsBagSetup = currentBagCount < 8 || missingCount > 0;
 
   const nextActions = useMemo(() => {
     const actions: Array<{
@@ -351,6 +353,25 @@ export const ComparePage = () => {
       });
     }
 
+    if (missingBall || currentDistanceCoverage < 40) {
+      actions.push({
+        title: missingBall ? '使用ボールを決める' : 'ボール相性を診断する',
+        description: missingBall
+          ? '使用ボールが未登録です。ボールが入るとクラブ比較の見え方もかなり具体化します。'
+          : 'クラブ差が近いときは、ボール相性まで見ると次の一手が決まりやすくなります。',
+        cta: 'ボール診断へ進む',
+        onClick: () => {
+          trackEvent('start_ball_diagnosis', {
+            source_page: 'compare_page',
+            reference_profile_slug: targetSetting.slug,
+            reference_profile_name: targetSetting.name,
+          });
+          navigate('/ball-diagnosis');
+        },
+        variant: 'secondary',
+      });
+    }
+
     actions.push({
       title: '差分をもとにAI診断する',
       description:
@@ -370,7 +391,7 @@ export const ComparePage = () => {
     });
 
     return actions.slice(0, 3);
-  }, [differenceCount, missingCount, navigate, targetDriverDetail, targetSetting]);
+  }, [currentDistanceCoverage, differenceCount, missingBall, missingCount, navigate, targetDriverDetail, targetSetting]);
 
   return (
       <div className="min-h-screen space-y-6 pb-20 md:space-y-8">
@@ -453,6 +474,39 @@ export const ComparePage = () => {
                   {point}
                 </div>
               ))}
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <button
+                onClick={() => {
+                  trackEvent('begin_mybag_creation', {
+                    source_page: 'compare_page_quick_actions',
+                    reference_profile_slug: targetSetting.slug,
+                  });
+                  navigate('/mybag/create');
+                }}
+                className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black ${
+                  needsBagSetup ? 'bg-trust-navy text-white' : 'border border-slate-300 bg-white text-slate-700'
+                }`}
+              >
+                {needsBagSetup ? '不足番手を先に埋める' : 'My Bagを見直す'}
+                <ArrowRight size={16} />
+              </button>
+              <button
+                onClick={() => {
+                  trackEvent('start_ball_diagnosis', {
+                    source_page: 'compare_page_quick_actions',
+                    reference_profile_slug: targetSetting.slug,
+                    reference_profile_name: targetSetting.name,
+                  });
+                  navigate('/ball-diagnosis');
+                }}
+                className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black ${
+                  missingBall ? 'bg-cyan-600 text-white' : 'border border-slate-300 bg-white text-slate-700'
+                }`}
+              >
+                {missingBall ? 'まずはボール診断をする' : 'ボール相性も見る'}
+                <ArrowRight size={16} />
+              </button>
             </div>
           </div>
 
