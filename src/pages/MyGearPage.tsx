@@ -94,6 +94,12 @@ export const MyGearPage = () => {
         TargetCategory.PUTTER,
     ];
     const completedEssentials = essentialCategories.filter((category) => registeredCategories.has(category)).length;
+    const fairwayCount = profile.myBag.clubs.filter((club) => club.category === TargetCategory.FAIRWAY).length;
+    const utilityCount = profile.myBag.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
+    const wedgeCount = profile.myBag.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
+    const putterCount = profile.myBag.clubs.filter((club) => club.category === TargetCategory.PUTTER).length;
+    const clubsWithDistance = profile.myBag.clubs.filter((club) => String(club.distance || '').trim() !== '').length;
+    const distanceCoveragePercent = profile.myBag.clubs.length > 0 ? Math.round((clubsWithDistance / profile.myBag.clubs.length) * 100) : 0;
     const completionPoints = [
         completedEssentials > 0 ? 1 : 0,
         profile.myBag.ball ? 1 : 0,
@@ -111,19 +117,49 @@ export const MyGearPage = () => {
         setFavoriteClubs(getFavoriteClubs());
     }, []);
 
-    const analysisPoints = [
-        profile.myBag.ball
-            ? `使用ボールは「${profile.myBag.ball}」です。ボール診断までつなげると、今のHSに対する相性が見えます。`
-            : '使用ボールが未登録です。ボールを入れると自動分析と診断の精度が上がります。',
+    const bagCoverageTone =
         profile.myBag.clubs.length >= 10
-            ? `クラブは ${profile.myBag.clubs.length} 本登録済みです。セッティング全体を見た提案がしやすい状態です。`
-            : `クラブ登録は ${profile.myBag.clubs.length} 本です。まずはドライバー・アイアン・パターが入ると分析しやすくなります。`,
+            ? `クラブは ${profile.myBag.clubs.length} 本登録済みです。かなり全体像が見える状態です。`
+            : profile.myBag.clubs.length >= 5
+            ? `クラブは ${profile.myBag.clubs.length} 本登録済みです。代表番手はかなり見えています。`
+            : profile.myBag.clubs.length > 0
+            ? `クラブは ${profile.myBag.clubs.length} 本登録済みです。あと数本で分析の精度が上がります。`
+            : 'まだクラブが未登録です。まずは1Wか7Iからで十分です。';
+    const structureTone =
+        completedEssentials >= 3
+            ? 'ドライバー・アイアン・ウェッジ・パターの代表番手がかなりそろっています。'
+            : `代表番手の登録は ${completedEssentials}/${essentialCategories.length} です。まずはドライバー・アイアン・ウェッジ・パターをそろえると分析が安定します。`;
+    const distanceTone =
+        distanceCoveragePercent >= 70
+            ? `飛距離の入力は ${distanceCoveragePercent}% 入っています。番手間の差分までかなり見やすいです。`
+            : distanceCoveragePercent > 0
+            ? `飛距離の入力は ${distanceCoveragePercent}% です。代表番手の飛距離を増やすと分析がさらに具体化します。`
+            : '飛距離はまだ未入力です。1W / 7I / ウェッジあたりから入れると比較しやすくなります。';
+    const longGameTone =
+        fairwayCount + utilityCount >= 3
+            ? `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本で比較しやすい構成です。`
+            : `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本です。FWやUTを1本足すと流れを見やすくなります。`;
+    const scoringTone =
+        wedgeCount >= 2 && putterCount >= 1
+            ? `ショートゲーム側は WEDGE ${wedgeCount} 本 + パターでかなり整っています。`
+            : `ショートゲーム側は WEDGE ${wedgeCount} 本 / パター ${putterCount} 本です。ウェッジやパターが入るとスコア改善の提案が具体的になります。`;
+    const headSpeedTone =
         profile.headSpeed >= 48
-            ? 'ヘッドスピードは高めです。低スピンに寄りすぎない組み合わせの確認が効きます。'
+            ? 'ヘッドスピードは高めです。低スピンに寄りすぎない組み合わせ確認が効きます。'
             : profile.headSpeed >= 42
             ? 'ヘッドスピードは標準帯です。やさしさとつかまりのバランス確認が効きます。'
-            : 'ヘッドスピードはやや低めです。球の上がりやすさとボール選びの最適化が効きます。',
+            : profile.headSpeed > 0
+            ? 'ヘッドスピードはやや低めです。球の上がりやすさとボール最適化が効きます。'
+            : 'ヘッドスピードが未入力です。入れると診断と自動分析がかなり安定します。';
+    const ballTone = profile.myBag.ball
+        ? `使用ボールは「${profile.myBag.ball}」です。ボール診断までつなげると相性が見えます。`
+        : '使用ボールが未登録です。ボールまで入ると自動分析と診断の精度が上がります。';
+    const analysisHighlights = [
+        { label: '構成', value: `${profile.myBag.clubs.length}本`, note: bagCoverageTone },
+        { label: '代表番手', value: `${completedEssentials}/${essentialCategories.length}`, note: structureTone },
+        { label: '飛距離', value: `${distanceCoveragePercent}%`, note: distanceTone },
     ];
+    const analysisPoints = [longGameTone, scoringTone, ballTone, headSpeedTone];
 
     const analysisActions = [
         compareShortlist.length > 0
@@ -459,9 +495,18 @@ export const MyGearPage = () => {
                                         <Brain size={14} />
                                         自動分析
                                     </div>
+                                    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                                        {analysisHighlights.map((item) => (
+                                            <div key={item.label} className="rounded-2xl bg-slate-50 p-4">
+                                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{item.label}</div>
+                                                <div className="mt-2 text-2xl font-black text-trust-navy">{item.value}</div>
+                                                <div className="mt-2 text-xs leading-relaxed text-slate-500">{item.note}</div>
+                                            </div>
+                                        ))}
+                                    </div>
                                     <div className="mt-4 space-y-3">
                                         {analysisPoints.map((point) => (
-                                            <div key={point} className="rounded-2xl bg-slate-50 p-4 text-sm font-medium leading-relaxed text-slate-600">
+                                            <div key={point} className="rounded-2xl border border-slate-200 bg-white p-4 text-sm font-medium leading-relaxed text-slate-600">
                                                 {point}
                                             </div>
                                         ))}
