@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { MyBagView } from '../features/gear/MyBagView';
 import { MyBagManager } from '../features/gear/MyBagManager';
@@ -80,6 +80,7 @@ export const MyGearPage = () => {
         restoreDiagnosisResult,
     } = useDiagnosis();
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [activeTab, setActiveTab] = useState<'view' | 'clubs' | 'profile'>('view');
     const [compareShortlist, setCompareShortlist] = useState<CompareShortlistItem[]>([]);
     const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
@@ -116,6 +117,21 @@ export const MyGearPage = () => {
         setRecentlyViewed(getRecentlyViewed());
         setFavoriteClubs(getFavoriteClubs());
     }, []);
+
+    useEffect(() => {
+        const tabParam = searchParams.get('tab');
+        if (tabParam === 'clubs') {
+            setActiveTab('clubs');
+            return;
+        }
+        if (tabParam === 'profile') {
+            setActiveTab('profile');
+            return;
+        }
+        if (tabParam === 'view') {
+            setActiveTab('view');
+        }
+    }, [searchParams]);
 
     const bagCoverageTone =
         profile.myBag.clubs.length >= 10
@@ -185,7 +201,7 @@ export const MyGearPage = () => {
             : {
                 label: 'ボールを登録して分析を完成させる',
                 description: '使用ボールを入れると、分析と診断の精度が上がります。',
-                onClick: () => setActiveTab('clubs'),
+                onClick: () => openBagTabWithFocus(),
             },
     ].filter(Boolean) as Array<{ label: string; description: string; onClick: () => void }>;
 
@@ -194,7 +210,7 @@ export const MyGearPage = () => {
             ? {
                 label: 'ドライバーを登録する',
                 description: 'まずは1本入れて診断精度を上げる',
-                onClick: () => setActiveTab('clubs'),
+                onClick: () => openBagTabWithFocus('ball-first'),
             }
             : !profile.myBag.ball
             ? {
@@ -221,6 +237,18 @@ export const MyGearPage = () => {
 
     const handleClose = () => {
         navigate('/');
+    };
+
+    const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
+            openBagTabWithFocus();
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.set('tab', 'clubs');
+        if (focus) {
+            nextParams.set('focus', focus);
+        } else {
+            nextParams.delete('focus');
+        }
+        setSearchParams(nextParams, { replace: true });
     };
 
     const openSavedDiagnosis = (item: DiagnosisHistoryItem) => {
@@ -379,7 +407,7 @@ export const MyGearPage = () => {
                                 ログインして保存する
                             </button>
                             <button
-                                onClick={() => setActiveTab('clubs')}
+                                onClick={() => openBagTabWithFocus()}
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50 sm:w-auto"
                             >
                                 まずはセッティング登録を始める
@@ -464,7 +492,7 @@ export const MyGearPage = () => {
 
                                 <div className="mt-6 grid gap-3 md:grid-cols-3">
                                     <button
-                                        onClick={() => setActiveTab('clubs')}
+                                        onClick={() => openBagTabWithFocus()}
                                         className="rounded-2xl bg-golf-600 px-5 py-4 text-left text-white transition-colors hover:bg-golf-700"
                                     >
                                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">Next</div>
@@ -796,6 +824,7 @@ export const MyGearPage = () => {
                         }}
                         saveStatus={saveStatus}
                         onManualSave={manualSave}
+                        intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
                     />
                 )}
 

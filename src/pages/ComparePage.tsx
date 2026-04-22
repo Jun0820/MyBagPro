@@ -347,7 +347,7 @@ export const ComparePage = () => {
             source_page: 'compare_page',
             reference_profile_slug: targetSetting.slug,
           });
-          navigate('/mybag/create');
+          navigate('/mybag/create?tab=clubs&focus=missing-clubs');
         },
         variant: 'secondary',
       });
@@ -482,7 +482,7 @@ export const ComparePage = () => {
                     source_page: 'compare_page_quick_actions',
                     reference_profile_slug: targetSetting.slug,
                   });
-                  navigate('/mybag/create');
+                  navigate('/mybag/create?tab=clubs&focus=missing-clubs');
                 }}
                 className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black ${
                   needsBagSetup ? 'bg-trust-navy text-white' : 'border border-slate-300 bg-white text-slate-700'

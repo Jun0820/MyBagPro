@@ -222,6 +222,7 @@ interface MyBagManagerProps {
     onManualSave?: () => void;
     onOpenBallDiagnosis?: () => void;
     onOpenCompare?: () => void;
+    intakeMode?: 'default' | 'missing-clubs' | 'ball-first';
 }
 
 const BALL_MODEL_SUGGESTIONS = Array.from(
@@ -242,6 +243,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     onManualSave,
     onOpenBallDiagnosis,
     onOpenCompare,
+    intakeMode = 'default',
 }) => {
     const [addCategory, setAddCategory] = useState('');
     const [selectedLofts, setSelectedLofts] = useState<string[]>([]);
@@ -373,6 +375,39 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 onClick: () => onOpenCompare?.(),
             },
     ].filter(Boolean) as Array<{ title: string; description: string; onClick: () => void }>;
+    const intakeBanner = (() => {
+        if (intakeMode === 'missing-clubs') {
+            return {
+                title: '比較ページから戻ってきました',
+                description: '不足している代表番手や未登録クラブを先に埋めると、比較と診断の精度がかなり上がります。',
+                cta: missingEssentials[0] ? `${missingEssentials[0].title} を追加する` : 'My Bag を整える',
+                onClick: () => {
+                    if (missingEssentials[0]) {
+                        handleQuickAddStarter(missingEssentials[0].category, missingEssentials[0].number);
+                        return;
+                    }
+                    onManualSave?.();
+                },
+            };
+        }
+
+        if (intakeMode === 'ball-first') {
+            return {
+                title: 'まずはボール相性までそろえましょう',
+                description: '比較で迷ったときは、使用ボールを入れるかボール診断に進むと次の一手が決まりやすくなります。',
+                cta: hasBall ? 'ボール診断へ進む' : '使用ボールを保存する',
+                onClick: () => {
+                    if (hasBall) {
+                        onOpenBallDiagnosis?.();
+                        return;
+                    }
+                    onManualSave?.();
+                },
+            };
+        }
+
+        return null;
+    })();
 
     const updateClub = useCallback((updated: Club) => {
         onUpdate({
@@ -487,6 +522,25 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
     return (
         <div className="space-y-6 animate-fadeIn">
+            {intakeBanner && (
+                <div className="rounded-3xl border border-cyan-200 bg-cyan-50 p-4 shadow-sm md:p-5">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                        <div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">From Compare</div>
+                            <h3 className="mt-2 text-lg font-black tracking-tight text-trust-navy">{intakeBanner.title}</h3>
+                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{intakeBanner.description}</p>
+                        </div>
+                        <button
+                            onClick={intakeBanner.onClick}
+                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-cyan-700"
+                        >
+                            {intakeBanner.cta}
+                            <ArrowRight size={16} />
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
                 <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
                     <div className="space-y-2">
