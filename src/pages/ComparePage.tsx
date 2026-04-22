@@ -69,7 +69,7 @@ export const ComparePage = () => {
 
   if (shortlistMode) {
     return (
-      <div className="min-h-screen space-y-6 pb-20 md:space-y-8">
+      <div className="min-h-screen space-y-5 pb-20 md:space-y-8">
         <button
           onClick={() => navigate(-1)}
           className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy"
@@ -78,17 +78,17 @@ export const ComparePage = () => {
           前のページへ戻る
         </button>
 
-        <section className="rounded-[2rem] border border-slate-200 bg-white px-5 py-6 shadow-sm md:px-10 md:py-10">
+        <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-5 shadow-sm md:rounded-[2rem] md:px-10 md:py-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-xs font-black text-cyan-700">
             <GitCompareArrows size={14} />
             比較候補
           </div>
-          <h1 className="mt-5 text-3xl font-black tracking-tight text-trust-navy md:text-6xl">
+          <h1 className="mt-4 text-[2rem] font-black tracking-tight text-trust-navy md:mt-5 md:text-6xl">
             診断で残した
             <span className="text-golf-700">比較候補</span>
             を見比べる
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:mt-5 md:text-base md:leading-8">
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600 md:mt-5 md:text-base md:leading-8">
             診断で保存した候補を並べて、次に詳しく見るモデルを絞るためのページです。まずは上位候補から詳細を開いて、購入比較や再診断につなげていきます。
           </p>
         </section>
@@ -105,13 +105,13 @@ export const ComparePage = () => {
             </button>
           </div>
         ) : (
-          <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+          <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr] md:gap-6">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-8">
               <div className="flex items-center gap-2 text-xs font-black text-slate-400">
                 <BarChart3 size={14} />
                 保存した候補
               </div>
-              <div className="mt-6 space-y-4">
+              <div className="mt-4 space-y-3 md:mt-6 md:space-y-4">
                 {shortlist.map((item) => {
                   const matchedDriver = driverDetails.find(
                     (driver) =>
@@ -120,13 +120,13 @@ export const ComparePage = () => {
                   );
 
                   return (
-                    <div key={item.id} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 md:p-5">
+                    <div key={item.id} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 md:rounded-[1.5rem] md:p-5">
                       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                         <div>
                           <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
                             {item.sourceCategory} / Rank {item.rank}
                           </div>
-                          <h2 className="mt-2 text-xl font-black text-trust-navy">
+                          <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
                             {item.brand} {item.modelName}
                           </h2>
                           <div className="mt-3 flex flex-wrap gap-2">
@@ -205,27 +205,27 @@ export const ComparePage = () => {
               </div>
             </div>
 
-            <div className="space-y-6">
-              <section className="rounded-[2rem] border border-cyan-100 bg-cyan-50 p-6">
-                <h2 className="text-2xl font-black text-trust-navy">次にやるといいこと</h2>
-                <div className="mt-5 space-y-4">
-                  <div className="rounded-[1.5rem] bg-white p-5 ring-1 ring-cyan-100">
-                    <h3 className="text-lg font-black text-trust-navy">上位候補の詳細を見る</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">まずは1位か2位のモデル詳細を開いて、価格と使っている人を確認するのがおすすめです。</p>
+            <div className="space-y-4 md:space-y-6">
+              <section className="rounded-[1.5rem] border border-cyan-100 bg-cyan-50 p-4 md:rounded-[2rem] md:p-6">
+                <h2 className="text-xl font-black text-trust-navy md:text-2xl">次にやるといいこと</h2>
+                <div className="mt-4 space-y-3 md:mt-5 md:space-y-4">
+                  <div className="rounded-[1.25rem] bg-white p-4 ring-1 ring-cyan-100 md:rounded-[1.5rem] md:p-5">
+                    <h3 className="text-base font-black text-trust-navy md:text-lg">上位候補の詳細を見る</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-600 md:leading-7">まずは1位か2位のモデル詳細を開いて、価格と使っている人を確認するのがおすすめです。</p>
                     <button
                       onClick={() => navigate('/clubs/drivers')}
-                      className="mt-4 inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700 sm:w-auto"
                     >
                       人気ドライバーを見る
                       <ArrowRight size={16} />
                     </button>
                   </div>
-                  <div className="rounded-[1.5rem] bg-white p-5 ring-1 ring-cyan-100">
-                    <h3 className="text-lg font-black text-trust-navy">条件を変えて再診断する</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">候補が近いときは、ミス傾向や球筋を変えて再診断すると違いが見えやすくなります。</p>
+                  <div className="rounded-[1.25rem] bg-white p-4 ring-1 ring-cyan-100 md:rounded-[1.5rem] md:p-5">
+                    <h3 className="text-base font-black text-trust-navy md:text-lg">条件を変えて再診断する</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-600 md:leading-7">候補が近いときは、ミス傾向や球筋を変えて再診断すると違いが見えやすくなります。</p>
                     <button
                       onClick={() => navigate('/diagnosis')}
-                      className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-600 px-5 py-3 text-sm font-black text-white"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-cyan-600 px-5 py-3 text-sm font-black text-white sm:w-auto"
                     >
                       AI診断へ進む
                       <ArrowRight size={16} />

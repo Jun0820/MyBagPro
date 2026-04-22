@@ -179,11 +179,11 @@ export const ArticleDetailPage = () => {
   }, [article?.relatedProfileSlug, article?.slug]);
 
   if (isLoading) {
-    return <div className="rounded-[2rem] border border-slate-200 bg-white p-10 text-center">記事を読み込んでいます...</div>;
+    return <div className="rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">記事を読み込んでいます...</div>;
   }
 
   if (!article) {
-    return <div className="rounded-[2rem] border border-slate-200 bg-white p-10 text-center">記事が見つかりません。</div>;
+    return <div className="rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">記事が見つかりません。</div>;
   }
 
   const tournamentSpotlight = getTournamentSpotlightByArticleSlug(article.slug);
@@ -192,19 +192,19 @@ export const ArticleDetailPage = () => {
     <div className="min-h-screen pb-20">
       <button
         onClick={() => navigate('/articles')}
-        className="mb-6 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy"
+        className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy md:mb-6"
       >
         <ArrowLeft size={16} />
         記事一覧へ戻る
       </button>
 
-      <article className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-10">
+      <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-10">
         <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-[11px] font-black tracking-[0.15em] text-slate-500">
           <FileText size={14} />
           {articleTypeLabel[article.articleType]}
         </div>
-        <h1 className="mt-5 text-4xl font-black tracking-tight text-trust-navy md:text-6xl">{article.title}</h1>
-        <div className="mt-5 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-500">
+        <h1 className="mt-4 text-[2rem] font-black tracking-tight text-trust-navy md:mt-5 md:text-6xl">{article.title}</h1>
+        <div className="mt-4 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-500 md:mt-5">
           <span className="inline-flex items-center gap-2">
             <CalendarDays size={16} />
             {formatPublishedAt(article.publishedAt)}
@@ -212,17 +212,17 @@ export const ArticleDetailPage = () => {
           {article.seasonYear && <span>{article.seasonYear}シーズン</span>}
         </div>
         {article.excerpt && (
-          <p className="mt-6 rounded-[1.5rem] bg-slate-50 p-5 text-sm leading-7 text-slate-700">
+          <p className="mt-5 rounded-[1.25rem] bg-slate-50 p-4 text-sm leading-6 text-slate-700 md:mt-6 md:rounded-[1.5rem] md:p-5 md:leading-7">
             {article.excerpt}
           </p>
         )}
         {article.relatedProfileSlug && article.relatedProfileName && (
-          <div className="mt-6 rounded-[1.5rem] border border-golf-200 bg-golf-50/60 p-5">
+          <div className="mt-5 rounded-[1.25rem] border border-golf-200 bg-golf-50/60 p-4 md:mt-6 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">PROFILE LINK</div>
-            <h2 className="mt-2 text-xl font-black text-trust-navy">
+            <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {article.relatedProfileName}のクラブセッティングを見る
             </h2>
-            <p className="mt-2 text-sm leading-7 text-slate-700">
+            <p className="mt-2 text-sm leading-6 text-slate-700 md:leading-7">
               この記事の元になった掲載ページから、ドライバー、アイアン、パター、使用ボールまで一覧で確認できます。
             </p>
             <button
@@ -234,27 +234,27 @@ export const ArticleDetailPage = () => {
             </button>
           </div>
         )}
-        <div className="mt-8 whitespace-pre-wrap text-sm leading-8 text-slate-700">{article.body}</div>
+        <div className="mt-6 whitespace-pre-wrap text-sm leading-7 text-slate-700 md:mt-8 md:leading-8">{article.body}</div>
         {tournamentSpotlight && tournamentProfiles.length > 0 && (
-          <section className="mt-8 rounded-[1.5rem] border border-amber-200 bg-amber-50/70 p-5">
+          <section className="mt-6 rounded-[1.25rem] border border-amber-200 bg-amber-50/70 p-4 md:mt-8 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-amber-700">TOURNAMENT PLAYERS</div>
-            <h2 className="mt-2 text-xl font-black text-trust-navy">
+            <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {tournamentSpotlight.tournamentName}で追いたい注目選手
             </h2>
-            <p className="mt-3 text-sm leading-7 text-slate-700">
+            <p className="mt-3 text-sm leading-6 text-slate-700 md:leading-7">
               各選手のセッティング詳細ページでは、使用ドライバー、番手構成、飛距離、確認ソースまで一覧で見られます。
             </p>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div className="mt-4 grid gap-3 md:mt-5 md:gap-4 md:grid-cols-3">
               {tournamentProfiles.map((profile) => (
                 <button
                   key={profile.slug}
                   onClick={() => navigate(`/settings/pros/${profile.slug}`)}
-                  className="rounded-[1.25rem] border border-amber-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-amber-300"
+                  className="rounded-[1.125rem] border border-amber-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-amber-300 md:rounded-[1.25rem]"
                 >
                   <div className="text-[11px] font-black tracking-[0.12em] text-amber-700">{profile.categoryLabel}</div>
-                  <h3 className="mt-2 text-lg font-black text-trust-navy">{profile.name}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">{profile.summary}</p>
-                  <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-golf-700">
+                  <h3 className="mt-2 text-base font-black text-trust-navy md:text-lg">{profile.name}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600 md:leading-7">{profile.summary}</p>
+                  <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700 md:mt-4">
                     セッティングを見る
                     <ArrowRight size={14} />
                   </div>
@@ -264,12 +264,12 @@ export const ArticleDetailPage = () => {
           </section>
         )}
         {relatedProfile && (
-          <section className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+          <section className="mt-6 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 md:mt-8 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">SETTING SUMMARY</div>
-            <h2 className="mt-2 text-xl font-black text-trust-navy">
+            <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {relatedProfile.name}のクラブセッティング概要
             </h2>
-            <p className="mt-3 text-sm leading-8 text-slate-700">
+            <p className="mt-3 text-sm leading-7 text-slate-700 md:leading-8">
               {relatedProfile.name}の{relatedProfile.seasonYear ? `${relatedProfile.seasonYear}年` : '最新'}クラブセッティングでは、
               使用ドライバー{relatedProfile.clubs.find((club) => club.category === 'Driver')?.model || '未公開'}、
               使用ボール{relatedProfile.ball}、
@@ -296,10 +296,10 @@ export const ArticleDetailPage = () => {
       </article>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
+        <section className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-4 md:mt-8 md:rounded-[2rem] md:p-8">
           <div className="text-xs font-black text-slate-400">次に読みたい記事</div>
-          <h2 className="mt-2 text-2xl font-black text-trust-navy">セッティングの見方を深める</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
+          <h2 className="mt-2 text-xl font-black text-trust-navy md:text-2xl">セッティングの見方を深める</h2>
+          <div className="mt-4 grid gap-3 md:mt-5 md:gap-4 md:grid-cols-3">
             {relatedArticles.map((relatedArticle) => (
               <button
                 key={relatedArticle.slug}
@@ -311,13 +311,13 @@ export const ArticleDetailPage = () => {
                   });
                   navigate(`/articles/${relatedArticle.slug}`);
                 }}
-                className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-left transition-all hover:-translate-y-0.5 hover:bg-white"
+                className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:-translate-y-0.5 hover:bg-white md:rounded-[1.5rem] md:p-5"
               >
                 <div className="text-[11px] font-black tracking-[0.12em] text-slate-500">
                   {articleTypeLabel[relatedArticle.articleType]}
                 </div>
-                <h3 className="mt-2 text-lg font-black text-trust-navy">{relatedArticle.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-slate-600">{relatedArticle.excerpt}</p>
+                <h3 className="mt-2 text-base font-black text-trust-navy md:text-lg">{relatedArticle.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600 md:leading-7">{relatedArticle.excerpt}</p>
                 <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-golf-700">
                   続きを読む
                   <ArrowRight size={14} />

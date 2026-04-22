@@ -60,34 +60,34 @@ export const ArticlesPage = () => {
 
   return (
     <div className="min-h-screen pb-20">
-      <section className="rounded-[2rem] bg-slate-950 px-6 py-10 text-white md:px-10 md:py-14">
+      <section className="rounded-[1.5rem] bg-slate-950 px-5 py-7 text-white md:rounded-[2rem] md:px-10 md:py-14">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.15em] text-cyan-200">
           <Newspaper size={14} />
           更新記事
         </div>
-        <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">セッティングの見方と更新内容を、記事で分かりやすく残す。</h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
+        <h1 className="mt-4 text-[2rem] font-black tracking-tight md:mt-5 md:text-6xl">セッティングの見方と更新内容を、記事で分かりやすく残す。</h1>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300 md:mt-4 md:text-base md:leading-7">
           確認済みの掲載更新、比較や診断の使い方、セッティングの読み解き方をまとめています。
           プロフィールだけでは伝わりにくい背景を、あとから追いやすい形で公開します。
         </p>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-3">
-          <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+        <div className="mt-5 grid gap-2.5 sm:grid-cols-3">
+          <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3.5 md:rounded-2xl md:py-4">
             <div className="text-xs font-black text-slate-400">公開記事</div>
             <div className="mt-2 text-2xl font-black text-white">{articles.length}</div>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+          <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3.5 md:rounded-2xl md:py-4">
             <div className="text-xs font-black text-slate-400">更新情報</div>
             <div className="mt-2 text-2xl font-black text-white">{updateCount}</div>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+          <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3.5 md:rounded-2xl md:py-4">
             <div className="text-xs font-black text-slate-400">読みもの</div>
             <div className="mt-2 text-2xl font-black text-white">{columnCount + newsCount}</div>
           </div>
         </div>
       </section>
 
-      <section className="mt-8 grid gap-5">
+      <section className="mt-6 grid gap-4 md:mt-8 md:gap-5">
         <div className="flex flex-wrap gap-3">
           {(['all', 'update', 'column', 'news'] as ArticleFilter[]).map((filter) => (
             <button
@@ -134,7 +134,7 @@ export const ArticlesPage = () => {
           <button
             key={article.slug}
             onClick={() => navigate(`/articles/${article.slug}`)}
-            className="rounded-[2rem] border border-slate-200 bg-white p-6 text-left shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+            className="rounded-[1.5rem] border border-slate-200 bg-white p-4 text-left shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:rounded-[2rem] md:p-6"
           >
             <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500">
               <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-600">
@@ -145,15 +145,15 @@ export const ArticlesPage = () => {
                 {formatPublishedAt(article.publishedAt)}
               </span>
             </div>
-            <h2 className="mt-3 text-2xl font-black text-trust-navy">{article.title}</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{article.excerpt}</p>
+            <h2 className="mt-3 text-xl font-black text-trust-navy md:text-2xl">{article.title}</h2>
+            <p className="mt-2.5 text-sm leading-6 text-slate-600 md:mt-3 md:leading-7">{article.excerpt}</p>
             {article.relatedProfileSlug && article.relatedProfileName && (
               <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[11px] font-black tracking-[0.08em] text-golf-700">
                 関連ページ
                 <span>{article.relatedProfileName}</span>
               </div>
             )}
-            <div className="mt-5 inline-flex items-center gap-2 text-sm font-black text-trust-navy">
+            <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-trust-navy md:mt-5">
               記事を読む
               <ArrowRight size={16} />
             </div>
