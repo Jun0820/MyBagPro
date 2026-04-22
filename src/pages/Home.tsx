@@ -263,7 +263,7 @@ export const Home = () => {
           </p>
           <button
             onClick={() => handleDiagnosisStart('bottom')}
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-golf-500 px-7 py-4 text-base font-black text-white transition hover:-translate-y-0.5 hover:bg-golf-600"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-7 py-4 text-base font-black text-white transition hover:-translate-y-0.5 hover:bg-golf-600 sm:w-auto"
           >
             <WandSparkles size={18} />
             無料診断をはじめる
@@ -300,7 +300,7 @@ export const Home = () => {
                 <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
                 <button
                   onClick={() => navigate(item.href)}
-                  className="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-2.5 text-sm font-black text-trust-navy transition hover:border-slate-300 hover:bg-slate-50 sm:w-auto"
                 >
                   {item.buttonLabel}
                   <ArrowRight size={15} />

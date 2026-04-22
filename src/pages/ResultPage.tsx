@@ -194,12 +194,13 @@ export const ResultPage = () => {
     };
 
     return (
-        <div className="animate-fadeIn pb-20 bg-[#f8fafc] min-h-screen text-slate-900">
+        <div className="animate-fadeIn min-h-screen bg-[#f8fafc] pb-16 text-slate-900 md:pb-20">
+            <div className="mx-auto w-full max-w-6xl px-4 pt-2 md:px-6">
             <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 md:mb-6">
                 この診断はβ版です。精度向上中です。
             </div>
             {/* Hero Section: High-Tech Trajectory Visualization - Kept dark for contrast with effects */}
-            <div className="relative mb-6 md:mb-12 h-48 md:h-72 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-900/20 group">
+            <div className="group relative mb-5 h-36 overflow-hidden rounded-[1.75rem] shadow-2xl shadow-slate-900/20 md:mb-12 md:h-72 md:rounded-[2.5rem]">
                 {/* Background: Deep Space Navy */}
                 <div className="absolute inset-0 bg-[#020617]"></div>
 
@@ -216,11 +217,11 @@ export const ResultPage = () => {
 
                 {/* Content Overlay */}
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-[10px] md:text-xs font-bold tracking-[0.2em] text-slate-300 uppercase mb-4 shadow-lg shadow-black/20">
+                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-300 shadow-lg shadow-black/20 backdrop-blur-md md:mb-4 md:px-4 md:text-xs md:tracking-[0.2em]">
                         <Zap size={12} className="text-slate-400" fill="currentColor" />
                         AI Performance Analysis
                     </div>
-                    <h2 className="text-3xl md:text-6xl font-black tracking-tight mb-2 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] font-eng">
+                    <h2 className="mb-2 text-[1.7rem] font-black tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] font-eng md:text-6xl">
                         IDEAL TRAJECTORY
                     </h2>
                     <p className="text-slate-400 text-xs md:text-sm font-medium tracking-wider uppercase">
@@ -241,11 +242,11 @@ export const ResultPage = () => {
             )}
 
             {topModel && (
-                <section className="mb-8 rounded-[2rem] border border-slate-200 bg-white px-5 py-5 shadow-xl shadow-slate-200/40 md:px-8 md:py-7">
-                    <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                <section className="mb-6 rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-xl shadow-slate-200/40 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
+                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div className="min-w-0">
                             <div className="text-[11px] font-black tracking-[0.18em] text-golf-700">BEST MATCH</div>
-                            <h3 className="mt-2 text-2xl font-black text-trust-navy md:text-3xl">
+                            <h3 className="mt-2 text-xl font-black text-trust-navy md:text-3xl">
                                 {topModel.brand} {topModel.modelName}
                             </h3>
                             <p className="mt-2 text-sm leading-6 text-slate-600 md:text-base">
@@ -268,10 +269,10 @@ export const ResultPage = () => {
                             </div>
                         </div>
 
-                        <div className="grid gap-3 md:min-w-[320px]">
+                        <div className="grid gap-2.5 md:min-w-[320px]">
                             <button
                                 onClick={handleSaveCompareShortlist}
-                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                             >
                                 比較候補を残す
                             </button>
@@ -288,21 +289,21 @@ export const ResultPage = () => {
                                         setShowAuth(true);
                                     }
                                 }}
-                                className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3.5 text-sm font-black text-white transition hover:bg-slate-800"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3.5 text-sm font-black text-white transition hover:bg-slate-800"
                             >
                                 {user.isLoggedIn ? 'おすすめを保存する' : 'ログインして結果を保存'}
                             </button>
 
                             <button
                                 onClick={() => handleBuyClick(primaryShop.id)}
-                                className="inline-flex items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3.5 text-sm font-black text-white transition hover:bg-golf-600"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3.5 text-sm font-black text-white transition hover:bg-golf-600"
                             >
                                 {primaryShop.name}で価格を見る
                             </button>
 
                             <button
                                 onClick={() => navigate('/diagnosis')}
-                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                             >
                                 条件を変えてもう一度診断
                             </button>
@@ -313,14 +314,14 @@ export const ResultPage = () => {
 
             {/* AIのテキスト提案をスマホファーストでリッチに表示 */}
             {result.aiResponseText && (
-                <div className="mb-12">
+                <div className="mb-8 md:mb-12">
                      <AiResponseDisplay responseText={result.aiResponseText} />
                 </div>
             )}
 
             {/* 以下は従来の物理ベースの推論データ詳細 (Data Insights) アコーディオン化 */}
             <details className="group mb-8">
-                <summary className="font-bold text-trust-navy text-sm md:text-base flex items-center justify-center gap-2 cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden bg-slate-200/50 hover:bg-slate-200 py-3 rounded-xl transition-colors mx-4 md:mx-0">
+                <summary className="flex list-none cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-200/50 py-3 text-sm font-bold text-trust-navy transition-colors select-none hover:bg-slate-200 [&::-webkit-details-marker]:hidden md:text-base">
                     <Wrench size={16} /> 詳細な物理データ分析を見る (Data Insights) <ChevronDown size={16} className="group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="pt-6">
@@ -1135,6 +1136,7 @@ export const ResultPage = () => {
                         </button>
                     </div>
                 </div>
+            </div>
         </div>
     );
 };

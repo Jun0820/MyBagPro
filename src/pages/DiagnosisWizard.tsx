@@ -551,24 +551,24 @@ export const DiagnosisWizard = () => {
     // Step 1: Target Selection (Default if no category param)
     if (step === 1) return (
         <div className="w-full max-w-6xl mx-auto animate-fadeIn">
-            <section className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_54%,#eef6f1_100%)] shadow-sm">
-                <div className="relative px-5 py-8 md:px-10 md:py-12">
+            <section className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_54%,#eef6f1_100%)] shadow-sm md:rounded-[2.25rem]">
+                <div className="relative px-4 py-6 md:px-10 md:py-12">
                     <div className="absolute inset-y-0 right-[-10%] hidden w-[42%] rounded-full bg-[radial-gradient(circle,_rgba(39,174,96,0.16),_rgba(255,255,255,0)_68%)] blur-2xl lg:block" />
                     <div className="relative">
-                        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-black tracking-[0.16em] text-slate-500">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5 text-[10px] font-black tracking-[0.16em] text-slate-500 md:px-4 md:py-2 md:text-[11px]">
                             <Sparkles size={14} className="text-golf-700" />
                             AI CLUB DIAGNOSIS
                         </div>
-                        <h1 className="mt-5 text-[2.3rem] font-black leading-[1.05] tracking-tight text-trust-navy md:text-6xl">
+                        <h1 className="mt-4 text-[2rem] font-black leading-[1.05] tracking-tight text-trust-navy md:mt-5 md:text-6xl">
                             まずは10秒で、
                             <br />
                             自分に合う方向を知る。
                         </h1>
-                        <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
+                        <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 md:mt-4 md:text-base md:leading-7">
                             いまのミス傾向と振り方から、候補を一気に絞ります。ログインなしで始められて、あとで保存もできます。
                         </p>
 
-                        <div className="mt-5 flex flex-wrap gap-2">
+                        <div className="mt-4 flex flex-wrap gap-2">
                             {['ログイン不要', '入力は途中で保持', '結果はあとで保存可能'].map((chip) => (
                                 <div key={chip} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-black text-slate-600">
                                     {chip}
@@ -576,14 +576,14 @@ export const DiagnosisWizard = () => {
                             ))}
                         </div>
 
-                        <div className="mt-6 grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-                            <div className="grid gap-3 sm:grid-cols-3">
+                        <div className="mt-5 grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+                            <div className="grid gap-2.5 sm:grid-cols-3">
                                 {[
                                     '右に抜ける不安を減らしたい',
                                     '捕まりすぎを抑えたい',
                                     '今より候補を早く絞りたい',
                                 ].map((point) => (
-                                    <div key={point} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-bold text-slate-700">
+                                    <div key={point} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 px-3.5 py-3 text-sm font-bold text-slate-700">
                                         <CheckCircle2 size={18} className="shrink-0 text-golf-700" />
                                         <span>{point}</span>
                                     </div>
@@ -594,7 +594,7 @@ export const DiagnosisWizard = () => {
                             </div>
                         </div>
 
-                        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                             <button
                                 onClick={() => {
                                     resetCategorySpecificData();
@@ -602,14 +602,14 @@ export const DiagnosisWizard = () => {
                                     setStep(2);
                                     navigate('/diagnosis/driver');
                                 }}
-                                className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-7 py-4 text-sm font-black text-white transition-transform hover:-translate-y-0.5"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-6 py-4 text-sm font-black text-white transition-transform hover:-translate-y-0.5 sm:w-auto"
                             >
                                 10秒でドライバー診断を始める
                                 <ArrowRight size={16} />
                             </button>
                             <button
                                 onClick={() => navigate('/settings/pros')}
-                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-7 py-4 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 py-4 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700 sm:w-auto"
                             >
                                 先にプロのセッティングを見る
                             </button>
@@ -625,22 +625,22 @@ export const DiagnosisWizard = () => {
                 </div>
             </section>
 
-            <section className="mt-5 rounded-[1.75rem] border border-slate-200 bg-white p-5 md:p-6">
+            <section className="mt-4 rounded-[1.5rem] border border-slate-200 bg-white p-4 md:mt-5 md:rounded-[1.75rem] md:p-6">
                 <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">OTHER DIAGNOSIS</div>
                         <div className="mt-1 text-sm font-bold text-slate-600">クラブ以外では、ボール診断も使えます。</div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                         <button
                             onClick={() => navigate('/ball-diagnosis')}
-                            className="inline-flex items-center justify-center gap-2 rounded-full bg-golf-500 px-4 py-2 text-sm font-black text-white transition-colors hover:bg-golf-600"
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-golf-600 sm:w-auto"
                         >
                             ゴルフボール診断へ
                         </button>
                         <button
                             onClick={() => navigate('/settings/pros')}
-                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700"
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700 sm:w-auto"
                         >
                             先にプロを見る
                         </button>
