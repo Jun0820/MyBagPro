@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2, Sparkles, ArrowRight, Target } from 'lucide-react';
+import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import { type ClubSetting, type Club, TargetCategory } from '../../types/golf';
 import { BrandModelInput } from '../../components/BrandModelInput';
 import { DetailedShaftInput } from '../../components/DetailedShaftInput';
@@ -290,6 +290,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const starterPercent = Math.round((completedStarterCount / starterSlots.length) * 100);
     const missingEssentials = starterSlots.filter((slot) => !registeredCategories.has(slot.category));
     const hasBall = Boolean(setting.ball?.trim());
+    const fairwayCount = setting.clubs.filter((club) => club.category === TargetCategory.FAIRWAY).length;
+    const utilityCount = setting.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
+    const wedgeCount = setting.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
+    const putterCount = setting.clubs.filter((club) => club.category === TargetCategory.PUTTER).length;
+    const clubsWithDistance = setting.clubs.filter((club) => String(club.distance || '').trim() !== '').length;
+    const distanceCoveragePercent = setting.clubs.length > 0 ? Math.round((clubsWithDistance / setting.clubs.length) * 100) : 0;
     const bagCoverageTone =
         setting.clubs.length >= 10
             ? `クラブは ${setting.clubs.length} 本登録済みです。かなり全体像が見える状態です。`
@@ -305,6 +311,68 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         missingEssentials.length === 0
             ? 'ドライバー・アイアン・パターがそろっているので、いまのバッグ傾向をかなり見やすい状態です。'
             : `不足している代表番手は ${missingEssentials.map((slot) => slot.title).join(' / ')} です。ここを埋めると提案が安定します。`;
+    const compositionTone =
+        fairwayCount + utilityCount >= 3
+            ? `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本で比較しやすい構成です。`
+            : `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本です。FWやUTを1本足すとつながりを見やすくなります。`;
+    const scoringTone =
+        wedgeCount >= 3 && putterCount >= 1
+            ? `ショートゲーム側は WEDGE ${wedgeCount} 本 + パターでかなり整っています。`
+            : `ショートゲーム側は WEDGE ${wedgeCount} 本 / パター ${putterCount} 本です。ウェッジやパターが入るとスコア改善の提案が具体的になります。`;
+    const distanceTone =
+        distanceCoveragePercent >= 70
+            ? `飛距離の入力は ${distanceCoveragePercent}% 入っています。番手間の差分までかなり見やすいです。`
+            : distanceCoveragePercent > 0
+            ? `飛距離の入力は ${distanceCoveragePercent}% です。代表番手の飛距離を増やすと分析がさらに具体化します。`
+            : '飛距離はまだ未入力です。1W / 7I / ウェッジあたりから入れると比較しやすくなります。';
+    const analysisHighlights = [
+        {
+            label: '構成',
+            value: `${setting.clubs.length}本登録`,
+            note: bagCoverageTone,
+        },
+        {
+            label: '代表番手',
+            value: `${completedStarterCount}/${starterSlots.length}`,
+            note: structureTone,
+        },
+        {
+            label: '飛距離入力',
+            value: `${distanceCoveragePercent}%`,
+            note: distanceTone,
+        },
+    ];
+    const recommendedActions = [
+        missingEssentials[0]
+            ? {
+                title: `${missingEssentials[0].title} を先に追加`,
+                description: '不足している代表番手を埋めると、自動分析と診断結果が安定します。',
+                onClick: () => handleQuickAddStarter(missingEssentials[0].category, missingEssentials[0].number),
+            }
+            : null,
+        !hasBall
+            ? {
+                title: '使用ボールを登録する',
+                description: 'ボールまで入ると、クラブとの相性や診断導線が一気につながります。',
+                onClick: () => onManualSave?.(),
+            }
+            : {
+                title: 'ボール診断で相性を確認',
+                description: 'いまのバッグと使用ボールが本当に合っているか、すぐ見直せます。',
+                onClick: () => onOpenBallDiagnosis?.(),
+            },
+        distanceCoveragePercent < 70
+            ? {
+                title: '飛距離を追加して精度を上げる',
+                description: '1W / 7I / ウェッジの飛距離が入ると、番手ごとの差分提案が具体化します。',
+                onClick: () => onManualSave?.(),
+            }
+            : {
+                title: '比較ページで差を見る',
+                description: 'バッグ全体の傾向が見えているので、次はプロや候補との違いを見る段階です。',
+                onClick: () => onOpenCompare?.(),
+            },
+    ].filter(Boolean) as Array<{ title: string; description: string; onClick: () => void }>;
 
     const updateClub = useCallback((updated: Club) => {
         onUpdate({
@@ -516,66 +584,47 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 </div>
 
                 <div className="mt-5 grid gap-3 md:grid-cols-3">
-                    {[bagCoverageTone, structureTone, linkageTone].map((point) => (
-                        <div key={point} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                            <div className="flex items-start gap-3">
-                                <div className="mt-0.5 rounded-full bg-white p-2 text-golf-600 shadow-sm">
+                    {analysisHighlights.map((item) => (
+                        <div key={item.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <div className="flex items-start justify-between gap-3">
+                                <div>
+                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{item.label}</div>
+                                    <div className="mt-2 text-2xl font-black text-trust-navy">{item.value}</div>
+                                </div>
+                                <div className="rounded-full bg-white p-2 text-golf-600 shadow-sm">
                                     <Sparkles size={14} />
                                 </div>
-                                <p className="text-sm leading-relaxed text-slate-600">{point}</p>
                             </div>
+                            <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.note}</p>
                         </div>
                     ))}
                 </div>
 
-                <div className="mt-5 grid gap-3 md:grid-cols-3">
-                    <button
-                        onClick={() => onOpenBallDiagnosis?.()}
-                        className="rounded-2xl bg-trust-navy px-5 py-4 text-left text-white transition-colors hover:bg-slate-800"
-                    >
-                        <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/70">
-                            <Target size={12} />
-                            Next
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                    {[compositionTone, scoringTone, linkageTone].map((point) => (
+                        <div key={point} className="rounded-2xl border border-slate-200 bg-white p-4">
+                            <p className="text-sm leading-relaxed text-slate-600">{point}</p>
                         </div>
-                        <div className="mt-2 text-base font-black">ボール診断へ進む</div>
-                        <div className="mt-1 text-xs leading-relaxed text-white/80">
-                            {hasBall ? 'いまのボールが本当に合っているか確認できます。' : '登録したボール候補や悩みから、相性をすぐ見直せます。'}
-                        </div>
-                    </button>
+                    ))}
+                </div>
 
-                    <button
-                        onClick={() => onOpenCompare?.()}
-                        className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-100"
-                    >
-                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Compare</div>
-                        <div className="mt-2 text-base font-black">比較ページで差を見る</div>
-                        <div className="mt-1 text-xs leading-relaxed text-slate-500">
-                            プロや診断候補と見比べながら、次に変える番手を絞り込みます。
-                        </div>
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (missingEssentials[0]) {
-                                handleQuickAddStarter(missingEssentials[0].category, missingEssentials[0].number);
-                            }
-                        }}
-                        disabled={!missingEssentials[0]}
-                        className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                        <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                            <ArrowRight size={12} />
-                            Improve
-                        </div>
-                        <div className="mt-2 text-base font-black">
-                            {missingEssentials[0] ? `${missingEssentials[0].title} を追加する` : '代表番手はそろっています'}
-                        </div>
-                        <div className="mt-1 text-xs leading-relaxed text-slate-500">
-                            {missingEssentials[0]
-                                ? '不足している代表番手を先に埋めると、自動分析と診断結果の精度が安定します。'
-                                : '次は飛距離やロフト差、ボール相性まで見直すのがおすすめです。'}
-                        </div>
-                    </button>
+                <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-5">
+                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                        <ArrowRight size={12} />
+                        Recommended Next Actions
+                    </div>
+                    <div className="mt-4 grid gap-3 md:grid-cols-3">
+                        {recommendedActions.map((action) => (
+                            <button
+                                key={action.title}
+                                onClick={action.onClick}
+                                className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-50"
+                            >
+                                <div className="text-base font-black">{action.title}</div>
+                                <div className="mt-1 text-xs leading-relaxed text-slate-500">{action.description}</div>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
 
