@@ -180,7 +180,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {showLegal && <LegalPage type={showLegal} onClose={() => setShowLegal(null)} />}
 
       {showAuth && (
-        <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-3 backdrop-blur-sm md:p-4">
           <AccountAuth
             onLogin={(u, p) => {
               setUser(u);

@@ -300,6 +300,58 @@ export const MyGearPage = () => {
             </div>
 
             <main className="mx-auto max-w-7xl px-4 pt-8">
+                {!user.isLoggedIn && (
+                    <section className="mb-6 rounded-[28px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-5 shadow-lg md:p-6">
+                        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                            <div className="space-y-2">
+                                <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
+                                    <LogIn size={12} />
+                                    Guest Mode
+                                </div>
+                                <div>
+                                    <h2 className="text-xl font-black tracking-tight text-trust-navy md:text-2xl">
+                                        いまの内容を保存すると、続きからすぐ再開できます
+                                    </h2>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                                        セッティング登録、自動分析、診断結果、比較候補をマイページに残せます。まずはゲストのまま使って、必要になったら保存できます。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="grid gap-2 sm:grid-cols-3 md:min-w-[340px]">
+                                <div className="rounded-2xl border border-white bg-white/80 px-4 py-3 text-left">
+                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save</div>
+                                    <div className="mt-1 text-sm font-black text-trust-navy">診断結果を保存</div>
+                                </div>
+                                <div className="rounded-2xl border border-white bg-white/80 px-4 py-3 text-left">
+                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Compare</div>
+                                    <div className="mt-1 text-sm font-black text-trust-navy">比較候補を保持</div>
+                                </div>
+                                <div className="rounded-2xl border border-white bg-white/80 px-4 py-3 text-left">
+                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Resume</div>
+                                    <div className="mt-1 text-sm font-black text-trust-navy">続きをすぐ再開</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                            <button
+                                onClick={() => setShowAuth(true)}
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-trust-navy px-5 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
+                            >
+                                <LogIn size={16} />
+                                ログインして保存する
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('clubs')}
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50 sm:w-auto"
+                            >
+                                まずはセッティング登録を始める
+                            </button>
+                        </div>
+                    </section>
+                )}
+
                 {activeTab === 'view' && (
                     <div className="space-y-6 pb-12">
                         <section className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
@@ -321,13 +373,18 @@ export const MyGearPage = () => {
                                     </div>
 
                                     {!user.isLoggedIn && (
-                                        <button
-                                            onClick={() => setShowAuth(true)}
-                                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-trust-navy px-5 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
-                                        >
-                                            <LogIn size={16} />
-                                            保存して続きから使う
-                                        </button>
+                                        <div className="w-full md:w-auto">
+                                            <button
+                                                onClick={() => setShowAuth(true)}
+                                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-trust-navy px-5 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800 md:w-auto"
+                                            >
+                                                <LogIn size={16} />
+                                                保存して続きから使う
+                                            </button>
+                                            <p className="mt-2 text-xs font-bold text-slate-400 md:text-right">
+                                                ログインすると診断結果と比較候補を残せます。
+                                            </p>
+                                        </div>
                                     )}
                                 </div>
 

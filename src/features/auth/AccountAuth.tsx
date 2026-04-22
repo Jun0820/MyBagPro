@@ -121,20 +121,20 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
     };
 
     return (
-        <div className="w-full max-w-md bg-white p-8 rounded-[2.5rem] shadow-[0_20px_60px_rgba(15,23,42,0.15)] border border-slate-100 animate-fadeIn overflow-y-auto max-h-[95vh] relative scrollbar-hide">
+        <div className="relative max-h-[92vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-slate-100 bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.15)] animate-fadeIn scrollbar-hide md:max-h-[95vh] md:rounded-[2.5rem] md:p-8">
             <button 
                 onClick={onClose} 
-                className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-50 text-slate-400 transition-colors"
+                className="absolute right-4 top-4 rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-50 md:right-6 md:top-6"
             >
                 <Plus size={20} className="rotate-45" />
             </button>
 
-            <div className="text-center mb-8">
-                <div className="inline-flex gap-1 p-1 bg-slate-100 rounded-2xl mb-6">
+            <div className="mb-6 text-center md:mb-8">
+                <div className="mb-5 inline-flex gap-1 rounded-2xl bg-slate-100 p-1 md:mb-6">
                     <button 
                         onClick={() => { setIsRegister(false); setError(''); }}
                         className={cn(
-                            "px-6 py-2 rounded-xl text-xs font-black tracking-widest transition-all",
+                            "rounded-xl px-5 py-2 text-[11px] font-black tracking-[0.18em] transition-all md:px-6 md:text-xs md:tracking-widest",
                             !isRegister ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
                         )}
                     >
@@ -143,14 +143,14 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                     <button 
                         onClick={() => { setIsRegister(true); setError(''); }}
                         className={cn(
-                            "px-6 py-2 rounded-xl text-xs font-black tracking-widest transition-all",
+                            "rounded-xl px-5 py-2 text-[11px] font-black tracking-[0.18em] transition-all md:px-6 md:text-xs md:tracking-widest",
                             isRegister ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
                         )}
                     >
                         JOIN
                     </button>
                 </div>
-                <h2 className="font-black text-3xl text-trust-navy mb-2 tracking-tight">
+                <h2 className="mb-2 text-[1.9rem] font-black tracking-tight text-trust-navy md:text-3xl">
                     {isRegister ? 'New Account' : 'Welcome Back'}
                 </h2>
                 <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">
@@ -158,7 +158,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                 </p>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-4 md:space-y-5">
                 {isRegister && (
                     <div className="animate-fadeInDown">
                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1 mb-1.5 block">Full Name</label>
@@ -169,7 +169,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                                 value={name}
                                 onChange={e => setName(e.target.value)}
                                 placeholder="トミー さん"
-                                className="w-full pl-12 pr-4 py-3.5 bg-slate-50 text-slate-900 rounded-[1.25rem] border border-slate-100 outline-none focus:border-golf-500 focus:bg-white transition-all font-bold"
+                                className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 py-3.5 pl-12 pr-4 text-slate-900 outline-none transition-all font-bold focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                             />
                         </div>
                     </div>
@@ -183,7 +183,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             placeholder="golf@example.com"
-                            className="w-full pl-12 pr-4 py-3.5 bg-slate-50 text-slate-900 rounded-[1.25rem] border border-slate-100 outline-none focus:border-golf-500 focus:bg-white transition-all font-bold"
+                            className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 py-3.5 pl-12 pr-4 text-slate-900 outline-none transition-all font-bold focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                         />
                     </div>
                 </div>
@@ -196,13 +196,13 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             placeholder="6文字以上"
-                            className="w-full pl-12 pr-4 py-3.5 bg-slate-50 text-slate-900 rounded-[1.25rem] border border-slate-100 outline-none focus:border-golf-500 focus:bg-white transition-all font-bold"
+                            className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 py-3.5 pl-12 pr-4 text-slate-900 outline-none transition-all font-bold focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                         />
                     </div>
                 </div>
 
                 {isRegister && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 animate-fadeInDown" style={{ animationDelay: '0.3s' }}>
+                    <div className="grid grid-cols-1 gap-3 pt-1 animate-fadeInDown md:grid-cols-2 md:gap-4 md:pt-2" style={{ animationDelay: '0.3s' }}>
                         <div>
                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1 mb-1.5 block">Gender</label>
                             <div className="relative group">
@@ -210,7 +210,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                                 <select
                                     value={gender}
                                     onChange={e => setGender(e.target.value as Gender)}
-                                    className="w-full pl-12 p-3.5 bg-slate-50 text-slate-900 rounded-[1.25rem] border border-slate-100 outline-none focus:border-golf-500 focus:bg-white transition-all appearance-none font-bold text-sm"
+                                    className="w-full appearance-none rounded-[1.125rem] border border-slate-100 bg-slate-50 p-3.5 pl-12 text-sm font-bold text-slate-900 outline-none transition-all focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                                 >
                                     <option value="">未選択</option>
                                     <option value={Gender.MALE}>男性</option>
@@ -226,7 +226,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                                     type="date"
                                     value={birthdate}
                                     onChange={e => setBirthdate(e.target.value)}
-                                    className="w-full pl-12 p-3.5 bg-slate-50 text-slate-900 rounded-[1.25rem] border border-slate-100 outline-none focus:border-golf-500 focus:bg-white transition-all font-bold text-sm"
+                                    className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 p-3.5 pl-12 text-sm font-bold text-slate-900 outline-none transition-all focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                                 />
                             </div>
                         </div>
@@ -237,7 +237,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                                 <select
                                     value={golfHistory}
                                     onChange={e => setGolfHistory(e.target.value as GolfHistory)}
-                                    className="w-full pl-12 p-3.5 bg-slate-50 text-slate-900 rounded-[1.25rem] border border-slate-100 outline-none focus:border-golf-500 focus:bg-white transition-all appearance-none font-bold text-sm"
+                                    className="w-full appearance-none rounded-[1.125rem] border border-slate-100 bg-slate-50 p-3.5 pl-12 text-sm font-bold text-slate-900 outline-none transition-all focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                                 >
                                     <option value="">ゴルフ歴を選択してください</option>
                                     {Object.values(GolfHistory).map(h => (
@@ -251,7 +251,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
             </div>
 
             {error && (
-                <div className="mt-6 p-4 bg-red-50 text-red-600 text-xs font-bold rounded-2xl flex items-center gap-3 border border-red-100 animate-shake">
+                <div className="mt-5 flex items-center gap-3 rounded-2xl border border-red-100 bg-red-50 p-4 text-xs font-bold text-red-600 animate-shake md:mt-6">
                     <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0"></span>
                     {error}
                 </div>
@@ -260,7 +260,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
             <button
                 onClick={handleAuth}
                 disabled={isLoading}
-                className="w-full mt-8 h-14 bg-slate-900 text-white font-black rounded-[1.25rem] hover:bg-black transition-all flex items-center justify-center gap-3 text-sm tracking-widest uppercase shadow-xl shadow-slate-200 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed group"
+                className="mt-6 flex h-14 w-full items-center justify-center gap-3 rounded-[1.125rem] bg-slate-900 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl shadow-slate-200 transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 group hover:bg-black md:mt-8 md:rounded-[1.25rem] md:tracking-widest"
             >
                 {isLoading ? (
                     <Loader2 className="animate-spin" size={20} />
@@ -272,7 +272,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
             </button>
 
             {isRegister && (
-                <div className="mt-6 p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50">
+                <div className="mt-5 rounded-2xl border border-blue-100/50 bg-blue-50/50 p-4 md:mt-6">
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2 flex items-center gap-1.5">
                         <Check size={12} strokeWidth={3} /> Registration Benefits
                     </div>
