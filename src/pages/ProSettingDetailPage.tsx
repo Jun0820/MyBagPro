@@ -374,7 +374,7 @@ export const ProSettingDetailPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-[60vh] rounded-[2rem] border border-slate-200 bg-white p-10 text-center">
+      <div className="min-h-[60vh] rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">
         <h1 className="text-3xl font-black text-trust-navy">セッティングを読み込んでいます。</h1>
       </div>
     );
@@ -382,7 +382,7 @@ export const ProSettingDetailPage = () => {
 
   if (!setting) {
     return (
-      <div className="min-h-[60vh] rounded-[2rem] border border-slate-200 bg-white p-10 text-center">
+      <div className="min-h-[60vh] rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">
         <h1 className="text-3xl font-black text-trust-navy">セッティングが見つかりません。</h1>
         <button
           onClick={() => navigate('/settings/pros')}
@@ -427,14 +427,14 @@ export const ProSettingDetailPage = () => {
     <div className="min-h-screen overflow-x-hidden pb-20">
       <button
         onClick={() => navigate('/settings/pros')}
-        className="mb-6 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy"
+        className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy md:mb-6"
       >
         <ArrowLeft size={16} />
         プロ一覧へ戻る
       </button>
 
-      <section className="overflow-hidden rounded-[1.75rem] bg-slate-950 text-white md:rounded-[2rem]">
-        <div className="px-4 py-5 md:px-8 md:py-8">
+      <section className="overflow-hidden rounded-[1.5rem] bg-slate-950 text-white md:rounded-[2rem]">
+        <div className="px-4 py-4 md:px-8 md:py-8">
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-cyan-200">
               {setting.type}
@@ -446,8 +446,8 @@ export const ProSettingDetailPage = () => {
             )}
           </div>
 
-          <div className="mt-4 flex items-start gap-3 md:gap-4">
-            <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/10 bg-slate-200 md:h-24 md:w-24">
+          <div className="mt-3 flex items-start gap-3 md:mt-4 md:gap-4">
+            <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/10 bg-slate-200 md:h-24 md:w-24">
               {visuals.portraitMedia ? (
                 <img
                   src={visuals.portraitMedia.src}
@@ -468,25 +468,25 @@ export const ProSettingDetailPage = () => {
 
             <div className="min-w-0 flex-1">
               {setting.kanaName && <div className="text-[11px] font-bold text-white/65 md:text-xs">{setting.kanaName}</div>}
-              <h1 className="mt-1 text-[1.9rem] font-black leading-[1.03] tracking-tight md:text-5xl">
+              <h1 className="mt-1 text-[1.65rem] font-black leading-[1.03] tracking-tight md:text-5xl">
                 {setting.name}
                 {setting.age ? <span className="ml-2 text-base font-bold text-white/65 md:text-xl">({setting.age})</span> : null}
               </h1>
-              <p className="mt-2 text-sm font-bold leading-6 text-cyan-200 md:text-base">{compactTagline}</p>
-              <p className="mt-1.5 text-sm leading-6 text-slate-300 md:max-w-3xl">{compactSummary}</p>
+              <p className="mt-1.5 text-sm font-bold leading-6 text-cyan-200 md:mt-2 md:text-base">{compactTagline}</p>
+              <p className="mt-1 text-sm leading-6 text-slate-300 md:mt-1.5 md:max-w-3xl">{compactSummary}</p>
             </div>
           </div>
 
-          <dl className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4">
+          <dl className="mt-3 grid grid-cols-2 gap-2 md:mt-4 md:grid-cols-4">
             {profileFacts.map((fact) => (
-              <div key={fact.label} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">
+              <div key={fact.label} className="rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 md:rounded-2xl">
                 <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{fact.label}</dt>
                 <dd className="mt-1 text-sm font-black leading-5 text-white">{fact.value}</dd>
               </div>
             ))}
           </dl>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2 md:mt-4">
             <button
               onClick={() => navigate(`/settings/pros?category=${setting.category}`)}
               className="rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-black text-white transition hover:bg-white/15 md:text-sm"
@@ -512,7 +512,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
+        <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
@@ -522,11 +522,11 @@ export const ProSettingDetailPage = () => {
               公開ソース確認分のみ掲載。
             </p>
           </div>
-          <div className="mt-4 grid gap-2.5 md:mt-5 md:grid-cols-3">
+          <div className="mt-3 grid gap-2 md:mt-5 md:grid-cols-3">
             {statCards.map((card) => (
-              <div key={card.label} className="rounded-[1.125rem] border border-slate-200 bg-slate-50 px-4 py-3.5 md:rounded-[1.25rem]">
+              <div key={card.label} className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 md:rounded-[1.25rem] md:py-3.5">
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{card.label}</div>
-                <div className="mt-1.5 text-[1.75rem] font-black leading-none text-trust-navy md:text-2xl">{card.value}</div>
+                <div className="mt-1 text-[1.55rem] font-black leading-none text-trust-navy md:mt-1.5 md:text-2xl">{card.value}</div>
               </div>
             ))}
           </div>
@@ -534,7 +534,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
+        <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
@@ -559,7 +559,7 @@ export const ProSettingDetailPage = () => {
               ))}
             </div>
           </div>
-          <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200 md:mt-5 md:rounded-[1.5rem]">
+          <div className="mt-3 overflow-hidden rounded-[1.125rem] border border-slate-200 md:mt-5 md:rounded-[1.5rem]">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
               {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
@@ -616,26 +616,26 @@ export const ProSettingDetailPage = () => {
                       </div>
                     </div>
 
-                    <div className="md:hidden px-4 py-3">
+                    <div className="px-4 py-3 md:hidden">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
                             {formatClubLabel(club.category, club.specLabel)}
                           </div>
-                          <div className="mt-1 text-base font-black leading-5 text-trust-navy">{club.model}</div>
+                          <div className="mt-1 text-[15px] font-black leading-5 text-trust-navy">{club.model}</div>
                           <div className="mt-1 text-sm font-bold leading-5 text-slate-600">{club.brand || '未公開'}</div>
                         </div>
                         <div className="shrink-0 text-right">
                           <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">
                             {distanceMode === 'carry' ? 'キャリー' : '総距離'}
                           </div>
-                          <div className="mt-1 text-base font-black text-golf-700">
+                          <div className="mt-1 text-[15px] font-black text-golf-700">
                             {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-2.5 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
                         <div>
                           <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">シャフト</div>
                           <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || '未公開'}</div>
@@ -659,7 +659,7 @@ export const ProSettingDetailPage = () => {
 
       {setting.sources.length > 0 && (
         <section className="mt-4 md:mt-6">
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
+          <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
@@ -669,7 +669,7 @@ export const ProSettingDetailPage = () => {
                 要点のみ表示
               </p>
             </div>
-            <div className="mt-4 grid gap-2">
+            <div className="mt-3 grid gap-2">
               {setting.sources.map((source) => (
                 <div
                   key={`${source.type}-${source.url}`}
@@ -695,13 +695,13 @@ export const ProSettingDetailPage = () => {
       )}
 
       <section className="mt-4 md:mt-6">
-        <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm md:rounded-[2rem]">
+        <div className="overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white shadow-sm md:rounded-[2rem]">
           <button
             type="button"
             onClick={() => setIsMediaSectionOpen((open) => !open)}
-            className="flex w-full items-center justify-between gap-4 border-b border-slate-200 px-4 py-4 text-left md:px-7"
+            className="flex w-full items-center justify-between gap-4 border-b border-slate-200 px-4 py-3.5 text-left md:px-7 md:py-4"
           >
-            <h2 className="text-2xl font-black text-trust-navy">動画と公式リンク</h2>
+            <h2 className="text-xl font-black text-trust-navy md:text-2xl">動画と公式リンク</h2>
             <span className="inline-flex items-center gap-2 text-sm font-black text-slate-500">
               {isMediaSectionOpen ? '閉じる' : '開く'}
               <ChevronDown size={18} className={`transition-transform ${isMediaSectionOpen ? 'rotate-180' : ''}`} />
@@ -764,7 +764,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-4 rounded-[1.5rem] border border-slate-200 bg-white shadow-sm md:mt-6 md:rounded-[2rem]">
+        <section className="mt-4 rounded-[1.35rem] border border-slate-200 bg-white shadow-sm md:mt-6 md:rounded-[2rem]">
           <button
             type="button"
             onClick={() => setIsRelatedArticlesOpen((open) => !open)}
@@ -772,7 +772,7 @@ export const ProSettingDetailPage = () => {
           >
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">ARTICLES</div>
-              <h2 className="mt-1.5 text-2xl font-black tracking-tight text-trust-navy">関連記事</h2>
+              <h2 className="mt-1.5 text-xl font-black tracking-tight text-trust-navy md:text-2xl">関連記事</h2>
             </div>
             <span className="inline-flex items-center gap-2 text-sm font-black text-slate-500">
               {isRelatedArticlesOpen ? '閉じる' : '開く'}
