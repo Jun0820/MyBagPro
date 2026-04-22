@@ -30,6 +30,7 @@ export const ComparePage = () => {
 
   const settingSlug = searchParams.get('setting');
   const shortlistMode = searchParams.get('mode') === 'shortlist';
+  const compareReturnTarget = `/compare${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
   const shortlist = useMemo(() => getCompareShortlist(), []);
   const primaryShop = AFFILIATE_SHOPS[0];
 
@@ -347,7 +348,7 @@ export const ComparePage = () => {
             source_page: 'compare_page',
             reference_profile_slug: targetSetting.slug,
           });
-          navigate('/mybag/create?tab=clubs&focus=missing-clubs');
+          navigate(`/mybag/create?tab=clubs&focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
         },
         variant: 'secondary',
       });
@@ -482,7 +483,7 @@ export const ComparePage = () => {
                     source_page: 'compare_page_quick_actions',
                     reference_profile_slug: targetSetting.slug,
                   });
-                  navigate('/mybag/create?tab=clubs&focus=missing-clubs');
+                  navigate(`/mybag/create?tab=clubs&focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
                 }}
                 className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black ${
                   needsBagSetup ? 'bg-trust-navy text-white' : 'border border-slate-300 bg-white text-slate-700'

@@ -239,8 +239,10 @@ export const MyGearPage = () => {
         navigate('/');
     };
 
+    const returnTo = searchParams.get('returnTo');
+
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
-            openBagTabWithFocus();
+        setActiveTab('clubs');
         const nextParams = new URLSearchParams(searchParams);
         nextParams.set('tab', 'clubs');
         if (focus) {
@@ -824,6 +826,14 @@ export const MyGearPage = () => {
                         }}
                         saveStatus={saveStatus}
                         onManualSave={manualSave}
+                        onSaveAndReturn={
+                            returnTo
+                                ? async () => {
+                                      await manualSave();
+                                      navigate(returnTo);
+                                  }
+                                : undefined
+                        }
                         intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
                     />
                 )}

@@ -220,6 +220,7 @@ interface MyBagManagerProps {
     onDiagnose?: (club: Club) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     onManualSave?: () => void;
+    onSaveAndReturn?: () => void;
     onOpenBallDiagnosis?: () => void;
     onOpenCompare?: () => void;
     intakeMode?: 'default' | 'missing-clubs' | 'ball-first';
@@ -241,6 +242,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     onDiagnose,
     saveStatus,
     onManualSave,
+    onSaveAndReturn,
     onOpenBallDiagnosis,
     onOpenCompare,
     intakeMode = 'default',
@@ -530,13 +532,24 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <h3 className="mt-2 text-lg font-black tracking-tight text-trust-navy">{intakeBanner.title}</h3>
                             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{intakeBanner.description}</p>
                         </div>
-                        <button
-                            onClick={intakeBanner.onClick}
-                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-cyan-700"
-                        >
-                            {intakeBanner.cta}
-                            <ArrowRight size={16} />
-                        </button>
+                        <div className="flex flex-col gap-2 sm:flex-row">
+                            <button
+                                onClick={intakeBanner.onClick}
+                                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-cyan-700"
+                            >
+                                {intakeBanner.cta}
+                                <ArrowRight size={16} />
+                            </button>
+                            {intakeMode === 'missing-clubs' && onSaveAndReturn && (
+                                <button
+                                    onClick={onSaveAndReturn}
+                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-200 bg-white px-5 py-3 text-sm font-black text-cyan-700 transition-colors hover:bg-cyan-50"
+                                >
+                                    保存して比較に戻る
+                                    <ArrowRight size={16} />
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
