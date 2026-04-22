@@ -1,0 +1,21 @@
+<svg width="1400" height="360" viewBox="0 0 1400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="360" fill="#0F0F10"/>
+  <g transform="translate(56 34)">
+    <g stroke="#C8A96A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M55 226L69 103C70 93 78 86 88 86H101C111 86 119 93 120 103L135 226"/>
+      <path d="M66 226H126"/>
+      <path d="M65 109L48 216"/>
+      <path d="M124 109L142 216"/>
+      <path d="M65 121C79 117 91 115 104 115C115 115 126 117 136 120"/>
+      <path d="M84 86V57"/>
+      <path d="M108 86V49"/>
+      <path d="M70 86V64"/>
+      <path d="M84 57L64 53"/>
+      <path d="M108 49L129 45"/>
+      <path d="M70 64L53 67"/>
+      <path d="M41 241H148"/>
+    </g>
+    <path d="M188 48V232" stroke="#C8A96A" stroke-width="6"/>
+  </g>
+  <text x="320" y="210" fill="#EAEAEA" font-family="Montserrat, Arial, Helvetica, sans-serif" font-size="112" font-weight="500" letter-spacing="-3">MyBag Pro</text>
+</svg>

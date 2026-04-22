@@ -82,9 +82,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-3">
             <a href="/" className="mx-auto min-w-0 cursor-pointer md:mx-0 md:w-auto">
               <img
-                src="/branding/logo-wordmark.png"
+                src="/branding/logo-header.svg"
                 alt="My Bag Pro"
-                className="h-11 w-auto rounded-xl object-contain shadow-sm"
+                className="h-11 w-auto object-contain shadow-sm"
               />
             </a>
 
@@ -138,9 +138,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div>
             <a href="/" className="inline-flex">
               <img
-                src="/branding/logo-wordmark.png"
+                src="/branding/logo-wordmark-dark.svg"
                 alt="My Bag Pro"
-                className="h-12 w-auto rounded-xl"
+                className="h-12 w-auto"
               />
             </a>
             <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">

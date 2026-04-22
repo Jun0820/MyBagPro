@@ -14,6 +14,31 @@ const parseHeadSpeedValue = (value: string) => {
   return match ? Number(match[0]) : null;
 };
 
+const categoryToDiagnosisPath = (category?: string | null) => {
+  switch (category) {
+    case 'Driver':
+    case 'ドライバー':
+      return '/diagnosis/driver';
+    case 'フェアウェイウッド':
+    case 'Fairway Wood':
+      return '/diagnosis/fairway';
+    case 'ユーティリティ':
+    case 'Utility':
+      return '/diagnosis/utility';
+    case 'アイアン':
+    case 'Iron':
+      return '/diagnosis/iron';
+    case 'ウェッジ':
+    case 'Wedge':
+      return '/diagnosis/wedge';
+    case 'パター':
+    case 'Putter':
+      return '/diagnosis/putter';
+    default:
+      return '/diagnosis';
+  }
+};
+
 const formatGapMessage = (current: string, target: string) => {
   if (current === '未登録') return 'このカテゴリが未登録なので、まずは入力すると比較しやすくなります。';
   if (target === '未掲載') return '参考プロフィール側でこのカテゴリは未掲載です。';
@@ -286,6 +311,7 @@ export const ComparePage = () => {
   const matchedCount = comparisonRows.filter((row) => row.matched).length;
   const missingCount = comparisonRows.filter((row) => row.current === '未登録').length;
   const differenceCount = comparisonRows.filter((row) => !row.matched && row.current !== '未登録' && row.target !== '未掲載').length;
+  const firstPriorityRow = comparisonRows.find((row) => row.current === '未登録' || (!row.matched && row.target !== '未掲載'));
   const matchPercent = comparisonRows.length > 0 ? Math.round((matchedCount / comparisonRows.length) * 100) : 0;
   const hasPreviousMissingCount = searchParams.has('previousMissing');
   const hasPreviousMatchPercent = searchParams.has('previousMatch');
@@ -377,6 +403,27 @@ export const ComparePage = () => {
       });
     }
 
+    if (firstPriorityRow) {
+      actions.push({
+        title: `${firstPriorityRow.category} を優先して診断する`,
+        description:
+          firstPriorityRow.current === '未登録'
+            ? `${firstPriorityRow.category} が未登録なので、まずはこのカテゴリから診断すると次の一手が決まりやすいです。`
+            : `${firstPriorityRow.category} に差分があります。いま一番見直しやすいカテゴリです。`,
+        cta: `${firstPriorityRow.category} を診断する`,
+        onClick: () => {
+          trackEvent('start_ai_diagnosis', {
+            source_page: 'compare_page',
+            reference_profile_slug: targetSetting.slug,
+            reference_profile_name: targetSetting.name,
+            priority_category: firstPriorityRow.category,
+          });
+          navigate(categoryToDiagnosisPath(firstPriorityRow.category));
+        },
+        variant: 'secondary',
+      });
+    }
+
     if (missingBall || currentDistanceCoverage < 40) {
       actions.push({
         title: missingBall ? '使用ボールを決める' : 'ボール相性を診断する',
@@ -415,7 +462,7 @@ export const ComparePage = () => {
     });
 
     return actions.slice(0, 3);
-  }, [currentDistanceCoverage, differenceCount, missingBall, missingCount, navigate, targetDriverDetail, targetSetting]);
+  }, [currentDistanceCoverage, differenceCount, firstPriorityRow, missingBall, missingCount, navigate, targetDriverDetail, targetSetting]);
 
   return (
       <div className="min-h-screen space-y-6 pb-20 md:space-y-8">
