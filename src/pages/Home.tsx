@@ -50,6 +50,12 @@ const outcomePoints = [
   '選ぶべき方向性が分かる',
 ];
 
+const heroQuickLinks = [
+  { label: 'プロを見る', href: '/settings/pros' },
+  { label: '悩み記事へ', href: '/articles' },
+  { label: '比較を見る', href: '/compare' },
+];
+
 const popularContent = [
   {
     eyebrow: 'PRO SETTINGS',
@@ -99,53 +105,86 @@ export const Home = () => {
         <div className="absolute inset-0 bg-slate-950/58" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.24),transparent_30%)]" />
 
-        <div className="relative px-5 py-8 md:px-10 md:py-14">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/90 backdrop-blur">
-              <WandSparkles size={12} className="text-emerald-300" />
-              FREE CLUB DIAGNOSIS
-            </div>
+        <div className="relative px-5 py-7 md:px-10 md:py-12">
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-[minmax(0,1.05fr)_320px] md:items-end">
+            <div className="text-center md:text-left">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.14em] text-white/90 backdrop-blur">
+                <WandSparkles size={12} className="text-emerald-300" />
+                FREE CLUB DIAGNOSIS
+              </div>
 
-            <h1 className="mx-auto mt-4 max-w-4xl text-[clamp(2rem,8vw,4.6rem)] font-black leading-[1.02] tracking-tight text-white">
-              そのクラブ、
-              <br className="sm:hidden" />
-              本当にあなたに
-              <br />
-              合っていますか？
-            </h1>
+              <h1 className="mt-4 text-[clamp(2rem,8vw,4.6rem)] font-black leading-[1.02] tracking-tight text-white">
+                そのクラブ、
+                <br className="sm:hidden" />
+                本当にあなたに
+                <br />
+                合っていますか？
+              </h1>
 
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/90 md:text-lg md:leading-8">
-              ヘッドスピードや球筋、ミス傾向から、
-              <br className="hidden sm:block" />
-              最適なセッティングの方向性を診断します。
-            </p>
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/90 md:mx-0 md:text-lg md:leading-8">
+                ヘッドスピードや球筋、ミス傾向から、
+                <br className="hidden sm:block" />
+                最適なセッティングの方向性を診断します。
+              </p>
 
-            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <button
-                onClick={() => handleDiagnosisStart('hero')}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-6 py-4 text-base font-black text-white shadow-lg shadow-golf-900/20 transition hover:-translate-y-0.5 hover:bg-golf-600 sm:w-auto sm:min-w-[240px]"
-              >
-                <WandSparkles size={18} />
-                30秒で無料診断
-              </button>
-              <button
-                onClick={() => navigate('/settings/pros')}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 text-base font-black text-white backdrop-blur transition hover:bg-white/15 sm:w-auto sm:min-w-[240px]"
-              >
-                <ShieldCheck size={18} />
-                プロのセッティングを見る
-              </button>
-            </div>
-
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-              {['ログイン不要', '結果は保存可能', 'フィッティング理論ベース'].map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-black text-white/85 backdrop-blur"
+              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row md:justify-start">
+                <button
+                  onClick={() => handleDiagnosisStart('hero')}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-6 py-4 text-base font-black text-white shadow-lg shadow-golf-900/20 transition hover:-translate-y-0.5 hover:bg-golf-600 sm:w-auto sm:min-w-[240px]"
                 >
-                  {item}
-                </span>
-              ))}
+                  <WandSparkles size={18} />
+                  30秒で無料診断
+                </button>
+                <button
+                  onClick={() => navigate('/settings/pros')}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 text-base font-black text-white backdrop-blur transition hover:bg-white/15 sm:w-auto sm:min-w-[240px]"
+                >
+                  <ShieldCheck size={18} />
+                  プロのセッティングを見る
+                </button>
+              </div>
+
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                {['ログイン不要', '結果は保存可能', 'フィッティング理論ベース'].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-black text-white/85 backdrop-blur"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.7rem] border border-white/15 bg-white/10 p-4 text-white shadow-[0_18px_40px_rgba(15,23,42,0.22)] backdrop-blur md:p-5">
+              <div className="text-[11px] font-black tracking-[0.18em] text-emerald-300">START HERE</div>
+              <h2 className="mt-3 text-xl font-black leading-tight">
+                診断前でも、
+                <br />
+                価値が見える入口に。
+              </h2>
+              <div className="mt-4 space-y-2.5">
+                {trustPoints.map((point) => (
+                  <div
+                    key={point}
+                    className="rounded-[1rem] border border-white/10 bg-slate-950/25 px-3.5 py-3 text-sm font-bold leading-6 text-white/88"
+                  >
+                    {point}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3 md:grid-cols-1">
+                {heroQuickLinks.map((link) => (
+                  <button
+                    key={link.label}
+                    onClick={() => navigate(link.href)}
+                    className="inline-flex items-center justify-between rounded-full border border-white/12 bg-white/10 px-4 py-2.5 text-sm font-black text-white transition hover:bg-white/15"
+                  >
+                    <span>{link.label}</span>
+                    <ArrowRight size={14} />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
