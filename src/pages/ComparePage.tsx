@@ -69,7 +69,7 @@ export const ComparePage = () => {
 
   if (shortlistMode) {
     return (
-      <div className="min-h-screen space-y-8 pb-20">
+      <div className="min-h-screen space-y-6 pb-20 md:space-y-8">
         <button
           onClick={() => navigate(-1)}
           className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy"
@@ -78,17 +78,17 @@ export const ComparePage = () => {
           前のページへ戻る
         </button>
 
-        <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
+        <section className="rounded-[2rem] border border-slate-200 bg-white px-5 py-6 shadow-sm md:px-10 md:py-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-xs font-black text-cyan-700">
             <GitCompareArrows size={14} />
             比較候補
           </div>
-          <h1 className="mt-5 text-4xl font-black tracking-tight text-trust-navy md:text-6xl">
+          <h1 className="mt-5 text-3xl font-black tracking-tight text-trust-navy md:text-6xl">
             診断で残した
             <span className="text-golf-700">比較候補</span>
             を見比べる
           </h1>
-          <p className="mt-5 max-w-3xl text-sm leading-8 text-slate-600 md:text-base">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:mt-5 md:text-base md:leading-8">
             診断で保存した候補を並べて、次に詳しく見るモデルを絞るためのページです。まずは上位候補から詳細を開いて、購入比較や再診断につなげていきます。
           </p>
         </section>
@@ -120,7 +120,7 @@ export const ComparePage = () => {
                   );
 
                   return (
-                    <div key={item.id} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+                    <div key={item.id} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 md:p-5">
                       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                         <div>
                           <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
@@ -145,7 +145,7 @@ export const ComparePage = () => {
                             )}
                           </div>
                         </div>
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                           <button
                             onClick={() => {
                               if (matchedDriver) {
@@ -154,7 +154,7 @@ export const ComparePage = () => {
                               }
                               navigate('/clubs/drivers');
                             }}
-                            className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white sm:w-auto"
                           >
                             詳細を見る
                             <ArrowRight size={16} />
@@ -176,7 +176,7 @@ export const ComparePage = () => {
                               });
                               alert('✅ お気に入りに保存しました。');
                             }}
-                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700"
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700 sm:w-auto"
                           >
                             <Heart size={16} />
                             お気に入りに保存
@@ -192,7 +192,7 @@ export const ComparePage = () => {
                               });
                               window.open(getAffiliateUrl(item.brand, item.modelName, primaryShop.id), '_blank', 'noopener,noreferrer');
                             }}
-                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700"
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700 sm:w-auto"
                           >
                             <ShoppingBag size={16} />
                             価格を見る
@@ -348,7 +348,7 @@ export const ComparePage = () => {
   }, [differenceCount, missingCount, navigate, targetDriverDetail, targetSetting]);
 
   return (
-    <div className="min-h-screen space-y-8 pb-20">
+      <div className="min-h-screen space-y-6 pb-20 md:space-y-8">
       <button
         onClick={() => navigate(-1)}
         className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy"
@@ -357,17 +357,17 @@ export const ComparePage = () => {
         前のページへ戻る
       </button>
 
-      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
+      <section className="rounded-[2rem] border border-slate-200 bg-white px-5 py-6 shadow-sm md:px-10 md:py-10">
         <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-xs font-black text-cyan-700">
           <GitCompareArrows size={14} />
           比較ページ
         </div>
-        <h1 className="mt-5 text-4xl font-black tracking-tight text-trust-navy md:text-6xl">
+        <h1 className="mt-5 text-3xl font-black tracking-tight text-trust-navy md:text-6xl">
           {targetSetting.name} と
           <span className="text-golf-700">自分のバッグ</span>
           を比べる
         </h1>
-        <p className="mt-5 max-w-3xl text-sm leading-8 text-slate-600 md:text-base">
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:mt-5 md:text-base md:leading-8">
           どこが同じで、どこが違うのかを整理するページです。まず全体の近さを見て、そのあと差分の大きいカテゴリから見直すと使いやすいです。
         </p>
 

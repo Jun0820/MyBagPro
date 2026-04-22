@@ -241,7 +241,7 @@ export const MyGearPage = () => {
     return (
         <div className="min-h-screen bg-slate-50">
             <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
-                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+                <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:h-16 md:flex-row md:items-center md:justify-between md:py-0">
                     <button
                         onClick={handleClose}
                         className="flex items-center gap-2 text-xs font-bold text-slate-500 transition-colors hover:text-trust-navy"
@@ -250,11 +250,11 @@ export const MyGearPage = () => {
                         HOME
                     </button>
 
-                    <div className="flex rounded-2xl border border-slate-200 bg-slate-100 p-1 shadow-inner">
+                    <div className="grid w-full grid-cols-3 rounded-2xl border border-slate-200 bg-slate-100 p-1 shadow-inner md:flex md:w-auto">
                         <button
                             onClick={() => setActiveTab('view')}
                             className={cn(
-                                'flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-black transition-all',
+                                'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition-all md:px-4',
                                 activeTab === 'view' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
                             )}
                         >
@@ -264,7 +264,7 @@ export const MyGearPage = () => {
                         <button
                             onClick={() => setActiveTab('clubs')}
                             className={cn(
-                                'flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-black transition-all',
+                                'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition-all md:px-4',
                                 activeTab === 'clubs' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
                             )}
                         >
@@ -274,7 +274,7 @@ export const MyGearPage = () => {
                         <button
                             onClick={() => setActiveTab('profile')}
                             className={cn(
-                                'flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-black transition-all',
+                                'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition-all md:px-4',
                                 activeTab === 'profile' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
                             )}
                         >
@@ -283,7 +283,7 @@ export const MyGearPage = () => {
                         </button>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-end gap-4">
                         <div className="hidden items-center gap-2 md:flex">
                             {saveStatus === 'saving' ? (
                                 <div className="flex animate-pulse items-center gap-1.5 text-[10px] font-bold text-slate-400">
@@ -466,7 +466,7 @@ export const MyGearPage = () => {
                                         {considerationCount} Items
                                     </div>
                                 </div>
-                                <div className="grid gap-6 xl:grid-cols-4">
+                                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
                                     {recentHistory.length > 0 && (
                                         <div>
                                             <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
@@ -497,7 +497,7 @@ export const MyGearPage = () => {
                                                         {Array.isArray(item.result?.rankings) && item.result.rankings.length > 0 && (
                                                             <button
                                                                 onClick={() => addSavedDiagnosisToCompare(item)}
-                                                                className="mt-4 inline-flex items-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                                                                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
                                                             >
                                                                 比較候補に追加
                                                                 <ArrowRight size={14} />
@@ -556,7 +556,7 @@ export const MyGearPage = () => {
                                                         </div>
                                                         <button
                                                             onClick={() => openCompareCandidate(item)}
-                                                            className="mt-4 inline-flex items-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                                                            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
                                                         >
                                                             候補を見る
                                                             <ArrowRight size={14} />
@@ -590,29 +590,29 @@ export const MyGearPage = () => {
                                                                 {[item.shaft, item.loft].filter(Boolean).join(' / ')}
                                                             </div>
                                                         )}
-                                                        <div className="mt-3 flex flex-wrap gap-2">
+                                                        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                                                             <button
                                                                 onClick={() => openFavoriteBuy(item)}
-                                                                className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-3 py-2 text-xs font-black text-white transition-colors hover:bg-slate-800"
+                                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-3 py-2 text-xs font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
                                                             >
                                                                 <ShoppingCart size={13} />
                                                                 価格を見る
                                                             </button>
                                                             <button
                                                                 onClick={() => rediagnoseFavorite(item)}
-                                                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
+                                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto"
                                                             >
                                                                 再診断する
                                                             </button>
                                                             <button
                                                                 onClick={() => navigate('/compare?mode=shortlist')}
-                                                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
+                                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto"
                                                             >
                                                                 比較へ戻る
                                                             </button>
                                                             <button
                                                                 onClick={() => setFavoriteClubs(removeFavoriteClub(item.id))}
-                                                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
+                                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 sm:w-auto"
                                                             >
                                                                 削除
                                                             </button>
