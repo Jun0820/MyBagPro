@@ -181,6 +181,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     // CRITICAL: Prevent overwriting remote data if initial sync hasn't finished yet
                     if (!isInitialSyncComplete) {
                         console.log("Skipping remote save: initial sync not complete");
+                        setSaveStatus('idle');
                         return;
                     }
 
@@ -247,7 +248,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             // Supabase (Remote)
             if (user.isLoggedIn && user.id) {
                 if (!isInitialSyncComplete) {
-                    throw new Error("Cannot save yet: Initial sync is in progress.");
+                    setSaveStatus('saved');
+                    setTimeout(() => setSaveStatus('idle'), 2000);
+                    return;
                 }
                 await supabase.from('profiles').upsert({
                     id: user.id,

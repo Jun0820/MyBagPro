@@ -127,6 +127,17 @@ export const MyGearPage = () => {
     }, [saveStatus]);
 
     useEffect(() => {
+        const handleBeforeUnload = () => {
+            void manualSave();
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [manualSave]);
+
+    useEffect(() => {
         const tabParam = searchParams.get('tab');
         if (tabParam === 'clubs') {
             setActiveTab('clubs');
@@ -561,6 +572,25 @@ export const MyGearPage = () => {
                                             {recentHistory[0] ? '保存した診断を見る' : '無料診断を始める'}
                                         </div>
                                     </button>
+                                </div>
+
+                                <div className="mt-4 rounded-2xl border border-slate-200 bg-white px-5 py-4">
+                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Latest Guide</div>
+                                    <div className="mt-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <div className="text-base font-black text-trust-navy">診断前にMy Bagを登録しておくべき理由</div>
+                                            <div className="mt-1 text-sm leading-relaxed text-slate-500">
+                                                先にセッティングを入れておくと、比較・保存・再訪までどうつながるかを整理した最新ガイドです。
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => navigate('/articles/why-register-mybag-before-diagnosis-2026')}
+                                            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-trust-navy transition-colors hover:bg-slate-100"
+                                        >
+                                            ガイドを見る
+                                            <ArrowRight size={14} />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
