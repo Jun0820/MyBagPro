@@ -1954,26 +1954,33 @@ export const DiagnosisWizard = () => {
             if (!success) return; // エラー時はナビゲートしない
             const clubPath = getClubPath();
             const modePath = getModePath();
+            const compareParams = compareSource
+                ? `?${new URLSearchParams({
+                    source: 'compare',
+                    priority: comparePriorityCategory || '',
+                    profile: compareProfileName || '',
+                }).toString()}`
+                : '';
             // ボールとパターはモード不要
             if (profile.targetCategory === TargetCategory.BALL) {
                 trackEvent('diagnosis_result_navigate', {
                     diagnosis_category: 'ball',
-                    destination: '/result/ball',
+                    destination: `/result/ball${compareParams}`,
                 });
-                navigate(`/result/ball`);
+                navigate(`/result/ball${compareParams}`);
             } else if (profile.targetCategory === TargetCategory.PUTTER) {
                 trackEvent('diagnosis_result_navigate', {
                     diagnosis_category: 'putter',
-                    destination: '/result/putter/head',
+                    destination: `/result/putter/head${compareParams}`,
                 });
-                navigate(`/result/putter/head`);
+                navigate(`/result/putter/head${compareParams}`);
             } else {
                 trackEvent('diagnosis_result_navigate', {
                     diagnosis_category: clubPath,
                     diagnosis_mode: modePath,
-                    destination: `/result/${clubPath}/${modePath}`,
+                    destination: `/result/${clubPath}/${modePath}${compareParams}`,
                 });
-                navigate(`/result/${clubPath}/${modePath}`);
+                navigate(`/result/${clubPath}/${modePath}${compareParams}`);
             }
         };
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { RadarChart } from '../components/RadarChart';
 import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { INITIAL_PROFILE, TargetCategory } from '../types/golf';
 import { AiResponseDisplay } from '../components/AiResponseDisplay';
 import { BagShareCard } from '../features/share/BagShareCard';
@@ -57,7 +57,17 @@ export const ResultPage = () => {
     const { resultData, diagnosisError, user, setProfile, resetDiagnosis, setShowAuth, profile } = useDiagnosis();
     const navigate = useNavigate();
     const { club, mode } = useParams<{ club?: string; mode?: string }>();
+    const [searchParams] = useSearchParams();
     const [showShareModal, setShowShareModal] = useState(false);
+    const compareSource = searchParams.get('source') === 'compare';
+    const comparePriorityCategory = searchParams.get('priority');
+    const compareProfileName = searchParams.get('profile');
+    const compareBannerTitle = comparePriorityCategory
+        ? `${comparePriorityCategory} の差分を見直した結果です`
+        : '比較ページで見つけた差分を見直した結果です';
+    const compareBannerDescription = compareProfileName
+        ? `${compareProfileName} と比べた中で気になったカテゴリを先に診断しています。次の比較や保存までこのまま進めます。`
+        : '比較ページで見つけた差分を、そのまま診断結果までつないでいます。';
     const fallbackResultData = !resultData ? (() => {
         try {
             const saved = localStorage.getItem('mybagpro_result_data');
@@ -199,6 +209,13 @@ export const ResultPage = () => {
             <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 md:mb-6">
                 この診断はβ版です。精度向上中です。
             </div>
+            {compareSource && (
+                <div className="mb-4 rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-4 md:mb-6">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
+                    <div className="mt-2 text-base font-black text-trust-navy md:text-lg">{compareBannerTitle}</div>
+                    <div className="mt-2 text-sm leading-6 text-slate-600">{compareBannerDescription}</div>
+                </div>
+            )}
             {/* Hero Section */}
             <div className="group relative mb-5 h-28 overflow-hidden rounded-[1.5rem] shadow-2xl shadow-slate-900/20 md:mb-8 md:h-56 md:rounded-[2.25rem]">
                 {/* Background: Deep Space Navy */}
@@ -254,7 +271,9 @@ export const ResultPage = () => {
                         </div>
                         <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">NEXT STEP</div>
-                            <div className="mt-1 text-sm font-black text-trust-navy">保存 or 比較</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">
+                                {compareSource && comparePriorityCategory ? `${comparePriorityCategory} を保存 or 比較` : '保存 or 比較'}
+                            </div>
                         </div>
                     </div>
 
