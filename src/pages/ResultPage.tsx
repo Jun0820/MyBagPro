@@ -229,6 +229,39 @@ export const ResultPage = () => {
         navigate(`/compare?${reviewedParams.toString()}`);
     };
 
+    const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
+    const resultPrimaryMove = !registeredCategories.has(TargetCategory.DRIVER)
+        ? {
+            eyebrow: 'Primary Move',
+            title: 'まずは代表番手を登録する',
+            description: 'おすすめ候補を残す前に、ドライバーや7Iを入れておくと比較と保存がかなり安定します。',
+            actionLabel: 'My Bag を整える',
+            onClick: () => navigate('/mypage?tab=clubs&focus=missing-clubs'),
+        }
+        : !profile.myBag.ball
+        ? {
+            eyebrow: 'Primary Move',
+            title: '次はボールまでそろえる',
+            description: '今のボールが入ると、この結果とバッグ全体のつながりまで見やすくなります。',
+            actionLabel: 'ボールを登録する',
+            onClick: () => navigate('/mypage?tab=clubs&focus=ball-first'),
+        }
+        : compareSource
+        ? {
+            eyebrow: 'Primary Move',
+            title: '比較へ戻って差分を見直す',
+            description: '今回の候補を残したうえで、比較ページに戻ると差分がどこまで埋まったか確認できます。',
+            actionLabel: '比較へ戻る',
+            onClick: handleSaveAndReturnToCompare,
+        }
+        : {
+            eyebrow: 'Primary Move',
+            title: '比較候補に残して次の判断へ進む',
+            description: 'まずは候補を保存して、マイページや比較ページで見返せる状態にするのがおすすめです。',
+            actionLabel: '比較候補を残す',
+            onClick: handleSaveCompareShortlist,
+        };
+
     return (
         <div className="animate-fadeIn min-h-screen bg-[#f8fafc] pb-16 text-slate-900 md:pb-20">
             <div className="mx-auto w-full max-w-6xl px-4 pt-2 md:px-6">
@@ -286,6 +319,23 @@ export const ResultPage = () => {
 
             {topModel && (
                 <section className="mb-6 rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-xl shadow-slate-200/40 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
+                    <div className="mb-4 rounded-[1.25rem] border border-golf-200 bg-golf-50 px-4 py-4 md:mb-5 md:rounded-[1.5rem] md:px-5">
+                        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                            <div>
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{resultPrimaryMove.eyebrow}</div>
+                                <div className="mt-1 text-lg font-black tracking-tight text-trust-navy md:text-xl">{resultPrimaryMove.title}</div>
+                                <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">{resultPrimaryMove.description}</p>
+                            </div>
+                            <button
+                                onClick={resultPrimaryMove.onClick}
+                                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+                            >
+                                {resultPrimaryMove.actionLabel}
+                                <ChevronDown size={16} className="-rotate-90" />
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="mb-4 grid gap-2 md:grid-cols-3">
                         <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">BEST MATCH</div>

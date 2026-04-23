@@ -68,6 +68,39 @@ export const ComparePage = () => {
   const shortlistMode = searchParams.get('mode') === 'shortlist';
   const shortlist = useMemo(() => getCompareShortlist(), []);
   const primaryShop = AFFILIATE_SHOPS[0];
+  const hasDriver = profile.myBag.clubs.some((club) => club.category === 'ドライバー' || club.category === 'Driver');
+  const hasBall = Boolean(profile.myBag.ball);
+  const shortlistPrimaryMove = !hasDriver
+    ? {
+        eyebrow: 'Primary Move',
+        title: 'まずは代表番手を登録する',
+        description: 'ドライバーか7Iが入るだけでも、比較候補の見え方がかなり具体的になります。',
+        actionLabel: 'My Bag を整える',
+        onClick: () => navigate('/mypage?tab=clubs&focus=missing-clubs'),
+      }
+    : !hasBall
+    ? {
+        eyebrow: 'Primary Move',
+        title: '次はボールまでそろえる',
+        description: '使用ボールが入ると、候補どうしの違いをバッグ全体の流れで判断しやすくなります。',
+        actionLabel: 'ボールを登録する',
+        onClick: () => navigate('/mypage?tab=clubs&focus=ball-first'),
+      }
+    : shortlist.length > 0
+    ? {
+        eyebrow: 'Primary Move',
+        title: '上位候補を1本に絞って詳細を見る',
+        description: 'まずは最有力の1本を決めて、詳細と価格確認に進むのが一番早い流れです。',
+        actionLabel: '候補を見比べる',
+        onClick: () => window.scrollTo({ top: 280, behavior: 'smooth' }),
+      }
+    : {
+        eyebrow: 'Primary Move',
+        title: '診断を追加して候補を作る',
+        description: '比較候補がまだないので、まずは診断から残す候補を作ると次に進みやすくなります。',
+        actionLabel: '診断へ進む',
+        onClick: () => navigate('/diagnosis'),
+      };
 
   useEffect(() => {
     let isMounted = true;
@@ -113,6 +146,23 @@ export const ComparePage = () => {
           <ArrowLeft size={16} />
           前のページへ戻る
         </button>
+
+        <section className="rounded-[1.5rem] border border-golf-200 bg-golf-50 px-4 py-4 shadow-sm md:rounded-[2rem] md:px-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{shortlistPrimaryMove.eyebrow}</div>
+              <div className="mt-1 text-lg font-black tracking-tight text-trust-navy md:text-xl">{shortlistPrimaryMove.title}</div>
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">{shortlistPrimaryMove.description}</p>
+            </div>
+            <button
+              onClick={shortlistPrimaryMove.onClick}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+            >
+              {shortlistPrimaryMove.actionLabel}
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </section>
 
         <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-5 shadow-sm md:rounded-[2rem] md:px-10 md:py-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-xs font-black text-cyan-700">
@@ -411,6 +461,57 @@ export const ComparePage = () => {
       : refreshedFromDiagnosis
       ? '診断結果から比較へ戻りました。残した候補を見比べながら、次に残すものを決められます。'
       : null;
+  const comparePrimaryMove = missingCount > 0
+    ? {
+        eyebrow: 'Primary Move',
+        title: 'まずは My Bag の不足を埋める',
+        description: `未登録カテゴリが ${missingCount} 件あります。ここを埋めるだけで、比較結果の見え方がかなり安定します。`,
+        actionLabel: '不足カテゴリを登録する',
+        onClick: () => {
+          trackEvent('begin_mybag_creation', {
+            source_page: 'compare_page_primary_move',
+            reference_profile_slug: targetSetting.slug,
+          });
+          navigate(`/mybag/create?tab=clubs&focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
+        },
+      }
+    : missingBall
+    ? {
+        eyebrow: 'Primary Move',
+        title: '次はボールまでそろえる',
+        description: '使用ボールが入ると、クラブ差だけでなく全体の相性まで判断しやすくなります。',
+        actionLabel: 'ボールを登録する',
+        onClick: () => navigate(`/mybag/create?tab=clubs&focus=ball-first&returnTo=${encodeURIComponent(compareReturnTarget)}`),
+      }
+    : firstPriorityRow
+    ? {
+        eyebrow: 'Primary Move',
+        title: `${firstPriorityRow.category} を優先して診断する`,
+        description: 'いま一番差が大きいカテゴリから詰めると、比較の手応えが最短で出ます。',
+        actionLabel: `${firstPriorityRow.category} を診断する`,
+        onClick: () => {
+          trackEvent('start_ai_diagnosis', {
+            source_page: 'compare_page_primary_move',
+            reference_profile_slug: targetSetting.slug,
+            reference_profile_name: targetSetting.name,
+            priority_category: firstPriorityRow.category,
+          });
+          navigate(buildCompareDiagnosisPath(firstPriorityRow.category, targetSetting.slug, targetSetting.name));
+        },
+      }
+    : {
+        eyebrow: 'Primary Move',
+        title: '比較はかなり整っています',
+        description: 'ここからは詳細確認か価格比較に進むのが一番自然です。',
+        actionLabel: 'ドライバー詳細を見る',
+        onClick: () => {
+          if (targetDriverDetail) {
+            navigate(`/clubs/drivers/${targetDriverDetail.slug}`);
+            return;
+          }
+          navigate('/clubs/drivers');
+        },
+      };
 
   const nextActions = useMemo(() => {
     const actions: Array<{
@@ -531,6 +632,23 @@ export const ComparePage = () => {
         <ArrowLeft size={16} />
         前のページへ戻る
       </button>
+
+      <section className="rounded-[1.5rem] border border-golf-200 bg-golf-50 px-4 py-4 shadow-sm md:rounded-[2rem] md:px-6">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{comparePrimaryMove.eyebrow}</div>
+            <div className="mt-1 text-lg font-black tracking-tight text-trust-navy md:text-xl">{comparePrimaryMove.title}</div>
+            <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">{comparePrimaryMove.description}</p>
+          </div>
+          <button
+            onClick={comparePrimaryMove.onClick}
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+          >
+            {comparePrimaryMove.actionLabel}
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      </section>
 
       <section className="rounded-[2rem] border border-slate-200 bg-white px-5 py-6 shadow-sm md:px-10 md:py-10">
         <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-xs font-black text-cyan-700">
