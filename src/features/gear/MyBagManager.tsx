@@ -93,8 +93,8 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
     const currentSelectValue = `${entry.category}:${entry.number || (entry.category === TargetCategory.PUTTER ? 'PT' : '')}`;
 
     return (
-        <div className="bg-white p-2 md:p-3 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all group relative">
-            <div className="flex items-center justify-between gap-2 mb-2 border-b border-slate-50 pb-1.5">
+        <div className="group relative rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md md:rounded-xl md:p-3">
+            <div className="mb-3 flex items-start justify-between gap-3 border-b border-slate-50 pb-2">
                 <div className="flex items-center gap-1.5 relative">
                     <div className={cn(getCategoryColor(entry.category), "flex items-center rounded overflow-hidden shadow-sm hover:opacity-90 transition-opacity")}>
                         <div className="px-1.5 py-0.5 pointer-events-none text-white text-[9px] md:text-[10px] font-black uppercase tracking-wider">
@@ -116,12 +116,12 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                         <ChevronDown size={10} className="text-white absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none opacity-80" />
                     </div>
                 </div>
-                <button onClick={onRemove} className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-50 text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all ml-auto focus:outline-none">
-                    <Trash2 size={10} />
+                <button onClick={onRemove} className="ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-300 transition-all hover:bg-red-50 hover:text-red-500 focus:outline-none">
+                    <Trash2 size={14} />
                 </button>
             </div>
             
-            <div className="space-y-3">
+            <div className="space-y-3.5">
                 {/* Brand & Model - Row 1 */}
                 <BrandModelInput
                     brand={entry.brand}
@@ -140,7 +140,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                 />
                 
                 {/* Shaft & Specs - Row 2 */}
-                <div className="flex flex-col md:flex-row gap-2">
+                <div className="flex flex-col gap-2.5 md:flex-row">
                     <div className="flex-1 min-w-0">
                         {!isPutter ? (
                             <DetailedShaftInput
@@ -163,7 +163,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                         )}
                     </div>
                     
-                    <div className="flex gap-1.5 md:w-32 items-center">
+                    <div className="flex items-center gap-2 md:w-36">
                         {!isPutter ? (
                             <div className="relative flex-1">
                                 <input
@@ -171,9 +171,9 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                                     placeholder="ロフト"
                                     value={entry.loft}
                                     onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
-                                    className="w-full px-1 py-1.5 bg-slate-50 text-slate-900 border border-slate-200 rounded-lg text-[10px] text-center font-bold outline-none focus:border-golf-500"
+                                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-center text-xs font-bold text-slate-900 outline-none focus:border-golf-500"
                                 />
-                                <span className="absolute right-1 top-1/2 -translate-y-1/3 text-[7px] text-slate-400 font-black">°</span>
+                                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-400">°</span>
                             </div>
                         ) : (
                             <div className="flex-1 invisible md:block" />
@@ -184,25 +184,25 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                                 placeholder="飛距離"
                                 value={entry.distance}
                                 onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
-                                className="w-full px-1 py-1.5 bg-golf-50/50 border border-golf-200 text-golf-800 font-bold rounded-lg text-[10px] text-center outline-none focus:border-golf-500"
+                                className="w-full rounded-lg border border-golf-200 bg-golf-50/50 px-2 py-2 text-center text-xs font-bold text-golf-800 outline-none focus:border-golf-500"
                             />
-                            <span className="absolute right-1 top-1/2 -translate-y-1/3 text-[7px] text-golf-400 font-black">Y</span>
+                            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-black text-golf-400">Y</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Individual Worry & Diagnosis Button */}
-                <div className="pt-2 border-t border-slate-50 flex items-center gap-2">
+                <div className="flex flex-col gap-2 border-t border-slate-50 pt-2 sm:flex-row sm:items-center">
                     <input
                         type="text"
                         value={entry.worry || ''}
                         onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
                         placeholder="気になる点（捕まりすぎる、など）"
-                        className="flex-1 px-2 py-1.5 bg-slate-50 text-slate-900 border border-slate-200 rounded-lg text-[10px] outline-none focus:border-golf-500"
+                        className="flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 outline-none focus:border-golf-500"
                     />
                     <button 
                         onClick={() => onDiagnose(entry)}
-                        className="px-2 py-1.5 bg-golf-600 text-white rounded-lg text-[9px] font-bold hover:bg-golf-700 transition-colors whitespace-nowrap"
+                        className="inline-flex w-full items-center justify-center rounded-lg bg-golf-600 px-3 py-2 text-[11px] font-bold text-white transition-colors hover:bg-golf-700 sm:w-auto whitespace-nowrap"
                     >
                         診断へ
                     </button>
@@ -580,7 +580,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
                 </div>
 
-                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
                     {starterSlots.map((slot) => {
                         const isDone = registeredCategories.has(slot.category);
                         return (
@@ -680,7 +680,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <ArrowRight size={12} />
                         NEXT STEP
                     </div>
-                    <div className="mt-4 grid gap-3 md:grid-cols-3">
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
                         {recommendedActions.map((action) => (
                             <button
                                 key={action.title}
@@ -696,7 +696,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             </div>
 
             {/* クラブ一覧 & 編集部 */}
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-4 md:p-6">
+            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 border-b border-slate-100 pb-4 gap-4">
                     <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-golf-500 rounded-full"></div>
@@ -711,7 +711,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     />
                 </div>
                 
-                <div id="my-bag-export-area" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6 bg-white p-1 rounded-2xl">
+                <div id="my-bag-export-area" className="mb-6 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 sm:grid-cols-2 lg:grid-cols-3">
                     {sortedClubs.map(entry => (
                         <MemoizedClubRow 
                             key={entry.id} 
@@ -730,13 +730,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     )}
                 </div>
                 
-                <div className="mt-8 pt-6 border-t border-slate-100 max-w-4xl flex items-center justify-between gap-4">
-                    <div className="flex flex-col sm:flex-row gap-3 flex-1">
+                <div className="mt-8 flex max-w-4xl flex-col gap-4 border-t border-slate-100 pt-6 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex flex-1 flex-col gap-3 sm:flex-row">
                         <div className="flex-1 relative">
                             <select
                                 value={addCategory}
                                 onChange={e => setAddCategory(e.target.value)}
-                                className="w-full h-12 pl-4 pr-10 bg-slate-50 border border-slate-200 rounded-xl font-bold text-trust-navy outline-none appearance-none text-sm"
+                                className="h-12 w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 pl-4 pr-10 text-sm font-bold text-trust-navy outline-none"
                             >
                                 <option value="">個別追加する番手を選択...</option>
                                 {Object.values(TargetCategory).filter(c => c !== TargetCategory.BALL).map(c => (
@@ -750,7 +750,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <button
                             onClick={() => handleAddClub()}
                             disabled={!addCategory}
-                            className="h-12 px-8 bg-slate-100 text-trust-navy font-bold rounded-xl hover:bg-slate-200 disabled:opacity-50 flex items-center justify-center gap-2 transition-all active:scale-95"
+                            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-100 px-8 font-bold text-trust-navy transition-all hover:bg-slate-200 active:scale-95 disabled:opacity-50 sm:w-auto"
                         >
                             <Plus size={20} /> 個別追加
                         </button>
@@ -758,7 +758,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
                     <button 
                         onClick={() => onManualSave?.()} 
-                        className="h-12 px-8 bg-trust-navy text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all shadow-lg active:scale-95 whitespace-nowrap"
+                        className="flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-trust-navy px-8 font-bold text-white shadow-lg transition-all hover:bg-slate-800 active:scale-95 lg:w-auto"
                     >
                         {saveStatus === 'saving' ? (
                             <>
@@ -781,15 +781,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             </div>
 
             {/* クラブ一括追加 */}
-            <details className="group bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300">
-                <summary className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden">
+            <details className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300">
+                <summary className="flex cursor-pointer list-none items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-4 select-none [&::-webkit-details-marker]:hidden md:px-6">
                     <div className="flex items-center gap-3">
                         <Plus size={18} className="text-golf-600" />
                         <h3 className="font-bold text-sm text-trust-navy uppercase tracking-tight">BATCH ADD CLUBS</h3>
                     </div>
                     <ChevronDown size={18} className="text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
-                <div className="p-6 space-y-6">
+                <div className="space-y-6 p-4 md:p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">共通ブランド・モデル名</div>
@@ -818,12 +818,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 
                     <div className="space-y-6 pt-4 border-t border-slate-100">
                         {/* Selectable Lofts UI */}
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                             {/* Woods / UT */}
                             <div className="space-y-3">
-                                <div className="text-xs font-black text-emerald-600 tracking-widest uppercase ml-1 flex justify-between items-center">
+                                <div className="ml-1 flex items-center justify-between text-xs font-black uppercase tracking-widest text-emerald-600">
                                     <span>WOODS & UTILITY</span>
-                                    <button onClick={() => handleBatchAdd(TargetCategory.FAIRWAY)} className="text-white bg-emerald-600 px-3 py-1.5 rounded-full hover:bg-emerald-700 transition-all font-bold">追加</button>
+                                    <button onClick={() => handleBatchAdd(TargetCategory.FAIRWAY)} className="rounded-full bg-emerald-600 px-3 py-1.5 font-bold text-white transition-all hover:bg-emerald-700">追加</button>
                                 </div>
                                 <div className="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
                                     {['1W', '3W', '4W', '5W', '7W', '9W', '2U', '3U', '4U', '5U', '6U'].map(loft => (
@@ -838,9 +838,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
                             {/* Irons */}
                             <div className="space-y-3">
-                                <div className="text-xs font-black text-blue-600 tracking-widest uppercase ml-1 flex justify-between items-center">
+                                <div className="ml-1 flex items-center justify-between text-xs font-black uppercase tracking-widest text-blue-600">
                                     <span>IRONS</span>
-                                    <button onClick={() => handleBatchAdd(TargetCategory.IRON)} className="text-white bg-blue-600 px-3 py-1.5 rounded-full hover:bg-blue-700 transition-all font-bold">追加</button>
+                                    <button onClick={() => handleBatchAdd(TargetCategory.IRON)} className="rounded-full bg-blue-600 px-3 py-1.5 font-bold text-white transition-all hover:bg-blue-700">追加</button>
                                 </div>
                                 <div className="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
                                     {['3I', '4I', '5I', '6I', '7I', '8I', '9I', 'PW', 'AW', 'SW', 'LW'].map(loft => (
@@ -855,9 +855,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
                             {/* Wedges */}
                             <div className="space-y-3">
-                                <div className="text-xs font-black text-indigo-600 tracking-widest uppercase ml-1 flex justify-between items-center">
+                                <div className="ml-1 flex items-center justify-between text-xs font-black uppercase tracking-widest text-indigo-600">
                                     <span>WEDGES</span>
-                                    <button onClick={() => handleBatchAdd(TargetCategory.WEDGE)} className="text-white bg-indigo-600 px-3 py-1.5 rounded-full hover:bg-indigo-700 transition-all font-bold">追加</button>
+                                    <button onClick={() => handleBatchAdd(TargetCategory.WEDGE)} className="rounded-full bg-indigo-600 px-3 py-1.5 font-bold text-white transition-all hover:bg-indigo-700">追加</button>
                                 </div>
                                 <div className="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
                                     {['46°', '48°', '50°', '52°', '54°', '56°', '58°', '60°'].map(loft => (
