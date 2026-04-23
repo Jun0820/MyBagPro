@@ -723,7 +723,14 @@ export const ComparePage = () => {
                 <div key={row.category} className="grid gap-3 px-4 py-4 md:grid-cols-[0.8fr_1.4fr_1.4fr_1.8fr] md:items-center">
                   <div>
                     <div className="text-[11px] font-black text-slate-400 md:hidden">カテゴリ</div>
-                    <div className="text-sm font-black text-trust-navy">{row.category}</div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <div className="text-sm font-black text-trust-navy">{row.category}</div>
+                      {refreshedFromDiagnosis && reviewedCategory === row.category && (
+                        <span className="rounded-full bg-cyan-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-cyan-700">
+                          見直し済み
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div>
                     <div className="text-[11px] font-black text-slate-400 md:hidden">参考プロフィール</div>
@@ -738,6 +745,11 @@ export const ComparePage = () => {
                     <div className={`text-sm font-bold ${row.matched ? 'text-golf-700' : 'text-slate-600'}`}>
                       {formatGapMessage(row.current, row.target)}
                     </div>
+                    {refreshedFromDiagnosis && reviewedCategory === row.category && reviewedModel && (
+                      <div className="mt-2 text-xs font-bold text-cyan-700">
+                        今回の候補: {reviewedModel}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
