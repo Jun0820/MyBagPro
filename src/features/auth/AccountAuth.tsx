@@ -21,6 +21,15 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
     const [golfHistory, setGolfHistory] = useState<GolfHistory | ''>('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const draftClubCount = currentProfile?.myBag?.clubs?.length ?? 0;
+    const draftBall = currentProfile?.myBag?.ball?.trim() || currentProfile?.currentBall?.trim() || null;
+    const draftHeadSpeed = currentProfile?.headSpeed && currentProfile.headSpeed > 0 ? `${currentProfile.headSpeed} m/s` : null;
+    const draftAverageScore = currentProfile?.averageScore ? `${currentProfile.averageScore}` : null;
+    const hasDraftToCarry =
+        draftClubCount > 0 ||
+        Boolean(draftBall) ||
+        Boolean(draftHeadSpeed) ||
+        Boolean(draftAverageScore);
 
     const translateError = (err: any) => {
         const msg = err?.message || '';
@@ -172,6 +181,43 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                     <div className="mt-1 text-xs font-black text-trust-navy">ログイン後もクラウドで復元</div>
                 </div>
             </div>
+
+            {hasDraftToCarry && (
+                <div className="mb-5 rounded-[1.5rem] border border-golf-100 bg-golf-50/55 p-4 md:mb-6 md:p-5">
+                    <div className="flex items-start justify-between gap-3">
+                        <div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Current Draft</div>
+                            <h3 className="mt-1 text-sm font-black text-trust-navy md:text-base">
+                                いまの入力内容も、そのまま引き継げます
+                            </h3>
+                            <p className="mt-1 text-xs font-bold leading-relaxed text-slate-600">
+                                登録すると、My Bag と診断の途中状態をまとめて残して、次回も続きから再開できます。
+                            </p>
+                        </div>
+                        <div className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700 shadow-sm">
+                            Keep
+                        </div>
+                    </div>
+                    <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Clubs</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">{draftClubCount}本を下書き保存</div>
+                        </div>
+                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Ball</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">{draftBall || '未入力'}</div>
+                        </div>
+                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Head Speed</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">{draftHeadSpeed || '未入力'}</div>
+                        </div>
+                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Average Score</div>
+                            <div className="mt-1 text-sm font-black text-trust-navy">{draftAverageScore || '未入力'}</div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <div className="space-y-4 md:space-y-5">
                 {isRegister && (
