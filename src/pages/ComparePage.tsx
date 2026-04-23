@@ -343,6 +343,9 @@ export const ComparePage = () => {
   const missingCount = comparisonRows.filter((row) => row.current === '未登録').length;
   const differenceCount = comparisonRows.filter((row) => !row.matched && row.current !== '未登録' && row.target !== '未掲載').length;
   const firstPriorityRow = comparisonRows.find((row) => row.current === '未登録' || (!row.matched && row.target !== '未掲載'));
+  const priorityRows = comparisonRows
+    .filter((row) => row.current === '未登録' || (!row.matched && row.target !== '未掲載'))
+    .slice(0, 3);
   const matchPercent = comparisonRows.length > 0 ? Math.round((matchedCount / comparisonRows.length) * 100) : 0;
   const hasPreviousMissingCount = searchParams.has('previousMissing');
   const hasPreviousMatchPercent = searchParams.has('previousMatch');
@@ -631,6 +634,42 @@ export const ComparePage = () => {
                 <ArrowRight size={16} />
               </button>
             </div>
+            {priorityRows.length > 0 && (
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Priority Categories</div>
+                <div className="mt-3 grid gap-3 md:grid-cols-3">
+                  {priorityRows.map((row) => (
+                    <button
+                      key={row.category}
+                      onClick={() => {
+                        trackEvent('start_ai_diagnosis', {
+                          source_page: 'compare_page_priority_categories',
+                          reference_profile_slug: targetSetting.slug,
+                          reference_profile_name: targetSetting.name,
+                          priority_category: row.category,
+                        });
+                        navigate(categoryToDiagnosisPath(row.category));
+                      }}
+                      className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-left transition-colors hover:bg-slate-100"
+                    >
+                      <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
+                        {row.current === '未登録' ? '未登録' : '差分あり'}
+                      </div>
+                      <div className="mt-2 text-base font-black text-trust-navy">{row.category}</div>
+                      <div className="mt-2 text-xs leading-relaxed text-slate-500">
+                        {row.current === '未登録'
+                          ? 'ここを入れると比較の精度が上がります。'
+                          : 'このカテゴリから見直すと次の一手が決めやすいです。'}
+                      </div>
+                      <div className="mt-3 inline-flex items-center gap-2 text-xs font-black text-cyan-700">
+                        すぐ診断する
+                        <ArrowRight size={14} />
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="inline-flex items-center gap-2 text-xs font-black text-slate-400">
@@ -716,6 +755,34 @@ export const ComparePage = () => {
                 </div>
               ))}
             </div>
+            {priorityRows.length > 0 && (
+              <div className="mt-4 rounded-[1.5rem] bg-white p-5 ring-1 ring-cyan-100">
+                <h3 className="text-lg font-black text-trust-navy">差分が残っているカテゴリからそのまま診断する</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  比較で止まらないように、優先度の高いカテゴリをそのまま対象診断へつないでいます。まずは上から1つだけ進めるのがおすすめです。
+                </p>
+                <div className="mt-4 flex flex-col gap-2">
+                  {priorityRows.map((row) => (
+                    <button
+                      key={`next-${row.category}`}
+                      onClick={() => {
+                        trackEvent('start_ai_diagnosis', {
+                          source_page: 'compare_page_next_step_categories',
+                          reference_profile_slug: targetSetting.slug,
+                          reference_profile_name: targetSetting.name,
+                          priority_category: row.category,
+                        });
+                        navigate(categoryToDiagnosisPath(row.category));
+                      }}
+                      className="inline-flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-sm font-black text-trust-navy transition-colors hover:bg-slate-100"
+                    >
+                      <span>{row.category} を診断する</span>
+                      <ArrowRight size={16} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
 
           <section className="rounded-[2rem] border border-slate-200 bg-white p-6">
