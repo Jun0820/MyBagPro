@@ -119,6 +119,38 @@ export const MyGearPage = () => {
         profile.myBag.clubs.length < 3 &&
         compareShortlist.length === 0 &&
         recentHistory.length === 0;
+    const nextParam = searchParams.get('next');
+    const primaryMove = !registeredCategories.has(TargetCategory.DRIVER)
+        ? {
+            eyebrow: 'Primary Move',
+            title: 'まずは代表番手を登録する',
+            description: 'ドライバーか7Iが入るだけでも、自動分析と比較の精度がかなり上がります。',
+            actionLabel: '代表番手を登録する',
+            onClick: () => openBagTabWithFocus('missing-clubs'),
+        }
+        : !profile.myBag.ball
+        ? {
+            eyebrow: 'Primary Move',
+            title: '次はボールまでそろえる',
+            description: '使用ボールが入ると、クラブとのつながりや診断結果がかなり具体化します。',
+            actionLabel: 'ボールを登録する',
+            onClick: () => openBagTabWithFocus('ball-first'),
+        }
+        : compareShortlist.length === 0 && recentHistory.length === 0
+        ? {
+            eyebrow: 'Primary Move',
+            title: '比較ページで今の差を見る',
+            description: '登録したバッグを基準に、次に見直すカテゴリをすぐ見つけられます。',
+            actionLabel: '比較ページへ進む',
+            onClick: () => navigate('/compare'),
+        }
+        : {
+            eyebrow: 'Primary Move',
+            title: '診断を1つ追加して判断を深める',
+            description: '保存した内容を活かして、ボールやカテゴリ診断から次の1本を絞れます。',
+            actionLabel: '診断へ進む',
+            onClick: () => navigate('/diagnosis'),
+        };
 
     useEffect(() => {
         setCompareShortlist(getCompareShortlist());
@@ -283,6 +315,7 @@ export const MyGearPage = () => {
     const dismissWelcome = () => {
         const nextParams = new URLSearchParams(searchParams);
         nextParams.delete('welcome');
+        nextParams.delete('next');
         setSearchParams(nextParams, { replace: true });
     };
 
@@ -475,7 +508,7 @@ export const MyGearPage = () => {
                                                 保存と再開が使える状態になりました
                                             </h2>
                                             <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">
-                                                いまのセッティング、診断結果、比較候補をマイページに残せます。まずは代表番手を登録して、次にボール診断か比較ページへ進むのが使いやすい流れです。
+                                                いまのセッティング、診断結果、比較候補をマイページに残せます。次にやることは、今の登録状況に合わせて下にまとめています。
                                             </p>
                                         </div>
                                     </div>
@@ -486,6 +519,32 @@ export const MyGearPage = () => {
                                     >
                                         閉じる
                                     </button>
+                                </div>
+
+                                <div className="mt-4 rounded-[24px] border border-white/80 bg-white/85 p-4 shadow-sm">
+                                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
+                                                {nextParam === 'ball' ? 'Ball First' : nextParam === 'compare' ? 'Compare First' : primaryMove.eyebrow}
+                                            </div>
+                                            <div className="mt-1 text-lg font-black tracking-tight text-trust-navy">
+                                                {primaryMove.title}
+                                            </div>
+                                            <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">
+                                                {primaryMove.description}
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                dismissWelcome();
+                                                primaryMove.onClick();
+                                            }}
+                                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+                                        >
+                                            {primaryMove.actionLabel}
+                                            <ArrowRight size={15} />
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <div className="mt-4 grid gap-3 md:grid-cols-3">
@@ -682,6 +741,14 @@ export const MyGearPage = () => {
                                 </div>
 
                                 <div className="mt-6 grid gap-3 md:grid-cols-3">
+                                    <button
+                                        onClick={primaryMove.onClick}
+                                        className="rounded-2xl border border-golf-200 bg-golf-50 px-5 py-4 text-left text-trust-navy transition-colors hover:bg-golf-100"
+                                    >
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{primaryMove.eyebrow}</div>
+                                        <div className="mt-1 text-base font-black">{primaryMove.title}</div>
+                                        <div className="mt-1 text-xs leading-relaxed text-slate-500">{primaryMove.description}</div>
+                                    </button>
                                     <button
                                         onClick={() => openBagTabWithFocus()}
                                         className="rounded-2xl bg-golf-600 px-5 py-4 text-left text-white transition-colors hover:bg-golf-700"

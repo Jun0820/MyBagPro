@@ -190,10 +190,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               if (p) setProfile(p);
               setShowAuth(false);
               const draftProfile = p || profile;
-              const hasStarterBag = (draftProfile?.myBag?.clubs?.length || 0) > 0;
-              const destination = hasStarterBag
-                ? '/mypage?welcome=1'
-                : '/mypage?welcome=1&tab=clubs&focus=missing-clubs';
+              const clubCount = draftProfile?.myBag?.clubs?.length || 0;
+              const hasBall = Boolean(draftProfile?.myBag?.ball || draftProfile?.currentBall);
+              const destination =
+                clubCount === 0
+                  ? '/mypage?welcome=1&tab=clubs&focus=missing-clubs&next=starter-clubs'
+                  : !hasBall
+                  ? '/mypage?welcome=1&tab=clubs&focus=ball-first&next=ball'
+                  : '/mypage?welcome=1&next=compare';
               navigate(destination);
             }}
             onClose={() => setShowAuth(false)}
