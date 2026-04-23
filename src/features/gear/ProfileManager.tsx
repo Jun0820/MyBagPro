@@ -111,7 +111,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
 
                 {/* Template Selector */}
                 <div className="px-6 md:px-10 py-4 bg-slate-50 border-b border-slate-100">
-                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">背景テンプレートを選択</div>
+                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">見せ方を選ぶ</div>
                     <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                         {BACKGROUND_TEMPLATES.map(tmpl => (
                             <button
@@ -157,7 +157,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
                         {/* Left Side: Basic Info */}
                         <div className="space-y-6">
-                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">基本情報</h4>
+                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">プロフィールの基本</h4>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 ml-1">性別</label>
@@ -257,7 +257,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
 
                         {/* Right Side: SNS & Privacy */}
                         <div className="space-y-6">
-                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">SNS & 公開設定</h4>
+                            <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">公開まわりと導線</h4>
                             <div className="space-y-4">
                                 <div className="relative">
                                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">
@@ -289,7 +289,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                 <div className="flex items-center justify-between gap-3">
                                     <div>
                                         <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">自由URL</div>
-                                        <div className="mt-1 text-xs font-medium text-slate-500">ブログ、YouTube、予約ページなど好きな導線を追加できます。</div>
+                                        <div className="mt-1 text-xs font-medium text-slate-500">ブログ、YouTube、予約ページなど、見てほしい導線を追加できます。</div>
                                     </div>
                                     <button
                                         type="button"
@@ -302,7 +302,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
 
                                 {customLinks.length === 0 && (
                                     <div className="rounded-xl border border-dashed border-slate-200 bg-white px-4 py-3 text-xs text-slate-400">
-                                        まだ自由URLはありません。
+                                        まだ追加した導線はありません。
                                     </div>
                                 )}
 
@@ -339,7 +339,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="flex items-center gap-2 font-bold text-sm text-trust-navy">
                                         <Globe size={16} className={cn(isPublic ? "text-emerald-500" : "text-slate-400")} />
-                                        <span>バッグの公開設定</span>
+                                        <span>バッグの公開範囲</span>
                                     </div>
                                     <label className="relative inline-flex items-center cursor-pointer">
                                         <input 
@@ -352,7 +352,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                     </label>
                                 </div>
                                 <p className="text-[10px] text-slate-500 leading-relaxed">
-                                    {isPublic ? '現在あなたのバッグは誰でも閲覧可能な状態です。' : 'バッグはあなただけに表示されています。URLを知っていても閲覧できません。'}
+                                    {isPublic ? '現在のバッグは公開中です。リンクから他の人にも見てもらえます。' : '現在のバッグは非公開です。自分だけが確認できます。'}
                                 </p>
                             </div>
                         </div>

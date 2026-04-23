@@ -197,14 +197,14 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                         type="text"
                         value={entry.worry || ''}
                         onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
-                        placeholder="悩み（捕まる、等）"
+                        placeholder="気になる点（捕まりすぎる、など）"
                         className="flex-1 px-2 py-1.5 bg-slate-50 text-slate-900 border border-slate-200 rounded-lg text-[10px] outline-none focus:border-golf-500"
                     />
                     <button 
                         onClick={() => onDiagnose(entry)}
                         className="px-2 py-1.5 bg-golf-600 text-white rounded-lg text-[9px] font-bold hover:bg-golf-700 transition-colors whitespace-nowrap"
                     >
-                        AI診断
+                        診断へ
                     </button>
                 </div>
             </div>
@@ -528,7 +528,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <div className="rounded-3xl border border-cyan-200 bg-cyan-50 p-4 shadow-sm md:p-5">
                     <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                         <div>
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">From Compare</div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
                             <h3 className="mt-2 text-lg font-black tracking-tight text-trust-navy">{intakeBanner.title}</h3>
                             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{intakeBanner.description}</p>
                         </div>
@@ -557,7 +557,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
                 <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
                     <div className="space-y-2">
-                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Quick Start</div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">START HERE</div>
                         <h3 className="text-xl font-black tracking-tight text-trust-navy">最初は3本だけでも大丈夫です</h3>
                         <p className="max-w-2xl text-sm leading-relaxed text-slate-500">
                             まずはドライバー、アイアン、パターのどれか1本から始めれば十分です。あとで少しずつ増やしていけます。
@@ -565,7 +565,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
                     <div className="min-w-[180px] rounded-2xl bg-slate-50 p-4">
                         <div className="flex items-center justify-between text-[11px] font-bold text-slate-400">
-                            <span>スタート登録</span>
+                            <span>まずはここから</span>
                             <span>{starterPercent}%</span>
                         </div>
                         <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-slate-200">
@@ -600,7 +600,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                         {slot.number}
                                     </div>
                                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                        {isDone ? '登録済み' : 'まず追加'}
+                                        {isDone ? '登録済み' : '先に追加'}
                                     </div>
                                 </div>
                                 <div className="mt-3 text-base font-black text-trust-navy">{slot.title}</div>
@@ -616,12 +616,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="space-y-2">
                         <div className="inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
                             <Sparkles size={12} />
-                            Auto Analysis
+                            AUTO ANALYSIS
                         </div>
                         <div>
-                            <h3 className="text-xl font-black tracking-tight text-trust-navy">登録した内容から、いまの傾向を自動で整理します</h3>
+                            <h3 className="text-xl font-black tracking-tight text-trust-navy">登録した内容から、次に見るべき方向を整理します</h3>
                             <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-500">
-                                まずは代表番手とボールが入っていれば十分です。登録した直後に、次に見るべき診断や比較が分かるようにしています。
+                                まずは代表番手とボールが入っていれば十分です。登録した直後に、何を残し、何を見直すべきかが分かるようにしています。
                             </p>
                         </div>
                     </div>
@@ -678,7 +678,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-5">
                     <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
                         <ArrowRight size={12} />
-                        Recommended Next Actions
+                        NEXT STEP
                     </div>
                     <div className="mt-4 grid gap-3 md:grid-cols-3">
                         {recommendedActions.map((action) => (
@@ -701,7 +701,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-golf-500 rounded-full"></div>
                          <h3 className="font-bold text-lg text-trust-navy uppercase tracking-tight">CLUB MANAGEMENT</h3>
-                         <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-100 text-[10px] font-black text-slate-400">登録済み: {sortedClubs.length}本</div>
+                         <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-100 text-[10px] font-black text-slate-400">いまの登録: {sortedClubs.length}本</div>
                     </div>
                     <ShareImageExporter 
                         targetId="my-bag-export-area" 
@@ -724,7 +724,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     {sortedClubs.length === 0 && (
                         <div className="col-span-full text-center py-16 border-2 border-dashed border-slate-100 rounded-2xl text-slate-300">
                              <Plus size={48} className="mx-auto mb-4 opacity-10" />
-                             <p className="text-sm font-bold">まだクラブが登録されていません</p>
+                             <p className="text-sm font-bold">まだクラブが入っていません</p>
                              <p className="mt-2 text-xs font-medium text-slate-400">上のクイックスタートから 1W / 7I / パター のどれか1本を追加すると始めやすいです。</p>
                         </div>
                     )}
