@@ -64,6 +64,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const userRef = useRef(user);
     const profileRef = useRef(profile);
     const resultDataRef = useRef(resultData);
+    const isRemoteSaveInFlightRef = useRef(false);
+    const pendingRemoteSaveRef = useRef(false);
+    const saveStatusResetTimerRef = useRef<number | null>(null);
+    const lastRemoteSaveSignatureRef = useRef<string | null>(null);
 
     useEffect(() => {
         userRef.current = user;
@@ -85,6 +89,22 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         } else {
             localStorage.removeItem('mybagpro_result_data');
         }
+    };
+
+    const clearSaveStatusResetTimer = () => {
+        if (saveStatusResetTimerRef.current) {
+            window.clearTimeout(saveStatusResetTimerRef.current);
+            saveStatusResetTimerRef.current = null;
+        }
+    };
+
+    const markSaveStatusSaved = () => {
+        clearSaveStatusResetTimer();
+        setSaveStatus('saved');
+        saveStatusResetTimerRef.current = window.setTimeout(() => {
+            setSaveStatus('idle');
+            saveStatusResetTimerRef.current = null;
+        }, 2000);
     };
 
     const assertSupabaseOk = (result: { error?: { message?: string } | null }, label: string) => {
@@ -147,6 +167,54 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         });
     };
 
+    const buildRemoteSavePayload = (activeUser: UserAccount, activeProfile: UserProfile) => {
+        const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
+        const bagSnapshot = buildBagSnapshot(
+            normalizedClubs,
+            activeProfile.myBag.ball || activeProfile.currentBall || '',
+        );
+
+        const profilePayload = {
+            id: activeUser.id,
+            name: activeProfile.name,
+            gender: activeProfile.gender,
+            age: activeProfile.age,
+            head_speed: activeProfile.headSpeed,
+            birthdate: activeProfile.birthdate,
+            golf_history: activeProfile.golfHistory,
+            current_ball: activeProfile.myBag.ball || activeProfile.currentBall || null,
+            sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
+                bestScore: activeProfile.bestScore,
+                averageScore: activeProfile.averageScore,
+            }, bagSnapshot),
+            cover_photo: activeProfile.coverPhoto,
+            is_public: activeProfile.isPublic,
+            updated_at: new Date().toISOString(),
+        };
+
+        const clubPayloads = normalizedClubs.map((club) => ({
+            id: club.id,
+            user_id: activeUser.id,
+            category: club.category,
+            brand: club.brand,
+            model: club.model,
+            shaft: club.shaft,
+            loft: club.loft,
+            distance: club.distance,
+        }));
+
+        const signature = JSON.stringify({
+            userId: activeUser.id,
+            profile: {
+                ...profilePayload,
+                updated_at: 'normalized',
+            },
+            clubs: clubPayloads,
+        });
+
+        return { normalizedClubs, profilePayload, clubPayloads, signature };
+    };
+
     const verifyClubWrite = async (userId: string, expectedIds: string[]) => {
         const { data, error } = await supabase
             .from('clubs')
@@ -160,6 +228,87 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
         if (expectedIds.length > 0 && missingIds.length > 0) {
             throw new Error(`clubs verify: missing ${missingIds.length} saved clubs`);
+        }
+    };
+
+    const performRemoteSave = async (reason: 'auto' | 'manual') => {
+        const activeUser = userRef.current;
+        const activeProfile = profileRef.current;
+        const activeResultData = resultDataRef.current;
+
+        persistLocalSnapshot(activeUser, activeProfile, activeResultData);
+
+        if (!activeUser.isLoggedIn || !activeUser.id) {
+            markSaveStatusSaved();
+            return true;
+        }
+
+        if (!isInitialSyncComplete) {
+            pendingRemoteSaveRef.current = true;
+            setSaveStatus('idle');
+            return false;
+        }
+
+        const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
+
+        if (reason === 'auto' && signature === lastRemoteSaveSignatureRef.current) {
+            markSaveStatusSaved();
+            return true;
+        }
+
+        if (isRemoteSaveInFlightRef.current) {
+            pendingRemoteSaveRef.current = true;
+            return false;
+        }
+
+        isRemoteSaveInFlightRef.current = true;
+        pendingRemoteSaveRef.current = false;
+        clearSaveStatusResetTimer();
+        setSaveStatus('saving');
+
+        try {
+            if (normalizedClubs.some((club, index) => club.id !== activeProfile.myBag.clubs[index]?.id)) {
+                const nextProfile = {
+                    ...activeProfile,
+                    myBag: {
+                        ...activeProfile.myBag,
+                        clubs: normalizedClubs,
+                    },
+                };
+                profileRef.current = nextProfile;
+                setProfile(nextProfile);
+                persistLocalSnapshot(activeUser, nextProfile, activeResultData);
+            }
+
+            const profileUpsertResult = await supabase.from('profiles').upsert(profilePayload);
+            assertSupabaseOk(profileUpsertResult, `profiles ${reason}-save`);
+
+            const deleteResult = await supabase.from('clubs').delete().eq('user_id', activeUser.id);
+            assertSupabaseOk(deleteResult, `clubs delete before ${reason}-save`);
+
+            if (clubPayloads.length > 0) {
+                const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
+                assertSupabaseOk(clubsUpsertResult, `clubs ${reason}-save`);
+                await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
+            } else {
+                await verifyClubWrite(activeUser.id, []);
+            }
+
+            lastRemoteSaveSignatureRef.current = signature;
+            markSaveStatusSaved();
+            return true;
+        } catch (error) {
+            console.error(`${reason} save error:`, error);
+            setSaveStatus('error');
+            return false;
+        } finally {
+            isRemoteSaveInFlightRef.current = false;
+            if (pendingRemoteSaveRef.current) {
+                pendingRemoteSaveRef.current = false;
+                window.setTimeout(() => {
+                    void performRemoteSave('auto');
+                }, 50);
+            }
         }
     };
 
@@ -206,6 +355,27 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             if (profileData) {
                 const normalizedSocials = normalizeUserSocialLinks(profileData.sns_links);
                 const snapshotClubs = normalizedSocials.bagSnapshot?.clubs || [];
+                const syncedProfile = {
+                    ...profileRef.current,
+                    name: profileData.name || profileRef.current.name,
+                    gender: profileData.gender || profileRef.current.gender,
+                    age: profileData.age || profileRef.current.age,
+                    headSpeed: profileData.head_speed || profileRef.current.headSpeed,
+                    birthdate: profileData.birthdate || profileRef.current.birthdate,
+                    golfHistory: profileData.golf_history || profileRef.current.golfHistory,
+                    snsLinks: normalizedSocials,
+                    coverPhoto: profileData.cover_photo || profileRef.current.coverPhoto,
+                    isPublic: profileData.is_public ?? profileRef.current.isPublic,
+                    currentBall: profileData.current_ball || profileRef.current.currentBall,
+                    bestScore: normalizedSocials.profileStats?.bestScore ?? profileRef.current.bestScore,
+                    averageScore: normalizedSocials.profileStats?.averageScore ?? profileRef.current.averageScore,
+                    myBag: {
+                        ...profileRef.current.myBag,
+                        ball: profileData.current_ball || profileRef.current.myBag.ball,
+                        clubs: snapshotClubs.length > 0 ? snapshotClubs : profileRef.current.myBag.clubs,
+                    },
+                };
+                profileRef.current = syncedProfile;
                 setProfile(prev => ({
                     ...prev,
                     name: profileData.name || prev.name,
@@ -238,23 +408,33 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             if (clubData) {
                 const normalizedSocials = normalizeUserSocialLinks(profileData?.sns_links);
                 const snapshotClubs = normalizedSocials.bagSnapshot?.clubs || [];
-                setProfile(prev => ({
-                    ...prev,
+                const nextProfile = {
+                    ...profileRef.current,
                     myBag: {
-                        ...prev.myBag,
+                        ...profileRef.current.myBag,
                         clubs: clubData.length > 0
                             ? mergeCloudClubsWithSnapshot(clubData, snapshotClubs)
                             : snapshotClubs,
                     }
-                }));
+                };
+                profileRef.current = nextProfile;
+                setProfile(nextProfile);
+                lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, nextProfile).signature;
+            } else if (profileRef.current && userRef.current.isLoggedIn && userRef.current.id) {
+                lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, profileRef.current).signature;
             }
-            setSaveStatus('saved');
+            markSaveStatusSaved();
         } catch (e) {
             console.error("Sync error:", e);
             setSaveStatus('error');
         } finally {
             setIsInitialSyncComplete(true);
-            setTimeout(() => setSaveStatus('idle'), 2000);
+            if (pendingRemoteSaveRef.current) {
+                pendingRemoteSaveRef.current = false;
+                window.setTimeout(() => {
+                    void performRemoteSave('auto');
+                }, 50);
+            }
         }
     };
 
@@ -265,167 +445,18 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     // Persistence with Status Feedback
     useEffect(() => {
-        const saveData = async () => {
-            const activeUser = userRef.current;
-            const activeProfile = profileRef.current;
-
-            if (activeUser.isLoggedIn && activeUser.id && !isInitialSyncComplete) {
-                setSaveStatus('idle');
-                return;
-            }
-
-            setSaveStatus('saving');
-            try {
-                // Supabase (Remote)
-                if (activeUser.isLoggedIn && activeUser.id) {
-                    const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
-                    const bagSnapshot = buildBagSnapshot(
-                        normalizedClubs,
-                        activeProfile.myBag.ball || activeProfile.currentBall || '',
-                    );
-
-                    // Update Profile
-                    const profileUpsertResult = await supabase.from('profiles').upsert({
-                        id: activeUser.id,
-                        name: activeProfile.name,
-                        gender: activeProfile.gender,
-                        age: activeProfile.age,
-                        head_speed: activeProfile.headSpeed,
-                        birthdate: activeProfile.birthdate,
-                        golf_history: activeProfile.golfHistory,
-                        current_ball: activeProfile.myBag.ball || activeProfile.currentBall || null,
-                        sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
-                            bestScore: activeProfile.bestScore,
-                            averageScore: activeProfile.averageScore,
-                        }, bagSnapshot),
-                        cover_photo: activeProfile.coverPhoto,
-                        is_public: activeProfile.isPublic,
-                        updated_at: new Date().toISOString()
-                    });
-                    assertSupabaseOk(profileUpsertResult, 'profiles auto-save');
-
-                    // Sync Clubs (Careful with mass upsert/delete)
-                    // For simplicity, we'll delete and re-insert for now in this MVP, 
-                    // though delta syncing is better for production.
-                    const deleteResult = await supabase.from('clubs').delete().eq('user_id', activeUser.id);
-                    assertSupabaseOk(deleteResult, 'clubs delete before auto-save');
-                    if (normalizedClubs.length > 0) {
-                        const clubPayloads = normalizedClubs.map(c => ({
-                            id: c.id, // Include stable ID
-                            user_id: activeUser.id,
-                            category: c.category,
-                            brand: c.brand,
-                            model: c.model,
-                            shaft: c.shaft,
-                            loft: c.loft,
-                            distance: c.distance
-                        }));
-                        const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
-                        assertSupabaseOk(clubsUpsertResult, 'clubs auto-save');
-                        await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
-                        if (normalizedClubs.some((club, index) => club.id !== activeProfile.myBag.clubs[index]?.id)) {
-                            setProfile((prev) => ({
-                                ...prev,
-                                myBag: {
-                                    ...prev.myBag,
-                                    clubs: normalizedClubs,
-                                },
-                            }));
-                        }
-                    } else {
-                        await verifyClubWrite(activeUser.id, []);
-                    }
-                }
-
-                setSaveStatus('saved');
-                const timer = setTimeout(() => setSaveStatus('idle'), 2000);
-                return () => clearTimeout(timer);
-            } catch (e) {
-                console.error("Save error:", e);
-                setSaveStatus('error');
-            }
-        };
-
-        // Debounce save slightly to avoid excessive calls
-        const timeoutId = setTimeout(saveData, 1000);
+        const timeoutId = window.setTimeout(() => {
+            void performRemoteSave('auto');
+        }, 800);
         return () => clearTimeout(timeoutId);
     }, [user.id, user.isLoggedIn, profile, resultData, isInitialSyncComplete]);
     
     // Manual Save Trigger (Immediate)
     const manualSave = async () => {
-        setSaveStatus('saving');
-        try {
-            const activeUser = userRef.current;
-            const activeProfile = profileRef.current;
-            const activeResultData = resultDataRef.current;
-
-            persistLocalSnapshot(activeUser, activeProfile, activeResultData);
-            
-            // Supabase (Remote)
-            if (activeUser.isLoggedIn && activeUser.id) {
-                if (!isInitialSyncComplete) {
-                    await syncWithSupabase();
-                }
-                const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
-                const bagSnapshot = buildBagSnapshot(
-                    normalizedClubs,
-                    activeProfile.myBag.ball || activeProfile.currentBall || '',
-                );
-
-                const profileUpsertResult = await supabase.from('profiles').upsert({
-                    id: activeUser.id,
-                    name: activeProfile.name,
-                    gender: activeProfile.gender,
-                    age: activeProfile.age,
-                    head_speed: activeProfile.headSpeed,
-                    birthdate: activeProfile.birthdate,
-                    golf_history: activeProfile.golfHistory,
-                    current_ball: activeProfile.myBag.ball || activeProfile.currentBall || null,
-                    sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
-                        bestScore: activeProfile.bestScore,
-                        averageScore: activeProfile.averageScore,
-                    }, bagSnapshot),
-                    cover_photo: activeProfile.coverPhoto,
-                    is_public: activeProfile.isPublic,
-                    updated_at: new Date().toISOString()
-                });
-                assertSupabaseOk(profileUpsertResult, 'profiles manual-save');
-
-                const deleteResult = await supabase.from('clubs').delete().eq('user_id', activeUser.id);
-                assertSupabaseOk(deleteResult, 'clubs delete before manual-save');
-                if (normalizedClubs.length > 0) {
-                    const clubPayloads = normalizedClubs.map(c => ({
-                        id: c.id, // Include stable ID
-                        user_id: activeUser.id,
-                        category: c.category,
-                        brand: c.brand,
-                        model: c.model,
-                        shaft: c.shaft,
-                        loft: c.loft,
-                        distance: c.distance
-                    }));
-                    const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
-                    assertSupabaseOk(clubsUpsertResult, 'clubs manual-save');
-                    await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
-                    if (normalizedClubs.some((club, index) => club.id !== activeProfile.myBag.clubs[index]?.id)) {
-                        setProfile((prev) => ({
-                            ...prev,
-                            myBag: {
-                                ...prev.myBag,
-                                clubs: normalizedClubs,
-                            },
-                        }));
-                    }
-                } else {
-                    await verifyClubWrite(activeUser.id, []);
-                }
-            }
-            setSaveStatus('saved');
-            setTimeout(() => setSaveStatus('idle'), 2000);
-        } catch (e) {
-            console.error("Manual save error:", e);
-            setSaveStatus('error');
+        if (userRef.current.isLoggedIn && userRef.current.id && !isInitialSyncComplete) {
+            await syncWithSupabase();
         }
+        await performRemoteSave('manual');
     };
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
