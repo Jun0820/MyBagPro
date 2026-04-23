@@ -265,16 +265,24 @@ export const MyGearPage = () => {
     };
 
     const returnTo = searchParams.get('returnTo');
+    const showWelcomeBanner = searchParams.get('welcome') === '1';
 
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
         setActiveTab('clubs');
         const nextParams = new URLSearchParams(searchParams);
         nextParams.set('tab', 'clubs');
+        nextParams.delete('welcome');
         if (focus) {
             nextParams.set('focus', focus);
         } else {
             nextParams.delete('focus');
         }
+        setSearchParams(nextParams, { replace: true });
+    };
+
+    const dismissWelcome = () => {
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.delete('welcome');
         setSearchParams(nextParams, { replace: true });
     };
 
@@ -454,6 +462,64 @@ export const MyGearPage = () => {
 
                 {activeTab === 'view' && (
                     <div className="space-y-6 pb-12">
+                        {showWelcomeBanner && (
+                            <section className="rounded-[28px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-5 shadow-lg md:p-6">
+                                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                                    <div className="space-y-2">
+                                        <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
+                                            <Sparkles size={12} />
+                                            Welcome
+                                        </div>
+                                        <div>
+                                            <h2 className="text-xl font-black tracking-tight text-trust-navy md:text-2xl">
+                                                保存と再開が使える状態になりました
+                                            </h2>
+                                            <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">
+                                                いまのセッティング、診断結果、比較候補をマイページに残せます。まずは代表番手を登録して、次にボール診断か比較ページへ進むのが使いやすい流れです。
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        onClick={dismissWelcome}
+                                        className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-500 transition-colors hover:bg-slate-50"
+                                    >
+                                        閉じる
+                                    </button>
+                                </div>
+
+                                <div className="mt-4 grid gap-3 md:grid-cols-3">
+                                    <button
+                                        onClick={() => openBagTabWithFocus('missing-clubs')}
+                                        className="rounded-2xl bg-golf-600 px-5 py-4 text-left text-white transition-colors hover:bg-golf-700"
+                                    >
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">Step 1</div>
+                                        <div className="mt-1 text-base font-black">代表番手を登録する</div>
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            dismissWelcome();
+                                            navigate('/ball-diagnosis');
+                                        }}
+                                        className="rounded-2xl bg-trust-navy px-5 py-4 text-left text-white transition-colors hover:bg-slate-800"
+                                    >
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">Step 2</div>
+                                        <div className="mt-1 text-base font-black">ボール診断をする</div>
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            dismissWelcome();
+                                            navigate('/compare');
+                                        }}
+                                        className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-50"
+                                    >
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Step 3</div>
+                                        <div className="mt-1 text-base font-black">比較ページで差を見る</div>
+                                    </button>
+                                </div>
+                            </section>
+                        )}
+
                         <section className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
                             <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
                                 <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">

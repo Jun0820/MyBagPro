@@ -189,7 +189,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               setUser(u);
               if (p) setProfile(p);
               setShowAuth(false);
-              navigate('/mypage'); // Navigate after login
+              const draftProfile = p || profile;
+              const hasStarterBag = (draftProfile?.myBag?.clubs?.length || 0) > 0;
+              const destination = hasStarterBag
+                ? '/mypage?welcome=1'
+                : '/mypage?welcome=1&tab=clubs&focus=missing-clubs';
+              navigate(destination);
             }}
             onClose={() => setShowAuth(false)}
             currentProfile={profile}
