@@ -80,7 +80,7 @@ const PrivacyPolicyContent = () => (
             <h3 className="font-bold text-lg text-trust-navy mb-2">6. 開示・訂正・削除</h3>
             <p>
                 お客様は、ご自身の個人情報の開示、訂正、削除を請求する権利を有します。
-                ご希望の場合は、お問い合わせフォームよりご連絡ください。
+                ご希望の場合は、support@funrecipe.co.jp までメールでご連絡ください。
             </p>
         </section>
 
@@ -103,7 +103,7 @@ const PrivacyPolicyContent = () => (
         <section>
             <h3 className="font-bold text-lg text-trust-navy mb-2">9. お問い合わせ</h3>
             <p>
-                個人情報の取り扱いに関するお問い合わせは、サービス内のお問い合わせフォームよりご連絡ください。
+                個人情報の取り扱いに関するお問い合わせは、support@funrecipe.co.jp までメールでご連絡ください。
             </p>
         </section>
 

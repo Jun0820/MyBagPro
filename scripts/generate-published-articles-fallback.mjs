@@ -7,6 +7,8 @@ const outputPath = path.join(projectRoot, 'public', 'published-articles-fallback
 const docsFallbackFiles = [
   path.join(projectRoot, 'docs', 'article-seeds-launch-20.json'),
   path.join(projectRoot, 'docs', 'tournament-spotlight-articles-2026-04-10.json'),
+  path.join(projectRoot, 'docs', 'tournament-spotlight-articles-2026-04-18.json'),
+  path.join(projectRoot, 'docs', 'mybag-registration-before-diagnosis-2026-04-23.json'),
 ];
 
 function loadEnvFile(filename) {

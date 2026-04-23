@@ -216,7 +216,7 @@ const MemoizedClubRow = React.memo(ClubRow);
 
 interface MyBagManagerProps {
     setting: ClubSetting;
-    onUpdate: (setting: ClubSetting) => void;
+    onUpdate: (setting: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => void;
     onDiagnose?: (club: Club) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     onManualSave?: () => void;
@@ -412,25 +412,25 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     })();
 
     const updateClub = useCallback((updated: Club) => {
-        onUpdate({
-            ...setting,
-            clubs: setting.clubs.map(c => c.id === updated.id ? updated : c)
-        });
-    }, [onUpdate, setting]);
+        onUpdate((prev) => ({
+            ...prev,
+            clubs: prev.clubs.map(c => c.id === updated.id ? updated : c)
+        }));
+    }, [onUpdate]);
 
     const removeClub = useCallback((id: string) => {
-        onUpdate({
-            ...setting,
-            clubs: setting.clubs.filter(c => c.id !== id)
-        });
-    }, [onUpdate, setting]);
+        onUpdate((prev) => ({
+            ...prev,
+            clubs: prev.clubs.filter(c => c.id !== id)
+        }));
+    }, [onUpdate]);
 
     const handleAddClub = (category?: string, customModel?: string) => {
         const cat = category || addCategory;
         if (!cat) return;
-        onUpdate({
-            ...setting,
-            clubs: [...setting.clubs, {
+        onUpdate((prev) => ({
+            ...prev,
+            clubs: [...prev.clubs, {
                 id: Math.random().toString(36).substring(7),
                 category: cat as TargetCategory,
                 brand: '',
@@ -441,7 +441,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 loft: '',
                 distance: ''
             }]
-        });
+        }));
         setAddCategory('');
     };
 
@@ -449,10 +449,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const existing = setting.clubs.find((club) => club.category === category && (club.number || '') === number);
         if (existing) return;
 
-        onUpdate({
-            ...setting,
+        onUpdate((prev) => ({
+            ...prev,
             clubs: [
-                ...setting.clubs,
+                ...prev.clubs,
                 {
                     id: Math.random().toString(36).substring(7),
                     category,
@@ -465,7 +465,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     distance: '',
                 },
             ],
-        });
+        }));
     };
 
     const toggleLoft = (val: string) => {
@@ -513,10 +513,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             })
             .filter((c): c is Club => c !== null);
 
-        onUpdate({
-            ...setting,
-            clubs: [...setting.clubs, ...newClubs]
-        });
+        onUpdate((prev) => ({
+            ...prev,
+            clubs: [...prev.clubs, ...newClubs]
+        }));
         setSelectedLofts([]);
         // Batch add should also attempt a sync
         setTimeout(() => onManualSave?.(), 100);
@@ -631,7 +631,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <input
                             list="mybag-ball-suggestions"
                             value={setting.ball || ''}
-                            onChange={(e) => onUpdate({ ...setting, ball: e.target.value })}
+                            onChange={(e) => onUpdate((prev) => ({ ...prev, ball: e.target.value }))}
                             placeholder="例: Pro V1 / TP5 / Chrome Tour"
                             className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
                         />

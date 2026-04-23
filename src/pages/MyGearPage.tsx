@@ -72,6 +72,7 @@ export const MyGearPage = () => {
     const {
         profile,
         updateProfile,
+        setProfile,
         user,
         saveStatus,
         setStep,
@@ -85,6 +86,7 @@ export const MyGearPage = () => {
     const [compareShortlist, setCompareShortlist] = useState<CompareShortlistItem[]>([]);
     const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
     const [favoriteClubs, setFavoriteClubs] = useState<FavoriteClubItem[]>([]);
+    const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
     const primaryShop = AFFILIATE_SHOPS[0];
 
     const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
@@ -117,6 +119,12 @@ export const MyGearPage = () => {
         setRecentlyViewed(getRecentlyViewed());
         setFavoriteClubs(getFavoriteClubs());
     }, []);
+
+    useEffect(() => {
+        if (saveStatus === 'saved') {
+            setLastSavedAt(new Date().toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' }));
+        }
+    }, [saveStatus]);
 
     useEffect(() => {
         const tabParam = searchParams.get('tab');
@@ -479,6 +487,43 @@ export const MyGearPage = () => {
                                     </div>
                                 </div>
 
+                                <div className="mt-4 grid gap-3 md:grid-cols-[1.3fr_1fr]">
+                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save Status</div>
+                                        <div className="mt-2 flex flex-wrap items-center gap-2 text-sm font-bold text-trust-navy">
+                                            {saveStatus === 'saving' ? (
+                                                <>
+                                                    <Loader2 size={14} className="animate-spin text-golf-600" />
+                                                    保存内容を同期しています
+                                                </>
+                                            ) : saveStatus === 'error' ? (
+                                                <>
+                                                    <CircleGauge size={14} className="text-amber-500" />
+                                                    保存でつまずいています。もう一度保存してください
+                                                </>
+                                            ) : lastSavedAt ? (
+                                                <>
+                                                    <CheckCircle2 size={14} className="text-emerald-500" />
+                                                    最終保存: {lastSavedAt}
+                                                </>
+                                            ) : (
+                                                <>クラブ登録やプロフィール編集はこのページに順次保存されます</>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Support</div>
+                                        <div className="mt-2 text-sm font-bold text-trust-navy">保存や表示で困ったときの連絡先</div>
+                                        <a
+                                            href="mailto:support@funrecipe.co.jp"
+                                            className="mt-3 inline-flex items-center gap-2 text-xs font-black text-golf-700 transition-colors hover:text-golf-800"
+                                        >
+                                            support@funrecipe.co.jp
+                                            <ArrowRight size={12} />
+                                        </a>
+                                    </div>
+                                </div>
+
                                 <div className="mt-5">
                                     <div className="mb-2 flex items-center justify-between text-[11px] font-bold text-slate-400">
                                         <span>登録状況</span>
@@ -805,7 +850,12 @@ export const MyGearPage = () => {
                 {activeTab === 'clubs' && (
                     <MyBagManager
                         setting={profile.myBag}
-                        onUpdate={(b: any) => updateProfile('myBag', b)}
+                        onUpdate={(next) =>
+                            setProfile((prev) => ({
+                                ...prev,
+                                myBag: typeof next === 'function' ? next(prev.myBag) : next,
+                            }))
+                        }
                         onOpenBallDiagnosis={() => navigate('/ball-diagnosis')}
                         onOpenCompare={() => navigate('/compare')}
                         onDiagnose={(club) => {

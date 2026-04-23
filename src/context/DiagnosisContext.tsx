@@ -62,6 +62,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
 
+    const persistLocalSnapshot = (nextUser: UserAccount, nextProfile: UserProfile, nextResultData: DiagnosisResult | null) => {
+        localStorage.setItem('mybagpro_user', JSON.stringify(nextUser));
+        localStorage.setItem('mybagpro_profile', JSON.stringify(nextProfile));
+        if (nextResultData) {
+            localStorage.setItem('mybagpro_result_data', JSON.stringify(nextResultData));
+        } else {
+            localStorage.removeItem('mybagpro_result_data');
+        }
+    };
+
     // Handle Supabase Auth State
     useEffect(() => {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -156,20 +166,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    // Keep a local snapshot up to date so edits survive reloads and tab changes.
+    useEffect(() => {
+        persistLocalSnapshot(user, profile, resultData);
+    }, [user, profile, resultData]);
+
     // Persistence with Status Feedback
     useEffect(() => {
         const saveData = async () => {
             setSaveStatus('saving');
             try {
-                // Local Storage
-                localStorage.setItem('mybagpro_user', JSON.stringify(user));
-                localStorage.setItem('mybagpro_profile', JSON.stringify(profile));
-                if (resultData) {
-                    localStorage.setItem('mybagpro_result_data', JSON.stringify(resultData));
-                } else {
-                    localStorage.removeItem('mybagpro_result_data');
-                }
-
                 // Supabase (Remote)
                 if (user.isLoggedIn && user.id) {
                     // CRITICAL: Prevent overwriting remote data if initial sync hasn't finished yet
@@ -236,9 +242,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const manualSave = async () => {
         setSaveStatus('saving');
         try {
-            // Local Storage
-            localStorage.setItem('mybagpro_user', JSON.stringify(user));
-            localStorage.setItem('mybagpro_profile', JSON.stringify(profile));
+            persistLocalSnapshot(user, profile, resultData);
             
             // Supabase (Remote)
             if (user.isLoggedIn && user.id) {
@@ -289,7 +293,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
-        setProfile(prev => ({ ...prev, [field]: value }));
+        setProfile(prev => {
+            const nextProfile = { ...prev, [field]: value };
+            persistLocalSnapshot(user, nextProfile, resultData);
+            return nextProfile;
+        });
     };
 
     const translateDiagnosisError = (error: any) => {

@@ -168,7 +168,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <li><button onClick={() => setShowLegal('privacy')} className="hover:text-golf-300 transition-colors">プライバシーポリシー</button></li>
               <li><button onClick={() => setShowLegal('terms')} className="hover:text-golf-300 transition-colors">利用規約</button></li>
               <li><button onClick={() => navigate('/sitemap')} className="hover:text-golf-300 transition-colors">サイトマップ</button></li>
-              <li><a href="mailto:info@mybagpro.jp" className="hover:text-golf-300 transition-colors">お問い合わせ</a></li>
+              <li><a href="mailto:support@funrecipe.co.jp" className="hover:text-golf-300 transition-colors">お問い合わせ</a></li>
             </ul>
           </div>
         </div>
