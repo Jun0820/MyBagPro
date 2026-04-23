@@ -114,7 +114,7 @@ export const ComparePage = () => {
             を見比べる
           </h1>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600 md:mt-5 md:text-base md:leading-8">
-            診断で保存した候補を並べて、次に詳しく見るモデルを絞るためのページです。まずは上位候補から詳細を開いて、購入比較や再診断につなげていきます。
+            診断で保存した候補を並べて、まず何を残し、何を見にいくかを決めるためのページです。上位候補から順に、保存・詳細確認・価格比較へ進めます。
           </p>
         </section>
 
@@ -136,8 +136,8 @@ export const ComparePage = () => {
                 <BarChart3 size={14} />
                 保存した候補
               </div>
-              <div className="mt-4 space-y-3 md:mt-6 md:space-y-4">
-                {shortlist.map((item) => {
+            <div className="mt-4 space-y-3 md:mt-6 md:space-y-4">
+              {shortlist.map((item) => {
                   const matchedDriver = driverDetails.find(
                     (driver) =>
                       driver.brand === item.brand &&
@@ -146,6 +146,20 @@ export const ComparePage = () => {
 
                   return (
                     <div key={item.id} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 md:rounded-[1.5rem] md:p-5">
+                      <div className="mb-3 grid gap-2 sm:grid-cols-3">
+                        <div className="rounded-2xl bg-white px-3.5 py-3">
+                          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">BEST MATCH</div>
+                          <div className="mt-1 text-sm font-black text-trust-navy">{item.brand}</div>
+                        </div>
+                        <div className="rounded-2xl bg-white px-3.5 py-3">
+                          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">MATCH SCORE</div>
+                          <div className="mt-1 text-sm font-black text-trust-navy">{item.matchPercentage.toFixed(1)}%</div>
+                        </div>
+                        <div className="rounded-2xl bg-white px-3.5 py-3">
+                          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">NEXT STEP</div>
+                          <div className="mt-1 text-sm font-black text-trust-navy">詳細 or 価格確認</div>
+                        </div>
+                      </div>
                       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                         <div>
                           <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
@@ -232,6 +246,23 @@ export const ComparePage = () => {
 
             <div className="space-y-4 md:space-y-6">
               <section className="rounded-[1.5rem] border border-cyan-100 bg-cyan-50 p-4 md:rounded-[2rem] md:p-6">
+                <div className="mb-4 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-cyan-100">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">候補数</div>
+                    <div className="mt-2 text-2xl font-black text-trust-navy">{shortlist.length}</div>
+                    <div className="mt-2 text-xs leading-relaxed text-slate-500">残している比較候補です。</div>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-cyan-100">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">主導線</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">詳細 → 保存</div>
+                    <div className="mt-2 text-xs leading-relaxed text-slate-500">まずは上位候補を絞ります。</div>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-cyan-100">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">次の一手</div>
+                    <div className="mt-2 text-sm font-black text-trust-navy">価格 or 再診断</div>
+                    <div className="mt-2 text-xs leading-relaxed text-slate-500">迷ったら条件を変えて再確認します。</div>
+                  </div>
+                </div>
                 <h2 className="text-xl font-black text-trust-navy md:text-2xl">次にやるといいこと</h2>
                 <div className="mt-4 space-y-3 md:mt-5 md:space-y-4">
                   <div className="rounded-[1.25rem] bg-white p-4 ring-1 ring-cyan-100 md:rounded-[1.5rem] md:p-5">
@@ -551,6 +582,22 @@ export const ComparePage = () => {
                 </div>
               ))}
             </div>
+            <div className="mt-4 grid gap-2 sm:grid-cols-3">
+              <div className="rounded-2xl bg-white px-3.5 py-3 ring-1 ring-slate-200">
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">BEST MATCH</div>
+                <div className="mt-1 text-sm font-black text-trust-navy">{targetSetting.name}</div>
+              </div>
+              <div className="rounded-2xl bg-white px-3.5 py-3 ring-1 ring-slate-200">
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">MATCH SCORE</div>
+                <div className="mt-1 text-sm font-black text-trust-navy">{matchPercent}%</div>
+              </div>
+              <div className="rounded-2xl bg-white px-3.5 py-3 ring-1 ring-slate-200">
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">NEXT STEP</div>
+                <div className="mt-1 text-sm font-black text-trust-navy">
+                  {needsBagSetup ? 'My Bagを整える' : missingBall ? 'ボールを入れる' : '差分を埋める'}
+                </div>
+              </div>
+            </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <button
                 onClick={() => {
@@ -590,9 +637,9 @@ export const ComparePage = () => {
             <BarChart3 size={14} />
             比較の見方
           </div>
-          <h2 className="mt-3 text-2xl font-black text-trust-navy">まずは差が大きいところを知る</h2>
+          <h2 className="mt-3 text-2xl font-black text-trust-navy">まずは差が大きいところから埋める</h2>
           <p className="mt-4 text-sm leading-7 text-slate-600">
-            「未登録」「違うモデル」「同じモデル」の3つに分けて見ると分かりやすいです。全部合わせようとするのではなく、差が大きいところから順に見ていくのがコツです。
+            「未登録」「違うモデル」「同じモデル」の3つに分けて見ると分かりやすいです。全部合わせようとするのではなく、次に変える価値が高いところから順に見ていくのがコツです。
           </p>
 
           <div className="mt-6 rounded-[1.5rem] border border-slate-200">
@@ -649,7 +696,7 @@ export const ComparePage = () => {
                 <div className="mt-2 text-xs leading-relaxed text-slate-500">先に埋めると精度が上がります。</div>
               </div>
             </div>
-            <h2 className="text-2xl font-black text-trust-navy">次にやるといいこと</h2>
+            <h2 className="text-2xl font-black text-trust-navy">次にやること</h2>
             <div className="mt-5 space-y-4">
               {nextActions.map((action) => (
                 <div key={action.title} className="rounded-[1.5rem] bg-white p-5 ring-1 ring-cyan-100">
