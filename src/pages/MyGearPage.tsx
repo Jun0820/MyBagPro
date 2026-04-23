@@ -77,6 +77,7 @@ export const MyGearPage = () => {
         saveStatus,
         setStep,
         manualSave,
+        syncWithSupabase,
         setShowAuth,
         restoreDiagnosisResult,
     } = useDiagnosis();
@@ -534,6 +535,25 @@ export const MyGearPage = () => {
                                         </a>
                                     </div>
                                 </div>
+
+                                {user.isLoggedIn && (
+                                    <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+                                        <button
+                                            onClick={() => void manualSave()}
+                                            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-trust-navy transition-colors hover:bg-slate-50"
+                                        >
+                                            <CheckCircle2 size={14} />
+                                            今すぐ保存する
+                                        </button>
+                                        <button
+                                            onClick={() => void syncWithSupabase()}
+                                            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-100"
+                                        >
+                                            <Loader2 size={14} className={saveStatus === 'saving' ? 'animate-spin' : ''} />
+                                            クラウドから再読み込み
+                                        </button>
+                                    </div>
+                                )}
 
                                 <div className="mt-5">
                                     <div className="mb-2 flex items-center justify-between text-[11px] font-bold text-slate-400">

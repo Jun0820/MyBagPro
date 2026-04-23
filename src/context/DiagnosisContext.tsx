@@ -75,7 +75,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     // Handle Supabase Auth State
     useEffect(() => {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            if (event === 'SIGNED_IN' && session) {
+            if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION') && session) {
                 setUser({
                     id: session.user.id,
                     email: session.user.email || '',
@@ -85,7 +85,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     history: []
                 });
                 await syncWithSupabase();
-            } else if (event === 'SIGNED_OUT') {
+            } else if (event === 'SIGNED_OUT' || (event === 'INITIAL_SESSION' && !session)) {
                 setUser(INITIAL_ACCOUNT);
                 localStorage.removeItem('mybagpro_user');
                 localStorage.removeItem('mybagpro_profile');
