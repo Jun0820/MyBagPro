@@ -236,7 +236,14 @@ export const ResultPage = () => {
             title: 'まずは代表番手を登録する',
             description: 'おすすめ候補を残す前に、ドライバーや7Iを入れておくと比較と保存がかなり安定します。',
             actionLabel: 'My Bag を整える',
-            onClick: () => navigate('/mypage?tab=clubs&focus=missing-clubs'),
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'result_page',
+                    primary_move: 'starter-clubs',
+                    diagnosis_category: profile.targetCategory || 'unknown',
+                });
+                navigate('/mypage?tab=clubs&focus=missing-clubs');
+            },
         }
         : !profile.myBag.ball
         ? {
@@ -244,7 +251,14 @@ export const ResultPage = () => {
             title: '次はボールまでそろえる',
             description: '今のボールが入ると、この結果とバッグ全体のつながりまで見やすくなります。',
             actionLabel: 'ボールを登録する',
-            onClick: () => navigate('/mypage?tab=clubs&focus=ball-first'),
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'result_page',
+                    primary_move: 'ball-first',
+                    diagnosis_category: profile.targetCategory || 'unknown',
+                });
+                navigate('/mypage?tab=clubs&focus=ball-first');
+            },
         }
         : compareSource
         ? {
@@ -252,14 +266,28 @@ export const ResultPage = () => {
             title: '比較へ戻って差分を見直す',
             description: '今回の候補を残したうえで、比較ページに戻ると差分がどこまで埋まったか確認できます。',
             actionLabel: '比較へ戻る',
-            onClick: handleSaveAndReturnToCompare,
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'result_page',
+                    primary_move: 'return-to-compare',
+                    diagnosis_category: profile.targetCategory || 'unknown',
+                });
+                handleSaveAndReturnToCompare();
+            },
         }
         : {
             eyebrow: 'Primary Move',
             title: '比較候補に残して次の判断へ進む',
             description: 'まずは候補を保存して、マイページや比較ページで見返せる状態にするのがおすすめです。',
             actionLabel: '比較候補を残す',
-            onClick: handleSaveCompareShortlist,
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'result_page',
+                    primary_move: 'save-shortlist',
+                    diagnosis_category: profile.targetCategory || 'unknown',
+                });
+                handleSaveCompareShortlist();
+            },
         };
 
     return (

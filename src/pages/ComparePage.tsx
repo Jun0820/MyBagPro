@@ -76,7 +76,13 @@ export const ComparePage = () => {
         title: 'まずは代表番手を登録する',
         description: 'ドライバーか7Iが入るだけでも、比較候補の見え方がかなり具体的になります。',
         actionLabel: 'My Bag を整える',
-        onClick: () => navigate('/mypage?tab=clubs&focus=missing-clubs'),
+        onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_shortlist',
+            primary_move: 'starter-clubs',
+          });
+          navigate('/mypage?tab=clubs&focus=missing-clubs');
+        },
       }
     : !hasBall
     ? {
@@ -84,7 +90,13 @@ export const ComparePage = () => {
         title: '次はボールまでそろえる',
         description: '使用ボールが入ると、候補どうしの違いをバッグ全体の流れで判断しやすくなります。',
         actionLabel: 'ボールを登録する',
-        onClick: () => navigate('/mypage?tab=clubs&focus=ball-first'),
+        onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_shortlist',
+            primary_move: 'ball-first',
+          });
+          navigate('/mypage?tab=clubs&focus=ball-first');
+        },
       }
     : shortlist.length > 0
     ? {
@@ -92,14 +104,26 @@ export const ComparePage = () => {
         title: '上位候補を1本に絞って詳細を見る',
         description: 'まずは最有力の1本を決めて、詳細と価格確認に進むのが一番早い流れです。',
         actionLabel: '候補を見比べる',
-        onClick: () => window.scrollTo({ top: 280, behavior: 'smooth' }),
+        onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_shortlist',
+            primary_move: 'review-shortlist',
+          });
+          window.scrollTo({ top: 280, behavior: 'smooth' });
+        },
       }
     : {
         eyebrow: 'Primary Move',
         title: '診断を追加して候補を作る',
         description: '比較候補がまだないので、まずは診断から残す候補を作ると次に進みやすくなります。',
         actionLabel: '診断へ進む',
-        onClick: () => navigate('/diagnosis'),
+        onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_shortlist',
+            primary_move: 'diagnosis',
+          });
+          navigate('/diagnosis');
+        },
       };
 
   useEffect(() => {
@@ -468,6 +492,11 @@ export const ComparePage = () => {
         description: `未登録カテゴリが ${missingCount} 件あります。ここを埋めるだけで、比較結果の見え方がかなり安定します。`,
         actionLabel: '不足カテゴリを登録する',
         onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_page',
+            primary_move: 'missing-clubs',
+            reference_profile_slug: targetSetting.slug,
+          });
           trackEvent('begin_mybag_creation', {
             source_page: 'compare_page_primary_move',
             reference_profile_slug: targetSetting.slug,
@@ -481,7 +510,14 @@ export const ComparePage = () => {
         title: '次はボールまでそろえる',
         description: '使用ボールが入ると、クラブ差だけでなく全体の相性まで判断しやすくなります。',
         actionLabel: 'ボールを登録する',
-        onClick: () => navigate(`/mybag/create?tab=clubs&focus=ball-first&returnTo=${encodeURIComponent(compareReturnTarget)}`),
+        onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_page',
+            primary_move: 'ball-first',
+            reference_profile_slug: targetSetting.slug,
+          });
+          navigate(`/mybag/create?tab=clubs&focus=ball-first&returnTo=${encodeURIComponent(compareReturnTarget)}`);
+        },
       }
     : firstPriorityRow
     ? {
@@ -490,6 +526,12 @@ export const ComparePage = () => {
         description: 'いま一番差が大きいカテゴリから詰めると、比較の手応えが最短で出ます。',
         actionLabel: `${firstPriorityRow.category} を診断する`,
         onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_page',
+            primary_move: 'priority-diagnosis',
+            reference_profile_slug: targetSetting.slug,
+            priority_category: firstPriorityRow.category,
+          });
           trackEvent('start_ai_diagnosis', {
             source_page: 'compare_page_primary_move',
             reference_profile_slug: targetSetting.slug,
@@ -505,6 +547,11 @@ export const ComparePage = () => {
         description: 'ここからは詳細確認か価格比較に進むのが一番自然です。',
         actionLabel: 'ドライバー詳細を見る',
         onClick: () => {
+          trackEvent('click_primary_move', {
+            source_page: 'compare_page',
+            primary_move: 'driver-detail',
+            reference_profile_slug: targetSetting.slug,
+          });
           if (targetDriverDetail) {
             navigate(`/clubs/drivers/${targetDriverDetail.slug}`);
             return;

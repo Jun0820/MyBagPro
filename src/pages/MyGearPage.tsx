@@ -126,7 +126,13 @@ export const MyGearPage = () => {
             title: 'まずは代表番手を登録する',
             description: 'ドライバーか7Iが入るだけでも、自動分析と比較の精度がかなり上がります。',
             actionLabel: '代表番手を登録する',
-            onClick: () => openBagTabWithFocus('missing-clubs'),
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'mypage',
+                    primary_move: 'starter-clubs',
+                });
+                openBagTabWithFocus('missing-clubs');
+            },
         }
         : !profile.myBag.ball
         ? {
@@ -134,7 +140,13 @@ export const MyGearPage = () => {
             title: '次はボールまでそろえる',
             description: '使用ボールが入ると、クラブとのつながりや診断結果がかなり具体化します。',
             actionLabel: 'ボールを登録する',
-            onClick: () => openBagTabWithFocus('ball-first'),
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'mypage',
+                    primary_move: 'ball-first',
+                });
+                openBagTabWithFocus('ball-first');
+            },
         }
         : compareShortlist.length === 0 && recentHistory.length === 0
         ? {
@@ -142,14 +154,26 @@ export const MyGearPage = () => {
             title: '比較ページで今の差を見る',
             description: '登録したバッグを基準に、次に見直すカテゴリをすぐ見つけられます。',
             actionLabel: '比較ページへ進む',
-            onClick: () => navigate('/compare'),
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'mypage',
+                    primary_move: 'compare',
+                });
+                navigate('/compare');
+            },
         }
         : {
             eyebrow: 'Primary Move',
             title: '診断を1つ追加して判断を深める',
             description: '保存した内容を活かして、ボールやカテゴリ診断から次の1本を絞れます。',
             actionLabel: '診断へ進む',
-            onClick: () => navigate('/diagnosis'),
+            onClick: () => {
+                trackEvent('click_primary_move', {
+                    source_page: 'mypage',
+                    primary_move: 'diagnosis',
+                });
+                navigate('/diagnosis');
+            },
         };
 
     useEffect(() => {
@@ -638,7 +662,7 @@ export const MyGearPage = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-4 grid gap-3 md:grid-cols-[1.3fr_1fr]">
+                                <div className="mt-4">
                                     <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
                                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save Status</div>
                                         <div className="mt-2 flex flex-wrap items-center gap-2 text-sm font-bold text-trust-navy">
@@ -661,17 +685,6 @@ export const MyGearPage = () => {
                                                 <>クラブ登録やプロフィール編集はこのページに順次保存されます</>
                                             )}
                                         </div>
-                                    </div>
-                                    <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3">
-                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Support</div>
-                                        <div className="mt-2 text-sm font-bold text-trust-navy">保存や表示で困ったときの連絡先</div>
-                                        <a
-                                            href="mailto:support@funrecipe.co.jp"
-                                            className="mt-3 inline-flex items-center gap-2 text-xs font-black text-golf-700 transition-colors hover:text-golf-800"
-                                        >
-                                            support@funrecipe.co.jp
-                                            <ArrowRight size={12} />
-                                        </a>
                                     </div>
                                 </div>
 
