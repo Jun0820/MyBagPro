@@ -410,6 +410,42 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
         return null;
     })();
+    const saveStatusMeta = (() => {
+        switch (saveStatus) {
+            case 'saving':
+                return {
+                    label: 'SAVING NOW',
+                    title: 'いまクラウドに保存しています',
+                    description: '入力した内容はこのまま保持されます。少し待てば最新状態へ切り替わります。',
+                    tone: 'border-amber-200 bg-amber-50 text-amber-800',
+                    icon: <Loader2 size={14} className="animate-spin" />,
+                };
+            case 'saved':
+                return {
+                    label: 'SAVED',
+                    title: '最新の内容を保存しました',
+                    description: 'このままページを移動しても、今の入力内容から再開しやすい状態です。',
+                    tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+                    icon: <CheckCircle2 size={14} />,
+                };
+            case 'error':
+                return {
+                    label: 'SAVE CHECK',
+                    title: '保存をもう一度確認してください',
+                    description: '入力内容は画面に残っています。下の保存ボタンからもう一度送れます。',
+                    tone: 'border-rose-200 bg-rose-50 text-rose-800',
+                    icon: <Save size={14} />,
+                };
+            default:
+                return {
+                    label: 'AUTO SAVE',
+                    title: '入力しながら下書きとして整えていけます',
+                    description: '途中でも構いません。まずは代表番手だけ入れて、あとから少しずつ増やせます。',
+                    tone: 'border-slate-200 bg-slate-50 text-slate-700',
+                    icon: <Save size={14} />,
+                };
+        }
+    })();
 
     const updateClub = useCallback((updated: Club) => {
         onUpdate((prev) => ({
@@ -710,6 +746,19 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         className="text-xs"
                     />
                 </div>
+
+                <div className={cn('mb-5 rounded-2xl border px-4 py-3', saveStatusMeta.tone)}>
+                    <div className="flex items-start gap-3">
+                        <div className="mt-0.5 rounded-full bg-white/80 p-2 shadow-sm">
+                            {saveStatusMeta.icon}
+                        </div>
+                        <div className="min-w-0">
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-70">{saveStatusMeta.label}</div>
+                            <div className="mt-1 text-sm font-black">{saveStatusMeta.title}</div>
+                            <div className="mt-1 text-xs leading-relaxed opacity-80">{saveStatusMeta.description}</div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div id="my-bag-export-area" className="mb-6 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 sm:grid-cols-2 lg:grid-cols-3">
                     {sortedClubs.map(entry => (
@@ -777,6 +826,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             </>
                         )}
                     </button>
+                </div>
+
+                <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-500">
+                    入力中でも内容は保持されます。区切りの良いところで <span className="font-black text-trust-navy">変更を保存</span> を押すと、他の端末や再ログイン後でも続きから戻りやすくなります。
                 </div>
             </div>
 
