@@ -166,9 +166,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 .from('profiles')
                 .select('*')
                 .eq('id', user.id)
-                .single();
+                .maybeSingle();
 
-            if (profileError && profileError.message && !profileError.message.toLowerCase().includes('no rows')) {
+            if (profileError) {
                 throw new Error(`profiles sync: ${profileError.message}`);
             }
 
@@ -218,11 +218,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 }));
             }
             setSaveStatus('saved');
-            setIsInitialSyncComplete(true);
         } catch (e) {
             console.error("Sync error:", e);
             setSaveStatus('error');
         } finally {
+            setIsInitialSyncComplete(true);
             setTimeout(() => setSaveStatus('idle'), 2000);
         }
     };
@@ -241,8 +241,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 if (user.isLoggedIn && user.id) {
                     // CRITICAL: Prevent overwriting remote data if initial sync hasn't finished yet
                     if (!isInitialSyncComplete) {
-                        console.log("Skipping remote save: initial sync not complete");
-                        setSaveStatus('idle');
                         return;
                     }
 
@@ -325,9 +323,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             // Supabase (Remote)
             if (user.isLoggedIn && user.id) {
                 if (!isInitialSyncComplete) {
-                    setSaveStatus('saved');
-                    setTimeout(() => setSaveStatus('idle'), 2000);
-                    return;
+                    await syncWithSupabase();
                 }
                 const normalizedClubs = normalizeClubIds(profile.myBag.clubs);
                 const bagSnapshot = buildBagSnapshot(
