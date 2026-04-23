@@ -102,8 +102,9 @@ export const MyGearPage = () => {
     const utilityCount = profile.myBag.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
     const wedgeCount = profile.myBag.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
     const putterCount = profile.myBag.clubs.filter((club) => club.category === TargetCategory.PUTTER).length;
-    const clubsWithDistance = profile.myBag.clubs.filter((club) => String(club.distance || '').trim() !== '').length;
-    const distanceCoveragePercent = profile.myBag.clubs.length > 0 ? Math.round((clubsWithDistance / profile.myBag.clubs.length) * 100) : 0;
+    const distanceEligibleClubs = profile.myBag.clubs.filter((club) => club.category !== TargetCategory.PUTTER);
+    const clubsWithDistance = distanceEligibleClubs.filter((club) => String(club.distance || '').trim() !== '').length;
+    const distanceCoveragePercent = distanceEligibleClubs.length > 0 ? Math.round((clubsWithDistance / distanceEligibleClubs.length) * 100) : 0;
     const completionPoints = [
         completedEssentials > 0 ? 1 : 0,
         profile.myBag.ball ? 1 : 0,

@@ -57,7 +57,12 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
         const parts = val.split(':');
         const newCat = parts[0] as TargetCategory;
         const newNum = parts[1] || '';
-        onUpdate({ ...entry, category: newCat, number: newNum });
+        onUpdate({
+            ...entry,
+            category: newCat,
+            number: newNum,
+            distance: newCat === TargetCategory.PUTTER ? '' : entry.distance,
+        });
     };
 
     const clubOptions = [
@@ -163,7 +168,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                         )}
                     </div>
                     
-                    <div className="flex items-center gap-2 md:w-36">
+                    <div className={cn('flex items-center gap-2', isPutter ? 'md:w-16' : 'md:w-36')}>
                         {!isPutter ? (
                             <div className="relative flex-1">
                                 <input
@@ -178,16 +183,18 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
                         ) : (
                             <div className="flex-1 invisible md:block" />
                         )}
-                        <div className="relative flex-1">
-                            <input
-                                type="text"
-                                placeholder="飛距離"
-                                value={entry.distance}
-                                onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
-                                className="w-full rounded-lg border border-golf-200 bg-golf-50/50 px-2 py-2 text-center text-xs font-bold text-golf-800 outline-none focus:border-golf-500"
-                            />
-                            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-black text-golf-400">Y</span>
-                        </div>
+                        {!isPutter ? (
+                            <div className="relative flex-1">
+                                <input
+                                    type="text"
+                                    placeholder="飛距離"
+                                    value={entry.distance}
+                                    onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
+                                    className="w-full rounded-lg border border-golf-200 bg-golf-50/50 px-2 py-2 text-center text-xs font-bold text-golf-800 outline-none focus:border-golf-500"
+                                />
+                                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-black text-golf-400">Y</span>
+                            </div>
+                        ) : null}
                     </div>
                 </div>
 
@@ -298,8 +305,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const utilityCount = setting.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
     const wedgeCount = setting.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
     const putterCount = setting.clubs.filter((club) => club.category === TargetCategory.PUTTER).length;
-    const clubsWithDistance = setting.clubs.filter((club) => String(club.distance || '').trim() !== '').length;
-    const distanceCoveragePercent = setting.clubs.length > 0 ? Math.round((clubsWithDistance / setting.clubs.length) * 100) : 0;
+    const distanceEligibleClubs = setting.clubs.filter((club) => club.category !== TargetCategory.PUTTER);
+    const clubsWithDistance = distanceEligibleClubs.filter((club) => String(club.distance || '').trim() !== '').length;
+    const distanceCoveragePercent = distanceEligibleClubs.length > 0 ? Math.round((clubsWithDistance / distanceEligibleClubs.length) * 100) : 0;
     const bagCoverageTone =
         setting.clubs.length >= 10
             ? `クラブは ${setting.clubs.length} 本登録済みです。かなり全体像が見える状態です。`
