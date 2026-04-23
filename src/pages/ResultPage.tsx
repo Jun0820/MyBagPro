@@ -304,7 +304,7 @@ export const ResultPage = () => {
                 </div>
             )}
             {/* Hero Section */}
-            <div className="group relative mb-5 h-28 overflow-hidden rounded-[1.5rem] shadow-2xl shadow-slate-900/20 md:mb-8 md:h-56 md:rounded-[2.25rem]">
+            <div className="group relative mb-5 h-24 overflow-hidden rounded-[1.35rem] shadow-2xl shadow-slate-900/20 md:mb-8 md:h-56 md:rounded-[2.25rem]">
                 {/* Background: Deep Space Navy */}
                 <div className="absolute inset-0 bg-[#020617]"></div>
 
@@ -321,11 +321,11 @@ export const ResultPage = () => {
 
                 {/* Content Overlay */}
                 <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-                    <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-300 shadow-lg shadow-black/20 backdrop-blur-md md:mb-3 md:px-4 md:text-xs md:tracking-[0.2em]">
+                    <div className="mb-1.5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-300 shadow-lg shadow-black/20 backdrop-blur-md md:mb-3 md:px-4 md:text-xs md:tracking-[0.2em]">
                         <Zap size={12} className="text-slate-400" fill="currentColor" />
                         AI Performance Analysis
                     </div>
-                    <h2 className="mb-1 text-[1.45rem] font-black tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] font-eng md:text-5xl">
+                    <h2 className="mb-1 text-[1.25rem] font-black tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] font-eng md:text-5xl">
                         IDEAL TRAJECTORY
                     </h2>
                     <p className="text-[10px] font-medium tracking-wider uppercase text-slate-400 md:text-sm">
@@ -346,7 +346,7 @@ export const ResultPage = () => {
             )}
 
             {topModel && (
-                <section className="mb-6 rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-xl shadow-slate-200/40 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
+                <section className="mb-6 rounded-[1.35rem] border border-slate-200 bg-white px-4 py-4 shadow-xl shadow-slate-200/40 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
                     <div className="mb-4 rounded-[1.25rem] border border-golf-200 bg-golf-50 px-4 py-4 md:mb-5 md:rounded-[1.5rem] md:px-5">
                         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                             <div>
@@ -356,7 +356,7 @@ export const ResultPage = () => {
                             </div>
                             <button
                                 onClick={resultPrimaryMove.onClick}
-                                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700 md:w-auto"
                             >
                                 {resultPrimaryMove.actionLabel}
                                 <ChevronDown size={16} className="-rotate-90" />
@@ -364,7 +364,7 @@ export const ResultPage = () => {
                         </div>
                     </div>
 
-                    <div className="mb-4 grid gap-2 md:grid-cols-3">
+                    <div className="mb-4 grid gap-2 sm:grid-cols-3">
                         <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">BEST MATCH</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{topModel.brand}</div>
@@ -384,7 +384,7 @@ export const ResultPage = () => {
                     <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                         <div className="min-w-0 md:max-w-[58%]">
                             <div className="text-[11px] font-black tracking-[0.18em] text-golf-700">BEST MATCH</div>
-                            <h3 className="mt-2 text-xl font-black text-trust-navy md:text-3xl">
+                            <h3 className="mt-2 text-lg font-black text-trust-navy md:text-3xl">
                                 {topModel.brand} {topModel.modelName}
                             </h3>
                             <p className="mt-2 text-sm leading-6 text-slate-600 md:text-base">

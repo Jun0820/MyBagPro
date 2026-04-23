@@ -171,7 +171,7 @@ export const ComparePage = () => {
           前のページへ戻る
         </button>
 
-        <section className="rounded-[1.5rem] border border-golf-200 bg-golf-50 px-4 py-4 shadow-sm md:rounded-[2rem] md:px-6">
+        <section className="rounded-[1.35rem] border border-golf-200 bg-golf-50 px-4 py-4 shadow-sm md:rounded-[2rem] md:px-6">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>
               <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{shortlistPrimaryMove.eyebrow}</div>
@@ -180,7 +180,7 @@ export const ComparePage = () => {
             </div>
             <button
               onClick={shortlistPrimaryMove.onClick}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700 md:w-auto"
             >
               {shortlistPrimaryMove.actionLabel}
               <ArrowRight size={16} />
@@ -193,7 +193,7 @@ export const ComparePage = () => {
             <GitCompareArrows size={14} />
             比較候補
           </div>
-          <h1 className="mt-4 text-[2rem] font-black tracking-tight text-trust-navy md:mt-5 md:text-6xl">
+          <h1 className="mt-4 text-[1.75rem] font-black tracking-tight text-trust-navy md:mt-5 md:text-6xl">
             診断で残した
             <span className="text-golf-700">比較候補</span>
             を見比べる
@@ -680,7 +680,7 @@ export const ComparePage = () => {
         前のページへ戻る
       </button>
 
-      <section className="rounded-[1.5rem] border border-golf-200 bg-golf-50 px-4 py-4 shadow-sm md:rounded-[2rem] md:px-6">
+      <section className="rounded-[1.35rem] border border-golf-200 bg-golf-50 px-4 py-4 shadow-sm md:rounded-[2rem] md:px-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{comparePrimaryMove.eyebrow}</div>
@@ -689,7 +689,7 @@ export const ComparePage = () => {
           </div>
           <button
             onClick={comparePrimaryMove.onClick}
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700 md:w-auto"
           >
             {comparePrimaryMove.actionLabel}
             <ArrowRight size={16} />
@@ -697,12 +697,12 @@ export const ComparePage = () => {
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-slate-200 bg-white px-5 py-6 shadow-sm md:px-10 md:py-10">
+      <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-5 shadow-sm md:rounded-[2rem] md:px-10 md:py-10">
         <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-xs font-black text-cyan-700">
           <GitCompareArrows size={14} />
           比較ページ
         </div>
-        <h1 className="mt-5 text-3xl font-black tracking-tight text-trust-navy md:text-6xl">
+        <h1 className="mt-4 text-[1.9rem] font-black tracking-tight text-trust-navy md:mt-5 md:text-6xl">
           {targetSetting.name} と
           <span className="text-golf-700">自分のバッグ</span>
           を比べる
@@ -721,7 +721,7 @@ export const ComparePage = () => {
           </div>
         )}
 
-        <div className="mt-8 grid gap-4 md:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 md:mt-8 md:gap-4 lg:grid-cols-4">
           <div className="rounded-[1.5rem] bg-slate-50 p-5">
             <div className="text-xs font-black text-slate-400">参考にする人</div>
             <div className="mt-2 text-base font-black text-trust-navy">{targetSetting.name}</div>
@@ -749,13 +749,13 @@ export const ComparePage = () => {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 md:p-8">
-          <div className="mb-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 md:p-5">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-8">
+          <div className="mb-5 rounded-[1.35rem] border border-slate-200 bg-slate-50 p-4 md:mb-6 md:rounded-[1.5rem] md:p-5">
             <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
               <GitCompareArrows size={14} />
               あなたの現在地
             </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-2xl bg-white p-4">
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">バッグ登録</div>
                 <div className="mt-2 text-2xl font-black text-trust-navy">{currentBagCount}本</div>

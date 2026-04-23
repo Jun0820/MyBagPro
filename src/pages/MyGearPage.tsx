@@ -520,7 +520,7 @@ export const MyGearPage = () => {
                 {activeTab === 'view' && (
                     <div className="space-y-6 pb-12">
                         {showWelcomeBanner && (
-                            <section className="rounded-[28px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-5 shadow-lg md:p-6">
+                            <section className="rounded-[24px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-4 shadow-lg md:rounded-[28px] md:p-6">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                                     <div className="space-y-2">
                                         <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
@@ -528,7 +528,7 @@ export const MyGearPage = () => {
                                             Welcome
                                         </div>
                                         <div>
-                                            <h2 className="text-xl font-black tracking-tight text-trust-navy md:text-2xl">
+                                            <h2 className="text-lg font-black tracking-tight text-trust-navy md:text-2xl">
                                                 保存と再開が使える状態になりました
                                             </h2>
                                             <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">
@@ -539,7 +539,7 @@ export const MyGearPage = () => {
 
                                     <button
                                         onClick={dismissWelcome}
-                                        className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-500 transition-colors hover:bg-slate-50"
+                                        className="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-500 transition-colors hover:bg-slate-50 md:w-auto"
                                     >
                                         閉じる
                                     </button>
@@ -563,7 +563,7 @@ export const MyGearPage = () => {
                                                 dismissWelcome();
                                                 primaryMove.onClick();
                                             }}
-                                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
+                                            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700 md:w-auto"
                                         >
                                             {primaryMove.actionLabel}
                                             <ArrowRight size={15} />
@@ -604,7 +604,7 @@ export const MyGearPage = () => {
                         )}
 
                         <section className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-                            <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
+                            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-xl md:rounded-[32px] md:p-6">
                                 <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
                                     <div className="space-y-3">
                                         <div className="inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
@@ -612,7 +612,7 @@ export const MyGearPage = () => {
                                             My Golf Home
                                         </div>
                                         <div>
-                                            <h1 className="text-3xl font-black tracking-tight text-trust-navy md:text-4xl">
+                                            <h1 className="text-2xl font-black tracking-tight text-trust-navy md:text-4xl">
                                                 {profile.name || 'あなた'}の現在地
                                             </h1>
                                             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
@@ -637,7 +637,7 @@ export const MyGearPage = () => {
                                     )}
                                 </div>
 
-                                <div className="mt-6 grid gap-4 md:grid-cols-4">
+                                <div className="mt-5 grid gap-3 sm:grid-cols-2 md:mt-6 md:gap-4 lg:grid-cols-4">
                                     <div className="rounded-2xl bg-slate-50 p-4">
                                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Head Speed</div>
                                         <div className="mt-2 text-2xl font-black text-trust-navy">
@@ -692,14 +692,14 @@ export const MyGearPage = () => {
                                     <div className="mt-3 flex flex-col gap-3 sm:flex-row">
                                         <button
                                             onClick={() => void manualSave()}
-                                            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-trust-navy transition-colors hover:bg-slate-50"
+                                            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-trust-navy transition-colors hover:bg-slate-50 sm:w-auto"
                                         >
                                             <CheckCircle2 size={14} />
                                             今すぐ保存する
                                         </button>
                                         <button
                                             onClick={() => void syncWithSupabase()}
-                                            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-100"
+                                            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto"
                                         >
                                             <Loader2 size={14} className={saveStatus === 'saving' ? 'animate-spin' : ''} />
                                             クラウドから再読み込み
@@ -753,7 +753,7 @@ export const MyGearPage = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-6 grid gap-3 md:grid-cols-3">
+                                <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                                     <button
                                         onClick={primaryMove.onClick}
                                         className="rounded-2xl border border-golf-200 bg-golf-50 px-5 py-4 text-left text-trust-navy transition-colors hover:bg-golf-100"
