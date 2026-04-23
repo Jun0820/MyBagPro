@@ -78,6 +78,26 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const isUuid = (value: string) =>
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+
+    const generateUuid = () => {
+        if (typeof globalThis !== 'undefined' && globalThis.crypto?.randomUUID) {
+            return globalThis.crypto.randomUUID();
+        }
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (char) => {
+            const rand = Math.random() * 16 | 0;
+            const value = char === 'x' ? rand : (rand & 0x3) | 0x8;
+            return value.toString(16);
+        });
+    };
+
+    const normalizeClubIds = (clubs: UserProfile['myBag']['clubs']) =>
+        clubs.map((club) => ({
+            ...club,
+            id: typeof club.id === 'string' && isUuid(club.id) ? club.id : generateUuid(),
+        }));
+
     // Handle Supabase Auth State
     useEffect(() => {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -223,7 +243,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     const deleteResult = await supabase.from('clubs').delete().eq('user_id', user.id);
                     assertSupabaseOk(deleteResult, 'clubs delete before auto-save');
                     if (profile.myBag.clubs.length > 0) {
-                        const clubPayloads = profile.myBag.clubs.map(c => ({
+                        const normalizedClubs = normalizeClubIds(profile.myBag.clubs);
+                        const clubPayloads = normalizedClubs.map(c => ({
                             id: c.id, // Include stable ID
                             user_id: user.id,
                             category: c.category,
@@ -238,6 +259,15 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         }));
                         const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
                         assertSupabaseOk(clubsUpsertResult, 'clubs auto-save');
+                        if (normalizedClubs.some((club, index) => club.id !== profile.myBag.clubs[index]?.id)) {
+                            setProfile((prev) => ({
+                                ...prev,
+                                myBag: {
+                                    ...prev.myBag,
+                                    clubs: normalizedClubs,
+                                },
+                            }));
+                        }
                     }
                 }
 
@@ -290,7 +320,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 const deleteResult = await supabase.from('clubs').delete().eq('user_id', user.id);
                 assertSupabaseOk(deleteResult, 'clubs delete before manual-save');
                 if (profile.myBag.clubs.length > 0) {
-                    const clubPayloads = profile.myBag.clubs.map(c => ({
+                    const normalizedClubs = normalizeClubIds(profile.myBag.clubs);
+                    const clubPayloads = normalizedClubs.map(c => ({
                         id: c.id, // Include stable ID
                         user_id: user.id,
                         category: c.category,
@@ -305,6 +336,15 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     }));
                     const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
                     assertSupabaseOk(clubsUpsertResult, 'clubs manual-save');
+                    if (normalizedClubs.some((club, index) => club.id !== profile.myBag.clubs[index]?.id)) {
+                        setProfile((prev) => ({
+                            ...prev,
+                            myBag: {
+                                ...prev.myBag,
+                                clubs: normalizedClubs,
+                            },
+                        }));
+                    }
                 }
             }
             setSaveStatus('saved');

@@ -33,6 +33,17 @@ const getCategoryLabel = (cat: string) => {
     }
 };
 
+const generateClubId = () => {
+    if (typeof globalThis !== 'undefined' && globalThis.crypto?.randomUUID) {
+        return globalThis.crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (char) => {
+        const rand = Math.random() * 16 | 0;
+        const value = char === 'x' ? rand : (rand & 0x3) | 0x8;
+        return value.toString(16);
+    });
+};
+
 const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, onDiagnose: (c: Club) => void }) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
 
@@ -475,7 +486,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         onUpdate((prev) => ({
             ...prev,
             clubs: [...prev.clubs, {
-                id: Math.random().toString(36).substring(7),
+                id: generateClubId(),
                 category: cat as TargetCategory,
                 brand: '',
                 model: customModel || '',
@@ -498,7 +509,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             clubs: [
                 ...prev.clubs,
                 {
-                    id: Math.random().toString(36).substring(7),
+                    id: generateClubId(),
                     category,
                     brand: '',
                     model: '',
@@ -544,7 +555,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 if (!isAppropriate(val, requestedCategory)) return null;
 
                 return {
-                    id: Math.random().toString(36).substring(7),
+                    id: generateClubId(),
                     category: actualCategory as TargetCategory,
                     brand: batchPreset.brand,
                     model: batchPreset.model || '',
