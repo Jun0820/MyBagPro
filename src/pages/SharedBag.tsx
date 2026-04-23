@@ -90,7 +90,7 @@ export const SharedBag = () => {
                 number: club.number || '',
                 loft: club.loft || '',
                 shaft: club.shaft || '',
-                flex: club.flex || '',
+                flex: '',
                 distance: club.distance || '',
                 worry: club.worry || '',
               })),
