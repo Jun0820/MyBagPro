@@ -39,6 +39,17 @@ const categoryToDiagnosisPath = (category?: string | null) => {
   }
 };
 
+const buildCompareDiagnosisPath = (category: string | undefined | null, profileSlug: string, profileName: string) => {
+  const basePath = categoryToDiagnosisPath(category);
+  const params = new URLSearchParams({
+    source: 'compare',
+    priority: category || '',
+    profile: profileName,
+    profileSlug,
+  });
+  return `${basePath}?${params.toString()}`;
+};
+
 const formatGapMessage = (current: string, target: string) => {
   if (current === '未登録') return 'このカテゴリが未登録なので、まずは入力すると比較しやすくなります。';
   if (target === '未掲載') return '参考プロフィール側でこのカテゴリは未掲載です。';
@@ -452,7 +463,7 @@ export const ComparePage = () => {
             reference_profile_name: targetSetting.name,
             priority_category: firstPriorityRow.category,
           });
-          navigate(categoryToDiagnosisPath(firstPriorityRow.category));
+          navigate(buildCompareDiagnosisPath(firstPriorityRow.category, targetSetting.slug, targetSetting.name));
         },
         variant: 'secondary',
       });
@@ -490,7 +501,11 @@ export const ComparePage = () => {
           reference_profile_slug: targetSetting.slug,
           reference_profile_name: targetSetting.name,
         });
-        navigate('/diagnosis');
+        navigate(`/diagnosis?${new URLSearchParams({
+          source: 'compare',
+          profile: targetSetting.name,
+          profileSlug: targetSetting.slug,
+        }).toString()}`);
       },
       variant: 'primary',
     });
@@ -648,7 +663,7 @@ export const ComparePage = () => {
                           reference_profile_name: targetSetting.name,
                           priority_category: row.category,
                         });
-                        navigate(categoryToDiagnosisPath(row.category));
+                        navigate(buildCompareDiagnosisPath(row.category, targetSetting.slug, targetSetting.name));
                       }}
                       className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-left transition-colors hover:bg-slate-100"
                     >
@@ -772,7 +787,7 @@ export const ComparePage = () => {
                           reference_profile_name: targetSetting.name,
                           priority_category: row.category,
                         });
-                        navigate(categoryToDiagnosisPath(row.category));
+                        navigate(buildCompareDiagnosisPath(row.category, targetSetting.slug, targetSetting.name));
                       }}
                       className="inline-flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-sm font-black text-trust-navy transition-colors hover:bg-slate-100"
                     >

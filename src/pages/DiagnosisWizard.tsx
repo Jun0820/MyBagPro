@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { TargetCategory, DiagnosisMode, Gender, SkillLevel, MissType, SwingTempo } from '../types/golf';
 import type { UserProfile } from '../types/golf';
@@ -25,7 +25,17 @@ export const DiagnosisWizard = () => {
     const { step, setStep, profile, updateProfile, runDiagnosis, isAnalyzing, diagnosisError, setProfile, user, setShowAuth } = useDiagnosis();
     const navigate = useNavigate();
     const { category } = useParams<{ category: string }>();
+    const [searchParams] = useSearchParams();
     const [manualBackNavigation, setManualBackNavigation] = useState(false);
+    const compareSource = searchParams.get('source') === 'compare';
+    const comparePriorityCategory = searchParams.get('priority');
+    const compareProfileName = searchParams.get('profile');
+    const compareBannerTitle = comparePriorityCategory
+        ? `${comparePriorityCategory} の差分を見直します`
+        : '比較ページで見つけた差分を見直します';
+    const compareBannerDescription = compareProfileName
+        ? `${compareProfileName} と比べた中で気になった差分から先に整える流れです。`
+        : '比較ページで気になった差分から、そのまま診断へ進めるようにしています。';
 
     const goToDiagnosisEntry = () => {
         setManualBackNavigation(true);
@@ -621,6 +631,13 @@ export const DiagnosisWizard = () => {
                                 この診断はβ版です。精度向上中です。
                             </div>
                         </div>
+                        {compareSource && (
+                            <div className="mt-4 max-w-2xl rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-4 text-left">
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
+                                <div className="mt-2 text-base font-black text-trust-navy">{compareBannerTitle}</div>
+                                <div className="mt-2 text-sm leading-6 text-slate-600">{compareBannerDescription}</div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -699,6 +716,13 @@ export const DiagnosisWizard = () => {
         return (
             <StepCard title="どう診断したいですか？" subtitle="まずは、どこまで見直したいかを選ぶだけで大丈夫です。" onBack={prevStep}>
                 <div className="space-y-4">
+                    {compareSource && (
+                        <div className="rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-4 text-left">
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
+                            <div className="mt-2 text-base font-black text-trust-navy">{compareBannerTitle}</div>
+                            <div className="mt-2 text-sm leading-6 text-slate-600">{compareBannerDescription}</div>
+                        </div>
+                    )}
                     <OptionButton
                         label="フルで見直す"
                         subLabel="ヘッドとシャフトをまとめて提案します。"
