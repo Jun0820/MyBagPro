@@ -189,6 +189,11 @@ export interface UserSocialLinks {
         bestScore?: number;
         averageScore?: number;
     };
+    bagSnapshot?: {
+        clubs: Club[];
+        ball?: string;
+        updatedAt?: string;
+    };
 }
 
 // ウェッジ詳細用途

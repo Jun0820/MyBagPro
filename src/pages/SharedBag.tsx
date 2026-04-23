@@ -73,6 +73,7 @@ export const SharedBag = () => {
           if (clubsError) throw clubsError;
 
           const sns = normalizeUserSocialLinks(profile.sns_links);
+          const snapshotClubs = sns.bagSnapshot?.clubs || [];
 
           setData({
             name: profile.name || 'Anonymous Golfer',
@@ -82,18 +83,23 @@ export const SharedBag = () => {
             averageScore: sns.profileStats?.averageScore,
             coverPhoto: profile.cover_photo || undefined,
             setting: {
-              clubs: (clubs || []).map((club) => ({
-                id: club.id,
-                category: club.category,
-                brand: club.brand || '',
-                model: club.model || '',
-                number: club.number || '',
-                loft: club.loft || '',
-                shaft: club.shaft || '',
-                flex: '',
-                distance: club.distance || '',
-                worry: club.worry || '',
-              })),
+              clubs: (clubs && clubs.length > 0)
+                ? clubs.map((club) => {
+                    const snapshot = snapshotClubs.find((item) => item.id === club.id);
+                    return {
+                      id: club.id,
+                      category: club.category,
+                      brand: club.brand || '',
+                      model: club.model || '',
+                      number: snapshot?.number || '',
+                      loft: club.loft || '',
+                      shaft: club.shaft || '',
+                      flex: snapshot?.flex || '',
+                      distance: club.distance || '',
+                      worry: snapshot?.worry || '',
+                    };
+                  })
+                : snapshotClubs,
               ball: profile.current_ball || '',
             },
           });
