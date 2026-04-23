@@ -266,17 +266,18 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     // Persistence with Status Feedback
     useEffect(() => {
         const saveData = async () => {
+            const activeUser = userRef.current;
+            const activeProfile = profileRef.current;
+
+            if (activeUser.isLoggedIn && activeUser.id && !isInitialSyncComplete) {
+                setSaveStatus('idle');
+                return;
+            }
+
             setSaveStatus('saving');
             try {
-                const activeUser = userRef.current;
-                const activeProfile = profileRef.current;
                 // Supabase (Remote)
                 if (activeUser.isLoggedIn && activeUser.id) {
-                    // CRITICAL: Prevent overwriting remote data if initial sync hasn't finished yet
-                    if (!isInitialSyncComplete) {
-                        return;
-                    }
-
                     const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
                     const bagSnapshot = buildBagSnapshot(
                         normalizedClubs,
