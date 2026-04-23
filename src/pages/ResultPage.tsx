@@ -62,6 +62,7 @@ export const ResultPage = () => {
     const compareSource = searchParams.get('source') === 'compare';
     const comparePriorityCategory = searchParams.get('priority');
     const compareProfileName = searchParams.get('profile');
+    const compareProfileSlug = searchParams.get('profileSlug');
     const compareBannerTitle = comparePriorityCategory
         ? `${comparePriorityCategory} の差分を見直した結果です`
         : '比較ページで見つけた差分を見直した結果です';
@@ -203,6 +204,22 @@ export const ResultPage = () => {
         navigate('/mypage');
     };
 
+    const handleSaveAndReturnToCompare = () => {
+        if (!Array.isArray(result.rankings) || result.rankings.length === 0) return;
+        saveDiagnosisRankingsToCompare(profile, result.rankings);
+        trackEvent('save_compare_shortlist', {
+            diagnosis_category: profile.targetCategory || 'unknown',
+            shortlist_count: Math.min(result.rankings.length, 3),
+            top_product_name: topModel?.modelName || '',
+            return_target: 'compare',
+        });
+        if (compareProfileSlug) {
+            navigate(`/compare?setting=${encodeURIComponent(compareProfileSlug)}`);
+            return;
+        }
+        navigate('/compare?mode=shortlist');
+    };
+
     return (
         <div className="animate-fadeIn min-h-screen bg-[#f8fafc] pb-16 text-slate-900 md:pb-20">
             <div className="mx-auto w-full max-w-6xl px-4 pt-2 md:px-6">
@@ -317,6 +334,15 @@ export const ResultPage = () => {
                             >
                                 比較候補を残す
                             </button>
+
+                            {compareSource && (
+                                <button
+                                    onClick={handleSaveAndReturnToCompare}
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-5 py-3.5 text-sm font-black text-cyan-700 transition hover:bg-cyan-100"
+                                >
+                                    比較に戻って差分を見る
+                                </button>
+                            )}
 
                             <button
                                 onClick={() => {
