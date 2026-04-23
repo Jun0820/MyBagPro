@@ -433,7 +433,7 @@ export const MyGearPage = () => {
                                                 {profile.name || 'あなた'}の現在地
                                             </h1>
                                             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
-                                                セッティング登録を起点に、自動分析、診断、比較、購入までつなげるためのホームです。
+                                                保存した診断、比較候補、お気に入りを見返しながら、次に何を残して何を見直すかを決めるためのホームです。
                                             </p>
                                         </div>
                                     </div>
@@ -585,13 +585,13 @@ export const MyGearPage = () => {
                         {(compareShortlist.length > 0 || recentlyViewed.length > 0 || recentHistory.length > 0 || favoriteClubs.length > 0) && (
                             <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
                                 <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-                                    <div>
-                                        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
-                                            <Sparkles size={14} />
-                                            検討中
-                                        </div>
+                                        <div>
+                                            <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-trust-navy">
+                                                <Sparkles size={14} />
+                                                検討中
+                                            </div>
                                         <p className="mt-2 text-sm text-slate-500">
-                                            保存した診断、比較候補、最近見たものをまとめて見返せます。
+                                            何を残し、何を比較し、次にどこを見るかをこの中で続けられます。
                                         </p>
                                     </div>
                                     <div className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
@@ -603,7 +603,7 @@ export const MyGearPage = () => {
                                         <div>
                                             <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
                                                 <History size={13} />
-                                                保存した診断
+                                                残している診断
                                             </div>
                                             <div className="space-y-3">
                                                 {recentHistory.map((item) => (
@@ -631,7 +631,7 @@ export const MyGearPage = () => {
                                                                 onClick={() => addSavedDiagnosisToCompare(item)}
                                                                 className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
                                                             >
-                                                                比較候補に追加
+                                                                比較へ残す
                                                                 <ArrowRight size={14} />
                                                             </button>
                                                         )}
@@ -645,13 +645,13 @@ export const MyGearPage = () => {
                                         <div>
                                             <div className="mb-3 flex items-center justify-between gap-3">
                                                 <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                    比較候補
+                                                    残している比較
                                                 </div>
                                                 <button
                                                     onClick={() => navigate('/compare?mode=shortlist')}
                                                     className="text-[11px] font-black text-trust-navy transition-colors hover:text-slate-700"
                                                 >
-                                                    比較ページで開く
+                                                    比較を開く
                                                 </button>
                                             </div>
                                             <div className="space-y-4">
@@ -690,7 +690,7 @@ export const MyGearPage = () => {
                                                             onClick={() => openCompareCandidate(item)}
                                                             className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
                                                         >
-                                                            候補を見る
+                                                            詳細を見る
                                                             <ArrowRight size={14} />
                                                         </button>
                                                     </div>
@@ -740,7 +740,7 @@ export const MyGearPage = () => {
                                                                 onClick={() => navigate('/compare?mode=shortlist')}
                                                                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto"
                                                             >
-                                                                比較へ戻る
+                                                                比較を開く
                                                             </button>
                                                             <button
                                                                 onClick={() => setFavoriteClubs(removeFavoriteClub(item.id))}
@@ -759,7 +759,7 @@ export const MyGearPage = () => {
                                         <div>
                                             <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
                                                 <BookOpen size={13} />
-                                                最近見たもの
+                                                直近で見たもの
                                             </div>
                                             <div className="space-y-3">
                                                 {recentlyViewed.slice(0, 4).map((item) => (
