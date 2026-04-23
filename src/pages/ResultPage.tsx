@@ -213,11 +213,20 @@ export const ResultPage = () => {
             top_product_name: topModel?.modelName || '',
             return_target: 'compare',
         });
+        const reviewedParams = new URLSearchParams();
+        reviewedParams.set('reviewed', '1');
+        if (comparePriorityCategory) reviewedParams.set('reviewedCategory', comparePriorityCategory);
+        if (topModel?.brand || topModel?.modelName) {
+            reviewedParams.set('reviewedModel', [topModel?.brand, topModel?.modelName].filter(Boolean).join(' '));
+        }
         if (compareProfileSlug) {
-            navigate(`/compare?setting=${encodeURIComponent(compareProfileSlug)}`);
+            const params = new URLSearchParams(reviewedParams);
+            params.set('setting', compareProfileSlug);
+            navigate(`/compare?${params.toString()}`);
             return;
         }
-        navigate('/compare?mode=shortlist');
+        reviewedParams.set('mode', 'shortlist');
+        navigate(`/compare?${reviewedParams.toString()}`);
     };
 
     return (

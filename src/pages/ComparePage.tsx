@@ -363,6 +363,9 @@ export const ComparePage = () => {
   const previousMissingCount = hasPreviousMissingCount ? Number(searchParams.get('previousMissing')) : null;
   const previousMatchPercent = hasPreviousMatchPercent ? Number(searchParams.get('previousMatch')) : null;
   const refreshedFromBag = searchParams.get('refreshed') === '1';
+  const refreshedFromDiagnosis = searchParams.get('reviewed') === '1';
+  const reviewedCategory = searchParams.get('reviewedCategory');
+  const reviewedModel = searchParams.get('reviewedModel');
   const targetDriver = targetSetting.clubs.find((club) => club.category === 'Driver');
   const targetDriverDetail = targetDriver?.productSlug ? getDriverDetailBySlug(targetDriver.productSlug) : undefined;
   const compareReturnTarget = (() => {
@@ -401,6 +404,12 @@ export const ComparePage = () => {
         : `比較に戻りました。いまのバッグ内容を反映しています。`
       : refreshedFromBag
       ? '比較に戻りました。いまのバッグ内容を反映しています。'
+      : null;
+  const compareDiagnosisMessage =
+    refreshedFromDiagnosis && reviewedCategory
+      ? `${reviewedCategory} を診断して戻りました。候補は「${reviewedModel || '今回のおすすめ'}」として残しています。差分の見え方をもう一度確認できます。`
+      : refreshedFromDiagnosis
+      ? '診断結果から比較へ戻りました。残した候補を見比べながら、次に残すものを決められます。'
       : null;
 
   const nextActions = useMemo(() => {
@@ -536,6 +545,11 @@ export const ComparePage = () => {
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:mt-5 md:text-base md:leading-8">
           どこが同じで、どこが違うのかを整理するページです。まず全体の近さを見て、そのあと差分の大きいカテゴリから見直すと使いやすいです。
         </p>
+        {compareDiagnosisMessage && (
+          <div className="mt-5 rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm font-bold leading-relaxed text-cyan-900">
+            {compareDiagnosisMessage}
+          </div>
+        )}
         {compareRefreshMessage && (
           <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold leading-relaxed text-emerald-800">
             {compareRefreshMessage}
