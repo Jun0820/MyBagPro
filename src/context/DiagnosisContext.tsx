@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from 'react';
 import {
     type UserAccount, type UserProfile, type DiagnosisHistoryItem,
     INITIAL_ACCOUNT, INITIAL_PROFILE
@@ -61,6 +61,21 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [showMyPage, setShowMyPage] = useState(false);
     const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
+    const userRef = useRef(user);
+    const profileRef = useRef(profile);
+    const resultDataRef = useRef(resultData);
+
+    useEffect(() => {
+        userRef.current = user;
+    }, [user]);
+
+    useEffect(() => {
+        profileRef.current = profile;
+    }, [profile]);
+
+    useEffect(() => {
+        resultDataRef.current = resultData;
+    }, [resultData]);
 
     const persistLocalSnapshot = (nextUser: UserAccount, nextProfile: UserProfile, nextResultData: DiagnosisResult | null) => {
         localStorage.setItem('mybagpro_user', JSON.stringify(nextUser));
@@ -130,6 +145,22 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 worry: snapshot?.worry || '',
             };
         });
+    };
+
+    const verifyClubWrite = async (userId: string, expectedIds: string[]) => {
+        const { data, error } = await supabase
+            .from('clubs')
+            .select('id')
+            .eq('user_id', userId);
+
+        assertSupabaseOk({ error }, 'clubs verify');
+
+        const savedIds = new Set((data || []).map((club) => club.id));
+        const missingIds = expectedIds.filter((id) => !savedIds.has(id));
+
+        if (expectedIds.length > 0 && missingIds.length > 0) {
+            throw new Error(`clubs verify: missing ${missingIds.length} saved clubs`);
+        }
     };
 
     // Handle Supabase Auth State
@@ -237,35 +268,37 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         const saveData = async () => {
             setSaveStatus('saving');
             try {
+                const activeUser = userRef.current;
+                const activeProfile = profileRef.current;
                 // Supabase (Remote)
-                if (user.isLoggedIn && user.id) {
+                if (activeUser.isLoggedIn && activeUser.id) {
                     // CRITICAL: Prevent overwriting remote data if initial sync hasn't finished yet
                     if (!isInitialSyncComplete) {
                         return;
                     }
 
-                    const normalizedClubs = normalizeClubIds(profile.myBag.clubs);
+                    const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
                     const bagSnapshot = buildBagSnapshot(
                         normalizedClubs,
-                        profile.myBag.ball || profile.currentBall || '',
+                        activeProfile.myBag.ball || activeProfile.currentBall || '',
                     );
 
                     // Update Profile
                     const profileUpsertResult = await supabase.from('profiles').upsert({
-                        id: user.id,
-                        name: profile.name,
-                        gender: profile.gender,
-                        age: profile.age,
-                        head_speed: profile.headSpeed,
-                        birthdate: profile.birthdate,
-                        golf_history: profile.golfHistory,
-                        current_ball: profile.myBag.ball || profile.currentBall || null,
-                        sns_links: buildStoredSocialLinks(profile.snsLinks, {
-                            bestScore: profile.bestScore,
-                            averageScore: profile.averageScore,
+                        id: activeUser.id,
+                        name: activeProfile.name,
+                        gender: activeProfile.gender,
+                        age: activeProfile.age,
+                        head_speed: activeProfile.headSpeed,
+                        birthdate: activeProfile.birthdate,
+                        golf_history: activeProfile.golfHistory,
+                        current_ball: activeProfile.myBag.ball || activeProfile.currentBall || null,
+                        sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
+                            bestScore: activeProfile.bestScore,
+                            averageScore: activeProfile.averageScore,
                         }, bagSnapshot),
-                        cover_photo: profile.coverPhoto,
-                        is_public: profile.isPublic,
+                        cover_photo: activeProfile.coverPhoto,
+                        is_public: activeProfile.isPublic,
                         updated_at: new Date().toISOString()
                     });
                     assertSupabaseOk(profileUpsertResult, 'profiles auto-save');
@@ -273,12 +306,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     // Sync Clubs (Careful with mass upsert/delete)
                     // For simplicity, we'll delete and re-insert for now in this MVP, 
                     // though delta syncing is better for production.
-                    const deleteResult = await supabase.from('clubs').delete().eq('user_id', user.id);
+                    const deleteResult = await supabase.from('clubs').delete().eq('user_id', activeUser.id);
                     assertSupabaseOk(deleteResult, 'clubs delete before auto-save');
                     if (normalizedClubs.length > 0) {
                         const clubPayloads = normalizedClubs.map(c => ({
                             id: c.id, // Include stable ID
-                            user_id: user.id,
+                            user_id: activeUser.id,
                             category: c.category,
                             brand: c.brand,
                             model: c.model,
@@ -288,7 +321,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         }));
                         const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
                         assertSupabaseOk(clubsUpsertResult, 'clubs auto-save');
-                        if (normalizedClubs.some((club, index) => club.id !== profile.myBag.clubs[index]?.id)) {
+                        await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
+                        if (normalizedClubs.some((club, index) => club.id !== activeProfile.myBag.clubs[index]?.id)) {
                             setProfile((prev) => ({
                                 ...prev,
                                 myBag: {
@@ -297,6 +331,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                                 },
                             }));
                         }
+                    } else {
+                        await verifyClubWrite(activeUser.id, []);
                     }
                 }
 
@@ -318,44 +354,48 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const manualSave = async () => {
         setSaveStatus('saving');
         try {
-            persistLocalSnapshot(user, profile, resultData);
+            const activeUser = userRef.current;
+            const activeProfile = profileRef.current;
+            const activeResultData = resultDataRef.current;
+
+            persistLocalSnapshot(activeUser, activeProfile, activeResultData);
             
             // Supabase (Remote)
-            if (user.isLoggedIn && user.id) {
+            if (activeUser.isLoggedIn && activeUser.id) {
                 if (!isInitialSyncComplete) {
                     await syncWithSupabase();
                 }
-                const normalizedClubs = normalizeClubIds(profile.myBag.clubs);
+                const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
                 const bagSnapshot = buildBagSnapshot(
                     normalizedClubs,
-                    profile.myBag.ball || profile.currentBall || '',
+                    activeProfile.myBag.ball || activeProfile.currentBall || '',
                 );
 
                 const profileUpsertResult = await supabase.from('profiles').upsert({
-                    id: user.id,
-                    name: profile.name,
-                    gender: profile.gender,
-                    age: profile.age,
-                    head_speed: profile.headSpeed,
-                    birthdate: profile.birthdate,
-                    golf_history: profile.golfHistory,
-                    current_ball: profile.myBag.ball || profile.currentBall || null,
-                    sns_links: buildStoredSocialLinks(profile.snsLinks, {
-                        bestScore: profile.bestScore,
-                        averageScore: profile.averageScore,
+                    id: activeUser.id,
+                    name: activeProfile.name,
+                    gender: activeProfile.gender,
+                    age: activeProfile.age,
+                    head_speed: activeProfile.headSpeed,
+                    birthdate: activeProfile.birthdate,
+                    golf_history: activeProfile.golfHistory,
+                    current_ball: activeProfile.myBag.ball || activeProfile.currentBall || null,
+                    sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
+                        bestScore: activeProfile.bestScore,
+                        averageScore: activeProfile.averageScore,
                     }, bagSnapshot),
-                    cover_photo: profile.coverPhoto,
-                    is_public: profile.isPublic,
+                    cover_photo: activeProfile.coverPhoto,
+                    is_public: activeProfile.isPublic,
                     updated_at: new Date().toISOString()
                 });
                 assertSupabaseOk(profileUpsertResult, 'profiles manual-save');
 
-                const deleteResult = await supabase.from('clubs').delete().eq('user_id', user.id);
+                const deleteResult = await supabase.from('clubs').delete().eq('user_id', activeUser.id);
                 assertSupabaseOk(deleteResult, 'clubs delete before manual-save');
                 if (normalizedClubs.length > 0) {
                     const clubPayloads = normalizedClubs.map(c => ({
                         id: c.id, // Include stable ID
-                        user_id: user.id,
+                        user_id: activeUser.id,
                         category: c.category,
                         brand: c.brand,
                         model: c.model,
@@ -365,7 +405,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     }));
                     const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
                     assertSupabaseOk(clubsUpsertResult, 'clubs manual-save');
-                    if (normalizedClubs.some((club, index) => club.id !== profile.myBag.clubs[index]?.id)) {
+                    await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
+                    if (normalizedClubs.some((club, index) => club.id !== activeProfile.myBag.clubs[index]?.id)) {
                         setProfile((prev) => ({
                             ...prev,
                             myBag: {
@@ -374,6 +415,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                             },
                         }));
                     }
+                } else {
+                    await verifyClubWrite(activeUser.id, []);
                 }
             }
             setSaveStatus('saved');
