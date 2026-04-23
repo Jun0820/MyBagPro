@@ -114,6 +114,11 @@ export const MyGearPage = () => {
     const completionPercent = Math.round((completionPoints / 5) * 100);
     const recentHistory = (user.history || []).slice(0, 3);
     const considerationCount = compareShortlist.length + recentHistory.length + recentlyViewed.length + favoriteClubs.length;
+    const shouldShowFirstSteps =
+        user.isLoggedIn &&
+        profile.myBag.clubs.length < 3 &&
+        compareShortlist.length === 0 &&
+        recentHistory.length === 0;
 
     useEffect(() => {
         setCompareShortlist(getCompareShortlist());
@@ -435,6 +440,15 @@ export const MyGearPage = () => {
                                 まずはセッティング登録を始める
                             </button>
                         </div>
+
+                        <div className="mt-4 rounded-2xl border border-white bg-white/70 px-4 py-4">
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Why Register</div>
+                            <div className="mt-2 grid gap-2 md:grid-cols-3">
+                                <div className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-trust-navy">いまのクラブ構成が残る</div>
+                                <div className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-trust-navy">診断や比較の続きから戻れる</div>
+                                <div className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-trust-navy">ログイン後もクラウドで復元できる</div>
+                            </div>
+                        </div>
                     </section>
                 )}
 
@@ -552,6 +566,39 @@ export const MyGearPage = () => {
                                             <Loader2 size={14} className={saveStatus === 'saving' ? 'animate-spin' : ''} />
                                             クラウドから再読み込み
                                         </button>
+                                    </div>
+                                )}
+
+                                {shouldShowFirstSteps && (
+                                    <div className="mt-4 rounded-2xl border border-golf-200 bg-golf-50 px-5 py-4">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">First Steps</div>
+                                        <div className="mt-2 text-lg font-black tracking-tight text-trust-navy">最初の3ステップで、マイページがかなり使いやすくなります</div>
+                                        <div className="mt-3 grid gap-3 md:grid-cols-3">
+                                            <button
+                                                onClick={() => openBagTabWithFocus()}
+                                                className="rounded-2xl border border-golf-200 bg-white px-4 py-4 text-left transition-colors hover:bg-golf-100/40"
+                                            >
+                                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">1</div>
+                                                <div className="mt-1 text-base font-black text-trust-navy">ドライバーか7Iを登録</div>
+                                                <div className="mt-1 text-xs leading-relaxed text-slate-500">まずは代表番手だけで十分です。</div>
+                                            </button>
+                                            <button
+                                                onClick={() => navigate('/ball-diagnosis')}
+                                                className="rounded-2xl border border-golf-200 bg-white px-4 py-4 text-left transition-colors hover:bg-golf-100/40"
+                                            >
+                                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">2</div>
+                                                <div className="mt-1 text-base font-black text-trust-navy">ボール診断をする</div>
+                                                <div className="mt-1 text-xs leading-relaxed text-slate-500">クラブとの相性を早めに確認できます。</div>
+                                            </button>
+                                            <button
+                                                onClick={() => navigate('/compare')}
+                                                className="rounded-2xl border border-golf-200 bg-white px-4 py-4 text-left transition-colors hover:bg-golf-100/40"
+                                            >
+                                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">3</div>
+                                                <div className="mt-1 text-base font-black text-trust-navy">比較ページで差を見る</div>
+                                                <div className="mt-1 text-xs leading-relaxed text-slate-500">次に見直すカテゴリが見えます。</div>
+                                            </button>
+                                        </div>
                                     </div>
                                 )}
 

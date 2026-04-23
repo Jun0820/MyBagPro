@@ -158,6 +158,21 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                 </p>
             </div>
 
+            <div className="mb-5 grid gap-2 sm:grid-cols-3 md:mb-6">
+                <div className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-left">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save</div>
+                    <div className="mt-1 text-xs font-black text-trust-navy">My Bag と診断結果を保存</div>
+                </div>
+                <div className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-left">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Resume</div>
+                    <div className="mt-1 text-xs font-black text-trust-navy">比較やお気に入りの続きから再開</div>
+                </div>
+                <div className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-left">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Cloud</div>
+                    <div className="mt-1 text-xs font-black text-trust-navy">ログイン後もクラウドで復元</div>
+                </div>
+            </div>
+
             <div className="space-y-4 md:space-y-5">
                 {isRegister && (
                     <div className="animate-fadeInDown">
