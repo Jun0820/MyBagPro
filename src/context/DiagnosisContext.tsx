@@ -32,6 +32,8 @@ interface DiagnosisContextType {
     showMyPage: boolean;
     setShowMyPage: (show: boolean) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
+    isManualSaveInFlight: boolean;
+    saveErrorDetail: string | null;
     syncWithSupabase: () => Promise<void>;
     manualSave: () => Promise<void>;
 }
@@ -60,6 +62,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [showAuth, setShowAuth] = useState(false);
     const [showMyPage, setShowMyPage] = useState(false);
     const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+    const [isManualSaveInFlight, setIsManualSaveInFlight] = useState(false);
+    const [saveErrorDetail, setSaveErrorDetail] = useState<string | null>(null);
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
     const userRef = useRef(user);
     const profileRef = useRef(profile);
@@ -100,6 +104,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     const markSaveStatusSaved = () => {
         clearSaveStatusResetTimer();
+        setSaveErrorDetail(null);
         setSaveStatus('saved');
         saveStatusResetTimerRef.current = window.setTimeout(() => {
             setSaveStatus('idle');
@@ -239,20 +244,26 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         persistLocalSnapshot(activeUser, activeProfile, activeResultData);
 
         if (!activeUser.isLoggedIn || !activeUser.id) {
-            markSaveStatusSaved();
+            if (reason === 'manual') {
+                markSaveStatusSaved();
+            }
             return true;
         }
 
         if (!isInitialSyncComplete) {
             pendingRemoteSaveRef.current = true;
-            setSaveStatus('idle');
+            if (reason === 'manual') {
+                setSaveStatus('idle');
+            }
             return false;
         }
 
         const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
 
         if (reason === 'auto' && signature === lastRemoteSaveSignatureRef.current) {
-            markSaveStatusSaved();
+            if (saveStatus !== 'error') {
+                setSaveStatus('idle');
+            }
             return true;
         }
 
@@ -263,8 +274,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
         isRemoteSaveInFlightRef.current = true;
         pendingRemoteSaveRef.current = false;
-        clearSaveStatusResetTimer();
-        setSaveStatus('saving');
+        if (reason === 'manual') {
+            clearSaveStatusResetTimer();
+            setSaveErrorDetail(null);
+            setSaveStatus('saving');
+            setIsManualSaveInFlight(true);
+        }
 
         try {
             if (normalizedClubs.some((club, index) => club.id !== activeProfile.myBag.clubs[index]?.id)) {
@@ -295,13 +310,21 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             }
 
             lastRemoteSaveSignatureRef.current = signature;
-            markSaveStatusSaved();
+            if (reason === 'manual') {
+                markSaveStatusSaved();
+            } else if (saveStatus !== 'error') {
+                setSaveStatus('idle');
+            }
             return true;
         } catch (error) {
             console.error(`${reason} save error:`, error);
             setSaveStatus('error');
+            setSaveErrorDetail(error instanceof Error ? error.message : String(error));
             return false;
         } finally {
+            if (reason === 'manual') {
+                setIsManualSaveInFlight(false);
+            }
             isRemoteSaveInFlightRef.current = false;
             if (pendingRemoteSaveRef.current) {
                 pendingRemoteSaveRef.current = false;
@@ -340,6 +363,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return;
 
+        setSaveErrorDetail(null);
         setSaveStatus('saving');
         try {
             const { data: profileData, error: profileError } = await supabase
@@ -427,6 +451,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         } catch (e) {
             console.error("Sync error:", e);
             setSaveStatus('error');
+            setSaveErrorDetail(e instanceof Error ? e.message : String(e));
         } finally {
             setIsInitialSyncComplete(true);
             if (pendingRemoteSaveRef.current) {
@@ -610,6 +635,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             showAuth, setShowAuth,
             showMyPage, setShowMyPage,
             saveStatus,
+            isManualSaveInFlight,
+            saveErrorDetail,
             syncWithSupabase,
             manualSave
         }}>

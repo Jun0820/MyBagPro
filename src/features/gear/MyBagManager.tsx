@@ -237,6 +237,8 @@ interface MyBagManagerProps {
     onUpdate: (setting: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => void;
     onDiagnose?: (club: Club) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
+    isManualSaveInFlight?: boolean;
+    saveErrorDetail?: string | null;
     onManualSave?: () => void;
     onSaveAndReturn?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -259,6 +261,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     onUpdate,
     onDiagnose,
     saveStatus,
+    isManualSaveInFlight = false,
+    saveErrorDetail = null,
     onManualSave,
     onSaveAndReturn,
     onOpenBallDiagnosis,
@@ -434,8 +438,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             case 'saving':
                 return {
                     label: 'SAVING NOW',
-                    title: 'いまクラウドに保存しています',
-                    description: '入力した内容はこのまま保持されます。少し待てば最新状態へ切り替わります。',
+                    title: 'いま変更を保存しています',
+                    description: '押した内容をクラウドへ反映しています。通常は数秒で完了します。',
                     tone: 'border-amber-200 bg-amber-50 text-amber-800',
                     icon: <Loader2 size={14} className="animate-spin" />,
                 };
@@ -451,7 +455,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 return {
                     label: 'SAVE CHECK',
                     title: '保存をもう一度確認してください',
-                    description: '入力内容は画面に残っています。下の保存ボタンからもう一度送れます。',
+                    description: saveErrorDetail || '入力内容は画面に残っています。下の保存ボタンからもう一度送れます。',
                     tone: 'border-rose-200 bg-rose-50 text-rose-800',
                     icon: <Save size={14} />,
                 };
@@ -828,7 +832,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         onClick={() => onManualSave?.()} 
                         className="flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-trust-navy px-8 font-bold text-white shadow-lg transition-all hover:bg-slate-800 active:scale-95 lg:w-auto"
                     >
-                        {saveStatus === 'saving' ? (
+                        {isManualSaveInFlight ? (
                             <>
                                 <Loader2 size={18} className="animate-spin" />
                                 <span>保存中...</span>

@@ -75,6 +75,8 @@ export const MyGearPage = () => {
         setProfile,
         user,
         saveStatus,
+        isManualSaveInFlight,
+        saveErrorDetail,
         setStep,
         manualSave,
         syncWithSupabase,
@@ -442,7 +444,7 @@ export const MyGearPage = () => {
 
                     <div className="flex items-center justify-end gap-4">
                         <div className="hidden items-center gap-2 md:flex">
-                            {saveStatus === 'saving' ? (
+                            {isManualSaveInFlight ? (
                                 <div className="flex animate-pulse items-center gap-1.5 text-[10px] font-bold text-slate-400">
                                     <Loader2 size={12} className="animate-spin" /> 同期中...
                                 </div>
@@ -667,7 +669,7 @@ export const MyGearPage = () => {
                                     <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
                                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save Status</div>
                                         <div className="mt-2 flex flex-wrap items-center gap-2 text-sm font-bold text-trust-navy">
-                                            {saveStatus === 'saving' ? (
+                                            {isManualSaveInFlight ? (
                                                 <>
                                                     <Loader2 size={14} className="animate-spin text-golf-600" />
                                                     保存内容を同期しています
@@ -675,7 +677,7 @@ export const MyGearPage = () => {
                                             ) : saveStatus === 'error' ? (
                                                 <>
                                                     <CircleGauge size={14} className="text-amber-500" />
-                                                    保存でつまずいています。もう一度保存してください
+                                                    {saveErrorDetail || '保存でつまずいています。もう一度保存してください'}
                                                 </>
                                             ) : lastSavedAt ? (
                                                 <>
@@ -1119,6 +1121,8 @@ export const MyGearPage = () => {
                             navigate(categoryToDiagnosisPath(club.category));
                         }}
                         saveStatus={saveStatus}
+                        isManualSaveInFlight={isManualSaveInFlight}
+                        saveErrorDetail={saveErrorDetail}
                         onManualSave={manualSave}
                         onSaveAndReturn={
                             returnTo
