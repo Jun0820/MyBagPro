@@ -72,6 +72,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const assertSupabaseOk = (result: { error?: { message?: string } | null }, label: string) => {
+        if (result.error) {
+            throw new Error(`${label}: ${result.error.message || 'unknown supabase error'}`);
+        }
+    };
+
     // Handle Supabase Auth State
     useEffect(() => {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -102,11 +108,15 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
         setSaveStatus('saving');
         try {
-            const { data: profileData } = await supabase
+            const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
                 .eq('id', user.id)
                 .single();
+
+            if (profileError && profileError.message && !profileError.message.toLowerCase().includes('no rows')) {
+                throw new Error(`profiles sync: ${profileError.message}`);
+            }
 
             if (profileData) {
                 const normalizedSocials = normalizeUserSocialLinks(profileData.sns_links);
@@ -131,10 +141,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 }));
             }
 
-            const { data: clubData } = await supabase
+            const { data: clubData, error: clubsError } = await supabase
                 .from('clubs')
                 .select('*')
                 .eq('user_id', user.id);
+
+            assertSupabaseOk({ error: clubsError }, 'clubs sync');
 
             if (clubData) {
                 setProfile(prev => ({
@@ -186,7 +198,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     }
 
                     // Update Profile
-                    await supabase.from('profiles').upsert({
+                    const profileUpsertResult = await supabase.from('profiles').upsert({
                         id: user.id,
                         name: profile.name,
                         gender: profile.gender,
@@ -203,11 +215,13 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         is_public: profile.isPublic,
                         updated_at: new Date().toISOString()
                     });
+                    assertSupabaseOk(profileUpsertResult, 'profiles auto-save');
 
                     // Sync Clubs (Careful with mass upsert/delete)
                     // For simplicity, we'll delete and re-insert for now in this MVP, 
                     // though delta syncing is better for production.
-                    await supabase.from('clubs').delete().eq('user_id', user.id);
+                    const deleteResult = await supabase.from('clubs').delete().eq('user_id', user.id);
+                    assertSupabaseOk(deleteResult, 'clubs delete before auto-save');
                     if (profile.myBag.clubs.length > 0) {
                         const clubPayloads = profile.myBag.clubs.map(c => ({
                             id: c.id, // Include stable ID
@@ -216,12 +230,14 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                             brand: c.brand,
                             model: c.model,
                             shaft: c.shaft,
+                            flex: c.flex,
                             number: c.number,
                             loft: c.loft,
                             distance: c.distance,
                             worry: c.worry
                         }));
-                        await supabase.from('clubs').upsert(clubPayloads);
+                        const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
+                        assertSupabaseOk(clubsUpsertResult, 'clubs auto-save');
                     }
                 }
 
@@ -252,7 +268,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     setTimeout(() => setSaveStatus('idle'), 2000);
                     return;
                 }
-                await supabase.from('profiles').upsert({
+                const profileUpsertResult = await supabase.from('profiles').upsert({
                     id: user.id,
                     name: profile.name,
                     gender: profile.gender,
@@ -269,8 +285,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     is_public: profile.isPublic,
                     updated_at: new Date().toISOString()
                 });
+                assertSupabaseOk(profileUpsertResult, 'profiles manual-save');
 
-                await supabase.from('clubs').delete().eq('user_id', user.id);
+                const deleteResult = await supabase.from('clubs').delete().eq('user_id', user.id);
+                assertSupabaseOk(deleteResult, 'clubs delete before manual-save');
                 if (profile.myBag.clubs.length > 0) {
                     const clubPayloads = profile.myBag.clubs.map(c => ({
                         id: c.id, // Include stable ID
@@ -279,12 +297,14 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         brand: c.brand,
                         model: c.model,
                         shaft: c.shaft,
+                        flex: c.flex,
                         number: c.number,
                         loft: c.loft,
                         distance: c.distance,
                         worry: c.worry
                     }));
-                    await supabase.from('clubs').upsert(clubPayloads);
+                    const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
+                    assertSupabaseOk(clubsUpsertResult, 'clubs manual-save');
                 }
             }
             setSaveStatus('saved');
