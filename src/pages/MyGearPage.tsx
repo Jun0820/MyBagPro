@@ -1129,6 +1129,7 @@ export const MyGearPage = () => {
                         pendingBagChangeCount={pendingBagChangeCount}
                         lastCloudSavedAt={lastCloudSavedAt}
                         onManualSave={manualSave}
+                        onReloadFromCloud={syncWithSupabase}
                         onSaveAndReturn={
                             returnTo
                                 ? async () => {

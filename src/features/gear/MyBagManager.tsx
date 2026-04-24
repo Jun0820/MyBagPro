@@ -243,6 +243,7 @@ interface MyBagManagerProps {
     pendingBagChangeCount?: number;
     lastCloudSavedAt?: string | null;
     onManualSave?: () => void;
+    onReloadFromCloud?: () => void;
     onSaveAndReturn?: () => void;
     onOpenBallDiagnosis?: () => void;
     onOpenCompare?: () => void;
@@ -270,6 +271,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     pendingBagChangeCount = 0,
     lastCloudSavedAt = null,
     onManualSave,
+    onReloadFromCloud,
     onSaveAndReturn,
     onOpenBallDiagnosis,
     onOpenCompare,
@@ -805,6 +807,24 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <div className="mt-1 text-xs leading-relaxed opacity-80">{saveStatusMeta.description}</div>
                         </div>
                     </div>
+                    {(hasUnsavedChanges || saveStatus === 'error') && (
+                        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+                            <button
+                                onClick={() => onManualSave?.()}
+                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-current/20 bg-white/80 px-4 py-2 text-xs font-black transition-colors hover:bg-white"
+                            >
+                                <Save size={14} />
+                                もう一度保存
+                            </button>
+                            <button
+                                onClick={() => onReloadFromCloud?.()}
+                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-current/20 bg-white/50 px-4 py-2 text-xs font-black transition-colors hover:bg-white/80"
+                            >
+                                <Loader2 size={14} className={saveStatus === 'saving' && !isManualSaveInFlight ? 'animate-spin' : ''} />
+                                クラウドから再読み込み
+                            </button>
+                        </div>
+                    )}
                 </div>
                 
                 <div id="my-bag-export-area" className="mb-6 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 sm:grid-cols-2 lg:grid-cols-3">
