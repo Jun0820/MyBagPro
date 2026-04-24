@@ -81,11 +81,16 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
         setShowModel(false);
     };
 
+    const baseInputClass = cn(
+        "w-full rounded-xl border border-[#d8e2d9] bg-white text-slate-900 outline-none transition-all focus:border-[#176534] focus:ring-4 focus:ring-[#176534]/8",
+        compact ? "min-h-11 px-3 py-2.5 text-sm font-bold" : "min-h-[52px] px-4 py-3.5 text-[15px] font-bold"
+    );
+
     return (
         <div ref={wrapperRef} className={cn("grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3", compact && "grid-cols-2 md:grid-cols-2 gap-1.5 md:gap-2")}>
             {/* BRAND */}
             <div className="relative">
-                <label className={cn("block font-bold text-slate-500 mb-1 ml-1", compact ? "text-[9px]" : "text-[10px] md:text-xs")}>メーカー</label>
+                <label className={cn("mb-1 ml-1 block font-bold text-slate-500", compact ? "text-[10px]" : "text-[11px] md:text-xs")}>メーカー</label>
                 <div className="relative">
                     <input
                         type="text"
@@ -93,19 +98,15 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
                         onChange={(e) => { onBrandChange(e.target.value); setShowBrand(true); }}
                         onFocus={() => { setShowBrand(true); setShowModel(false); }}
                         placeholder="メーカー"
-                        className={cn(
-                            "w-full border border-slate-200/60 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-400 focus:ring-4 focus:ring-golf-400/10 transition-all shadow-sm",
-                            compact ? "p-2.5 text-sm" : "p-4 md:p-4 text-base md:text-sm",
-                            bgClass === "bg-white" ? "bg-white/50 backdrop-blur-sm" : bgClass
-                        )}
+                        className={cn(baseInputClass, bgClass !== "bg-white" && bgClass)}
                     />
                     {showBrand && (
-                        <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto">
-                            <div className="p-2 text-[10px] text-slate-400 font-bold bg-slate-50 sticky top-0">人気ブランド</div>
+                        <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-60 overflow-y-auto rounded-2xl border border-[#dfe7df] bg-white shadow-[0_22px_50px_-32px_rgba(15,15,16,0.35)]">
+                            <div className="sticky top-0 bg-[#f6f8f6] p-2 text-[10px] font-bold text-slate-400">人気ブランド</div>
                             {(brand ? searchBrands(brand, availableBrands) : availableBrands).slice(0, 15).map(b => (
                                 <div
                                     key={b}
-                                    className="px-4 py-3 hover:bg-golf-50 cursor-pointer text-slate-700 font-medium text-sm border-b border-slate-50 last:border-0"
+                                    className="cursor-pointer border-b border-slate-50 px-4 py-3 text-sm font-medium text-slate-700 last:border-0 hover:bg-[#f4f8f5]"
                                     onMouseDown={(e) => { e.preventDefault(); handleBrandSelect(b); }}
                                 >
                                     {b}
@@ -118,7 +119,7 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
 
             {/* MODEL */}
             <div className="relative">
-                <label className={cn("block font-bold text-slate-500 mb-1 ml-1", compact ? "text-[9px]" : "text-[10px] md:text-xs")}>モデル名</label>
+                <label className={cn("mb-1 ml-1 block font-bold text-slate-500", compact ? "text-[10px]" : "text-[11px] md:text-xs")}>モデル名</label>
                 <div className="relative">
                     <input
                         type="text"
@@ -128,28 +129,27 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
                         disabled={!brand}
                         placeholder={!brand ? "メーカーを選択" : (placeholderModel || "モデル名 (例: Qi10)")}
                         className={cn(
-                            "w-full border border-slate-200/60 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-400 focus:ring-4 focus:ring-golf-400/10 disabled:text-slate-400 transition-all shadow-sm",
-                            compact ? "p-2.5 text-xs" : "p-4 md:p-4 text-base md:text-sm",
-                            !brand ? 'bg-slate-100/50' : (bgClass === "bg-white" ? "bg-white/50 backdrop-blur-sm" : bgClass)
+                            baseInputClass,
+                            !brand ? 'bg-slate-100 text-slate-400' : (bgClass !== "bg-white" ? bgClass : '')
                         )}
                     />
-                    <div className={cn("absolute right-3 text-slate-400 pointer-events-none", compact ? "top-2.5" : "top-3.5")}>
+                    <div className={cn("pointer-events-none absolute right-3 text-slate-400", compact ? "top-3" : "top-4")}>
                         <Search size={compact ? 14 : 18} />
                     </div>
                     {showModel && brand && (
-                        <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto">
-                            {suggestedModels.length > 0 && <div className="p-2 text-[10px] text-slate-400 font-bold bg-slate-50 sticky top-0">SUGGESTED FOR {brand}</div>}
+                        <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-60 overflow-y-auto rounded-2xl border border-[#dfe7df] bg-white shadow-[0_22px_50px_-32px_rgba(15,15,16,0.35)]">
+                            {suggestedModels.length > 0 && <div className="sticky top-0 bg-[#f6f8f6] p-2 text-[10px] font-bold text-slate-400">SUGGESTED FOR {brand}</div>}
                             {(model ? searchModels(model, suggestedModels) : suggestedModels).slice(0, 15).map(m => (
                                 <div
                                     key={m}
-                                    className="px-4 py-3 hover:bg-golf-50 cursor-pointer text-slate-700 font-medium text-sm border-b border-slate-50 last:border-0"
+                                    className="cursor-pointer border-b border-slate-50 px-4 py-3 text-sm font-medium text-slate-700 last:border-0 hover:bg-[#f4f8f5]"
                                     onMouseDown={(e) => { e.preventDefault(); handleModelSelect(m); }}
                                 >
                                     {m}
                                 </div>
                             ))}
                             {model.length > 1 && !suggestedModels.includes(model) && (
-                                <div className="px-4 py-3 text-slate-500 italic text-xs border-t border-slate-100">
+                                <div className="border-t border-slate-100 px-4 py-3 text-xs italic text-slate-500">
                                     "{model}" を使用
                                 </div>
                             )}
@@ -160,4 +160,3 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
         </div>
     );
 };
-

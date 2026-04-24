@@ -83,10 +83,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const mobileItems = useMemo(
     () => [
-      { label: 'ホーム', href: '/', icon: HomeIcon },
-      { label: '診断', href: '/diagnosis', icon: Stethoscope },
-      { label: 'マイページ', href: '/mypage', icon: User },
-      { label: 'メニュー', href: '/articles', icon: Menu },
+      { label: 'ホーム', href: '/', icon: HomeIcon, kind: 'route' as const },
+      { label: '診断', href: '/diagnosis', icon: Stethoscope, kind: 'route' as const },
+      { label: 'マイページ', href: '/mypage', icon: User, kind: 'route' as const },
+      { label: 'メニュー', href: '#menu', icon: Menu, kind: 'menu' as const },
     ],
     []
   );
@@ -108,6 +108,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     if (href === '/') return location.pathname === '/';
     return location.pathname.startsWith(href);
   };
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname, location.search]);
 
   return (
     <div className="min-h-screen bg-[#f5f7f3] text-slate-900">
@@ -274,11 +278,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <nav className="fixed inset-x-4 bottom-4 z-50 grid grid-cols-4 rounded-[24px] border border-[#dfe7df] bg-white/95 p-2 shadow-[0_24px_50px_-30px_rgba(15,15,16,0.45)] backdrop-blur md:hidden">
         {mobileItems.map((item) => {
           const Icon = item.icon;
-          const active = isActive(item.href);
+          const active = item.kind === 'menu' ? mobileMenuOpen : isActive(item.href);
           return (
             <button
               key={item.href}
-              onClick={() => navigate(item.href)}
+              onClick={() => {
+                if (item.kind === 'menu') {
+                  setMobileMenuOpen((prev) => !prev);
+                  return;
+                }
+                navigate(item.href);
+              }}
               className={`flex flex-col items-center justify-center gap-1 rounded-2xl px-2 py-2 text-[11px] font-black transition ${
                 active ? 'bg-[#edf6ef] text-[#166534]' : 'text-slate-500'
               }`}

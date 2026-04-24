@@ -15,39 +15,39 @@ export const OptionButton: React.FC<OptionButtonProps> = ({ label, subLabel, sel
         <button
             onClick={onClick}
             className={cn(
-                "w-full text-left p-4 md:p-5 rounded-[1.5rem] border flex items-center justify-between transition-all duration-200 active:scale-[0.98] group relative",
+                "w-full text-left rounded-[22px] border px-4 py-4 md:px-5 md:py-5 flex items-center justify-between transition-all duration-200 active:scale-[0.98] group relative",
                 selected
-                    ? 'bg-golf-50 border-golf-400 shadow-sm'
-                    : 'bg-white border-slate-200 hover:border-golf-300 hover:bg-slate-50',
+                    ? 'bg-[#eef7f0] border-[#2d8a56] shadow-[0_16px_32px_-26px_rgba(23,101,52,0.45)]'
+                    : 'bg-white border-[#dde6de] hover:border-[#8fb89a] hover:bg-[#fafcfb]',
                 className
             )}
         >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
                 {icon && (
                     <div className={cn(
-                        "p-3 rounded-xl transition-colors duration-300",
-                        selected ? "bg-golf-700 text-white" : "bg-slate-100 text-slate-400 group-hover:text-golf-600"
+                        "flex h-12 w-12 items-center justify-center rounded-2xl transition-colors duration-300",
+                        selected ? "bg-[#176534] text-white" : "bg-[#f3f5f3] text-slate-400 group-hover:text-[#176534]"
                     )}>
                         {icon}
                     </div>
                 )}
-                <div>
+                <div className="min-w-0">
                     <div className={cn(
-                        "font-black text-base md:text-lg transition-colors",
-                        selected ? "text-trust-navy" : "text-slate-700 group-hover:text-trust-navy"
+                        "font-black text-[15px] leading-6 md:text-lg transition-colors",
+                        selected ? "text-[#111827]" : "text-slate-800 group-hover:text-[#111827]"
                     )}>
                         {label}
                     </div>
                     {subLabel && (
-                        <div className="text-xs leading-6 text-slate-500 mt-1">
+                        <div className="mt-1 text-xs leading-5 text-slate-500 md:text-sm md:leading-6">
                             {subLabel}
                         </div>
                     )}
                 </div>
             </div>
             <div className={cn(
-                "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 shrink-0",
-                selected ? 'border-golf-700 bg-golf-700' : 'border-slate-200 group-hover:border-golf-300'
+                "h-7 w-7 rounded-full border-2 flex items-center justify-center transition-all duration-200 shrink-0",
+                selected ? 'border-[#176534] bg-[#176534]' : 'border-[#d4ddd4] group-hover:border-[#8fb89a]'
             )}>
                 <div className={cn(
                     "w-2.5 h-2.5 bg-white rounded-full transition-transform duration-200",
