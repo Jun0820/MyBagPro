@@ -316,6 +316,13 @@ export const MyGearPage = () => {
             onClick: () => navigate('/settings/pros'),
         },
     ];
+    const sidebarMenu = [
+        { key: 'view' as const, label: 'ダッシュボード', icon: Eye },
+        { key: 'clubs' as const, label: 'マイクラブ', icon: Edit3 },
+        { key: 'profile' as const, label: 'プロフィール', icon: User },
+    ];
+    const profileBadge = user.isLoggedIn ? 'クラウド保存中' : 'ベーシックプラン';
+    const profileInitial = (profile.name || 'M').trim().charAt(0).toUpperCase();
 
     const handleClose = () => {
         navigate('/');
@@ -396,67 +403,144 @@ export const MyGearPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
-            <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
-                <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:h-16 md:flex-row md:items-center md:justify-between md:py-0">
+        <div className="min-h-screen">
+            <main className="mx-auto max-w-[1380px] px-4 py-6 md:px-6 md:py-8">
+                <div className="mb-6 flex items-center gap-3">
                     <button
                         onClick={handleClose}
-                        className="flex items-center gap-2 text-xs font-bold text-slate-500 transition-colors hover:text-trust-navy"
+                        className="inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-black text-slate-500 transition hover:border-[#166534] hover:text-[#166534]"
                     >
                         <ArrowLeft size={16} />
                         HOME
                     </button>
-
-                    <div className="grid w-full grid-cols-3 rounded-2xl border border-slate-200 bg-slate-100 p-1 shadow-inner md:flex md:w-auto">
-                        <button
-                            onClick={() => setActiveTab('view')}
-                            className={cn(
-                                'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition-all md:px-4',
-                                activeTab === 'view' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
-                            )}
-                        >
-                            <Eye size={14} />
-                            HOME
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('clubs')}
-                            className={cn(
-                                'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition-all md:px-4',
-                                activeTab === 'clubs' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
-                            )}
-                        >
-                            <Edit3 size={14} />
-                            BAG
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('profile')}
-                            className={cn(
-                                'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition-all md:px-4',
-                                activeTab === 'profile' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400 hover:text-slate-600'
-                            )}
-                        >
-                            <User size={14} />
-                            PROFILE
-                        </button>
-                    </div>
-
-                    <div className="flex items-center justify-end gap-4">
-                        <div className="hidden items-center gap-2 md:flex">
-                            {isManualSaveInFlight ? (
-                                <div className="flex animate-pulse items-center gap-1.5 text-[10px] font-bold text-slate-400">
-                                    <Loader2 size={12} className="animate-spin" /> 同期中...
-                                </div>
-                            ) : saveStatus === 'saved' ? (
-                                <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-500">
-                                    <CheckCircle2 size={12} /> 同期完了
-                                </div>
-                            ) : null}
-                        </div>
+                    <div className="hidden items-center gap-2 text-xs font-bold text-slate-400 md:flex">
+                        {isManualSaveInFlight ? (
+                            <>
+                                <Loader2 size={12} className="animate-spin text-[#166534]" />
+                                保存内容を同期しています
+                            </>
+                        ) : saveStatus === 'saved' ? (
+                            <>
+                                <CheckCircle2 size={12} className="text-emerald-500" />
+                                同期完了
+                            </>
+                        ) : null}
                     </div>
                 </div>
-            </div>
 
-            <main className="mx-auto max-w-7xl px-4 pt-8">
+                <div className="grid gap-6 lg:grid-cols-[230px_minmax(0,1fr)] xl:grid-cols-[250px_minmax(0,1fr)]">
+                    <aside className="hidden space-y-4 lg:block">
+                        <div className="rounded-[28px] border border-[#e5ece6] bg-white p-5 shadow-sm">
+                            <div className="flex items-center gap-4">
+                                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eaede7] text-2xl font-black text-[#176534]">
+                                    {profileInitial}
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-black tracking-tight text-[#151719]">{profile.name || 'My Golfer'}</div>
+                                    <div className="mt-1 inline-flex rounded-full bg-[#eef4ef] px-3 py-1 text-[11px] font-black text-[#176534]">
+                                        {profileBadge}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-5 space-y-3 text-sm font-bold text-slate-600">
+                                <div className="flex items-center justify-between"><span>ハンディキャップ</span><span>{profile.bestScore ? Math.max(profile.bestScore - 72, 0) : 12}</span></div>
+                                <div className="flex items-center justify-between"><span>ベストスコア</span><span>{profile.bestScore || 85}</span></div>
+                            </div>
+
+                            <button
+                                onClick={() => setActiveTab('profile')}
+                                className="mt-5 inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50"
+                            >
+                                プロフィール編集
+                            </button>
+                        </div>
+
+                        <div className="rounded-[28px] border border-[#e5ece6] bg-white p-3 shadow-sm">
+                            <div className="space-y-1.5">
+                                {sidebarMenu.map((item) => {
+                                    const Icon = item.icon;
+                                    const selected = activeTab === item.key;
+                                    return (
+                                        <button
+                                            key={item.key}
+                                            onClick={() => setActiveTab(item.key)}
+                                            className={cn(
+                                                'flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black transition',
+                                                selected ? 'bg-[#edf6ef] text-[#166534]' : 'text-slate-600 hover:bg-slate-50'
+                                            )}
+                                        >
+                                            <Icon size={16} />
+                                            {item.label}
+                                        </button>
+                                    );
+                                })}
+                                <button
+                                    onClick={() => navigate('/compare')}
+                                    className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                                >
+                                    <Brain size={16} />
+                                    セッティング比較
+                                </button>
+                                <button
+                                    onClick={() => navigate('/diagnosis')}
+                                    className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                                >
+                                    <History size={16} />
+                                    診断履歴
+                                </button>
+                                <button
+                                    onClick={() => navigate('/settings/pros')}
+                                    className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                                >
+                                    <Trophy size={16} />
+                                    お気に入りプロ
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="rounded-[28px] bg-[#163c29] p-5 text-white shadow-sm">
+                            <div className="text-lg font-black">もっと詳しく分析しませんか？</div>
+                            <p className="mt-2 text-sm leading-7 text-white/75">
+                                クラブ登録と診断を組み合わせると、次に見直すべきポイントがかなり明確になります。
+                            </p>
+                            <button
+                                onClick={() => navigate('/diagnosis')}
+                                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-[#c8a96a] px-4 py-3 text-sm font-black text-[#163c29] transition hover:bg-[#d4b67c]"
+                            >
+                                クラブ診断をはじめる
+                            </button>
+                        </div>
+                    </aside>
+
+                    <div className="min-w-0">
+                        <section className="mb-6 rounded-[28px] border border-[#e5ece6] bg-white px-5 py-5 shadow-sm md:px-6">
+                            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                                <div>
+                                    <div className="text-sm font-bold text-slate-500">あなたのゴルフデータと診断結果を確認できます。</div>
+                                    <h1 className="mt-2 text-3xl font-black tracking-tight text-[#151719] md:text-5xl">マイページ</h1>
+                                </div>
+                                <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-1 lg:hidden">
+                                    {sidebarMenu.map((item) => {
+                                        const Icon = item.icon;
+                                        return (
+                                            <button
+                                                key={item.key}
+                                                onClick={() => setActiveTab(item.key)}
+                                                className={cn(
+                                                    'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition',
+                                                    activeTab === item.key ? 'bg-white text-[#166534] shadow-sm' : 'text-slate-500'
+                                                )}
+                                            >
+                                                <Icon size={14} />
+                                                {item.label}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </section>
+
                 {!user.isLoggedIn && (
                     <section className="mb-6 rounded-[28px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-5 shadow-lg md:p-6">
                         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -1180,6 +1264,8 @@ export const MyGearPage = () => {
                         }}
                     />
                 )}
+                    </div>
+                </div>
             </main>
         </div>
     );
