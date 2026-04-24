@@ -36,6 +36,7 @@ interface DiagnosisContextType {
     saveErrorDetail: string | null;
     hasUnsavedChanges: boolean;
     pendingBagChangeCount: number;
+    pendingBagChangeIds: string[];
     lastCloudSavedAt: string | null;
     syncWithSupabase: () => Promise<void>;
     manualSave: () => Promise<void>;
@@ -69,6 +70,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [saveErrorDetail, setSaveErrorDetail] = useState<string | null>(null);
     const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
     const [pendingBagChangeCount, setPendingBagChangeCount] = useState(0);
+    const [pendingBagChangeIds, setPendingBagChangeIds] = useState<string[]>([]);
     const [lastCloudSavedAt, setLastCloudSavedAt] = useState<string | null>(null);
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
     const userRef = useRef(user);
@@ -248,6 +250,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         if (!activeUser.isLoggedIn || !activeUser.id || !isInitialSyncComplete) {
             setHasUnsavedChanges(false);
             setPendingBagChangeCount(0);
+            setPendingBagChangeIds([]);
             return;
         }
 
@@ -255,11 +258,13 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         const hasChanges = signature !== lastRemoteSaveSignatureRef.current;
         const snapshotById = new Map(lastRemoteBagSnapshotRef.current.clubs.map((club) => [club.id, club]));
         let changeCount = 0;
+        const changedIds = new Set<string>();
 
         normalizedClubs.forEach((club) => {
             const previous = snapshotById.get(club.id);
             if (!previous) {
                 changeCount += 1;
+                changedIds.add(club.id);
                 return;
             }
 
@@ -276,6 +281,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
             if (changed) {
                 changeCount += 1;
+                changedIds.add(club.id);
             }
         });
 
@@ -291,6 +297,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
         setHasUnsavedChanges(hasChanges);
         setPendingBagChangeCount(hasChanges ? changeCount : 0);
+        setPendingBagChangeIds(hasChanges ? Array.from(changedIds) : []);
     };
 
     const performRemoteSave = async (reason: 'auto' | 'manual') => {
@@ -305,6 +312,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 markSaveStatusSaved();
             }
             setHasUnsavedChanges(false);
+            setPendingBagChangeCount(0);
+            setPendingBagChangeIds([]);
             return true;
         }
 
@@ -374,6 +383,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             };
             setHasUnsavedChanges(false);
             setPendingBagChangeCount(0);
+            setPendingBagChangeIds([]);
             if (reason === 'manual') {
                 markSaveStatusSaved();
             } else if (saveStatus !== 'error') {
@@ -720,6 +730,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             saveErrorDetail,
             hasUnsavedChanges,
             pendingBagChangeCount,
+            pendingBagChangeIds,
             lastCloudSavedAt,
             syncWithSupabase,
             manualSave

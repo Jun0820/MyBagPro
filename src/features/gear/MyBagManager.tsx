@@ -44,7 +44,7 @@ const generateClubId = () => {
     });
 };
 
-const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, onDiagnose: (c: Club) => void }) => {
+const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, onDiagnose: (c: Club) => void, isPending?: boolean }) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
 
     const parseShaft = (str: string) => {
@@ -109,7 +109,12 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose }: { entry: Club, onUpd
     const currentSelectValue = `${entry.category}:${entry.number || (entry.category === TargetCategory.PUTTER ? 'PT' : '')}`;
 
     return (
-        <div className="group relative rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition-all hover:shadow-md md:rounded-xl md:p-3">
+        <div className={cn("group relative rounded-2xl border bg-white p-3 shadow-sm transition-all hover:shadow-md md:rounded-xl md:p-3", isPending ? 'border-cyan-300 ring-1 ring-cyan-100' : 'border-slate-200')}>
+            {isPending && (
+                <div className="absolute right-3 top-3 z-10 rounded-full border border-cyan-200 bg-cyan-50 px-2 py-1 text-[9px] font-black uppercase tracking-[0.18em] text-cyan-700">
+                    未保存
+                </div>
+            )}
             <div className="mb-3 flex items-start justify-between gap-3 border-b border-slate-50 pb-2">
                 <div className="flex items-center gap-1.5 relative">
                     <div className={cn(getCategoryColor(entry.category), "flex items-center rounded overflow-hidden shadow-sm hover:opacity-90 transition-opacity")}>
@@ -241,6 +246,7 @@ interface MyBagManagerProps {
     saveErrorDetail?: string | null;
     hasUnsavedChanges?: boolean;
     pendingBagChangeCount?: number;
+    pendingBagChangeIds?: string[];
     lastCloudSavedAt?: string | null;
     onManualSave?: () => void;
     onReloadFromCloud?: () => void;
@@ -269,6 +275,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     saveErrorDetail = null,
     hasUnsavedChanges = false,
     pendingBagChangeCount = 0,
+    pendingBagChangeIds = [],
     lastCloudSavedAt = null,
     onManualSave,
     onReloadFromCloud,
@@ -835,6 +842,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             onUpdate={updateClub} 
                             onRemove={() => removeClub(entry.id)} 
                             onDiagnose={(c) => onDiagnose?.(c)}
+                            isPending={pendingBagChangeIds.includes(entry.id)}
                         />
                     ))}
                     {sortedClubs.length === 0 && (

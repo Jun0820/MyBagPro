@@ -80,6 +80,7 @@ export const MyGearPage = () => {
         saveErrorDetail,
         hasUnsavedChanges,
         pendingBagChangeCount,
+        pendingBagChangeIds,
         lastCloudSavedAt,
         setStep,
         manualSave,
@@ -1127,6 +1128,7 @@ export const MyGearPage = () => {
                         saveErrorDetail={saveErrorDetail}
                         hasUnsavedChanges={hasUnsavedChanges}
                         pendingBagChangeCount={pendingBagChangeCount}
+                        pendingBagChangeIds={pendingBagChangeIds}
                         lastCloudSavedAt={lastCloudSavedAt}
                         onManualSave={manualSave}
                         onReloadFromCloud={syncWithSupabase}
