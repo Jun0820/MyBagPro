@@ -67,6 +67,7 @@ const RouteLoading = () => (
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { user, profile, setUser, setProfile, showAuth, setShowAuth } = useDiagnosis();
   const [showLegal, setShowLegal] = useState<'privacy' | 'terms' | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -96,6 +97,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       return;
     }
     setShowAuth(true);
+  };
+
+  const navigateWithMobileClose = (href: string) => {
+    setMobileMenuOpen(false);
+    navigate(href);
   };
 
   const isActive = (href: string) => {
@@ -130,7 +136,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="hidden items-center gap-2 md:gap-3 md:flex">
             <button
               onClick={() => navigate('/articles')}
               className="hidden h-11 w-11 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700 transition hover:border-[#166534] hover:text-[#166534] md:inline-flex"
@@ -158,8 +164,63 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               クラブ診断をはじめる
             </button>
           </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={() => navigate('/articles')}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700"
+              aria-label="記事を探す"
+            >
+              <Bell size={18} />
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700"
+              aria-label="メニュー"
+            >
+              <Menu size={18} />
+            </button>
+          </div>
         </div>
       </header>
+
+      {mobileMenuOpen && (
+        <div className="fixed inset-x-4 top-[76px] z-[55] rounded-[28px] border border-[#dfe7df] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] md:hidden">
+          <div className="space-y-2">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => navigateWithMobileClose(item.href)}
+                className={`
+                  flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-black transition
+                  ${isActive(item.href) ? 'bg-[#edf6ef] text-[#166534]' : 'text-slate-700 hover:bg-slate-50'}
+                `}
+              >
+                <span>{item.label}</span>
+                <Menu size={14} className="opacity-0" />
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleAuthEntry();
+              }}
+              className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-[#c9d7cb] bg-white px-4 text-sm font-black text-slate-800"
+            >
+              {user.isLoggedIn ? 'マイページ' : 'ログイン'}
+            </button>
+            <button
+              onClick={() => navigateWithMobileClose('/diagnosis')}
+              className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-[#1c6a3d] px-4 text-sm font-black text-white"
+            >
+              診断を始める
+            </button>
+          </div>
+        </div>
+      )}
 
       <main className="relative z-10 mx-auto w-full max-w-[1400px] px-4 pb-28 pt-5 md:px-8 md:pt-8">
         {children}

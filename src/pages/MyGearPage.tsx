@@ -323,6 +323,26 @@ export const MyGearPage = () => {
     ];
     const profileBadge = user.isLoggedIn ? 'クラウド保存中' : 'ベーシックプラン';
     const profileInitial = (profile.name || 'M').trim().charAt(0).toUpperCase();
+    const mobileFeaturedClubs = profile.myBag.clubs.slice(0, 4);
+    const dashboardScore = Math.max(
+        62,
+        Math.min(
+            96,
+            Math.round(
+                (completionPercent * 0.35) +
+                (distanceCoveragePercent * 0.25) +
+                (profile.headSpeed > 0 ? 18 : 0) +
+                (profile.myBag.ball ? 12 : 0) +
+                (profile.averageScore ? Math.max(0, 40 - Math.max(profile.averageScore - 72, 0)) : 16)
+            ),
+        ),
+    );
+    const scoreBars = [
+        { label: '飛距離', value: profile.headSpeed > 0 ? Math.min(95, Math.max(52, Math.round(profile.headSpeed * 1.6))) : 70, tone: 'bg-[#176534]' },
+        { label: '方向性', value: Math.min(95, Math.max(55, Math.round(completionPercent * 0.9))), tone: 'bg-[#1f6aa5]' },
+        { label: '安定性', value: Math.min(95, Math.max(50, Math.round(distanceCoveragePercent * 0.9 || 68))), tone: 'bg-[#e2772f]' },
+        { label: '操作性', value: profile.averageScore ? Math.min(90, Math.max(48, Math.round(120 - profile.averageScore))) : 68, tone: 'bg-[#7e49b6]' },
+    ];
 
     const handleClose = () => {
         navigate('/');
@@ -604,6 +624,144 @@ export const MyGearPage = () => {
 
                 {activeTab === 'view' && (
                     <div className="space-y-6 pb-12">
+                        <section className="space-y-4 md:hidden">
+                            <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
+                                <div className="flex items-start justify-between gap-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eaede7] text-xl font-black text-[#176534]">
+                                            {profileInitial}
+                                        </div>
+                                        <div>
+                                            <div className="text-xl font-black tracking-tight text-trust-navy">{profile.name || 'My Golfer'}</div>
+                                            <div className="mt-1 inline-flex rounded-full bg-[#eef4ef] px-3 py-1 text-[10px] font-black text-[#176534]">
+                                                {profileBadge}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => setActiveTab('profile')}
+                                        className="inline-flex rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-[#176534]"
+                                    >
+                                        プロフィール編集
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
+                                <div className="text-sm font-black text-trust-navy">総合スコア</div>
+                                <div className="mt-4 grid grid-cols-[110px_minmax(0,1fr)] gap-4">
+                                    <div className="flex flex-col items-center justify-center">
+                                        <div className="relative flex h-24 w-24 items-center justify-center rounded-full border-[7px] border-[#176534]/15">
+                                            <div
+                                                className="absolute inset-0 rounded-full border-[7px] border-transparent border-t-[#176534] border-r-[#176534] rotate-45"
+                                                style={{ clipPath: `inset(0 ${100 - dashboardScore}% 0 0)` }}
+                                            />
+                                            <div className="text-center">
+                                                <div className="text-3xl font-black text-trust-navy">{dashboardScore}</div>
+                                                <div className="text-[11px] font-black text-slate-400">/100</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3">
+                                        {scoreBars.map((item) => (
+                                            <div key={item.label}>
+                                                <div className="mb-1 flex items-center justify-between text-[11px] font-black text-slate-500">
+                                                    <span>{item.label}</span>
+                                                    <span>{item.value}</span>
+                                                </div>
+                                                <div className="h-2 rounded-full bg-slate-100">
+                                                    <div className={`h-full rounded-full ${item.tone}`} style={{ width: `${item.value}%` }} />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
+                                <div className="flex items-center justify-between">
+                                    <div className="text-sm font-black text-trust-navy">マイクラブ</div>
+                                    <button onClick={() => setActiveTab('clubs')} className="text-xs font-black text-[#176534]">
+                                        すべて見る
+                                    </button>
+                                </div>
+                                <div className="mt-4 grid grid-cols-2 gap-3">
+                                    {mobileFeaturedClubs.length > 0 ? (
+                                        mobileFeaturedClubs.map((club) => (
+                                            <button
+                                                key={club.id}
+                                                onClick={() => setActiveTab('clubs')}
+                                                className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-left"
+                                            >
+                                                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+                                                    {club.number || club.category}
+                                                </div>
+                                                <div className="mt-2 text-sm font-black text-trust-navy">{club.brand || 'ブランド未設定'}</div>
+                                                <div className="mt-1 text-xs leading-5 text-slate-500">{club.model || 'モデル未設定'}</div>
+                                                <div className="mt-2 text-[11px] font-bold text-slate-400">{club.loft || '—'}</div>
+                                            </button>
+                                        ))
+                                    ) : (
+                                        <button
+                                            onClick={() => setActiveTab('clubs')}
+                                            className="col-span-2 rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-6 text-left"
+                                        >
+                                            <div className="text-sm font-black text-trust-navy">まだクラブが未登録です</div>
+                                            <div className="mt-1 text-xs leading-6 text-slate-500">まずはドライバーか7Iから登録すると分析がかなり進みます。</div>
+                                        </button>
+                                    )}
+                                </div>
+                                <div className="mt-4 grid grid-cols-2 gap-3">
+                                    <button
+                                        onClick={() => setActiveTab('clubs')}
+                                        className="inline-flex items-center justify-center rounded-2xl bg-[#176534] px-4 py-3 text-sm font-black text-white"
+                                    >
+                                        クラブを登録・編集する
+                                    </button>
+                                    <button
+                                        onClick={() => navigate('/compare')}
+                                        className="inline-flex items-center justify-center rounded-2xl border border-[#c9d7cb] bg-white px-4 py-3 text-sm font-black text-[#176534]"
+                                    >
+                                        セッティングを比較する
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
+                                <div className="text-sm font-black text-trust-navy">最近の診断結果</div>
+                                <div className="mt-3 space-y-2">
+                                    {(recentHistory.slice(0, 4)).map((item) => (
+                                        <button
+                                            key={item.id}
+                                            onClick={() => openSavedDiagnosis(item)}
+                                            className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-left"
+                                        >
+                                            <div className="min-w-0">
+                                                <div className="text-sm font-black text-trust-navy">
+                                                    {item.category === TargetCategory.TOTAL_SETTING ? '総合診断' : `${item.category} 診断`}
+                                                </div>
+                                                <div className="mt-1 truncate text-[11px] text-slate-500">
+                                                    {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '保存した診断結果'}
+                                                </div>
+                                            </div>
+                                            <div className="text-sm font-black text-trust-navy">
+                                                {Math.round(item.result?.rankings?.[0]?.matchPercentage || 72)}/100
+                                            </div>
+                                        </button>
+                                    ))}
+                                    {recentHistory.length === 0 && (
+                                        <button
+                                            onClick={() => navigate('/diagnosis')}
+                                            className="w-full rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-5 text-left"
+                                        >
+                                            <div className="text-sm font-black text-trust-navy">まだ診断履歴がありません</div>
+                                            <div className="mt-1 text-xs leading-6 text-slate-500">無料診断を始めると、この場所から続きが見やすくなります。</div>
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        </section>
+
                         {showWelcomeBanner && (
                             <section className="rounded-[24px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-4 shadow-lg md:rounded-[28px] md:p-6">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
