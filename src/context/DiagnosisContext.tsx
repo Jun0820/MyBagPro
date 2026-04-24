@@ -34,6 +34,7 @@ interface DiagnosisContextType {
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     isManualSaveInFlight: boolean;
     saveErrorDetail: string | null;
+    hasUnsavedChanges: boolean;
     syncWithSupabase: () => Promise<void>;
     manualSave: () => Promise<void>;
 }
@@ -64,6 +65,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
     const [isManualSaveInFlight, setIsManualSaveInFlight] = useState(false);
     const [saveErrorDetail, setSaveErrorDetail] = useState<string | null>(null);
+    const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
     const userRef = useRef(user);
     const profileRef = useRef(profile);
@@ -236,6 +238,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const refreshUnsavedChanges = (activeUser = userRef.current, activeProfile = profileRef.current) => {
+        if (!activeUser.isLoggedIn || !activeUser.id || !isInitialSyncComplete) {
+            setHasUnsavedChanges(false);
+            return;
+        }
+
+        const { signature } = buildRemoteSavePayload(activeUser, activeProfile);
+        setHasUnsavedChanges(signature !== lastRemoteSaveSignatureRef.current);
+    };
+
     const performRemoteSave = async (reason: 'auto' | 'manual') => {
         const activeUser = userRef.current;
         const activeProfile = profileRef.current;
@@ -247,6 +259,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             if (reason === 'manual') {
                 markSaveStatusSaved();
             }
+            setHasUnsavedChanges(false);
             return true;
         }
 
@@ -310,6 +323,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             }
 
             lastRemoteSaveSignatureRef.current = signature;
+            setHasUnsavedChanges(false);
             if (reason === 'manual') {
                 markSaveStatusSaved();
             } else if (saveStatus !== 'error') {
@@ -444,8 +458,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 profileRef.current = nextProfile;
                 setProfile(nextProfile);
                 lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, nextProfile).signature;
+                setHasUnsavedChanges(false);
             } else if (profileRef.current && userRef.current.isLoggedIn && userRef.current.id) {
                 lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, profileRef.current).signature;
+                setHasUnsavedChanges(false);
             }
             markSaveStatusSaved();
         } catch (e) {
@@ -467,6 +483,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         persistLocalSnapshot(user, profile, resultData);
     }, [user, profile, resultData]);
+
+    useEffect(() => {
+        refreshUnsavedChanges();
+    }, [profile, user.id, user.isLoggedIn, isInitialSyncComplete]);
 
     // Persistence with Status Feedback
     useEffect(() => {
@@ -637,6 +657,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             saveStatus,
             isManualSaveInFlight,
             saveErrorDetail,
+            hasUnsavedChanges,
             syncWithSupabase,
             manualSave
         }}>

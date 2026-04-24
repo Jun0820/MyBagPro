@@ -239,6 +239,7 @@ interface MyBagManagerProps {
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     isManualSaveInFlight?: boolean;
     saveErrorDetail?: string | null;
+    hasUnsavedChanges?: boolean;
     onManualSave?: () => void;
     onSaveAndReturn?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -263,6 +264,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     saveStatus,
     isManualSaveInFlight = false,
     saveErrorDetail = null,
+    hasUnsavedChanges = false,
     onManualSave,
     onSaveAndReturn,
     onOpenBallDiagnosis,
@@ -434,15 +436,37 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return null;
     })();
     const saveStatusMeta = (() => {
+        if (isManualSaveInFlight) {
+            return {
+                label: 'SAVING NOW',
+                title: 'いま変更を保存しています',
+                description: '押した内容をクラウドへ反映しています。通常は数秒で完了します。',
+                tone: 'border-amber-200 bg-amber-50 text-amber-800',
+                icon: <Loader2 size={14} className="animate-spin" />,
+            };
+        }
+
+        if (saveStatus === 'error') {
+            return {
+                label: 'SAVE CHECK',
+                title: '保存をもう一度確認してください',
+                description: saveErrorDetail || '入力内容は画面に残っています。下の保存ボタンからもう一度送れます。',
+                tone: 'border-rose-200 bg-rose-50 text-rose-800',
+                icon: <Save size={14} />,
+            };
+        }
+
+        if (hasUnsavedChanges) {
+            return {
+                label: 'PENDING CHANGES',
+                title: 'まだクラウドへ反映していない変更があります',
+                description: 'このままでも入力内容は保持されます。区切りの良いところで保存すると他の端末でも再開しやすくなります。',
+                tone: 'border-cyan-200 bg-cyan-50 text-cyan-800',
+                icon: <Save size={14} />,
+            };
+        }
+
         switch (saveStatus) {
-            case 'saving':
-                return {
-                    label: 'SAVING NOW',
-                    title: 'いま変更を保存しています',
-                    description: '押した内容をクラウドへ反映しています。通常は数秒で完了します。',
-                    tone: 'border-amber-200 bg-amber-50 text-amber-800',
-                    icon: <Loader2 size={14} className="animate-spin" />,
-                };
             case 'saved':
                 return {
                     label: 'SAVED',
@@ -450,14 +474,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     description: 'このままページを移動しても、今の入力内容から再開しやすい状態です。',
                     tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
                     icon: <CheckCircle2 size={14} />,
-                };
-            case 'error':
-                return {
-                    label: 'SAVE CHECK',
-                    title: '保存をもう一度確認してください',
-                    description: saveErrorDetail || '入力内容は画面に残っています。下の保存ボタンからもう一度送れます。',
-                    tone: 'border-rose-200 bg-rose-50 text-rose-800',
-                    icon: <Save size={14} />,
                 };
             default:
                 return {
@@ -837,7 +853,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <Loader2 size={18} className="animate-spin" />
                                 <span>保存中...</span>
                             </>
-                        ) : saveStatus === 'saved' ? (
+                        ) : !hasUnsavedChanges && saveStatus === 'saved' ? (
                             <>
                                 <CheckCircle2 size={18} className="text-emerald-400" />
                                 <span>保存完了</span>

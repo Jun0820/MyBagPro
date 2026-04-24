@@ -20,6 +20,7 @@ import {
     BookOpen,
     Heart,
     ShoppingCart,
+    Save,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useEffect, useState } from 'react';
@@ -77,6 +78,7 @@ export const MyGearPage = () => {
         saveStatus,
         isManualSaveInFlight,
         saveErrorDetail,
+        hasUnsavedChanges,
         setStep,
         manualSave,
         syncWithSupabase,
@@ -679,6 +681,11 @@ export const MyGearPage = () => {
                                                     <CircleGauge size={14} className="text-amber-500" />
                                                     {saveErrorDetail || '保存でつまずいています。もう一度保存してください'}
                                                 </>
+                                            ) : hasUnsavedChanges ? (
+                                                <>
+                                                    <Save size={14} className="text-cyan-600" />
+                                                    まだ保存していない変更があります
+                                                </>
                                             ) : lastSavedAt ? (
                                                 <>
                                                     <CheckCircle2 size={14} className="text-emerald-500" />
@@ -1123,6 +1130,7 @@ export const MyGearPage = () => {
                         saveStatus={saveStatus}
                         isManualSaveInFlight={isManualSaveInFlight}
                         saveErrorDetail={saveErrorDetail}
+                        hasUnsavedChanges={hasUnsavedChanges}
                         onManualSave={manualSave}
                         onSaveAndReturn={
                             returnTo
