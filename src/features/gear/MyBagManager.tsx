@@ -240,6 +240,7 @@ interface MyBagManagerProps {
     isManualSaveInFlight?: boolean;
     saveErrorDetail?: string | null;
     hasUnsavedChanges?: boolean;
+    lastCloudSavedAt?: string | null;
     onManualSave?: () => void;
     onSaveAndReturn?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -265,6 +266,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     isManualSaveInFlight = false,
     saveErrorDetail = null,
     hasUnsavedChanges = false,
+    lastCloudSavedAt = null,
     onManualSave,
     onSaveAndReturn,
     onOpenBallDiagnosis,
@@ -457,10 +459,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         }
 
         if (hasUnsavedChanges) {
+            const lastSavedLabel = lastCloudSavedAt
+                ? `前回のクラウド保存: ${new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`
+                : 'まだクラウド保存が完了していません。';
             return {
                 label: 'PENDING CHANGES',
                 title: 'まだクラウドへ反映していない変更があります',
-                description: 'このままでも入力内容は保持されます。区切りの良いところで保存すると他の端末でも再開しやすくなります。',
+                description: `${lastSavedLabel} 区切りの良いところで保存すると他の端末でも再開しやすくなります。`,
                 tone: 'border-cyan-200 bg-cyan-50 text-cyan-800',
                 icon: <Save size={14} />,
             };

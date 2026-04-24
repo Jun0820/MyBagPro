@@ -35,6 +35,7 @@ interface DiagnosisContextType {
     isManualSaveInFlight: boolean;
     saveErrorDetail: string | null;
     hasUnsavedChanges: boolean;
+    lastCloudSavedAt: string | null;
     syncWithSupabase: () => Promise<void>;
     manualSave: () => Promise<void>;
 }
@@ -66,6 +67,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [isManualSaveInFlight, setIsManualSaveInFlight] = useState(false);
     const [saveErrorDetail, setSaveErrorDetail] = useState<string | null>(null);
     const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+    const [lastCloudSavedAt, setLastCloudSavedAt] = useState<string | null>(null);
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
     const userRef = useRef(user);
     const profileRef = useRef(profile);
@@ -107,6 +109,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const markSaveStatusSaved = () => {
         clearSaveStatusResetTimer();
         setSaveErrorDetail(null);
+        setLastCloudSavedAt(new Date().toISOString());
         setSaveStatus('saved');
         saveStatusResetTimerRef.current = window.setTimeout(() => {
             setSaveStatus('idle');
@@ -367,6 +370,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 localStorage.removeItem('mybagpro_user');
                 localStorage.removeItem('mybagpro_profile');
                 setProfile(INITIAL_PROFILE);
+                setLastCloudSavedAt(null);
             }
         });
 
@@ -658,6 +662,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             isManualSaveInFlight,
             saveErrorDetail,
             hasUnsavedChanges,
+            lastCloudSavedAt,
             syncWithSupabase,
             manualSave
         }}>

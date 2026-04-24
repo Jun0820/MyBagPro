@@ -79,6 +79,7 @@ export const MyGearPage = () => {
         isManualSaveInFlight,
         saveErrorDetail,
         hasUnsavedChanges,
+        lastCloudSavedAt,
         setStep,
         manualSave,
         syncWithSupabase,
@@ -91,7 +92,6 @@ export const MyGearPage = () => {
     const [compareShortlist, setCompareShortlist] = useState<CompareShortlistItem[]>([]);
     const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
     const [favoriteClubs, setFavoriteClubs] = useState<FavoriteClubItem[]>([]);
-    const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
     const primaryShop = AFFILIATE_SHOPS[0];
 
     const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
@@ -186,12 +186,6 @@ export const MyGearPage = () => {
         setRecentlyViewed(getRecentlyViewed());
         setFavoriteClubs(getFavoriteClubs());
     }, []);
-
-    useEffect(() => {
-        if (saveStatus === 'saved') {
-            setLastSavedAt(new Date().toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' }));
-        }
-    }, [saveStatus]);
 
     useEffect(() => {
         const handleBeforeUnload = () => {
@@ -686,10 +680,10 @@ export const MyGearPage = () => {
                                                     <Save size={14} className="text-cyan-600" />
                                                     まだ保存していない変更があります
                                                 </>
-                                            ) : lastSavedAt ? (
+                                            ) : lastCloudSavedAt ? (
                                                 <>
                                                     <CheckCircle2 size={14} className="text-emerald-500" />
-                                                    最終保存: {lastSavedAt}
+                                                    最終保存: {new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}
                                                 </>
                                             ) : (
                                                 <>クラブ登録やプロフィール編集はこのページに順次保存されます</>
@@ -1131,6 +1125,7 @@ export const MyGearPage = () => {
                         isManualSaveInFlight={isManualSaveInFlight}
                         saveErrorDetail={saveErrorDetail}
                         hasUnsavedChanges={hasUnsavedChanges}
+                        lastCloudSavedAt={lastCloudSavedAt}
                         onManualSave={manualSave}
                         onSaveAndReturn={
                             returnTo
