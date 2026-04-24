@@ -246,6 +246,45 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const computeClubDiff = (
+        previousClubs: UserProfile['myBag']['clubs'],
+        nextClubs: UserProfile['myBag']['clubs'],
+        userId: string,
+    ) => {
+        const previousById = new Map(previousClubs.map((club) => [club.id, club]));
+        const nextById = new Map(nextClubs.map((club) => [club.id, club]));
+
+        const toUpsert = nextClubs
+            .filter((club) => {
+                const previous = previousById.get(club.id);
+                if (!previous) return true;
+                return (
+                    previous.category !== club.category ||
+                    previous.brand !== club.brand ||
+                    previous.model !== club.model ||
+                    previous.shaft !== club.shaft ||
+                    previous.loft !== club.loft ||
+                    previous.distance !== club.distance
+                );
+            })
+            .map((club) => ({
+                id: club.id,
+                user_id: userId,
+                category: club.category,
+                brand: club.brand,
+                model: club.model,
+                shaft: club.shaft,
+                loft: club.loft,
+                distance: club.distance,
+            }));
+
+        const toDelete = previousClubs
+            .filter((club) => !nextById.has(club.id))
+            .map((club) => club.id);
+
+        return { toUpsert, toDelete };
+    };
+
     const refreshUnsavedChanges = (activeUser = userRef.current, activeProfile = profileRef.current) => {
         if (!activeUser.isLoggedIn || !activeUser.id || !isInitialSyncComplete) {
             setHasUnsavedChanges(false);
@@ -325,7 +364,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return false;
         }
 
-        const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
+        const { normalizedClubs, profilePayload, signature } = buildRemoteSavePayload(activeUser, activeProfile);
 
         if (reason === 'auto' && signature === lastRemoteSaveSignatureRef.current) {
             if (saveStatus !== 'error') {
@@ -365,16 +404,23 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             const profileUpsertResult = await supabase.from('profiles').upsert(profilePayload);
             assertSupabaseOk(profileUpsertResult, `profiles ${reason}-save`);
 
-            const deleteResult = await supabase.from('clubs').delete().eq('user_id', activeUser.id);
-            assertSupabaseOk(deleteResult, `clubs delete before ${reason}-save`);
+            const { toUpsert, toDelete } = computeClubDiff(
+                lastRemoteBagSnapshotRef.current.clubs,
+                normalizedClubs,
+                activeUser.id,
+            );
 
-            if (clubPayloads.length > 0) {
-                const clubsUpsertResult = await supabase.from('clubs').upsert(clubPayloads);
-                assertSupabaseOk(clubsUpsertResult, `clubs ${reason}-save`);
-                await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
-            } else {
-                await verifyClubWrite(activeUser.id, []);
+            if (toDelete.length > 0) {
+                const deleteResult = await supabase.from('clubs').delete().in('id', toDelete);
+                assertSupabaseOk(deleteResult, `clubs delete before ${reason}-save`);
             }
+
+            if (toUpsert.length > 0) {
+                const clubsUpsertResult = await supabase.from('clubs').upsert(toUpsert);
+                assertSupabaseOk(clubsUpsertResult, `clubs ${reason}-save`);
+            }
+
+            await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
 
             lastRemoteSaveSignatureRef.current = signature;
             lastRemoteBagSnapshotRef.current = {
