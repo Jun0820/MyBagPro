@@ -240,6 +240,7 @@ interface MyBagManagerProps {
     isManualSaveInFlight?: boolean;
     saveErrorDetail?: string | null;
     hasUnsavedChanges?: boolean;
+    pendingBagChangeCount?: number;
     lastCloudSavedAt?: string | null;
     onManualSave?: () => void;
     onSaveAndReturn?: () => void;
@@ -266,6 +267,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     isManualSaveInFlight = false,
     saveErrorDetail = null,
     hasUnsavedChanges = false,
+    pendingBagChangeCount = 0,
     lastCloudSavedAt = null,
     onManualSave,
     onSaveAndReturn,
@@ -462,10 +464,11 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             const lastSavedLabel = lastCloudSavedAt
                 ? `前回のクラウド保存: ${new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`
                 : 'まだクラウド保存が完了していません。';
+            const pendingLabel = pendingBagChangeCount > 0 ? `未保存の変更: ${pendingBagChangeCount}件。` : '';
             return {
                 label: 'PENDING CHANGES',
                 title: 'まだクラウドへ反映していない変更があります',
-                description: `${lastSavedLabel} 区切りの良いところで保存すると他の端末でも再開しやすくなります。`,
+                description: `${pendingLabel} ${lastSavedLabel} 区切りの良いところで保存すると他の端末でも再開しやすくなります。`.trim(),
                 tone: 'border-cyan-200 bg-cyan-50 text-cyan-800',
                 icon: <Save size={14} />,
             };

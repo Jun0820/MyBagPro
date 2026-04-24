@@ -35,6 +35,7 @@ interface DiagnosisContextType {
     isManualSaveInFlight: boolean;
     saveErrorDetail: string | null;
     hasUnsavedChanges: boolean;
+    pendingBagChangeCount: number;
     lastCloudSavedAt: string | null;
     syncWithSupabase: () => Promise<void>;
     manualSave: () => Promise<void>;
@@ -67,6 +68,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [isManualSaveInFlight, setIsManualSaveInFlight] = useState(false);
     const [saveErrorDetail, setSaveErrorDetail] = useState<string | null>(null);
     const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+    const [pendingBagChangeCount, setPendingBagChangeCount] = useState(0);
     const [lastCloudSavedAt, setLastCloudSavedAt] = useState<string | null>(null);
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
     const userRef = useRef(user);
@@ -76,6 +78,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const pendingRemoteSaveRef = useRef(false);
     const saveStatusResetTimerRef = useRef<number | null>(null);
     const lastRemoteSaveSignatureRef = useRef<string | null>(null);
+    const lastRemoteBagSnapshotRef = useRef<{ clubs: UserProfile['myBag']['clubs']; ball: string }>({ clubs: [], ball: '' });
 
     useEffect(() => {
         userRef.current = user;
@@ -244,11 +247,50 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const refreshUnsavedChanges = (activeUser = userRef.current, activeProfile = profileRef.current) => {
         if (!activeUser.isLoggedIn || !activeUser.id || !isInitialSyncComplete) {
             setHasUnsavedChanges(false);
+            setPendingBagChangeCount(0);
             return;
         }
 
-        const { signature } = buildRemoteSavePayload(activeUser, activeProfile);
-        setHasUnsavedChanges(signature !== lastRemoteSaveSignatureRef.current);
+        const { signature, normalizedClubs } = buildRemoteSavePayload(activeUser, activeProfile);
+        const hasChanges = signature !== lastRemoteSaveSignatureRef.current;
+        const snapshotById = new Map(lastRemoteBagSnapshotRef.current.clubs.map((club) => [club.id, club]));
+        let changeCount = 0;
+
+        normalizedClubs.forEach((club) => {
+            const previous = snapshotById.get(club.id);
+            if (!previous) {
+                changeCount += 1;
+                return;
+            }
+
+            const changed =
+                previous.category !== club.category ||
+                previous.brand !== club.brand ||
+                previous.model !== club.model ||
+                previous.shaft !== club.shaft ||
+                previous.flex !== club.flex ||
+                previous.number !== club.number ||
+                previous.loft !== club.loft ||
+                previous.distance !== club.distance ||
+                (previous.worry || '') !== (club.worry || '');
+
+            if (changed) {
+                changeCount += 1;
+            }
+        });
+
+        lastRemoteBagSnapshotRef.current.clubs.forEach((club) => {
+            if (!normalizedClubs.find((current) => current.id === club.id)) {
+                changeCount += 1;
+            }
+        });
+
+        if ((activeProfile.myBag.ball || '') !== lastRemoteBagSnapshotRef.current.ball) {
+            changeCount += 1;
+        }
+
+        setHasUnsavedChanges(hasChanges);
+        setPendingBagChangeCount(hasChanges ? changeCount : 0);
     };
 
     const performRemoteSave = async (reason: 'auto' | 'manual') => {
@@ -326,7 +368,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             }
 
             lastRemoteSaveSignatureRef.current = signature;
+            lastRemoteBagSnapshotRef.current = {
+                clubs: normalizedClubs,
+                ball: activeProfile.myBag.ball || '',
+            };
             setHasUnsavedChanges(false);
+            setPendingBagChangeCount(0);
             if (reason === 'manual') {
                 markSaveStatusSaved();
             } else if (saveStatus !== 'error') {
@@ -462,10 +509,20 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 profileRef.current = nextProfile;
                 setProfile(nextProfile);
                 lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, nextProfile).signature;
+                lastRemoteBagSnapshotRef.current = {
+                    clubs: nextProfile.myBag.clubs,
+                    ball: nextProfile.myBag.ball || '',
+                };
                 setHasUnsavedChanges(false);
+                setPendingBagChangeCount(0);
             } else if (profileRef.current && userRef.current.isLoggedIn && userRef.current.id) {
                 lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, profileRef.current).signature;
+                lastRemoteBagSnapshotRef.current = {
+                    clubs: profileRef.current.myBag.clubs,
+                    ball: profileRef.current.myBag.ball || '',
+                };
                 setHasUnsavedChanges(false);
+                setPendingBagChangeCount(0);
             }
             markSaveStatusSaved();
         } catch (e) {
@@ -662,6 +719,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             isManualSaveInFlight,
             saveErrorDetail,
             hasUnsavedChanges,
+            pendingBagChangeCount,
             lastCloudSavedAt,
             syncWithSupabase,
             manualSave

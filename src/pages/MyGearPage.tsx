@@ -79,6 +79,7 @@ export const MyGearPage = () => {
         isManualSaveInFlight,
         saveErrorDetail,
         hasUnsavedChanges,
+        pendingBagChangeCount,
         lastCloudSavedAt,
         setStep,
         manualSave,
@@ -1125,6 +1126,7 @@ export const MyGearPage = () => {
                         isManualSaveInFlight={isManualSaveInFlight}
                         saveErrorDetail={saveErrorDetail}
                         hasUnsavedChanges={hasUnsavedChanges}
+                        pendingBagChangeCount={pendingBagChangeCount}
                         lastCloudSavedAt={lastCloudSavedAt}
                         onManualSave={manualSave}
                         onSaveAndReturn={
