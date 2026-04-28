@@ -23,6 +23,117 @@ const formatPublishedAt = (publishedAt: string | null) => {
   }).format(new Date(publishedAt));
 };
 
+type RichArticleBlock =
+  | { type: 'heading'; content: string }
+  | { type: 'paragraph'; content: string }
+  | { type: 'bullets'; items: string[] }
+  | { type: 'callout'; title: string; content: string }
+  | { type: 'diagram'; lines: string[] }
+  | { type: 'image'; url: string; alt: string; caption?: string };
+
+const imagePattern = /^\[IMAGE\s+url="([^"]+)"\s+alt="([^"]+)"(?:\s+caption="([^"]+)")?\]$/;
+const calloutPattern = /^\[CALLOUT\s+title="([^"]+)"\]$/;
+
+const parseRichArticleBody = (body: string): RichArticleBlock[] => {
+  const lines = body.split('\n');
+  const blocks: RichArticleBlock[] = [];
+  let index = 0;
+
+  while (index < lines.length) {
+    const rawLine = lines[index];
+    const line = rawLine.trim();
+
+    if (!line) {
+      index += 1;
+      continue;
+    }
+
+    const imageMatch = line.match(imagePattern);
+    if (imageMatch) {
+      blocks.push({
+        type: 'image',
+        url: imageMatch[1],
+        alt: imageMatch[2],
+        caption: imageMatch[3] || undefined,
+      });
+      index += 1;
+      continue;
+    }
+
+    if (line.startsWith('## ')) {
+      blocks.push({ type: 'heading', content: line.replace(/^##\s+/, '') });
+      index += 1;
+      continue;
+    }
+
+    const calloutMatch = line.match(calloutPattern);
+    if (calloutMatch) {
+      index += 1;
+      const contentLines: string[] = [];
+      while (index < lines.length && lines[index].trim() !== '[/CALLOUT]') {
+        contentLines.push(lines[index]);
+        index += 1;
+      }
+      blocks.push({
+        type: 'callout',
+        title: calloutMatch[1],
+        content: contentLines.join('\n').trim(),
+      });
+      index += 1;
+      continue;
+    }
+
+    if (line === '[DIAGRAM]') {
+      index += 1;
+      const diagramLines: string[] = [];
+      while (index < lines.length && lines[index].trim() !== '[/DIAGRAM]') {
+        if (lines[index].trim()) {
+          diagramLines.push(lines[index].trim());
+        }
+        index += 1;
+      }
+      blocks.push({ type: 'diagram', lines: diagramLines });
+      index += 1;
+      continue;
+    }
+
+    if (line.startsWith('- ')) {
+      const items: string[] = [];
+      while (index < lines.length && lines[index].trim().startsWith('- ')) {
+        items.push(lines[index].trim().replace(/^- /, ''));
+        index += 1;
+      }
+      blocks.push({ type: 'bullets', items });
+      continue;
+    }
+
+    const paragraphLines: string[] = [rawLine];
+    index += 1;
+    while (index < lines.length) {
+      const nextLine = lines[index].trim();
+      if (
+        !nextLine ||
+        nextLine.startsWith('## ') ||
+        nextLine.startsWith('- ') ||
+        nextLine === '[DIAGRAM]' ||
+        nextLine.match(calloutPattern) ||
+        nextLine.match(imagePattern)
+      ) {
+        break;
+      }
+      paragraphLines.push(lines[index]);
+      index += 1;
+    }
+
+    blocks.push({
+      type: 'paragraph',
+      content: paragraphLines.join('\n').trim(),
+    });
+  }
+
+  return blocks;
+};
+
 export const ArticleDetailPage = () => {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
@@ -187,6 +298,7 @@ export const ArticleDetailPage = () => {
   }
 
   const tournamentSpotlight = getTournamentSpotlightByArticleSlug(article.slug);
+  const richBlocks = parseRichArticleBody(article.body);
 
   return (
     <div className="min-h-screen pb-20">
@@ -234,7 +346,97 @@ export const ArticleDetailPage = () => {
             </button>
           </div>
         )}
-        <div className="mt-6 whitespace-pre-wrap text-sm leading-7 text-slate-700 md:mt-8 md:leading-8">{article.body}</div>
+        <div className="mt-6 space-y-5 md:mt-8 md:space-y-6">
+          {richBlocks.map((block, blockIndex) => {
+            if (block.type === 'heading') {
+              return (
+                <section key={`${block.type}-${blockIndex}`} className="pt-2">
+                  <h2 className="text-xl font-black tracking-tight text-trust-navy md:text-[1.75rem]">
+                    {block.content}
+                  </h2>
+                </section>
+              );
+            }
+
+            if (block.type === 'paragraph') {
+              return (
+                <p
+                  key={`${block.type}-${blockIndex}`}
+                  className="whitespace-pre-wrap text-sm leading-7 text-slate-700 md:text-[15px] md:leading-8"
+                >
+                  {block.content}
+                </p>
+              );
+            }
+
+            if (block.type === 'bullets') {
+              return (
+                <div
+                  key={`${block.type}-${blockIndex}`}
+                  className="rounded-[1.25rem] border border-[#e4ece5] bg-[#f8faf8] p-4 md:rounded-[1.5rem] md:p-5"
+                >
+                  <ul className="space-y-2.5">
+                    {block.items.map((item, itemIndex) => (
+                      <li key={`${item}-${itemIndex}`} className="flex items-start gap-3 text-sm leading-7 text-slate-700">
+                        <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#176534]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            }
+
+            if (block.type === 'callout') {
+              return (
+                <div
+                  key={`${block.type}-${blockIndex}`}
+                  className="rounded-[1.25rem] border border-golf-200 bg-golf-50/60 p-4 md:rounded-[1.5rem] md:p-5"
+                >
+                  <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">{block.title}</div>
+                  <div className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-700 md:leading-8">{block.content}</div>
+                </div>
+              );
+            }
+
+            if (block.type === 'diagram') {
+              return (
+                <div
+                  key={`${block.type}-${blockIndex}`}
+                  className="overflow-hidden rounded-[1.25rem] border border-[#dbe7dd] bg-white shadow-sm md:rounded-[1.5rem]"
+                >
+                  <div className="border-b border-[#edf2ee] bg-[#f7faf7] px-4 py-3 text-[11px] font-black tracking-[0.14em] text-[#176534]">
+                    図で整理
+                  </div>
+                  <div className="space-y-3 px-4 py-4 md:px-5 md:py-5">
+                    {block.lines.map((diagramLine, lineIndex) => (
+                      <div
+                        key={`${diagramLine}-${lineIndex}`}
+                        className="rounded-2xl border border-[#e8efea] bg-[#fbfcfb] px-4 py-3 font-mono text-xs leading-6 text-slate-700 md:text-sm"
+                      >
+                        {diagramLine}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <figure
+                key={`${block.type}-${blockIndex}`}
+                className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white md:rounded-[1.5rem]"
+              >
+                <img src={block.url} alt={block.alt} className="h-auto w-full object-cover" />
+                {block.caption && (
+                  <figcaption className="border-t border-slate-100 px-4 py-3 text-xs leading-6 text-slate-500 md:px-5">
+                    {block.caption}
+                  </figcaption>
+                )}
+              </figure>
+            );
+          })}
+        </div>
         {tournamentSpotlight && tournamentProfiles.length > 0 && (
           <section className="mt-6 rounded-[1.25rem] border border-amber-200 bg-amber-50/70 p-4 md:mt-8 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-amber-700">TOURNAMENT PLAYERS</div>
