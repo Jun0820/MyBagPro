@@ -113,6 +113,18 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const readLatestLocalProfileSnapshot = (): UserProfile | null => {
+        try {
+            const raw = localStorage.getItem('mybagpro_profile');
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (!parsed || typeof parsed !== 'object') return null;
+            return parsed as UserProfile;
+        } catch {
+            return null;
+        }
+    };
+
     const clearSaveStatusResetTimer = () => {
         if (saveStatusResetTimerRef.current) {
             window.clearTimeout(saveStatusResetTimerRef.current);
@@ -652,9 +664,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     
     // Manual Save Trigger (Immediate)
     const manualSave = async () => {
+        const latestLocalProfile = readLatestLocalProfileSnapshot();
+        if (latestLocalProfile) {
+            profileRef.current = latestLocalProfile;
+            setProfileInternal(latestLocalProfile);
+        }
+
         if (userRef.current.isLoggedIn && userRef.current.id && !isInitialSyncComplete) {
             await syncWithSupabase();
         }
+
         await performRemoteSave('manual');
     };
 
