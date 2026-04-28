@@ -248,6 +248,8 @@ interface MyBagManagerProps {
     pendingBagChangeCount?: number;
     pendingBagChangeIds?: string[];
     lastCloudSavedAt?: string | null;
+    lastSaveTargetClubCount?: number;
+    lastSavedClubCount?: number;
     onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
     onSaveAndReturn?: () => void;
@@ -277,6 +279,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     pendingBagChangeCount = 0,
     pendingBagChangeIds = [],
     lastCloudSavedAt = null,
+    lastSaveTargetClubCount = 0,
+    lastSavedClubCount = 0,
     onManualSave,
     onReloadFromCloud,
     onSaveAndReturn,
@@ -812,6 +816,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-70">{saveStatusMeta.label}</div>
                             <div className="mt-1 text-sm font-black">{saveStatusMeta.title}</div>
                             <div className="mt-1 text-xs leading-relaxed opacity-80">{saveStatusMeta.description}</div>
+                            <div className="mt-2 text-[11px] font-bold opacity-70">
+                                保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
+                            </div>
                         </div>
                     </div>
                     {(hasUnsavedChanges || saveStatus === 'error') && (

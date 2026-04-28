@@ -38,6 +38,8 @@ interface DiagnosisContextType {
     pendingBagChangeCount: number;
     pendingBagChangeIds: string[];
     lastCloudSavedAt: string | null;
+    lastSaveTargetClubCount: number;
+    lastSavedClubCount: number;
     syncWithSupabase: () => Promise<void>;
     manualSave: (profileOverride?: UserProfile) => Promise<void>;
 }
@@ -72,6 +74,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const [pendingBagChangeCount, setPendingBagChangeCount] = useState(0);
     const [pendingBagChangeIds, setPendingBagChangeIds] = useState<string[]>([]);
     const [lastCloudSavedAt, setLastCloudSavedAt] = useState<string | null>(null);
+    const [lastSaveTargetClubCount, setLastSaveTargetClubCount] = useState(0);
+    const [lastSavedClubCount, setLastSavedClubCount] = useState(0);
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
     const userRef = useRef(user);
     const profileRef = useRef(profile);
@@ -295,6 +299,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         if (expectedIds.length > 0 && missingIds.length > 0) {
             throw new Error(`clubs verify: missing ${missingIds.length} saved clubs`);
         }
+
+        return (data || []).length;
     };
 
     const replaceRemoteClubs = async (
@@ -414,6 +420,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
 
         const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
+        setLastSaveTargetClubCount(normalizedClubs.length);
 
         if (reason === 'auto' && signature === lastRemoteSaveSignatureRef.current) {
             if (saveStatus !== 'error') {
@@ -455,13 +462,14 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
             await replaceRemoteClubs(activeUser.id, clubPayloads, reason);
 
-            await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
+            const verifiedClubCount = await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
 
             lastRemoteSaveSignatureRef.current = signature;
             lastRemoteBagSnapshotRef.current = {
                 clubs: normalizedClubs,
                 ball: activeProfile.myBag.ball || '',
             };
+            setLastSavedClubCount(verifiedClubCount);
             setHasUnsavedChanges(false);
             setPendingBagChangeCount(0);
             setPendingBagChangeIds([]);
@@ -618,6 +626,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     clubs: nextProfile.myBag.clubs,
                     ball: nextProfile.myBag.ball || '',
                 };
+                setLastSaveTargetClubCount(nextProfile.myBag.clubs.length);
+                setLastSavedClubCount(nextProfile.myBag.clubs.length);
                 setHasUnsavedChanges(false);
                 setPendingBagChangeCount(0);
             } else if (profileRef.current && userRef.current.isLoggedIn && userRef.current.id) {
@@ -626,6 +636,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     clubs: profileRef.current.myBag.clubs,
                     ball: profileRef.current.myBag.ball || '',
                 };
+                setLastSaveTargetClubCount(profileRef.current.myBag.clubs.length);
+                setLastSavedClubCount(profileRef.current.myBag.clubs.length);
                 setHasUnsavedChanges(false);
                 setPendingBagChangeCount(0);
             }
@@ -833,6 +845,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             pendingBagChangeCount,
             pendingBagChangeIds,
             lastCloudSavedAt,
+            lastSaveTargetClubCount,
+            lastSavedClubCount,
             syncWithSupabase,
             manualSave
         }}>

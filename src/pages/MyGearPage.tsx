@@ -83,6 +83,8 @@ export const MyGearPage = () => {
         pendingBagChangeCount,
         pendingBagChangeIds,
         lastCloudSavedAt,
+        lastSaveTargetClubCount,
+        lastSavedClubCount,
         setStep,
         manualSave,
         syncWithSupabase,
@@ -1402,6 +1404,8 @@ export const MyGearPage = () => {
                         pendingBagChangeCount={pendingBagChangeCount}
                         pendingBagChangeIds={pendingBagChangeIds}
                         lastCloudSavedAt={lastCloudSavedAt}
+                        lastSaveTargetClubCount={lastSaveTargetClubCount}
+                        lastSavedClubCount={lastSavedClubCount}
                         onManualSave={() => manualSave({ ...profile, myBag: profile.myBag })}
                         onReloadFromCloud={syncWithSupabase}
                         onSaveAndReturn={
