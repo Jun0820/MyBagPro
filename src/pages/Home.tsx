@@ -44,11 +44,11 @@ const contentCards = [
   },
   {
     tag: 'お悩み解決',
-    title: 'スライスの原因と改善方法',
-    subtitle: 'クラブ選びで見直すべきポイント',
+    title: 'ドライバーのスライス改善ガイド',
+    subtitle: 'クラブ選びで見直すべきポイントを整理',
     image:
       'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=900&q=80',
-    href: '/articles',
+    href: '/articles/driver-slice-club-choice-2026',
     label: 'お悩み解決',
   },
 ];
