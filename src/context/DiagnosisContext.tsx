@@ -51,7 +51,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         return saved ? JSON.parse(saved) : INITIAL_ACCOUNT;
     });
 
-    const [profile, setProfile] = useState<UserProfile>(() => {
+    const [profile, setProfileInternal] = useState<UserProfile>(() => {
         const saved = localStorage.getItem('mybagpro_profile');
         return saved ? JSON.parse(saved) : INITIAL_PROFILE;
     });
@@ -93,6 +93,15 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         resultDataRef.current = resultData;
     }, [resultData]);
+
+    const setProfile: React.Dispatch<React.SetStateAction<UserProfile>> = (value) => {
+        setProfileInternal((prev) => {
+            const next = typeof value === 'function' ? value(prev) : value;
+            profileRef.current = next;
+            persistLocalSnapshot(userRef.current, next, resultDataRef.current);
+            return next;
+        });
+    };
 
     const persistLocalSnapshot = (nextUser: UserAccount, nextProfile: UserProfile, nextResultData: DiagnosisResult | null) => {
         localStorage.setItem('mybagpro_user', JSON.stringify(nextUser));
@@ -651,9 +660,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
         setProfile(prev => {
-            const nextProfile = { ...prev, [field]: value };
-            persistLocalSnapshot(user, nextProfile, resultData);
-            return nextProfile;
+            return { ...prev, [field]: value };
         });
     };
 
