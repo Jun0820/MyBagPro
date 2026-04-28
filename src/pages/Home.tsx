@@ -185,7 +185,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="grid gap-4 md:gap-6 md:grid-cols-[1fr] xl:grid-cols-[1.65fr_0.75fr]">
+      <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.65fr_0.75fr]">
         <div>
           <div className="mb-3 flex items-center justify-between px-1 md:mb-4 md:px-0">
             <div>
@@ -201,7 +201,7 @@ export const Home = () => {
               <button
                 key={card.title}
                 onClick={() => navigate(card.href)}
-                className="min-w-[calc(100%-0.75rem)] flex-shrink-0 overflow-hidden rounded-lg border border-[#e3ebe4] bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg md:min-w-[calc(50%-0.5rem)] md:rounded-[24px] lg:min-w-[calc(25%-0.75rem)]"
+                className="flex-shrink-0 overflow-hidden rounded-lg border border-[#e3ebe4] bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg md:rounded-[24px] w-[280px] md:w-auto md:flex-1 md:max-w-[calc(50%-0.5rem)] lg:max-w-[calc(25%-0.75rem)]"
               >
                 <div className="relative h-32 overflow-hidden md:h-44">
                   <img src={card.image} alt={card.title} className="h-full w-full object-cover" />
@@ -224,7 +224,7 @@ export const Home = () => {
           </button>
         </div>
 
-        <aside className="rounded-lg border border-[#e3ebe4] bg-white p-4 shadow-sm md:rounded-[28px] md:border-none md:bg-[#15542f] md:p-5 md:text-white md:shadow-[0_24px_60px_-42px_rgba(21,84,47,0.8)] xl:md:p-6">
+        <aside className="rounded-lg border border-[#e3ebe4] bg-white p-4 shadow-sm md:rounded-[28px] md:border-none md:bg-[#15542f] md:p-5 md:text-white md:shadow-[0_24px_60px_-42px_rgba(21,84,47,0.8)] xl:p-6">
           <div className="text-lg font-black md:text-2xl">無料クラブ診断</div>
           <p className="mt-2 text-xs leading-6 text-slate-600 md:mt-3 md:text-sm md:leading-7 md:text-white/80">
             たった30秒であなたのゴルフを分析。保存後は比較候補としていつでも見返せます。
@@ -270,7 +270,7 @@ export const Home = () => {
         </aside>
       </section>
 
-      <section className="grid gap-4 md:gap-6 md:grid-cols-1 xl:grid-cols-[1.25fr_0.95fr]">
+      <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.25fr_0.95fr]">
         <div className="rounded-lg border border-[#e4ece5] bg-white p-4 shadow-sm md:rounded-[28px] md:p-6">
           <div className="text-xs font-bold text-slate-500 md:text-sm">データが導く、最適なクラブ選び</div>
           <h2 className="mt-2 text-xl font-black tracking-tight text-[#151719] md:text-3xl">プロのデータとあなたのデータを並べる</h2>
