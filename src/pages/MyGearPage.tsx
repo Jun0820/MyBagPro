@@ -423,7 +423,7 @@ export const MyGearPage = () => {
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen pb-20 md:pb-0">
             <main className="mx-auto max-w-[1380px] px-4 py-6 md:px-6 md:py-8">
                 <div className="mb-6 flex items-center gap-3">
                     <button
@@ -540,7 +540,7 @@ export const MyGearPage = () => {
                                     <div className="text-sm font-bold text-slate-500">あなたのゴルフデータと診断結果を確認できます。</div>
                                     <h1 className="mt-2 text-3xl font-black tracking-tight text-[#151719] md:text-5xl">マイページ</h1>
                                 </div>
-                                <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-1 lg:hidden">
+                                <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 lg:hidden">
                                     {sidebarMenu.map((item) => {
                                         const Icon = item.icon;
                                         return (
@@ -548,12 +548,12 @@ export const MyGearPage = () => {
                                                 key={item.key}
                                                 onClick={() => setActiveTab(item.key)}
                                                 className={cn(
-                                                    'flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-black transition',
+                                                    'flex min-h-[48px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-2 text-[11px] font-black transition',
                                                     activeTab === item.key ? 'bg-white text-[#166534] shadow-sm' : 'text-slate-500'
                                                 )}
                                             >
-                                                <Icon size={14} />
-                                                {item.label}
+                                                <Icon size={16} />
+                                                <span className="text-center">{item.label}</span>
                                             </button>
                                         );
                                     })}
@@ -563,60 +563,60 @@ export const MyGearPage = () => {
 
                 {!user.isLoggedIn && (
                     <section className="mb-6 rounded-[28px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-5 shadow-lg md:p-6">
-                        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                        <div className="flex flex-col gap-4">
                             <div className="space-y-2">
                                 <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
                                     <LogIn size={12} />
                                     Guest Mode
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-black tracking-tight text-trust-navy md:text-2xl">
-                                        いまの内容を保存すると、続きからすぐ再開できます
+                                    <h2 className="text-lg font-black tracking-tight text-trust-navy md:text-2xl">
+                                        内容を保存して、続きから再開できます
                                     </h2>
                                     <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                                        セッティング登録、自動分析、診断結果、比較候補をマイページに残せます。まずはゲストのまま使って、必要になったら保存できます。
+                                        クラブ登録、診断結果、比較候補がすべて残ります。
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="grid gap-2 sm:grid-cols-3 md:min-w-[340px]">
-                                <div className="rounded-2xl border border-white bg-white/80 px-4 py-3 text-left">
-                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save</div>
-                                    <div className="mt-1 text-sm font-black text-trust-navy">診断結果を保存</div>
+                            <div className="grid grid-cols-3 gap-2 md:gap-3">
+                                <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
+                                    <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Save</div>
+                                    <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">診断を保存</div>
                                 </div>
-                                <div className="rounded-2xl border border-white bg-white/80 px-4 py-3 text-left">
-                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Compare</div>
-                                    <div className="mt-1 text-sm font-black text-trust-navy">比較候補を保持</div>
+                                <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
+                                    <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Compare</div>
+                                    <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">比較データ保持</div>
                                 </div>
-                                <div className="rounded-2xl border border-white bg-white/80 px-4 py-3 text-left">
-                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Resume</div>
-                                    <div className="mt-1 text-sm font-black text-trust-navy">続きをすぐ再開</div>
+                                <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
+                                    <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Resume</div>
+                                    <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">すぐ再開</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                        <div className="mt-4 flex flex-col gap-2">
                             <button
                                 onClick={() => setShowAuth(true)}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-trust-navy px-5 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
                             >
                                 <LogIn size={16} />
                                 ログインして保存する
                             </button>
                             <button
                                 onClick={() => openBagTabWithFocus()}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50 sm:w-auto"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50 md:min-h-[48px]"
                             >
-                                まずはセッティング登録を始める
+                                セッティング登録を始める
                             </button>
                         </div>
 
-                        <div className="mt-4 rounded-2xl border border-white bg-white/70 px-4 py-4">
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Why Register</div>
+                        <div className="mt-4 rounded-2xl border border-white bg-white/70 px-4 py-3">
+                            <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Why Register</div>
                             <div className="mt-2 grid gap-2 md:grid-cols-3">
-                                <div className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-trust-navy">いまのクラブ構成が残る</div>
-                                <div className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-trust-navy">診断や比較の続きから戻れる</div>
-                                <div className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-trust-navy">ログイン後もクラウドで復元できる</div>
+                                <div className="rounded-lg bg-white px-3 py-2 text-xs font-bold text-trust-navy md:px-4 md:py-3 md:text-sm">クラブ構成を保存</div>
+                                <div className="rounded-lg bg-white px-3 py-2 text-xs font-bold text-trust-navy md:px-4 md:py-3 md:text-sm">診断結果から再開</div>
+                                <div className="rounded-lg bg-white px-3 py-2 text-xs font-bold text-trust-navy md:px-4 md:py-3 md:text-sm">クラウド復元対応</div>
                             </div>
                         </div>
                     </section>
@@ -628,48 +628,60 @@ export const MyGearPage = () => {
                             <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
                                 <div className="flex items-start justify-between gap-3">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eaede7] text-xl font-black text-[#176534]">
+                                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eaede7] text-2xl font-black text-[#176534]">
                                             {profileInitial}
                                         </div>
-                                        <div>
-                                            <div className="text-xl font-black tracking-tight text-trust-navy">{profile.name || 'My Golfer'}</div>
-                                            <div className="mt-1 inline-flex rounded-full bg-[#eef4ef] px-3 py-1 text-[10px] font-black text-[#176534]">
+                                        <div className="flex-1">
+                                            <div className="text-lg font-black tracking-tight text-[#151719]">{profile.name || 'My Golfer'}</div>
+                                            <div className="mt-2 inline-flex rounded-full bg-[#eef4ef] px-3 py-1 text-[10px] font-black text-[#176534]">
                                                 {profileBadge}
                                             </div>
                                         </div>
                                     </div>
                                     <button
                                         onClick={() => setActiveTab('profile')}
-                                        className="inline-flex rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-[#176534]"
+                                        className="inline-flex min-h-[40px] items-center gap-1 rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-[#176534] transition hover:bg-slate-50"
                                     >
-                                        プロフィール編集
+                                        <Edit3 size={14} />
+                                        編集
                                     </button>
+                                </div>
+                                
+                                <div className="mt-4 grid grid-cols-2 gap-3 text-sm font-bold text-slate-600">
+                                    <div className="rounded-lg bg-slate-50 p-3">
+                                        <div className="text-[10px] uppercase text-slate-400">ハンディキャップ</div>
+                                        <div className="mt-1 text-lg font-black text-[#151719]">{profile.bestScore ? Math.max(profile.bestScore - 72, 0) : 12}</div>
+                                    </div>
+                                    <div className="rounded-lg bg-slate-50 p-3">
+                                        <div className="text-[10px] uppercase text-slate-400">ベストスコア</div>
+                                        <div className="mt-1 text-lg font-black text-[#151719]">{profile.bestScore || 85}</div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
-                                <div className="text-sm font-black text-trust-navy">総合スコア</div>
-                                <div className="mt-4 grid grid-cols-[110px_minmax(0,1fr)] gap-4">
+                                <div className="text-sm font-black text-[#151719]">総合スコア</div>
+                                <div className="mt-4 flex gap-4">
                                     <div className="flex flex-col items-center justify-center">
-                                        <div className="relative flex h-24 w-24 items-center justify-center rounded-full border-[7px] border-[#176534]/15">
+                                        <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-[6px] border-[#176534]/15">
                                             <div
-                                                className="absolute inset-0 rounded-full border-[7px] border-transparent border-t-[#176534] border-r-[#176534] rotate-45"
+                                                className="absolute inset-0 rounded-full border-[6px] border-transparent border-t-[#176534] border-r-[#176534] rotate-45"
                                                 style={{ clipPath: `inset(0 ${100 - dashboardScore}% 0 0)` }}
                                             />
                                             <div className="text-center">
-                                                <div className="text-3xl font-black text-trust-navy">{dashboardScore}</div>
-                                                <div className="text-[11px] font-black text-slate-400">/100</div>
+                                                <div className="text-2xl font-black text-[#151719]">{dashboardScore}</div>
+                                                <div className="text-[9px] font-black text-slate-400">/100</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="space-y-3">
+                                    <div className="flex-1 space-y-2">
                                         {scoreBars.map((item) => (
                                             <div key={item.label}>
-                                                <div className="mb-1 flex items-center justify-between text-[11px] font-black text-slate-500">
+                                                <div className="flex items-center justify-between text-[10px] font-bold text-slate-500">
                                                     <span>{item.label}</span>
                                                     <span>{item.value}</span>
                                                 </div>
-                                                <div className="h-2 rounded-full bg-slate-100">
+                                                <div className="mt-1 h-1.5 rounded-full bg-slate-100">
                                                     <div className={`h-full rounded-full ${item.tone}`} style={{ width: `${item.value}%` }} />
                                                 </div>
                                             </div>
@@ -1425,6 +1437,31 @@ export const MyGearPage = () => {
                     </div>
                 </div>
             </main>
+
+            {/* モバイル用 ボトムナビゲーション */}
+            <nav className="fixed bottom-0 left-0 right-0 border-t border-slate-200 bg-white shadow-lg md:hidden">
+                <div className="mx-auto flex max-w-[1380px] items-center justify-around">
+                    {sidebarMenu.map((item) => {
+                        const Icon = item.icon;
+                        const isActive = activeTab === item.key;
+                        return (
+                            <button
+                                key={item.key}
+                                onClick={() => setActiveTab(item.key)}
+                                className={cn(
+                                    'flex flex-col items-center gap-1 px-4 py-3 text-xs font-black transition',
+                                    isActive
+                                        ? 'text-[#166534]'
+                                        : 'text-slate-400 hover:text-slate-600'
+                                )}
+                            >
+                                <Icon size={20} />
+                                <span>{item.label}</span>
+                            </button>
+                        );
+                    })}
+                </div>
+            </nav>
         </div>
     );
 };

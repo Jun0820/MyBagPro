@@ -1542,7 +1542,7 @@ export const DiagnosisWizard = () => {
                         </div>
                         <div className="mt-8">
                             <label className="font-bold block mb-4 text-trust-navy text-lg">セット構成（5-PW等）</label>
-                            <input type="text" value={profile.ironSetComposition || ''} onChange={e => updateProfile('ironSetComposition', e.target.value)} placeholder="例: 5-PW, 6-GW" className="w-full p-3 border-2 border-slate-200 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-500 text-sm" />
+                            <input type="text" value={profile.ironSetComposition || ''} onChange={e => updateProfile('ironSetComposition', e.target.value)} placeholder="例: 5-PW, 6-GW" className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl font-bold text-trust-navy outline-none focus:border-golf-500 text-sm" />
                         </div>
                     </>
                 )}

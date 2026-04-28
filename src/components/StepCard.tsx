@@ -125,15 +125,15 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                         )}
 
                         <div className="mt-5">
-                            <div className="grid grid-cols-5 items-center gap-2 md:gap-3">
+                            <div className="grid grid-cols-5 items-center gap-1 md:gap-3">
                                 {progressLabels.map((label, index) => {
                                     const current = index + 1 === progressIndex;
                                     const completed = index + 1 < progressIndex;
                                     return (
-                                        <div key={label} className="flex flex-col items-center gap-2">
-                                            <div className="flex w-full items-center gap-2">
+                                        <div key={label} className="flex flex-col items-center gap-1 md:gap-2">
+                                            <div className="flex w-full items-center gap-1 md:gap-2">
                                                 <div
-                                                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-xs font-black md:h-10 md:w-10 md:text-sm ${
+                                                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[10px] font-black md:h-10 md:w-10 md:text-sm ${
                                                         current || completed
                                                             ? 'border-[#166534] bg-[#166534] text-white'
                                                             : 'border-slate-200 bg-white text-slate-400'
@@ -145,7 +145,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                                                     <div className={`h-[2px] flex-1 rounded-full ${completed ? 'bg-[#166534]' : 'bg-slate-200'}`} />
                                                 )}
                                             </div>
-                                            <div className="text-center text-[10px] font-black text-slate-500 md:text-xs">{label}</div>
+                                            <div className="text-center text-[9px] font-black text-slate-500 md:text-xs">{label}</div>
                                         </div>
                                     );
                                 })}
