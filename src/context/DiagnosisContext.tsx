@@ -267,6 +267,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         const savedIds = new Set((data || []).map((club) => club.id));
         const missingIds = expectedIds.filter((id) => !savedIds.has(id));
 
+        if ((data || []).length !== expectedIds.length) {
+            throw new Error(`clubs verify: expected ${expectedIds.length} clubs but found ${(data || []).length}`);
+        }
+
         if (expectedIds.length > 0 && missingIds.length > 0) {
             throw new Error(`clubs verify: missing ${missingIds.length} saved clubs`);
         }
@@ -297,11 +301,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return;
         }
 
-        const clubsInsertResult = await supabase
-            .from('clubs')
-            .insert(clubPayloads);
+        for (const clubPayload of clubPayloads) {
+            const clubsInsertResult = await supabase
+                .from('clubs')
+                .insert(clubPayload);
 
-        assertSupabaseOk(clubsInsertResult, `clubs replace insert during ${reason}-save`);
+            assertSupabaseOk(
+                clubsInsertResult,
+                `clubs replace insert during ${reason}-save (${clubPayload.category} ${clubPayload.model || clubPayload.brand || clubPayload.id})`,
+            );
+        }
     };
 
     const refreshUnsavedChanges = (activeUser = userRef.current, activeProfile = profileRef.current) => {
@@ -383,7 +392,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return false;
         }
 
-            const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
+        const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
 
         if (reason === 'auto' && signature === lastRemoteSaveSignatureRef.current) {
             if (saveStatus !== 'error') {
