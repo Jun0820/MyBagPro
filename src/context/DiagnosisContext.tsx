@@ -182,6 +182,32 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         });
     };
 
+    const ensureProfileRow = async (authUser: { id: string; email?: string | null; user_metadata?: Record<string, any> | null }) => {
+        const activeProfile = profileRef.current;
+        const payload = {
+            id: authUser.id,
+            name: activeProfile.name || authUser.user_metadata?.name || '',
+            is_public: activeProfile.isPublic,
+            current_ball: activeProfile.myBag.ball || activeProfile.currentBall || null,
+            head_speed: activeProfile.headSpeed || null,
+            sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
+                bestScore: activeProfile.bestScore,
+                averageScore: activeProfile.averageScore,
+            }, buildBagSnapshot(activeProfile.myBag.clubs, activeProfile.myBag.ball || activeProfile.currentBall || '')),
+            age: activeProfile.age || null,
+            gender: activeProfile.gender || null,
+            birthdate: activeProfile.birthdate || null,
+            golf_history: activeProfile.golfHistory || null,
+            updated_at: new Date().toISOString(),
+        };
+
+        const profileInsertResult = await supabase
+            .from('profiles')
+            .upsert(payload, { onConflict: 'id' });
+
+        assertSupabaseOk(profileInsertResult, 'profiles bootstrap');
+    };
+
     const buildRemoteSavePayload = (activeUser: UserAccount, activeProfile: UserProfile) => {
         const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
         const bagSnapshot = buildBagSnapshot(
@@ -497,47 +523,61 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 throw new Error(`profiles sync: ${profileError.message}`);
             }
 
-            if (profileData) {
-                const normalizedSocials = normalizeUserSocialLinks(profileData.sns_links);
+            if (!profileData) {
+                await ensureProfileRow(user);
+            }
+
+            const { data: ensuredProfileData, error: ensuredProfileError } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', user.id)
+                .maybeSingle();
+
+            if (ensuredProfileError) {
+                throw new Error(`profiles sync reload: ${ensuredProfileError.message}`);
+            }
+
+            if (ensuredProfileData) {
+                const normalizedSocials = normalizeUserSocialLinks(ensuredProfileData.sns_links);
                 const snapshotClubs = normalizedSocials.bagSnapshot?.clubs || [];
                 const syncedProfile = {
                     ...profileRef.current,
-                    name: profileData.name || profileRef.current.name,
-                    gender: profileData.gender || profileRef.current.gender,
-                    age: profileData.age || profileRef.current.age,
-                    headSpeed: profileData.head_speed || profileRef.current.headSpeed,
-                    birthdate: profileData.birthdate || profileRef.current.birthdate,
-                    golfHistory: profileData.golf_history || profileRef.current.golfHistory,
+                    name: ensuredProfileData.name || profileRef.current.name,
+                    gender: ensuredProfileData.gender || profileRef.current.gender,
+                    age: ensuredProfileData.age || profileRef.current.age,
+                    headSpeed: ensuredProfileData.head_speed || profileRef.current.headSpeed,
+                    birthdate: ensuredProfileData.birthdate || profileRef.current.birthdate,
+                    golfHistory: ensuredProfileData.golf_history || profileRef.current.golfHistory,
                     snsLinks: normalizedSocials,
-                    coverPhoto: profileData.cover_photo || profileRef.current.coverPhoto,
-                    isPublic: profileData.is_public ?? profileRef.current.isPublic,
-                    currentBall: profileData.current_ball || profileRef.current.currentBall,
+                    coverPhoto: ensuredProfileData.cover_photo || profileRef.current.coverPhoto,
+                    isPublic: ensuredProfileData.is_public ?? profileRef.current.isPublic,
+                    currentBall: ensuredProfileData.current_ball || profileRef.current.currentBall,
                     bestScore: normalizedSocials.profileStats?.bestScore ?? profileRef.current.bestScore,
                     averageScore: normalizedSocials.profileStats?.averageScore ?? profileRef.current.averageScore,
                     myBag: {
                         ...profileRef.current.myBag,
-                        ball: profileData.current_ball || profileRef.current.myBag.ball,
+                        ball: ensuredProfileData.current_ball || profileRef.current.myBag.ball,
                         clubs: snapshotClubs.length > 0 ? snapshotClubs : profileRef.current.myBag.clubs,
                     },
                 };
                 profileRef.current = syncedProfile;
                 setProfile(prev => ({
                     ...prev,
-                    name: profileData.name || prev.name,
-                    gender: profileData.gender || prev.gender,
-                    age: profileData.age || prev.age,
-                    headSpeed: profileData.head_speed || prev.headSpeed,
-                    birthdate: profileData.birthdate || prev.birthdate,
-                    golfHistory: profileData.golf_history || prev.golfHistory,
+                    name: ensuredProfileData.name || prev.name,
+                    gender: ensuredProfileData.gender || prev.gender,
+                    age: ensuredProfileData.age || prev.age,
+                    headSpeed: ensuredProfileData.head_speed || prev.headSpeed,
+                    birthdate: ensuredProfileData.birthdate || prev.birthdate,
+                    golfHistory: ensuredProfileData.golf_history || prev.golfHistory,
                     snsLinks: normalizedSocials,
-                    coverPhoto: profileData.cover_photo || prev.coverPhoto,
-                    isPublic: profileData.is_public ?? prev.isPublic,
-                    currentBall: profileData.current_ball || prev.currentBall,
+                    coverPhoto: ensuredProfileData.cover_photo || prev.coverPhoto,
+                    isPublic: ensuredProfileData.is_public ?? prev.isPublic,
+                    currentBall: ensuredProfileData.current_ball || prev.currentBall,
                     bestScore: normalizedSocials.profileStats?.bestScore ?? prev.bestScore,
                     averageScore: normalizedSocials.profileStats?.averageScore ?? prev.averageScore,
                     myBag: {
                         ...prev.myBag,
-                        ball: profileData.current_ball || prev.myBag.ball,
+                        ball: ensuredProfileData.current_ball || prev.myBag.ball,
                         clubs: snapshotClubs.length > 0 ? snapshotClubs : prev.myBag.clubs,
                     },
                 }));
@@ -551,7 +591,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             assertSupabaseOk({ error: clubsError }, 'clubs sync');
 
             if (clubData) {
-                const normalizedSocials = normalizeUserSocialLinks(profileData?.sns_links);
+                const normalizedSocials = normalizeUserSocialLinks(ensuredProfileData?.sns_links);
                 const snapshotClubs = normalizedSocials.bagSnapshot?.clubs || [];
                 const nextProfile = {
                     ...profileRef.current,

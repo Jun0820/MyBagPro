@@ -38,6 +38,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
         if (msg.includes('Invalid login credentials')) return 'メールアドレスまたはパスワードが正しくありません。';
         if (msg.includes('User already registered')) return 'このメールアドレスは既に登録されています。';
         if (msg.includes('Password should be at least 6 characters')) return 'パスワードは6文字以上で入力してください。';
+        if (msg.includes('email rate limit exceeded')) return '確認メールの送信回数が上限に達しています。少し時間をおいてから、もう一度登録してください。';
         return msg || '認証に失敗しました。時間をおいて再度お試しください。';
     };
 
@@ -72,7 +73,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                     const signUpProfile = currentProfile || INITIAL_PROFILE;
                     
                     // Explicitly create profile to ensure it exists
-                    await supabase.from('profiles').upsert({
+                    const { error: profileUpsertError } = await supabase.from('profiles').upsert({
                         id: userId,
                         name: name,
                         is_public: signUpProfile.isPublic,
@@ -87,6 +88,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                         birthdate: birthdate || null, // Fix: send null instead of empty string
                         golf_history: golfHistory || null
                     });
+                    if (profileUpsertError) throw profileUpsertError;
 
                     const newAccount: UserAccount = {
                         id: userId,
