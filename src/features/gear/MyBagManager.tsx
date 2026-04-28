@@ -248,7 +248,7 @@ interface MyBagManagerProps {
     pendingBagChangeCount?: number;
     pendingBagChangeIds?: string[];
     lastCloudSavedAt?: string | null;
-    onManualSave?: () => void;
+    onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
     onSaveAndReturn?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -396,7 +396,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             ? {
                 title: '使用ボールを登録する',
                 description: 'ボールまで入ると、クラブとの相性や診断導線が一気につながります。',
-                onClick: () => onManualSave?.(),
+                onClick: () => onManualSave?.(setting),
             }
             : {
                 title: 'ボール診断で相性を確認',
@@ -407,7 +407,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             ? {
                 title: '飛距離を追加して精度を上げる',
                 description: '1W / 7I / ウェッジの飛距離が入ると、番手ごとの差分提案が具体化します。',
-                onClick: () => onManualSave?.(),
+                onClick: () => onManualSave?.(setting),
             }
             : {
                 title: '比較ページで差を見る',
@@ -426,7 +426,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         handleQuickAddStarter(missingEssentials[0].category, missingEssentials[0].number);
                         return;
                     }
-                    onManualSave?.();
+                    onManualSave?.(setting);
                 },
             };
         }
@@ -441,7 +441,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         onOpenBallDiagnosis?.();
                         return;
                     }
-                    onManualSave?.();
+                    onManualSave?.(setting);
                 },
             };
         }
@@ -611,7 +611,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         }));
         setSelectedLofts([]);
         // Batch add should also attempt a sync
-        setTimeout(() => onManualSave?.(), 100);
+        setTimeout(() => onManualSave?.({ ...setting, clubs: [...setting.clubs, ...newClubs] }), 100);
     };
 
     return (
@@ -733,7 +733,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             ))}
                         </datalist>
                         <button
-                            onClick={() => onManualSave?.()}
+                            onClick={() => onManualSave?.(setting)}
                             className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
                         >
                             <Save size={14} />
@@ -817,7 +817,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     {(hasUnsavedChanges || saveStatus === 'error') && (
                         <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                             <button
-                                onClick={() => onManualSave?.()}
+                                onClick={() => onManualSave?.(setting)}
                                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-current/20 bg-white/80 px-4 py-2 text-xs font-black transition-colors hover:bg-white"
                             >
                                 <Save size={14} />
@@ -881,7 +881,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
 
                     <button 
-                        onClick={() => onManualSave?.()} 
+                        onClick={() => onManualSave?.(setting)} 
                         className="flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-trust-navy px-8 font-bold text-white shadow-lg transition-all hover:bg-slate-800 active:scale-95 lg:w-auto"
                     >
                         {isManualSaveInFlight ? (
