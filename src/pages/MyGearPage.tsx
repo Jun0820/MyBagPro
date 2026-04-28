@@ -21,6 +21,7 @@ import {
     Heart,
     ShoppingCart,
     Save,
+    LogOut,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useEffect, useState } from 'react';
@@ -199,6 +200,12 @@ export const MyGearPage = () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
     }, [manualSave]);
+
+    const handleLogout = async () => {
+        if (!window.confirm('ログアウトしますか？')) return;
+        await supabase.auth.signOut();
+        window.location.href = '#/';
+    };
 
     useEffect(() => {
         const tabParam = searchParams.get('tab');
@@ -540,23 +547,34 @@ export const MyGearPage = () => {
                                     <div className="text-sm font-bold text-slate-500">あなたのゴルフデータと診断結果を確認できます。</div>
                                     <h1 className="mt-2 text-3xl font-black tracking-tight text-[#151719] md:text-5xl">マイページ</h1>
                                 </div>
-                                <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 lg:hidden">
-                                    {sidebarMenu.map((item) => {
-                                        const Icon = item.icon;
-                                        return (
-                                            <button
-                                                key={item.key}
-                                                onClick={() => setActiveTab(item.key)}
-                                                className={cn(
-                                                    'flex min-h-[48px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-2 text-[11px] font-black transition',
-                                                    activeTab === item.key ? 'bg-white text-[#166534] shadow-sm' : 'text-slate-500'
-                                                )}
-                                            >
-                                                <Icon size={16} />
-                                                <span className="text-center">{item.label}</span>
-                                            </button>
-                                        );
-                                    })}
+                                <div className="flex flex-col gap-3 lg:min-w-[360px]">
+                                    {user.isLoggedIn && (
+                                        <button
+                                            onClick={handleLogout}
+                                            className="inline-flex min-h-[46px] items-center justify-center gap-2 self-start rounded-2xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-600 transition hover:border-[#166534] hover:text-[#166534] lg:self-end"
+                                        >
+                                            <LogOut size={16} />
+                                            ログアウト
+                                        </button>
+                                    )}
+                                    <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 lg:hidden">
+                                        {sidebarMenu.map((item) => {
+                                            const Icon = item.icon;
+                                            return (
+                                                <button
+                                                    key={item.key}
+                                                    onClick={() => setActiveTab(item.key)}
+                                                    className={cn(
+                                                        'flex min-h-[48px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-2 text-[11px] font-black transition',
+                                                        activeTab === item.key ? 'bg-white text-[#166534] shadow-sm' : 'text-slate-500'
+                                                    )}
+                                                >
+                                                    <Icon size={16} />
+                                                    <span className="text-center">{item.label}</span>
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -1426,12 +1444,7 @@ export const MyGearPage = () => {
                         onUpdateAverageScore={(s: number | undefined) => updateProfile('averageScore', s)}
                         saveStatus={saveStatus}
                         onManualSave={manualSave}
-                        onLogout={async () => {
-                            if (window.confirm('ログアウトしますか？')) {
-                                await supabase.auth.signOut();
-                                window.location.href = '#/';
-                            }
-                        }}
+                        onLogout={handleLogout}
                     />
                 )}
                     </div>
