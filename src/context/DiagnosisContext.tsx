@@ -39,7 +39,7 @@ interface DiagnosisContextType {
     pendingBagChangeIds: string[];
     lastCloudSavedAt: string | null;
     syncWithSupabase: () => Promise<void>;
-    manualSave: () => Promise<void>;
+    manualSave: (profileOverride?: UserProfile) => Promise<void>;
 }
 
 const DiagnosisContext = createContext<DiagnosisContextType | undefined>(undefined);
@@ -663,12 +663,13 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     }, [user.id, user.isLoggedIn, profile, resultData, isInitialSyncComplete]);
     
     // Manual Save Trigger (Immediate)
-    const manualSave = async () => {
+    const manualSave = async (profileOverride?: UserProfile) => {
         const latestLocalProfile = readLatestLocalProfileSnapshot();
-        if (latestLocalProfile) {
-            profileRef.current = latestLocalProfile;
-            setProfileInternal(latestLocalProfile);
-        }
+        const saveProfile = profileOverride || latestLocalProfile || profileRef.current;
+
+        profileRef.current = saveProfile;
+        setProfileInternal(saveProfile);
+        persistLocalSnapshot(userRef.current, saveProfile, resultDataRef.current);
 
         if (userRef.current.isLoggedIn && userRef.current.id && !isInitialSyncComplete) {
             await syncWithSupabase();

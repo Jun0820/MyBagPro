@@ -1402,12 +1402,12 @@ export const MyGearPage = () => {
                         pendingBagChangeCount={pendingBagChangeCount}
                         pendingBagChangeIds={pendingBagChangeIds}
                         lastCloudSavedAt={lastCloudSavedAt}
-                        onManualSave={manualSave}
+                        onManualSave={() => manualSave({ ...profile, myBag: profile.myBag })}
                         onReloadFromCloud={syncWithSupabase}
                         onSaveAndReturn={
                             returnTo
                                 ? async () => {
-                                      await manualSave();
+                                      await manualSave({ ...profile, myBag: profile.myBag });
                                       const nextReturn = new URL(returnTo, window.location.origin);
                                       nextReturn.searchParams.set('refreshed', '1');
                                       navigate(`${nextReturn.pathname}${nextReturn.search}${nextReturn.hash}`);
