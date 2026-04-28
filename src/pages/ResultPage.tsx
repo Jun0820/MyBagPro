@@ -3,6 +3,7 @@ import { useDiagnosis } from '../context/DiagnosisContext';
 import { useEffect, useState } from 'react';
 
 import { RadarChart } from '../components/RadarChart';
+import { RakutenProductCard } from '../components/RakutenProductCard';
 import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { INITIAL_PROFILE, TargetCategory } from '../types/golf';
@@ -768,6 +769,18 @@ export const ResultPage = () => {
                                         <div style={{ width: `${item.matchPercentage}%` }} className="h-full bg-gradient-to-r from-slate-700 to-slate-900 rounded-full shadow-[0_0_12px_rgba(15,23,42,0.4)] relative">
                                             <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
                                         </div>
+                                    </div>
+
+                                    {/* 楽天商品情報 */}
+                                    <div className="mb-6">
+                                        <RakutenProductCard
+                                            brand={item.brand}
+                                            model={item.modelName}
+                                            category={result.category}
+                                            className="h-full"
+                                            showPrice={true}
+                                            showShop={true}
+                                        />
                                     </div>
                                     {/* フィッターの熱い一言 */}
                                     {item.expertOpinion && (
