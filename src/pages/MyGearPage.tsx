@@ -1389,12 +1389,20 @@ export const MyGearPage = () => {
                         lastCloudSavedAt={lastCloudSavedAt}
                         lastSaveTargetClubCount={lastSaveTargetClubCount}
                         lastSavedClubCount={lastSavedClubCount}
-                        onManualSave={() => manualSave({ ...profile, myBag: profile.myBag })}
+                        onManualSave={(settingOverride) =>
+                            manualSave({
+                                ...profile,
+                                myBag: settingOverride || profile.myBag,
+                            })
+                        }
                         onReloadFromCloud={syncWithSupabase}
                         onSaveAndReturn={
                             returnTo
                                 ? async () => {
-                                      await manualSave({ ...profile, myBag: profile.myBag });
+                                      await manualSave({
+                                          ...profile,
+                                          myBag: profile.myBag,
+                                      });
                                       const nextReturn = new URL(returnTo, window.location.origin);
                                       nextReturn.searchParams.set('refreshed', '1');
                                       navigate(`${nextReturn.pathname}${nextReturn.search}${nextReturn.hash}`);

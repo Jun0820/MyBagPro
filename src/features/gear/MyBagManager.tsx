@@ -7,6 +7,8 @@ import { cn } from '../../lib/utils';
 import { ShareImageExporter } from '../../components/ShareImageExporter';
 import { BALL_MASTER_DATA } from '../../data/ballMasterData';
 
+const MAX_BAG_CLUBS = 15;
+
 // Helper for Category Colors
 const getCategoryColor = (cat: string) => {
     switch (cat) {
@@ -343,6 +345,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const starterPercent = Math.round((completedStarterCount / starterSlots.length) * 100);
     const missingEssentials = starterSlots.filter((slot) => !registeredCategories.has(slot.category));
     const hasBall = Boolean(setting.ball?.trim());
+    const remainingClubSlots = Math.max(0, MAX_BAG_CLUBS - setting.clubs.length);
+    const isBagAtCapacity = setting.clubs.length >= MAX_BAG_CLUBS;
     const fairwayCount = setting.clubs.filter((club) => club.category === TargetCategory.FAIRWAY).length;
     const utilityCount = setting.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
     const wedgeCount = setting.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
@@ -532,6 +536,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const handleAddClub = (category?: string, customModel?: string) => {
         const cat = category || addCategory;
         if (!cat) return;
+        if (setting.clubs.length >= MAX_BAG_CLUBS) return;
         onUpdate((prev) => ({
             ...prev,
             clubs: [...prev.clubs, {
@@ -552,6 +557,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const handleQuickAddStarter = (category: TargetCategory, number: string) => {
         const existing = setting.clubs.find((club) => club.category === category && (club.number || '') === number);
         if (existing) return;
+        if (setting.clubs.length >= MAX_BAG_CLUBS) return;
 
         onUpdate((prev) => ({
             ...prev,
@@ -617,13 +623,16 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             })
             .filter((c): c is Club => c !== null);
 
+        const allowedNewClubs = newClubs.slice(0, remainingClubSlots);
+        if (allowedNewClubs.length === 0) return;
+
         onUpdate((prev) => ({
             ...prev,
-            clubs: [...prev.clubs, ...newClubs]
+            clubs: [...prev.clubs, ...allowedNewClubs]
         }));
         setSelectedLofts([]);
         // Batch add should also attempt a sync
-        setTimeout(() => onManualSave?.({ ...setting, clubs: [...setting.clubs, ...newClubs] }), 100);
+        setTimeout(() => onManualSave?.({ ...setting, clubs: [...setting.clubs, ...allowedNewClubs] }), 100);
     };
 
     return (
@@ -797,6 +806,17 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         ))}
                     </div>
                 </div>
+
+                <div className={cn(
+                    "mt-5 rounded-2xl border px-4 py-3 text-sm font-bold",
+                    isBagAtCapacity
+                        ? "border-amber-200 bg-amber-50 text-amber-800"
+                        : "border-slate-200 bg-slate-50 text-slate-600"
+                )}>
+                    {isBagAtCapacity
+                        ? `クラブは最大 ${MAX_BAG_CLUBS} 本まで登録できます。いまは上限に達しています。`
+                        : `クラブは最大 ${MAX_BAG_CLUBS} 本まで登録できます。あと ${remainingClubSlots} 本追加できます。`}
+                </div>
             </div>
 
             {/* クラブ一覧 & 編集部 */}
@@ -805,7 +825,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-golf-500 rounded-full"></div>
                          <h3 className="font-bold text-lg text-trust-navy uppercase tracking-tight">CLUB MANAGEMENT</h3>
-                         <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-100 text-[10px] font-black text-slate-400">いまの登録: {sortedClubs.length}本</div>
+                         <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-100 text-[10px] font-black text-slate-400">いまの登録: {sortedClubs.length}/{MAX_BAG_CLUBS}本</div>
                     </div>
                     <ShareImageExporter 
                         targetId="my-bag-export-area" 
@@ -826,6 +846,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <div className="mt-1 text-xs leading-relaxed opacity-80">{saveStatusMeta.description}</div>
                             <div className="mt-2 text-[11px] font-bold opacity-70">
                                 保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
+                            </div>
+                            <div className="mt-1 text-[11px] font-bold opacity-70">
+                                残り追加可能 {remainingClubSlots}本
                             </div>
                         </div>
                     </div>
@@ -888,7 +911,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         </div>
                         <button
                             onClick={() => handleAddClub()}
-                            disabled={!addCategory}
+                            disabled={!addCategory || isBagAtCapacity}
                             className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-100 px-8 font-bold text-trust-navy transition-all hover:bg-slate-200 active:scale-95 disabled:opacity-50 sm:w-auto"
                         >
                             <Plus size={20} /> 個別追加
@@ -933,6 +956,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <ChevronDown size={18} className="text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="space-y-6 p-4 md:p-6">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600">
+                        一括追加でも上限は {MAX_BAG_CLUBS} 本です。現在は {setting.clubs.length} 本登録済みで、あと {remainingClubSlots} 本追加できます。
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">共通ブランド・モデル名</div>
