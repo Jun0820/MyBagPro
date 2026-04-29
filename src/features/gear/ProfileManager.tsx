@@ -87,7 +87,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
     };
 
     return (
-        <div className="space-y-6 animate-fadeIn pb-12">
+        <div className="space-y-4 animate-fadeIn pb-8">
             {/* Header / Avatar Section */}
             <div className="bg-white rounded-[32px] overflow-hidden shadow-xl border border-slate-100">
                 <div className="relative h-48 md:h-56 bg-trust-navy overflow-hidden">
@@ -154,9 +154,9 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         {/* Left Side: Basic Info */}
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">プロフィールの基本</h4>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
@@ -256,7 +256,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                         </div>
 
                         {/* Right Side: SNS & Privacy */}
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">公開まわりと導線</h4>
                             <div className="space-y-4">
                                 <div className="relative">
