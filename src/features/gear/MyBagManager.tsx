@@ -137,7 +137,15 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                         <ChevronDown size={10} className="text-white absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none opacity-80" />
                     </div>
                 </div>
-                <button onClick={onRemove} className="ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-300 transition-all hover:bg-red-50 hover:text-red-500 focus:outline-none">
+                <button 
+                    onClick={() => {
+                        if (window.confirm(`${entry.brand || 'このクラブ'} を削除してもよろしいですか？`)) {
+                            onRemove();
+                        }
+                    }}
+                    className="ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-300 transition-all hover:bg-red-50 hover:text-red-500 focus:outline-none"
+                    title="削除"
+                >
                     <Trash2 size={14} />
                 </button>
             </div>
