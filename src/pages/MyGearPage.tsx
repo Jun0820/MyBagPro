@@ -630,20 +630,11 @@ export const MyGearPage = () => {
                                 セッティング登録を始める
                             </button>
                         </div>
-
-                        <div className="mt-4 rounded-2xl border border-white bg-white/70 px-4 py-3">
-                            <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Why Register</div>
-                            <div className="mt-2 grid gap-2 md:grid-cols-3">
-                                <div className="rounded-lg bg-white px-3 py-2 text-xs font-bold text-trust-navy md:px-4 md:py-3 md:text-sm">クラブ構成を保存</div>
-                                <div className="rounded-lg bg-white px-3 py-2 text-xs font-bold text-trust-navy md:px-4 md:py-3 md:text-sm">診断結果から再開</div>
-                                <div className="rounded-lg bg-white px-3 py-2 text-xs font-bold text-trust-navy md:px-4 md:py-3 md:text-sm">クラウド復元対応</div>
-                            </div>
-                        </div>
                     </section>
                 )}
 
                 {activeTab === 'view' && (
-                    <div className="space-y-6 pb-12">
+                    <div className="space-y-4 pb-8">
                         <section className="space-y-4 md:hidden">
                             <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
                                 <div className="flex items-start justify-between gap-3">
@@ -714,69 +705,65 @@ export const MyGearPage = () => {
                                 <div className="flex items-center justify-between">
                                     <div className="text-sm font-black text-trust-navy">マイクラブ</div>
                                     <button onClick={() => setActiveTab('clubs')} className="text-xs font-black text-[#176534]">
-                                        すべて見る
+                                        編集
                                     </button>
                                 </div>
-                                <div className="mt-4 grid grid-cols-2 gap-3">
+                                <div className="mt-3 grid grid-cols-2 gap-2">
                                     {mobileFeaturedClubs.length > 0 ? (
                                         mobileFeaturedClubs.map((club) => (
                                             <button
                                                 key={club.id}
                                                 onClick={() => setActiveTab('clubs')}
-                                                className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-left"
+                                                className="rounded-2xl border border-slate-200 bg-slate-50 p-2 text-left"
                                             >
                                                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
                                                     {club.number || club.category}
                                                 </div>
-                                                <div className="mt-2 text-sm font-black text-trust-navy">{club.brand || 'ブランド未設定'}</div>
-                                                <div className="mt-1 text-xs leading-5 text-slate-500">{club.model || 'モデル未設定'}</div>
-                                                <div className="mt-2 text-[11px] font-bold text-slate-400">{club.loft || '—'}</div>
+                                                <div className="mt-1 text-xs font-black text-trust-navy">{club.brand || 'ブランド未設定'}</div>
+                                                <div className="text-[11px] text-slate-500">{club.model || 'モデル未設定'}</div>
                                             </button>
                                         ))
                                     ) : (
                                         <button
                                             onClick={() => setActiveTab('clubs')}
-                                            className="col-span-2 rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-6 text-left"
+                                            className="col-span-2 rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-3 py-4 text-left"
                                         >
-                                            <div className="text-sm font-black text-trust-navy">まだクラブが未登録です</div>
-                                            <div className="mt-1 text-xs leading-6 text-slate-500">まずはドライバーか7Iから登録すると分析がかなり進みます。</div>
+                                            <div className="text-xs font-black text-trust-navy">クラブを登録してはじめましょう</div>
+                                            <div className="text-[11px] text-slate-500">ドライバーか7I から</div>
                                         </button>
                                     )}
                                 </div>
-                                <div className="mt-4 grid grid-cols-2 gap-3">
+                                <div className="mt-3 grid grid-cols-2 gap-2">
                                     <button
                                         onClick={() => setActiveTab('clubs')}
-                                        className="inline-flex items-center justify-center rounded-2xl bg-[#176534] px-4 py-3 text-sm font-black text-white"
+                                        className="inline-flex items-center justify-center rounded-xl bg-[#176534] px-3 py-2 text-xs font-black text-white"
                                     >
-                                        クラブを登録・編集する
+                                        登録・編集
                                     </button>
                                     <button
                                         onClick={() => navigate('/compare')}
-                                        className="inline-flex items-center justify-center rounded-2xl border border-[#c9d7cb] bg-white px-4 py-3 text-sm font-black text-[#176534]"
+                                        className="inline-flex items-center justify-center rounded-xl border border-[#c9d7cb] bg-white px-3 py-2 text-xs font-black text-[#176534]"
                                     >
-                                        セッティングを比較する
+                                        比較する
                                     </button>
                                 </div>
                             </div>
 
-                            <div className="rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
+                            <div className="rounded-[28px] border border-[#e5ece6] bg-white p-3 shadow-sm">
                                 <div className="text-sm font-black text-trust-navy">最近の診断結果</div>
-                                <div className="mt-3 space-y-2">
-                                    {(recentHistory.slice(0, 4)).map((item) => (
+                                <div className="mt-2 space-y-1">
+                                    {(recentHistory.slice(0, 3)).map((item) => (
                                         <button
                                             key={item.id}
                                             onClick={() => openSavedDiagnosis(item)}
-                                            className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-left"
+                                            className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-left text-xs"
                                         >
                                             <div className="min-w-0">
-                                                <div className="text-sm font-black text-trust-navy">
+                                                <div className="font-black text-trust-navy">
                                                     {item.category === TargetCategory.TOTAL_SETTING ? '総合診断' : `${item.category} 診断`}
                                                 </div>
-                                                <div className="mt-1 truncate text-[11px] text-slate-500">
-                                                    {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '保存した診断結果'}
-                                                </div>
                                             </div>
-                                            <div className="text-sm font-black text-trust-navy">
+                                            <div className="font-black text-trust-navy">
                                                 {Math.round(item.result?.rankings?.[0]?.matchPercentage || 72)}/100
                                             </div>
                                         </button>
@@ -784,10 +771,9 @@ export const MyGearPage = () => {
                                     {recentHistory.length === 0 && (
                                         <button
                                             onClick={() => navigate('/diagnosis')}
-                                            className="w-full rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-5 text-left"
+                                            className="w-full rounded-xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-3 py-3 text-left text-xs"
                                         >
-                                            <div className="text-sm font-black text-trust-navy">まだ診断履歴がありません</div>
-                                            <div className="mt-1 text-xs leading-6 text-slate-500">無料診断を始めると、この場所から続きが見やすくなります。</div>
+                                            <div className="font-black text-trust-navy">診断履歴なし</div>
                                         </button>
                                     )}
                                 </div>

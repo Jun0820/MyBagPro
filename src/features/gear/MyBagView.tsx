@@ -85,7 +85,7 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
     };
 
     return (
-        <div className="animate-fadeIn space-y-6 pb-12">
+        <div className="animate-fadeIn space-y-4 pb-8">
             {/* Header / Profile Card */}
             <div className="bg-white rounded-[32px] overflow-hidden shadow-xl border border-slate-100">
                 <div className="relative h-56 md:h-72 bg-trust-navy overflow-hidden">
