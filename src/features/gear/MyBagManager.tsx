@@ -619,7 +619,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     };
 
     return (
-        <div className="space-y-6 animate-fadeIn">
+        <div className="space-y-4 animate-fadeIn">
             {intakeBanner && (
                 <div className="rounded-3xl border border-cyan-200 bg-cyan-50 p-4 shadow-sm md:p-5">
                     <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -793,7 +793,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
             {/* クラブ一覧 & 編集部 */}
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 border-b border-slate-100 pb-4 gap-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-slate-100 pb-3 gap-4">
                     <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-golf-500 rounded-full"></div>
                          <h3 className="font-bold text-lg text-trust-navy uppercase tracking-tight">CLUB MANAGEMENT</h3>
@@ -807,7 +807,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     />
                 </div>
 
-                <div className={cn('mb-5 rounded-2xl border px-4 py-3', saveStatusMeta.tone)}>
+                <div className={cn('mb-4 rounded-2xl border px-4 py-3', saveStatusMeta.tone)}>
                     <div className="flex items-start gap-3">
                         <div className="mt-0.5 rounded-full bg-white/80 p-2 shadow-sm">
                             {saveStatusMeta.icon}
@@ -841,7 +841,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     )}
                 </div>
                 
-                <div id="my-bag-export-area" className="mb-6 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 sm:grid-cols-2 lg:grid-cols-3">
+                <div id="my-bag-export-area" className="mb-4 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 sm:grid-cols-2 lg:grid-cols-3">
                     {sortedClubs.map(entry => (
                         <MemoizedClubRow 
                             key={entry.id} 
