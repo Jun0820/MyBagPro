@@ -335,23 +335,43 @@ export const MyGearPage = () => {
     const compactMyClubs = profile.myBag.clubs;
     const mobileFeaturedClubs = profile.myBag.clubs.slice(0, 4);
     const dashboardScore = Math.max(
-        62,
+        18,
         Math.min(
-            96,
+            100,
             Math.round(
-                (completionPercent * 0.35) +
+                (completionPercent * 0.5) +
                 (distanceCoveragePercent * 0.25) +
-                (profile.headSpeed > 0 ? 18 : 0) +
-                (profile.myBag.ball ? 12 : 0) +
-                (profile.averageScore ? Math.max(0, 40 - Math.max(profile.averageScore - 72, 0)) : 16)
+                (profile.headSpeed > 0 ? 12 : 0) +
+                (profile.myBag.ball ? 8 : 0) +
+                (profile.averageScore ? 5 : 0),
             ),
         ),
     );
     const scoreBars = [
-        { label: '飛距離', value: profile.headSpeed > 0 ? Math.min(95, Math.max(52, Math.round(profile.headSpeed * 1.6))) : 70, tone: 'bg-[#176534]' },
-        { label: '方向性', value: Math.min(95, Math.max(55, Math.round(completionPercent * 0.9))), tone: 'bg-[#1f6aa5]' },
-        { label: '安定性', value: Math.min(95, Math.max(50, Math.round(distanceCoveragePercent * 0.9 || 68))), tone: 'bg-[#e2772f]' },
-        { label: '操作性', value: profile.averageScore ? Math.min(90, Math.max(48, Math.round(120 - profile.averageScore))) : 68, tone: 'bg-[#7e49b6]' },
+        {
+            label: 'クラブ登録',
+            value: Math.max(8, Math.round(completionPercent)),
+            helper: `${compactMyClubs.length}/15本`,
+            tone: 'bg-[#176534]',
+        },
+        {
+            label: '飛距離入力',
+            value: Math.max(8, Math.round(distanceCoveragePercent)),
+            helper: distanceCoveragePercent > 0 ? `${distanceCoveragePercent}%` : '未入力',
+            tone: 'bg-[#1f6aa5]',
+        },
+        {
+            label: '使用ボール',
+            value: profile.myBag.ball ? 100 : 18,
+            helper: profile.myBag.ball ? profile.myBag.ball : '未登録',
+            tone: 'bg-[#e2772f]',
+        },
+        {
+            label: '基本プロフィール',
+            value: profile.headSpeed > 0 && profile.averageScore ? 100 : profile.headSpeed > 0 || profile.averageScore ? 60 : 18,
+            helper: profile.headSpeed > 0 || profile.averageScore ? '入力あり' : '未入力',
+            tone: 'bg-[#7e49b6]',
+        },
     ];
 
     const handleClose = () => {
@@ -704,7 +724,7 @@ export const MyGearPage = () => {
 
                                 <div className="mt-5 grid gap-4 md:grid-cols-[220px_1fr]">
                                     <div className="rounded-2xl border border-[#e5ece6] bg-[#fbfcfb] p-4">
-                                        <div className="text-sm font-black text-[#151719]">総合スコア</div>
+                                        <div className="text-sm font-black text-[#151719]">診断準備度</div>
                                         <div className="mt-4 flex items-center gap-4 md:flex-col md:items-start">
                                             <div className="relative flex h-24 w-24 items-center justify-center rounded-full border-[7px] border-[#176534]/15">
                                                 <div
@@ -718,25 +738,28 @@ export const MyGearPage = () => {
                                             </div>
                                             <div className="grid flex-1 grid-cols-2 gap-2 text-sm font-bold text-slate-600 md:w-full">
                                                 <div className="rounded-xl bg-white p-3">
-                                                    <div className="text-[10px] uppercase text-slate-400">ベスト</div>
-                                                    <div className="mt-1 text-lg font-black text-[#151719]">{profile.bestScore || 85}</div>
+                                                    <div className="text-[10px] uppercase text-slate-400">登録クラブ</div>
+                                                    <div className="mt-1 text-lg font-black text-[#151719]">{compactMyClubs.length}<span className="ml-1 text-xs text-slate-400">/15</span></div>
                                                 </div>
                                                 <div className="rounded-xl bg-white p-3">
-                                                    <div className="text-[10px] uppercase text-slate-400">平均</div>
-                                                    <div className="mt-1 text-lg font-black text-[#151719]">{profile.averageScore || 90}</div>
+                                                    <div className="text-[10px] uppercase text-slate-400">飛距離入力</div>
+                                                    <div className="mt-1 text-lg font-black text-[#151719]">{distanceCoveragePercent}<span className="ml-1 text-xs text-slate-400">%</span></div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <p className="mt-3 text-xs leading-relaxed text-slate-500">
+                                            ゴルフの実力ではなく、<span className="font-black text-trust-navy">診断や比較に使える情報がどれだけそろっているか</span> を見ています。
+                                        </p>
                                     </div>
 
                                     <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                                        <div className="text-sm font-black text-[#151719]">現在の状態</div>
+                                        <div className="text-sm font-black text-[#151719]">いま診断に使えるデータ</div>
                                         <div className="mt-4 space-y-3">
                                             {scoreBars.map((item) => (
                                                 <div key={item.label}>
                                                     <div className="flex items-center justify-between text-xs font-bold text-slate-500">
                                                         <span>{item.label}</span>
-                                                        <span>{item.value}</span>
+                                                        <span>{item.helper}</span>
                                                     </div>
                                                     <div className="mt-1 h-2 rounded-full bg-slate-100">
                                                         <div className={`h-full rounded-full ${item.tone}`} style={{ width: `${item.value}%` }} />
@@ -807,31 +830,43 @@ export const MyGearPage = () => {
                                 <div>
                                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs</div>
                                     <div className="mt-1 text-xl font-black tracking-tight text-trust-navy">マイクラブ</div>
+                                    <p className="mt-1 text-xs leading-relaxed text-slate-500">番手ごとのモデルとスペックを、一覧で見返せます。</p>
                                 </div>
                                 <div className="text-xs font-black text-slate-400">{compactMyClubs.length}/15本</div>
                             </div>
-                            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
+                            <div className="mt-4 space-y-3">
                                 {compactMyClubs.length > 0 ? (
                                     compactMyClubs.map((club) => (
                                         <button
                                             key={club.id}
                                             onClick={() => setActiveTab('clubs')}
-                                            className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-left transition-colors hover:bg-slate-100"
+                                            className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 text-left transition-colors hover:bg-slate-100"
                                         >
-                                            <div className="flex items-start justify-between gap-2">
-                                                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">{club.number || club.category}</div>
-                                                {pendingBagChangeIds.includes(club.id) && <div className="rounded-full bg-cyan-100 px-2 py-1 text-[9px] font-black text-cyan-700">未保存</div>}
-                                            </div>
-                                            <div className="mt-2 text-sm font-black text-trust-navy">{club.brand || '未設定'}</div>
-                                            <div className="mt-1 line-clamp-2 text-xs text-slate-500">{club.model || 'モデル未設定'}</div>
-                                            <div className="mt-3 flex flex-wrap gap-1 text-[10px] font-bold text-slate-400">
-                                                {club.loft && <span>{club.loft}°</span>}
-                                                {club.distance && <span>{club.distance}Y</span>}
+                                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                                <div className="flex items-start gap-3">
+                                                    <div className="min-w-[56px] rounded-xl bg-white px-3 py-2 text-center text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
+                                                        {club.number || club.category}
+                                                    </div>
+                                                    <div className="min-w-0">
+                                                        <div className="text-sm font-black text-trust-navy">
+                                                            {[club.brand, club.model].filter(Boolean).join(' ') || 'メーカー・モデル未設定'}
+                                                        </div>
+                                                        <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500">
+                                                            <span>シャフト: {club.shaft || '未設定'}</span>
+                                                            <span>ロフト: {club.loft ? `${club.loft}°` : '未設定'}</span>
+                                                            <span>距離: {club.distance ? `${club.distance}Y` : '未入力'}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center gap-2 self-end sm:self-auto">
+                                                    {pendingBagChangeIds.includes(club.id) && <div className="rounded-full bg-cyan-100 px-2 py-1 text-[10px] font-black text-cyan-700">未保存</div>}
+                                                    <div className="text-[11px] font-black text-slate-400">編集</div>
+                                                </div>
                                             </div>
                                         </button>
                                     ))
                                 ) : (
-                                    <button onClick={() => setActiveTab('clubs')} className="col-span-full rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-8 text-left">
+                                    <button onClick={() => setActiveTab('clubs')} className="rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-8 text-left">
                                         <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
                                         <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
                                     </button>
@@ -874,11 +909,12 @@ export const MyGearPage = () => {
                             </div>
 
                             <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-                                <div className="text-xl font-black tracking-tight text-trust-navy">検討中</div>
+                                <div className="text-xl font-black tracking-tight text-trust-navy">見返したい候補</div>
+                                <p className="mt-2 text-xs leading-relaxed text-slate-500">比較用に残した候補、お気に入り、最近見たページをここにまとめています。</p>
                                 <div className="mt-4 space-y-4">
                                     {compareShortlist.length > 0 && (
                                         <div>
-                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">比較候補</div>
+                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">比較用に残した候補</div>
                                             <div className="space-y-2">
                                                 {compareShortlist.slice(0, 3).map((item) => (
                                                     <button
@@ -898,7 +934,7 @@ export const MyGearPage = () => {
                                     )}
                                     {favoriteClubs.length > 0 && (
                                         <div>
-                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">お気に入り</div>
+                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">お気に入り登録</div>
                                             <div className="space-y-2">
                                                 {favoriteClubs.slice(0, 3).map((item) => (
                                                     <button
@@ -918,7 +954,7 @@ export const MyGearPage = () => {
                                     )}
                                     {recentlyViewed.length > 0 && (
                                         <div>
-                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">最近見たもの</div>
+                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">最近見たページ</div>
                                             <div className="space-y-2">
                                                 {recentlyViewed.slice(0, 3).map((item) => (
                                                     <button
@@ -938,7 +974,7 @@ export const MyGearPage = () => {
                                     )}
                                     {compareShortlist.length === 0 && favoriteClubs.length === 0 && recentlyViewed.length === 0 && (
                                         <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-6 text-sm text-slate-500">
-                                            比較候補やお気に入りを残すと、ここからすぐ見直せます。
+                                            比較ページで候補を残したり、お気に入り登録するとここからすぐ見直せます。
                                         </div>
                                     )}
                                 </div>

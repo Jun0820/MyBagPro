@@ -673,9 +673,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs Setup</div>
-                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">必要な操作だけに絞って編集できます</h3>
+                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">クラブ設定は 追加 → 直す → 保存 の順で進めます</h3>
                                 <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                                    まずは追加・修正・保存だけで十分です。説明を減らして、いまのバッグをそのまま整えやすくしています。
+                                    まずは代表番手から入れて、必要なところだけ直して保存すれば大丈夫です。
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right">
@@ -718,7 +718,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="rounded-2xl border border-slate-200 bg-white p-4">
                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
                             <Sparkles size={12} />
-                            Quick Actions
+                            すぐできること
                         </div>
                         <div className="mt-3 space-y-3">
                             <button
@@ -979,7 +979,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="col-span-full text-center py-16 border-2 border-dashed border-slate-100 rounded-2xl text-slate-300">
                              <Plus size={48} className="mx-auto mb-4 opacity-10" />
                              <p className="text-sm font-bold">まだクラブが入っていません</p>
-                             <p className="mt-2 text-xs font-medium text-slate-400">上のクイックスタートから 1W / 7I / パター のどれか1本を追加すると始めやすいです。</p>
+                             <p className="mt-2 text-xs font-medium text-slate-400">まずは 1W / 7I / パター のどれか1本を追加すると始めやすいです。</p>
                         </div>
                     )}
                 </div>
@@ -1034,7 +1034,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 </div>
 
                 <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-500">
-                    入力中でも内容は保持されます。区切りの良いところで <span className="font-black text-trust-navy">変更を保存</span> を押すと、他の端末や再ログイン後でも続きから戻りやすくなります。
+                    入力後に <span className="font-black text-trust-navy">変更を保存</span> を押すと、他の端末や再ログイン後でもそのまま再開しやすくなります。
                 </div>
             </div>
 
