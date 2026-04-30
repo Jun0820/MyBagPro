@@ -668,6 +668,96 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             )}
 
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
+                <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <div>
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs Setup</div>
+                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">必要な操作だけに絞って編集できます</h3>
+                                <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                                    まずは追加・修正・保存だけで十分です。説明を減らして、いまのバッグをそのまま整えやすくしています。
+                                </p>
+                            </div>
+                            <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right">
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">登録本数</div>
+                                <div className="mt-1 text-2xl font-black text-trust-navy">{sortedClubs.length}<span className="text-sm text-slate-400">/{MAX_BAG_CLUBS}</span></div>
+                                <div className="mt-1 text-xs font-bold text-slate-500">残り {remainingClubSlots}本</div>
+                            </div>
+                        </div>
+
+                        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                            {starterSlots.map((slot) => {
+                                const isDone = registeredCategories.has(slot.category);
+                                return (
+                                    <button
+                                        key={slot.title}
+                                        onClick={() => handleQuickAddStarter(slot.category, slot.number)}
+                                        disabled={isDone || isBagAtCapacity}
+                                        className={cn(
+                                            'rounded-2xl border p-4 text-left transition-all',
+                                            isDone ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 bg-white hover:bg-slate-50',
+                                            (isDone || isBagAtCapacity) && 'cursor-default'
+                                        )}
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <div className={cn('rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-white', slot.color)}>
+                                                {slot.number}
+                                            </div>
+                                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                                {isDone ? '登録済み' : '追加'}
+                                            </div>
+                                        </div>
+                                        <div className="mt-3 text-sm font-black text-trust-navy">{slot.title}</div>
+                                        <div className="mt-1 text-xs leading-relaxed text-slate-500">{slot.description}</div>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
+                            <Sparkles size={12} />
+                            Quick Actions
+                        </div>
+                        <div className="mt-3 space-y-3">
+                            <button
+                                onClick={() => onManualSave?.(setting)}
+                                className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                            >
+                                <Save size={14} />
+                                いまの内容を保存
+                            </button>
+                            <button
+                                onClick={() => onOpenCompare?.()}
+                                className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-trust-navy transition-colors hover:bg-slate-100"
+                            >
+                                <ArrowRight size={14} />
+                                比較ページを見る
+                            </button>
+                            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">使用ボール</div>
+                                <input
+                                    list="mybag-ball-suggestions"
+                                    value={setting.ball || ''}
+                                    onChange={(e) => onUpdate((prev) => ({ ...prev, ball: e.target.value }))}
+                                    placeholder="例: Pro V1 / TP5"
+                                    className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
+                                />
+                                <datalist id="mybag-ball-suggestions">
+                                    {BALL_MODEL_SUGGESTIONS.map((ballName) => (
+                                        <option key={ballName} value={ballName} />
+                                    ))}
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {false && (
+            <>
+            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
                 <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
                     <div className="space-y-2">
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">START HERE</div>
@@ -818,6 +908,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         : `クラブは最大 ${MAX_BAG_CLUBS} 本まで登録できます。あと ${remainingClubSlots} 本追加できます。`}
                 </div>
             </div>
+            </>
+            )}
 
             {/* クラブ一覧 & 編集部 */}
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
