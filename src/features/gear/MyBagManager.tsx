@@ -173,6 +173,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                 {/* Shaft & Specs - Row 2 */}
                 <div className="flex flex-col gap-2.5 md:flex-row">
                     <div className="flex-1 min-w-0">
+                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">シャフト</div>
                         {!isPutter ? (
                             <DetailedShaftInput
                                 model={shaftState.model}
@@ -197,6 +198,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                     <div className={cn('flex items-center gap-2', isPutter ? 'md:w-16' : 'md:w-36')}>
                         {!isPutter ? (
                             <div className="relative flex-1">
+                                <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">ロフト</div>
                                 <input
                                     type="text"
                                     placeholder="ロフト"
@@ -211,6 +213,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                         )}
                         {!isPutter ? (
                             <div className="relative flex-1">
+                                <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">飛距離</div>
                                 <input
                                     type="text"
                                     placeholder="飛距離"
@@ -226,13 +229,16 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
 
                 {/* Individual Worry & Diagnosis Button */}
                 <div className="flex flex-col gap-2 border-t border-slate-50 pt-2 sm:flex-row sm:items-center">
-                    <input
-                        type="text"
-                        value={entry.worry || ''}
-                        onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
-                        placeholder="気になる点（捕まりすぎる、など）"
-                        className="flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 outline-none focus:border-golf-500"
-                    />
+                    <div className="flex-1">
+                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">気になる点</div>
+                        <input
+                            type="text"
+                            value={entry.worry || ''}
+                            onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
+                            placeholder="捕まりすぎる、上がりすぎる、など"
+                            className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 outline-none focus:border-golf-500"
+                        />
+                    </div>
                     <button 
                         onClick={() => onDiagnose(entry)}
                         className="inline-flex w-full items-center justify-center rounded-lg bg-golf-600 px-3 py-2 text-[11px] font-bold text-white transition-colors hover:bg-golf-700 sm:w-auto whitespace-nowrap"
@@ -672,10 +678,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
-                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs Setup</div>
-                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">クラブ設定は 追加 → 直す → 保存 の順で進めます</h3>
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1 / まず追加する</div>
+                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">代表番手から入れると、あとがかなり楽です</h3>
                                 <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                                    まずは代表番手から入れて、必要なところだけ直して保存すれば大丈夫です。
+                                    最初はドライバー・アイアン・パターのどれかからで十分です。あとで必要な番手だけ足していけます。
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right">
@@ -718,8 +724,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="rounded-2xl border border-slate-200 bg-white p-4">
                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
                             <Sparkles size={12} />
-                            すぐできること
+                            STEP 3 / 保存と次の行動
                         </div>
+                        <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">保存・比較・ボール登録をここでまとめてできます</h3>
                         <div className="mt-3 space-y-3">
                             <button
                                 onClick={() => onManualSave?.(setting)}
@@ -913,10 +920,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
             {/* クラブ一覧 & 編集部 */}
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-slate-100 pb-3 gap-4">
+                <div className="mb-4 flex flex-col justify-between gap-4 border-b border-slate-100 pb-3 md:flex-row md:items-center">
                     <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-golf-500 rounded-full"></div>
-                         <h3 className="font-bold text-lg text-trust-navy uppercase tracking-tight">CLUB MANAGEMENT</h3>
+                         <div>
+                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 2 / 登録済みクラブを直す</div>
+                             <h3 className="font-bold text-lg text-trust-navy uppercase tracking-tight">CLUB MANAGEMENT</h3>
+                         </div>
                          <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-100 text-[10px] font-black text-slate-400">いまの登録: {sortedClubs.length}/{MAX_BAG_CLUBS}本</div>
                     </div>
                     <ShareImageExporter 
@@ -964,7 +974,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     )}
                 </div>
                 
-                <div id="my-bag-export-area" className="mb-4 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 sm:grid-cols-2 lg:grid-cols-3">
+                <div id="my-bag-export-area" className="mb-4 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 xl:grid-cols-2 2xl:grid-cols-3">
                     {sortedClubs.map(entry => (
                         <MemoizedClubRow 
                             key={entry.id} 
@@ -992,7 +1002,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 onChange={e => setAddCategory(e.target.value)}
                                 className="h-12 w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 pl-4 pr-10 text-sm font-bold text-trust-navy outline-none"
                             >
-                                <option value="">個別追加する番手を選択...</option>
+                                <option value="">追加したい番手を選択...</option>
                                 {Object.values(TargetCategory).filter(c => c !== TargetCategory.BALL).map(c => (
                                     <option key={c} value={c}>{c}</option>
                                 ))}
@@ -1006,7 +1016,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             disabled={!addCategory || isBagAtCapacity}
                             className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-100 px-8 font-bold text-trust-navy transition-all hover:bg-slate-200 active:scale-95 disabled:opacity-50 sm:w-auto"
                         >
-                            <Plus size={20} /> 個別追加
+                            <Plus size={20} /> この番手を追加
                         </button>
                     </div>
 
