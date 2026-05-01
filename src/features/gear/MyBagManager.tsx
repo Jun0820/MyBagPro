@@ -48,6 +48,7 @@ const generateClubId = () => {
 
 const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, onDiagnose: (c: Club) => void, isPending?: boolean }) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
+    const [isExpanded, setIsExpanded] = useState(() => Boolean(isPending || !entry.brand || !entry.model));
 
     const parseShaft = (str: string) => {
         const parts = str.split(' ');
@@ -111,142 +112,171 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
     const currentSelectValue = `${entry.category}:${entry.number || (entry.category === TargetCategory.PUTTER ? 'PT' : '')}`;
 
     return (
-        <div className={cn("group relative rounded-2xl border bg-white p-3 shadow-sm transition-all hover:shadow-md md:rounded-xl md:p-3", isPending ? 'border-cyan-300 ring-1 ring-cyan-100' : 'border-slate-200')}>
-            {isPending && (
-                <div className="absolute right-3 top-3 z-10 rounded-full border border-cyan-200 bg-cyan-50 px-2 py-1 text-[9px] font-black uppercase tracking-[0.18em] text-cyan-700">
-                    未保存
+        <div className={cn("group relative overflow-hidden rounded-2xl border bg-white shadow-sm transition-all", isPending ? 'border-cyan-300 ring-1 ring-cyan-100' : 'border-slate-200')}>
+            <button
+                type="button"
+                onClick={() => setIsExpanded((prev) => !prev)}
+                className="flex w-full items-start justify-between gap-3 px-4 py-4 text-left transition-colors hover:bg-slate-50"
+            >
+                <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                        <div className={cn(getCategoryColor(entry.category), "rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white")}>
+                            {entry.number || getCategoryLabel(entry.category)}
+                        </div>
+                        {isPending && (
+                            <div className="rounded-full border border-cyan-200 bg-cyan-50 px-2 py-1 text-[9px] font-black uppercase tracking-[0.18em] text-cyan-700">
+                                未保存
+                            </div>
+                        )}
+                    </div>
+                    <div className="mt-3 text-base font-black text-trust-navy">
+                        {[entry.brand, entry.model].filter(Boolean).join(' ') || 'メーカー・モデルを入力してください'}
+                    </div>
+                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
+                        <span>シャフト: {entry.shaft || '未設定'}</span>
+                        {!isPutter && <span>ロフト: {entry.loft ? `${entry.loft}°` : '未設定'}</span>}
+                        {!isPutter && <span>飛距離: {entry.distance ? `${entry.distance}Y` : '未入力'}</span>}
+                        {entry.worry && <span>気になる点: {entry.worry}</span>}
+                    </div>
+                </div>
+                <div className="flex items-center gap-2 pl-2">
+                    <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
+                        {isExpanded ? '閉じる' : '編集'}
+                    </div>
+                    <ChevronDown size={18} className={cn("text-slate-400 transition-transform", isExpanded && "rotate-180")} />
+                </div>
+            </button>
+
+            {isExpanded && (
+                <div className="border-t border-slate-100 px-4 py-4">
+                    <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="min-w-[180px]">
+                            <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">番手</div>
+                            <div className="relative">
+                                <select
+                                    value={currentSelectValue}
+                                    onChange={handleCategoryNumberChange}
+                                    className="h-11 w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 pl-4 pr-10 text-sm font-bold text-trust-navy outline-none"
+                                >
+                                    <option value={`${entry.category}:${entry.number}`}>番手を変更...</option>
+                                    {clubOptions.map(opt => (
+                                        <option key={`${opt.cat}:${opt.num}`} value={`${opt.cat}:${opt.num}`}>
+                                            {opt.label}
+                                        </option>
+                                    ))}
+                                </select>
+                                <ChevronDown size={16} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                            </div>
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                if (window.confirm(`${entry.brand || 'このクラブ'} を削除してもよろしいですか？`)) {
+                                    onRemove();
+                                }
+                            }}
+                            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-4 text-xs font-black text-rose-700 transition-colors hover:bg-rose-100"
+                            title="削除"
+                        >
+                            <Trash2 size={14} />
+                            このクラブを削除
+                        </button>
+                    </div>
+
+                    <div className="space-y-4">
+                        <BrandModelInput
+                            brand={entry.brand}
+                            model={entry.model}
+                            category={
+                                entry.category === TargetCategory.DRIVER ? 'DRIVER' :
+                                entry.category === TargetCategory.FAIRWAY ? 'FAIRWAY' :
+                                entry.category === TargetCategory.UTILITY ? 'UTILITY' :
+                                entry.category === TargetCategory.IRON ? 'IRON' :
+                                entry.category === TargetCategory.WEDGE ? 'WEDGE' : 'PUTTER'
+                            }
+                            onBrandChange={(val) => onUpdate({ ...entry, brand: val, model: '' })}
+                            onModelChange={(val) => onUpdate({ ...entry, model: val })}
+                            bgClass="bg-slate-50"
+                            compact={true}
+                        />
+
+                        <div className="grid gap-3 lg:grid-cols-[1fr_220px]">
+                            <div className="min-w-0">
+                                <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">シャフト</div>
+                                {!isPutter ? (
+                                    <DetailedShaftInput
+                                        model={shaftState.model}
+                                        weight={shaftState.weight}
+                                        flex={shaftState.flex}
+                                        onModelChange={(m) => handleShaftUpdate(m, shaftState.weight, shaftState.flex)}
+                                        onWeightChange={(w) => handleShaftUpdate(shaftState.model, w, shaftState.flex)}
+                                        onFlexChange={(f) => handleShaftUpdate(shaftState.model, shaftState.weight, f)}
+                                        compact={true}
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        value={entry.shaft}
+                                        onChange={(e) => onUpdate({ ...entry, shaft: e.target.value })}
+                                        placeholder="シャフト名"
+                                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
+                                    />
+                                )}
+                            </div>
+
+                            {!isPutter && (
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">ロフト</div>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                placeholder="ロフト"
+                                                value={entry.loft}
+                                                onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
+                                                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
+                                            />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400">°</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">飛距離</div>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                placeholder="飛距離"
+                                                value={entry.distance}
+                                                onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
+                                                className="w-full rounded-xl border border-golf-200 bg-golf-50/50 px-3 py-3 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
+                                            />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-golf-400">Y</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
+                            <div>
+                                <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">気になる点</div>
+                                <input
+                                    type="text"
+                                    value={entry.worry || ''}
+                                    onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
+                                    placeholder="捕まりすぎる、上がりすぎる、など"
+                                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
+                                />
+                            </div>
+                            <button
+                                onClick={() => onDiagnose(entry)}
+                                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-golf-600 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-golf-700 whitespace-nowrap"
+                            >
+                                このクラブを診断
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
-            <div className="mb-3 flex items-start justify-between gap-3 border-b border-slate-50 pb-2">
-                <div className="flex items-center gap-1.5 relative">
-                    <div className={cn(getCategoryColor(entry.category), "flex items-center rounded overflow-hidden shadow-sm hover:opacity-90 transition-opacity")}>
-                        <div className="px-1.5 py-0.5 pointer-events-none text-white text-[9px] md:text-[10px] font-black uppercase tracking-wider">
-                            {getCategoryLabel(entry.category)}
-                        </div>
-                        <select
-                            value={currentSelectValue}
-                            onChange={handleCategoryNumberChange}
-                            className="bg-transparent text-white font-black text-[10px] md:text-xs tracking-wider outline-none appearance-none pr-4 pl-1 min-w-[3rem] cursor-pointer"
-                            style={{ WebkitAppearance: 'none' }}
-                        >
-                            <option value={`${entry.category}:${entry.number}`} className="text-slate-800">変更...</option>
-                            {clubOptions.map(opt => (
-                                <option key={`${opt.cat}:${opt.num}`} value={`${opt.cat}:${opt.num}`} className="text-slate-800">
-                                    {opt.label}
-                                </option>
-                            ))}
-                        </select>
-                        <ChevronDown size={10} className="text-white absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none opacity-80" />
-                    </div>
-                </div>
-                <button 
-                    onClick={() => {
-                        if (window.confirm(`${entry.brand || 'このクラブ'} を削除してもよろしいですか？`)) {
-                            onRemove();
-                        }
-                    }}
-                    className="ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-300 transition-all hover:bg-red-50 hover:text-red-500 focus:outline-none"
-                    title="削除"
-                >
-                    <Trash2 size={14} />
-                </button>
-            </div>
-            
-            <div className="space-y-3.5">
-                {/* Brand & Model - Row 1 */}
-                <BrandModelInput
-                    brand={entry.brand}
-                    model={entry.model}
-                    category={
-                        entry.category === TargetCategory.DRIVER ? 'DRIVER' :
-                        entry.category === TargetCategory.FAIRWAY ? 'FAIRWAY' :
-                        entry.category === TargetCategory.UTILITY ? 'UTILITY' :
-                        entry.category === TargetCategory.IRON ? 'IRON' :
-                        entry.category === TargetCategory.WEDGE ? 'WEDGE' : 'PUTTER'
-                    }
-                    onBrandChange={(val) => onUpdate({ ...entry, brand: val, model: '' })}
-                    onModelChange={(val) => onUpdate({ ...entry, model: val })}
-                    bgClass="bg-slate-50"
-                    compact={true}
-                />
-                
-                {/* Shaft & Specs - Row 2 */}
-                <div className="flex flex-col gap-2.5 md:flex-row">
-                    <div className="flex-1 min-w-0">
-                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">シャフト</div>
-                        {!isPutter ? (
-                            <DetailedShaftInput
-                                model={shaftState.model}
-                                weight={shaftState.weight}
-                                flex={shaftState.flex}
-                                onModelChange={(m) => handleShaftUpdate(m, shaftState.weight, shaftState.flex)}
-                                onWeightChange={(w) => handleShaftUpdate(shaftState.model, w, shaftState.flex)}
-                                onFlexChange={(f) => handleShaftUpdate(shaftState.model, shaftState.weight, f)}
-                                compact={true}
-                            />
-                        ) : (
-                            <input
-                                type="text"
-                                value={entry.shaft}
-                                onChange={(e) => onUpdate({ ...entry, shaft: e.target.value })}
-                                placeholder="シャフト名"
-                                className="w-full px-2 py-2 bg-slate-50 text-slate-900 border border-slate-200 rounded-lg text-xs outline-none focus:border-golf-500"
-                            />
-                        )}
-                    </div>
-                    
-                    <div className={cn('flex items-center gap-2', isPutter ? 'md:w-16' : 'md:w-36')}>
-                        {!isPutter ? (
-                            <div className="relative flex-1">
-                                <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">ロフト</div>
-                                <input
-                                    type="text"
-                                    placeholder="ロフト"
-                                    value={entry.loft}
-                                    onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
-                                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-center text-xs font-bold text-slate-900 outline-none focus:border-golf-500"
-                                />
-                                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-black text-slate-400">°</span>
-                            </div>
-                        ) : (
-                            <div className="flex-1 invisible md:block" />
-                        )}
-                        {!isPutter ? (
-                            <div className="relative flex-1">
-                                <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">飛距離</div>
-                                <input
-                                    type="text"
-                                    placeholder="飛距離"
-                                    value={entry.distance}
-                                    onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
-                                    className="w-full rounded-lg border border-golf-200 bg-golf-50/50 px-2 py-2 text-center text-xs font-bold text-golf-800 outline-none focus:border-golf-500"
-                                />
-                                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-black text-golf-400">Y</span>
-                            </div>
-                        ) : null}
-                    </div>
-                </div>
-
-                {/* Individual Worry & Diagnosis Button */}
-                <div className="flex flex-col gap-2 border-t border-slate-50 pt-2 sm:flex-row sm:items-center">
-                    <div className="flex-1">
-                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">気になる点</div>
-                        <input
-                            type="text"
-                            value={entry.worry || ''}
-                            onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
-                            placeholder="捕まりすぎる、上がりすぎる、など"
-                            className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 outline-none focus:border-golf-500"
-                        />
-                    </div>
-                    <button 
-                        onClick={() => onDiagnose(entry)}
-                        className="inline-flex w-full items-center justify-center rounded-lg bg-golf-600 px-3 py-2 text-[11px] font-bold text-white transition-colors hover:bg-golf-700 sm:w-auto whitespace-nowrap"
-                    >
-                        診断へ
-                    </button>
-                </div>
-            </div>
         </div>
     );
 };
@@ -974,7 +1004,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     )}
                 </div>
                 
-                <div id="my-bag-export-area" className="mb-4 grid grid-cols-1 gap-3 rounded-2xl bg-white p-1 xl:grid-cols-2 2xl:grid-cols-3">
+                <div id="my-bag-export-area" className="mb-4 space-y-3 rounded-2xl bg-white p-1">
                     {sortedClubs.map(entry => (
                         <MemoizedClubRow 
                             key={entry.id} 
