@@ -13,6 +13,8 @@ import { AccountAuth } from './features/auth/AccountAuth';
 import { LegalPage } from './components/LegalPage';
 import { Home } from './pages/Home';
 import { SeoManager } from './components/SeoManager';
+import { fetchPublishedArticles, type PublicArticle } from './lib/articles';
+import { fetchPublishedSettingProfiles, type PublicSettingProfile } from './lib/contentProfiles';
 
 const DiagnosisWizard = lazy(() =>
   import('./pages/DiagnosisWizard').then((module) => ({ default: module.DiagnosisWizard }))
@@ -68,6 +70,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { user, profile, setUser, setProfile, showAuth, setShowAuth } = useDiagnosis();
   const [showLegal, setShowLegal] = useState<'privacy' | 'terms' | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [searchArticles, setSearchArticles] = useState<PublicArticle[]>([]);
+  const [searchProfiles, setSearchProfiles] = useState<PublicSettingProfile[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,7 +82,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     () => [
       { label: 'プロのセッティング', href: '/settings/pros' },
       { label: 'クラブ診断', href: '/diagnosis' },
-      { label: 'セッティング分析', href: '/mypage' },
       { label: '記事・コラム', href: '/articles' },
     ],
     []
@@ -113,6 +119,46 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     setMobileMenuOpen(false);
   }, [location.pathname, location.search]);
 
+  useEffect(() => {
+    if (!searchOpen || searchArticles.length > 0 || searchProfiles.length > 0 || searchLoading) return;
+    setSearchLoading(true);
+    Promise.all([fetchPublishedArticles({ limit: 200 }), fetchPublishedSettingProfiles()])
+      .then(([articles, profiles]) => {
+        setSearchArticles(articles);
+        setSearchProfiles(profiles);
+      })
+      .finally(() => setSearchLoading(false));
+  }, [searchOpen, searchArticles.length, searchProfiles.length, searchLoading]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSearchOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [searchOpen]);
+
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const matchedProfiles = normalizedQuery
+    ? searchProfiles
+        .filter((profile) =>
+          [profile.name, profile.kanaName, profile.summary, profile.contractDisplay, profile.ball]
+            .filter(Boolean)
+            .some((value) => String(value).toLowerCase().includes(normalizedQuery))
+        )
+        .slice(0, 5)
+    : [];
+  const matchedArticles = normalizedQuery
+    ? searchArticles
+        .filter((article) =>
+          [article.title, article.excerpt, article.body]
+            .filter(Boolean)
+            .some((value) => String(value).toLowerCase().includes(normalizedQuery))
+        )
+        .slice(0, 5)
+    : [];
+
   return (
     <div className="min-h-screen bg-[#f5f7f3] text-slate-900">
       <div className="fixed inset-0 pointer-events-none opacity-[0.045]">
@@ -142,9 +188,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
           <div className="hidden items-center gap-2 md:gap-3 md:flex">
             <button
-              onClick={() => navigate('/articles')}
+              onClick={() => setSearchOpen(true)}
               className="hidden h-11 w-11 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700 transition hover:border-[#166534] hover:text-[#166534] md:inline-flex"
-              aria-label="記事を探す"
+              aria-label="サイト内検索"
             >
               <Search size={18} />
             </button>
@@ -171,11 +217,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
           <div className="flex items-center gap-2 md:hidden">
             <button
-              onClick={() => navigate('/articles')}
+              onClick={() => setSearchOpen(true)}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700"
-              aria-label="記事を探す"
+              aria-label="サイト内検索"
             >
-              <Bell size={18} />
+              <Search size={18} />
             </button>
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -246,7 +292,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="mt-4 space-y-3 text-sm text-white/72">
               <button onClick={() => navigate('/settings/pros')} className="block transition hover:text-[#c8a96a]">プロのセッティング</button>
               <button onClick={() => navigate('/diagnosis')} className="block transition hover:text-[#c8a96a]">クラブ診断</button>
-              <button onClick={() => navigate('/mypage')} className="block transition hover:text-[#c8a96a]">セッティング分析</button>
+              <button onClick={() => navigate('/mypage')} className="block transition hover:text-[#c8a96a]">マイページ</button>
             </div>
           </div>
 
@@ -301,6 +347,88 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </nav>
 
       {showLegal && <LegalPage type={showLegal} onClose={() => setShowLegal(null)} />}
+
+      {searchOpen && (
+        <div className="fixed inset-0 z-[58] bg-black/40 p-3 backdrop-blur-sm md:p-6" onClick={() => setSearchOpen(false)}>
+          <div
+            className="mx-auto max-w-3xl rounded-[28px] border border-[#dfe7df] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] md:p-6"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+              <Search size={18} className="text-slate-400" />
+              <input
+                autoFocus
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="記事名、選手名、クラブ名で検索"
+                className="w-full bg-transparent text-sm font-medium text-slate-900 outline-none"
+              />
+              <button
+                onClick={() => setSearchOpen(false)}
+                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-500"
+              >
+                閉じる
+              </button>
+            </div>
+
+            <div className="mt-5 grid gap-5 md:grid-cols-2">
+              <section>
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Pro Settings</div>
+                <div className="mt-2 space-y-2">
+                  {searchLoading && searchProfiles.length === 0 ? (
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">読み込み中です...</div>
+                  ) : normalizedQuery && matchedProfiles.length > 0 ? (
+                    matchedProfiles.map((profile) => (
+                      <button
+                        key={profile.slug}
+                        onClick={() => {
+                          setSearchOpen(false);
+                          navigate(`/settings/pros/${profile.slug}`);
+                        }}
+                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition hover:bg-slate-100"
+                      >
+                        <div className="text-sm font-black text-trust-navy">{profile.name}</div>
+                        <div className="mt-1 text-xs text-slate-500">{profile.contractDisplay} / {profile.ball}</div>
+                      </button>
+                    ))
+                  ) : (
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">
+                      {normalizedQuery ? '該当するプロはまだ見つかりませんでした。' : '選手名やブランド名で検索できます。'}
+                    </div>
+                  )}
+                </div>
+              </section>
+
+              <section>
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Articles</div>
+                <div className="mt-2 space-y-2">
+                  {searchLoading && searchArticles.length === 0 ? (
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">読み込み中です...</div>
+                  ) : normalizedQuery && matchedArticles.length > 0 ? (
+                    matchedArticles.map((article) => (
+                      <button
+                        key={article.slug}
+                        onClick={() => {
+                          setSearchOpen(false);
+                          navigate(`/articles/${article.slug}`);
+                        }}
+                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition hover:bg-slate-100"
+                      >
+                        <div className="text-sm font-black text-trust-navy">{article.title}</div>
+                        <div className="mt-1 line-clamp-2 text-xs text-slate-500">{article.excerpt}</div>
+                      </button>
+                    ))
+                  ) : (
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">
+                      {normalizedQuery ? '該当する記事はまだ見つかりませんでした。' : '悩みやクラブ名でも記事を探せます。'}
+                    </div>
+                  )}
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showAuth && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-3 backdrop-blur-sm md:p-4">

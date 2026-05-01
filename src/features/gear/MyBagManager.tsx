@@ -116,30 +116,29 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
             <button
                 type="button"
                 onClick={() => setIsExpanded((prev) => !prev)}
-                className="flex w-full items-start justify-between gap-3 px-4 py-4 text-left transition-colors hover:bg-slate-50"
+                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-50"
             >
-                <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                        <div className={cn(getCategoryColor(entry.category), "rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white")}>
-                            {entry.number || getCategoryLabel(entry.category)}
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <div className={cn(getCategoryColor(entry.category), "shrink-0 rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white")}>
+                        {entry.number || getCategoryLabel(entry.category)}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <div className="truncate text-sm font-black text-trust-navy">
+                            {[entry.brand, entry.model].filter(Boolean).join(' ') || 'ヘッド未入力'}
                         </div>
-                        {isPending && (
-                            <div className="rounded-full border border-cyan-200 bg-cyan-50 px-2 py-1 text-[9px] font-black uppercase tracking-[0.18em] text-cyan-700">
-                                未保存
-                            </div>
-                        )}
                     </div>
-                    <div className="mt-3 text-base font-black text-trust-navy">
-                        {[entry.brand, entry.model].filter(Boolean).join(' ') || 'メーカー・モデルを入力してください'}
+                    <div className="shrink-0 text-right">
+                        <div className="text-sm font-black text-[#176534]">
+                            {!isPutter && entry.distance ? `${entry.distance}Y` : isPutter ? 'PT' : '未入力'}
+                        </div>
                     </div>
-                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
-                        <span>シャフト: {entry.shaft || '未設定'}</span>
-                        {!isPutter && <span>ロフト: {entry.loft ? `${entry.loft}°` : '未設定'}</span>}
-                        {!isPutter && <span>飛距離: {entry.distance ? `${entry.distance}Y` : '未入力'}</span>}
-                        {entry.worry && <span>気になる点: {entry.worry}</span>}
-                    </div>
+                    {isPending && (
+                        <div className="hidden shrink-0 rounded-full border border-cyan-200 bg-cyan-50 px-2 py-1 text-[9px] font-black uppercase tracking-[0.18em] text-cyan-700 sm:block">
+                            未保存
+                        </div>
+                    )}
                 </div>
-                <div className="flex items-center gap-2 pl-2">
+                <div className="flex shrink-0 items-center gap-2 pl-2">
                     <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
                         {isExpanded ? '閉じる' : '編集'}
                     </div>
@@ -708,10 +707,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
-                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1 / まず追加する</div>
-                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">代表番手から入れると、あとがかなり楽です</h3>
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1</div>
+                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">まずは代表番手を入れる</h3>
                                 <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                                    最初はドライバー・アイアン・パターのどれかからで十分です。あとで必要な番手だけ足していけます。
+                                    1W、7I、パターのどれかから始めれば大丈夫です。
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right">
@@ -744,7 +743,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             </div>
                                         </div>
                                         <div className="mt-3 text-sm font-black text-trust-navy">{slot.title}</div>
-                                        <div className="mt-1 text-xs leading-relaxed text-slate-500">{slot.description}</div>
+                                        <div className="mt-1 text-xs leading-relaxed text-slate-500">{slot.number} を先に入れる</div>
                                     </button>
                                 );
                             })}
@@ -754,9 +753,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="rounded-2xl border border-slate-200 bg-white p-4">
                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
                             <Sparkles size={12} />
-                            STEP 3 / 保存と次の行動
+                            STEP 3
                         </div>
-                        <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">保存・比較・ボール登録をここでまとめてできます</h3>
+                        <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">保存して次へ進む</h3>
                         <div className="mt-3 space-y-3">
                             <button
                                 onClick={() => onManualSave?.(setting)}

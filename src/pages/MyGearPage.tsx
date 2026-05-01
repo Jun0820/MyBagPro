@@ -97,6 +97,7 @@ export const MyGearPage = () => {
     const [compareShortlist, setCompareShortlist] = useState<CompareShortlistItem[]>([]);
     const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
     const [favoriteClubs, setFavoriteClubs] = useState<FavoriteClubItem[]>([]);
+    const [clubDistanceView, setClubDistanceView] = useState<'total' | 'carry'>('total');
     const primaryShop = AFFILIATE_SHOPS[0];
 
     const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
@@ -526,13 +527,6 @@ export const MyGearPage = () => {
                                     );
                                 })}
                                 <button
-                                    onClick={() => navigate('/compare')}
-                                    className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
-                                >
-                                    <Brain size={16} />
-                                    セッティング比較
-                                </button>
-                                <button
                                     onClick={() => navigate('/diagnosis')}
                                     className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
                                 >
@@ -786,6 +780,63 @@ export const MyGearPage = () => {
                                 </div>
                             </div>
 
+                            <section className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm md:p-6">
+                                <div className="flex items-center justify-between gap-3">
+                                    <div>
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs</div>
+                                        <div className="mt-1 text-xl font-black tracking-tight text-trust-navy">マイクラブ</div>
+                                    </div>
+                                    <button
+                                        onClick={() => setActiveTab('clubs')}
+                                        className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-[#176534] transition hover:bg-slate-50"
+                                    >
+                                        編集する
+                                    </button>
+                                </div>
+                                <div className="mt-3 flex items-center justify-between gap-3">
+                                    <div className="text-xs font-black text-slate-400">{compactMyClubs.length}/15本</div>
+                                    <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 p-1 text-[11px] font-black">
+                                        <button
+                                            onClick={() => setClubDistanceView('total')}
+                                            className={cn('rounded-full px-3 py-1 transition', clubDistanceView === 'total' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
+                                        >
+                                            総距離
+                                        </button>
+                                        <button
+                                            onClick={() => setClubDistanceView('carry')}
+                                            className={cn('rounded-full px-3 py-1 transition', clubDistanceView === 'carry' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
+                                        >
+                                            キャリー
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="mt-4 space-y-2">
+                                    {compactMyClubs.length > 0 ? (
+                                        compactMyClubs.map((club) => (
+                                            <button
+                                                key={club.id}
+                                                onClick={() => setActiveTab('clubs')}
+                                                className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition-colors hover:bg-slate-100"
+                                            >
+                                                <div className="min-w-[52px] rounded-xl bg-white px-3 py-2 text-center text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
+                                                    {club.number || club.category}
+                                                </div>
+                                                <div className="ml-3 text-right">
+                                                    <div className="text-base font-black text-trust-navy">
+                                                        {club.distance ? `${club.distance}Y` : '未入力'}
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        ))
+                                    ) : (
+                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-8 text-left">
+                                            <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
+                                            <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
+                                        </button>
+                                    )}
+                                </div>
+                            </section>
+
                             <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm md:p-6">
                                 <div className="flex items-center justify-between">
                                     <div>
@@ -822,55 +873,6 @@ export const MyGearPage = () => {
                                         </button>
                                     ))}
                                 </div>
-                            </div>
-                        </section>
-
-                        <section className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-                            <div className="flex items-center justify-between gap-3">
-                                <div>
-                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs</div>
-                                    <div className="mt-1 text-xl font-black tracking-tight text-trust-navy">マイクラブ</div>
-                                    <p className="mt-1 text-xs leading-relaxed text-slate-500">番手ごとのモデルとスペックを、一覧で見返せます。</p>
-                                </div>
-                                <div className="text-xs font-black text-slate-400">{compactMyClubs.length}/15本</div>
-                            </div>
-                            <div className="mt-4 space-y-3">
-                                {compactMyClubs.length > 0 ? (
-                                    compactMyClubs.map((club) => (
-                                        <button
-                                            key={club.id}
-                                            onClick={() => setActiveTab('clubs')}
-                                            className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 text-left transition-colors hover:bg-slate-100"
-                                        >
-                                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                                                <div className="flex items-start gap-3">
-                                                    <div className="min-w-[56px] rounded-xl bg-white px-3 py-2 text-center text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
-                                                        {club.number || club.category}
-                                                    </div>
-                                                    <div className="min-w-0">
-                                                        <div className="text-sm font-black text-trust-navy">
-                                                            {[club.brand, club.model].filter(Boolean).join(' ') || 'メーカー・モデル未設定'}
-                                                        </div>
-                                                        <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500">
-                                                            <span>シャフト: {club.shaft || '未設定'}</span>
-                                                            <span>ロフト: {club.loft ? `${club.loft}°` : '未設定'}</span>
-                                                            <span>距離: {club.distance ? `${club.distance}Y` : '未入力'}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-center gap-2 self-end sm:self-auto">
-                                                    {pendingBagChangeIds.includes(club.id) && <div className="rounded-full bg-cyan-100 px-2 py-1 text-[10px] font-black text-cyan-700">未保存</div>}
-                                                    <div className="text-[11px] font-black text-slate-400">編集</div>
-                                                </div>
-                                            </div>
-                                        </button>
-                                    ))
-                                ) : (
-                                    <button onClick={() => setActiveTab('clubs')} className="rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-8 text-left">
-                                        <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
-                                        <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
-                                    </button>
-                                )}
                             </div>
                         </section>
 
