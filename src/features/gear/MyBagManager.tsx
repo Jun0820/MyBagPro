@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import { type ClubSetting, type Club, TargetCategory } from '../../types/golf';
 import { BrandModelInput } from '../../components/BrandModelInput';
@@ -130,6 +130,9 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                     <div className="min-w-0 flex-1">
                         <div className="truncate text-sm font-black text-trust-navy">
                             {[entry.brand, entry.model].filter(Boolean).join(' ') || 'ヘッド未入力'}
+                            <span className="ml-2 text-[11px] font-bold text-slate-400">
+                                {!isPutter && entry.distance ? `${entry.distance}Y` : isPutter ? 'PT' : '飛距離未入力'}
+                            </span>
                         </div>
                     </div>
                     <div className="shrink-0 text-right">
@@ -341,6 +344,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     onOpenBallDiagnosis,
     intakeMode = 'default',
 }) => {
+    const latestSettingRef = useRef(setting);
     const [addCategory, setAddCategory] = useState('');
     const [selectedLofts, setSelectedLofts] = useState<string[]>([]);
     const [batchPreset, setBatchPreset] = useState({
@@ -350,6 +354,24 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         shaftWeight: '',
         shaftFlex: ''
     });
+
+    useEffect(() => {
+        latestSettingRef.current = setting;
+    }, [setting]);
+
+    const commitSetting = useCallback((updater: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => {
+        const base = latestSettingRef.current;
+        const next = typeof updater === 'function' ? updater(base) : updater;
+        latestSettingRef.current = next;
+        onUpdate(next);
+        return next;
+    }, [onUpdate]);
+
+    const saveCurrentSetting = useCallback((override?: ClubSetting) => {
+        const next = override || latestSettingRef.current;
+        latestSettingRef.current = next;
+        onManualSave?.(next);
+    }, [onManualSave]);
 
     const sortedClubs = [...setting.clubs].sort((a, b) => {
         // 1. Parse distances (extract digits only)
@@ -455,7 +477,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             ? {
                 title: '使用ボールを登録する',
                 description: 'ボールまで入ると、クラブとの相性や診断導線が一気につながります。',
-                onClick: () => onManualSave?.(setting),
+                onClick: () => saveCurrentSetting(),
             }
             : {
                 title: 'ボール診断で相性を確認',
@@ -466,7 +488,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             ? {
                 title: '飛距離を追加して精度を上げる',
                 description: '1W / 7I / ウェッジの飛距離が入ると、番手ごとの差分提案が具体化します。',
-                onClick: () => onManualSave?.(setting),
+                onClick: () => saveCurrentSetting(),
             }
             : {
                 title: 'ボール診断で相性を確認',
@@ -485,7 +507,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         handleQuickAddStarter(missingEssentials[0].category, missingEssentials[0].number);
                         return;
                     }
-                    onManualSave?.(setting);
+                    saveCurrentSetting();
                 },
             };
         }
@@ -500,7 +522,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         onOpenBallDiagnosis?.();
                         return;
                     }
-                    onManualSave?.(setting);
+                    saveCurrentSetting();
                 },
             };
         }
@@ -563,24 +585,24 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     })();
 
     const updateClub = useCallback((updated: Club) => {
-        onUpdate((prev) => ({
+        commitSetting((prev) => ({
             ...prev,
             clubs: prev.clubs.map(c => c.id === updated.id ? updated : c)
         }));
-    }, [onUpdate]);
+    }, [commitSetting]);
 
     const removeClub = useCallback((id: string) => {
-        onUpdate((prev) => ({
+        commitSetting((prev) => ({
             ...prev,
             clubs: prev.clubs.filter(c => c.id !== id)
         }));
-    }, [onUpdate]);
+    }, [commitSetting]);
 
     const handleAddClub = (category?: string, customModel?: string) => {
         const cat = category || addCategory;
         if (!cat) return;
         if (setting.clubs.length >= MAX_BAG_CLUBS) return;
-        onUpdate((prev) => ({
+        commitSetting((prev) => ({
             ...prev,
             clubs: [...prev.clubs, {
                 id: generateClubId(),
@@ -603,7 +625,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         if (existing) return;
         if (setting.clubs.length >= MAX_BAG_CLUBS) return;
 
-        onUpdate((prev) => ({
+        commitSetting((prev) => ({
             ...prev,
             clubs: [
                 ...prev.clubs,
@@ -664,13 +686,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const allowedNewClubs = newClubs.slice(0, remainingClubSlots);
         if (allowedNewClubs.length === 0) return;
 
-        onUpdate((prev) => ({
-            ...prev,
-            clubs: [...prev.clubs, ...allowedNewClubs]
-        }));
+        const nextSetting = {
+            ...latestSettingRef.current,
+            clubs: [...latestSettingRef.current.clubs, ...allowedNewClubs]
+        };
+        commitSetting(nextSetting);
         setSelectedLofts([]);
-        // Batch add should also attempt a sync
-        setTimeout(() => onManualSave?.({ ...setting, clubs: [...setting.clubs, ...allowedNewClubs] }), 100);
+        saveCurrentSetting(nextSetting);
     };
 
     return (
@@ -702,7 +724,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1</div>
-                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">まずは番手を入れる</h3>
+                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">最初に代表番手を入れる</h3>
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">登録本数</div>
@@ -734,7 +756,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             </div>
                                         </div>
                                         <div className="mt-3 text-sm font-black text-trust-navy">{slot.title}</div>
-                                        <div className="mt-1 text-xs leading-relaxed text-slate-500">{slot.number} を先に入れる</div>
+                                        <div className="mt-1 text-xs leading-relaxed text-slate-500">{slot.number} を追加</div>
                                     </button>
                                 );
                             })}
@@ -749,7 +771,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">最後に保存する</h3>
                         <div className="mt-3 space-y-3">
                             <button
-                                onClick={() => onManualSave?.(setting)}
+                                onClick={() => saveCurrentSetting()}
                                 className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
                             >
                                 <Save size={14} />
@@ -760,7 +782,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <input
                                     list="mybag-ball-suggestions"
                                     value={setting.ball || ''}
-                                    onChange={(e) => onUpdate((prev) => ({ ...prev, ball: e.target.value }))}
+                                    onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
                                     placeholder="例: Pro V1 / TP5"
                                     className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
                                 />
@@ -854,7 +876,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <input
                             list="mybag-ball-suggestions"
                             value={setting.ball || ''}
-                            onChange={(e) => onUpdate((prev) => ({ ...prev, ball: e.target.value }))}
+                            onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
                             placeholder="例: Pro V1 / TP5 / Chrome Tour"
                             className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
                         />
@@ -864,7 +886,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             ))}
                         </datalist>
                         <button
-                            onClick={() => onManualSave?.(setting)}
+                            onClick={() => saveCurrentSetting()}
                             className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
                         >
                             <Save size={14} />
@@ -970,7 +992,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     {(hasUnsavedChanges || saveStatus === 'error') && (
                         <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                             <button
-                                onClick={() => onManualSave?.(setting)}
+                                onClick={() => saveCurrentSetting()}
                                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-current/20 bg-white/80 px-4 py-2 text-xs font-black transition-colors hover:bg-white"
                             >
                                 <Save size={14} />
@@ -1033,7 +1055,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
 
                     <button 
-                        onClick={() => onManualSave?.(setting)} 
+                        onClick={() => saveCurrentSetting()} 
                         className="flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-trust-navy px-8 font-bold text-white shadow-lg transition-all hover:bg-slate-800 active:scale-95 lg:w-auto"
                     >
                         {isManualSaveInFlight ? (
@@ -1070,8 +1092,25 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <ChevronDown size={18} className="text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="space-y-6 p-4 md:p-6">
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600">
-                        同じシリーズをまとめて追加したいときだけ使ってください。番手を選んで、最後にまとめて追加します。
+                        <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600">
+                        同じシリーズをまとめて入れるときだけ使います。共通のヘッドとシャフトを決めて、必要な番手だけ選んで追加します。
+                        </div>
+                    <div className="grid gap-3 sm:grid-cols-3">
+                        {[
+                            { label: 'アイアン 5I-PW', values: ['5I', '6I', '7I', '8I', '9I', 'PW'] },
+                            { label: 'ウェッジ 50-54-58', values: ['50°', '54°', '58°'] },
+                            { label: 'FW 3W / 5W', values: ['3W', '5W'] },
+                        ].map((preset) => (
+                            <button
+                                key={preset.label}
+                                type="button"
+                                onClick={() => setSelectedLofts(preset.values)}
+                                className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left transition hover:bg-slate-50"
+                            >
+                                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Preset</div>
+                                <div className="mt-1 text-sm font-black text-trust-navy">{preset.label}</div>
+                            </button>
+                        ))}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">

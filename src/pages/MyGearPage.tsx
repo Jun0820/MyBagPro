@@ -294,7 +294,7 @@ export const MyGearPage = () => {
     const sidebarMenu = [
         { key: 'view' as const, label: 'ダッシュボード', icon: Eye },
         { key: 'clubs' as const, label: 'マイクラブ', icon: Edit3 },
-        { key: 'profile' as const, label: 'プロフィール', icon: User },
+        { key: 'profile' as const, label: 'プロフィール編集', icon: User },
     ];
     const profileBadge = user.isLoggedIn ? 'クラウド保存中' : 'ベーシックプラン';
     const profileInitial = (profile.name || 'M').trim().charAt(0).toUpperCase();
@@ -1244,15 +1244,7 @@ export const MyGearPage = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                                    <button
-                                        onClick={primaryMove.onClick}
-                                        className="rounded-2xl border border-golf-200 bg-golf-50 px-5 py-4 text-left text-trust-navy transition-colors hover:bg-golf-100"
-                                    >
-                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{primaryMove.eyebrow}</div>
-                                        <div className="mt-1 text-base font-black">{primaryMove.title}</div>
-                                        <div className="mt-1 text-xs leading-relaxed text-slate-500">{primaryMove.description}</div>
-                                    </button>
+                                <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                                     <button
                                         onClick={() => openBagTabWithFocus()}
                                         className="rounded-2xl bg-golf-600 px-5 py-4 text-left text-white transition-colors hover:bg-golf-700"
@@ -1536,12 +1528,20 @@ export const MyGearPage = () => {
                         lastCloudSavedAt={lastCloudSavedAt}
                         lastSaveTargetClubCount={lastSaveTargetClubCount}
                         lastSavedClubCount={lastSavedClubCount}
-                        onManualSave={(settingOverride) =>
-                            manualSave({
-                                ...profile,
-                                myBag: settingOverride || profile.myBag,
-                            })
-                        }
+                        onManualSave={(settingOverride) => {
+                            const latestProfile = (() => {
+                                try {
+                                    const raw = localStorage.getItem('mybagpro_profile');
+                                    return raw ? JSON.parse(raw) : null;
+                                } catch {
+                                    return null;
+                                }
+                            })();
+                            return manualSave({
+                                ...(latestProfile || profile),
+                                myBag: settingOverride || latestProfile?.myBag || profile.myBag,
+                            });
+                        }}
                         onReloadFromCloud={syncWithSupabase}
                         intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
                     />
