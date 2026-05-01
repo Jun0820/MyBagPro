@@ -283,7 +283,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <img src="/branding/logo-wordmark-dark.svg" alt="MyBag Pro" className="h-12 w-auto" />
             </button>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/72">
-              プロのセッティングとあなたのデータをつなぎ、診断・比較・購入判断まで一気通貫で支えるゴルフサイトです。
+              プロのセッティングとあなたのデータをつなぎ、診断・購入判断まで一気通貫で支えるゴルフサイトです。
             </p>
           </div>
 
@@ -300,7 +300,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="text-sm font-black text-white">コンテンツ</div>
             <div className="mt-4 space-y-3 text-sm text-white/72">
               <button onClick={() => navigate('/articles')} className="block transition hover:text-[#c8a96a]">記事・コラム</button>
-              <button onClick={() => navigate('/compare')} className="block transition hover:text-[#c8a96a]">クラブ比較</button>
               <button onClick={() => navigate('/articles')} className="block transition hover:text-[#c8a96a]">お悩み解決</button>
             </div>
           </div>
@@ -445,7 +444,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   ? '/mypage?welcome=1&tab=clubs&focus=missing-clubs&next=starter-clubs'
                   : !hasBall
                   ? '/mypage?welcome=1&tab=clubs&focus=ball-first&next=ball'
-                  : '/mypage?welcome=1&next=compare';
+                  : '/mypage?welcome=1&next=diagnosis';
               navigate(destination);
             }}
             onClose={() => setShowAuth(false)}

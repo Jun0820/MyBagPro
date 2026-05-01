@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import { type ClubSetting, type Club, TargetCategory } from '../../types/golf';
 import { BrandModelInput } from '../../components/BrandModelInput';
@@ -7,7 +7,7 @@ import { cn } from '../../lib/utils';
 import { ShareImageExporter } from '../../components/ShareImageExporter';
 import { BALL_MASTER_DATA } from '../../data/ballMasterData';
 
-const MAX_BAG_CLUBS = 15;
+const MAX_BAG_CLUBS = 14;
 
 // Helper for Category Colors
 const getCategoryColor = (cat: string) => {
@@ -46,7 +46,7 @@ const generateClubId = () => {
     });
 };
 
-const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, onDiagnose: (c: Club) => void, isPending?: boolean }) => {
+const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, isPending?: boolean }) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
     const [isExpanded, setIsExpanded] = useState(() => Boolean(isPending || !entry.brand || !entry.model));
 
@@ -60,6 +60,10 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
     };
 
     const [shaftState, setShaftState] = useState(parseShaft(entry.shaft));
+
+    useEffect(() => {
+        setShaftState(parseShaft(entry.shaft));
+    }, [entry.shaft]);
 
     const handleShaftUpdate = (m: string, w: string, f: string) => {
         setShaftState({ model: m, weight: w, flex: f });
@@ -76,6 +80,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
             category: newCat,
             number: newNum,
             distance: newCat === TargetCategory.PUTTER ? '' : entry.distance,
+            carryDistance: newCat === TargetCategory.PUTTER ? '' : (entry.carryDistance || ''),
         });
     };
 
@@ -184,6 +189,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
 
                     <div className="space-y-4">
                         <BrandModelInput
+                            key={`brand-${entry.id}-${entry.category}`}
                             brand={entry.brand}
                             model={entry.model}
                             category={
@@ -199,11 +205,12 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                             compact={true}
                         />
 
-                        <div className="grid gap-3 lg:grid-cols-[1fr_220px]">
+                        <div className="grid gap-3 lg:grid-cols-[1fr_260px]">
                             <div className="min-w-0">
                                 <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">シャフト</div>
                                 {!isPutter ? (
                                     <DetailedShaftInput
+                                        key={`shaft-${entry.id}-${entry.category}`}
                                         model={shaftState.model}
                                         weight={shaftState.weight}
                                         flex={shaftState.flex}
@@ -224,13 +231,13 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                             </div>
 
                             {!isPutter && (
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-3 gap-2">
                                     <div>
                                         <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">ロフト</div>
                                         <div className="relative">
                                             <input
                                                 type="text"
-                                                placeholder="ロフト"
+                                                placeholder="-"
                                                 value={entry.loft}
                                                 onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
                                                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
@@ -239,11 +246,11 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">飛距離</div>
+                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">総距離</div>
                                         <div className="relative">
                                             <input
                                                 type="text"
-                                                placeholder="飛距離"
+                                                placeholder="-"
                                                 value={entry.distance}
                                                 onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
                                                 className="w-full rounded-xl border border-golf-200 bg-golf-50/50 px-3 py-3 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
@@ -251,28 +258,35 @@ const ClubRow = ({ entry, onUpdate, onRemove, onDiagnose, isPending }: { entry: 
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-golf-400">Y</span>
                                         </div>
                                     </div>
+                                    <div>
+                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">キャリー</div>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                placeholder="-"
+                                                value={entry.carryDistance || ''}
+                                                onChange={(e) => onUpdate({ ...entry, carryDistance: e.target.value })}
+                                                className="w-full rounded-xl border border-cyan-200 bg-cyan-50/50 px-3 py-3 text-center text-sm font-bold text-cyan-800 outline-none focus:border-cyan-500"
+                                            />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-cyan-500">Y</span>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </div>
 
-                        <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
-                            <div>
-                                <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">気になる点</div>
-                                <input
-                                    type="text"
-                                    value={entry.worry || ''}
-                                    onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
-                                    placeholder="捕まりすぎる、上がりすぎる、など"
-                                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
-                                />
-                            </div>
-                            <button
-                                onClick={() => onDiagnose(entry)}
-                                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-golf-600 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-golf-700 whitespace-nowrap"
-                            >
-                                このクラブを診断
-                            </button>
-                        </div>
+                        <details className="rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2">
+                            <summary className="cursor-pointer list-none text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
+                                気になる点をメモする
+                            </summary>
+                            <input
+                                type="text"
+                                value={entry.worry || ''}
+                                onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
+                                placeholder="捕まりすぎる、上がりすぎる、など"
+                                className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
+                            />
+                        </details>
                     </div>
                 </div>
             )}
@@ -285,7 +299,6 @@ const MemoizedClubRow = React.memo(ClubRow);
 interface MyBagManagerProps {
     setting: ClubSetting;
     onUpdate: (setting: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => void;
-    onDiagnose?: (club: Club) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
     isManualSaveInFlight?: boolean;
     saveErrorDetail?: string | null;
@@ -297,9 +310,7 @@ interface MyBagManagerProps {
     lastSavedClubCount?: number;
     onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
-    onSaveAndReturn?: () => void;
     onOpenBallDiagnosis?: () => void;
-    onOpenCompare?: () => void;
     intakeMode?: 'default' | 'missing-clubs' | 'ball-first';
 }
 
@@ -316,7 +327,6 @@ const BALL_MODEL_SUGGESTIONS = Array.from(
 export const MyBagManager: React.FC<MyBagManagerProps> = ({
     setting,
     onUpdate,
-    onDiagnose,
     saveStatus,
     isManualSaveInFlight = false,
     saveErrorDetail = null,
@@ -328,9 +338,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     lastSavedClubCount = 0,
     onManualSave,
     onReloadFromCloud,
-    onSaveAndReturn,
     onOpenBallDiagnosis,
-    onOpenCompare,
     intakeMode = 'default',
 }) => {
     const [addCategory, setAddCategory] = useState('');
@@ -406,7 +414,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             : `不足している代表番手は ${missingEssentials.map((slot) => slot.title).join(' / ')} です。ここを埋めると提案が安定します。`;
     const compositionTone =
         fairwayCount + utilityCount >= 3
-            ? `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本で比較しやすい構成です。`
+            ? `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本で流れを見やすい構成です。`
             : `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本です。FWやUTを1本足すとつながりを見やすくなります。`;
     const scoringTone =
         wedgeCount >= 3 && putterCount >= 1
@@ -417,7 +425,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             ? `飛距離の入力は ${distanceCoveragePercent}% 入っています。番手間の差分までかなり見やすいです。`
             : distanceCoveragePercent > 0
             ? `飛距離の入力は ${distanceCoveragePercent}% です。代表番手の飛距離を増やすと分析がさらに具体化します。`
-            : '飛距離はまだ未入力です。1W / 7I / ウェッジあたりから入れると比較しやすくなります。';
+            : '飛距離はまだ未入力です。1W / 7I / ウェッジあたりから入れると診断しやすくなります。';
     const analysisHighlights = [
         {
             label: '構成',
@@ -461,16 +469,16 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 onClick: () => onManualSave?.(setting),
             }
             : {
-                title: '比較ページで差を見る',
-                description: 'バッグ全体の傾向が見えているので、次はプロや候補との違いを見る段階です。',
-                onClick: () => onOpenCompare?.(),
+                title: 'ボール診断で相性を確認',
+                description: 'バッグ全体が見えてきたら、次はボール相性を整えると次の見直しが決めやすくなります。',
+                onClick: () => onOpenBallDiagnosis?.(),
             },
     ].filter(Boolean) as Array<{ title: string; description: string; onClick: () => void }>;
     const intakeBanner = (() => {
         if (intakeMode === 'missing-clubs') {
             return {
-                title: '比較ページから戻ってきました',
-                description: '不足している代表番手や未登録クラブを先に埋めると、比較と診断の精度がかなり上がります。',
+                title: 'まずは足りない番手を埋めましょう',
+                description: '不足している代表番手や未登録クラブを先に埋めると、診断の精度がかなり上がります。',
                 cta: missingEssentials[0] ? `${missingEssentials[0].title} を追加する` : 'My Bag を整える',
                 onClick: () => {
                     if (missingEssentials[0]) {
@@ -485,7 +493,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         if (intakeMode === 'ball-first') {
             return {
                 title: 'まずはボール相性までそろえましょう',
-                description: '比較で迷ったときは、使用ボールを入れるかボール診断に進むと次の一手が決まりやすくなります。',
+                description: '使用ボールを入れるかボール診断に進むと、次の一手がかなり決まりやすくなります。',
                 cta: hasBall ? 'ボール診断へ進む' : '使用ボールを保存する',
                 onClick: () => {
                     if (hasBall) {
@@ -583,7 +591,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 flex: '',
                 number: '',
                 loft: '',
-                distance: ''
+                distance: '',
+                carryDistance: ''
             }]
         }));
         setAddCategory('');
@@ -608,6 +617,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     number,
                     loft: '',
                     distance: '',
+                    carryDistance: '',
                 },
             ],
         }));
@@ -619,7 +629,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         );
     };
 
-    const handleBatchAdd = (requestedCategory: TargetCategory) => {
+    const handleBatchAdd = () => {
         if (selectedLofts.length === 0) return;
         const shaftString = `${batchPreset.shaftModel} ${batchPreset.shaftWeight ? batchPreset.shaftWeight + 'g' : ''} ${batchPreset.shaftFlex}`.trim();
 
@@ -629,20 +639,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             if (['2U', '3U', '4U', '5U', '6U'].includes(val)) return TargetCategory.UTILITY;
             if (['3I', '4I', '5I', '6I', '7I', '8I', '9I', 'PW', 'AW'].includes(val)) return TargetCategory.IRON;
             if (['SW', 'LW'].includes(val) || val.includes('°')) return TargetCategory.WEDGE;
-            return requestedCategory;
-        };
-
-        const isAppropriate = (val: string, req: TargetCategory) => {
-            if (req === TargetCategory.FAIRWAY) return val.includes('W') || val.includes('U');
-            if (req === TargetCategory.IRON) return val.includes('I') || ['PW', 'AW', 'SW', 'LW'].includes(val);
-            if (req === TargetCategory.WEDGE) return val.includes('°') || ['PW', 'AW', 'SW', 'LW'].includes(val);
-            return true;
+            return TargetCategory.IRON;
         };
 
         const newClubs = selectedLofts
             .map(val => {
                 const actualCategory = getCorrectCategory(val);
-                if (!isAppropriate(val, requestedCategory)) return null;
 
                 return {
                     id: generateClubId(),
@@ -653,7 +655,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     flex: batchPreset.shaftFlex,
                     number: val,
                     loft: '',
-                    distance: ''
+                    distance: '',
+                    carryDistance: ''
                 } as Club;
             })
             .filter((c): c is Club => c !== null);
@@ -676,7 +679,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <div className="rounded-3xl border border-cyan-200 bg-cyan-50 p-4 shadow-sm md:p-5">
                     <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                         <div>
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">CHECK YOUR BAG</div>
                             <h3 className="mt-2 text-lg font-black tracking-tight text-trust-navy">{intakeBanner.title}</h3>
                             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{intakeBanner.description}</p>
                         </div>
@@ -688,15 +691,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 {intakeBanner.cta}
                                 <ArrowRight size={16} />
                             </button>
-                            {intakeMode === 'missing-clubs' && onSaveAndReturn && (
-                                <button
-                                    onClick={onSaveAndReturn}
-                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-200 bg-white px-5 py-3 text-sm font-black text-cyan-700 transition-colors hover:bg-cyan-50"
-                                >
-                                    保存して比較に戻る
-                                    <ArrowRight size={16} />
-                                </button>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -708,15 +702,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1</div>
-                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">まずは代表番手を入れる</h3>
-                                <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                                    1W、7I、パターのどれかから始めれば大丈夫です。
-                                </p>
+                                <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">まずは番手を入れる</h3>
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">登録本数</div>
                                 <div className="mt-1 text-2xl font-black text-trust-navy">{sortedClubs.length}<span className="text-sm text-slate-400">/{MAX_BAG_CLUBS}</span></div>
-                                <div className="mt-1 text-xs font-bold text-slate-500">残り {remainingClubSlots}本</div>
+                                <div className="mt-1 text-xs font-bold text-slate-500">目標は14本</div>
                             </div>
                         </div>
 
@@ -755,7 +746,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <Sparkles size={12} />
                             STEP 3
                         </div>
-                        <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">保存して次へ進む</h3>
+                        <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">最後に保存する</h3>
                         <div className="mt-3 space-y-3">
                             <button
                                 onClick={() => onManualSave?.(setting)}
@@ -763,13 +754,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             >
                                 <Save size={14} />
                                 いまの内容を保存
-                            </button>
-                            <button
-                                onClick={() => onOpenCompare?.()}
-                                className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-trust-navy transition-colors hover:bg-slate-100"
-                            >
-                                <ArrowRight size={14} />
-                                比較ページを見る
                             </button>
                             <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">使用ボール</div>
@@ -1006,11 +990,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <div id="my-bag-export-area" className="mb-4 space-y-3 rounded-2xl bg-white p-1">
                     {sortedClubs.map(entry => (
                         <MemoizedClubRow 
-                            key={entry.id} 
+                            key={`${entry.id}-${entry.category}-${entry.number || ''}`} 
                             entry={entry} 
                             onUpdate={updateClub} 
                             onRemove={() => removeClub(entry.id)} 
-                            onDiagnose={(c) => onDiagnose?.(c)}
                             isPending={pendingBagChangeIds.includes(entry.id)}
                         />
                     ))}
@@ -1082,17 +1065,17 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <summary className="flex cursor-pointer list-none items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-4 select-none [&::-webkit-details-marker]:hidden md:px-6">
                     <div className="flex items-center gap-3">
                         <Plus size={18} className="text-golf-600" />
-                        <h3 className="font-bold text-sm text-trust-navy uppercase tracking-tight">BATCH ADD CLUBS</h3>
+                        <h3 className="font-bold text-sm text-trust-navy uppercase tracking-tight">まとめて追加</h3>
                     </div>
                     <ChevronDown size={18} className="text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="space-y-6 p-4 md:p-6">
                     <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600">
-                        一括追加でも上限は {MAX_BAG_CLUBS} 本です。現在は {setting.clubs.length} 本登録済みで、あと {remainingClubSlots} 本追加できます。
+                        同じシリーズをまとめて追加したいときだけ使ってください。番手を選んで、最後にまとめて追加します。
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">共通ブランド・モデル名</div>
+                            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">共通ヘッド</div>
                             <BrandModelInput
                                 brand={batchPreset.brand}
                                 model={batchPreset.model}
@@ -1104,7 +1087,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             />
                         </div>
                         <div className="space-y-2">
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">共通シャフトスペック</div>
+                            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">共通シャフト</div>
                             <DetailedShaftInput
                                 model={batchPreset.shaftModel}
                                 weight={batchPreset.shaftWeight}
@@ -1121,9 +1104,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                             {/* Woods / UT */}
                             <div className="space-y-3">
-                                <div className="ml-1 flex items-center justify-between text-xs font-black uppercase tracking-widest text-emerald-600">
-                                    <span>WOODS & UTILITY</span>
-                                    <button onClick={() => handleBatchAdd(TargetCategory.FAIRWAY)} className="rounded-full bg-emerald-600 px-3 py-1.5 font-bold text-white transition-all hover:bg-emerald-700">追加</button>
+                                <div className="ml-1 text-xs font-black uppercase tracking-widest text-emerald-600">
+                                    WOODS & UTILITY
                                 </div>
                                 <div className="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
                                     {['1W', '3W', '4W', '5W', '7W', '9W', '2U', '3U', '4U', '5U', '6U'].map(loft => (
@@ -1138,9 +1120,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
                             {/* Irons */}
                             <div className="space-y-3">
-                                <div className="ml-1 flex items-center justify-between text-xs font-black uppercase tracking-widest text-blue-600">
-                                    <span>IRONS</span>
-                                    <button onClick={() => handleBatchAdd(TargetCategory.IRON)} className="rounded-full bg-blue-600 px-3 py-1.5 font-bold text-white transition-all hover:bg-blue-700">追加</button>
+                                <div className="ml-1 text-xs font-black uppercase tracking-widest text-blue-600">
+                                    IRONS
                                 </div>
                                 <div className="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
                                     {['3I', '4I', '5I', '6I', '7I', '8I', '9I', 'PW', 'AW', 'SW', 'LW'].map(loft => (
@@ -1155,9 +1136,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
                             {/* Wedges */}
                             <div className="space-y-3">
-                                <div className="ml-1 flex items-center justify-between text-xs font-black uppercase tracking-widest text-indigo-600">
-                                    <span>WEDGES</span>
-                                    <button onClick={() => handleBatchAdd(TargetCategory.WEDGE)} className="rounded-full bg-indigo-600 px-3 py-1.5 font-bold text-white transition-all hover:bg-indigo-700">追加</button>
+                                <div className="ml-1 text-xs font-black uppercase tracking-widest text-indigo-600">
+                                    WEDGES
                                 </div>
                                 <div className="flex flex-wrap gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
                                     {['46°', '48°', '50°', '52°', '54°', '56°', '58°', '60°'].map(loft => (
@@ -1168,6 +1148,29 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                         >{loft}</button>
                                     ))}
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div className="text-sm font-bold text-slate-500">
+                                選択中 {selectedLofts.length} 本
+                            </div>
+                            <div className="flex flex-col gap-2 sm:flex-row">
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedLofts([])}
+                                    className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                                >
+                                    選択をクリア
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleBatchAdd()}
+                                    disabled={selectedLofts.length === 0 || isBagAtCapacity}
+                                    className="inline-flex h-11 items-center justify-center rounded-xl bg-trust-navy px-4 text-sm font-black text-white transition hover:bg-slate-800 disabled:opacity-50"
+                                >
+                                    選択した番手を追加
+                                </button>
                             </div>
                         </div>
                     </div>

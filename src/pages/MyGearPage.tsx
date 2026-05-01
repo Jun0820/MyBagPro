@@ -27,34 +27,12 @@ import { cn } from '../lib/utils';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { TargetCategory, type DiagnosisHistoryItem } from '../types/golf';
-import { driverDetails } from '../data/featuredSettings';
-import { getCompareShortlist, removeCompareShortlistItem, type CompareShortlistItem } from '../lib/diagnosisCompare';
+import { getCompareShortlist, type CompareShortlistItem } from '../lib/diagnosisCompare';
 import { saveDiagnosisRankingsToCompare } from '../lib/diagnosisCompare';
 import { getRecentlyViewed, type RecentlyViewedItem } from '../lib/recentlyViewed';
 import { getFavoriteClubs, removeFavoriteClub, type FavoriteClubItem } from '../lib/favoriteClubs';
 import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
 import { trackEvent } from '../lib/analytics';
-
-const categoryToDiagnosisPath = (category?: string | null) => {
-    switch (category) {
-        case TargetCategory.DRIVER:
-            return '/diagnosis/driver';
-        case TargetCategory.FAIRWAY:
-            return '/diagnosis/fairway';
-        case TargetCategory.UTILITY:
-            return '/diagnosis/utility';
-        case TargetCategory.IRON:
-            return '/diagnosis/iron';
-        case TargetCategory.WEDGE:
-            return '/diagnosis/wedge';
-        case TargetCategory.PUTTER:
-            return '/diagnosis/putter';
-        case TargetCategory.BALL:
-            return '/diagnosis/ball';
-        default:
-            return '/diagnosis';
-    }
-};
 
 const favoriteCategoryToDiagnosisPath = (category?: string | null) => {
     const normalized = category?.toLowerCase() || '';
@@ -85,7 +63,6 @@ export const MyGearPage = () => {
         lastCloudSavedAt,
         lastSaveTargetClubCount,
         lastSavedClubCount,
-        setStep,
         manualSave,
         syncWithSupabase,
         setShowAuth,
@@ -124,7 +101,7 @@ export const MyGearPage = () => {
     ].reduce((sum, current) => sum + current, 0);
     const completionPercent = Math.round((completionPoints / 5) * 100);
     const recentHistory = (user.history || []).slice(0, 3);
-    const considerationCount = compareShortlist.length + recentHistory.length + recentlyViewed.length + favoriteClubs.length;
+    const considerationCount = recentHistory.length + recentlyViewed.length + favoriteClubs.length;
     const shouldShowFirstSteps =
         user.isLoggedIn &&
         profile.myBag.clubs.length < 3 &&
@@ -159,18 +136,18 @@ export const MyGearPage = () => {
                 openBagTabWithFocus('ball-first');
             },
         }
-        : compareShortlist.length === 0 && recentHistory.length === 0
+        : recentHistory.length === 0
         ? {
             eyebrow: 'Primary Move',
-            title: '比較ページで今の差を見る',
-            description: '登録したバッグを基準に、次に見直すカテゴリをすぐ見つけられます。',
-            actionLabel: '比較ページへ進む',
+            title: '次は診断をはじめる',
+            description: '登録したバッグをもとに、まずは総合診断で次の1本を絞れます。',
+            actionLabel: '診断へ進む',
             onClick: () => {
                 trackEvent('click_primary_move', {
                     source_page: 'mypage',
-                    primary_move: 'compare',
+                    primary_move: 'diagnosis-first',
                 });
-                navigate('/compare');
+                navigate('/diagnosis');
             },
         }
         : {
@@ -242,10 +219,10 @@ export const MyGearPage = () => {
             ? `飛距離の入力は ${distanceCoveragePercent}% 入っています。番手間の差分までかなり見やすいです。`
             : distanceCoveragePercent > 0
             ? `飛距離の入力は ${distanceCoveragePercent}% です。代表番手の飛距離を増やすと分析がさらに具体化します。`
-            : '飛距離はまだ未入力です。1W / 7I / ウェッジあたりから入れると比較しやすくなります。';
+            : '飛距離はまだ未入力です。1W / 7I / ウェッジあたりから入れると診断しやすくなります。';
     const longGameTone =
         fairwayCount + utilityCount >= 3
-            ? `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本で比較しやすい構成です。`
+            ? `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本で流れを見やすい構成です。`
             : `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本です。FWやUTを1本足すと流れを見やすくなります。`;
     const scoringTone =
         wedgeCount >= 2 && putterCount >= 1
@@ -270,13 +247,6 @@ export const MyGearPage = () => {
     const analysisPoints = [longGameTone, scoringTone, ballTone, headSpeedTone];
 
     const analysisActions = [
-        compareShortlist.length > 0
-            ? {
-                label: '比較候補を見に行く',
-                description: `${compareShortlist.length} 件の候補を保存済みです。比較ページで見比べられます。`,
-                onClick: () => navigate('/compare?mode=shortlist'),
-            }
-            : null,
         favoriteClubs.length > 0
             ? {
                 label: 'お気に入りを見直す',
@@ -316,11 +286,6 @@ export const MyGearPage = () => {
                 onClick: () => navigate('/ball-diagnosis'),
             },
         {
-            label: '比較ページを見る',
-            description: '今のバッグとプロの差を並べて確認する',
-            onClick: () => navigate('/compare'),
-        },
-        {
             label: 'プロのセッティングを探す',
             description: '近い条件のプロを参考にする',
             onClick: () => navigate('/settings/pros'),
@@ -352,7 +317,7 @@ export const MyGearPage = () => {
         {
             label: 'クラブ登録',
             value: Math.max(8, Math.round(completionPercent)),
-            helper: `${compactMyClubs.length}/15本`,
+            helper: `${Math.min(compactMyClubs.length, 14)}/14本`,
             tone: 'bg-[#176534]',
         },
         {
@@ -379,7 +344,12 @@ export const MyGearPage = () => {
         navigate('/');
     };
 
-    const returnTo = searchParams.get('returnTo');
+    const getDisplayedClubDistance = (club: typeof profile.myBag.clubs[number]) => {
+        const total = String(club.distance || '').trim();
+        const carry = String(club.carryDistance || '').trim();
+        return clubDistanceView === 'carry' ? (carry || total) : (total || carry);
+    };
+
     const showWelcomeBanner = searchParams.get('welcome') === '1';
 
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
@@ -405,21 +375,6 @@ export const MyGearPage = () => {
     const openSavedDiagnosis = (item: DiagnosisHistoryItem) => {
         restoreDiagnosisResult(item);
         navigate('/result');
-    };
-
-    const openCompareCandidate = (item: CompareShortlistItem) => {
-        const matchedDriver = driverDetails.find(
-            (driver) =>
-                driver.brand === item.brand &&
-                (driver.name === item.modelName || `${driver.brand} ${driver.name}` === `${item.brand} ${item.modelName}`),
-        );
-
-        if (matchedDriver) {
-            navigate(`/buy/drivers/${matchedDriver.slug}`);
-            return;
-        }
-
-        navigate('/compare');
     };
 
     const openRecentlyViewed = (item: RecentlyViewedItem) => {
@@ -499,12 +454,6 @@ export const MyGearPage = () => {
                                 <div className="flex items-center justify-between"><span>ベストスコア</span><span>{profile.bestScore || 85}</span></div>
                             </div>
 
-                            <button
-                                onClick={() => setActiveTab('profile')}
-                                className="mt-5 inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50"
-                            >
-                                プロフィール編集
-                            </button>
                         </div>
 
                         <div className="rounded-[28px] border border-[#e5ece6] bg-white p-3 shadow-sm">
@@ -609,7 +558,7 @@ export const MyGearPage = () => {
                                         内容を保存して、続きから再開できます
                                     </h2>
                                     <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                                        クラブ登録、診断結果、比較候補がすべて残ります。
+                                        クラブ登録、診断結果、お気に入りがそのまま残ります。
                                     </p>
                                 </div>
                             </div>
@@ -620,8 +569,8 @@ export const MyGearPage = () => {
                                     <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">診断を保存</div>
                                 </div>
                                 <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
-                                    <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Compare</div>
-                                    <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">比較データ保持</div>
+                                    <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Cloud</div>
+                                    <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">クラウド保存</div>
                                 </div>
                                 <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
                                     <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Resume</div>
@@ -654,30 +603,16 @@ export const MyGearPage = () => {
                             <section className="rounded-[24px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-4 shadow-sm md:rounded-[28px] md:p-5">
                                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                                     <div>
-                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
-                                            {nextParam === 'ball' ? 'Ball First' : nextParam === 'compare' ? 'Compare First' : primaryMove.eyebrow}
-                                        </div>
-                                        <div className="mt-1 text-lg font-black tracking-tight text-trust-navy">{primaryMove.title}</div>
-                                        <p className="mt-1 text-sm leading-relaxed text-slate-600">{primaryMove.description}</p>
+                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">WELCOME</div>
+                                        <div className="mt-1 text-lg font-black tracking-tight text-trust-navy">次にやることを3つに絞りました</div>
+                                        <p className="mt-1 text-sm leading-relaxed text-slate-600">番手を埋める、ボールを整える、診断を進める。この順で進めると迷いにくくなります。</p>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        <button
-                                            onClick={() => {
-                                                dismissWelcome();
-                                                primaryMove.onClick();
-                                            }}
-                                            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-2xl bg-golf-600 px-4 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
-                                        >
-                                            {primaryMove.actionLabel}
-                                            <ArrowRight size={15} />
-                                        </button>
-                                        <button
-                                            onClick={dismissWelcome}
-                                            className="inline-flex min-h-[44px] items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-500 transition-colors hover:bg-slate-50"
-                                        >
-                                            閉じる
-                                        </button>
-                                    </div>
+                                    <button
+                                        onClick={dismissWelcome}
+                                        className="inline-flex min-h-[44px] items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-500 transition-colors hover:bg-slate-50"
+                                    >
+                                        閉じる
+                                    </button>
                                 </div>
                             </section>
                         )}
@@ -733,7 +668,7 @@ export const MyGearPage = () => {
                                             <div className="grid flex-1 grid-cols-2 gap-2 text-sm font-bold text-slate-600 md:w-full">
                                                 <div className="rounded-xl bg-white p-3">
                                                     <div className="text-[10px] uppercase text-slate-400">登録クラブ</div>
-                                                    <div className="mt-1 text-lg font-black text-[#151719]">{compactMyClubs.length}<span className="ml-1 text-xs text-slate-400">/15</span></div>
+                                                    <div className="mt-1 text-lg font-black text-[#151719]">{compactMyClubs.length}<span className="ml-1 text-xs text-slate-400">/14</span></div>
                                                 </div>
                                                 <div className="rounded-xl bg-white p-3">
                                                     <div className="text-[10px] uppercase text-slate-400">飛距離入力</div>
@@ -742,7 +677,7 @@ export const MyGearPage = () => {
                                             </div>
                                         </div>
                                         <p className="mt-3 text-xs leading-relaxed text-slate-500">
-                                            ゴルフの実力ではなく、<span className="font-black text-trust-navy">診断や比較に使える情報がどれだけそろっているか</span> を見ています。
+                                            ゴルフの実力ではなく、<span className="font-black text-trust-navy">診断に使える情報がどれだけそろっているか</span> を見ています。
                                         </p>
                                     </div>
 
@@ -763,7 +698,6 @@ export const MyGearPage = () => {
                                         </div>
                                         <div className="mt-4 grid gap-2 sm:grid-cols-3">
                                             <button onClick={() => setActiveTab('clubs')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#176534] px-3 py-3 text-xs font-black text-white">クラブ編集</button>
-                                            <button onClick={() => navigate('/compare')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[#c9d7cb] bg-white px-3 py-3 text-xs font-black text-[#176534]">比較する</button>
                                             <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-black text-trust-navy">診断する</button>
                                         </div>
                                     </div>
@@ -794,7 +728,7 @@ export const MyGearPage = () => {
                                     </button>
                                 </div>
                                 <div className="mt-3 flex items-center justify-between gap-3">
-                                    <div className="text-xs font-black text-slate-400">{compactMyClubs.length}/15本</div>
+                                    <div className="text-xs font-black text-slate-400">{Math.min(compactMyClubs.length, 14)}/14本</div>
                                     <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 p-1 text-[11px] font-black">
                                         <button
                                             onClick={() => setClubDistanceView('total')}
@@ -823,7 +757,7 @@ export const MyGearPage = () => {
                                                 </div>
                                                 <div className="ml-3 text-right">
                                                     <div className="text-base font-black text-trust-navy">
-                                                        {club.distance ? `${club.distance}Y` : '未入力'}
+                                                        {getDisplayedClubDistance(club) ? `${getDisplayedClubDistance(club)}Y` : '未入力'}
                                                     </div>
                                                 </div>
                                             </button>
@@ -836,44 +770,6 @@ export const MyGearPage = () => {
                                     )}
                                 </div>
                             </section>
-
-                            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Primary Move</div>
-                                        <div className="mt-1 text-lg font-black tracking-tight text-trust-navy">{primaryMove.title}</div>
-                                    </div>
-                                    {!user.isLoggedIn && (
-                                        <button onClick={() => setShowAuth(true)} className="inline-flex min-h-[42px] items-center gap-2 rounded-xl bg-trust-navy px-4 py-2 text-xs font-black text-white">
-                                            <LogIn size={14} />
-                                            登録
-                                        </button>
-                                    )}
-                                </div>
-                                <p className="mt-2 text-sm leading-relaxed text-slate-600">{primaryMove.description}</p>
-                                <button
-                                    onClick={primaryMove.onClick}
-                                    className="mt-4 inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-2xl bg-golf-600 px-4 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700"
-                                >
-                                    {primaryMove.actionLabel}
-                                    <ArrowRight size={15} />
-                                </button>
-                                <div className="mt-5 space-y-3">
-                                    {nextActions.slice(0, 3).map((action) => (
-                                        <button
-                                            key={action.label}
-                                            onClick={action.onClick}
-                                            className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-colors hover:bg-slate-100"
-                                        >
-                                            <div>
-                                                <div className="text-sm font-black text-trust-navy">{action.label}</div>
-                                                <div className="mt-1 text-xs text-slate-500">{action.description}</div>
-                                            </div>
-                                            <ArrowRight size={15} className="text-slate-400" />
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
                         </section>
 
                         <section className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
@@ -912,28 +808,8 @@ export const MyGearPage = () => {
 
                             <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm md:p-6">
                                 <div className="text-xl font-black tracking-tight text-trust-navy">見返したい候補</div>
-                                <p className="mt-2 text-xs leading-relaxed text-slate-500">比較用に残した候補、お気に入り、最近見たページをここにまとめています。</p>
+                                <p className="mt-2 text-xs leading-relaxed text-slate-500">見返したい診断、お気に入り、最近見たページをここにまとめています。</p>
                                 <div className="mt-4 space-y-4">
-                                    {compareShortlist.length > 0 && (
-                                        <div>
-                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">比較用に残した候補</div>
-                                            <div className="space-y-2">
-                                                {compareShortlist.slice(0, 3).map((item) => (
-                                                    <button
-                                                        key={item.id}
-                                                        onClick={() => openCompareCandidate(item)}
-                                                        className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition-colors hover:bg-slate-100"
-                                                    >
-                                                        <div className="min-w-0">
-                                                            <div className="truncate text-sm font-black text-trust-navy">{item.brand} {item.modelName}</div>
-                                                            <div className="mt-1 text-[11px] text-slate-500">{item.sourceCategory} / {item.matchPercentage.toFixed(1)}%</div>
-                                                        </div>
-                                                        <ArrowRight size={14} className="text-slate-400" />
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
                                     {favoriteClubs.length > 0 && (
                                         <div>
                                             <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">お気に入り登録</div>
@@ -974,9 +850,9 @@ export const MyGearPage = () => {
                                             </div>
                                         </div>
                                     )}
-                                    {compareShortlist.length === 0 && favoriteClubs.length === 0 && recentlyViewed.length === 0 && (
+                                    {favoriteClubs.length === 0 && recentlyViewed.length === 0 && recentHistory.length === 0 && (
                                         <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-6 text-sm text-slate-500">
-                                            比較ページで候補を残したり、お気に入り登録するとここからすぐ見直せます。
+                                            診断結果を残したり、お気に入り登録するとここからすぐ見直せます。
                                         </div>
                                     )}
                                 </div>
@@ -1093,10 +969,10 @@ export const MyGearPage = () => {
                                         登録・編集
                                     </button>
                                     <button
-                                        onClick={() => navigate('/compare')}
+                                        onClick={() => navigate('/settings/pros')}
                                         className="inline-flex items-center justify-center rounded-xl border border-[#c9d7cb] bg-white px-3 py-2 text-xs font-black text-[#176534]"
                                     >
-                                        比較する
+                                        プロを見る
                                     </button>
                                 </div>
                             </div>
@@ -1142,7 +1018,7 @@ export const MyGearPage = () => {
                                                 保存と再開が使える状態になりました
                                             </h2>
                                             <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">
-                                                いまのセッティング、診断結果、比較候補をマイページに残せます。次にやることは、今の登録状況に合わせて下にまとめています。
+                                                いまのセッティングと診断結果をマイページに残せます。次にやることは、今の登録状況に合わせて下にまとめています。
                                             </p>
                                         </div>
                                     </div>
@@ -1202,12 +1078,12 @@ export const MyGearPage = () => {
                                     <button
                                         onClick={() => {
                                             dismissWelcome();
-                                            navigate('/compare');
+                                            setActiveTab('clubs');
                                         }}
                                         className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-50"
                                     >
                                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Step 3</div>
-                                        <div className="mt-1 text-base font-black">比較ページで差を見る</div>
+                                        <div className="mt-1 text-base font-black">マイクラブを整える</div>
                                     </button>
                                 </div>
                             </section>
@@ -1344,12 +1220,12 @@ export const MyGearPage = () => {
                                                 <div className="mt-1 text-xs leading-relaxed text-slate-500">クラブとの相性を早めに確認できます。</div>
                                             </button>
                                             <button
-                                                onClick={() => navigate('/compare')}
+                                                onClick={() => navigate('/settings/pros')}
                                                 className="rounded-2xl border border-golf-200 bg-white px-4 py-4 text-left transition-colors hover:bg-golf-100/40"
                                             >
                                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">3</div>
-                                                <div className="mt-1 text-base font-black text-trust-navy">比較ページで差を見る</div>
-                                                <div className="mt-1 text-xs leading-relaxed text-slate-500">次に見直すカテゴリが見えます。</div>
+                                                <div className="mt-1 text-base font-black text-trust-navy">プロのセッティングを見る</div>
+                                                <div className="mt-1 text-xs leading-relaxed text-slate-500">近いセッティングの参考例を見られます。</div>
                                             </button>
                                         </div>
                                     </div>
@@ -1485,7 +1361,7 @@ export const MyGearPage = () => {
                             </div>
                         </section>
 
-                        {(compareShortlist.length > 0 || recentlyViewed.length > 0 || recentHistory.length > 0 || favoriteClubs.length > 0) && (
+                        {(recentlyViewed.length > 0 || recentHistory.length > 0 || favoriteClubs.length > 0) && (
                             <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl">
                                 <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                                         <div>
@@ -1494,7 +1370,7 @@ export const MyGearPage = () => {
                                                 検討中
                                             </div>
                                         <p className="mt-2 text-sm text-slate-500">
-                                            何を残し、何を比較し、次にどこを見るかをこの中で続けられます。
+                                            何を残し、何を見直し、次にどこを見るかをこの中で続けられます。
                                         </p>
                                     </div>
                                     <div className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
@@ -1544,64 +1420,6 @@ export const MyGearPage = () => {
                                         </div>
                                     )}
 
-                                    {compareShortlist.length > 0 && (
-                                        <div>
-                                            <div className="mb-3 flex items-center justify-between gap-3">
-                                                <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                    残している比較
-                                                </div>
-                                                <button
-                                                    onClick={() => navigate('/compare?mode=shortlist')}
-                                                    className="text-[11px] font-black text-trust-navy transition-colors hover:text-slate-700"
-                                                >
-                                                    比較を開く
-                                                </button>
-                                            </div>
-                                            <div className="space-y-4">
-                                                {compareShortlist.map((item) => (
-                                                    <div
-                                                        key={item.id}
-                                                        className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
-                                                    >
-                                                        <div className="flex items-start justify-between gap-3">
-                                                            <div>
-                                                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                                    {item.sourceCategory}
-                                                                </div>
-                                                                <div className="mt-2 line-clamp-2 text-base font-black text-trust-navy">
-                                                                    {item.brand} {item.modelName}
-                                                                </div>
-                                                            </div>
-                                                            <button
-                                                                onClick={() => setCompareShortlist(removeCompareShortlistItem(item.id))}
-                                                                className="text-[11px] font-black text-slate-400 transition-colors hover:text-slate-600"
-                                                            >
-                                                                削除
-                                                            </button>
-                                                        </div>
-                                                        <div className="mt-3 flex flex-wrap gap-2">
-                                                            <span className="rounded-full bg-white px-3 py-1 text-[11px] font-black text-slate-500">
-                                                                適合率 {item.matchPercentage.toFixed(1)}%
-                                                            </span>
-                                                            {item.shaft && (
-                                                                <span className="rounded-full bg-white px-3 py-1 text-[11px] font-black text-slate-500">
-                                                                    {item.shaft}
-                                                                </span>
-                                                            )}
-                                                        </div>
-                                                        <button
-                                                            onClick={() => openCompareCandidate(item)}
-                                                            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800 sm:w-auto"
-                                                        >
-                                                            詳細を見る
-                                                            <ArrowRight size={14} />
-                                                        </button>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-
                                     {favoriteClubs.length > 0 && (
                                         <div>
                                             <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
@@ -1638,12 +1456,6 @@ export const MyGearPage = () => {
                                                                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto"
                                                             >
                                                                 再診断する
-                                                            </button>
-                                                            <button
-                                                                onClick={() => navigate('/compare?mode=shortlist')}
-                                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto"
-                                                            >
-                                                                比較を開く
                                                             </button>
                                                             <button
                                                                 onClick={() => setFavoriteClubs(removeFavoriteClub(item.id))}
@@ -1715,23 +1527,6 @@ export const MyGearPage = () => {
                             }))
                         }
                         onOpenBallDiagnosis={() => navigate('/ball-diagnosis')}
-                        onOpenCompare={() => navigate('/compare')}
-                        onDiagnose={(club) => {
-                            updateProfile('targetCategory', club.category);
-                            updateProfile('currentBrand', club.brand);
-                            updateProfile('currentModel', club.model);
-                            updateProfile('currentShaftModel', club.shaft);
-                            updateProfile('currentLoft', club.loft);
-                            updateProfile('freeComments', club.worry || '');
-
-                            if (profile.headSpeed > 0 && profile.gender) {
-                                setStep(2);
-                            } else {
-                                setStep(1);
-                            }
-
-                            navigate(categoryToDiagnosisPath(club.category));
-                        }}
                         saveStatus={saveStatus}
                         isManualSaveInFlight={isManualSaveInFlight}
                         saveErrorDetail={saveErrorDetail}
@@ -1748,19 +1543,6 @@ export const MyGearPage = () => {
                             })
                         }
                         onReloadFromCloud={syncWithSupabase}
-                        onSaveAndReturn={
-                            returnTo
-                                ? async () => {
-                                      await manualSave({
-                                          ...profile,
-                                          myBag: profile.myBag,
-                                      });
-                                      const nextReturn = new URL(returnTo, window.location.origin);
-                                      nextReturn.searchParams.set('refreshed', '1');
-                                      navigate(`${nextReturn.pathname}${nextReturn.search}${nextReturn.hash}`);
-                                  }
-                                : undefined
-                        }
                         intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
                     />
                 )}

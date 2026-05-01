@@ -53,6 +53,7 @@ const normalizeBagSnapshotClub = (value: unknown, fallbackIndex: number): Club |
     number: typeof record.number === 'string' ? record.number.trim() : '',
     loft: typeof record.loft === 'string' ? record.loft.trim() : '',
     distance: typeof record.distance === 'string' ? record.distance.trim() : '',
+    carryDistance: typeof record.carryDistance === 'string' ? record.carryDistance.trim() : '',
     worry: typeof record.worry === 'string' ? record.worry.trim() : '',
   };
 };

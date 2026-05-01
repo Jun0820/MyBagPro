@@ -166,7 +166,8 @@ export interface Club {
     flex: string;   // Hardness of shaft
     number: string; // [NEW] Number (e.g., 3W, 7I)
     loft: string;   // [NEW] Loft angle (e.g., 15 deg)
-    distance: string;
+    distance: string; // total distance
+    carryDistance?: string;
     worry?: string; // [NEW] 個別の悩みメモ
 }
 

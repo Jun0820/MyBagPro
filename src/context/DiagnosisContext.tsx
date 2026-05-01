@@ -178,6 +178,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             ...club,
             flex: club.flex || '',
             number: club.number || '',
+            carryDistance: club.carryDistance || '',
             worry: club.worry || '',
         })),
         ...(ball ? { ball } : {}),
@@ -202,6 +203,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 number: snapshot?.number || '',
                 loft: club.loft || '',
                 distance: club.distance || '',
+                carryDistance: snapshot?.carryDistance || '',
                 worry: snapshot?.worry || '',
             };
         });
@@ -371,6 +373,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 previous.number !== club.number ||
                 previous.loft !== club.loft ||
                 previous.distance !== club.distance ||
+                (previous.carryDistance || '') !== (club.carryDistance || '') ||
                 (previous.worry || '') !== (club.worry || '');
 
             if (changed) {
