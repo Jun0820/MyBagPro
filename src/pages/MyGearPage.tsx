@@ -1529,17 +1529,9 @@ export const MyGearPage = () => {
                         lastSaveTargetClubCount={lastSaveTargetClubCount}
                         lastSavedClubCount={lastSavedClubCount}
                         onManualSave={(settingOverride) => {
-                            const latestProfile = (() => {
-                                try {
-                                    const raw = localStorage.getItem('mybagpro_profile');
-                                    return raw ? JSON.parse(raw) : null;
-                                } catch {
-                                    return null;
-                                }
-                            })();
                             return manualSave({
-                                ...(latestProfile || profile),
-                                myBag: settingOverride || latestProfile?.myBag || profile.myBag,
+                                ...profile,
+                                myBag: settingOverride || profile.myBag,
                             });
                         }}
                         onReloadFromCloud={syncWithSupabase}

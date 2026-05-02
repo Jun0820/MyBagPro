@@ -118,18 +118,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
-    const readLatestLocalProfileSnapshot = (): UserProfile | null => {
-        try {
-            const raw = localStorage.getItem('mybagpro_profile');
-            if (!raw) return null;
-            const parsed = JSON.parse(raw);
-            if (!parsed || typeof parsed !== 'object') return null;
-            return parsed as UserProfile;
-        } catch {
-            return null;
-        }
-    };
-
     const clearSaveStatusResetTimer = () => {
         if (saveStatusResetTimerRef.current) {
             window.clearTimeout(saveStatusResetTimerRef.current);
@@ -573,7 +561,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
             if (ensuredProfileData) {
                 const normalizedSocials = normalizeUserSocialLinks(ensuredProfileData.sns_links);
-                const snapshotClubs = normalizedSocials.bagSnapshot?.clubs || [];
                 const syncedProfile = {
                     ...profileRef.current,
                     name: ensuredProfileData.name || profileRef.current.name,
@@ -591,7 +578,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     myBag: {
                         ...profileRef.current.myBag,
                         ball: ensuredProfileData.current_ball || profileRef.current.myBag.ball,
-                        clubs: snapshotClubs.length > 0 ? snapshotClubs : profileRef.current.myBag.clubs,
                     },
                 };
                 profileRef.current = syncedProfile;
@@ -612,7 +598,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     myBag: {
                         ...prev.myBag,
                         ball: ensuredProfileData.current_ball || prev.myBag.ball,
-                        clubs: snapshotClubs.length > 0 ? snapshotClubs : prev.myBag.clubs,
                     },
                 }));
             }
@@ -627,13 +612,14 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             if (clubData) {
                 const normalizedSocials = normalizeUserSocialLinks(ensuredProfileData?.sns_links);
                 const snapshotClubs = normalizedSocials.bagSnapshot?.clubs || [];
+                const mergedCloudClubs = clubData.length > 0
+                    ? mergeCloudClubsWithSnapshot(clubData, snapshotClubs)
+                    : (profileRef.current.myBag.clubs.length === 0 ? snapshotClubs : profileRef.current.myBag.clubs);
                 const nextProfile = {
                     ...profileRef.current,
                     myBag: {
                         ...profileRef.current.myBag,
-                        clubs: clubData.length > 0
-                            ? mergeCloudClubsWithSnapshot(clubData, snapshotClubs)
-                            : snapshotClubs,
+                        clubs: mergedCloudClubs,
                     }
                 };
                 profileRef.current = nextProfile;
@@ -643,22 +629,26 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     clubs: nextProfile.myBag.clubs,
                     ball: nextProfile.myBag.ball || '',
                 };
-                setLastSaveTargetClubCount(nextProfile.myBag.clubs.length);
-                setLastSavedClubCount(nextProfile.myBag.clubs.length);
+                setLastSaveTargetClubCount(clubData.length);
+                setLastSavedClubCount(clubData.length);
                 setHasUnsavedChanges(false);
                 setPendingBagChangeCount(0);
+                setPendingBagChangeIds([]);
             } else if (profileRef.current && userRef.current.isLoggedIn && userRef.current.id) {
                 lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, profileRef.current).signature;
                 lastRemoteBagSnapshotRef.current = {
                     clubs: profileRef.current.myBag.clubs,
                     ball: profileRef.current.myBag.ball || '',
                 };
-                setLastSaveTargetClubCount(profileRef.current.myBag.clubs.length);
-                setLastSavedClubCount(profileRef.current.myBag.clubs.length);
+                setLastSaveTargetClubCount(0);
+                setLastSavedClubCount(0);
                 setHasUnsavedChanges(false);
                 setPendingBagChangeCount(0);
+                setPendingBagChangeIds([]);
             }
-            markSaveStatusSaved();
+            if (saveStatus !== 'error') {
+                setSaveStatus('idle');
+            }
         } catch (e) {
             console.error("Sync error:", e);
             setSaveStatus('error');
@@ -687,8 +677,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     // Manual Save Trigger (Immediate)
     const manualSave = async (profileOverride?: UserProfile) => {
-        const latestLocalProfile = readLatestLocalProfileSnapshot();
-        const saveProfile = profileOverride || latestLocalProfile || profileRef.current;
+        const saveProfile = profileOverride || profileRef.current;
 
         profileRef.current = saveProfile;
         setProfileInternal(saveProfile);

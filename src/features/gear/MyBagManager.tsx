@@ -601,7 +601,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const handleAddClub = (category?: string, customModel?: string) => {
         const cat = category || addCategory;
         if (!cat) return;
-        if (setting.clubs.length >= MAX_BAG_CLUBS) return;
+        if (latestSettingRef.current.clubs.length >= MAX_BAG_CLUBS) return;
         commitSetting((prev) => ({
             ...prev,
             clubs: [...prev.clubs, {
@@ -621,9 +621,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     };
 
     const handleQuickAddStarter = (category: TargetCategory, number: string) => {
-        const existing = setting.clubs.find((club) => club.category === category && (club.number || '') === number);
+        const existing = latestSettingRef.current.clubs.find((club) => club.category === category && (club.number || '') === number);
         if (existing) return;
-        if (setting.clubs.length >= MAX_BAG_CLUBS) return;
+        if (latestSettingRef.current.clubs.length >= MAX_BAG_CLUBS) return;
 
         commitSetting((prev) => ({
             ...prev,
