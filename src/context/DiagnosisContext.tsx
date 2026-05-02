@@ -149,6 +149,24 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const withTimeout = async <T,>(promiseLike: PromiseLike<T>, label: string, timeoutMs = 12000): Promise<T> => {
+        let timer: number | null = null;
+        try {
+            return await Promise.race([
+                Promise.resolve(promiseLike),
+                new Promise<T>((_, reject) => {
+                    timer = window.setTimeout(() => {
+                        reject(new Error(`${label}: request timed out after ${Math.round(timeoutMs / 1000)}s`));
+                    }, timeoutMs);
+                }),
+            ]);
+        } finally {
+            if (timer) {
+                window.clearTimeout(timer);
+            }
+        }
+    };
+
     const isUuid = (value: string) =>
         /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 
@@ -283,10 +301,13 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const verifyClubWrite = async (userId: string, expectedIds: string[]) => {
-        const { data, error } = await supabase
-            .from('clubs')
-            .select('id')
-            .eq('user_id', userId);
+        const { data, error } = await withTimeout(
+            supabase
+                .from('clubs')
+                .select('id')
+                .eq('user_id', userId),
+            'clubs verify fetch',
+        );
 
         assertSupabaseOk({ error }, 'clubs verify');
 
@@ -318,30 +339,64 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }>,
         reason: 'auto' | 'manual',
     ) => {
-        const deleteResult = await supabase
-            .from('clubs')
-            .delete()
-            .eq('user_id', userId);
-
-        assertSupabaseOk(deleteResult, `clubs replace delete before ${reason}-save`);
-
         if (clubPayloads.length === 0) {
+            const deleteAllResult = await withTimeout(
+                supabase
+                    .from('clubs')
+                    .delete()
+                    .eq('user_id', userId),
+                `clubs clear during ${reason}-save`,
+            );
+            assertSupabaseOk(deleteAllResult, `clubs clear during ${reason}-save`);
             return;
         }
 
-        const clubsInsertResult = await supabase
-            .from('clubs')
-            .insert(clubPayloads)
-            .select('id');
-
-        assertSupabaseOk(
-            clubsInsertResult,
-            `clubs replace insert during ${reason}-save`,
+        const clubsUpsertResult = await withTimeout(
+            supabase
+                .from('clubs')
+                .upsert(clubPayloads, { onConflict: 'id' })
+                .select('id'),
+            `clubs upsert during ${reason}-save`,
         );
 
-        const insertedCount = clubsInsertResult.data?.length || 0;
-        if (insertedCount !== clubPayloads.length) {
-            throw new Error(`clubs replace insert during ${reason}-save: expected ${clubPayloads.length} inserted but got ${insertedCount}`);
+        assertSupabaseOk(
+            clubsUpsertResult,
+            `clubs upsert during ${reason}-save`,
+        );
+
+        const upsertedCount = clubsUpsertResult.data?.length || 0;
+        if (upsertedCount !== clubPayloads.length) {
+            throw new Error(`clubs upsert during ${reason}-save: expected ${clubPayloads.length} rows but got ${upsertedCount}`);
+        }
+
+        const expectedIds = new Set(clubPayloads.map((club) => club.id));
+        const existingIdsResult = await withTimeout(
+            supabase
+                .from('clubs')
+                .select('id')
+                .eq('user_id', userId),
+            `clubs existing ids during ${reason}-save`,
+        );
+
+        assertSupabaseOk(
+            { error: existingIdsResult.error },
+            `clubs existing ids during ${reason}-save`,
+        );
+
+        const staleIds = (existingIdsResult.data || [])
+            .map((club) => club.id)
+            .filter((id) => !expectedIds.has(id));
+
+        if (staleIds.length > 0) {
+            const deleteStaleResult = await withTimeout(
+                supabase
+                    .from('clubs')
+                    .delete()
+                    .eq('user_id', userId)
+                    .in('id', staleIds),
+                `clubs stale delete during ${reason}-save`,
+            );
+            assertSupabaseOk(deleteStaleResult, `clubs stale delete during ${reason}-save`);
         }
     };
 
@@ -468,7 +523,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 persistLocalSnapshot(activeUser, nextProfile, activeResultData);
             }
 
-            const profileUpsertResult = await supabase.from('profiles').upsert(profilePayload);
+            const profileUpsertResult = await withTimeout(
+                supabase.from('profiles').upsert(profilePayload),
+                `profiles ${reason}-save`,
+            );
             assertSupabaseOk(profileUpsertResult, `profiles ${reason}-save`);
 
             await replaceRemoteClubs(activeUser.id, clubPayloads, reason);
