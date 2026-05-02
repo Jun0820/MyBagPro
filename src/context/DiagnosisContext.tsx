@@ -397,9 +397,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         setPendingBagChangeIds(hasChanges ? Array.from(changedIds) : []);
     };
 
-    const performRemoteSave = async (reason: 'auto' | 'manual') => {
+    const performRemoteSave = async (reason: 'auto' | 'manual', profileOverride?: UserProfile) => {
         const activeUser = userRef.current;
-        const activeProfile = profileRef.current;
+        const activeProfile = profileOverride || profileRef.current;
         const activeResultData = resultDataRef.current;
 
         persistLocalSnapshot(activeUser, activeProfile, activeResultData);
@@ -677,17 +677,27 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     // Manual Save Trigger (Immediate)
     const manualSave = async (profileOverride?: UserProfile) => {
-        const saveProfile = profileOverride || profileRef.current;
+        const requestedProfile = profileOverride || profileRef.current;
 
-        profileRef.current = saveProfile;
-        setProfileInternal(saveProfile);
-        persistLocalSnapshot(userRef.current, saveProfile, resultDataRef.current);
+        profileRef.current = requestedProfile;
+        setProfileInternal(requestedProfile);
+        persistLocalSnapshot(userRef.current, requestedProfile, resultDataRef.current);
+
+        let saveProfile = requestedProfile;
 
         if (userRef.current.isLoggedIn && userRef.current.id && !isInitialSyncComplete) {
             await syncWithSupabase();
+            saveProfile = {
+                ...profileRef.current,
+                ...requestedProfile,
+                myBag: requestedProfile.myBag,
+            };
+            profileRef.current = saveProfile;
+            setProfileInternal(saveProfile);
+            persistLocalSnapshot(userRef.current, saveProfile, resultDataRef.current);
         }
 
-        await performRemoteSave('manual');
+        await performRemoteSave('manual', saveProfile);
     };
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
