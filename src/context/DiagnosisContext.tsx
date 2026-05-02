@@ -415,11 +415,13 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
 
         if (!isInitialSyncComplete) {
-            queuePendingRemoteSave(reason);
-            if (reason === 'manual') {
-                setSaveStatus('idle');
+            if (reason === 'auto') {
+                queuePendingRemoteSave(reason);
+                if (saveStatus !== 'error') {
+                    setSaveStatus('idle');
+                }
+                return false;
             }
-            return false;
         }
 
         const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
@@ -684,18 +686,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         persistLocalSnapshot(userRef.current, requestedProfile, resultDataRef.current);
 
         let saveProfile = requestedProfile;
-
-        if (userRef.current.isLoggedIn && userRef.current.id && !isInitialSyncComplete) {
-            await syncWithSupabase();
-            saveProfile = {
-                ...profileRef.current,
-                ...requestedProfile,
-                myBag: requestedProfile.myBag,
-            };
-            profileRef.current = saveProfile;
-            setProfileInternal(saveProfile);
-            persistLocalSnapshot(userRef.current, saveProfile, resultDataRef.current);
-        }
 
         await performRemoteSave('manual', saveProfile);
     };
