@@ -338,15 +338,19 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return;
         }
 
-        for (const clubPayload of clubPayloads) {
-            const clubsInsertResult = await supabase
-                .from('clubs')
-                .insert(clubPayload);
+        const clubsInsertResult = await supabase
+            .from('clubs')
+            .insert(clubPayloads)
+            .select('id');
 
-            assertSupabaseOk(
-                clubsInsertResult,
-                `clubs replace insert during ${reason}-save (${clubPayload.category} ${clubPayload.model || clubPayload.brand || clubPayload.id})`,
-            );
+        assertSupabaseOk(
+            clubsInsertResult,
+            `clubs replace insert during ${reason}-save`,
+        );
+
+        const insertedCount = clubsInsertResult.data?.length || 0;
+        if (insertedCount !== clubPayloads.length) {
+            throw new Error(`clubs replace insert during ${reason}-save: expected ${clubPayloads.length} inserted but got ${insertedCount}`);
         }
     };
 
