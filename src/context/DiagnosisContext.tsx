@@ -3,6 +3,7 @@ import {
     type UserAccount, type UserProfile, type DiagnosisHistoryItem,
     INITIAL_ACCOUNT, INITIAL_PROFILE
 } from '../types/golf';
+import type { ClubSetting } from '../types/golf';
 import { generateFittingDiagnosis, type DiagnosisResult } from '../lib/gemini';
 import { convertProfileToCustomerData, sendToGoogleSheets } from '../lib/googleSheets';
 import { supabase } from '../lib/supabase';
@@ -42,6 +43,7 @@ interface DiagnosisContextType {
     lastSavedClubCount: number;
     syncWithSupabase: () => Promise<void>;
     manualSave: (profileOverride?: UserProfile) => Promise<void>;
+    manualSaveMyBag: (myBagOverride: ClubSetting) => Promise<void>;
 }
 
 const DiagnosisContext = createContext<DiagnosisContextType | undefined>(undefined);
@@ -661,9 +663,27 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             if (clubData) {
                 const normalizedSocials = normalizeUserSocialLinks(ensuredProfileData?.sns_links);
                 const snapshotClubs = normalizedSocials.bagSnapshot?.clubs || [];
-                const mergedCloudClubs = clubData.length > 0
+                const cloudMergedClubs = clubData.length > 0
                     ? mergeCloudClubsWithSnapshot(clubData, snapshotClubs)
-                    : (profileRef.current.myBag.clubs.length === 0 ? snapshotClubs : profileRef.current.myBag.clubs);
+                    : [];
+                const cloudMergedById = new Map(cloudMergedClubs.map((club) => [club.id, club]));
+                const snapshotById = new Map(snapshotClubs.map((club) => [club.id, club]));
+                const mergedFromSnapshot = snapshotClubs.map((club) => ({
+                    ...club,
+                    ...(cloudMergedById.get(club.id) || {}),
+                    id: club.id,
+                    number: club.number,
+                    flex: club.flex,
+                    carryDistance: club.carryDistance,
+                    worry: club.worry,
+                }));
+                const cloudOnlyClubs = cloudMergedClubs.filter((club) => !snapshotById.has(club.id));
+                const mergedCloudClubs =
+                    snapshotClubs.length >= clubData.length && snapshotClubs.length > 0
+                        ? [...mergedFromSnapshot, ...cloudOnlyClubs]
+                        : (clubData.length > 0
+                            ? cloudMergedClubs
+                            : (profileRef.current.myBag.clubs.length === 0 ? snapshotClubs : profileRef.current.myBag.clubs));
                 const nextProfile = {
                     ...profileRef.current,
                     myBag: {
@@ -735,6 +755,22 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         let saveProfile = requestedProfile;
 
         await performRemoteSave('manual', saveProfile);
+    };
+
+    const manualSaveMyBag = async (myBagOverride: ClubSetting) => {
+        const requestedProfile: UserProfile = {
+            ...profileRef.current,
+            myBag: {
+                clubs: cloneClubs(myBagOverride.clubs),
+                ball: myBagOverride.ball,
+            },
+        };
+
+        profileRef.current = requestedProfile;
+        setProfileInternal(requestedProfile);
+        persistLocalSnapshot(userRef.current, requestedProfile, resultDataRef.current);
+
+        await performRemoteSave('manual', requestedProfile);
     };
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
@@ -895,7 +931,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             lastSaveTargetClubCount,
             lastSavedClubCount,
             syncWithSupabase,
-            manualSave
+            manualSave,
+            manualSaveMyBag
         }}>
             {children}
         </DiagnosisContext.Provider>
