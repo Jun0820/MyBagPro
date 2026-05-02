@@ -181,6 +181,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         updatedAt: new Date().toISOString(),
     });
 
+    const cloneClubs = (clubs: UserProfile['myBag']['clubs']) =>
+        clubs.map((club) => ({ ...club }));
+
     const mergeCloudClubsWithSnapshot = (
         cloudClubs: Array<Record<string, any>>,
         snapshotClubs: UserProfile['myBag']['clubs'],
@@ -395,6 +398,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         setHasUnsavedChanges(hasChanges);
         setPendingBagChangeCount(hasChanges ? changeCount : 0);
         setPendingBagChangeIds(hasChanges ? Array.from(changedIds) : []);
+        if (hasChanges && !isManualSaveInFlight && saveStatus === 'saved') {
+            setSaveStatus('idle');
+        }
     };
 
     const performRemoteSave = async (reason: 'auto' | 'manual', profileOverride?: UserProfile) => {
@@ -471,7 +477,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
             lastRemoteSaveSignatureRef.current = signature;
             lastRemoteBagSnapshotRef.current = {
-                clubs: normalizedClubs,
+                clubs: cloneClubs(normalizedClubs),
                 ball: activeProfile.myBag.ball || '',
             };
             setLastSavedClubCount(verifiedClubCount);
@@ -628,7 +634,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 setProfile(nextProfile);
                 lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, nextProfile).signature;
                 lastRemoteBagSnapshotRef.current = {
-                    clubs: nextProfile.myBag.clubs,
+                    clubs: cloneClubs(nextProfile.myBag.clubs),
                     ball: nextProfile.myBag.ball || '',
                 };
                 setLastSaveTargetClubCount(clubData.length);
@@ -639,7 +645,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             } else if (profileRef.current && userRef.current.isLoggedIn && userRef.current.id) {
                 lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, profileRef.current).signature;
                 lastRemoteBagSnapshotRef.current = {
-                    clubs: profileRef.current.myBag.clubs,
+                    clubs: cloneClubs(profileRef.current.myBag.clubs),
                     ball: profileRef.current.myBag.ball || '',
                 };
                 setLastSaveTargetClubCount(0);
