@@ -82,6 +82,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const resultDataRef = useRef(resultData);
     const isRemoteSaveInFlightRef = useRef(false);
     const pendingRemoteSaveRef = useRef(false);
+    const pendingRemoteSaveReasonRef = useRef<'auto' | 'manual' | null>(null);
     const saveStatusResetTimerRef = useRef<number | null>(null);
     const lastRemoteSaveSignatureRef = useRef<string | null>(null);
     const lastRemoteBagSnapshotRef = useRef<{ clubs: UserProfile['myBag']['clubs']; ball: string }>({ clubs: [], ball: '' });
@@ -133,6 +134,13 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         if (saveStatusResetTimerRef.current) {
             window.clearTimeout(saveStatusResetTimerRef.current);
             saveStatusResetTimerRef.current = null;
+        }
+    };
+
+    const queuePendingRemoteSave = (reason: 'auto' | 'manual') => {
+        pendingRemoteSaveRef.current = true;
+        if (reason === 'manual' || !pendingRemoteSaveReasonRef.current) {
+            pendingRemoteSaveReasonRef.current = reason;
         }
     };
 
@@ -415,7 +423,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
 
         if (!isInitialSyncComplete) {
-            pendingRemoteSaveRef.current = true;
+            queuePendingRemoteSave(reason);
             if (reason === 'manual') {
                 setSaveStatus('idle');
             }
@@ -433,7 +441,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
 
         if (isRemoteSaveInFlightRef.current) {
-            pendingRemoteSaveRef.current = true;
+            queuePendingRemoteSave(reason);
             return false;
         }
 
@@ -493,9 +501,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             }
             isRemoteSaveInFlightRef.current = false;
             if (pendingRemoteSaveRef.current) {
+                const nextReason = pendingRemoteSaveReasonRef.current || 'manual';
                 pendingRemoteSaveRef.current = false;
+                pendingRemoteSaveReasonRef.current = null;
                 window.setTimeout(() => {
-                    void performRemoteSave('auto');
+                    void performRemoteSave(nextReason);
                 }, 50);
             }
         }
@@ -652,9 +662,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         } finally {
             setIsInitialSyncComplete(true);
             if (pendingRemoteSaveRef.current) {
+                const nextReason = pendingRemoteSaveReasonRef.current || 'manual';
                 pendingRemoteSaveRef.current = false;
+                pendingRemoteSaveReasonRef.current = null;
                 window.setTimeout(() => {
-                    void performRemoteSave('auto');
+                    void performRemoteSave(nextReason);
                 }, 50);
             }
         }
@@ -669,14 +681,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         refreshUnsavedChanges();
     }, [profile, user.id, user.isLoggedIn, isInitialSyncComplete]);
 
-    // Persistence with Status Feedback
-    useEffect(() => {
-        const timeoutId = window.setTimeout(() => {
-            void performRemoteSave('auto');
-        }, 800);
-        return () => clearTimeout(timeoutId);
-    }, [user.id, user.isLoggedIn, profile, resultData, isInitialSyncComplete]);
-    
     // Manual Save Trigger (Immediate)
     const manualSave = async (profileOverride?: UserProfile) => {
         const latestLocalProfile = readLatestLocalProfileSnapshot();
