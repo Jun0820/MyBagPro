@@ -351,52 +351,35 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return;
         }
 
-        const clubsUpsertResult = await withTimeout(
+        const deleteAllResult = await withTimeout(
             supabase
                 .from('clubs')
-                .upsert(clubPayloads, { onConflict: 'id' })
-                .select('id'),
-            `clubs upsert during ${reason}-save`,
-        );
-
-        assertSupabaseOk(
-            clubsUpsertResult,
-            `clubs upsert during ${reason}-save`,
-        );
-
-        const upsertedCount = clubsUpsertResult.data?.length || 0;
-        if (upsertedCount !== clubPayloads.length) {
-            throw new Error(`clubs upsert during ${reason}-save: expected ${clubPayloads.length} rows but got ${upsertedCount}`);
-        }
-
-        const expectedIds = new Set(clubPayloads.map((club) => club.id));
-        const existingIdsResult = await withTimeout(
-            supabase
-                .from('clubs')
-                .select('id')
+                .delete()
                 .eq('user_id', userId),
-            `clubs existing ids during ${reason}-save`,
+            `clubs replace delete during ${reason}-save`,
         );
 
         assertSupabaseOk(
-            { error: existingIdsResult.error },
-            `clubs existing ids during ${reason}-save`,
+            deleteAllResult,
+            `clubs replace delete during ${reason}-save`,
         );
 
-        const staleIds = (existingIdsResult.data || [])
-            .map((club) => club.id)
-            .filter((id) => !expectedIds.has(id));
+        const clubsInsertResult = await withTimeout(
+            supabase
+                .from('clubs')
+                .insert(clubPayloads)
+                .select('id'),
+            `clubs replace insert during ${reason}-save`,
+        );
 
-        if (staleIds.length > 0) {
-            const deleteStaleResult = await withTimeout(
-                supabase
-                    .from('clubs')
-                    .delete()
-                    .eq('user_id', userId)
-                    .in('id', staleIds),
-                `clubs stale delete during ${reason}-save`,
-            );
-            assertSupabaseOk(deleteStaleResult, `clubs stale delete during ${reason}-save`);
+        assertSupabaseOk(
+            clubsInsertResult,
+            `clubs replace insert during ${reason}-save`,
+        );
+
+        const insertedCount = clubsInsertResult.data?.length || 0;
+        if (insertedCount !== clubPayloads.length) {
+            throw new Error(`clubs replace insert during ${reason}-save: expected ${clubPayloads.length} rows but got ${insertedCount}`);
         }
     };
 
