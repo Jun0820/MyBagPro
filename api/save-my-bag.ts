@@ -92,14 +92,11 @@ export default async function handler(req: any, res: any) {
 
     let insertedCount = 0;
     if (dedupedClubs.length > 0) {
-      const insertResult = await adminClient.from('clubs').insert(dedupedClubs).select('id');
+      const insertResult = await adminClient.from('clubs').insert(dedupedClubs);
       if (insertResult.error) {
         throw new Error(`clubs insert: ${insertResult.error.message}`);
       }
-      insertedCount = insertResult.data?.length || 0;
-      if (insertedCount !== dedupedClubs.length) {
-        throw new Error(`clubs insert: expected ${dedupedClubs.length} rows but got ${insertedCount}`);
-      }
+      insertedCount = dedupedClubs.length;
     }
 
     const verifyResult = await adminClient
