@@ -326,6 +326,14 @@ interface MyBagManagerProps {
         receivedCount: number;
         dedupedCount: number;
         verifiedCount: number;
+        sampleClubs: Array<{
+            id: string;
+            category: string;
+            number: string;
+            brand: string;
+            model: string;
+            distance: string;
+        }>;
     } | null;
     onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
@@ -1016,9 +1024,25 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
                             </div>
                             {shouldShowDebugCounts && saveDebugInfo && (
-                                <div className="mt-1 text-[11px] font-bold opacity-70">
-                                    API受付 {saveDebugInfo.receivedCount}本 / 重複整理後 {saveDebugInfo.dedupedCount}本 / 検証 {saveDebugInfo.verifiedCount}本
-                                </div>
+                                <>
+                                    <div className="mt-1 text-[11px] font-bold opacity-70">
+                                        API受付 {saveDebugInfo.receivedCount}本 / 重複整理後 {saveDebugInfo.dedupedCount}本 / 検証 {saveDebugInfo.verifiedCount}本
+                                    </div>
+                                    {saveDebugInfo.sampleClubs.length > 0 && (
+                                        <div className="mt-2 rounded-xl border border-current/15 bg-white/60 px-3 py-2">
+                                            <div className="text-[10px] font-black uppercase tracking-[0.18em] opacity-70">保存対象の最後の4本</div>
+                                            <div className="mt-2 space-y-1 text-[11px] font-bold opacity-80">
+                                                {saveDebugInfo.sampleClubs.map((club) => (
+                                                    <div key={club.id} className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                                                        <span>{club.number || club.category}</span>
+                                                        <span>{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</span>
+                                                        <span>{club.distance ? `${club.distance}Y` : '距離未入力'}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </>
                             )}
                             <div className="mt-1 text-[11px] font-bold opacity-70">
                                 残り追加可能 {remainingClubSlots}本

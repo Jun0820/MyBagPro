@@ -46,6 +46,14 @@ interface DiagnosisContextType {
         receivedCount: number;
         dedupedCount: number;
         verifiedCount: number;
+        sampleClubs: Array<{
+            id: string;
+            category: string;
+            number: string;
+            brand: string;
+            model: string;
+            distance: string;
+        }>;
     } | null;
     syncWithSupabase: () => Promise<void>;
     manualSave: (profileOverride?: UserProfile) => Promise<void>;
@@ -89,6 +97,14 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         receivedCount: number;
         dedupedCount: number;
         verifiedCount: number;
+        sampleClubs: Array<{
+            id: string;
+            category: string;
+            number: string;
+            brand: string;
+            model: string;
+            distance: string;
+        }>;
     } | null>(null);
     const [isInitialSyncComplete, setIsInitialSyncComplete] = useState(false);
     const userRef = useRef(user);
@@ -100,6 +116,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const saveStatusResetTimerRef = useRef<number | null>(null);
     const lastRemoteSaveSignatureRef = useRef<string | null>(null);
     const lastRemoteBagSnapshotRef = useRef<{ clubs: UserProfile['myBag']['clubs']; ball: string }>({ clubs: [], ball: '' });
+
+    const buildSaveDebugSample = (clubs: UserProfile['myBag']['clubs']) =>
+        clubs.slice(-4).map((club) => ({
+            id: club.id,
+            category: club.category,
+            number: club.number || '',
+            brand: club.brand || '',
+            model: club.model || '',
+            distance: club.distance || '',
+        }));
 
     useEffect(() => {
         userRef.current = user;
@@ -550,6 +576,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             receivedCount: clubPayloads.length,
             dedupedCount: clubPayloads.length,
             verifiedCount: 0,
+            sampleClubs: buildSaveDebugSample(normalizedClubs),
         });
 
         if (reason === 'auto' && signature === lastRemoteSaveSignatureRef.current) {
@@ -608,6 +635,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 receivedCount: clubPayloads.length,
                 dedupedCount: clubPayloads.length,
                 verifiedCount: verifiedClubCount,
+                sampleClubs: buildSaveDebugSample(normalizedClubs),
             });
             setHasUnsavedChanges(false);
             setPendingBagChangeCount(0);
@@ -793,6 +821,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     receivedCount: clubData.length,
                     dedupedCount: clubData.length,
                     verifiedCount: clubData.length,
+                    sampleClubs: buildSaveDebugSample(nextProfile.myBag.clubs),
                 });
                 setHasUnsavedChanges(false);
                 setPendingBagChangeCount(0);
@@ -875,6 +904,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 receivedCount: requestedProfile.myBag.clubs.length,
                 dedupedCount: requestedProfile.myBag.clubs.length,
                 verifiedCount: requestedProfile.myBag.clubs.length,
+                sampleClubs: buildSaveDebugSample(requestedProfile.myBag.clubs),
             });
             return;
         }
@@ -903,6 +933,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             receivedCount: clubPayloads.length,
             dedupedCount: clubPayloads.length,
             verifiedCount: 0,
+            sampleClubs: buildSaveDebugSample(normalizedClubs),
         });
 
         try {
@@ -949,6 +980,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 receivedCount: Number(payload?.receivedCount || clubPayloads.length),
                 dedupedCount: Number(payload?.dedupedCount || clubPayloads.length),
                 verifiedCount: Number(payload?.verifiedCount || normalizedClubs.length),
+                sampleClubs: Array.isArray(payload?.sampleClubs) ? payload.sampleClubs : buildSaveDebugSample(normalizedClubs),
             });
             setHasUnsavedChanges(false);
             setPendingBagChangeCount(0);
@@ -972,6 +1004,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     receivedCount: clubPayloads.length,
                     dedupedCount: clubPayloads.length,
                     verifiedCount: fallbackVerification.verifiedCount,
+                    sampleClubs: buildSaveDebugSample(normalizedClubs),
                 });
                 setHasUnsavedChanges(false);
                 setPendingBagChangeCount(0);

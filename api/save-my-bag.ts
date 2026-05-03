@@ -147,6 +147,14 @@ export default async function handler(req: any, res: any) {
       insertedCount,
       verifiedCount: (verifyResult.data || []).length,
       expectedCount: dedupedClubs.length,
+      sampleClubs: dedupedClubs.slice(-4).map((club) => ({
+        id: club.id,
+        category: club.category,
+        number: '',
+        brand: club.brand,
+        model: club.model,
+        distance: club.distance,
+      })),
     });
   } catch (error: any) {
     return json(res, 500, {
