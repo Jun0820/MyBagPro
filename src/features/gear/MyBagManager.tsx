@@ -549,9 +549,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const saveStatusMeta = (() => {
         if (isManualSaveInFlight) {
             return {
-                label: 'SAVING NOW',
-                title: 'いま変更を保存しています',
-                description: '押した内容をクラウドへ反映しています。通常は数秒で完了します。',
+                label: '保存中',
+                title: '変更を保存しています',
+                description: 'いまの内容をクラウドへ反映しています。通常は数秒で完了します。',
                 tone: 'border-amber-200 bg-amber-50 text-amber-800',
                 icon: <Loader2 size={14} className="animate-spin" />,
             };
@@ -559,8 +559,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
         if (saveStatus === 'error') {
             return {
-                label: 'SAVE CHECK',
-                title: '保存をもう一度確認してください',
+                label: '要確認',
+                title: '保存を完了できませんでした',
                 description: saveErrorDetail || '入力内容は画面に残っています。下の保存ボタンからもう一度送れます。',
                 tone: 'border-rose-200 bg-rose-50 text-rose-800',
                 icon: <Save size={14} />,
@@ -573,7 +573,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 : 'まだクラウド保存が完了していません。';
             const pendingLabel = pendingBagChangeCount > 0 ? `未保存の変更: ${pendingBagChangeCount}件。` : '';
             return {
-                label: 'PENDING CHANGES',
+                label: '未保存',
                 title: 'まだクラウドへ反映していない変更があります',
                 description: `${pendingLabel} ${lastSavedLabel} 区切りの良いところで保存すると他の端末でも再開しやすくなります。`.trim(),
                 tone: 'border-cyan-200 bg-cyan-50 text-cyan-800',
@@ -584,7 +584,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         switch (saveStatus) {
             case 'saved':
                 return {
-                    label: 'SAVED',
+                    label: '保存完了',
                     title: '最新の内容を保存しました',
                     description: 'このままページを移動しても、今の入力内容から再開しやすい状態です。',
                     tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
@@ -592,14 +592,21 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 };
             default:
                 return {
-                    label: 'AUTO SAVE',
-                    title: '入力しながら下書きとして整えていけます',
-                    description: '途中でも構いません。まずは代表番手だけ入れて、あとから少しずつ増やせます。',
+                    label: '下書き',
+                    title: '入力内容はこの端末に保持されています',
+                    description: '必要なタイミングで保存すれば、他の端末や再ログイン後も続きを開きやすくなります。',
                     tone: 'border-slate-200 bg-slate-50 text-slate-700',
                     icon: <Save size={14} />,
                 };
         }
     })();
+    const shouldShowDebugCounts =
+        Boolean(saveDebugInfo) &&
+        (
+            saveStatus === 'error' ||
+            (saveDebugInfo?.expectedCount || 0) !== (saveDebugInfo?.verifiedCount || 0) ||
+            (saveDebugInfo?.receivedCount || 0) !== (saveDebugInfo?.dedupedCount || 0)
+        );
 
     const updateClub = useCallback((clubId: string, updater: Club | ((prev: Club) => Club)) => {
         commitSetting((prev) => ({
@@ -1004,7 +1011,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <div className="mt-2 text-[11px] font-bold opacity-70">
                                 保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
                             </div>
-                            {saveDebugInfo && (
+                            {shouldShowDebugCounts && saveDebugInfo && (
                                 <div className="mt-1 text-[11px] font-bold opacity-70">
                                     API受付 {saveDebugInfo.receivedCount}本 / 重複整理後 {saveDebugInfo.dedupedCount}本 / 検証 {saveDebugInfo.verifiedCount}本
                                 </div>

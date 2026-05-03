@@ -664,12 +664,15 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         return () => subscription.unsubscribe();
     }, []);
 
-    const syncWithSupabase = async () => {
+    const syncWithSupabase = async (options?: { showStatus?: boolean }) => {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return;
 
-        setSaveErrorDetail(null);
-        setSaveStatus('saving');
+        const showStatus = options?.showStatus ?? false;
+        if (showStatus) {
+            setSaveErrorDetail(null);
+            setSaveStatus('saving');
+        }
         try {
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
@@ -807,13 +810,15 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 setPendingBagChangeCount(0);
                 setPendingBagChangeIds([]);
             }
-            if (saveStatus !== 'error') {
+            if (showStatus && saveStatus !== 'error') {
                 setSaveStatus('idle');
             }
         } catch (e) {
             console.error("Sync error:", e);
-            setSaveStatus('error');
-            setSaveErrorDetail(e instanceof Error ? e.message : String(e));
+            if (showStatus) {
+                setSaveStatus('error');
+                setSaveErrorDetail(e instanceof Error ? e.message : String(e));
+            }
         } finally {
             setIsInitialSyncComplete(true);
             if (pendingRemoteSaveRef.current) {
