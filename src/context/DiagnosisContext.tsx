@@ -850,7 +850,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const manualSaveMyBag = async (myBagOverride: ClubSetting) => {
-        const requestedProfile: UserProfile = {
+        let requestedProfile: UserProfile = {
             ...profileRef.current,
             myBag: {
                 clubs: cloneClubs(myBagOverride.clubs),
@@ -875,6 +875,19 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
 
         const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, requestedProfile);
+        const idsDiffer = normalizedClubs.some((club, index) => club.id !== requestedProfile.myBag.clubs[index]?.id);
+        if (idsDiffer) {
+            requestedProfile = {
+                ...requestedProfile,
+                myBag: {
+                    ...requestedProfile.myBag,
+                    clubs: cloneClubs(normalizedClubs),
+                },
+            };
+            profileRef.current = requestedProfile;
+            setProfileInternal(requestedProfile);
+            persistLocalSnapshot(userRef.current, requestedProfile, resultDataRef.current);
+        }
         clearSaveStatusResetTimer();
         setSaveErrorDetail(null);
         setSaveStatus('saving');
