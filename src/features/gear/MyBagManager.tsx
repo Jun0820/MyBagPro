@@ -46,7 +46,17 @@ const generateClubId = () => {
     });
 };
 
-const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, isPending?: boolean }) => {
+const ClubRow = ({
+    entry,
+    onUpdate,
+    onRemove,
+    isPending,
+}: {
+    entry: Club,
+    onUpdate: (updater: Club | ((prev: Club) => Club)) => void,
+    onRemove: () => void,
+    isPending?: boolean
+}) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
     const [isExpanded, setIsExpanded] = useState(() => Boolean(isPending || !entry.brand || !entry.model));
 
@@ -67,7 +77,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
 
     const handleShaftUpdate = (m: string, w: string, f: string) => {
         setShaftState({ model: m, weight: w, flex: f });
-        onUpdate({ ...entry, shaft: `${m} ${w ? w + 'g' : ''} ${f}`.trim() });
+        onUpdate((prev) => ({ ...prev, shaft: `${m} ${w ? w + 'g' : ''} ${f}`.trim() }));
     };
 
     const handleCategoryNumberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -75,13 +85,13 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
         const parts = val.split(':');
         const newCat = parts[0] as TargetCategory;
         const newNum = parts[1] || '';
-        onUpdate({
-            ...entry,
+        onUpdate((prev) => ({
+            ...prev,
             category: newCat,
             number: newNum,
-            distance: newCat === TargetCategory.PUTTER ? '' : entry.distance,
-            carryDistance: newCat === TargetCategory.PUTTER ? '' : (entry.carryDistance || ''),
-        });
+            distance: newCat === TargetCategory.PUTTER ? '' : prev.distance,
+            carryDistance: newCat === TargetCategory.PUTTER ? '' : (prev.carryDistance || ''),
+        }));
     };
 
     const clubOptions = [
@@ -202,8 +212,8 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                                 entry.category === TargetCategory.IRON ? 'IRON' :
                                 entry.category === TargetCategory.WEDGE ? 'WEDGE' : 'PUTTER'
                             }
-                            onBrandChange={(val) => onUpdate({ ...entry, brand: val, model: '' })}
-                            onModelChange={(val) => onUpdate({ ...entry, model: val })}
+                            onBrandChange={(val) => onUpdate((prev) => ({ ...prev, brand: val, model: '' }))}
+                            onModelChange={(val) => onUpdate((prev) => ({ ...prev, model: val }))}
                             bgClass="bg-slate-50"
                             compact={true}
                         />
@@ -226,7 +236,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                                     <input
                                         type="text"
                                         value={entry.shaft}
-                                        onChange={(e) => onUpdate({ ...entry, shaft: e.target.value })}
+                                        onChange={(e) => onUpdate((prev) => ({ ...prev, shaft: e.target.value }))}
                                         placeholder="シャフト名"
                                         className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
                                     />
@@ -242,7 +252,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                                                 type="text"
                                                 placeholder="-"
                                                 value={entry.loft}
-                                                onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
+                                                onChange={(e) => onUpdate((prev) => ({ ...prev, loft: e.target.value }))}
                                                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400">°</span>
@@ -255,7 +265,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                                                 type="text"
                                                 placeholder="-"
                                                 value={entry.distance}
-                                                onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
+                                                onChange={(e) => onUpdate((prev) => ({ ...prev, distance: e.target.value }))}
                                                 className="w-full rounded-xl border border-golf-200 bg-golf-50/50 px-3 py-3 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-golf-400">Y</span>
@@ -268,7 +278,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                                                 type="text"
                                                 placeholder="-"
                                                 value={entry.carryDistance || ''}
-                                                onChange={(e) => onUpdate({ ...entry, carryDistance: e.target.value })}
+                                                onChange={(e) => onUpdate((prev) => ({ ...prev, carryDistance: e.target.value }))}
                                                 className="w-full rounded-xl border border-cyan-200 bg-cyan-50/50 px-3 py-3 text-center text-sm font-bold text-cyan-800 outline-none focus:border-cyan-500"
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-cyan-500">Y</span>
@@ -285,7 +295,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                             <input
                                 type="text"
                                 value={entry.worry || ''}
-                                onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
+                                onChange={(e) => onUpdate((prev) => ({ ...prev, worry: e.target.value }))}
                                 placeholder="捕まりすぎる、上がりすぎる、など"
                                 className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
                             />
@@ -584,10 +594,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         }
     })();
 
-    const updateClub = useCallback((updated: Club) => {
+    const updateClub = useCallback((clubId: string, updater: Club | ((prev: Club) => Club)) => {
         commitSetting((prev) => ({
             ...prev,
-            clubs: prev.clubs.map(c => c.id === updated.id ? updated : c)
+            clubs: prev.clubs.map((club) => {
+                if (club.id !== clubId) return club;
+                return typeof updater === 'function' ? updater(club) : updater;
+            })
         }));
     }, [commitSetting]);
 
@@ -1014,7 +1027,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <MemoizedClubRow 
                             key={`${entry.id}-${entry.category}-${entry.number || ''}`} 
                             entry={entry} 
-                            onUpdate={updateClub} 
+                            onUpdate={(updater) => updateClub(entry.id, updater)} 
                             onRemove={() => removeClub(entry.id)} 
                             isPending={pendingBagChangeIds.includes(entry.id)}
                         />
