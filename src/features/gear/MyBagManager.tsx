@@ -362,6 +362,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     intakeMode = 'default',
 }) => {
     const latestSettingRef = useRef(setting);
+    const [, setRenderVersion] = useState(0);
     const [addCategory, setAddCategory] = useState('');
     const [selectedLofts, setSelectedLofts] = useState<string[]>([]);
     const [batchPreset, setBatchPreset] = useState({
@@ -380,6 +381,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const base = latestSettingRef.current;
         const next = typeof updater === 'function' ? updater(base) : updater;
         latestSettingRef.current = next;
+        setRenderVersion((prev) => prev + 1);
         onUpdate(next);
         return next;
     }, [onUpdate]);
@@ -390,7 +392,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         onManualSave?.(next);
     }, [onManualSave]);
 
-    const sortedClubs = [...setting.clubs].sort((a, b) => {
+    const currentSetting = latestSettingRef.current;
+
+    const sortedClubs = [...currentSetting.clubs].sort((a, b) => {
         // 1. Parse distances (extract digits only)
         const distA = a.distance ? parseInt(String(a.distance).replace(/\D/g, ''), 10) : 0;
         const distB = b.distance ? parseInt(String(b.distance).replace(/\D/g, ''), 10) : 0;
@@ -417,7 +421,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return 0;
     });
 
-    const registeredCategories = new Set(setting.clubs.map((club) => club.category));
+    const registeredCategories = new Set(currentSetting.clubs.map((club) => club.category));
     const starterSlots = [
         { title: 'ドライバー', category: TargetCategory.DRIVER, number: '1W', description: 'まずは1本。診断の精度が一番上がります。', color: 'bg-golf-600' },
         { title: 'アイアン', category: TargetCategory.IRON, number: '7I', description: '代表番手を1本入れるだけでも分析しやすくなります。', color: 'bg-blue-600' },
@@ -426,26 +430,26 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const completedStarterCount = starterSlots.filter((slot) => registeredCategories.has(slot.category)).length;
     const starterPercent = Math.round((completedStarterCount / starterSlots.length) * 100);
     const missingEssentials = starterSlots.filter((slot) => !registeredCategories.has(slot.category));
-    const hasBall = Boolean(setting.ball?.trim());
-    const remainingClubSlots = Math.max(0, MAX_BAG_CLUBS - setting.clubs.length);
-    const isBagAtCapacity = setting.clubs.length >= MAX_BAG_CLUBS;
-    const fairwayCount = setting.clubs.filter((club) => club.category === TargetCategory.FAIRWAY).length;
-    const utilityCount = setting.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
-    const wedgeCount = setting.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
-    const putterCount = setting.clubs.filter((club) => club.category === TargetCategory.PUTTER).length;
-    const distanceEligibleClubs = setting.clubs.filter((club) => club.category !== TargetCategory.PUTTER);
+    const hasBall = Boolean(currentSetting.ball?.trim());
+    const remainingClubSlots = Math.max(0, MAX_BAG_CLUBS - currentSetting.clubs.length);
+    const isBagAtCapacity = currentSetting.clubs.length >= MAX_BAG_CLUBS;
+    const fairwayCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.FAIRWAY).length;
+    const utilityCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
+    const wedgeCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
+    const putterCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.PUTTER).length;
+    const distanceEligibleClubs = currentSetting.clubs.filter((club) => club.category !== TargetCategory.PUTTER);
     const clubsWithDistance = distanceEligibleClubs.filter((club) => String(club.distance || '').trim() !== '').length;
     const distanceCoveragePercent = distanceEligibleClubs.length > 0 ? Math.round((clubsWithDistance / distanceEligibleClubs.length) * 100) : 0;
     const bagCoverageTone =
-        setting.clubs.length >= 10
-            ? `クラブは ${setting.clubs.length} 本登録済みです。かなり全体像が見える状態です。`
-            : setting.clubs.length >= 5
-            ? `クラブは ${setting.clubs.length} 本登録済みです。代表番手はかなり見えています。`
-            : setting.clubs.length > 0
-            ? `クラブは ${setting.clubs.length} 本登録済みです。あと数本で分析の精度が上がります。`
+        currentSetting.clubs.length >= 10
+            ? `クラブは ${currentSetting.clubs.length} 本登録済みです。かなり全体像が見える状態です。`
+            : currentSetting.clubs.length >= 5
+            ? `クラブは ${currentSetting.clubs.length} 本登録済みです。代表番手はかなり見えています。`
+            : currentSetting.clubs.length > 0
+            ? `クラブは ${currentSetting.clubs.length} 本登録済みです。あと数本で分析の精度が上がります。`
             : 'まだクラブが未登録です。まずは1Wか7Iからで十分です。';
     const linkageTone = hasBall
-        ? `使用ボールは「${setting.ball}」です。クラブとのつながりまで見ながら診断できます。`
+        ? `使用ボールは「${currentSetting.ball}」です。クラブとのつながりまで見ながら診断できます。`
         : '使用ボールが未登録です。ボールまで入ると、診断と自動分析の精度がさらに上がります。';
     const structureTone =
         missingEssentials.length === 0
@@ -468,7 +472,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const analysisHighlights = [
         {
             label: '構成',
-            value: `${setting.clubs.length}本登録`,
+            value: `${currentSetting.clubs.length}本登録`,
             note: bagCoverageTone,
         },
         {
@@ -808,7 +812,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">使用ボール</div>
                                 <input
                                     list="mybag-ball-suggestions"
-                                    value={setting.ball || ''}
+                                    value={currentSetting.ball || ''}
                                     onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
                                     placeholder="例: Pro V1 / TP5"
                                     className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
@@ -902,8 +906,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">現在の使用ボール</div>
                         <input
                             list="mybag-ball-suggestions"
-                            value={setting.ball || ''}
-                            onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
+                                    value={currentSetting.ball || ''}
+                                    onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
                             placeholder="例: Pro V1 / TP5 / Chrome Tour"
                             className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
                         />

@@ -101,7 +101,7 @@ export default async function handler(req: any, res: any) {
 
     const verifyResult = await adminClient
       .from('clubs')
-      .select('id')
+      .select('id,category,brand,model,shaft,loft,distance')
       .eq('user_id', user.id);
 
     if (verifyResult.error) {
@@ -109,6 +109,7 @@ export default async function handler(req: any, res: any) {
     }
 
     const verifiedIds = new Set((verifyResult.data || []).map((row) => row.id));
+    const expectedById = new Map(dedupedClubs.map((club) => [club.id, club]));
     const expected = Array.isArray(expectedIds) ? expectedIds.map((id) => toText(id)).filter(Boolean) : [];
     const missingIds = expected.filter((id) => !verifiedIds.has(id));
 
@@ -118,6 +119,25 @@ export default async function handler(req: any, res: any) {
 
     if (missingIds.length > 0) {
       throw new Error(`clubs verify: missing ${missingIds.length} ids`);
+    }
+
+    const mismatchedIds = (verifyResult.data || [])
+      .filter((row) => {
+        const expectedClub = expectedById.get(row.id);
+        if (!expectedClub) return true;
+        return (
+          toText(row.category) !== expectedClub.category ||
+          toText(row.brand) !== expectedClub.brand ||
+          toText(row.model) !== expectedClub.model ||
+          toText(row.shaft) !== expectedClub.shaft ||
+          toText(row.loft) !== expectedClub.loft ||
+          toText(row.distance) !== expectedClub.distance
+        );
+      })
+      .map((row) => row.id);
+
+    if (mismatchedIds.length > 0) {
+      throw new Error(`clubs verify: ${mismatchedIds.length} rows saved with unexpected field values`);
     }
 
     return json(res, 200, {
