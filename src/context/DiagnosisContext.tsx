@@ -769,8 +769,70 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         profileRef.current = requestedProfile;
         setProfileInternal(requestedProfile);
         persistLocalSnapshot(userRef.current, requestedProfile, resultDataRef.current);
+        const activeUser = userRef.current;
 
-        await performRemoteSave('manual', requestedProfile);
+        if (!activeUser.isLoggedIn || !activeUser.id) {
+            markSaveStatusSaved();
+            return;
+        }
+
+        const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, requestedProfile);
+        clearSaveStatusResetTimer();
+        setSaveErrorDetail(null);
+        setSaveStatus('saving');
+        setIsManualSaveInFlight(true);
+        setLastSaveTargetClubCount(normalizedClubs.length);
+
+        try {
+            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+            if (sessionError) {
+                throw new Error(`session fetch: ${sessionError.message}`);
+            }
+
+            const accessToken = sessionData.session?.access_token;
+            if (!accessToken) {
+                throw new Error('session fetch: missing access token');
+            }
+
+            const response = await withTimeout(
+                fetch('/api/save-my-bag', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                    body: JSON.stringify({
+                        profilePayload,
+                        clubPayloads,
+                        expectedIds: normalizedClubs.map((club) => club.id),
+                    }),
+                }),
+                'my bag api save',
+                15000,
+            );
+
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok || !payload?.ok) {
+                throw new Error(payload?.error || `my bag api save: HTTP ${response.status}`);
+            }
+
+            lastRemoteSaveSignatureRef.current = signature;
+            lastRemoteBagSnapshotRef.current = {
+                clubs: cloneClubs(normalizedClubs),
+                ball: requestedProfile.myBag.ball || '',
+            };
+            setLastSavedClubCount(Number(payload?.verifiedCount || normalizedClubs.length));
+            setHasUnsavedChanges(false);
+            setPendingBagChangeCount(0);
+            setPendingBagChangeIds([]);
+            markSaveStatusSaved();
+        } catch (error) {
+            console.error('manual my bag save error:', error);
+            setSaveStatus('error');
+            setSaveErrorDetail(error instanceof Error ? error.message : String(error));
+        } finally {
+            setIsManualSaveInFlight(false);
+        }
     };
 
     const updateProfile = (field: keyof UserProfile, value: any) => {
