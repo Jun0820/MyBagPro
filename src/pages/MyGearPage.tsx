@@ -1530,8 +1530,7 @@ export const MyGearPage = () => {
                         lastSaveTargetClubCount={lastSaveTargetClubCount}
                         lastSavedClubCount={lastSavedClubCount}
                         onManualSave={(settingOverride) => {
-                            if (!settingOverride) return;
-                            void manualSaveMyBag(settingOverride);
+                            return manualSaveMyBag(settingOverride || profile.myBag);
                         }}
                         onReloadFromCloud={syncWithSupabase}
                         intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
