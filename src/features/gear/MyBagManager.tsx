@@ -321,6 +321,12 @@ interface MyBagManagerProps {
     lastCloudSavedAt?: string | null;
     lastSaveTargetClubCount?: number;
     lastSavedClubCount?: number;
+    saveDebugInfo?: {
+        expectedCount: number;
+        receivedCount: number;
+        dedupedCount: number;
+        verifiedCount: number;
+    } | null;
     onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -349,6 +355,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     lastCloudSavedAt = null,
     lastSaveTargetClubCount = 0,
     lastSavedClubCount = 0,
+    saveDebugInfo = null,
     onManualSave,
     onReloadFromCloud,
     onOpenBallDiagnosis,
@@ -997,6 +1004,11 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <div className="mt-2 text-[11px] font-bold opacity-70">
                                 保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
                             </div>
+                            {saveDebugInfo && (
+                                <div className="mt-1 text-[11px] font-bold opacity-70">
+                                    API受付 {saveDebugInfo.receivedCount}本 / 重複整理後 {saveDebugInfo.dedupedCount}本 / 検証 {saveDebugInfo.verifiedCount}本
+                                </div>
+                            )}
                             <div className="mt-1 text-[11px] font-bold opacity-70">
                                 残り追加可能 {remainingClubSlots}本
                             </div>

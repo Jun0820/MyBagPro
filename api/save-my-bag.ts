@@ -122,6 +122,8 @@ export default async function handler(req: any, res: any) {
 
     return json(res, 200, {
       ok: true,
+      receivedCount: normalizedClubs.length,
+      dedupedCount: dedupedClubs.length,
       insertedCount,
       verifiedCount: (verifyResult.data || []).length,
       expectedCount: dedupedClubs.length,
