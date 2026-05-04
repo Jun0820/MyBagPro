@@ -1,0 +1,181 @@
+{
+  "profile": {
+    "slug": "momoka-miura",
+    "display_name": "三浦桃香",
+    "nationality": "Japan",
+    "birthplace": "宮崎県宮崎市",
+    "birth_date": "1999-02-12",
+    "height_cm": 169,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2019,
+    "ball_name": "Callaway Chrome Soft X",
+    "feature_1": "最新公開セッティング",
+    "feature_2": "2019年取材ソース",
+    "feature_3": "14本確認済み",
+    "summary": "三浦桃香の最新公開クラブセッティングとして、2019年ダイキンオーキッドレディス時点の14本構成を整理しました。キャロウェイ中心の飛距離型セットの流れが分かります。",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-04T00:00:00.000Z",
+    "kana_name": "ミウラ モモカ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Callaway",
+      "model_name": "EPIC FLASH Sub Zero Driver",
+      "loft_label": "10.5°",
+      "shaft_brand": "Mitsubishi Chemical",
+      "shaft_model": "Kuro Kage XD60",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Callaway",
+      "model_name": "ROGUE STAR Fairway Wood",
+      "spec_label": "3W",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "Callaway",
+      "model_name": "ROGUE Fairway Wood",
+      "spec_label": "5W",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 4,
+      "brand": "Callaway",
+      "model_name": "ROGUE Fairway Wood",
+      "spec_label": "7W",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "Callaway",
+      "model_name": "X Forged UT Iron",
+      "loft_label": "24°",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 6,
+      "brand": "Callaway",
+      "model_name": "X Forged UT Iron",
+      "loft_label": "27°",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 7,
+      "brand": "Callaway",
+      "model_name": "X Forged UT Iron",
+      "loft_label": "30°",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Callaway",
+      "model_name": "APEX PRO Iron 2019",
+      "spec_label": "7I",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Callaway",
+      "model_name": "APEX PRO Iron 2019",
+      "spec_label": "8I",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Callaway",
+      "model_name": "APEX PRO Iron 2019",
+      "spec_label": "9I",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 11,
+      "brand": "Callaway",
+      "model_name": "APEX PRO Iron 2019",
+      "spec_label": "PW",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Callaway",
+      "model_name": "Mack Daddy Forged Wedge",
+      "spec_label": "GW",
+      "loft_label": "52°",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Callaway",
+      "model_name": "Mack Daddy Forged Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "O-WORKS R-Line Putter",
+      "source_note": "Confirmed from GDO 2019 Daikin Orchid Ladies setting page.",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/15987/2019/1/",
+      "source_title": "GDO 三浦桃香 クラブセッティング 2019年 ダイキンオーキッドレディス",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "現時点で確認できた最新の公開セッティングソース。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/101129/1/",
+      "source_title": "21歳の高木優奈が単独首位 三浦桃香は“ステップアップ初戦”で出遅れ",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "近年の大会文脈確認用。"
+    }
+  ],
+  "article": {
+    "slug": "momoka-miura-latest-public-setting",
+    "title": "三浦桃香の最新公開クラブセッティングを掲載しました",
+    "excerpt": "三浦桃香の最新公開セッティングとして、2019年ダイキンオーキッドレディス時点の14本を掲載しました。キャロウェイ中心の飛距離型セットを一覧で確認できます。",
+    "body": "三浦桃香のページでは、現時点で公開確認できる最新ソースとして、2019年ダイキンオーキッドレディス時点の14本セッティングを掲載しました。EPIC FLASH Sub Zeroドライバー、ROGUEのFW、X Forged UT、APEX PROアイアン、Mack Daddy Forgedウェッジ、O-WORKS R-Lineパターという流れです。現在の実戦セットそのものとは限りませんが、三浦桃香のギア傾向を押さえる公開資料として価値のある構成です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-04T14:00:00+09:00"
+  }
+}
