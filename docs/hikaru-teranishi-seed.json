@@ -1,0 +1,221 @@
+{
+  "profile": {
+    "slug": "hikaru-teranishi",
+    "display_name": "寺西飛香留",
+    "nationality": "Japan",
+    "birthplace": "兵庫県",
+    "birth_date": "2000-09-30",
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2024,
+    "ball_name": null,
+    "feature_1": "最新確認は2024年",
+    "feature_2": "男子ツアー取材ソース",
+    "feature_3": "14本確認済み",
+    "summary": "2024年パナソニックオープン時点で確認できた寺西飛香留の14本セッティング。女子選手では珍しいコブラのキングツアーアイアンを軸にした構成です。",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-04T00:00:00.000Z",
+    "kana_name": "テラニシ ヒカル"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "TaylorMade",
+      "model_name": "SIM2 MAX Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD VF",
+      "shaft_flex": "S",
+      "shaft_weight": "70g台",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "SIM2 MAX Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "18°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD VF",
+      "shaft_flex": "S",
+      "shaft_weight": "70g台",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Callaway",
+      "model_name": "APEX UW 2023",
+      "loft_label": "21°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD VF",
+      "shaft_flex": "S",
+      "shaft_weight": "70g台",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Cobra",
+      "model_name": "KING TOUR Iron",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Cobra",
+      "model_name": "KING TOUR Iron",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Cobra",
+      "model_name": "KING TOUR Iron",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Cobra",
+      "model_name": "KING TOUR Iron",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Cobra",
+      "model_name": "KING TOUR Iron",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Cobra",
+      "model_name": "KING TOUR Iron",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Cobra",
+      "model_name": "KING TOUR Iron",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "GW",
+      "loft_label": "50°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "SW",
+      "loft_label": "54°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold MID Tour Issue",
+      "shaft_flex": "S",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "Studio Style Newport",
+      "source_note": "Confirmed from GDO 2024 Panasonic Open setting page.",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/19151/2024/1/",
+      "source_title": "GDO 寺西飛香留 クラブセッティング 2024年 パナソニックオープン",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "2024年時点で確認できた最新公開セッティング。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/news/jgto/article/172424/1/",
+      "source_title": "男子ツアー予選会に挑んだ23歳女子は“ギアマニア” 寺西飛香留のセッティング",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "14本構成の補足確認用。"
+    }
+  ],
+  "article": {
+    "slug": "hikaru-teranishi-setting-update",
+    "title": "寺西飛香留の最新確認クラブセッティングを掲載しました",
+    "excerpt": "2024年パナソニックオープン時点で確認できた寺西飛香留の14本セッティングを掲載しました。コブラのKING TOURアイアンやSM10ウェッジ構成が見どころです。",
+    "body": "寺西飛香留のページでは、2024年パナソニックオープン時点で確認できた最新公開セッティングを掲載しました。SIM2 MAXドライバーと5W、APEX UW、コブラのKING TOURアイアン、ボーケイSM10ウェッジ、スタジオスタイル ニューポートという構成で、クラブ好きの視点でも見応えのある14本です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-04T12:00:00+09:00"
+  }
+}
