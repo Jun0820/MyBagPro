@@ -1,0 +1,180 @@
+{
+  "profile": {
+    "slug": "sumika-nakasone",
+    "display_name": "仲宗根澄香",
+    "nationality": "Japan",
+    "birthplace": "千葉県白井市",
+    "birth_date": "1992-01-05",
+    "height_cm": 160,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1x",
+    "feature_1": "最新公開セッティング",
+    "feature_2": "2026年大会文脈あり",
+    "feature_3": "公開確認13本",
+    "summary": "仲宗根澄香のページでは、2026年4月時点で公開確認できた最新クラブ構成を整理しました。G430 LST、STEALTH 3W、SIM2 MAX 5W、G400ハイブリッド、Mizuno Pro 223、SM9、ホワイトホット OG #7Sまで確認できます。",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-04T00:00:00.000Z",
+    "kana_name": "ナカソネ スミカ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Ping",
+      "model_name": "G430 LST Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Speeder NX 50",
+      "shaft_flex": "R",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "STEALTH Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "SIM2 MAX Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "18°",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Ping",
+      "model_name": "G400 Hybrid",
+      "loft_label": "22°",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "Ping",
+      "model_name": "G400 Hybrid",
+      "loft_label": "26°",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 6,
+      "brand": "Ping",
+      "model_name": "G400 Hybrid",
+      "loft_label": "30°",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro 223",
+      "spec_label": "6I",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro 223",
+      "spec_label": "7I",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro 223",
+      "spec_label": "8I",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Mizuno",
+      "model_name": "Mizuno Pro 223",
+      "spec_label": "9I",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM9 Wedge",
+      "loft_label": "46°",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM9 Wedge",
+      "loft_label": "54°",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 13,
+      "brand": "Odyssey",
+      "model_name": "White Hot OG #7S Putter",
+      "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://golfeaglecafe.com/nakasone-sumika/",
+      "source_title": "仲宗根澄香プロ クラブセッティング パター ボール紹介2026",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "現時点で確認できた最新の公開セッティングまとめ記事。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/stats/10505/2026/",
+      "source_title": "GDO 仲宗根澄香 2026年度スタッツ/ランキング",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "2026年ヤマハレディース葛城2位など大会文脈確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.skygroup.jp/company/player/",
+      "source_title": "Sky株式会社 所属選手（ゴルフ）",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "所属情報の確認用。"
+    }
+  ],
+  "article": {
+    "slug": "sumika-nakasone-latest-public-setting",
+    "title": "仲宗根澄香の最新公開クラブ構成を掲載しました",
+    "excerpt": "仲宗根澄香のページでは、2026年4月時点で公開確認できた最新クラブ構成を掲載しました。G430 LSTやG400ハイブリッド、Mizuno Pro 223の流れを確認できます。",
+    "body": "仲宗根澄香のページでは、2026年4月時点で公開確認できた最新クラブ構成を掲載しました。G430 LSTドライバー、STEALTH 3W、SIM2 MAX 5W、G400ハイブリッド、Mizuno Pro 223、SM9ウェッジ、ホワイトホット OG #7Sパターという流れです。現時点では公開確認できる本数が13本のため、その範囲を正直に整理したページとして公開しています。ヤマハレディース葛城での上位争いとあわせて見ると、安定感重視の構成が分かりやすい選手です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-04T18:10:00+09:00",
+    "related_profile_slug": "sumika-nakasone"
+  }
+}
