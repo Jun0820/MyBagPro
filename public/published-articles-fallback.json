@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T06:51:19.292Z",
+  "generatedAt": "2026-05-04T07:20:20.887Z",
   "source": "supabase",
   "count": 269,
   "articles": [
@@ -11,7 +11,7 @@
       "article_type": "column",
       "published_at": "2026-05-04T07:20:00+00:00",
       "season_year": 2026,
-      "related_profile_id": null
+      "related_profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4"
     },
     {
       "slug": "minami-kiyomoto-latest-public-setting",
@@ -31,7 +31,7 @@
       "article_type": "column",
       "published_at": "2026-05-04T06:10:00+00:00",
       "season_year": 2026,
-      "related_profile_id": null
+      "related_profile_id": "f019f445-c6f5-4415-a06f-1f38a4343f7f"
     },
     {
       "slug": "world-ladies-salonpas-cup-2026-setting-spotlight",
@@ -91,7 +91,7 @@
       "article_type": "column",
       "published_at": "2026-05-04T04:10:00+00:00",
       "season_year": 2026,
-      "related_profile_id": null
+      "related_profile_id": "06eeef42-91e9-4337-900c-5ca1b633d54c"
     },
     {
       "slug": "mizuho-americas-open-2026-saki-baba-spotlight",
@@ -101,17 +101,7 @@
       "article_type": "column",
       "published_at": "2026-05-04T04:00:00+00:00",
       "season_year": 2026,
-      "related_profile_id": null
-    },
-    {
-      "slug": "hikaru-teranishi-setting-update",
-      "title": "寺西飛香留の最新確認クラブセッティングを掲載しました",
-      "excerpt": "2024年パナソニックオープン時点で確認できた寺西飛香留の14本セッティングを掲載しました。コブラのKING TOURアイアンやSM10ウェッジ構成が見どころです。",
-      "body": "寺西飛香留のページでは、2024年パナソニックオープン時点で確認できた最新公開セッティングを掲載しました。SIM2 MAXドライバーと5W、APEX UW、コブラのKING TOURアイアン、ボーケイSM10ウェッジ、スタジオスタイル ニューポートという構成で、クラブ好きの視点でも見応えのある14本です。",
-      "article_type": "update",
-      "published_at": "2026-05-04T03:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "295838ce-10b7-4f5b-8608-045b5b61a829"
+      "related_profile_id": "f019f445-c6f5-4415-a06f-1f38a4343f7f"
     },
     {
       "slug": "reika-miyako-setting-update",
@@ -132,6 +122,16 @@
       "published_at": "2026-05-04T03:00:00+00:00",
       "season_year": 2026,
       "related_profile_id": "f019f445-c6f5-4415-a06f-1f38a4343f7f"
+    },
+    {
+      "slug": "hikaru-teranishi-setting-update",
+      "title": "寺西飛香留の最新確認クラブセッティングを掲載しました",
+      "excerpt": "2024年パナソニックオープン時点で確認できた寺西飛香留の14本セッティングを掲載しました。コブラのKING TOURアイアンやSM10ウェッジ構成が見どころです。",
+      "body": "寺西飛香留のページでは、2024年パナソニックオープン時点で確認できた最新公開セッティングを掲載しました。SIM2 MAXドライバーと5W、APEX UW、コブラのKING TOURアイアン、ボーケイSM10ウェッジ、スタジオスタイル ニューポートという構成で、クラブ好きの視点でも見応えのある14本です。",
+      "article_type": "update",
+      "published_at": "2026-05-04T03:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "295838ce-10b7-4f5b-8608-045b5b61a829"
     },
     {
       "slug": "driver-slice-club-choice-2026",

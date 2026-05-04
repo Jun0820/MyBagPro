@@ -54,6 +54,50 @@ export const tournamentSpotlights: TournamentSpotlight[] = [
       '熊本開催の今週大会では、竹田麗央、山下美夢有、佐久間朱莉のセッティングを並べると、国内女子の飛距離帯とクラブ構成の違いが分かりやすく見えてきます。',
     featuredPlayerSlugs: ['rio-takeda', 'miyuu-yamashita', 'sakuma-akari'],
   },
+  {
+    articleSlug: 'world-ladies-salonpas-cup-2026-setting-spotlight',
+    tourKey: 'jlpga',
+    tourLabel: 'JLPGA',
+    tournamentName: 'ワールドレディスサロンパス杯',
+    statusLabel: '注目選手',
+    eventDates: '2026年5月7日-10日',
+    summary:
+      '国内メジャーを前に、佐久間朱莉、竹田麗央、山下美夢有のセッティングを並べて見ると、スコアメイク型と飛距離型の違いが見えやすくなります。',
+    featuredPlayerSlugs: ['sakuma-akari', 'rio-takeda', 'miyuu-yamashita'],
+  },
+  {
+    articleSlug: 'kiyomoto-miyako-baba-young-jlpga-watch-2026',
+    tourKey: 'jlpga',
+    tourLabel: 'JLPGA',
+    tournamentName: '若手女子プロ特集',
+    statusLabel: '見比べる',
+    eventDates: '2026年5月時点',
+    summary:
+      '清本美波、都玲華、馬場咲希のページを見比べると、若手女子プロでもクラブ構成の個性が大きく違うことが分かります。',
+    featuredPlayerSlugs: ['minami-kiyomoto', 'reika-miyako', 'saki-baba'],
+  },
+  {
+    articleSlug: 'yamaha-ladies-and-stepup-2026-watchlist',
+    tourKey: 'jlpga',
+    tourLabel: 'JLPGA',
+    tournamentName: 'ヤマハレディース葛城と下部ツアー注目組',
+    statusLabel: '関連ページ',
+    eventDates: '2026年5月時点',
+    summary:
+      '記事内で触れている選手のうち、すでにページ化済みの都玲華、寺西飛香留、三浦桃香は、そのままセッティング詳細まで辿れます。',
+    featuredPlayerSlugs: ['reika-miyako', 'hikaru-teranishi', 'momoka-miura'],
+  },
+  {
+    articleSlug: 'mizuho-americas-open-2026-japan-watch',
+    tourKey: 'lpga',
+    tourLabel: 'LPGA',
+    tournamentName: 'みずほアメリカズオープン',
+    statusLabel: '日本勢注目',
+    eventDates: '2026年5月7日-10日',
+    summary:
+      '日本勢の中でも、すでにページ化済みの馬場咲希はそのままセッティング詳細へ進めます。',
+    featuredPlayerSlugs: ['saki-baba'],
+  },
 ];
 
 export const getTournamentSpotlightByArticleSlug = (slug?: string | null) =>

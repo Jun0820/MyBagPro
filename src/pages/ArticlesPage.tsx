@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, CalendarDays, Newspaper } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
+import { getTournamentSpotlightByArticleSlug } from '../lib/tournamentSpotlights';
 
 type ArticleFilter = 'all' | PublicArticle['articleType'];
 
@@ -136,6 +137,12 @@ export const ArticlesPage = () => {
             onClick={() => navigate(`/articles/${article.slug}`)}
             className="rounded-[1.5rem] border border-slate-200 bg-white p-4 text-left shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:rounded-[2rem] md:p-6"
           >
+            {(() => {
+              const spotlight = getTournamentSpotlightByArticleSlug(article.slug);
+              const relatedCount = spotlight?.featuredPlayerSlugs.length || 0;
+
+              return (
+                <>
             <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500">
               <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-600">
                 {articleTypeLabel[article.articleType]}
@@ -153,10 +160,19 @@ export const ArticlesPage = () => {
                 <span>{article.relatedProfileName}</span>
               </div>
             )}
+            {!article.relatedProfileSlug && relatedCount > 0 && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[11px] font-black tracking-[0.08em] text-golf-700">
+                関連ページ
+                <span>{relatedCount}選手</span>
+              </div>
+            )}
             <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-trust-navy md:mt-5">
               記事を読む
               <ArrowRight size={16} />
             </div>
+                </>
+              );
+            })()}
           </button>
         ))}
       </section>

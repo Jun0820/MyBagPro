@@ -441,9 +441,28 @@ async function upsertSettingProfileFromFile(filepath) {
 
   let articleResult = null;
   if (article?.slug) {
+    const {
+      slug,
+      title,
+      excerpt,
+      body,
+      article_type,
+      related_product_id,
+      season_year,
+      published,
+      published_at,
+    } = article;
     const articlePayload = {
-      ...article,
+      slug,
+      title,
+      excerpt,
+      body,
+      article_type,
       related_profile_id: upsertedProfile.id,
+      related_product_id: related_product_id || null,
+      season_year: season_year ? Number(season_year) : null,
+      published: published ?? true,
+      published_at: published_at || new Date().toISOString(),
     };
 
     const { data, error } = await supabase
