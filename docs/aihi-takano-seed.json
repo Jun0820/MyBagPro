@@ -1,0 +1,182 @@
+{
+  "profile": {
+    "slug": "aihi-takano",
+    "display_name": "髙野愛姫",
+    "nationality": "Japan",
+    "birthplace": "東京都",
+    "birth_date": "2004-09-14",
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1 Ball 2025",
+    "feature_1": "2026年3月時点の公式構成",
+    "feature_2": "PING契約",
+    "feature_3": "14本確認済み",
+    "summary": "髙野愛姫のクラブセッティングとして、PING公式が2026年3月4日時点で公開している14本構成を整理しました。G440 SFT、G440 MAX、G440ハイブリッド、i240、s259、SCOTTSDALE OSLO 3まで確認できます。",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-04T00:00:00.000Z",
+    "kana_name": "タカノ アイヒ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G440 SFT Driver",
+      "loft_label": "9°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "4W",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "5W",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "4H",
+      "loft_label": "23°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "5H",
+      "loft_label": "26°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 6,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "6H",
+      "loft_label": "30°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "PING",
+      "model_name": "i240 Iron",
+      "spec_label": "7I",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "PING",
+      "model_name": "i240 Iron",
+      "spec_label": "8I",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "PING",
+      "model_name": "i240 Iron",
+      "spec_label": "9I",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "PING",
+      "model_name": "i240 Iron",
+      "spec_label": "PW",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "PING",
+      "model_name": "s259 Wedge",
+      "spec_label": "GW",
+      "loft_label": "50°S",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "PING",
+      "model_name": "s259 Wedge",
+      "spec_label": "SW",
+      "loft_label": "54°S",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "PING",
+      "model_name": "s259 Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°S",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "PING",
+      "model_name": "SCOTTSDALE OSLO 3 Putter",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://clubping.jp/tourpros/aihi_takano.html",
+      "source_title": "CLUB PING ツアープロ情報 髙野愛姫選手",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "クラブセッティングは2026年3月4日時点と明記。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/news/winnersbag/jlpga/article/180971/1/",
+      "source_title": "気分転換のマレット型パター 初V高野愛姫の14本",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "2025年ヨネックスレディス優勝時の文脈確認用。"
+    }
+  ],
+  "article": {
+    "slug": "aihi-takano-2026-setting-update",
+    "title": "髙野愛姫の2026年クラブセッティングを掲載しました",
+    "excerpt": "PING公式が2026年3月4日時点で公開している髙野愛姫の14本構成を掲載しました。G440 SFT、G440ハイブリッド3本、i240、s259ウェッジまで確認できます。",
+    "body": "髙野愛姫のページでは、PING公式が2026年3月4日時点で公開している14本のクラブセッティングを整理しました。G440 SFTドライバー、G440 MAXの4Wと5W、G440ハイブリッド3本、i240アイアン、s259ウェッジ、SCOTTSDALE OSLO 3パターという構成です。2025年ヨネックスレディスでの初優勝時の文脈とあわせて見ると、PING中心の統一感とショートゲームの組み方が分かりやすいページです。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-04T18:30:00+09:00",
+    "related_profile_slug": "aihi-takano"
+  }
+}

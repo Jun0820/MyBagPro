@@ -296,14 +296,17 @@ async function upsertArticlesFromFile(filepath) {
 
     if (article.related_profile_slug) {
       if (!profileCache.has(article.related_profile_slug)) {
-        const { data: profile, error: profileError } = await supabase
+        const { data: profiles, error: profileError } = await supabase
           .from('setting_profiles')
           .select('id')
           .eq('slug', article.related_profile_slug)
-          .single();
+          .limit(1);
 
         if (profileError) throw profileError;
-        profileCache.set(article.related_profile_slug, profile.id);
+        if (!profiles || profiles.length === 0) {
+          throw new Error(`Related profile not found for slug: ${article.related_profile_slug}`);
+        }
+        profileCache.set(article.related_profile_slug, profiles[0].id);
       }
 
       relatedProfileId = profileCache.get(article.related_profile_slug);

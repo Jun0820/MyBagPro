@@ -1,0 +1,173 @@
+{
+  "profile": {
+    "slug": "rui-hiraoka",
+    "display_name": "平岡瑠依",
+    "nationality": "Japan",
+    "birthplace": "大阪府",
+    "birth_date": "2000-01-28",
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "feature_1": "2026年3月時点の公式構成",
+    "feature_2": "PING契約",
+    "feature_3": "14本確認済み",
+    "summary": "平岡瑠依のクラブセッティングとして、PING公式が2026年3月4日時点で公開している14本構成を整理しました。G440 MAXドライバー、G440 MAXフェアウェイウッド、G440ハイブリッド、BLUEPRINT S、s259ウェッジまで確認できます。",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-04T00:00:00.000Z",
+    "kana_name": "ヒラオカ ルイ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G440 MAX Driver",
+      "loft_label": "9°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "3W",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "5W",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "3H",
+      "loft_label": "20°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "4H",
+      "loft_label": "23°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 6,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "5H",
+      "loft_label": "26°",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "6I",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "7I",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "8I",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "9I",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 11,
+      "brand": "PING",
+      "model_name": "BLUEPRINT S Iron",
+      "spec_label": "PW",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "PING",
+      "model_name": "s259 Wedge",
+      "spec_label": "GW",
+      "loft_label": "52°S",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "PING",
+      "model_name": "s259 Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°S",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "PING",
+      "model_name": "SCOTTSDALE PRIME TYNE C Putter",
+      "source_note": "Confirmed from CLUB PING official tour-pro page, dated 2026-03-04.",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://clubping.jp/tourpros/hiraoka.html",
+      "source_title": "CLUB PING ツアープロ情報 平岡瑠依選手",
+      "checked_at": "2026-05-04T00:00:00.000Z",
+      "notes": "クラブセッティングは2026年3月4日時点と明記。"
+    }
+  ],
+  "article": {
+    "slug": "rui-hiraoka-2026-setting-update",
+    "title": "平岡瑠依の2026年クラブセッティングを掲載しました",
+    "excerpt": "PING公式が2026年3月4日時点で公開している平岡瑠依の14本構成を掲載しました。G440 MAX、BLUEPRINT S、s259ウェッジまで確認できます。",
+    "body": "平岡瑠依のページでは、PING公式が2026年3月4日時点で公開している14本のクラブセッティングを整理しました。G440 MAXドライバー、G440 MAXの3Wと5W、G440ハイブリッド3本、BLUEPRINT Sアイアン、s259ウェッジ、SCOTTSDALE PRIME TYNE Cパターという構成です。PING契約らしい統一感がありつつ、ユーティリティを3本入れた流れが見どころです。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-04T18:20:00+09:00",
+    "related_profile_slug": "rui-hiraoka"
+  }
+}
