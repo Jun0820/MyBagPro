@@ -1,0 +1,64 @@
+{
+  "profile": {
+    "slug": "mayu-hosaka",
+    "display_name": "保坂真由",
+    "kana_name": "ホサカ マユ",
+    "nationality": "Japan",
+    "birthplace": "埼玉県北本市",
+    "birth_date": "1995-11-17",
+    "height_cm": 162,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "summary": "保坂真由のページでは、2026年5月時点で公開確認できる最新プロフィールと大会文脈を整理しています。2022年のステップ・アップツアー初優勝や、2025年の下部ツアー首位発進など、今後セッティングページ化を優先して追いたい選手として掲載しています。",
+    "feature_1": "最新公開プロフィール",
+    "feature_2": "下部ツアー優勝あり",
+    "feature_3": "公開セッティング再探索候補",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-06T00:00:00.000Z"
+  },
+  "bagItems": [],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/profile/9970/",
+      "source_title": "GDO 保坂真由プロフィール",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "生年月日、出身地、身長、2022年下部ツアー初優勝のプロフィール文脈確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.alba.co.jp/tour/players/1368/",
+      "source_title": "ALBA 保坂真由プロフィール",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "基本プロフィールと得意クラブの公開確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/144969/1/",
+      "source_title": "保坂真由ツアー初V スタイヤーノ梨々菜とのPO制す／女子下部",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "2022年ラシンク・ニンジニア／RKBレディース優勝の確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.alba.co.jp/articles/category/tour/step/post/vc_lx8kz4zc/",
+      "source_title": "保坂真由が首位発進 林菜乃子、エイミー・コガ2位、原江里菜7位",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "2025年下部ツアーでの直近注目結果確認用。"
+    }
+  ],
+  "article": {
+    "slug": "mayu-hosaka-latest-public-profile",
+    "title": "保坂真由の最新公開プロフィールページを追加しました",
+    "excerpt": "保坂真由のページでは、2026年5月時点で公開確認できるプロフィールと大会文脈を整理しました。2022年の下部ツアー初優勝や、2025年の首位発進など、今後セッティングページ化を優先して追いたい選手です。",
+    "body": "保坂真由のページでは、2026年5月時点で公開確認できるプロフィールと大会文脈を整理しました。現時点では最新14本の公開セッティングソースは弱いため、無理に番手構成を断言せず、まずは生年月日・出身地・身長・得意クラブといった基本情報、そして2022年のステップ・アップツアー初優勝、2025年の下部ツアー首位発進といった競技文脈を押さえるページとして公開しています。今後より強い公開セッティングソースが確認でき次第、番手単位のページへ拡張していく前提です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-06T19:35:00+09:00",
+    "related_profile_slug": "mayu-hosaka"
+  }
+}
