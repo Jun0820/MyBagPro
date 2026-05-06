@@ -63,7 +63,6 @@ export const MyGearPage = () => {
         lastCloudSavedAt,
         lastSaveTargetClubCount,
         lastSavedClubCount,
-        saveDebugInfo,
         manualSave,
         manualSaveMyBag,
         syncWithSupabase,
@@ -203,6 +202,15 @@ export const MyGearPage = () => {
             setActiveTab('view');
         }
     }, [searchParams]);
+
+    useEffect(() => {
+        const currentTab = searchParams.get('tab') || 'view';
+        if (currentTab === activeTab) return;
+
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.set('tab', activeTab);
+        setSearchParams(nextParams, { replace: true });
+    }, [activeTab, searchParams, setSearchParams]);
 
     const bagCoverageTone =
         profile.myBag.clubs.length >= 10
@@ -705,10 +713,11 @@ export const MyGearPage = () => {
                                     </div>
                                 </div>
 
-                                    <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold text-slate-500">
+                                <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold text-slate-500">
                                         <span>{hasUnsavedChanges ? `未保存 ${pendingBagChangeCount}件` : 'クラウド保存済み'}</span>
-                                        <span>{lastSavedClubCount > 0 ? `クラウド確認 ${lastSavedClubCount}本` : `登録 ${profile.myBag.clubs.length}本`}</span>
+                                        <span>保存対象 {lastSaveTargetClubCount}本</span>
+                                        <span>クラウド確認 {lastSavedClubCount}本</span>
                                         {lastCloudSavedAt && <span>前回保存 {new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}</span>}
                                     </div>
                                     {saveStatus === 'error' && saveErrorDetail && <div className="mt-2 text-xs font-bold text-rose-600">{saveErrorDetail}</div>}
@@ -1529,7 +1538,6 @@ export const MyGearPage = () => {
                         lastCloudSavedAt={lastCloudSavedAt}
                         lastSaveTargetClubCount={lastSaveTargetClubCount}
                         lastSavedClubCount={lastSavedClubCount}
-                        saveDebugInfo={saveDebugInfo}
                         onManualSave={(settingOverride) => {
                             return manualSaveMyBag(settingOverride || profile.myBag);
                         }}
