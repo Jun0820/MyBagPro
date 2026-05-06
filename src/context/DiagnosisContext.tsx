@@ -922,6 +922,14 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             sampleClubs: buildSaveDebugSample(normalizedClubs),
         });
 
+        const refreshCloudStateAfterBagSave = async () => {
+            try {
+                await syncWithSupabase();
+            } catch (syncError) {
+                console.warn('post-save cloud sync warning:', syncError);
+            }
+        };
+
         try {
             const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
             if (sessionError) {
@@ -971,6 +979,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             setHasUnsavedChanges(false);
             setPendingBagChangeCount(0);
             setPendingBagChangeIds([]);
+            await refreshCloudStateAfterBagSave();
             markSaveStatusSaved();
         } catch (error) {
             console.error('manual my bag save error:', error);
@@ -995,6 +1004,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 setHasUnsavedChanges(false);
                 setPendingBagChangeCount(0);
                 setPendingBagChangeIds([]);
+                await refreshCloudStateAfterBagSave();
                 markSaveStatusSaved();
             } else {
                 setSaveStatus('error');
