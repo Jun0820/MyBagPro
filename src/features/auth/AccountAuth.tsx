@@ -132,7 +132,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
     };
 
     return (
-        <div className="relative max-h-[92vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-slate-100 bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.15)] animate-fadeIn scrollbar-hide md:max-h-[95vh] md:rounded-[2.5rem] md:p-8">
+        <div className="relative max-h-[92vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.15)] ring-1 ring-slate-100 animate-fadeIn scrollbar-hide md:max-h-[95vh] md:rounded-[2.5rem] md:p-8">
             <button 
                 onClick={onClose} 
                 className="absolute right-4 top-4 rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-50 md:right-6 md:top-6"
@@ -170,22 +170,22 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
             </div>
 
             <div className="mb-5 grid gap-2 sm:grid-cols-3 md:mb-6">
-                <div className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-left">
+                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-left">
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save</div>
                     <div className="mt-1 text-xs font-black text-trust-navy">My Bag と診断結果を保存</div>
                 </div>
-                <div className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-left">
+                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-left">
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Resume</div>
                     <div className="mt-1 text-xs font-black text-trust-navy">比較やお気に入りの続きから再開</div>
                 </div>
-                <div className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-left">
+                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-left">
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Cloud</div>
                     <div className="mt-1 text-xs font-black text-trust-navy">ログイン後もクラウドで復元</div>
                 </div>
             </div>
 
             {hasDraftToCarry && (
-                <div className="mb-5 rounded-[1.5rem] border border-golf-100 bg-golf-50/55 p-4 md:mb-6 md:p-5">
+                <div className="mb-5 rounded-[1.5rem] bg-golf-50/55 p-4 ring-1 ring-golf-100 md:mb-6 md:p-5">
                     <div className="flex items-start justify-between gap-3">
                         <div>
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Current Draft</div>
@@ -201,19 +201,19 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                         </div>
                     </div>
                     <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Clubs</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{draftClubCount}本を下書き保存</div>
                         </div>
-                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Ball</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{draftBall || '未入力'}</div>
                         </div>
-                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Head Speed</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{draftHeadSpeed || '未入力'}</div>
                         </div>
-                        <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3">
+                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Average Score</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{draftAverageScore || '未入力'}</div>
                         </div>
@@ -335,7 +335,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
             </button>
 
             {isRegister && (
-                <div className="mt-5 rounded-2xl border border-blue-100/50 bg-blue-50/50 p-4 md:mt-6">
+                    <div className="mt-5 rounded-2xl bg-blue-50/50 p-4 ring-1 ring-blue-100/50 md:mt-6">
                     <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2 flex items-center gap-1.5">
                         <Check size={12} strokeWidth={3} /> Registration Benefits
                     </div>
@@ -353,10 +353,10 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                     <div className="h-[1px] flex-1 bg-slate-100"></div>
                 </div>
                 <div className="grid grid-cols-2 gap-3 opacity-40">
-                    <button className="flex items-center justify-center gap-2 py-3.5 bg-white border border-slate-200 rounded-2xl text-[10px] font-black uppercase tracking-wider text-slate-400 cursor-not-allowed">
+                    <button className="flex items-center justify-center gap-2 rounded-2xl bg-white py-3.5 text-[10px] font-black uppercase tracking-wider text-slate-400 ring-1 ring-slate-200 cursor-not-allowed">
                         <img src="https://www.google.com/favicon.ico" className="w-4 h-4 grayscale" alt="Google" /> Google
                     </button>
-                    <button className="flex items-center justify-center gap-2 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl text-[10px] font-black uppercase tracking-wider text-slate-400 cursor-not-allowed">
+                    <button className="flex items-center justify-center gap-2 rounded-2xl bg-slate-50 py-3.5 text-[10px] font-black uppercase tracking-wider text-slate-400 ring-1 ring-slate-100 cursor-not-allowed">
                         LINE
                     </button>
                 </div>

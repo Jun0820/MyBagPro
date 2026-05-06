@@ -217,7 +217,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
       <div className="w-full max-w-5xl flex flex-col">
       {/* Result Header */}
       <div className="text-center mb-4 animate-fadeIn">
-        <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full mb-3">
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-400 ring-1 ring-emerald-500/30">
           <Flag className="w-3.5 h-3.5" />
           診断完了
         </div>
@@ -232,7 +232,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
         {/* Glow effect */}
         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-emerald-500 to-cyan-500 rounded-3xl blur-md opacity-30 animate-pulse-slow"></div>
         
-        <div className="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl overflow-hidden shadow-2xl">
+        <div className="relative overflow-hidden rounded-3xl bg-slate-900/80 shadow-2xl ring-1 ring-slate-700/50 backdrop-blur-xl">
           {/* Top banner */}
           <div className="h-40 md:h-56 relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
@@ -246,7 +246,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
             />
             </div>
             {/* Tag */}
-            <div className="absolute top-6 right-6 z-20 bg-emerald-500/90 text-white border border-emerald-400 px-4 py-1.5 rounded-full text-sm font-bold font-eng shadow-lg">
+            <div className="absolute top-6 right-6 z-20 rounded-full bg-emerald-500/90 px-4 py-1.5 text-sm font-bold text-white shadow-lg ring-1 ring-emerald-400 font-eng">
               {matchScore}% MATCH
             </div>
             {/* Ball icon */}
@@ -275,7 +275,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
                 {summaryPoints.map((point) => (
                   <span
                     key={point}
-                    className="rounded-full border border-white/10 bg-slate-800/70 px-3 py-1 text-xs font-semibold text-slate-200"
+                    className="rounded-full bg-slate-800/70 px-3 py-1 text-xs font-semibold text-slate-200 ring-1 ring-white/10"
                   >
                     {point}
                   </span>
@@ -303,7 +303,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
             </div>
 
             {/* User Profile Summary */}
-            <div className={`rounded-xl p-4 flex items-start gap-3 ${isProMode ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-slate-800/50'} mb-6`}>
+            <div className={`mb-6 flex items-start gap-3 rounded-xl p-4 ${isProMode ? 'bg-emerald-500/10 ring-1 ring-emerald-500/20' : 'bg-slate-800/50'}`}>
               {isProMode ? <Layers className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" /> : <Flag className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />}
               <div>
                 <div className={`text-xs font-bold mb-1 ${isProMode ? 'text-emerald-300' : 'text-slate-200'}`}>
@@ -327,7 +327,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
             {/* AI Expert Opinion (New) */}
             {(aiExpertAnalysis || aiSynergyAdvice) && (
               <div className="mt-6 space-y-4 animate-fadeIn">
-                <div className="relative p-4 rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-emerald-500/20 shadow-inner group overflow-hidden">
+                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 shadow-inner ring-1 ring-emerald-500/20">
                    <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
                       <Stethoscope className="w-12 h-12 text-emerald-400" />
                    </div>
@@ -364,7 +364,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {displayedAlternatives.map((alt: any, idx: number) => (
-              <div key={idx} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center group hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+              <div key={idx} className="group flex flex-col items-center rounded-2xl bg-slate-800/40 p-4 text-center ring-1 ring-white/5 transition-all hover:-translate-y-1 hover:bg-slate-800/60">
                 <div className="text-[10px] font-black text-cyan-400 mb-2 tracking-widest uppercase">{alt.type}</div>
                 <div className="w-16 h-16 rounded-full bg-white mb-3 shadow-lg overflow-hidden flex items-center justify-center p-2 text-slate-800 font-bold text-[10px] transform group-hover:scale-110 transition-transform">
                   {alt.name}
