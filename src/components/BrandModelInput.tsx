@@ -87,7 +87,7 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
     );
 
     return (
-        <div ref={wrapperRef} className={cn("grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3", compact && "grid-cols-2 md:grid-cols-2 gap-1.5 md:gap-2")}>
+        <div ref={wrapperRef} className={cn("grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3", compact && "grid-cols-1 md:grid-cols-2 gap-2")}>
             {/* BRAND */}
             <div className="relative">
                 <label className={cn("mb-1 ml-1 block font-bold text-slate-500", compact ? "text-[10px]" : "text-[11px] md:text-xs")}>メーカー</label>
@@ -102,7 +102,7 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
                     />
                     {showBrand && (
                         <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-60 overflow-y-auto rounded-2xl border border-[#dfe7df] bg-white shadow-[0_22px_50px_-32px_rgba(15,15,16,0.35)]">
-                            <div className="sticky top-0 bg-[#f6f8f6] p-2 text-[10px] font-bold text-slate-400">人気ブランド</div>
+                            <div className="sticky top-0 bg-[#f6f8f6] p-2 text-[10px] font-bold text-slate-400">ブランド候補</div>
                             {(brand ? searchBrands(brand, availableBrands) : availableBrands).slice(0, 15).map(b => (
                                 <div
                                     key={b}
@@ -138,7 +138,7 @@ export const BrandModelInput: React.FC<BrandModelInputProps> = ({
                     </div>
                     {showModel && brand && (
                         <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-60 overflow-y-auto rounded-2xl border border-[#dfe7df] bg-white shadow-[0_22px_50px_-32px_rgba(15,15,16,0.35)]">
-                            {suggestedModels.length > 0 && <div className="sticky top-0 bg-[#f6f8f6] p-2 text-[10px] font-bold text-slate-400">SUGGESTED FOR {brand}</div>}
+                            {suggestedModels.length > 0 && <div className="sticky top-0 bg-[#f6f8f6] p-2 text-[10px] font-bold text-slate-400">{brand} の候補</div>}
                             {(model ? searchModels(model, suggestedModels) : suggestedModels).slice(0, 15).map(m => (
                                 <div
                                     key={m}
