@@ -107,7 +107,7 @@ export const Home = () => {
 
   return (
     <div className="space-y-8 pb-8 md:space-y-12 md:pb-14">
-      <section className="overflow-hidden rounded-[20px] border border-[#e3ece4] bg-white shadow-[0_28px_70px_-48px_rgba(15,15,16,0.35)] md:rounded-[32px]">
+      <section className="overflow-hidden rounded-[20px] bg-white shadow-[0_28px_70px_-48px_rgba(15,15,16,0.35)] ring-1 ring-[#e3ece4] md:rounded-[32px]">
         <div className="grid gap-0 md:grid-cols-1 xl:grid-cols-[1.05fr_0.95fr]">
           <div className="px-4 py-6 md:px-10 md:py-12 xl:py-14">
             <div className="text-xs font-bold text-[#c18e2f] md:text-sm">データでわかる、あなたのゴルフ</div>
@@ -139,7 +139,7 @@ export const Home = () => {
               {trustStats.map((stat) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={stat.label} className="rounded-lg border border-[#e6ece6] bg-white px-3 py-3 shadow-sm md:rounded-[22px] md:px-4 md:py-4">
+                  <div key={stat.label} className="rounded-lg bg-[#fbfcfb] px-3 py-3 shadow-sm ring-1 ring-[#e6ece6] md:rounded-[22px] md:px-4 md:py-4">
                     <div className="flex items-center gap-2 md:gap-3">
                       <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f2f8f3] text-[#176534] md:h-11 md:w-11 md:rounded-2xl">
                         <Icon size={18} className="md:hidden" />
@@ -167,7 +167,7 @@ export const Home = () => {
             {featureCards.map((feature) => {
               const Icon = feature.icon;
               return (
-                <div key={feature.title} className="rounded-lg border border-[#e8efea] bg-[#fbfcfb] px-3 py-3 md:rounded-[22px] md:px-4 md:py-4">
+                <div key={feature.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 md:rounded-[22px] md:px-4 md:py-4">
                   <div className="flex items-start gap-2 md:gap-3">
                     <div className="mt-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#edf5ef] text-[#176534] md:h-11 md:w-11 md:rounded-2xl">
                       <Icon size={18} className="md:hidden" />
@@ -201,7 +201,7 @@ export const Home = () => {
               <button
                 key={card.title}
                 onClick={() => navigate(card.href)}
-                className="flex-shrink-0 overflow-hidden rounded-lg border border-[#e3ebe4] bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg md:rounded-[24px] w-[280px] md:w-auto md:flex-1 md:max-w-[calc(50%-0.5rem)] lg:max-w-[calc(25%-0.75rem)]"
+                className="flex-shrink-0 overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-[#e3ebe4] transition hover:-translate-y-1 hover:shadow-lg md:rounded-[24px] w-[280px] md:w-auto md:flex-1 md:max-w-[calc(50%-0.5rem)] lg:max-w-[calc(25%-0.75rem)]"
               >
                 <div className="relative h-32 overflow-hidden md:h-44">
                   <img src={card.image} alt={card.title} className="h-full w-full object-cover" />
@@ -224,7 +224,7 @@ export const Home = () => {
           </button>
         </div>
 
-        <aside className="rounded-lg border border-[#e3ebe4] bg-white p-4 shadow-sm md:rounded-[28px] md:border-none md:bg-[#15542f] md:p-5 md:text-white md:shadow-[0_24px_60px_-42px_rgba(21,84,47,0.8)] xl:p-6">
+        <aside className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e3ebe4] md:rounded-[28px] md:ring-0 md:bg-[#15542f] md:p-5 md:text-white md:shadow-[0_24px_60px_-42px_rgba(21,84,47,0.8)] xl:p-6">
           <div className="text-lg font-black md:text-2xl">無料クラブ診断</div>
           <p className="mt-2 text-xs leading-6 text-slate-600 md:mt-3 md:text-sm md:leading-7 md:text-white/80">
             たった30秒であなたのゴルフを分析。保存後は比較候補としていつでも見返せます。
@@ -241,7 +241,7 @@ export const Home = () => {
             診断をはじめる
           </button>
 
-          <div className="mt-4 rounded-lg border border-[#e8efea] bg-[#fbfcfb] p-3 md:mt-6 md:rounded-[24px] md:border-white/10 md:bg-white/10 md:p-4">
+          <div className="mt-4 rounded-lg bg-[#fbfcfb] p-3 ring-1 ring-[#e8efea] md:mt-6 md:rounded-[24px] md:bg-white/10 md:ring-1 md:ring-white/10 md:p-4">
             <div className="text-xs font-black text-slate-700 md:text-base md:text-white">診断サンプル</div>
             <div className="mt-3 flex items-center gap-3 md:gap-5">
               <div className="flex h-20 w-20 items-center justify-center rounded-full border-8 border-[#e0e0e0] bg-white text-2xl font-black text-[#176534] md:h-24 md:w-24 md:border-[10px] md:border-white/35 md:text-3xl md:text-white">
@@ -271,7 +271,7 @@ export const Home = () => {
       </section>
 
       <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.25fr_0.95fr]">
-        <div className="rounded-lg border border-[#e4ece5] bg-white p-4 shadow-sm md:rounded-[28px] md:p-6">
+        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-6">
           <div className="text-xs font-bold text-slate-500 md:text-sm">データが導く、最適なクラブ選び</div>
           <h2 className="mt-2 text-xl font-black tracking-tight text-[#151719] md:text-3xl">プロのデータとあなたのデータを並べる</h2>
           <p className="mt-2 text-xs leading-6 text-slate-600 md:text-sm md:leading-7">
@@ -280,9 +280,9 @@ export const Home = () => {
 
           <div className="mt-4 grid gap-2 md:gap-4 md:mt-5 md:grid-cols-3">
             {handleChartPoints.map((label, index) => (
-              <div key={label} className="rounded-lg border border-[#ebf0eb] bg-[#fbfcfb] p-3 md:rounded-[24px] md:p-4">
+              <div key={label} className="rounded-lg bg-[#fbfcfb] p-3 md:rounded-[24px] md:p-4">
                 <div className="text-xs font-black text-[#151719] md:text-sm">{label}</div>
-                <div className="mt-2 h-28 rounded-lg border border-[#e6ece7] bg-white p-2 md:mt-4 md:h-40 md:rounded-[20px] md:p-4">
+                <div className="mt-2 h-28 rounded-lg bg-white p-2 ring-1 ring-[#e6ece7] md:mt-4 md:h-40 md:rounded-[20px] md:p-4">
                   {index === 0 && (
                     <div className="flex h-full items-end gap-1 md:gap-2">
                       {[84, 72, 91, 77, 88, 70, 95, 74, 86].map((point, idx) => (
@@ -323,11 +323,11 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="rounded-lg border border-[#e4ece5] bg-white p-4 shadow-sm md:rounded-[28px] md:p-6 xl:self-end">
+        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-6 xl:self-end">
           <div className="text-xs font-bold text-slate-500 md:text-sm">多くのゴルファーに支持されています</div>
           <div className="mt-3 space-y-2 md:mt-5 md:space-y-4">
             {supportStats.map((stat) => (
-              <div key={stat.title} className="rounded-lg border border-[#ebf0eb] bg-[#fbfcfb] px-3 py-3 md:rounded-[22px] md:border-[#ebf0eb] md:px-5 md:py-5">
+              <div key={stat.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 ring-1 ring-[#ebf0eb] md:rounded-[22px] md:px-5 md:py-5">
                 <div className="text-xs font-black text-slate-500 md:text-sm">{stat.title}</div>
                 <div className="mt-1 text-xl font-black tracking-tight text-[#151719] md:mt-2 md:text-[2rem]">{stat.value}</div>
                 <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{stat.note}</div>

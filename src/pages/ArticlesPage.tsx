@@ -73,15 +73,15 @@ export const ArticlesPage = () => {
         </p>
 
         <div className="mt-5 grid gap-2.5 sm:grid-cols-3">
-          <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3.5 md:rounded-2xl md:py-4">
+          <div className="rounded-[1rem] bg-white/5 px-4 py-3.5 ring-1 ring-white/10 md:rounded-2xl md:py-4">
             <div className="text-xs font-black text-slate-400">公開記事</div>
             <div className="mt-2 text-2xl font-black text-white">{articles.length}</div>
           </div>
-          <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3.5 md:rounded-2xl md:py-4">
+          <div className="rounded-[1rem] bg-white/5 px-4 py-3.5 ring-1 ring-white/10 md:rounded-2xl md:py-4">
             <div className="text-xs font-black text-slate-400">更新情報</div>
             <div className="mt-2 text-2xl font-black text-white">{updateCount}</div>
           </div>
-          <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3.5 md:rounded-2xl md:py-4">
+          <div className="rounded-[1rem] bg-white/5 px-4 py-3.5 ring-1 ring-white/10 md:rounded-2xl md:py-4">
             <div className="text-xs font-black text-slate-400">読みもの</div>
             <div className="mt-2 text-2xl font-black text-white">{columnCount + newsCount}</div>
           </div>
@@ -97,7 +97,7 @@ export const ArticlesPage = () => {
               className={`rounded-full px-4 py-2 text-sm font-black transition-colors ${
                 activeFilter === filter
                   ? 'bg-trust-navy text-white'
-                  : 'border border-slate-200 bg-white text-slate-600 hover:border-golf-300 hover:text-golf-700'
+                  : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:text-golf-700 hover:ring-golf-300'
               }`}
             >
               {filterLabel[filter]}
@@ -106,13 +106,13 @@ export const ArticlesPage = () => {
         </div>
 
         {isLoading && (
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
+          <div className="rounded-[2rem] bg-white p-8 text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200">
             記事を読み込んでいます...
           </div>
         )}
 
         {!isLoading && articles.length === 0 && (
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-8">
+          <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
             <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">記事が見つかりません</div>
             <h2 className="mt-3 text-2xl font-black text-trust-navy">公開中の記事を取得できませんでした。</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -122,7 +122,7 @@ export const ArticlesPage = () => {
         )}
 
         {!isLoading && articles.length > 0 && filteredArticles.length === 0 && (
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-8">
+          <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
             <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">絞り込み結果</div>
             <h2 className="mt-3 text-2xl font-black text-trust-navy">{filterLabel[activeFilter]}の記事はまだありません。</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -135,7 +135,7 @@ export const ArticlesPage = () => {
           <button
             key={article.slug}
             onClick={() => navigate(`/articles/${article.slug}`)}
-            className="rounded-[1.5rem] border border-slate-200 bg-white p-4 text-left shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:rounded-[2rem] md:p-6"
+            className="rounded-[1.5rem] bg-white p-4 text-left shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-xl md:rounded-[2rem] md:p-6"
           >
             {(() => {
               const spotlight = getTournamentSpotlightByArticleSlug(article.slug);

@@ -39,7 +39,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
         <div className="mx-auto w-full max-w-[1380px] animate-fadeIn">
             <div className="grid gap-4 xl:grid-cols-[220px_minmax(0,1fr)_260px]">
                 <aside className="hidden xl:block">
-                    <div className="sticky top-24 rounded-[28px] border border-[#e5ece6] bg-white p-4 shadow-sm">
+                    <div className="sticky top-24 rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200">
                         <div className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">診断メニュー</div>
                         <div className="mt-3 space-y-1.5">
                             {diagnosisMenus.map((item) => {
@@ -89,7 +89,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                             </div>
                         </div>
 
-                        <div className="mt-6 rounded-[24px] bg-[#153d2b] p-4 text-white">
+                        <div className="mt-6 rounded-[24px] bg-[#153d2b] p-4 text-white shadow-sm">
                             <div className="text-sm font-black">もっと詳しく分析しませんか？</div>
                             <p className="mt-2 text-xs leading-6 text-white/75">
                                 プレミアムプランにアップグレードすると、より高度な分析と比較機能をご利用いただけます。
@@ -102,7 +102,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                 </aside>
 
                 <div className="min-w-0">
-                    <div className="mb-4 rounded-[24px] border border-[#e5ece6] bg-white p-4 shadow-sm md:mb-5 md:rounded-[28px] md:p-6">
+                    <div className="mb-4 rounded-[24px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mb-5 md:rounded-[28px] md:p-6">
                         {!isFirst && onBack && (
                             <button
                                 type="button"
@@ -153,8 +153,8 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                         </div>
                     </div>
 
-                    <div className="rounded-[24px] border border-[#e5ece6] bg-white p-4 shadow-sm md:rounded-[28px] md:p-8">
-                        <div className="mb-4 flex items-start gap-2 rounded-2xl border border-[#ead8a8] bg-[#fff7e5] px-4 py-3 text-sm text-[#9b621f]">
+                    <div className="rounded-[24px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[28px] md:p-8">
+                        <div className="mb-4 flex items-start gap-2 rounded-2xl bg-[#fff7e5] px-4 py-3 text-sm text-[#9b621f] ring-1 ring-[#ead8a8]">
                             <Info size={16} className="mt-0.5 shrink-0 text-[#c18e2f]" />
                             <div className="font-black">この診断はβ版です。精度向上中です。</div>
                         </div>
@@ -178,14 +178,14 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                         </button>
                         {isSidebarOpen && (
                             <div className="mt-2 space-y-2">
-                                <div className="rounded-2xl border border-[#e5ece6] bg-white p-4 shadow-sm">
+                                <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
                                     <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
                                         <Clock3 size={16} />
                                         所要時間
                                     </div>
                                     <p className="mt-2 text-xs leading-6 text-slate-600">約5〜7分。分かる範囲だけでも診断できます。</p>
                                 </div>
-                                <div className="rounded-2xl border border-[#e5ece6] bg-white p-4 shadow-sm">
+                                <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
                                     <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
                                         <FileText size={16} />
                                         わかること
@@ -204,7 +204,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
 
                 <aside className="hidden xl:block">
                     <div className="sticky top-24 space-y-4">
-                        <div className="rounded-[28px] border border-[#e5ece6] bg-white p-5 shadow-sm">
+                        <div className="rounded-[28px] bg-white p-5 shadow-sm ring-1 ring-slate-200">
                             <div className="text-lg font-black text-[#151719]">診断の概要</div>
                             <div className="mt-4 space-y-4 text-sm leading-7 text-slate-600">
                                 <div className="flex gap-3">
@@ -231,7 +231,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                             </div>
                         </div>
 
-                        <div className="rounded-[28px] border border-[#e5ece6] bg-white p-5 shadow-sm">
+                        <div className="rounded-[28px] bg-white p-5 shadow-sm ring-1 ring-slate-200">
                             <div className="flex items-center justify-between">
                                 <div className="text-lg font-black text-[#151719]">入力の進捗</div>
                                 <div className="text-sm font-black text-slate-500">{Math.round((progressIndex / progressLabels.length) * 100)}%</div>
@@ -244,7 +244,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                             </div>
                         </div>
 
-                        <div className="rounded-[28px] border border-[#e5ece6] bg-[#f7fbf8] p-5 shadow-sm">
+                        <div className="rounded-[28px] bg-[#f7fbf8] p-5 shadow-sm ring-1 ring-slate-200">
                             <div className="text-sm font-black text-[#151719]">入力のヒント</div>
                             <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600">
                                 <li>・分かる範囲での入力で大丈夫です</li>

@@ -294,11 +294,11 @@ export const ResultPage = () => {
     return (
         <div className="animate-fadeIn min-h-screen bg-[#f8fafc] pb-16 text-slate-900 md:pb-20">
             <div className="mx-auto w-full max-w-6xl px-4 pt-2 md:px-6">
-            <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 md:mb-6">
+            <div className="mb-4 rounded-2xl bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 ring-1 ring-amber-200 md:mb-6">
                 この診断はβ版です。精度向上中です。
             </div>
             {compareSource && (
-                <div className="mb-4 rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-4 md:mb-6">
+                <div className="mb-4 rounded-2xl bg-cyan-50 px-4 py-4 ring-1 ring-cyan-200 md:mb-6">
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
                     <div className="mt-2 text-base font-black text-trust-navy md:text-lg">{compareBannerTitle}</div>
                     <div className="mt-2 text-sm leading-6 text-slate-600">{compareBannerDescription}</div>
@@ -347,8 +347,8 @@ export const ResultPage = () => {
             )}
 
             {topModel && (
-                <section className="mb-6 rounded-[1.35rem] border border-slate-200 bg-white px-4 py-4 shadow-xl shadow-slate-200/40 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
-                    <div className="mb-4 rounded-[1.25rem] border border-golf-200 bg-golf-50 px-4 py-4 md:mb-5 md:rounded-[1.5rem] md:px-5">
+                <section className="mb-6 rounded-[1.35rem] bg-white px-4 py-4 shadow-xl shadow-slate-200/40 ring-1 ring-slate-200 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
+                    <div className="mb-4 rounded-[1.25rem] bg-golf-50 px-4 py-4 ring-1 ring-golf-200 md:mb-5 md:rounded-[1.5rem] md:px-5">
                         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{resultPrimaryMove.eyebrow}</div>
@@ -366,15 +366,15 @@ export const ResultPage = () => {
                     </div>
 
                     <div className="mb-4 grid gap-2 sm:grid-cols-3">
-                        <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
+                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-3">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">BEST MATCH</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{topModel.brand}</div>
                         </div>
-                        <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
+                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-3">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">MATCH SCORE</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{topModel.matchPercentage.toFixed(1)}%</div>
                         </div>
-                        <div className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-3.5 py-3">
+                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-3">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">NEXT STEP</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">
                                 {compareSource && comparePriorityCategory ? `${comparePriorityCategory} を保存 or 比較` : '保存 or 比較'}
