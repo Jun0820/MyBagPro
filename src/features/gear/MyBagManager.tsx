@@ -143,9 +143,11 @@ const ClubRow = ({
                     <div className="min-w-0 flex-1">
                         <div className="truncate text-sm font-black text-trust-navy">
                             {[entry.brand, entry.model].filter(Boolean).join(' ') || 'ヘッド未入力'}
-                            <span className="ml-2 text-[11px] font-bold text-slate-400">
-                                {!isPutter && entry.distance ? `${entry.distance}Y` : isPutter ? 'PT' : '飛距離未入力'}
-                            </span>
+                            {!isPutter && entry.shaft && (
+                                <span className="ml-2 hidden text-[11px] font-bold text-slate-400 md:inline">
+                                    {entry.shaft}
+                                </span>
+                            )}
                         </div>
                     </div>
                     <div className="shrink-0 text-right">
@@ -879,14 +881,14 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <summary className="flex cursor-pointer list-none items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-4 select-none [&::-webkit-details-marker]:hidden md:px-6">
                     <div className="flex items-center gap-3">
                         <Plus size={18} className="text-golf-600" />
-                        <h3 className="font-bold text-sm text-trust-navy uppercase tracking-tight">まとめて追加</h3>
+                        <div>
+                            <h3 className="font-bold text-sm text-trust-navy uppercase tracking-tight">まとめて追加</h3>
+                            <div className="text-[11px] font-bold text-slate-500">同じシリーズを数本まとめて入れるときだけ使います</div>
+                        </div>
                     </div>
                     <ChevronDown size={18} className="text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="space-y-6 p-4 md:p-6">
-                        <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600">
-                        同じシリーズをまとめて入れるときだけ使います。共通のヘッドとシャフトを決めて、必要な番手だけ選んで追加します。
-                        </div>
                     <div className="grid gap-3 sm:grid-cols-3">
                         {[
                             { label: 'アイアン 5I-PW', values: ['5I', '6I', '7I', '8I', '9I', 'PW'] },
@@ -901,8 +903,28 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             >
                                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Preset</div>
                                 <div className="mt-1 text-sm font-black text-trust-navy">{preset.label}</div>
+                                <div className="mt-1 text-[11px] font-bold text-slate-500">{preset.values.join(' / ')}</div>
                             </button>
                         ))}
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <div>
+                                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">選択中</div>
+                                <div className="mt-1 text-sm font-black text-trust-navy">
+                                    {selectedLofts.length > 0 ? `${selectedLofts.length}本` : 'まだ選択されていません'}
+                                </div>
+                            </div>
+                            {selectedLofts.length > 0 && (
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedLofts([])}
+                                    className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-600 transition hover:bg-slate-100"
+                                >
+                                    選択をリセット
+                                </button>
+                            )}
+                        </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
@@ -984,23 +1006,16 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
                         <div className="flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
                             <div className="text-sm font-bold text-slate-500">
-                                選択中 {selectedLofts.length} 本
+                                共通ヘッドとシャフトで <span className="font-black text-trust-navy">{selectedLofts.length}</span> 本を追加します
                             </div>
                             <div className="flex flex-col gap-2 sm:flex-row">
-                                <button
-                                    type="button"
-                                    onClick={() => setSelectedLofts([])}
-                                    className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-600 transition hover:bg-slate-50"
-                                >
-                                    選択をクリア
-                                </button>
                                 <button
                                     type="button"
                                     onClick={() => handleBatchAdd()}
                                     disabled={selectedLofts.length === 0 || isBagAtCapacity}
                                     className="inline-flex h-11 items-center justify-center rounded-xl bg-trust-navy px-4 text-sm font-black text-white transition hover:bg-slate-800 disabled:opacity-50"
                                 >
-                                    選択した番手を追加
+                                    選んだ番手を追加
                                 </button>
                             </div>
                         </div>
