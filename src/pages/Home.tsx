@@ -106,10 +106,10 @@ export const Home = () => {
   };
 
   return (
-    <div className="space-y-8 pb-8 md:space-y-12 md:pb-14">
+    <div className="space-y-7 pb-8 md:space-y-10 md:pb-12">
       <section className="overflow-hidden rounded-[20px] bg-white shadow-[0_28px_70px_-48px_rgba(15,15,16,0.35)] ring-1 ring-[#e3ece4] md:rounded-[32px]">
         <div className="grid gap-0 md:grid-cols-1 xl:grid-cols-[1.05fr_0.95fr]">
-          <div className="px-4 py-6 md:px-10 md:py-12 xl:py-14">
+          <div className="px-4 py-5 md:px-10 md:py-10 xl:py-12">
             <div className="text-xs font-bold text-[#c18e2f] md:text-sm">データでわかる、あなたのゴルフ</div>
             <h1 className="mt-3 max-w-[12ch] text-[clamp(1.8rem,4.5vw,5rem)] font-black leading-[1.05] tracking-tight text-[#121416] md:mt-4">
               そのクラブ、本当にあなたに合っていますか？
@@ -120,7 +120,7 @@ export const Home = () => {
               あなたに最適なクラブ選びをサポートします。
             </p>
 
-            <div className="mt-5 flex flex-col gap-2 sm:gap-3 md:mt-6">
+            <div className="mt-4 flex flex-col gap-2 sm:gap-3 md:mt-5">
               <button
                 onClick={() => handleDiagnosisStart('hero')}
                 className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-14 md:rounded-2xl md:px-6 md:text-base"
@@ -187,9 +187,9 @@ export const Home = () => {
 
       <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.65fr_0.75fr]">
         <div>
-          <div className="mb-3 flex items-center justify-between px-1 md:mb-4 md:px-0">
+          <div className="mb-3 flex items-center justify-between px-1 md:mb-3 md:px-0">
             <div>
-              <h2 className="text-lg font-black tracking-tight text-[#151719] md:text-2xl xl:text-3xl">おすすめコンテンツ</h2>
+              <h2 className="text-lg font-black tracking-tight text-[#151719] md:text-[1.75rem] xl:text-[2rem]">おすすめコンテンツ</h2>
             </div>
             <button onClick={() => navigate('/articles')} className="hidden items-center gap-2 text-sm font-black text-[#176534] md:inline-flex">
               すべて見る
@@ -241,7 +241,7 @@ export const Home = () => {
             診断をはじめる
           </button>
 
-          <div className="mt-4 rounded-lg bg-[#fbfcfb] p-3 ring-1 ring-[#e8efea] md:mt-6 md:rounded-[24px] md:bg-white/10 md:ring-1 md:ring-white/10 md:p-4">
+          <div className="mt-4 rounded-lg bg-[#fbfcfb] p-3 ring-1 ring-[#e8efea] md:mt-5 md:rounded-[24px] md:bg-white/10 md:ring-1 md:ring-white/10 md:p-4">
             <div className="text-xs font-black text-slate-700 md:text-base md:text-white">診断サンプル</div>
             <div className="mt-3 flex items-center gap-3 md:gap-5">
               <div className="flex h-20 w-20 items-center justify-center rounded-full border-8 border-[#e0e0e0] bg-white text-2xl font-black text-[#176534] md:h-24 md:w-24 md:border-[10px] md:border-white/35 md:text-3xl md:text-white">
@@ -273,7 +273,7 @@ export const Home = () => {
       <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.25fr_0.95fr]">
         <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-6">
           <div className="text-xs font-bold text-slate-500 md:text-sm">データが導く、最適なクラブ選び</div>
-          <h2 className="mt-2 text-xl font-black tracking-tight text-[#151719] md:text-3xl">プロのデータとあなたのデータを並べる</h2>
+          <h2 className="mt-2 text-xl font-black tracking-tight text-[#151719] md:text-[2rem]">プロのデータとあなたのデータを並べる</h2>
           <p className="mt-2 text-xs leading-6 text-slate-600 md:text-sm md:leading-7">
             プロのデータとあなたのデータを比較して、最適なセッティングを見つけましょう。
           </p>
@@ -338,10 +338,10 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="overflow-hidden rounded-lg bg-[linear-gradient(90deg,rgba(17,19,21,0.88),rgba(21,84,47,0.92))] px-4 py-5 text-white shadow-[0_24px_60px_-42px_rgba(15,15,16,0.7)] md:rounded-[28px] md:px-10 md:py-8">
+      <section className="overflow-hidden rounded-lg bg-[linear-gradient(90deg,rgba(17,19,21,0.88),rgba(21,84,47,0.92))] px-4 py-5 text-white shadow-[0_24px_60px_-42px_rgba(15,15,16,0.7)] md:rounded-[28px] md:px-10 md:py-7">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="text-lg font-black tracking-tight md:text-3xl">データで、あなたのゴルフはもっと良くなる。</div>
+            <div className="text-lg font-black tracking-tight md:text-[2rem]">データで、あなたのゴルフはもっと良くなる。</div>
             <div className="mt-1.5 text-xs leading-6 text-white/80 md:mt-2 md:text-sm md:leading-7">
               まずは無料診断で、最適なクラブ選びの第一歩を踏み出しましょう。
             </div>

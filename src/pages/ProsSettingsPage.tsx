@@ -128,13 +128,13 @@ export const ProsSettingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden space-y-6 pb-20 md:space-y-8">
+    <div className="min-h-screen overflow-x-hidden space-y-5 pb-20 md:space-y-7">
       <section className="rounded-[1.5rem] bg-white px-4 py-5 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:px-8 md:py-10">
         <div>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">PRO SETTINGS</div>
-              <h1 className="mt-2 text-[1.75rem] font-black tracking-tight text-trust-navy md:text-5xl">
+              <h1 className="mt-2 text-[1.75rem] font-black tracking-tight text-trust-navy md:text-[3.5rem]">
                 プロのクラブセッティング一覧
               </h1>
               <p className="mt-2 text-sm font-bold text-slate-500">
@@ -146,7 +146,7 @@ export const ProsSettingsPage = () => {
             </div>
           </div>
 
-          <div className="mt-4 rounded-[1.25rem] bg-slate-50 p-3 md:mt-6 md:rounded-[1.5rem] md:p-4">
+          <div className="mt-4 rounded-[1.25rem] bg-slate-50 p-3 md:mt-5 md:rounded-[1.5rem] md:p-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="flex items-center gap-3 rounded-[1rem] bg-white px-4 py-3 ring-1 ring-slate-200 md:flex-1">
                 <Search size={18} className="text-slate-400" />

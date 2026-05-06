@@ -214,8 +214,8 @@ export const MyGearPage = () => {
 
     return (
         <div className="min-h-screen pb-20 md:pb-0">
-            <main className="mx-auto max-w-[1380px] px-4 py-6 md:px-6 md:py-8">
-                <div className="mb-6 flex items-center gap-3">
+            <main className="mx-auto max-w-[1380px] px-4 py-5 md:px-6 md:py-7">
+                <div className="mb-5 flex items-center gap-3">
                     <button
                         onClick={handleClose}
                         className="inline-flex h-10 items-center gap-2 rounded-xl bg-slate-50 px-4 text-xs font-black text-slate-500 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30"
@@ -315,7 +315,7 @@ export const MyGearPage = () => {
                             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                                 <div>
                                     <div className="text-sm font-bold text-slate-500">あなたのゴルフデータと診断結果を確認できます。</div>
-                                    <h1 className="mt-2 text-3xl font-black tracking-tight text-[#151719] md:text-5xl">マイページ</h1>
+                                    <h1 className="mt-2 text-3xl font-black tracking-tight text-[#151719] md:text-[3.5rem]">マイページ</h1>
                                 </div>
                                 <div className="flex flex-col gap-3 lg:min-w-[360px]">
                                     {user.isLoggedIn && (
@@ -558,7 +558,7 @@ export const MyGearPage = () => {
                                             </button>
                                         ))
                                     ) : (
-                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-8 text-left ring-1 ring-[#c8d8cc]">
+                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-7 text-left ring-1 ring-[#c8d8cc]">
                                             <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
                                             <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
                                         </button>
@@ -594,7 +594,7 @@ export const MyGearPage = () => {
                                             </div>
                                         </button>
                                     )) : (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-6 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                                        <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
                                             まだ診断結果はありません。まずは1回診断するとここに残せます。
                                         </div>
                                     )}
@@ -645,7 +645,7 @@ export const MyGearPage = () => {
                                         </div>
                                     )}
                                     {favoriteClubs.length === 0 && recentlyViewed.length === 0 && recentHistory.length === 0 && (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-6 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                                        <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
                                             診断結果を残したり、お気に入り登録するとここからすぐ見直せます。
                                         </div>
                                     )}

@@ -304,7 +304,7 @@ export const ArticleDetailPage = () => {
     <div className="min-h-screen pb-20">
       <button
         onClick={() => navigate('/articles')}
-        className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy md:mb-6"
+        className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy md:mb-5"
       >
         <ArrowLeft size={16} />
         記事一覧へ戻る
@@ -324,12 +324,12 @@ export const ArticleDetailPage = () => {
           {article.seasonYear && <span>{article.seasonYear}シーズン</span>}
         </div>
         {article.excerpt && (
-          <p className="mt-5 rounded-[1.25rem] bg-slate-50 p-4 text-sm leading-6 text-slate-700 md:mt-6 md:rounded-[1.5rem] md:p-5 md:leading-7">
+          <p className="mt-4 rounded-[1.25rem] bg-slate-50 p-4 text-sm leading-6 text-slate-700 md:mt-5 md:rounded-[1.5rem] md:p-5 md:leading-7">
             {article.excerpt}
           </p>
         )}
         {article.relatedProfileSlug && article.relatedProfileName && (
-          <div className="mt-5 rounded-[1.25rem] bg-golf-50/60 p-4 ring-1 ring-golf-200 md:mt-6 md:rounded-[1.5rem] md:p-5">
+          <div className="mt-4 rounded-[1.25rem] bg-golf-50/60 p-4 ring-1 ring-golf-200 md:mt-5 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">PROFILE LINK</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {article.relatedProfileName}のクラブセッティングを見る
@@ -346,7 +346,7 @@ export const ArticleDetailPage = () => {
             </button>
           </div>
         )}
-        <div className="mt-6 space-y-5 md:mt-8 md:space-y-6">
+        <div className="mt-5 space-y-5 md:mt-6 md:space-y-5">
           {richBlocks.map((block, blockIndex) => {
             if (block.type === 'heading') {
               return (
@@ -438,7 +438,7 @@ export const ArticleDetailPage = () => {
           })}
         </div>
         {tournamentSpotlight && tournamentProfiles.length > 0 && (
-          <section className="mt-6 rounded-[1.25rem] bg-amber-50/70 p-4 ring-1 ring-amber-200 md:mt-8 md:rounded-[1.5rem] md:p-5">
+          <section className="mt-5 rounded-[1.25rem] bg-amber-50/70 p-4 ring-1 ring-amber-200 md:mt-6 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-amber-700">TOURNAMENT PLAYERS</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {tournamentSpotlight.tournamentName}で追いたい注目選手
@@ -466,7 +466,7 @@ export const ArticleDetailPage = () => {
           </section>
         )}
         {relatedProfile && (
-          <section className="mt-6 rounded-[1.25rem] bg-slate-50 p-4 ring-1 ring-slate-200 md:mt-8 md:rounded-[1.5rem] md:p-5">
+          <section className="mt-5 rounded-[1.25rem] bg-slate-50 p-4 ring-1 ring-slate-200 md:mt-6 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">SETTING SUMMARY</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {relatedProfile.name}のクラブセッティング概要
@@ -498,7 +498,7 @@ export const ArticleDetailPage = () => {
       </article>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-6 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-8 md:rounded-[2rem] md:p-8">
+        <section className="mt-5 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-6 md:rounded-[2rem] md:p-7">
           <div className="text-xs font-black text-slate-400">次に読みたい記事</div>
           <h2 className="mt-2 text-xl font-black text-trust-navy md:text-2xl">セッティングの見方を深める</h2>
           <div className="mt-4 grid gap-3 md:mt-5 md:gap-4 md:grid-cols-3">
