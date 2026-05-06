@@ -668,15 +668,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 </div>
             )}
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
+            <div className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-6">
                 <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <div className="rounded-2xl bg-slate-50 p-4">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1</div>
                                 <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">最初に代表番手を入れる</h3>
                             </div>
-                            <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right">
+                            <div className="rounded-2xl bg-white px-4 py-3 text-right ring-1 ring-slate-200/80">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">登録本数</div>
                                 <div className="mt-1 text-2xl font-black text-trust-navy">{sortedClubs.length}<span className="text-sm text-slate-400">/{MAX_BAG_CLUBS}</span></div>
                                 <div className="mt-1 text-xs font-bold text-slate-500">目標は14本</div>
@@ -692,8 +692,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                         onClick={() => handleQuickAddStarter(slot.category, slot.number)}
                                         disabled={isDone || isBagAtCapacity}
                                         className={cn(
-                                            'rounded-2xl border p-4 text-left transition-all',
-                                            isDone ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 bg-white hover:bg-slate-50',
+                                            'rounded-2xl p-4 text-left transition-all ring-1 ring-inset',
+                                            isDone ? 'bg-emerald-50 text-emerald-700 ring-emerald-200' : 'bg-white hover:bg-slate-50 ring-slate-200',
                                             (isDone || isBagAtCapacity) && 'cursor-default'
                                         )}
                                     >
@@ -713,7 +713,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         </div>
                     </div>
 
-                    <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                    <div className="rounded-2xl bg-[#fbfcfb] p-4">
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 3</div>
                         <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">最後に保存する</h3>
                         <div className="mt-3 space-y-3">
@@ -724,7 +724,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <Save size={14} />
                                 いまの内容を保存
                             </button>
-                            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
+                            <div className="rounded-xl bg-slate-50 px-3 py-3">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">使用ボール</div>
                                 <input
                                     list="mybag-ball-suggestions"
@@ -745,7 +745,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             </div>
 
             {/* クラブ一覧 & 編集部 */}
-            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
+            <div className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-6">
                 <div className="mb-4 flex flex-col justify-between gap-4 border-b border-slate-100 pb-3 md:flex-row md:items-center">
                     <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-golf-500 rounded-full"></div>
@@ -763,7 +763,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     />
                 </div>
 
-                <div className={cn('mb-4 rounded-2xl border px-4 py-3', saveStatusMeta.tone)}>
+                <div className={cn('mb-4 rounded-2xl px-4 py-3', saveStatusMeta.tone)}>
                     <div className="flex items-start gap-3">
                         <div className="mt-0.5 rounded-full bg-white/80 p-2 shadow-sm">
                             {saveStatusMeta.icon}
@@ -872,14 +872,14 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </button>
                 </div>
 
-                <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-500">
+                <div className="mt-3 px-1 text-xs leading-relaxed text-slate-500">
                     入力後に <span className="font-black text-trust-navy">変更を保存</span> を押すと、他の端末や再ログイン後でもそのまま再開しやすくなります。
                 </div>
             </div>
 
             {/* クラブ一括追加 */}
-            <details className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300">
-                <summary className="flex cursor-pointer list-none items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-4 select-none [&::-webkit-details-marker]:hidden md:px-6">
+            <details className="group overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200 transition-all duration-300">
+                <summary className="flex cursor-pointer list-none items-center justify-between bg-slate-50 px-4 py-4 select-none [&::-webkit-details-marker]:hidden md:px-6">
                     <div className="flex items-center gap-3">
                         <Plus size={18} className="text-golf-600" />
                         <div>
@@ -900,7 +900,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 key={preset.label}
                                 type="button"
                                 onClick={() => setSelectedLofts(preset.values)}
-                                className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left transition hover:bg-slate-50"
+                                className="rounded-2xl bg-white px-4 py-3 text-left transition hover:bg-slate-50 ring-1 ring-slate-200"
                             >
                                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Preset</div>
                                 <div className="mt-1 text-sm font-black text-trust-navy">{preset.label}</div>
@@ -908,7 +908,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             </button>
                         ))}
                     </div>
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                    <div className="rounded-2xl bg-slate-50 px-4 py-3">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">選択中</div>
@@ -920,7 +920,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <button
                                     type="button"
                                     onClick={() => setSelectedLofts([])}
-                                    className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-600 transition hover:bg-slate-100"
+                                    className="rounded-xl bg-white px-3 py-2 text-xs font-black text-slate-600 transition hover:bg-slate-100 ring-1 ring-slate-200"
                                 >
                                     選択をリセット
                                 </button>
