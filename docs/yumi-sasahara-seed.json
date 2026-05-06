@@ -1,0 +1,65 @@
+{
+  "profile": {
+    "slug": "yumi-sasahara",
+    "display_name": "笹原優美",
+    "kana_name": "ササハラ ユミ",
+    "nationality": "Japan",
+    "birthplace": "東京都",
+    "birth_date": "1992-08-04",
+    "height_cm": 162,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "TaylorMade Ball",
+    "feature_1": "公開ブランド構成",
+    "feature_2": "テーラーメイド中心",
+    "feature_3": "最新公開ギア概要",
+    "summary": "笹原優美のページでは、2026年5月時点で公開確認できる最新ギアブランド構成を整理しました。クラブとボールはテーラーメイド、ウェアはジュン&ロペ、シューズはナイキという公開情報が確認できます。現時点では14本の詳細番手構成までは公開確認できていないため、ブランド構成と選手プロフィールを正直にまとめたページとして公開しています。",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-06T00:00:00.000Z"
+  },
+  "bagItems": [],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://yumi-sasahara.amebaownd.com/pages/228451/profile",
+      "source_title": "笹原優美 Official Site Profile",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "クラブ契約テーラーメイド、ボール テーラーメイド、ウェア ジュン アンド ロペの公開確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://goltama.net/golfer/yumi-sasahara/",
+      "source_title": "ゴル魂！ 笹原優美 プロフィール",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "クラブ／テーラーメイド、ボール／テーラーメイド、ウェア／ジュンアンドロペ、シューズ／ナイキの公開確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/profile/15852/",
+      "source_title": "GDO 笹原優美プロフィール",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "生年月日、出身地、身長、ツアー経歴確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.alba.co.jp/tour/players/1706/",
+      "source_title": "ALBA 笹原優美プロフィール",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "基本プロフィール確認用。"
+    }
+  ],
+  "article": {
+    "slug": "yumi-sasahara-latest-public-gear-overview",
+    "title": "笹原優美の最新公開ギアブランド構成を掲載しました",
+    "excerpt": "笹原優美のページでは、2026年5月時点で公開確認できる最新ギアブランド構成を掲載しました。クラブとボールはテーラーメイド、ウェアはジュン&ロペ、シューズはナイキという公開情報を確認できます。",
+    "body": "笹原優美のページでは、2026年5月時点で公開確認できる最新ギアブランド構成を掲載しました。公開ソースからは、クラブとボールがテーラーメイド、ウェアがジュン&ロペ、シューズがナイキという組み合わせが確認できます。現時点では14本の詳細番手構成までは公開確認できていないため、ブランド構成とプロフィール文脈を先に押さえるページとして公開しています。今後より強い公開セッティングソースが確認でき次第、番手単位のページへ拡張していく前提です。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-06T19:15:00+09:00",
+    "related_profile_slug": "yumi-sasahara"
+  }
+}
