@@ -351,89 +351,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         return { normalizedClubs, profilePayload, clubPayloads, signature };
     };
 
-    const verifyClubWrite = async (userId: string, expectedIds: string[]) => {
-        const { data, error } = await withTimeout(
-            supabase
-                .from('clubs')
-                .select('id')
-                .eq('user_id', userId),
-            'clubs verify fetch',
-        );
-
-        assertSupabaseOk({ error }, 'clubs verify');
-
-        const savedIds = new Set((data || []).map((club) => club.id));
-        const missingIds = expectedIds.filter((id) => !savedIds.has(id));
-
-        if ((data || []).length !== expectedIds.length) {
-            throw new Error(`clubs verify: expected ${expectedIds.length} clubs but found ${(data || []).length}`);
-        }
-
-        if (expectedIds.length > 0 && missingIds.length > 0) {
-            throw new Error(`clubs verify: missing ${missingIds.length} saved clubs`);
-        }
-
-        return (data || []).length;
-    };
-
-    const replaceRemoteClubs = async (
-        userId: string,
-        clubPayloads: Array<{
-            id: string;
-            user_id: string;
-            category: string;
-            brand: string;
-            model: string;
-            shaft: string;
-            loft: string;
-            distance: string;
-        }>,
-        reason: 'auto' | 'manual',
-    ) => {
-        if (clubPayloads.length === 0) {
-            const deleteAllResult = await withTimeout(
-                supabase
-                    .from('clubs')
-                    .delete()
-                    .eq('user_id', userId),
-                `clubs clear during ${reason}-save`,
-            );
-            assertSupabaseOk(deleteAllResult, `clubs clear during ${reason}-save`);
-            return;
-        }
-
-        const deleteAllResult = await withTimeout(
-            supabase
-                .from('clubs')
-                .delete()
-                .eq('user_id', userId),
-            `clubs replace delete during ${reason}-save`,
-        );
-
-        assertSupabaseOk(
-            deleteAllResult,
-            `clubs replace delete during ${reason}-save`,
-        );
-
-        const clubsInsertResult = await withTimeout(
-            supabase
-                .from('clubs')
-                .insert(clubPayloads)
-                .select('id'),
-            `clubs replace insert during ${reason}-save`,
-        );
-
-        assertSupabaseOk(
-            clubsInsertResult,
-            `clubs replace insert during ${reason}-save`,
-        );
-
-        const insertedCount = clubsInsertResult.data?.length || 0;
-        if (insertedCount !== clubPayloads.length) {
-            throw new Error(`clubs replace insert during ${reason}-save: expected ${clubPayloads.length} rows but got ${insertedCount}`);
-        }
-    };
-
     const refreshUnsavedChanges = (activeUser = userRef.current, activeProfile = profileRef.current) => {
         if (!activeUser.isLoggedIn || !activeUser.id || !isInitialSyncComplete) {
             setHasUnsavedChanges(false);
@@ -519,22 +436,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             }
         }
 
-        const { normalizedClubs, profilePayload, clubPayloads, signature } = buildRemoteSavePayload(activeUser, activeProfile);
-        setLastSaveTargetClubCount(normalizedClubs.length);
-        setSaveDebugInfo({
-            expectedCount: normalizedClubs.length,
-            receivedCount: clubPayloads.length,
-            dedupedCount: clubPayloads.length,
-            verifiedCount: 0,
-            sampleClubs: buildSaveDebugSample(normalizedClubs),
-        });
-
-        if (reason === 'auto' && signature === lastRemoteSaveSignatureRef.current) {
-            if (saveStatus !== 'error') {
-                setSaveStatus('idle');
-            }
-            return true;
-        }
+        const { profilePayload } = buildRemoteSavePayload(activeUser, activeProfile);
 
         if (isRemoteSaveInFlightRef.current) {
             queuePendingRemoteSave(reason);
@@ -551,45 +453,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
 
         try {
-            if (normalizedClubs.some((club, index) => club.id !== activeProfile.myBag.clubs[index]?.id)) {
-                const nextProfile = {
-                    ...activeProfile,
-                    myBag: {
-                        ...activeProfile.myBag,
-                        clubs: normalizedClubs,
-                    },
-                };
-                profileRef.current = nextProfile;
-                setProfile(nextProfile);
-                persistLocalSnapshot(activeUser, nextProfile, activeResultData);
-            }
-
             const profileUpsertResult = await withTimeout(
                 supabase.from('profiles').upsert(profilePayload),
                 `profiles ${reason}-save`,
             );
             assertSupabaseOk(profileUpsertResult, `profiles ${reason}-save`);
-
-            await replaceRemoteClubs(activeUser.id, clubPayloads, reason);
-
-            const verifiedClubCount = await verifyClubWrite(activeUser.id, normalizedClubs.map((club) => club.id));
-
-            lastRemoteSaveSignatureRef.current = signature;
-            lastRemoteBagSnapshotRef.current = {
-                clubs: cloneClubs(normalizedClubs),
-                ball: activeProfile.myBag.ball || '',
-            };
-            setLastSavedClubCount(verifiedClubCount);
-            setSaveDebugInfo({
-                expectedCount: normalizedClubs.length,
-                receivedCount: clubPayloads.length,
-                dedupedCount: clubPayloads.length,
-                verifiedCount: verifiedClubCount,
-                sampleClubs: buildSaveDebugSample(normalizedClubs),
-            });
-            setHasUnsavedChanges(false);
-            setPendingBagChangeCount(0);
-            setPendingBagChangeIds([]);
             if (reason === 'manual') {
                 markSaveStatusSaved();
             } else if (saveStatus !== 'error') {
