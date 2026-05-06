@@ -155,10 +155,10 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
             </button>
 
             {isExpanded && (
-                <div className="border-t border-slate-100 px-4 py-4">
-                    <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="border-t border-slate-100 px-4 py-3">
+                    <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-[180px]">
-                            <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">番手</div>
+                            <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">番手を変更</div>
                             <div className="relative">
                                 <select
                                     value={currentSelectValue}
@@ -190,7 +190,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                         </button>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                         <BrandModelInput
                             key={`brand-${entry.id}-${entry.category}`}
                             brand={entry.brand}
@@ -208,7 +208,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
                             compact={true}
                         />
 
-                        <div className="grid gap-3 lg:grid-cols-[1fr_260px]">
+                        <div className="grid gap-3 xl:grid-cols-[1fr_280px]">
                             <div className="min-w-0">
                                 <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">シャフト</div>
                                 {!isPutter ? (
@@ -280,7 +280,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
 
                         <details className="rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2">
                             <summary className="cursor-pointer list-none text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                                気になる点をメモする
+                                メモを開く
                             </summary>
                             <input
                                 type="text"
