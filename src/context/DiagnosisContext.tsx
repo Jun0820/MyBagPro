@@ -983,9 +983,34 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             markSaveStatusSaved();
         } catch (error) {
             console.error('manual my bag save error:', error);
-            const fallbackVerification = activeUser.id
+            let fallbackVerification = activeUser.id
                 ? await verifyMyBagStateWithRetry(activeUser.id, normalizedClubs)
                 : { ok: false, verifiedCount: 0 };
+
+            if (!fallbackVerification.ok && activeUser.id) {
+                try {
+                    const directProfileUpsertResult = await withTimeout(
+                        supabase.from('profiles').upsert(profilePayload),
+                        'profiles direct my bag fallback save',
+                        30000,
+                    );
+                    assertSupabaseOk(directProfileUpsertResult, 'profiles direct my bag fallback save');
+
+                    await replaceRemoteClubs(activeUser.id, clubPayloads, 'manual');
+
+                    const verifiedCount = await verifyClubWrite(
+                        activeUser.id,
+                        normalizedClubs.map((club) => club.id),
+                    );
+
+                    fallbackVerification = {
+                        ok: true,
+                        verifiedCount,
+                    };
+                } catch (directFallbackError) {
+                    console.error('manual my bag direct fallback save error:', directFallbackError);
+                }
+            }
 
             if (fallbackVerification.ok) {
                 lastRemoteSaveSignatureRef.current = signature;
