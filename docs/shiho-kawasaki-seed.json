@@ -1,0 +1,107 @@
+{
+  "profile": {
+    "slug": "shiho-kawasaki",
+    "display_name": "川崎志穂",
+    "nationality": "Japan",
+    "birthplace": "千葉県",
+    "birth_date": "1996-05-09",
+    "height_cm": 171,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "",
+    "feature_1": "最新公開ギア情報",
+    "feature_2": "2026年カテゴリ構成",
+    "feature_3": "公開確認6カテゴリ",
+    "summary": "川崎志穂のページでは、2026年1月時点で公開確認できた最新ギアカテゴリ構成を整理しました。BRIDGESTONEのB2ドライバー、BX1STフェアウェイウッド、PING G440ハイブリッド、241CBアイアン、バイティング スピン ウェッジ、オデッセイ Square 2 Square ROSSIEパターまで確認できます。",
+    "latest_source_policy": "latest_confirmed_public_source",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-06T00:00:00.000Z",
+    "kana_name": "カワサキ シホ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Bridgestone",
+      "model_name": "BRIDGESTONE GOLF TOUR B B2 Driver",
+      "source_note": "Confirmed from my caddie player setting page dated 2026-01-16.",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Bridgestone",
+      "model_name": "BX BX1ST Fairway Wood",
+      "source_note": "Confirmed from my caddie player setting page dated 2026-01-16.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "Ping",
+      "model_name": "G440 Hybrid",
+      "source_note": "Confirmed from my caddie player setting page dated 2026-01-16.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Bridgestone",
+      "model_name": "241CB Iron",
+      "source_note": "Confirmed from my caddie player setting page dated 2026-01-16.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 5,
+      "brand": "Bridgestone",
+      "model_name": "Biting Spin Wedge",
+      "source_note": "Confirmed from my caddie player setting page dated 2026-01-16.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 6,
+      "brand": "Odyssey",
+      "model_name": "Square 2 Square TRI-HOT ROSSIE Putter",
+      "source_note": "Confirmed from my caddie player setting page dated 2026-01-16.",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://mycaddie.jp/tour/player/369/setting",
+      "source_title": "my caddie 川崎志穂のギアセッティング・使用ギア情報",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "2026年1月16日現在と記載の最新公開ギアカテゴリ構成。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/profile/16754/",
+      "source_title": "GDO 川崎志穂プロフィール",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "171cmの長身と260yd超のロングドライブという選手文脈確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://mycaddie.jp/news/tour/detail/TN024807",
+      "source_title": "宮里藍『インパクトゾーンが長い』 川崎志穂とともにB3MAXシリーズをアピール",
+      "checked_at": "2026-05-06T00:00:00.000Z",
+      "notes": "2024年ブリヂストンギア文脈確認用。"
+    }
+  ],
+  "article": {
+    "slug": "shiho-kawasaki-latest-public-gear",
+    "title": "川崎志穂の最新公開ギア構成を掲載しました",
+    "excerpt": "川崎志穂のページでは、2026年1月時点で公開確認できた最新ギアカテゴリ構成を掲載しました。ブリヂストン中心のロングゲームと、PINGハイブリッドの組み合わせが見えます。",
+    "body": "川崎志穂のページでは、2026年1月時点で公開確認できた最新ギアカテゴリ構成を掲載しました。BRIDGESTONE GOLF TOUR B B2ドライバー、BX1STフェアウェイウッド、PING G440ハイブリッド、241CBアイアン、バイティング スピン ウェッジ、オデッセイのSquare 2 Square ROSSIEパターという流れです。現時点では14本の詳細までは公開確認できていないため、カテゴリ単位で確認できる範囲を正直に整理したページとして公開しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-06T11:30:00+09:00",
+    "related_profile_slug": "shiho-kawasaki"
+  }
+}
