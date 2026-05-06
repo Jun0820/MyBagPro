@@ -782,24 +782,10 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 const cloudMergedClubs = clubData.length > 0
                     ? mergeCloudClubsWithSnapshot(clubData, snapshotClubs)
                     : [];
-                const cloudMergedById = new Map(cloudMergedClubs.map((club) => [club.id, club]));
-                const snapshotById = new Map(snapshotClubs.map((club) => [club.id, club]));
-                const mergedFromSnapshot = snapshotClubs.map((club) => ({
-                    ...club,
-                    ...(cloudMergedById.get(club.id) || {}),
-                    id: club.id,
-                    number: club.number,
-                    flex: club.flex,
-                    carryDistance: club.carryDistance,
-                    worry: club.worry,
-                }));
-                const cloudOnlyClubs = cloudMergedClubs.filter((club) => !snapshotById.has(club.id));
                 const mergedCloudClubs =
-                    snapshotClubs.length >= clubData.length && snapshotClubs.length > 0
-                        ? [...mergedFromSnapshot, ...cloudOnlyClubs]
-                        : (clubData.length > 0
-                            ? cloudMergedClubs
-                            : (profileRef.current.myBag.clubs.length === 0 ? snapshotClubs : profileRef.current.myBag.clubs));
+                    clubData.length > 0
+                        ? cloudMergedClubs
+                        : (profileRef.current.myBag.clubs.length === 0 ? snapshotClubs : profileRef.current.myBag.clubs);
                 const nextProfile = {
                     ...profileRef.current,
                     myBag: {
