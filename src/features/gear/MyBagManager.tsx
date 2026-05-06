@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
+import { Plus, Trash2, ChevronDown, Save, Loader2, CheckCircle2, ArrowRight } from 'lucide-react';
 import { type ClubSetting, type Club, TargetCategory } from '../../types/golf';
 import { BrandModelInput } from '../../components/BrandModelInput';
 import { DetailedShaftInput } from '../../components/DetailedShaftInput';
@@ -46,17 +46,7 @@ const generateClubId = () => {
     });
 };
 
-const ClubRow = ({
-    entry,
-    onUpdate,
-    onRemove,
-    isPending,
-}: {
-    entry: Club,
-    onUpdate: (updater: Club | ((prev: Club) => Club)) => void,
-    onRemove: () => void,
-    isPending?: boolean
-}) => {
+const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, isPending?: boolean }) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
     const [isExpanded, setIsExpanded] = useState(() => Boolean(isPending || !entry.brand || !entry.model));
 
@@ -77,7 +67,7 @@ const ClubRow = ({
 
     const handleShaftUpdate = (m: string, w: string, f: string) => {
         setShaftState({ model: m, weight: w, flex: f });
-        onUpdate((prev) => ({ ...prev, shaft: `${m} ${w ? w + 'g' : ''} ${f}`.trim() }));
+        onUpdate({ ...entry, shaft: `${m} ${w ? w + 'g' : ''} ${f}`.trim() });
     };
 
     const handleCategoryNumberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -85,13 +75,13 @@ const ClubRow = ({
         const parts = val.split(':');
         const newCat = parts[0] as TargetCategory;
         const newNum = parts[1] || '';
-        onUpdate((prev) => ({
-            ...prev,
+        onUpdate({
+            ...entry,
             category: newCat,
             number: newNum,
-            distance: newCat === TargetCategory.PUTTER ? '' : prev.distance,
-            carryDistance: newCat === TargetCategory.PUTTER ? '' : (prev.carryDistance || ''),
-        }));
+            distance: newCat === TargetCategory.PUTTER ? '' : entry.distance,
+            carryDistance: newCat === TargetCategory.PUTTER ? '' : (entry.carryDistance || ''),
+        });
     };
 
     const clubOptions = [
@@ -212,8 +202,8 @@ const ClubRow = ({
                                 entry.category === TargetCategory.IRON ? 'IRON' :
                                 entry.category === TargetCategory.WEDGE ? 'WEDGE' : 'PUTTER'
                             }
-                            onBrandChange={(val) => onUpdate((prev) => ({ ...prev, brand: val, model: '' }))}
-                            onModelChange={(val) => onUpdate((prev) => ({ ...prev, model: val }))}
+                            onBrandChange={(val) => onUpdate({ ...entry, brand: val, model: '' })}
+                            onModelChange={(val) => onUpdate({ ...entry, model: val })}
                             bgClass="bg-slate-50"
                             compact={true}
                         />
@@ -236,7 +226,7 @@ const ClubRow = ({
                                     <input
                                         type="text"
                                         value={entry.shaft}
-                                        onChange={(e) => onUpdate((prev) => ({ ...prev, shaft: e.target.value }))}
+                                        onChange={(e) => onUpdate({ ...entry, shaft: e.target.value })}
                                         placeholder="シャフト名"
                                         className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
                                     />
@@ -252,7 +242,7 @@ const ClubRow = ({
                                                 type="text"
                                                 placeholder="-"
                                                 value={entry.loft}
-                                                onChange={(e) => onUpdate((prev) => ({ ...prev, loft: e.target.value }))}
+                                                onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
                                                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400">°</span>
@@ -265,7 +255,7 @@ const ClubRow = ({
                                                 type="text"
                                                 placeholder="-"
                                                 value={entry.distance}
-                                                onChange={(e) => onUpdate((prev) => ({ ...prev, distance: e.target.value }))}
+                                                onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
                                                 className="w-full rounded-xl border border-golf-200 bg-golf-50/50 px-3 py-3 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-golf-400">Y</span>
@@ -278,7 +268,7 @@ const ClubRow = ({
                                                 type="text"
                                                 placeholder="-"
                                                 value={entry.carryDistance || ''}
-                                                onChange={(e) => onUpdate((prev) => ({ ...prev, carryDistance: e.target.value }))}
+                                                onChange={(e) => onUpdate({ ...entry, carryDistance: e.target.value })}
                                                 className="w-full rounded-xl border border-cyan-200 bg-cyan-50/50 px-3 py-3 text-center text-sm font-bold text-cyan-800 outline-none focus:border-cyan-500"
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-cyan-500">Y</span>
@@ -295,7 +285,7 @@ const ClubRow = ({
                             <input
                                 type="text"
                                 value={entry.worry || ''}
-                                onChange={(e) => onUpdate((prev) => ({ ...prev, worry: e.target.value }))}
+                                onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
                                 placeholder="捕まりすぎる、上がりすぎる、など"
                                 className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
                             />
@@ -321,20 +311,6 @@ interface MyBagManagerProps {
     lastCloudSavedAt?: string | null;
     lastSaveTargetClubCount?: number;
     lastSavedClubCount?: number;
-    saveDebugInfo?: {
-        expectedCount: number;
-        receivedCount: number;
-        dedupedCount: number;
-        verifiedCount: number;
-        sampleClubs: Array<{
-            id: string;
-            category: string;
-            number: string;
-            brand: string;
-            model: string;
-            distance: string;
-        }>;
-    } | null;
     onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -363,14 +339,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     lastCloudSavedAt = null,
     lastSaveTargetClubCount = 0,
     lastSavedClubCount = 0,
-    saveDebugInfo = null,
     onManualSave,
     onReloadFromCloud,
     onOpenBallDiagnosis,
     intakeMode = 'default',
 }) => {
     const latestSettingRef = useRef(setting);
-    const [, setRenderVersion] = useState(0);
     const [addCategory, setAddCategory] = useState('');
     const [selectedLofts, setSelectedLofts] = useState<string[]>([]);
     const [batchPreset, setBatchPreset] = useState({
@@ -389,7 +363,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const base = latestSettingRef.current;
         const next = typeof updater === 'function' ? updater(base) : updater;
         latestSettingRef.current = next;
-        setRenderVersion((prev) => prev + 1);
         onUpdate(next);
         return next;
     }, [onUpdate]);
@@ -400,9 +373,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         onManualSave?.(next);
     }, [onManualSave]);
 
-    const currentSetting = latestSettingRef.current;
-
-    const sortedClubs = [...currentSetting.clubs].sort((a, b) => {
+    const sortedClubs = [...setting.clubs].sort((a, b) => {
         // 1. Parse distances (extract digits only)
         const distA = a.distance ? parseInt(String(a.distance).replace(/\D/g, ''), 10) : 0;
         const distB = b.distance ? parseInt(String(b.distance).replace(/\D/g, ''), 10) : 0;
@@ -429,102 +400,16 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return 0;
     });
 
-    const registeredCategories = new Set(currentSetting.clubs.map((club) => club.category));
+    const registeredCategories = new Set(setting.clubs.map((club) => club.category));
     const starterSlots = [
         { title: 'ドライバー', category: TargetCategory.DRIVER, number: '1W', description: 'まずは1本。診断の精度が一番上がります。', color: 'bg-golf-600' },
         { title: 'アイアン', category: TargetCategory.IRON, number: '7I', description: '代表番手を1本入れるだけでも分析しやすくなります。', color: 'bg-blue-600' },
         { title: 'パター', category: TargetCategory.PUTTER, number: 'PT', description: '最後にスコアへ効きやすい番手です。', color: 'bg-slate-600' },
     ];
-    const completedStarterCount = starterSlots.filter((slot) => registeredCategories.has(slot.category)).length;
-    const starterPercent = Math.round((completedStarterCount / starterSlots.length) * 100);
     const missingEssentials = starterSlots.filter((slot) => !registeredCategories.has(slot.category));
-    const hasBall = Boolean(currentSetting.ball?.trim());
-    const remainingClubSlots = Math.max(0, MAX_BAG_CLUBS - currentSetting.clubs.length);
-    const isBagAtCapacity = currentSetting.clubs.length >= MAX_BAG_CLUBS;
-    const fairwayCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.FAIRWAY).length;
-    const utilityCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.UTILITY).length;
-    const wedgeCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.WEDGE).length;
-    const putterCount = currentSetting.clubs.filter((club) => club.category === TargetCategory.PUTTER).length;
-    const distanceEligibleClubs = currentSetting.clubs.filter((club) => club.category !== TargetCategory.PUTTER);
-    const clubsWithDistance = distanceEligibleClubs.filter((club) => String(club.distance || '').trim() !== '').length;
-    const distanceCoveragePercent = distanceEligibleClubs.length > 0 ? Math.round((clubsWithDistance / distanceEligibleClubs.length) * 100) : 0;
-    const bagCoverageTone =
-        currentSetting.clubs.length >= 10
-            ? `クラブは ${currentSetting.clubs.length} 本登録済みです。かなり全体像が見える状態です。`
-            : currentSetting.clubs.length >= 5
-            ? `クラブは ${currentSetting.clubs.length} 本登録済みです。代表番手はかなり見えています。`
-            : currentSetting.clubs.length > 0
-            ? `クラブは ${currentSetting.clubs.length} 本登録済みです。あと数本で分析の精度が上がります。`
-            : 'まだクラブが未登録です。まずは1Wか7Iからで十分です。';
-    const linkageTone = hasBall
-        ? `使用ボールは「${currentSetting.ball}」です。クラブとのつながりまで見ながら診断できます。`
-        : '使用ボールが未登録です。ボールまで入ると、診断と自動分析の精度がさらに上がります。';
-    const structureTone =
-        missingEssentials.length === 0
-            ? 'ドライバー・アイアン・パターがそろっているので、いまのバッグ傾向をかなり見やすい状態です。'
-            : `不足している代表番手は ${missingEssentials.map((slot) => slot.title).join(' / ')} です。ここを埋めると提案が安定します。`;
-    const compositionTone =
-        fairwayCount + utilityCount >= 3
-            ? `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本で流れを見やすい構成です。`
-            : `ロングゲーム側は FW ${fairwayCount} 本 / UT ${utilityCount} 本です。FWやUTを1本足すとつながりを見やすくなります。`;
-    const scoringTone =
-        wedgeCount >= 3 && putterCount >= 1
-            ? `ショートゲーム側は WEDGE ${wedgeCount} 本 + パターでかなり整っています。`
-            : `ショートゲーム側は WEDGE ${wedgeCount} 本 / パター ${putterCount} 本です。ウェッジやパターが入るとスコア改善の提案が具体的になります。`;
-    const distanceTone =
-        distanceCoveragePercent >= 70
-            ? `飛距離の入力は ${distanceCoveragePercent}% 入っています。番手間の差分までかなり見やすいです。`
-            : distanceCoveragePercent > 0
-            ? `飛距離の入力は ${distanceCoveragePercent}% です。代表番手の飛距離を増やすと分析がさらに具体化します。`
-            : '飛距離はまだ未入力です。1W / 7I / ウェッジあたりから入れると診断しやすくなります。';
-    const analysisHighlights = [
-        {
-            label: '構成',
-            value: `${currentSetting.clubs.length}本登録`,
-            note: bagCoverageTone,
-        },
-        {
-            label: '代表番手',
-            value: `${completedStarterCount}/${starterSlots.length}`,
-            note: structureTone,
-        },
-        {
-            label: '飛距離入力',
-            value: `${distanceCoveragePercent}%`,
-            note: distanceTone,
-        },
-    ];
-    const recommendedActions = [
-        missingEssentials[0]
-            ? {
-                title: `${missingEssentials[0].title} を先に追加`,
-                description: '不足している代表番手を埋めると、自動分析と診断結果が安定します。',
-                onClick: () => handleQuickAddStarter(missingEssentials[0].category, missingEssentials[0].number),
-            }
-            : null,
-        !hasBall
-            ? {
-                title: '使用ボールを登録する',
-                description: 'ボールまで入ると、クラブとの相性や診断導線が一気につながります。',
-                onClick: () => saveCurrentSetting(),
-            }
-            : {
-                title: 'ボール診断で相性を確認',
-                description: 'いまのバッグと使用ボールが本当に合っているか、すぐ見直せます。',
-                onClick: () => onOpenBallDiagnosis?.(),
-            },
-        distanceCoveragePercent < 70
-            ? {
-                title: '飛距離を追加して精度を上げる',
-                description: '1W / 7I / ウェッジの飛距離が入ると、番手ごとの差分提案が具体化します。',
-                onClick: () => saveCurrentSetting(),
-            }
-            : {
-                title: 'ボール診断で相性を確認',
-                description: 'バッグ全体が見えてきたら、次はボール相性を整えると次の見直しが決めやすくなります。',
-                onClick: () => onOpenBallDiagnosis?.(),
-            },
-    ].filter(Boolean) as Array<{ title: string; description: string; onClick: () => void }>;
+    const hasBall = Boolean(setting.ball?.trim());
+    const remainingClubSlots = Math.max(0, MAX_BAG_CLUBS - setting.clubs.length);
+    const isBagAtCapacity = setting.clubs.length >= MAX_BAG_CLUBS;
     const intakeBanner = (() => {
         if (intakeMode === 'missing-clubs') {
             return {
@@ -561,9 +446,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const saveStatusMeta = (() => {
         if (isManualSaveInFlight) {
             return {
-                label: '保存中',
-                title: '変更を保存しています',
-                description: 'いまの内容をクラウドへ反映しています。通常は数秒で完了します。',
+                label: 'SAVING NOW',
+                title: 'いま変更を保存しています',
+                description: '押した内容をクラウドへ反映しています。通常は数秒で完了します。',
                 tone: 'border-amber-200 bg-amber-50 text-amber-800',
                 icon: <Loader2 size={14} className="animate-spin" />,
             };
@@ -571,8 +456,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
         if (saveStatus === 'error') {
             return {
-                label: '要確認',
-                title: '保存を完了できませんでした',
+                label: 'SAVE CHECK',
+                title: '保存をもう一度確認してください',
                 description: saveErrorDetail || '入力内容は画面に残っています。下の保存ボタンからもう一度送れます。',
                 tone: 'border-rose-200 bg-rose-50 text-rose-800',
                 icon: <Save size={14} />,
@@ -585,7 +470,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 : 'まだクラウド保存が完了していません。';
             const pendingLabel = pendingBagChangeCount > 0 ? `未保存の変更: ${pendingBagChangeCount}件。` : '';
             return {
-                label: '未保存',
+                label: 'PENDING CHANGES',
                 title: 'まだクラウドへ反映していない変更があります',
                 description: `${pendingLabel} ${lastSavedLabel} 区切りの良いところで保存すると他の端末でも再開しやすくなります。`.trim(),
                 tone: 'border-cyan-200 bg-cyan-50 text-cyan-800',
@@ -596,7 +481,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         switch (saveStatus) {
             case 'saved':
                 return {
-                    label: '保存完了',
+                    label: 'SAVED',
                     title: '最新の内容を保存しました',
                     description: 'このままページを移動しても、今の入力内容から再開しやすい状態です。',
                     tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
@@ -604,29 +489,19 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 };
             default:
                 return {
-                    label: '下書き',
-                    title: '入力内容はこの端末に保持されています',
-                    description: '必要なタイミングで保存すれば、他の端末や再ログイン後も続きを開きやすくなります。',
+                    label: 'AUTO SAVE',
+                    title: '入力しながら下書きとして整えていけます',
+                    description: '途中でも構いません。まずは代表番手だけ入れて、あとから少しずつ増やせます。',
                     tone: 'border-slate-200 bg-slate-50 text-slate-700',
                     icon: <Save size={14} />,
                 };
         }
     })();
-    const shouldShowDebugCounts =
-        Boolean(saveDebugInfo) &&
-        (
-            saveStatus === 'error' ||
-            (saveDebugInfo?.expectedCount || 0) !== (saveDebugInfo?.verifiedCount || 0) ||
-            (saveDebugInfo?.receivedCount || 0) !== (saveDebugInfo?.dedupedCount || 0)
-        );
 
-    const updateClub = useCallback((clubId: string, updater: Club | ((prev: Club) => Club)) => {
+    const updateClub = useCallback((updated: Club) => {
         commitSetting((prev) => ({
             ...prev,
-            clubs: prev.clubs.map((club) => {
-                if (club.id !== clubId) return club;
-                return typeof updater === 'function' ? updater(club) : updater;
-            })
+            clubs: prev.clubs.map(c => c.id === updated.id ? updated : c)
         }));
     }, [commitSetting]);
 
@@ -803,10 +678,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
 
                     <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
-                            <Sparkles size={12} />
-                            STEP 3
-                        </div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 3</div>
                         <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">最後に保存する</h3>
                         <div className="mt-3 space-y-3">
                             <button
@@ -820,7 +692,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">使用ボール</div>
                                 <input
                                     list="mybag-ball-suggestions"
-                                    value={currentSetting.ball || ''}
+                                    value={setting.ball || ''}
                                     onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
                                     placeholder="例: Pro V1 / TP5"
                                     className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
@@ -835,162 +707,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
                 </div>
             </div>
-
-            {false && (
-            <>
-            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-                <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-                    <div className="space-y-2">
-                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">START HERE</div>
-                        <h3 className="text-xl font-black tracking-tight text-trust-navy">最初は3本だけでも大丈夫です</h3>
-                        <p className="max-w-2xl text-sm leading-relaxed text-slate-500">
-                            まずはドライバー、アイアン、パターのどれか1本から始めれば十分です。あとで少しずつ増やしていけます。
-                        </p>
-                    </div>
-                    <div className="min-w-[180px] rounded-2xl bg-slate-50 p-4">
-                        <div className="flex items-center justify-between text-[11px] font-bold text-slate-400">
-                            <span>まずはここから</span>
-                            <span>{starterPercent}%</span>
-                        </div>
-                        <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-slate-200">
-                            <div
-                                className="h-full rounded-full bg-gradient-to-r from-golf-500 to-emerald-500 transition-all"
-                                style={{ width: `${starterPercent}%` }}
-                            />
-                        </div>
-                        <div className="mt-2 text-xs font-medium text-slate-500">
-                            {completedStarterCount} / {starterSlots.length} クリア
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-                    {starterSlots.map((slot) => {
-                        const isDone = registeredCategories.has(slot.category);
-                        return (
-                            <button
-                                key={slot.title}
-                                onClick={() => handleQuickAddStarter(slot.category, slot.number)}
-                                disabled={isDone}
-                                className={cn(
-                                    'rounded-2xl border p-4 text-left transition-all',
-                                    isDone
-                                        ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-                                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
-                                )}
-                            >
-                                <div className="flex items-center justify-between">
-                                    <div className={cn('rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-white', slot.color)}>
-                                        {slot.number}
-                                    </div>
-                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                        {isDone ? '登録済み' : '先に追加'}
-                                    </div>
-                                </div>
-                                <div className="mt-3 text-base font-black text-trust-navy">{slot.title}</div>
-                                <div className="mt-1 text-xs leading-relaxed text-slate-500">{slot.description}</div>
-                            </button>
-                        );
-                    })}
-                </div>
-            </div>
-
-            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                    <div className="space-y-2">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
-                            <Sparkles size={12} />
-                            AUTO ANALYSIS
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-black tracking-tight text-trust-navy">登録した内容から、次に見るべき方向を整理します</h3>
-                            <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-500">
-                                まずは代表番手とボールが入っていれば十分です。登録した直後に、何を残し、何を見直すべきかが分かるようにしています。
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="rounded-2xl bg-slate-50 p-4 md:min-w-[240px]">
-                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">現在の使用ボール</div>
-                        <input
-                            list="mybag-ball-suggestions"
-                                    value={currentSetting.ball || ''}
-                                    onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
-                            placeholder="例: Pro V1 / TP5 / Chrome Tour"
-                            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
-                        />
-                        <datalist id="mybag-ball-suggestions">
-                            {BALL_MODEL_SUGGESTIONS.map((ballName) => (
-                                <option key={ballName} value={ballName} />
-                            ))}
-                        </datalist>
-                        <button
-                            onClick={() => saveCurrentSetting()}
-                            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-700 transition-colors hover:bg-slate-100"
-                        >
-                            <Save size={14} />
-                            ボールも含めて保存
-                        </button>
-                    </div>
-                </div>
-
-                <div className="mt-5 grid gap-3 md:grid-cols-3">
-                    {analysisHighlights.map((item) => (
-                        <div key={item.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                            <div className="flex items-start justify-between gap-3">
-                                <div>
-                                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{item.label}</div>
-                                    <div className="mt-2 text-2xl font-black text-trust-navy">{item.value}</div>
-                                </div>
-                                <div className="rounded-full bg-white p-2 text-golf-600 shadow-sm">
-                                    <Sparkles size={14} />
-                                </div>
-                            </div>
-                            <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.note}</p>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-5 grid gap-3 md:grid-cols-2">
-                    {[compositionTone, scoringTone, linkageTone].map((point) => (
-                        <div key={point} className="rounded-2xl border border-slate-200 bg-white p-4">
-                            <p className="text-sm leading-relaxed text-slate-600">{point}</p>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-5">
-                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                        <ArrowRight size={12} />
-                        NEXT STEP
-                    </div>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-                        {recommendedActions.map((action) => (
-                            <button
-                                key={action.title}
-                                onClick={action.onClick}
-                                className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left text-trust-navy transition-colors hover:bg-slate-50"
-                            >
-                                <div className="text-base font-black">{action.title}</div>
-                                <div className="mt-1 text-xs leading-relaxed text-slate-500">{action.description}</div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className={cn(
-                    "mt-5 rounded-2xl border px-4 py-3 text-sm font-bold",
-                    isBagAtCapacity
-                        ? "border-amber-200 bg-amber-50 text-amber-800"
-                        : "border-slate-200 bg-slate-50 text-slate-600"
-                )}>
-                    {isBagAtCapacity
-                        ? `クラブは最大 ${MAX_BAG_CLUBS} 本まで登録できます。いまは上限に達しています。`
-                        : `クラブは最大 ${MAX_BAG_CLUBS} 本まで登録できます。あと ${remainingClubSlots} 本追加できます。`}
-                </div>
-            </div>
-            </>
-            )}
 
             {/* クラブ一覧 & 編集部 */}
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
@@ -1020,33 +736,14 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-70">{saveStatusMeta.label}</div>
                             <div className="mt-1 text-sm font-black">{saveStatusMeta.title}</div>
                             <div className="mt-1 text-xs leading-relaxed opacity-80">{saveStatusMeta.description}</div>
-                            <div className="mt-2 text-[11px] font-bold opacity-70">
-                                保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
-                            </div>
-                            {shouldShowDebugCounts && saveDebugInfo && (
-                                <>
-                                    <div className="mt-1 text-[11px] font-bold opacity-70">
-                                        API受付 {saveDebugInfo.receivedCount}本 / 重複整理後 {saveDebugInfo.dedupedCount}本 / 検証 {saveDebugInfo.verifiedCount}本
-                                    </div>
-                                    {saveDebugInfo.sampleClubs.length > 0 && (
-                                        <div className="mt-2 rounded-xl border border-current/15 bg-white/60 px-3 py-2">
-                                            <div className="text-[10px] font-black uppercase tracking-[0.18em] opacity-70">保存対象の最後の4本</div>
-                                            <div className="mt-2 space-y-1 text-[11px] font-bold opacity-80">
-                                                {saveDebugInfo.sampleClubs.map((club) => (
-                                                    <div key={club.id} className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                                                        <span>{club.number || club.category}</span>
-                                                        <span>{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</span>
-                                                        <span>{club.distance ? `${club.distance}Y` : '距離未入力'}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                </>
-                            )}
                             <div className="mt-1 text-[11px] font-bold opacity-70">
                                 残り追加可能 {remainingClubSlots}本
                             </div>
+                            {lastSaveTargetClubCount > 0 && lastSavedClubCount > 0 && lastSaveTargetClubCount !== lastSavedClubCount && (
+                                <div className="mt-2 text-[11px] font-bold opacity-70">
+                                    保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
+                                </div>
+                            )}
                         </div>
                     </div>
                     {(hasUnsavedChanges || saveStatus === 'error') && (
@@ -1074,7 +771,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <MemoizedClubRow 
                             key={`${entry.id}-${entry.category}-${entry.number || ''}`} 
                             entry={entry} 
-                            onUpdate={(updater) => updateClub(entry.id, updater)} 
+                            onUpdate={updateClub} 
                             onRemove={() => removeClub(entry.id)} 
                             isPending={pendingBagChangeIds.includes(entry.id)}
                         />
