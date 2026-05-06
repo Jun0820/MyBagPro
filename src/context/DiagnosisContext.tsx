@@ -376,56 +376,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         return (data || []).length;
     };
 
-    const verifyMyBagStateWithRetry = async (
-        userId: string,
-        expectedClubs: UserProfile['myBag']['clubs'],
-        retries = 5,
-        delayMs = 1200,
-    ) => {
-        const expectedIds = expectedClubs.map((club) => club.id);
-        const expectedById = new Map(expectedClubs.map((club) => [club.id, club]));
-
-        for (let attempt = 0; attempt < retries; attempt += 1) {
-            const { data, error } = await supabase
-                .from('clubs')
-                .select('id,brand,model,shaft,loft,distance')
-                .eq('user_id', userId);
-
-            if (!error && data) {
-                const ids = new Set(data.map((club) => club.id));
-                const countMatches = data.length === expectedClubs.length;
-                const idsMatch = expectedIds.every((id) => ids.has(id));
-                const fieldMatches = data.every((club) => {
-                    const expected = expectedById.get(club.id);
-                    if (!expected) return false;
-                    return (
-                        (club.brand || '') === (expected.brand || '') &&
-                        (club.model || '') === (expected.model || '') &&
-                        (club.shaft || '') === (expected.shaft || '') &&
-                        (club.loft || '') === (expected.loft || '') &&
-                        (club.distance || '') === (expected.distance || '')
-                    );
-                });
-
-                if (countMatches && idsMatch && fieldMatches) {
-                    return {
-                        ok: true,
-                        verifiedCount: data.length,
-                    };
-                }
-            }
-
-            if (attempt < retries - 1) {
-                await new Promise((resolve) => window.setTimeout(resolve, delayMs));
-            }
-        }
-
-        return {
-            ok: false,
-            verifiedCount: 0,
-        };
-    };
-
     const replaceRemoteClubs = async (
         userId: string,
         clubPayloads: Array<{
@@ -922,14 +872,6 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             sampleClubs: buildSaveDebugSample(normalizedClubs),
         });
 
-        const refreshCloudStateAfterBagSave = async () => {
-            try {
-                await syncWithSupabase();
-            } catch (syncError) {
-                console.warn('post-save cloud sync warning:', syncError);
-            }
-        };
-
         try {
             const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
             if (sessionError) {
@@ -979,62 +921,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             setHasUnsavedChanges(false);
             setPendingBagChangeCount(0);
             setPendingBagChangeIds([]);
-            await refreshCloudStateAfterBagSave();
             markSaveStatusSaved();
         } catch (error) {
             console.error('manual my bag save error:', error);
-            let fallbackVerification = activeUser.id
-                ? await verifyMyBagStateWithRetry(activeUser.id, normalizedClubs)
-                : { ok: false, verifiedCount: 0 };
-
-            if (!fallbackVerification.ok && activeUser.id) {
-                try {
-                    const directProfileUpsertResult = await withTimeout(
-                        supabase.from('profiles').upsert(profilePayload),
-                        'profiles direct my bag fallback save',
-                        30000,
-                    );
-                    assertSupabaseOk(directProfileUpsertResult, 'profiles direct my bag fallback save');
-
-                    await replaceRemoteClubs(activeUser.id, clubPayloads, 'manual');
-
-                    const verifiedCount = await verifyClubWrite(
-                        activeUser.id,
-                        normalizedClubs.map((club) => club.id),
-                    );
-
-                    fallbackVerification = {
-                        ok: true,
-                        verifiedCount,
-                    };
-                } catch (directFallbackError) {
-                    console.error('manual my bag direct fallback save error:', directFallbackError);
-                }
-            }
-
-            if (fallbackVerification.ok) {
-                lastRemoteSaveSignatureRef.current = signature;
-                lastRemoteBagSnapshotRef.current = {
-                    clubs: cloneClubs(normalizedClubs),
-                    ball: requestedProfile.myBag.ball || '',
-                };
-                setLastSavedClubCount(fallbackVerification.verifiedCount);
-                setSaveDebugInfo({
-                    expectedCount: normalizedClubs.length,
-                    receivedCount: clubPayloads.length,
-                    dedupedCount: clubPayloads.length,
-                    verifiedCount: fallbackVerification.verifiedCount,
-                    sampleClubs: buildSaveDebugSample(normalizedClubs),
-                });
-                setHasUnsavedChanges(false);
-                setPendingBagChangeCount(0);
-                setPendingBagChangeIds([]);
-                await refreshCloudStateAfterBagSave();
-                markSaveStatusSaved();
-            } else {
-                setSaveStatus('error');
-                setSaveErrorDetail(error instanceof Error ? error.message : String(error));
-            }
+            setSaveStatus('error');
+            setSaveErrorDetail(error instanceof Error ? error.message : String(error));
         } finally {
             setIsManualSaveInFlight(false);
         }
