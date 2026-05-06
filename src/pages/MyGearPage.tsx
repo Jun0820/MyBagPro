@@ -218,7 +218,7 @@ export const MyGearPage = () => {
                 <div className="mb-6 flex items-center gap-3">
                     <button
                         onClick={handleClose}
-                        className="inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-black text-slate-500 transition hover:border-[#166534] hover:text-[#166534]"
+                        className="inline-flex h-10 items-center gap-2 rounded-xl bg-slate-50 px-4 text-xs font-black text-slate-500 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30"
                     >
                         <ArrowLeft size={16} />
                         HOME
@@ -240,7 +240,7 @@ export const MyGearPage = () => {
 
                 <div className="grid gap-6 lg:grid-cols-[230px_minmax(0,1fr)] xl:grid-cols-[250px_minmax(0,1fr)]">
                     <aside className="hidden space-y-4 lg:block">
-                        <div className="rounded-[28px] bg-white p-5 shadow-sm ring-1 ring-[#e9efe9]">
+                        <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-[#e9efe9] md:p-5">
                             <div className="flex items-center gap-4">
                                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eaede7] text-2xl font-black text-[#176534]">
                                     {profileInitial}
@@ -260,7 +260,7 @@ export const MyGearPage = () => {
 
                         </div>
 
-                        <div className="rounded-[28px] bg-white p-3 shadow-sm ring-1 ring-[#e9efe9]">
+                        <div className="rounded-[28px] bg-white p-2.5 shadow-sm ring-1 ring-[#e9efe9]">
                             <div className="space-y-1.5">
                                 {sidebarMenu.map((item) => {
                                     const Icon = item.icon;
@@ -311,7 +311,7 @@ export const MyGearPage = () => {
                     </aside>
 
                     <div className="min-w-0">
-                        <section className="mb-6 rounded-[28px] bg-white px-5 py-5 shadow-sm ring-1 ring-[#e9efe9] md:px-6">
+                        <section className="mb-5 rounded-[28px] bg-white px-4 py-4 shadow-sm ring-1 ring-[#e9efe9] md:px-6 md:py-5">
                             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                                 <div>
                                     <div className="text-sm font-bold text-slate-500">あなたのゴルフデータと診断結果を確認できます。</div>
@@ -321,13 +321,13 @@ export const MyGearPage = () => {
                                     {user.isLoggedIn && (
                                         <button
                                             onClick={handleLogout}
-                                            className="inline-flex min-h-[46px] items-center justify-center gap-2 self-start rounded-2xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-600 transition hover:border-[#166534] hover:text-[#166534] lg:self-end"
+                                            className="inline-flex min-h-[46px] items-center justify-center gap-2 self-start rounded-2xl bg-slate-50 px-4 text-sm font-black text-slate-600 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30 lg:self-end"
                                         >
                                             <LogOut size={16} />
                                             ログアウト
                                         </button>
                                     )}
-                                    <div className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 lg:hidden">
+                                    <div className="grid grid-cols-3 gap-2 rounded-2xl bg-slate-50 p-2 ring-1 ring-slate-200/70 lg:hidden">
                                         {sidebarMenu.map((item) => {
                                             const Icon = item.icon;
                                             return (
@@ -350,7 +350,7 @@ export const MyGearPage = () => {
                         </section>
 
                 {!user.isLoggedIn && (
-                    <section className="mb-6 rounded-[28px] border border-golf-200 bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-5 shadow-lg md:p-6">
+                    <section className="mb-5 rounded-[28px] bg-gradient-to-br from-golf-50 via-white to-emerald-50 p-5 shadow-lg ring-1 ring-golf-200/70 md:p-6">
                         <div className="flex flex-col gap-4">
                             <div className="space-y-2">
                                 <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
@@ -368,15 +368,15 @@ export const MyGearPage = () => {
                             </div>
 
                             <div className="grid grid-cols-3 gap-2 md:gap-3">
-                                <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
+                                <div className="rounded-2xl bg-white/80 px-3 py-3 text-left ring-1 ring-white/60 md:px-4">
                                     <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Save</div>
                                     <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">診断を保存</div>
                                 </div>
-                                <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
+                                <div className="rounded-2xl bg-white/80 px-3 py-3 text-left ring-1 ring-white/60 md:px-4">
                                     <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Cloud</div>
                                     <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">クラウド保存</div>
                                 </div>
-                                <div className="rounded-2xl border border-white bg-white/80 px-3 py-3 text-left md:px-4">
+                                <div className="rounded-2xl bg-white/80 px-3 py-3 text-left ring-1 ring-white/60 md:px-4">
                                     <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 md:text-[10px]">Resume</div>
                                     <div className="mt-1 text-xs font-black text-trust-navy md:text-sm">すぐ再開</div>
                                 </div>
@@ -393,7 +393,7 @@ export const MyGearPage = () => {
                             </button>
                             <button
                                 onClick={() => openBagTabWithFocus()}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50 md:min-h-[48px]"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-700 ring-1 ring-slate-200/80 transition-colors hover:bg-slate-50 md:min-h-[48px]"
                             >
                                 セッティング登録を始める
                             </button>
@@ -404,7 +404,7 @@ export const MyGearPage = () => {
                 {activeTab === 'view' && (
                     <div className="space-y-5 pb-8">
                         <section className="grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
-                            <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-6">
+                            <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
                                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                                     <div className="flex items-center gap-3">
                                         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eaede7] text-2xl font-black text-[#176534]">
@@ -420,7 +420,7 @@ export const MyGearPage = () => {
                                     <div className="flex flex-wrap gap-2">
                                         <button
                                             onClick={() => setActiveTab('profile')}
-                                            className="inline-flex min-h-[42px] items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-[#176534] transition hover:bg-slate-50"
+                                            className="inline-flex min-h-[42px] items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100"
                                         >
                                             <Edit3 size={14} />
                                             編集
@@ -428,7 +428,7 @@ export const MyGearPage = () => {
                                         {user.isLoggedIn && (
                                             <button
                                                 onClick={() => void handleLogout()}
-                                                className="inline-flex min-h-[42px] items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-slate-600 transition hover:bg-slate-50"
+                                                className="inline-flex min-h-[42px] items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-slate-600 ring-1 ring-slate-200/80 transition hover:bg-slate-100"
                                             >
                                                 <LogOut size={14} />
                                                 ログアウト
@@ -484,7 +484,7 @@ export const MyGearPage = () => {
                                         </div>
                                         <div className="mt-4 grid gap-2 sm:grid-cols-3">
                                             <button onClick={() => setActiveTab('clubs')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#176534] px-3 py-3 text-xs font-black text-white">クラブ編集</button>
-                                            <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-black text-trust-navy">診断する</button>
+                                            <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-slate-50 px-3 py-3 text-xs font-black text-trust-navy ring-1 ring-slate-200/80">診断する</button>
                                         </div>
                                     </div>
                                 </div>
@@ -499,7 +499,7 @@ export const MyGearPage = () => {
                                 </div>
                             </div>
 
-                            <section className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-6">
+                            <section className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
                                 <div className="flex items-center justify-between gap-3">
                                     <div>
                                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs</div>
@@ -507,14 +507,14 @@ export const MyGearPage = () => {
                                     </div>
                                     <button
                                         onClick={() => setActiveTab('clubs')}
-                                        className="inline-flex min-h-[42px] items-center justify-center rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-[#176534] transition hover:bg-slate-50"
+                                        className="inline-flex min-h-[42px] items-center justify-center rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100"
                                     >
                                         編集する
                                     </button>
                                 </div>
                                 <div className="mt-3 flex items-center justify-between gap-3">
                                     <div className="text-xs font-black text-slate-400">{Math.min(compactMyClubs.length, 14)}/14本</div>
-                                    <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 p-1 text-[11px] font-black">
+                                    <div className="inline-flex rounded-full bg-slate-50 p-1 text-[11px] font-black ring-1 ring-slate-200/80">
                                         <button
                                             onClick={() => setClubDistanceView('total')}
                                             className={cn('rounded-full px-3 py-1 transition', clubDistanceView === 'total' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
@@ -558,7 +558,7 @@ export const MyGearPage = () => {
                                             </button>
                                         ))
                                     ) : (
-                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl border border-dashed border-[#c8d8cc] bg-[#f8fbf8] px-4 py-8 text-left">
+                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-8 text-left ring-1 ring-[#c8d8cc]">
                                             <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
                                             <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
                                         </button>
@@ -568,7 +568,7 @@ export const MyGearPage = () => {
                         </section>
 
                         <section className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
-                            <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-6">
+                            <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
                                 <div className="flex items-center justify-between">
                                     <div className="text-xl font-black tracking-tight text-trust-navy">最近の診断結果</div>
                                     <div className="text-xs font-black text-slate-400">{recentHistory.length}件</div>
@@ -594,14 +594,14 @@ export const MyGearPage = () => {
                                             </div>
                                         </button>
                                     )) : (
-                                        <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-6 text-sm text-slate-500">
+                                        <div className="rounded-2xl bg-slate-50 px-4 py-6 text-sm text-slate-500 ring-1 ring-slate-200/70">
                                             まだ診断結果はありません。まずは1回診断するとここに残せます。
                                         </div>
                                     )}
                                 </div>
                             </div>
 
-                            <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-6">
+                            <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
                                 <div className="text-xl font-black tracking-tight text-trust-navy">見返したいもの</div>
                                 <div className="mt-4 space-y-4">
                                     {favoriteClubs.length > 0 && (
@@ -632,7 +632,7 @@ export const MyGearPage = () => {
                                                     <button
                                                         key={item.id}
                                                         onClick={() => openRecentlyViewed(item)}
-                                                        className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition-colors hover:bg-slate-100"
+                                                        className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-left ring-1 ring-slate-200/70 transition-colors hover:bg-slate-100"
                                                     >
                                                         <div className="min-w-0">
                                                             <div className="truncate text-sm font-black text-trust-navy">{item.title}</div>
@@ -645,7 +645,7 @@ export const MyGearPage = () => {
                                         </div>
                                     )}
                                     {favoriteClubs.length === 0 && recentlyViewed.length === 0 && recentHistory.length === 0 && (
-                                        <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-6 text-sm text-slate-500">
+                                        <div className="rounded-2xl bg-slate-50 px-4 py-6 text-sm text-slate-500 ring-1 ring-slate-200/70">
                                             診断結果を残したり、お気に入り登録するとここからすぐ見直せます。
                                         </div>
                                     )}

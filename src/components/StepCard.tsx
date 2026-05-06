@@ -107,7 +107,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                             <button
                                 type="button"
                                 onClick={onBack}
-                                className="mb-4 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-500 transition hover:border-[#166534] hover:text-[#166534] md:px-4 md:py-2.5 md:text-sm"
+                                className="mb-4 inline-flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-slate-500 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30 md:px-4 md:py-2.5 md:text-sm"
                             >
                                 <ArrowLeft size={14} />
                                 戻る
@@ -171,7 +171,7 @@ export const StepCard: React.FC<StepCardProps> = ({ title, subtitle, children, o
                     <div className="mt-4 xl:hidden">
                         <button
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                            className="flex w-full items-center justify-between rounded-2xl border border-[#e5ece6] bg-white px-4 py-3 text-sm font-black text-[#151719]"
+                            className="flex w-full items-center justify-between rounded-2xl bg-white px-4 py-3 text-sm font-black text-[#151719] ring-1 ring-slate-200/80"
                         >
                             診断の概要
                             <ChevronDown size={16} className={`transition-transform ${isSidebarOpen ? 'rotate-180' : ''}`} />

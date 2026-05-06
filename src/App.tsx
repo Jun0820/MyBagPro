@@ -58,7 +58,7 @@ const Sitemap = lazy(() =>
 );
 
 const RouteLoading = () => (
-  <div className="flex min-h-[40vh] items-center justify-center rounded-[2rem] border border-slate-200 bg-white text-sm font-bold text-slate-500 shadow-sm">
+  <div className="flex min-h-[40vh] items-center justify-center rounded-[2rem] bg-white text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200/80">
     ページを読み込んでいます...
   </div>
 );
@@ -163,8 +163,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(244,247,241,0.96))]" />
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-[#e6ece6] bg-white/92 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-4 md:px-8">
+      <header className="sticky top-0 z-50 bg-white/92 shadow-[0_8px_30px_-28px_rgba(15,23,42,0.45)] backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-3.5 md:px-8 md:py-4">
           <button onClick={() => navigate('/')} className="flex shrink-0 items-center gap-3">
             <img src="/branding/logo-wordmark-light.svg" alt="MyBag Pro" className="h-10 w-auto md:h-12" />
           </button>
@@ -186,21 +186,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="hidden items-center gap-2 md:gap-3 md:flex">
             <button
               onClick={() => setSearchOpen(true)}
-              className="hidden h-11 w-11 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700 transition hover:border-[#166534] hover:text-[#166534] md:inline-flex"
+              className="hidden h-11 w-11 items-center justify-center rounded-full bg-slate-50 text-slate-700 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30 md:inline-flex"
               aria-label="サイト内検索"
             >
               <Search size={18} />
             </button>
             <button
               onClick={() => navigate(user.isLoggedIn ? '/mypage' : '/articles')}
-              className="hidden h-11 w-11 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700 transition hover:border-[#166534] hover:text-[#166534] md:inline-flex"
+              className="hidden h-11 w-11 items-center justify-center rounded-full bg-slate-50 text-slate-700 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30 md:inline-flex"
               aria-label="通知"
             >
               <Bell size={18} />
             </button>
             <button
               onClick={handleAuthEntry}
-              className="inline-flex h-11 items-center justify-center rounded-xl border border-[#c9d7cb] bg-white px-4 text-sm font-black text-slate-800 transition hover:border-[#166534] hover:text-[#166534]"
+              className="inline-flex h-11 items-center justify-center rounded-xl bg-slate-50 px-4 text-sm font-black text-slate-800 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30"
             >
               {user.isLoggedIn ? 'マイページ' : 'ログイン'}
             </button>
@@ -215,14 +215,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setSearchOpen(true)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-700 ring-1 ring-slate-200/80"
               aria-label="サイト内検索"
             >
               <Search size={18} />
             </button>
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#dce6dd] bg-white text-slate-700"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-700 ring-1 ring-slate-200/80"
               aria-label="メニュー"
             >
               <Menu size={18} />
@@ -232,7 +232,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </header>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-x-4 top-[76px] z-[55] rounded-[28px] border border-[#dfe7df] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] md:hidden">
+        <div className="fixed inset-x-4 top-[76px] z-[55] rounded-[28px] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] ring-1 ring-slate-200/80 md:hidden">
           <div className="space-y-2">
             {navItems.map((item) => (
               <button
@@ -255,7 +255,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 setMobileMenuOpen(false);
                 handleAuthEntry();
               }}
-              className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-[#c9d7cb] bg-white px-4 text-sm font-black text-slate-800"
+              className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-slate-50 px-4 text-sm font-black text-slate-800 ring-1 ring-slate-200/80"
             >
               {user.isLoggedIn ? 'マイページ' : 'ログイン'}
             </button>
@@ -317,7 +317,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </footer>
 
-      <nav className="fixed inset-x-4 bottom-4 z-50 grid grid-cols-4 rounded-[24px] border border-[#dfe7df] bg-white/95 p-2 shadow-[0_24px_50px_-30px_rgba(15,15,16,0.45)] backdrop-blur md:hidden">
+      <nav className="fixed inset-x-4 bottom-4 z-50 grid grid-cols-4 rounded-[24px] bg-white/95 p-2 shadow-[0_24px_50px_-30px_rgba(15,15,16,0.45)] ring-1 ring-slate-200/80 backdrop-blur md:hidden">
         {mobileItems.map((item) => {
           const Icon = item.icon;
           const active = item.kind === 'menu' ? mobileMenuOpen : isActive(item.href);
@@ -347,10 +347,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {searchOpen && (
         <div className="fixed inset-0 z-[58] bg-black/40 p-3 backdrop-blur-sm md:p-6" onClick={() => setSearchOpen(false)}>
           <div
-            className="mx-auto max-w-3xl rounded-[28px] border border-[#dfe7df] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] md:p-6"
+            className="mx-auto max-w-3xl rounded-[28px] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] ring-1 ring-slate-200/80 md:p-6"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <div className="flex items-center gap-3 rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200/70">
               <Search size={18} className="text-slate-400" />
               <input
                 autoFocus
@@ -361,7 +361,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               />
               <button
                 onClick={() => setSearchOpen(false)}
-                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-500"
+                className="rounded-xl bg-white px-3 py-2 text-xs font-black text-slate-500 ring-1 ring-slate-200/80"
               >
                 閉じる
               </button>
@@ -372,7 +372,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Pro Settings</div>
                 <div className="mt-2 space-y-2">
                   {searchLoading && searchProfiles.length === 0 ? (
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">読み込み中です...</div>
+                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">読み込み中です...</div>
                   ) : normalizedQuery && matchedProfiles.length > 0 ? (
                     matchedProfiles.map((profile) => (
                       <button
@@ -381,14 +381,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                           setSearchOpen(false);
                           navigate(`/settings/pros/${profile.slug}`);
                         }}
-                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition hover:bg-slate-100"
+                        className="w-full rounded-2xl bg-slate-50 px-4 py-3 text-left ring-1 ring-slate-200/70 transition hover:bg-slate-100"
                       >
                         <div className="text-sm font-black text-trust-navy">{profile.name}</div>
                         <div className="mt-1 text-xs text-slate-500">{profile.contractDisplay} / {profile.ball}</div>
                       </button>
                     ))
                   ) : (
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">
+                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
                       {normalizedQuery ? '該当するプロはまだ見つかりませんでした。' : '選手名やブランド名で検索できます。'}
                     </div>
                   )}
@@ -399,7 +399,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Articles</div>
                 <div className="mt-2 space-y-2">
                   {searchLoading && searchArticles.length === 0 ? (
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">読み込み中です...</div>
+                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">読み込み中です...</div>
                   ) : normalizedQuery && matchedArticles.length > 0 ? (
                     matchedArticles.map((article) => (
                       <button
@@ -408,14 +408,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                           setSearchOpen(false);
                           navigate(`/articles/${article.slug}`);
                         }}
-                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition hover:bg-slate-100"
+                        className="w-full rounded-2xl bg-slate-50 px-4 py-3 text-left ring-1 ring-slate-200/70 transition hover:bg-slate-100"
                       >
                         <div className="text-sm font-black text-trust-navy">{article.title}</div>
                         <div className="mt-1 line-clamp-2 text-xs text-slate-500">{article.excerpt}</div>
                       </button>
                     ))
                   ) : (
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-500">
+                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
                       {normalizedQuery ? '該当する記事はまだ見つかりませんでした。' : '悩みやクラブ名でも記事を探せます。'}
                     </div>
                   )}
