@@ -171,8 +171,8 @@ const ClubRow = ({
 
             {isExpanded && (
                 <div className="border-t border-slate-100 px-4 py-3">
-                    <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                        <div className="min-w-[180px]">
+                    <div className="mb-3 grid gap-3 lg:grid-cols-[220px_1fr]">
+                        <div>
                             <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">番手を変更</div>
                             <div className="relative">
                                 <select
@@ -190,19 +190,50 @@ const ClubRow = ({
                                 <ChevronDown size={16} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
                             </div>
                         </div>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                if (window.confirm(`${entry.brand || 'このクラブ'} を削除してもよろしいですか？`)) {
-                                    onRemove();
-                                }
-                            }}
-                            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-4 text-xs font-black text-rose-700 transition-colors hover:bg-rose-100"
-                            title="削除"
-                        >
-                            <Trash2 size={14} />
-                            このクラブを削除
-                        </button>
+
+                        {!isPutter && (
+                            <div className="grid grid-cols-3 gap-2">
+                                <div>
+                                    <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">総距離</div>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder="-"
+                                            value={entry.distance}
+                                            onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
+                                            className="w-full rounded-xl border border-golf-200 bg-golf-50/50 px-3 py-3 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
+                                        />
+                                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-golf-400">Y</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">キャリー</div>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder="-"
+                                            value={entry.carryDistance || ''}
+                                            onChange={(e) => onUpdate({ ...entry, carryDistance: e.target.value })}
+                                            className="w-full rounded-xl border border-cyan-200 bg-cyan-50/50 px-3 py-3 text-center text-sm font-bold text-cyan-800 outline-none focus:border-cyan-500"
+                                        />
+                                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-cyan-500">Y</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">ロフト</div>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder="-"
+                                            value={entry.loft}
+                                            onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
+                                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
+                                        />
+                                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400">°</span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="space-y-3">
@@ -247,50 +278,6 @@ const ClubRow = ({
                                     />
                                 )}
                             </div>
-
-                            {!isPutter && (
-                                <div className="grid grid-cols-3 gap-2">
-                                    <div>
-                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">ロフト</div>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                placeholder="-"
-                                                value={entry.loft}
-                                                onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
-                                                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
-                                            />
-                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400">°</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">総距離</div>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                placeholder="-"
-                                                value={entry.distance}
-                                                onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
-                                                className="w-full rounded-xl border border-golf-200 bg-golf-50/50 px-3 py-3 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
-                                            />
-                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-golf-400">Y</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">キャリー</div>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                placeholder="-"
-                                                value={entry.carryDistance || ''}
-                                                onChange={(e) => onUpdate({ ...entry, carryDistance: e.target.value })}
-                                                className="w-full rounded-xl border border-cyan-200 bg-cyan-50/50 px-3 py-3 text-center text-sm font-bold text-cyan-800 outline-none focus:border-cyan-500"
-                                            />
-                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-cyan-500">Y</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
                         </div>
 
                         <details className="rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2">
@@ -305,6 +292,20 @@ const ClubRow = ({
                                 className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-900 outline-none focus:border-golf-500"
                             />
                         </details>
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                if (window.confirm(`${entry.brand || 'このクラブ'} を削除してもよろしいですか？`)) {
+                                    onRemove();
+                                }
+                            }}
+                            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-4 text-xs font-black text-rose-700 transition-colors hover:bg-rose-100"
+                            title="削除"
+                        >
+                            <Trash2 size={14} />
+                            このクラブを削除
+                        </button>
                     </div>
                 </div>
             )}
