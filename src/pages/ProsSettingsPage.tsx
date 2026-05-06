@@ -129,7 +129,7 @@ export const ProsSettingsPage = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden space-y-6 pb-20 md:space-y-8">
-      <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-5 shadow-sm md:rounded-[2rem] md:px-8 md:py-10">
+      <section className="rounded-[1.5rem] bg-white px-4 py-5 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:px-8 md:py-10">
         <div>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -146,9 +146,9 @@ export const ProsSettingsPage = () => {
             </div>
           </div>
 
-          <div className="mt-4 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-3 md:mt-6 md:rounded-[1.5rem] md:p-4">
+          <div className="mt-4 rounded-[1.25rem] bg-slate-50 p-3 md:mt-6 md:rounded-[1.5rem] md:p-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
-              <div className="flex items-center gap-3 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 md:flex-1">
+              <div className="flex items-center gap-3 rounded-[1rem] bg-white px-4 py-3 ring-1 ring-slate-200 md:flex-1">
                 <Search size={18} className="text-slate-400" />
                 <input
                   value={searchText}
@@ -174,7 +174,7 @@ export const ProsSettingsPage = () => {
                     setSearchText('');
                     applyFilters({ category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
                   }}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                  className="rounded-full bg-white px-4 py-3 text-sm font-black text-slate-600 ring-1 ring-slate-200 transition hover:bg-slate-50"
                 >
                   クリア
                 </button>
@@ -193,7 +193,7 @@ export const ProsSettingsPage = () => {
                       className={`shrink-0 rounded-full px-4 py-2 text-sm font-black transition ${
                         activeCategory === category.id
                           ? 'bg-trust-navy text-white'
-                          : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                          : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       {category.label}
@@ -214,7 +214,7 @@ export const ProsSettingsPage = () => {
                       className={`shrink-0 rounded-full px-4 py-2 text-sm font-black transition ${
                         activeKana === group.id
                           ? 'bg-golf-700 text-white'
-                          : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                          : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       {group.label}
@@ -235,7 +235,7 @@ export const ProsSettingsPage = () => {
                       className={`shrink-0 rounded-full px-4 py-2 text-sm font-black transition ${
                         activeHeadSpeed === group.id
                           ? 'bg-emerald-600 text-white'
-                          : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                          : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       {group.label}
@@ -250,13 +250,13 @@ export const ProsSettingsPage = () => {
 
       <section className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
         {isLoading && (
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-sm font-bold text-slate-500">
+          <div className="rounded-[2rem] bg-white p-8 text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200">
             掲載プロフィールを読み込んでいます...
           </div>
         )}
 
         {!isLoading && profiles.length === 0 && (
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-8">
+          <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
             <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">読み込みエラー</div>
             <h2 className="mt-3 text-2xl font-black text-trust-navy">プロフィールを取得できませんでした。</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">

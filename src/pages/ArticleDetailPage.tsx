@@ -290,11 +290,11 @@ export const ArticleDetailPage = () => {
   }, [article?.relatedProfileSlug, article?.slug]);
 
   if (isLoading) {
-    return <div className="rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">記事を読み込んでいます...</div>;
+    return <div className="rounded-[1.5rem] bg-white p-8 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-10">記事を読み込んでいます...</div>;
   }
 
   if (!article) {
-    return <div className="rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">記事が見つかりません。</div>;
+    return <div className="rounded-[1.5rem] bg-white p-8 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-10">記事が見つかりません。</div>;
   }
 
   const tournamentSpotlight = getTournamentSpotlightByArticleSlug(article.slug);
@@ -310,7 +310,7 @@ export const ArticleDetailPage = () => {
         記事一覧へ戻る
       </button>
 
-      <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-10">
+      <article className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-10">
         <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-[11px] font-black tracking-[0.15em] text-slate-500">
           <FileText size={14} />
           {articleTypeLabel[article.articleType]}
@@ -329,7 +329,7 @@ export const ArticleDetailPage = () => {
           </p>
         )}
         {article.relatedProfileSlug && article.relatedProfileName && (
-          <div className="mt-5 rounded-[1.25rem] border border-golf-200 bg-golf-50/60 p-4 md:mt-6 md:rounded-[1.5rem] md:p-5">
+          <div className="mt-5 rounded-[1.25rem] bg-golf-50/60 p-4 ring-1 ring-golf-200 md:mt-6 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">PROFILE LINK</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {article.relatedProfileName}のクラブセッティングを見る
@@ -373,7 +373,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="rounded-[1.25rem] border border-[#e4ece5] bg-[#f8faf8] p-4 md:rounded-[1.5rem] md:p-5"
+                  className="rounded-[1.25rem] bg-[#f8faf8] p-4 ring-1 ring-[#e4ece5] md:rounded-[1.5rem] md:p-5"
                 >
                   <ul className="space-y-2.5">
                     {block.items.map((item, itemIndex) => (
@@ -391,7 +391,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="rounded-[1.25rem] border border-golf-200 bg-golf-50/60 p-4 md:rounded-[1.5rem] md:p-5"
+                  className="rounded-[1.25rem] bg-golf-50/60 p-4 ring-1 ring-golf-200 md:rounded-[1.5rem] md:p-5"
                 >
                   <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">{block.title}</div>
                   <div className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-700 md:leading-8">{block.content}</div>
@@ -403,7 +403,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="overflow-hidden rounded-[1.25rem] border border-[#dbe7dd] bg-white shadow-sm md:rounded-[1.5rem]"
+                  className="overflow-hidden rounded-[1.25rem] bg-white shadow-sm ring-1 ring-[#dbe7dd] md:rounded-[1.5rem]"
                 >
                   <div className="border-b border-[#edf2ee] bg-[#f7faf7] px-4 py-3 text-[11px] font-black tracking-[0.14em] text-[#176534]">
                     図で整理
@@ -425,7 +425,7 @@ export const ArticleDetailPage = () => {
             return (
               <figure
                 key={`${block.type}-${blockIndex}`}
-                className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white md:rounded-[1.5rem]"
+                className="overflow-hidden rounded-[1.25rem] bg-white ring-1 ring-slate-200 md:rounded-[1.5rem]"
               >
                 <img src={block.url} alt={block.alt} className="h-auto w-full object-cover" />
                 {block.caption && (
@@ -438,7 +438,7 @@ export const ArticleDetailPage = () => {
           })}
         </div>
         {tournamentSpotlight && tournamentProfiles.length > 0 && (
-          <section className="mt-6 rounded-[1.25rem] border border-amber-200 bg-amber-50/70 p-4 md:mt-8 md:rounded-[1.5rem] md:p-5">
+          <section className="mt-6 rounded-[1.25rem] bg-amber-50/70 p-4 ring-1 ring-amber-200 md:mt-8 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-amber-700">TOURNAMENT PLAYERS</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {tournamentSpotlight.tournamentName}で追いたい注目選手
@@ -466,7 +466,7 @@ export const ArticleDetailPage = () => {
           </section>
         )}
         {relatedProfile && (
-          <section className="mt-6 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 md:mt-8 md:rounded-[1.5rem] md:p-5">
+          <section className="mt-6 rounded-[1.25rem] bg-slate-50 p-4 ring-1 ring-slate-200 md:mt-8 md:rounded-[1.5rem] md:p-5">
             <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">SETTING SUMMARY</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {relatedProfile.name}のクラブセッティング概要
@@ -488,7 +488,7 @@ export const ArticleDetailPage = () => {
               </button>
               <button
                 onClick={() => navigate(`/settings/pros?category=${relatedProfile.category}`)}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700 transition hover:bg-slate-100"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100"
               >
                 {relatedProfile.categoryLabel}をもっと見る
               </button>
@@ -498,7 +498,7 @@ export const ArticleDetailPage = () => {
       </article>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-4 md:mt-8 md:rounded-[2rem] md:p-8">
+        <section className="mt-6 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-8 md:rounded-[2rem] md:p-8">
           <div className="text-xs font-black text-slate-400">次に読みたい記事</div>
           <h2 className="mt-2 text-xl font-black text-trust-navy md:text-2xl">セッティングの見方を深める</h2>
           <div className="mt-4 grid gap-3 md:mt-5 md:gap-4 md:grid-cols-3">
@@ -513,7 +513,7 @@ export const ArticleDetailPage = () => {
                   });
                   navigate(`/articles/${relatedArticle.slug}`);
                 }}
-                className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:-translate-y-0.5 hover:bg-white md:rounded-[1.5rem] md:p-5"
+                className="rounded-[1.25rem] bg-slate-50 p-4 text-left ring-1 ring-slate-200 transition-all hover:-translate-y-0.5 hover:bg-white md:rounded-[1.5rem] md:p-5"
               >
                 <div className="text-[11px] font-black tracking-[0.12em] text-slate-500">
                   {articleTypeLabel[relatedArticle.articleType]}

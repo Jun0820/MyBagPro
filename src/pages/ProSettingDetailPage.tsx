@@ -374,7 +374,7 @@ export const ProSettingDetailPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-[60vh] rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">
+      <div className="min-h-[60vh] rounded-[1.5rem] bg-white p-8 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-10">
         <h1 className="text-3xl font-black text-trust-navy">セッティングを読み込んでいます。</h1>
       </div>
     );
@@ -382,7 +382,7 @@ export const ProSettingDetailPage = () => {
 
   if (!setting) {
     return (
-      <div className="min-h-[60vh] rounded-[1.5rem] border border-slate-200 bg-white p-8 text-center md:rounded-[2rem] md:p-10">
+      <div className="min-h-[60vh] rounded-[1.5rem] bg-white p-8 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-10">
         <h1 className="text-3xl font-black text-trust-navy">セッティングが見つかりません。</h1>
         <button
           onClick={() => navigate('/settings/pros')}
@@ -512,7 +512,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
+        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-6">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
@@ -524,7 +524,7 @@ export const ProSettingDetailPage = () => {
           </div>
           <div className="mt-3 grid gap-2 md:mt-5 md:grid-cols-3">
             {statCards.map((card) => (
-              <div key={card.label} className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 md:rounded-[1.25rem] md:py-3.5">
+              <div key={card.label} className="rounded-[1rem] bg-slate-50 px-4 py-3 md:rounded-[1.25rem] md:py-3.5">
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{card.label}</div>
                 <div className="mt-1 text-[1.55rem] font-black leading-none text-trust-navy md:mt-1.5 md:text-2xl">{card.value}</div>
               </div>
@@ -534,13 +534,13 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
+        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
               <p className="mt-2 text-sm leading-6 text-slate-500">飛距離はキャリーと総距離を切り替えて確認できます。</p>
             </div>
-            <div className="inline-flex rounded-full border border-slate-200 bg-slate-100 p-1 self-start">
+            <div className="inline-flex self-start rounded-full bg-slate-100 p-1 ring-1 ring-slate-200">
               {[
                 { id: 'carry', label: 'キャリー' },
                 { id: 'total', label: '総距離' },
@@ -559,7 +559,7 @@ export const ProSettingDetailPage = () => {
               ))}
             </div>
           </div>
-          <div className="mt-3 overflow-hidden rounded-[1.125rem] border border-slate-200 md:mt-5 md:rounded-[1.5rem]">
+          <div className="mt-3 overflow-hidden rounded-[1.125rem] ring-1 ring-slate-200 md:mt-5 md:rounded-[1.5rem]">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
               {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
@@ -659,7 +659,7 @@ export const ProSettingDetailPage = () => {
 
       {setting.sources.length > 0 && (
         <section className="mt-4 md:mt-6">
-          <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4 md:rounded-[2rem] md:p-6">
+          <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-6">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
@@ -673,7 +673,7 @@ export const ProSettingDetailPage = () => {
               {setting.sources.map((source) => (
                 <div
                   key={`${source.type}-${source.url}`}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5"
+                  className="rounded-2xl bg-slate-50 px-3 py-2.5"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
@@ -695,7 +695,7 @@ export const ProSettingDetailPage = () => {
       )}
 
       <section className="mt-4 md:mt-6">
-        <div className="overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white shadow-sm md:rounded-[2rem]">
+        <div className="overflow-hidden rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200 md:rounded-[2rem]">
           <button
             type="button"
             onClick={() => setIsMediaSectionOpen((open) => !open)}
@@ -748,7 +748,7 @@ export const ProSettingDetailPage = () => {
                               channel_label: link.label,
                             })
                           }
-                          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:bg-white"
+                          className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-white"
                         >
                           <Icon size={15} />
                           {link.label}
@@ -764,7 +764,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-4 rounded-[1.35rem] border border-slate-200 bg-white shadow-sm md:mt-6 md:rounded-[2rem]">
+        <section className="mt-4 rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200 md:mt-6 md:rounded-[2rem]">
           <button
             type="button"
             onClick={() => setIsRelatedArticlesOpen((open) => !open)}
@@ -784,7 +784,7 @@ export const ProSettingDetailPage = () => {
               <div className="mb-4 flex justify-end">
                 <button
                   onClick={() => navigate('/articles')}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-black text-slate-600 ring-1 ring-slate-200 transition hover:bg-slate-50"
                 >
                   記事一覧
                   <ArrowRight size={14} />
@@ -795,7 +795,7 @@ export const ProSettingDetailPage = () => {
                   <button
                     key={article.slug}
                     onClick={() => navigate(`/articles/${article.slug}`)}
-                    className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-golf-300 hover:bg-white"
+                    className="rounded-[1.25rem] bg-slate-50 p-4 text-left ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:bg-white hover:ring-golf-300"
                   >
                     <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
                       {articleTypeLabel[article.articleType]}
@@ -815,7 +815,7 @@ export const ProSettingDetailPage = () => {
       )}
 
       {driverDetail && (
-        <section className="mt-4 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm md:mt-6 md:rounded-[2rem] md:p-6">
+        <section className="mt-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-6 md:rounded-[2rem] md:p-6">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">DRIVER DETAIL</div>
