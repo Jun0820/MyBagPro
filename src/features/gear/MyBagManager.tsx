@@ -46,9 +46,22 @@ const generateClubId = () => {
     });
 };
 
-const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpdate: (c: Club) => void, onRemove: () => void, isPending?: boolean }) => {
+const ClubRow = ({
+    entry,
+    onUpdate,
+    onRemove,
+    isPending,
+    isExpanded,
+    onToggle,
+}: {
+    entry: Club,
+    onUpdate: (c: Club) => void,
+    onRemove: () => void,
+    isPending?: boolean,
+    isExpanded: boolean,
+    onToggle: () => void,
+}) => {
     const isPutter = entry.category === TargetCategory.PUTTER;
-    const [isExpanded, setIsExpanded] = useState(() => Boolean(isPending || !entry.brand || !entry.model));
 
     const parseShaft = (str: string) => {
         const parts = str.split(' ');
@@ -120,7 +133,7 @@ const ClubRow = ({ entry, onUpdate, onRemove, isPending }: { entry: Club, onUpda
         <div className={cn("group relative overflow-hidden rounded-2xl border bg-white shadow-sm transition-all", isPending ? 'border-cyan-300 ring-1 ring-cyan-100' : 'border-slate-200')}>
             <button
                 type="button"
-                onClick={() => setIsExpanded((prev) => !prev)}
+                onClick={onToggle}
                 className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-50"
             >
                 <div className="flex min-w-0 flex-1 items-center gap-3">
@@ -345,6 +358,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     intakeMode = 'default',
 }) => {
     const latestSettingRef = useRef(setting);
+    const [expandedClubId, setExpandedClubId] = useState<string | null>(null);
     const [addCategory, setAddCategory] = useState('');
     const [selectedLofts, setSelectedLofts] = useState<string[]>([]);
     const [batchPreset, setBatchPreset] = useState({
@@ -358,6 +372,25 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     useEffect(() => {
         latestSettingRef.current = setting;
     }, [setting]);
+
+    useEffect(() => {
+        if (expandedClubId && !setting.clubs.some((club) => club.id === expandedClubId)) {
+            setExpandedClubId(null);
+        }
+    }, [expandedClubId, setting.clubs]);
+
+    useEffect(() => {
+        const pendingClub = setting.clubs.find((club) => pendingBagChangeIds.includes(club.id));
+        if (pendingClub) {
+            setExpandedClubId(pendingClub.id);
+            return;
+        }
+
+        const incompleteClub = setting.clubs.find((club) => !club.brand || !club.model);
+        if (incompleteClub) {
+            setExpandedClubId(incompleteClub.id);
+        }
+    }, [pendingBagChangeIds, setting.clubs]);
 
     const commitSetting = useCallback((updater: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => {
         const base = latestSettingRef.current;
@@ -774,6 +807,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             onUpdate={updateClub} 
                             onRemove={() => removeClub(entry.id)} 
                             isPending={pendingBagChangeIds.includes(entry.id)}
+                            isExpanded={expandedClubId === entry.id}
+                            onToggle={() => setExpandedClubId((current) => current === entry.id ? null : entry.id)}
                         />
                     ))}
                     {sortedClubs.length === 0 && (
