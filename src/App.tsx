@@ -232,14 +232,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </header>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-x-4 top-[76px] z-[55] rounded-[28px] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] ring-1 ring-slate-200/80 md:hidden">
+        <div className="fixed inset-x-4 top-[76px] z-[55] rounded-[28px] bg-white p-3.5 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] ring-1 ring-slate-200/80 md:hidden">
           <div className="space-y-2">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => navigateWithMobileClose(item.href)}
                 className={`
-                  flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-black transition
+                  flex w-full items-center justify-between rounded-2xl px-4 py-2.5 text-left text-sm font-black transition
                   ${isActive(item.href) ? 'bg-[#edf6ef] text-[#166534]' : 'text-slate-700 hover:bg-slate-50'}
                 `}
               >
@@ -249,19 +249,19 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             ))}
           </div>
 
-          <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="mt-3 grid grid-cols-2 gap-2.5">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 handleAuthEntry();
               }}
-              className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-slate-50 px-4 text-sm font-black text-slate-800 ring-1 ring-slate-200/80"
+              className="inline-flex min-h-10 items-center justify-center rounded-2xl bg-slate-50 px-4 text-sm font-black text-slate-800 ring-1 ring-slate-200/80"
             >
               {user.isLoggedIn ? 'マイページ' : 'ログイン'}
             </button>
             <button
               onClick={() => navigateWithMobileClose('/diagnosis')}
-              className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-[#1c6a3d] px-4 text-sm font-black text-white"
+              className="inline-flex min-h-10 items-center justify-center rounded-2xl bg-[#1c6a3d] px-4 text-sm font-black text-white"
             >
               診断を始める
             </button>

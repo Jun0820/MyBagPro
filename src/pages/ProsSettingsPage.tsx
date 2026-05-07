@@ -279,13 +279,13 @@ export const ProsSettingsPage = () => {
                 });
                 navigate(`/settings/pros/${setting.slug}`);
               }}
-              className="rounded-[1.125rem] border border-slate-200 bg-white p-3 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-golf-300 hover:shadow-md md:rounded-[1.25rem] md:p-3.5"
+              className="rounded-[1.125rem] bg-white p-2.5 text-left shadow-sm ring-1 ring-slate-200/80 transition-all hover:-translate-y-0.5 hover:ring-golf-300 hover:shadow-md md:rounded-[1.25rem] md:p-3"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <img
                   src={visuals.portrait}
                   alt={`${setting.name}の写真またはプレースホルダー画像`}
-                  className={`h-11 w-11 rounded-full border border-slate-200 bg-white object-cover md:h-12 md:w-12 ${
+                  className={`h-10 w-10 rounded-full bg-white object-cover ring-1 ring-slate-200/80 md:h-11 md:w-11 ${
                     visuals.portraitMedia ? '' : 'p-2'
                   }`}
                   onError={(event) => {
@@ -297,8 +297,8 @@ export const ProsSettingsPage = () => {
                   }}
                 />
                 <div className="min-w-0">
-                  <div className="text-[15px] font-black text-trust-navy md:text-lg">{setting.name}</div>
-                  {setting.kanaName && <div className="mt-0.5 text-[11px] font-bold text-slate-500 md:text-xs">{setting.kanaName}</div>}
+                  <div className="text-[14px] font-black text-trust-navy md:text-base">{setting.name}</div>
+                  {setting.kanaName && <div className="mt-0.5 text-[10px] font-bold text-slate-500 md:text-[11px]">{setting.kanaName}</div>}
                 </div>
                 <ArrowRight size={16} className="ml-auto shrink-0 text-slate-400" />
               </div>

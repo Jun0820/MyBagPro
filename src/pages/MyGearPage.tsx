@@ -327,7 +327,7 @@ export const MyGearPage = () => {
                                             ログアウト
                                         </button>
                                     )}
-                                    <div className="grid grid-cols-3 gap-2 rounded-2xl bg-slate-50 p-2 ring-1 ring-slate-200/70 lg:hidden">
+                                    <div className="grid grid-cols-3 gap-2 rounded-2xl bg-slate-50 p-1.5 ring-1 ring-slate-200/70 lg:hidden">
                                         {sidebarMenu.map((item) => {
                                             const Icon = item.icon;
                                             return (
@@ -335,7 +335,7 @@ export const MyGearPage = () => {
                                                     key={item.key}
                                                     onClick={() => setActiveTab(item.key)}
                                                     className={cn(
-                                                        'flex min-h-[48px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-2 text-[11px] font-black transition',
+                                                        'flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-2 text-[11px] font-black transition',
                                                         activeTab === item.key ? 'bg-white text-[#166534] shadow-sm' : 'text-slate-500'
                                                     )}
                                                 >
@@ -489,7 +489,7 @@ export const MyGearPage = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-3">
+                                <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-2.5">
                                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold text-slate-500">
                                         <span>{hasUnsavedChanges ? `未保存 ${pendingBagChangeCount}件` : 'クラウド保存済み'}</span>
                                         <span>{lastSavedClubCount > 0 ? `保存済み ${lastSavedClubCount}本` : `登録 ${profile.myBag.clubs.length}本`}</span>
@@ -535,10 +535,10 @@ export const MyGearPage = () => {
                                             <button
                                                 key={club.id}
                                                 onClick={() => setActiveTab('clubs')}
-                                                className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-left transition-colors hover:bg-slate-100"
+                                                className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-2.5 text-left transition-colors hover:bg-slate-100"
                                             >
                                                 <div className="flex items-center gap-3">
-                                                    <div className="min-w-[52px] rounded-xl bg-white px-3 py-2 text-center text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
+                                                    <div className="min-w-[48px] rounded-xl bg-white px-3 py-1.5 text-center text-[10px] font-black uppercase tracking-[0.14em] text-slate-500">
                                                         {club.number || club.category}
                                                     </div>
                                                     <div className="min-w-0">
@@ -551,14 +551,14 @@ export const MyGearPage = () => {
                                                     </div>
                                                 </div>
                                                 <div className="ml-3 text-right">
-                                                    <div className="text-base font-black text-trust-navy">
+                                                    <div className="text-[15px] font-black text-trust-navy">
                                                         {getDisplayedClubDistance(club) ? `${getDisplayedClubDistance(club)}Y` : '未入力'}
                                                     </div>
                                                 </div>
                                             </button>
                                         ))
                                     ) : (
-                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-7 text-left ring-1 ring-[#c8d8cc]">
+                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-6 text-left ring-1 ring-[#c8d8cc]">
                                             <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
                                             <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
                                         </button>
@@ -573,12 +573,12 @@ export const MyGearPage = () => {
                                     <div className="text-xl font-black tracking-tight text-trust-navy">最近の診断結果</div>
                                     <div className="text-xs font-black text-slate-400">{recentHistory.length}件</div>
                                 </div>
-                                <div className="mt-4 space-y-3">
+                                <div className="mt-4 space-y-2.5">
                                     {recentHistory.length > 0 ? recentHistory.slice(0, 4).map((item) => (
                                         <button
                                             key={item.id}
                                             onClick={() => openSavedDiagnosis(item)}
-                                            className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-left transition-colors hover:bg-slate-100"
+                                            className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-2.5 text-left transition-colors hover:bg-slate-100"
                                         >
                                             <div className="min-w-0">
                                                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
@@ -594,7 +594,7 @@ export const MyGearPage = () => {
                                             </div>
                                         </button>
                                     )) : (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                                        <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
                                             まだ診断結果はありません。まずは1回診断するとここに残せます。
                                         </div>
                                     )}
@@ -612,7 +612,7 @@ export const MyGearPage = () => {
                                                     <button
                                                         key={item.id}
                                                         onClick={() => openFavoriteBuy(item)}
-                                                        className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-left transition-colors hover:bg-slate-100"
+                                                        className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-2.5 text-left transition-colors hover:bg-slate-100"
                                                     >
                                                         <div className="min-w-0">
                                                             <div className="truncate text-sm font-black text-trust-navy">{item.brand} {item.modelName}</div>
@@ -632,7 +632,7 @@ export const MyGearPage = () => {
                                                     <button
                                                         key={item.id}
                                                         onClick={() => openRecentlyViewed(item)}
-                                                        className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-left ring-1 ring-slate-200/70 transition-colors hover:bg-slate-100"
+                                                        className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-2.5 text-left ring-1 ring-slate-200/70 transition-colors hover:bg-slate-100"
                                                     >
                                                         <div className="min-w-0">
                                                             <div className="truncate text-sm font-black text-trust-navy">{item.title}</div>
@@ -645,7 +645,7 @@ export const MyGearPage = () => {
                                         </div>
                                     )}
                                     {favoriteClubs.length === 0 && recentlyViewed.length === 0 && recentHistory.length === 0 && (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                                        <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
                                             診断結果を残したり、お気に入り登録するとここからすぐ見直せます。
                                         </div>
                                     )}

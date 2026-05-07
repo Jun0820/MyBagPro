@@ -203,16 +203,16 @@ export const Home = () => {
                 onClick={() => navigate(card.href)}
                 className="flex-shrink-0 overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-[#e3ebe4] transition hover:-translate-y-1 hover:shadow-lg md:rounded-[24px] w-[280px] md:w-auto md:flex-1 md:max-w-[calc(50%-0.5rem)] lg:max-w-[calc(25%-0.75rem)]"
               >
-                <div className="relative h-32 overflow-hidden md:h-44">
+                <div className="relative h-28 overflow-hidden md:h-40">
                   <img src={card.image} alt={card.title} className="h-full w-full object-cover" />
                   <div className="absolute left-2 top-2 rounded-full bg-[#2563eb] px-2 py-0.5 text-[8px] font-black text-white md:left-3 md:top-3 md:px-2.5 md:py-1 md:text-[10px]">
                     {card.tag}
                   </div>
                 </div>
-                <div className="px-3 py-3 md:px-4 md:py-4">
+                <div className="px-3 py-2.5 md:px-4 md:py-3.5">
                   <div className="text-sm font-black leading-6 text-[#151719] md:text-xl md:leading-7">{card.title}</div>
                   <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{card.subtitle}</div>
-                  <div className="mt-2 inline-flex rounded-full bg-[#f1f6f2] px-2 py-0.5 text-[10px] font-black text-[#176534] md:mt-4 md:px-3 md:py-1 md:text-xs">
+                  <div className="mt-2 inline-flex rounded-full bg-[#f1f6f2] px-2 py-0.5 text-[10px] font-black text-[#176534] md:mt-3 md:px-3 md:py-1 md:text-xs">
                     {card.label}
                   </div>
                 </div>
@@ -280,14 +280,14 @@ export const Home = () => {
 
           <div className="mt-4 grid gap-2 md:gap-4 md:mt-5 md:grid-cols-3">
             {handleChartPoints.map((label, index) => (
-              <div key={label} className="rounded-lg bg-[#fbfcfb] p-3 md:rounded-[24px] md:p-4">
+              <div key={label} className="rounded-lg bg-[#fbfcfb] p-3 md:rounded-[24px] md:p-3.5">
                 <div className="text-xs font-black text-[#151719] md:text-sm">{label}</div>
-                <div className="mt-2 h-28 rounded-lg bg-white p-2 ring-1 ring-[#e6ece7] md:mt-4 md:h-40 md:rounded-[20px] md:p-4">
+                <div className="mt-2 h-24 rounded-lg bg-white p-2 ring-1 ring-[#e6ece7] md:mt-3 md:h-36 md:rounded-[20px] md:p-3">
                   {index === 0 && (
                     <div className="flex h-full items-end gap-1 md:gap-2">
                       {[84, 72, 91, 77, 88, 70, 95, 74, 86].map((point, idx) => (
                         <div key={idx} className="flex-1">
-                          <div className="rounded-t-sm bg-[#176534] md:rounded-t-xl" style={{ height: `${(point / 100) * 100}px`, minHeight: `${(point / 100) * 100}px` }} />
+                          <div className="rounded-t-sm bg-[#176534] md:rounded-t-xl" style={{ height: `${(point / 100) * 86}px`, minHeight: `${(point / 100) * 86}px` }} />
                         </div>
                       ))}
                     </div>
@@ -327,9 +327,9 @@ export const Home = () => {
           <div className="text-xs font-bold text-slate-500 md:text-sm">多くのゴルファーに支持されています</div>
           <div className="mt-3 space-y-2 md:mt-5 md:space-y-4">
             {supportStats.map((stat) => (
-              <div key={stat.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 ring-1 ring-[#ebf0eb] md:rounded-[22px] md:px-5 md:py-5">
+              <div key={stat.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 ring-1 ring-[#ebf0eb] md:rounded-[22px] md:px-4 md:py-4">
                 <div className="text-xs font-black text-slate-500 md:text-sm">{stat.title}</div>
-                <div className="mt-1 text-xl font-black tracking-tight text-[#151719] md:mt-2 md:text-[2rem]">{stat.value}</div>
+                <div className="mt-1 text-xl font-black tracking-tight text-[#151719] md:mt-2 md:text-[1.8rem]">{stat.value}</div>
                 <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{stat.note}</div>
               </div>
             ))}
