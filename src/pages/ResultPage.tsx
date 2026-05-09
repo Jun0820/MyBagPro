@@ -294,18 +294,18 @@ export const ResultPage = () => {
     return (
         <div className="animate-fadeIn min-h-screen bg-[#f8fafc] pb-16 text-slate-900 md:pb-20">
             <div className="mx-auto w-full max-w-6xl px-4 pt-2 md:px-6">
-            <div className="mb-4 rounded-2xl bg-amber-50 px-4 py-3 text-sm font-bold text-amber-900 ring-1 ring-amber-200 md:mb-6">
+            <div className="mb-3 rounded-2xl bg-amber-50 px-4 py-2.5 text-sm font-bold text-amber-900 ring-1 ring-amber-200 md:mb-5">
                 この診断はβ版です。精度向上中です。
             </div>
             {compareSource && (
-                <div className="mb-4 rounded-2xl bg-cyan-50 px-4 py-4 ring-1 ring-cyan-200 md:mb-6">
+                <div className="mb-3 rounded-2xl bg-cyan-50 px-4 py-3.5 ring-1 ring-cyan-200 md:mb-5">
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
                     <div className="mt-2 text-base font-black text-trust-navy md:text-lg">{compareBannerTitle}</div>
                     <div className="mt-2 text-sm leading-6 text-slate-600">{compareBannerDescription}</div>
                 </div>
             )}
             {/* Hero Section */}
-            <div className="group relative mb-5 h-24 overflow-hidden rounded-[1.35rem] shadow-2xl shadow-slate-900/20 md:mb-8 md:h-56 md:rounded-[2.25rem]">
+            <div className="group relative mb-4 h-24 overflow-hidden rounded-[1.35rem] shadow-2xl shadow-slate-900/20 md:mb-6 md:h-52 md:rounded-[2.25rem]">
                 {/* Background: Deep Space Navy */}
                 <div className="absolute inset-0 bg-[#020617]"></div>
 
@@ -322,7 +322,7 @@ export const ResultPage = () => {
 
                 {/* Content Overlay */}
                 <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-                    <div className="mb-1.5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-300 shadow-lg shadow-black/20 backdrop-blur-md md:mb-3 md:px-4 md:text-xs md:tracking-[0.2em]">
+                    <div className="mb-1 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-300 shadow-lg shadow-black/20 backdrop-blur-md md:mb-2.5 md:px-4 md:text-xs md:tracking-[0.2em]">
                         <Zap size={12} className="text-slate-400" fill="currentColor" />
                         AI Performance Analysis
                     </div>
@@ -347,8 +347,8 @@ export const ResultPage = () => {
             )}
 
             {topModel && (
-                <section className="mb-6 rounded-[1.35rem] bg-white px-4 py-4 shadow-xl shadow-slate-200/40 ring-1 ring-slate-200 md:mb-8 md:rounded-[2rem] md:px-8 md:py-7">
-                    <div className="mb-4 rounded-[1.25rem] bg-golf-50 px-4 py-4 ring-1 ring-golf-200 md:mb-5 md:rounded-[1.5rem] md:px-5">
+                <section className="mb-5 rounded-[1.35rem] bg-white px-4 py-4 shadow-xl shadow-slate-200/40 ring-1 ring-slate-200 md:mb-7 md:rounded-[2rem] md:px-7 md:py-6">
+                    <div className="mb-3 rounded-[1.25rem] bg-golf-50 px-4 py-3.5 ring-1 ring-golf-200 md:mb-4 md:rounded-[1.5rem] md:px-5 md:py-4">
                         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{resultPrimaryMove.eyebrow}</div>
@@ -365,16 +365,16 @@ export const ResultPage = () => {
                         </div>
                     </div>
 
-                    <div className="mb-4 grid gap-2 sm:grid-cols-3">
-                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-3">
+                    <div className="mb-3.5 grid gap-2 sm:grid-cols-3">
+                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-2.5">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">BEST MATCH</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{topModel.brand}</div>
                         </div>
-                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-3">
+                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-2.5">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">MATCH SCORE</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{topModel.matchPercentage.toFixed(1)}%</div>
                         </div>
-                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-3">
+                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-2.5">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">NEXT STEP</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">
                                 {compareSource && comparePriorityCategory ? `${comparePriorityCategory} を保存 or 比較` : '保存 or 比較'}
@@ -408,17 +408,17 @@ export const ResultPage = () => {
                             </div>
                         </div>
 
-                        <div className="grid gap-2.5 md:min-w-[320px] md:max-w-[360px]">
+                        <div className="grid gap-2 md:min-w-[320px] md:max-w-[360px]">
                             <button
                                 onClick={() => handleBuyClick(primaryShop.id)}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3.5 text-sm font-black text-white transition hover:bg-golf-600"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3 text-sm font-black text-white transition hover:bg-golf-600"
                             >
                                 {primaryShop.name}で価格を見る
                             </button>
 
                             <button
                                 onClick={handleSaveCompareShortlist}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                             >
                                 比較候補を残す
                             </button>
@@ -426,7 +426,7 @@ export const ResultPage = () => {
                             {compareSource && (
                                 <button
                                     onClick={handleSaveAndReturnToCompare}
-                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-5 py-3.5 text-sm font-black text-cyan-700 transition hover:bg-cyan-100"
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-5 py-3 text-sm font-black text-cyan-700 transition hover:bg-cyan-100"
                                 >
                                     比較に戻って差分を見る
                                 </button>
@@ -444,14 +444,14 @@ export const ResultPage = () => {
                                         setShowAuth(true);
                                     }
                                 }}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3.5 text-sm font-black text-white transition hover:bg-slate-800"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
                             >
                                 {user.isLoggedIn ? 'おすすめを保存する' : 'ログインして結果を保存'}
                             </button>
 
                             <button
                                 onClick={() => navigate('/diagnosis')}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                             >
                                 条件を変えてもう一度診断
                             </button>
