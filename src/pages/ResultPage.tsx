@@ -468,17 +468,17 @@ export const ResultPage = () => {
             )}
 
             {/* 以下は従来の物理ベースの推論データ詳細 (Data Insights) アコーディオン化 */}
-            <details className="group mb-8">
-                <summary className="flex list-none cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-200/50 py-3 text-sm font-bold text-trust-navy transition-colors select-none hover:bg-slate-200 [&::-webkit-details-marker]:hidden md:text-base">
+            <details className="group mb-6">
+                <summary className="flex list-none cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-200/50 py-2.5 text-sm font-bold text-trust-navy transition-colors select-none hover:bg-slate-200 [&::-webkit-details-marker]:hidden md:text-base">
                     <Wrench size={16} /> 詳細な物理データ分析を見る (Data Insights) <ChevronDown size={16} className="group-open:rotate-180 transition-transform" />
                 </summary>
-                <div className="pt-6">
+                <div className="pt-5">
             
             {/* 🆕 総合診断専用：重量フロー & 距離の階段分析 */}
             {profile.targetCategory === TargetCategory.TOTAL_SETTING && (
-                <div className="grid md:grid-cols-2 gap-6 mb-12 px-4 md:px-0">
+                <div className="mb-10 grid gap-5 px-4 md:grid-cols-2 md:px-0">
                     {result.weightFlowAnalysis && result.weightFlowAnalysis !== 'なし' && (
-                        <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 relative overflow-hidden group">
+                        <div className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-xl">
                             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Activity size={80} className="text-slate-900" />
                             </div>
@@ -492,7 +492,7 @@ export const ResultPage = () => {
                         </div>
                     )}
                     {result.distanceGapAnalysis && result.distanceGapAnalysis !== 'なし' && (
-                        <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 relative overflow-hidden group">
+                        <div className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-xl">
                             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Zap size={80} className="text-slate-900" />
                             </div>
@@ -511,16 +511,16 @@ export const ResultPage = () => {
             {result.currentGearAnalysis &&
                 (!profile.currentBrand || (profile.currentBrand !== 'Unknown' && profile.currentBrand !== '')) &&
                 (!profile.currentModel || (profile.currentModel !== 'Unknown' && profile.currentModel !== '')) && (
-                    <details className="group bg-white rounded-[2rem] mb-8 md:mb-12 relative overflow-hidden transition-all duration-500 shadow-xl shadow-slate-200 border border-slate-100" open>
-                        <summary className="font-bold text-lg p-6 md:p-8 flex items-center justify-between cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden relative z-20 hover:bg-slate-50 transition-colors">
+                    <details className="group relative mb-8 overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-xl shadow-slate-200 transition-all duration-500 md:mb-10" open>
+                        <summary className="relative z-20 flex cursor-pointer list-none items-center justify-between p-5 text-lg font-bold transition-colors select-none hover:bg-slate-50 [&::-webkit-details-marker]:hidden md:p-6">
                             <span className="flex items-center gap-3 font-eng tracking-wider text-xl">
                                 <span className="p-2 bg-slate-100 rounded-xl border border-slate-200"><Activity size={20} className="text-slate-600" /></span>
                                 <span className="text-slate-800">CURRENT GEAR ANALYSIS</span>
                             </span>
                             <span className="group-open:rotate-180 transition-transform duration-300 bg-slate-100 rounded-full p-2 border border-slate-200 text-slate-500"><ChevronDown size={20} /></span>
                         </summary>
-                        <div className="grid md:grid-cols-2 gap-4 md:gap-8 relative z-10 p-4 md:p-8 pt-0 md:pt-0">
-                            <div className="text-center bg-slate-900 p-4 md:p-8 rounded-2xl border border-slate-800 relative overflow-hidden group-hover:border-slate-500/30 transition-colors">
+                        <div className="relative z-10 grid gap-4 p-4 pt-0 md:grid-cols-2 md:gap-6 md:p-6 md:pt-0">
+                            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-4 text-center transition-colors group-hover:border-slate-500/30 md:p-6">
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/20 opacity-50"></div>
                                 <div className="relative z-10">
                                     <div className="text-[10px] md:text-xs font-bold text-slate-400 mb-1 md:mb-2 uppercase tracking-[0.2em] font-eng">Match Score</div>
@@ -534,14 +534,14 @@ export const ResultPage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="space-y-4">
-                                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:bg-slate-100 transition-colors">
+                                <div className="space-y-3">
+                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:bg-slate-100">
                                     <div className="text-xs font-bold text-slate-600 mb-2 flex items-center gap-2 uppercase tracking-wider font-eng">
                                         <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shadow-[0_0_10px_#94a3b8]"></span> PROS
                                     </div>
                                     <div className="text-sm leading-relaxed text-slate-600 font-medium">{result.currentGearAnalysis.pros}</div>
                                 </div>
-                                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:bg-slate-100 transition-colors">
+                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:bg-slate-100">
                                     <div className="text-xs font-bold text-red-500 mb-2 flex items-center gap-2 uppercase tracking-wider font-eng">
                                         <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_10px_#f87171]"></span> CONS
                                     </div>
