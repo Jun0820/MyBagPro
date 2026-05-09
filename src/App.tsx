@@ -347,10 +347,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {searchOpen && (
         <div className="fixed inset-0 z-[58] bg-black/40 p-3 backdrop-blur-sm md:p-6" onClick={() => setSearchOpen(false)}>
           <div
-            className="mx-auto max-w-3xl rounded-[28px] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] ring-1 ring-slate-200/80 md:p-6"
+            className="mx-auto max-w-3xl rounded-[28px] bg-white p-4 shadow-[0_24px_70px_-38px_rgba(15,15,16,0.5)] ring-1 ring-slate-200/80 md:p-5"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex items-center gap-3 rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200/70">
+            <div className="flex items-center gap-3 rounded-2xl bg-slate-50 px-4 py-2.5 ring-1 ring-slate-200/70">
               <Search size={18} className="text-slate-400" />
               <input
                 autoFocus
@@ -361,18 +361,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               />
               <button
                 onClick={() => setSearchOpen(false)}
-                className="rounded-xl bg-white px-3 py-2 text-xs font-black text-slate-500 ring-1 ring-slate-200/80"
+                className="rounded-xl bg-white px-3 py-1.5 text-xs font-black text-slate-500 ring-1 ring-slate-200/80"
               >
                 閉じる
               </button>
             </div>
 
-            <div className="mt-5 grid gap-5 md:grid-cols-2">
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
               <section>
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Pro Settings</div>
                 <div className="mt-2 space-y-2">
                   {searchLoading && searchProfiles.length === 0 ? (
-                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">読み込み中です...</div>
+                    <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">読み込み中です...</div>
                   ) : normalizedQuery && matchedProfiles.length > 0 ? (
                     matchedProfiles.map((profile) => (
                       <button
@@ -381,14 +381,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                           setSearchOpen(false);
                           navigate(`/settings/pros/${profile.slug}`);
                         }}
-                        className="w-full rounded-2xl bg-slate-50 px-4 py-3 text-left ring-1 ring-slate-200/70 transition hover:bg-slate-100"
+                        className="w-full rounded-2xl bg-slate-50 px-4 py-2.5 text-left ring-1 ring-slate-200/70 transition hover:bg-slate-100"
                       >
                         <div className="text-sm font-black text-trust-navy">{profile.name}</div>
                         <div className="mt-1 text-xs text-slate-500">{profile.contractDisplay} / {profile.ball}</div>
                       </button>
                     ))
                   ) : (
-                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                    <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
                       {normalizedQuery ? '該当するプロはまだ見つかりませんでした。' : '選手名やブランド名で検索できます。'}
                     </div>
                   )}
@@ -399,7 +399,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Articles</div>
                 <div className="mt-2 space-y-2">
                   {searchLoading && searchArticles.length === 0 ? (
-                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">読み込み中です...</div>
+                    <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">読み込み中です...</div>
                   ) : normalizedQuery && matchedArticles.length > 0 ? (
                     matchedArticles.map((article) => (
                       <button
@@ -408,14 +408,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                           setSearchOpen(false);
                           navigate(`/articles/${article.slug}`);
                         }}
-                        className="w-full rounded-2xl bg-slate-50 px-4 py-3 text-left ring-1 ring-slate-200/70 transition hover:bg-slate-100"
+                        className="w-full rounded-2xl bg-slate-50 px-4 py-2.5 text-left ring-1 ring-slate-200/70 transition hover:bg-slate-100"
                       >
                         <div className="text-sm font-black text-trust-navy">{article.title}</div>
                         <div className="mt-1 line-clamp-2 text-xs text-slate-500">{article.excerpt}</div>
                       </button>
                     ))
                   ) : (
-                    <div className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                    <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
                       {normalizedQuery ? '該当する記事はまだ見つかりませんでした。' : '悩みやクラブ名でも記事を探せます。'}
                     </div>
                   )}

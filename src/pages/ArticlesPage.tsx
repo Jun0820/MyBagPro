@@ -88,7 +88,7 @@ export const ArticlesPage = () => {
         </div>
       </section>
 
-      <section className="mt-6 grid gap-4 md:mt-8 md:gap-5">
+      <section className="mt-5 grid gap-3.5 md:mt-7 md:gap-4">
         <div className="flex flex-wrap gap-3">
           {(['all', 'update', 'column', 'news'] as ArticleFilter[]).map((filter) => (
             <button
@@ -106,13 +106,13 @@ export const ArticlesPage = () => {
         </div>
 
         {isLoading && (
-          <div className="rounded-[2rem] bg-white p-8 text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200">
+          <div className="rounded-[2rem] bg-white p-7 text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200">
             記事を読み込んでいます...
           </div>
         )}
 
         {!isLoading && articles.length === 0 && (
-          <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
+          <div className="rounded-[2rem] bg-white p-7 shadow-sm ring-1 ring-slate-200">
             <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">記事が見つかりません</div>
             <h2 className="mt-3 text-2xl font-black text-trust-navy">公開中の記事を取得できませんでした。</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -122,7 +122,7 @@ export const ArticlesPage = () => {
         )}
 
         {!isLoading && articles.length > 0 && filteredArticles.length === 0 && (
-          <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
+          <div className="rounded-[2rem] bg-white p-7 shadow-sm ring-1 ring-slate-200">
             <div className="text-[11px] font-black tracking-[0.15em] text-slate-400">絞り込み結果</div>
             <h2 className="mt-3 text-2xl font-black text-trust-navy">{filterLabel[activeFilter]}の記事はまだありません。</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -135,7 +135,7 @@ export const ArticlesPage = () => {
           <button
             key={article.slug}
             onClick={() => navigate(`/articles/${article.slug}`)}
-            className="rounded-[1.5rem] bg-white p-4 text-left shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-xl md:rounded-[2rem] md:p-6"
+            className="rounded-[1.5rem] bg-white p-4 text-left shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-xl md:rounded-[2rem] md:p-5"
           >
             {(() => {
               const spotlight = getTournamentSpotlightByArticleSlug(article.slug);
@@ -153,20 +153,20 @@ export const ArticlesPage = () => {
               </span>
             </div>
             <h2 className="mt-3 text-xl font-black text-trust-navy md:text-2xl">{article.title}</h2>
-            <p className="mt-2.5 text-sm leading-6 text-slate-600 md:mt-3 md:leading-7">{article.excerpt}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600 md:mt-2.5 md:leading-7">{article.excerpt}</p>
             {article.relatedProfileSlug && article.relatedProfileName && (
-              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[11px] font-black tracking-[0.08em] text-golf-700">
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[11px] font-black tracking-[0.08em] text-golf-700">
                 関連ページ
                 <span>{article.relatedProfileName}</span>
               </div>
             )}
             {!article.relatedProfileSlug && relatedCount > 0 && (
-              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[11px] font-black tracking-[0.08em] text-golf-700">
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-golf-50 px-3 py-1 text-[11px] font-black tracking-[0.08em] text-golf-700">
                 関連ページ
                 <span>{relatedCount}選手</span>
               </div>
             )}
-            <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-trust-navy md:mt-5">
+            <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy md:mt-4">
               記事を読む
               <ArrowRight size={16} />
             </div>
