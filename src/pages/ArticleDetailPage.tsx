@@ -324,12 +324,12 @@ export const ArticleDetailPage = () => {
           {article.seasonYear && <span>{article.seasonYear}シーズン</span>}
         </div>
         {article.excerpt && (
-          <p className="mt-3 rounded-[1.25rem] bg-slate-50 p-4 text-sm leading-6 text-slate-700 md:mt-4 md:rounded-[1.5rem] md:p-4.5 md:leading-7">
+          <p className="mt-3 rounded-[1.1rem] bg-slate-50/80 px-4 py-3.5 text-sm leading-6 text-slate-700 md:mt-4 md:rounded-[1.35rem] md:px-4.5 md:py-4 md:leading-7">
             {article.excerpt}
           </p>
         )}
         {article.relatedProfileSlug && article.relatedProfileName && (
-          <div className="mt-3 rounded-[1.25rem] bg-golf-50/60 p-4 ring-1 ring-golf-200 md:mt-4 md:rounded-[1.5rem] md:p-4.5">
+          <div className="mt-3 rounded-[1.1rem] bg-golf-50/55 px-4 py-3.5 ring-1 ring-golf-100 md:mt-4 md:rounded-[1.35rem] md:px-4.5 md:py-4">
             <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">PROFILE LINK</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {article.relatedProfileName}のクラブセッティングを見る
@@ -339,14 +339,14 @@ export const ArticleDetailPage = () => {
             </p>
             <button
               onClick={() => navigate(`/settings/pros/${article.relatedProfileSlug}`)}
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
+              className="mt-3 inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-2.5 text-sm font-black text-white transition hover:bg-slate-800"
             >
               クラブセッティングを見る
               <ArrowRight size={16} />
             </button>
           </div>
         )}
-        <div className="mt-4 space-y-4.5 md:mt-5 md:space-y-4.5">
+        <div className="mt-4 space-y-4 md:mt-5 md:space-y-4">
           {richBlocks.map((block, blockIndex) => {
             if (block.type === 'heading') {
               return (
@@ -373,7 +373,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="rounded-[1.25rem] bg-[#f8faf8] p-4 ring-1 ring-[#e4ece5] md:rounded-[1.5rem] md:p-4.5"
+                  className="rounded-[1.1rem] bg-[#f8faf8] px-4 py-3.5 ring-1 ring-[#e8efe9] md:rounded-[1.35rem] md:px-4.5 md:py-4"
                 >
                   <ul className="space-y-2.5">
                     {block.items.map((item, itemIndex) => (
@@ -391,7 +391,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="rounded-[1.25rem] bg-golf-50/60 p-4 ring-1 ring-golf-200 md:rounded-[1.5rem] md:p-4.5"
+                  className="rounded-[1.1rem] bg-golf-50/55 px-4 py-3.5 ring-1 ring-golf-100 md:rounded-[1.35rem] md:px-4.5 md:py-4"
                 >
                   <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">{block.title}</div>
                   <div className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-700 md:leading-8">{block.content}</div>
@@ -403,16 +403,16 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="overflow-hidden rounded-[1.25rem] bg-white shadow-sm ring-1 ring-[#dbe7dd] md:rounded-[1.5rem]"
+                  className="overflow-hidden rounded-[1.1rem] bg-[#fbfcfb] ring-1 ring-[#e1e9e3] md:rounded-[1.35rem]"
                 >
-                  <div className="border-b border-[#edf2ee] bg-[#f7faf7] px-4 py-3 text-[11px] font-black tracking-[0.14em] text-[#176534]">
+                  <div className="border-b border-[#eef3ef] bg-[#f7faf7] px-4 py-2.5 text-[11px] font-black tracking-[0.14em] text-[#176534]">
                     図で整理
                   </div>
-                  <div className="space-y-2.5 px-4 py-4 md:px-5 md:py-4.5">
+                  <div className="space-y-2.5 px-4 py-3.5 md:px-4.5 md:py-4">
                     {block.lines.map((diagramLine, lineIndex) => (
                       <div
                         key={`${diagramLine}-${lineIndex}`}
-                        className="rounded-2xl border border-[#e8efea] bg-[#fbfcfb] px-4 py-3 font-mono text-xs leading-6 text-slate-700 md:text-sm"
+                        className="rounded-2xl bg-white px-4 py-2.5 font-mono text-xs leading-6 text-slate-700 ring-1 ring-[#e8efea] md:text-sm"
                       >
                         {diagramLine}
                       </div>
@@ -438,7 +438,7 @@ export const ArticleDetailPage = () => {
           })}
         </div>
         {tournamentSpotlight && tournamentProfiles.length > 0 && (
-          <section className="mt-4 rounded-[1.25rem] bg-amber-50/70 p-4 ring-1 ring-amber-200 md:mt-5 md:rounded-[1.5rem] md:p-4.5">
+          <section className="mt-4 rounded-[1.1rem] bg-amber-50/60 px-4 py-3.5 ring-1 ring-amber-100 md:mt-5 md:rounded-[1.35rem] md:px-4.5 md:py-4">
             <div className="text-[11px] font-black tracking-[0.14em] text-amber-700">TOURNAMENT PLAYERS</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {tournamentSpotlight.tournamentName}で追いたい注目選手
@@ -446,17 +446,17 @@ export const ArticleDetailPage = () => {
             <p className="mt-3 text-sm leading-6 text-slate-700 md:leading-7">
               各選手のセッティング詳細ページでは、使用ドライバー、番手構成、飛距離、確認ソースまで一覧で見られます。
             </p>
-            <div className="mt-4 grid gap-3 md:mt-5 md:gap-4 md:grid-cols-3">
+            <div className="mt-4 grid gap-3 md:mt-4.5 md:gap-3.5 md:grid-cols-3">
               {tournamentProfiles.map((profile) => (
                 <button
                   key={profile.slug}
                   onClick={() => navigate(`/settings/pros/${profile.slug}`)}
-                  className="rounded-[1.125rem] border border-amber-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-amber-300 md:rounded-[1.25rem]"
+                  className="rounded-[1.05rem] bg-white px-4 py-3.5 text-left ring-1 ring-amber-100 transition hover:-translate-y-0.5 hover:ring-amber-200 md:rounded-[1.2rem]"
                 >
                   <div className="text-[11px] font-black tracking-[0.12em] text-amber-700">{profile.categoryLabel}</div>
                   <h3 className="mt-2 text-base font-black text-trust-navy md:text-lg">{profile.name}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600 md:leading-7">{profile.summary}</p>
-                  <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700 md:mt-4">
+                  <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-golf-700">
                     セッティングを見る
                     <ArrowRight size={14} />
                   </div>
@@ -466,7 +466,7 @@ export const ArticleDetailPage = () => {
           </section>
         )}
         {relatedProfile && (
-          <section className="mt-4 rounded-[1.25rem] bg-slate-50 p-4 ring-1 ring-slate-200 md:mt-5 md:rounded-[1.5rem] md:p-4.5">
+          <section className="mt-4 rounded-[1.1rem] bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100 md:mt-5 md:rounded-[1.35rem] md:px-4.5 md:py-4">
             <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">SETTING SUMMARY</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {relatedProfile.name}のクラブセッティング概要
@@ -478,7 +478,7 @@ export const ArticleDetailPage = () => {
               契約メーカー{relatedProfile.contractDisplay}を確認できます。詳細ページではクラブ名、メーカー、シャフト、ロフト、
               硬さ、飛距離まで一覧で見られます。
             </p>
-            <div className="mt-4 flex flex-wrap gap-3">
+            <div className="mt-3.5 flex flex-wrap gap-3">
               <button
                 onClick={() => navigate(`/settings/pros/${relatedProfile.slug}`)}
                 className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-4 py-2 text-sm font-black text-white transition hover:bg-slate-800"
@@ -498,10 +498,10 @@ export const ArticleDetailPage = () => {
       </article>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-5 md:rounded-[2rem] md:p-6">
+        <section className="mt-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-5 md:rounded-[2rem] md:p-5">
           <div className="text-xs font-black text-slate-400">次に読みたい記事</div>
           <h2 className="mt-2 text-xl font-black text-trust-navy md:text-2xl">セッティングの見方を深める</h2>
-          <div className="mt-4 grid gap-3 md:mt-5 md:gap-4 md:grid-cols-3">
+          <div className="mt-4 grid gap-3 md:mt-4.5 md:gap-3.5 md:grid-cols-3">
             {relatedArticles.map((relatedArticle) => (
               <button
                 key={relatedArticle.slug}
@@ -513,7 +513,7 @@ export const ArticleDetailPage = () => {
                   });
                   navigate(`/articles/${relatedArticle.slug}`);
                 }}
-                className="rounded-[1.25rem] bg-slate-50 p-3.5 text-left ring-1 ring-slate-200 transition-all hover:-translate-y-0.5 hover:bg-white md:rounded-[1.5rem] md:p-4.5"
+                className="rounded-[1.1rem] bg-slate-50/80 p-3.5 text-left ring-1 ring-slate-100 transition-all hover:-translate-y-0.5 hover:bg-white hover:ring-slate-200 md:rounded-[1.35rem] md:p-4"
               >
                 <div className="text-[11px] font-black tracking-[0.12em] text-slate-500">
                   {articleTypeLabel[relatedArticle.articleType]}

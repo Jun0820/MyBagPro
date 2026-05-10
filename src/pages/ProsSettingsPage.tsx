@@ -129,7 +129,7 @@ export const ProsSettingsPage = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden space-y-4 pb-20 md:space-y-6">
-      <section className="rounded-[1.5rem] bg-white px-4 py-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:px-8 md:py-8">
+      <section className="rounded-[1.5rem] bg-white px-4 py-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:px-8 md:py-7">
         <div>
           <div className="flex flex-col gap-2.5 md:flex-row md:items-end md:justify-between">
             <div>
@@ -146,9 +146,9 @@ export const ProsSettingsPage = () => {
             </div>
           </div>
 
-          <div className="mt-4 rounded-[1.25rem] bg-slate-50 p-3 md:mt-4.5 md:rounded-[1.5rem] md:p-3.5">
+          <div className="mt-4 rounded-[1.1rem] bg-slate-50/80 px-3 py-3 ring-1 ring-slate-100 md:mt-4.5 md:rounded-[1.35rem] md:px-3.5 md:py-3.5">
             <div className="flex flex-col gap-2.5 md:flex-row md:items-center">
-              <div className="flex items-center gap-3 rounded-[1rem] bg-white px-4 py-2.5 ring-1 ring-slate-200 md:flex-1">
+              <div className="flex items-center gap-3 rounded-[1rem] bg-white px-4 py-2.5 ring-1 ring-slate-100 md:flex-1">
                 <Search size={18} className="text-slate-400" />
                 <input
                   value={searchText}
@@ -174,7 +174,7 @@ export const ProsSettingsPage = () => {
                     setSearchText('');
                     applyFilters({ category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
                   }}
-                  className="rounded-full bg-white px-4 py-2.5 text-sm font-black text-slate-600 ring-1 ring-slate-200 transition hover:bg-slate-50"
+                  className="rounded-full bg-white px-4 py-2.5 text-sm font-black text-slate-600 ring-1 ring-slate-100 transition hover:bg-slate-50"
                 >
                   クリア
                 </button>
@@ -193,7 +193,7 @@ export const ProsSettingsPage = () => {
                       className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm font-black transition ${
                         activeCategory === category.id
                           ? 'bg-trust-navy text-white'
-                          : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50'
+                          : 'bg-white text-slate-600 ring-1 ring-slate-100 hover:bg-slate-50'
                       }`}
                     >
                       {category.label}
@@ -214,7 +214,7 @@ export const ProsSettingsPage = () => {
                       className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm font-black transition ${
                         activeKana === group.id
                           ? 'bg-golf-700 text-white'
-                          : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50'
+                          : 'bg-white text-slate-600 ring-1 ring-slate-100 hover:bg-slate-50'
                       }`}
                     >
                       {group.label}
@@ -235,7 +235,7 @@ export const ProsSettingsPage = () => {
                       className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm font-black transition ${
                         activeHeadSpeed === group.id
                           ? 'bg-emerald-600 text-white'
-                          : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50'
+                          : 'bg-white text-slate-600 ring-1 ring-slate-100 hover:bg-slate-50'
                       }`}
                     >
                       {group.label}
