@@ -129,24 +129,24 @@ export const ProsSettingsPage = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden space-y-4 pb-20 md:space-y-6">
-      <section className="rounded-[1.5rem] bg-white px-4 py-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:px-8 md:py-7">
+      <section className="rounded-[1.5rem] bg-white px-4 py-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:px-7 md:py-6">
         <div>
-          <div className="flex flex-col gap-2.5 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.16em] text-slate-400">PRO SETTINGS</div>
-              <h1 className="mt-2 text-[1.75rem] font-black tracking-tight text-trust-navy md:text-[3.5rem]">
+              <h1 className="mt-1.5 text-[1.65rem] font-black tracking-tight text-trust-navy md:text-[3.15rem]">
                 プロのクラブセッティング一覧
               </h1>
-              <p className="mt-2 text-sm font-bold text-slate-500">
+              <p className="mt-1.5 text-sm font-bold text-slate-500">
                 名前、カテゴリ、ヘッドスピードで素早く絞り込めます。
               </p>
             </div>
-            <div className="inline-flex self-start rounded-full bg-slate-100 px-3.5 py-1.5 text-sm font-black text-trust-navy">
+            <div className="inline-flex self-start rounded-full bg-slate-100/90 px-3 py-1.5 text-sm font-black text-trust-navy">
               {filteredProfiles.length}件
             </div>
           </div>
 
-          <div className="mt-4 rounded-[1.1rem] bg-slate-50/80 px-3 py-3 ring-1 ring-slate-100 md:mt-4.5 md:rounded-[1.35rem] md:px-3.5 md:py-3.5">
+          <div className="mt-3.5 rounded-[1.1rem] bg-slate-50/75 px-3 py-3 ring-1 ring-slate-100/80 md:mt-4 md:rounded-[1.35rem] md:px-3.5 md:py-3.5">
             <div className="flex flex-col gap-2.5 md:flex-row md:items-center">
               <div className="flex items-center gap-3 rounded-[1rem] bg-white px-4 py-2.5 ring-1 ring-slate-100 md:flex-1">
                 <Search size={18} className="text-slate-400" />

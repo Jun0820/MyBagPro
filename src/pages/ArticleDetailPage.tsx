@@ -290,11 +290,11 @@ export const ArticleDetailPage = () => {
   }, [article?.relatedProfileSlug, article?.slug]);
 
   if (isLoading) {
-    return <div className="rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-8">記事を読み込んでいます...</div>;
+    return <div className="rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-8">記事を読み込んでいます...</div>;
   }
 
   if (!article) {
-    return <div className="rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-8">記事が見つかりません。</div>;
+    return <div className="rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-8">記事が見つかりません。</div>;
   }
 
   const tournamentSpotlight = getTournamentSpotlightByArticleSlug(article.slug);
@@ -310,12 +310,12 @@ export const ArticleDetailPage = () => {
         記事一覧へ戻る
       </button>
 
-      <article className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-8">
+      <article className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-7">
         <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-[11px] font-black tracking-[0.15em] text-slate-500">
           <FileText size={14} />
           {articleTypeLabel[article.articleType]}
         </div>
-        <h1 className="mt-4 text-[2rem] font-black tracking-tight text-trust-navy md:mt-5 md:text-6xl">{article.title}</h1>
+        <h1 className="mt-3 text-[1.8rem] font-black tracking-tight text-trust-navy md:mt-4 md:text-[3.85rem]">{article.title}</h1>
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-500 md:mt-4">
           <span className="inline-flex items-center gap-2">
             <CalendarDays size={16} />

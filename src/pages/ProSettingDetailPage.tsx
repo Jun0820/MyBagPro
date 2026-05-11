@@ -374,7 +374,7 @@ export const ProSettingDetailPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-[60vh] rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-8">
+      <div className="min-h-[60vh] rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-8">
         <h1 className="text-3xl font-black text-trust-navy">セッティングを読み込んでいます。</h1>
       </div>
     );
@@ -382,7 +382,7 @@ export const ProSettingDetailPage = () => {
 
   if (!setting) {
     return (
-      <div className="min-h-[60vh] rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-8">
+      <div className="min-h-[60vh] rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-8">
         <h1 className="text-3xl font-black text-trust-navy">セッティングが見つかりません。</h1>
         <button
           onClick={() => navigate('/settings/pros')}
@@ -468,7 +468,7 @@ export const ProSettingDetailPage = () => {
 
             <div className="min-w-0 flex-1">
               {setting.kanaName && <div className="text-[11px] font-bold text-white/65 md:text-xs">{setting.kanaName}</div>}
-              <h1 className="mt-1 text-[1.65rem] font-black leading-[1.03] tracking-tight md:text-5xl">
+              <h1 className="mt-1 text-[1.55rem] font-black leading-[1.04] tracking-tight md:text-[4.25rem]">
                 {setting.name}
                 {setting.age ? <span className="ml-2 text-base font-bold text-white/65 md:text-xl">({setting.age})</span> : null}
               </h1>
@@ -512,7 +512,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-5">
+        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-5">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
@@ -534,7 +534,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-5">
+        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
