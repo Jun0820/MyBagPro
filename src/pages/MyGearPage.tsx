@@ -484,7 +484,7 @@ export const MyGearPage = () => {
                                         </div>
                                         <div className="mt-4 grid gap-2 sm:grid-cols-3">
                                             <button onClick={() => setActiveTab('clubs')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#176534] px-3 py-3 text-xs font-black text-white">クラブ編集</button>
-                                            <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-slate-50 px-3 py-3 text-xs font-black text-trust-navy ring-1 ring-slate-200/80">診断する</button>
+                                            <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-slate-50 px-3 py-3 text-xs font-black text-trust-navy ring-1 ring-slate-100">診断する</button>
                                         </div>
                                     </div>
                                 </div>
@@ -573,7 +573,7 @@ export const MyGearPage = () => {
                                     <div className="text-xl font-black tracking-tight text-trust-navy">最近の診断結果</div>
                                     <div className="text-xs font-black text-slate-400">{recentHistory.length}件</div>
                                 </div>
-                                <div className="mt-4 space-y-2.5">
+                                <div className="mt-4 space-y-2">
                                     {recentHistory.length > 0 ? recentHistory.slice(0, 4).map((item) => (
                                         <button
                                             key={item.id}
@@ -594,7 +594,7 @@ export const MyGearPage = () => {
                                             </div>
                                         </button>
                                     )) : (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                                        <div className="rounded-2xl bg-slate-50/80 px-4 py-3.5 text-sm text-slate-500">
                                             まだ診断結果はありません。まずは1回診断するとここに残せます。
                                         </div>
                                     )}
@@ -603,7 +603,7 @@ export const MyGearPage = () => {
 
                             <div className="rounded-[28px] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
                                 <div className="text-xl font-black tracking-tight text-trust-navy">見返したいもの</div>
-                                <div className="mt-4 space-y-4">
+                                <div className="mt-4 space-y-3.5">
                                     {favoriteClubs.length > 0 && (
                                         <div>
                                             <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">お気に入り登録</div>
@@ -632,7 +632,7 @@ export const MyGearPage = () => {
                                                     <button
                                                         key={item.id}
                                                         onClick={() => openRecentlyViewed(item)}
-                                                        className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-2.5 text-left ring-1 ring-slate-200/70 transition-colors hover:bg-slate-100"
+                                                        className="flex w-full items-center justify-between rounded-2xl bg-slate-50/80 px-4 py-2.5 text-left transition-colors hover:bg-slate-100"
                                                     >
                                                         <div className="min-w-0">
                                                             <div className="truncate text-sm font-black text-trust-navy">{item.title}</div>
@@ -645,7 +645,7 @@ export const MyGearPage = () => {
                                         </div>
                                     )}
                                     {favoriteClubs.length === 0 && recentlyViewed.length === 0 && recentHistory.length === 0 && (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
+                                        <div className="rounded-2xl bg-slate-50/80 px-4 py-3.5 text-sm text-slate-500">
                                             診断結果を残したり、お気に入り登録するとここからすぐ見直せます。
                                         </div>
                                     )}

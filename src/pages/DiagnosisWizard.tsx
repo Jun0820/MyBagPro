@@ -774,9 +774,9 @@ export const DiagnosisWizard = () => {
 
             return (
                 <StepCard title="ユーティリティ設定" subtitle="現在のユーティリティ構成を教えてください" onBack={prevStep}>
-                    <div className="space-y-6">
+                    <div className="space-y-5">
                         {/* 1. 現在のUT構成 */}
-                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div className="rounded-xl bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100">
                             <label className="text-xs font-bold text-slate-400 mb-3 block">1. 現在お使いのユーティリティのモデル</label>
                             <BrandModelInput
                                 brand={profile.currentBrand}
@@ -808,7 +808,7 @@ export const DiagnosisWizard = () => {
                         </div>
 
                         {/* 2. 番手構成 */}
-                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div className="rounded-xl bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100">
                             <label className="text-xs font-bold text-slate-400 mb-3 block">2. 現在お持ちの番手（複数選択可）</label>
                             <div className="flex flex-wrap gap-2">
                                 {utNumberOptions.map(num => {
@@ -824,7 +824,7 @@ export const DiagnosisWizard = () => {
                         </div>
 
                         {/* 2. アイアンセット上限 */}
-                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div className="rounded-xl bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100">
                             <label className="text-xs font-bold text-slate-400 mb-3 block">2. アイアンセットの上限番手</label>
                             <p className="text-xs text-slate-500 mb-3">※UTで補う範囲の参考にします</p>
                             <div className="flex flex-wrap gap-2">
@@ -835,7 +835,7 @@ export const DiagnosisWizard = () => {
                         </div>
 
                         {/* 3. 最もロフトが立ったFW */}
-                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div className="rounded-xl bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100">
                             <label className="text-xs font-bold text-slate-400 mb-3 block">3. お持ちの最もロフトが立ったFW（任意）</label>
                             <p className="text-xs text-slate-500 mb-3">※距離ギャップの確認に使用します</p>
                             <div className="flex flex-wrap gap-2">
@@ -846,7 +846,7 @@ export const DiagnosisWizard = () => {
                         </div>
 
                         {/* 4. 診断したいUT番手 */}
-                        <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+                        <div className="rounded-xl bg-blue-50/70 px-4 py-3.5 ring-1 ring-blue-100">
                             <label className="text-xs font-bold text-blue-600 mb-3 block">4. 診断したいユーティリティの番手</label>
                             <div className="flex flex-wrap gap-2">
                                 {['3H', '4H', '5H', '6H'].map(num => (
@@ -856,7 +856,7 @@ export const DiagnosisWizard = () => {
                         </div>
 
                         {/* ドライバーシャフト情報 */}
-                        <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+                        <div className="rounded-xl bg-blue-50/70 px-4 py-3.5 ring-1 ring-blue-100">
                             <label className="text-xs font-bold text-blue-600 mb-4 block flex items-center gap-2">
                                 <span className="w-6 h-6 rounded-full bg-blue-200 text-blue-600 flex items-center justify-center text-[10px]">💡</span>
                                 現在お使いのドライバーのシャフト
@@ -913,7 +913,7 @@ export const DiagnosisWizard = () => {
                             </div>
                         </div>
                     </div>
-                    <button onClick={() => setStep(step + 1)} disabled={!profile.targetUtilityNumber} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 disabled:opacity-50 transition-colors">次へ</button>
+                    <button onClick={() => setStep(step + 1)} disabled={!profile.targetUtilityNumber} className="mt-7 w-full rounded-xl bg-trust-navy py-3.5 font-bold text-white transition-colors hover:bg-slate-800 disabled:opacity-50">次へ</button>
                 </StepCard>
             );
         }
@@ -921,8 +921,8 @@ export const DiagnosisWizard = () => {
         // その他のクラブ種別（ドライバー、FW、アイアン、ボール）のデフォルトStep 3
         return (
             <StepCard title="現在のギア" subtitle="現在使用中のモデルを教えてください" onBack={prevStep}>
-                <div className="space-y-6">
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div className="space-y-5">
+                    <div className="rounded-xl bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100">
                         <label className="text-xs font-bold text-slate-400 mb-4 block flex items-center gap-2">
                             <span className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[10px]">1</span>
                             ヘッドスペック
@@ -936,7 +936,7 @@ export const DiagnosisWizard = () => {
                         />
                     </div>
 
-                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div className="rounded-xl bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100">
                             <label className="text-xs font-bold text-slate-400 mb-4 block flex items-center gap-2">
                                 <span className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[10px]">2</span>
                                 シャフトスペック
@@ -995,7 +995,7 @@ export const DiagnosisWizard = () => {
 
                     {/* FW用: ドライバーシャフト情報 */}
                     {profile.targetCategory === TargetCategory.FAIRWAY && (
-                        <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+                        <div className="rounded-xl bg-blue-50/70 px-4 py-3.5 ring-1 ring-blue-100">
                             <label className="text-xs font-bold text-blue-600 mb-4 block flex items-center gap-2">
                                 <span className="w-6 h-6 rounded-full bg-blue-200 text-blue-600 flex items-center justify-center text-[10px]">💡</span>
                                 現在お使いのドライバーのシャフト
@@ -1054,7 +1054,7 @@ export const DiagnosisWizard = () => {
                         </div>
                     )}
                 </div>
-                <button onClick={() => setStep(step + 1)} disabled={!profile.currentBrand} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 disabled:opacity-50 disabled:hover:bg-trust-navy transition-colors">
+                <button onClick={() => setStep(step + 1)} disabled={!profile.currentBrand} className="mt-7 w-full rounded-xl bg-trust-navy py-3.5 font-bold text-white transition-colors hover:bg-slate-800 disabled:opacity-50 disabled:hover:bg-trust-navy">
                     次へ
                 </button>
             </StepCard>
@@ -1065,7 +1065,7 @@ export const DiagnosisWizard = () => {
     // Step 4: User Profile
     if (step === 4) return (
         <StepCard title="ユーザープロフィール" subtitle="あなたのプロフィール" onBack={prevStep}>
-            <div className="space-y-6">
+            <div className="space-y-5">
                 <div>
                     <label className="block text-xs font-bold text-slate-500 mb-2">性別</label>
                     <div className="flex gap-3">
