@@ -498,12 +498,20 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     history: []
                 });
                 await syncWithSupabase();
-            } else if (event === 'SIGNED_OUT' || (event === 'INITIAL_SESSION' && !session)) {
+            } else if (event === 'SIGNED_OUT') {
                 setUser(INITIAL_ACCOUNT);
                 localStorage.removeItem('mybagpro_user');
                 localStorage.removeItem('mybagpro_profile');
                 setProfile(INITIAL_PROFILE);
                 setLastCloudSavedAt(null);
+                setIsInitialSyncComplete(true);
+            } else if (event === 'INITIAL_SESSION' && !session) {
+                setUser((current) => {
+                    if (!current.isLoggedIn) return current;
+                    return INITIAL_ACCOUNT;
+                });
+                setLastCloudSavedAt(null);
+                setIsInitialSyncComplete(true);
             }
         });
 

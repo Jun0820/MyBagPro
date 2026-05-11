@@ -6,7 +6,9 @@
 
 - `mybagpro.jp` の A レコード: `216.198.79.1`
 - `www.mybagpro.jp`: レコードなし
-- Vercel の `domains inspect` では `www.mybagpro.jp` が未設定
+- Vercel の `domains inspect` では `mybagpro.jp` / `www.mybagpro.jp` が未認証または未設定扱い
+- 2026-05-11 の最新 production deployment は `https://my-bag-fs60xy0hk-tommys-projects-74eb52c4.vercel.app`
+- Vercel の production alias `https://my-bag-pro.vercel.app` では最新記事が反映済み
 
 つまり、今の `mybagpro.jp` は Vercel ではない別の向き先を見ている。
 この状態だと、`my-bag-pro.vercel.app` では最新でも、`mybagpro.jp` は古い表示のまま残る。
@@ -58,8 +60,8 @@ DNS が通ったら、最新 deployment に alias し直す。
 例:
 
 ```bash
-vercel alias set <latest-deployment>.vercel.app mybagpro.jp
-vercel alias set <latest-deployment>.vercel.app www.mybagpro.jp
+vercel alias set my-bag-fs60xy0hk-tommys-projects-74eb52c4.vercel.app mybagpro.jp
+vercel alias set my-bag-fs60xy0hk-tommys-projects-74eb52c4.vercel.app www.mybagpro.jp
 ```
 
 ## 補足

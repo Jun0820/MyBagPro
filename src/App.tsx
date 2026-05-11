@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useMemo, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import {
   Bell,
@@ -96,7 +96,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     []
   );
 
-  const closeAuthFlow = () => {
+  const closeAuthFlow = useCallback(() => {
     setShowAuth(false);
     const params = new URLSearchParams(location.search);
     params.delete('auth');
@@ -108,7 +108,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       },
       { replace: true }
     );
-  };
+  }, [location.pathname, location.search, navigate, setShowAuth]);
 
   const openAuthFlow = (mode: 'login' | 'register', next: 'diagnosis' | 'mypage' = 'mypage') => {
     const params = new URLSearchParams(location.search);
@@ -146,12 +146,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [location.pathname, location.search]);
 
   useEffect(() => {
+    if (authMode && user.isLoggedIn) {
+      closeAuthFlow();
+      return;
+    }
     if (authMode) {
       setShowAuth(true);
       return;
     }
     setShowAuth(false);
-  }, [authMode, setShowAuth]);
+  }, [authMode, closeAuthFlow, user.isLoggedIn, setShowAuth]);
 
   useEffect(() => {
     if (!searchOpen || searchArticles.length > 0 || searchProfiles.length > 0 || searchLoading) return;

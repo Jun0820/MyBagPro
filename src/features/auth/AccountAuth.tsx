@@ -25,7 +25,9 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [error, setError] = useState('');
+    const [notice, setNotice] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [canResendConfirmation, setCanResendConfirmation] = useState(false);
     const draftClubCount = currentProfile?.myBag?.clubs?.length ?? 0;
     const draftBall = currentProfile?.myBag?.ball?.trim() || currentProfile?.currentBall?.trim() || null;
     const draftHeadSpeed = currentProfile?.headSpeed && currentProfile.headSpeed > 0 ? `${currentProfile.headSpeed} m/s` : null;
@@ -35,40 +37,64 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
     useEffect(() => {
         setIsRegister(initialMode === 'register');
         setError('');
+        setNotice('');
+        setCanResendConfirmation(false);
     }, [initialMode]);
 
-    const translateError = (err: any) => {
-        const msg = err?.message || '';
+    const translateError = (err: unknown) => {
+        const msg = err instanceof Error ? err.message : String(err || '');
+        const lowerMsg = msg.toLowerCase();
         if (msg.includes('Failed to fetch')) return 'ネットワーク接続エラーが発生しました。インターネット接続を確認してください。';
         if (msg.includes('Email not confirmed')) return 'メールアドレスが確認されていません。メールを確認してください。';
         if (msg.includes('Invalid login credentials')) return 'メールアドレスまたはパスワードが正しくありません。';
         if (msg.includes('User already registered')) return 'このメールアドレスは既に登録されています。';
         if (msg.includes('Password should be at least 6 characters')) return 'パスワードは6文字以上で入力してください。';
-        if (msg.includes('email rate limit exceeded')) return '確認メールの送信回数が上限に達しています。少し時間をおいてから、もう一度登録してください。';
+        if (msg.includes('Unable to validate email address')) return 'このメールアドレスは使用できません。別のメールアドレスでお試しください。';
+        if (lowerMsg.includes('email rate limit exceeded')) return '確認メールの送信回数が上限に達しています。少し時間をおいてから、もう一度登録してください。';
         return msg || '認証に失敗しました。時間をおいて再度お試しください。';
+    };
+
+    const getEmailRedirectTo = () => {
+        if (typeof window === 'undefined') return undefined;
+        return `${window.location.origin}/mypage?welcome=1&tab=clubs&focus=missing-clubs`;
     };
 
     const handleAuth = async () => {
         setError('');
-        if (!email || !password) {
+        setNotice('');
+        setCanResendConfirmation(false);
+
+        const normalizedEmail = email.trim().toLowerCase();
+        const normalizedName = name.trim();
+
+        if (!normalizedEmail || !password) {
             setError('メールアドレスとパスワードを入力してください');
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+            setError('正しいメールアドレスを入力してください');
+            return;
+        }
+        if (password.length < 6) {
+            setError('パスワードは6文字以上で入力してください');
             return;
         }
 
         setIsLoading(true);
         try {
             if (isRegister) {
-                if (!name) {
+                if (!normalizedName) {
                     setError('お名前を入力してください');
                     setIsLoading(false);
                     return;
                 }
 
                 const { data, error: signUpError } = await supabase.auth.signUp({
-                    email,
+                    email: normalizedEmail,
                     password,
                     options: {
-                        data: { name }
+                        data: { name: normalizedName },
+                        emailRedirectTo: getEmailRedirectTo(),
                     }
                 });
 
@@ -76,12 +102,15 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                 
                 if (data.session) {
                     const userId = data.session.user.id;
-                    const signUpProfile = currentProfile || INITIAL_PROFILE;
+                    const signUpProfile = {
+                        ...(currentProfile || INITIAL_PROFILE),
+                        name: normalizedName,
+                    };
                     
                     // Explicitly create profile to ensure it exists
                     const { error: profileUpsertError } = await supabase.from('profiles').upsert({
                         id: userId,
-                        name: name,
+                        name: normalizedName,
                         is_public: signUpProfile.isPublic,
                         current_ball: signUpProfile.myBag.ball || signUpProfile.currentBall || null,
                         head_speed: signUpProfile.headSpeed,
@@ -99,18 +128,19 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                     const newAccount: UserAccount = {
                         id: userId,
                         isLoggedIn: true,
-                        name: name,
-                        email: email,
+                        name: normalizedName,
+                        email: normalizedEmail,
                         memberSince: data.session.user.created_at,
                         history: []
                     };
                     onLogin(newAccount, signUpProfile);
                 } else {
-                    setError('確認メールを送信しました。メールを確認してログインしてください。');
+                    setNotice('確認メールを送信しました。メール内のリンクを開くとログインが完了します。届かない場合は迷惑メールフォルダも確認してください。');
+                    setCanResendConfirmation(Boolean(data.user));
                 }
             } else {
                 const { data, error: signInError } = await supabase.auth.signInWithPassword({
-                    email,
+                    email: normalizedEmail,
                     password,
                 });
 
@@ -129,8 +159,37 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                     onLogin(account);
                 }
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Auth error:", err);
+            setError(translateError(err));
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleResendConfirmation = async () => {
+        setError('');
+        setNotice('');
+        const normalizedEmail = email.trim().toLowerCase();
+        if (!normalizedEmail) {
+            setError('メールアドレスを入力してください');
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const { error: resendError } = await supabase.auth.resend({
+                type: 'signup',
+                email: normalizedEmail,
+                options: {
+                    emailRedirectTo: getEmailRedirectTo(),
+                },
+            });
+            if (resendError) throw resendError;
+            setNotice('確認メールを再送しました。メール内のリンクからログインを完了してください。');
+            setCanResendConfirmation(true);
+        } catch (err: unknown) {
+            console.error("Auth resend error:", err);
             setError(translateError(err));
         } finally {
             setIsLoading(false);
@@ -149,7 +208,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
             <div className="mb-6 text-center md:mb-7">
                 <div className="mb-4 inline-flex gap-1 rounded-2xl bg-slate-100 p-1 md:mb-5">
                     <button 
-                        onClick={() => { setIsRegister(false); setError(''); }}
+                        onClick={() => { setIsRegister(false); setError(''); setNotice(''); }}
                         className={cn(
                             "rounded-xl px-5 py-2 text-[11px] font-black tracking-[0.18em] transition-all md:px-6 md:text-xs md:tracking-widest",
                             !isRegister ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
@@ -158,7 +217,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                         LOGIN
                     </button>
                     <button 
-                        onClick={() => { setIsRegister(true); setError(''); }}
+                        onClick={() => { setIsRegister(true); setError(''); setNotice(''); }}
                         className={cn(
                             "rounded-xl px-5 py-2 text-[11px] font-black tracking-[0.18em] transition-all md:px-6 md:text-xs md:tracking-widest",
                             isRegister ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
@@ -220,8 +279,8 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                             <input
                                 type="text"
                                 value={name}
-                                onChange={e => setName(e.target.value)}
-                                placeholder="トミー さん"
+                                onChange={e => { setName(e.target.value); setError(''); setNotice(''); }}
+                                placeholder="山田 太郎"
                                 className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 py-3.5 pl-12 pr-4 text-slate-900 outline-none transition-all font-bold focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                             />
                         </div>
@@ -234,7 +293,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                         <input
                             type="email"
                             value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => { setEmail(e.target.value); setError(''); setNotice(''); setCanResendConfirmation(false); }}
                             placeholder="golf@example.com"
                             className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 py-3.5 pl-12 pr-4 text-slate-900 outline-none transition-all font-bold focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                         />
@@ -247,7 +306,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                         <input
                             type="password"
                             value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={e => { setPassword(e.target.value); setError(''); }}
                             placeholder="6文字以上"
                             className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 py-3.5 pl-12 pr-4 text-slate-900 outline-none transition-all font-bold focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
                         />
@@ -260,6 +319,25 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                 <div className="mt-5 flex items-center gap-3 rounded-2xl border border-red-100 bg-red-50 p-4 text-xs font-bold text-red-600 animate-shake md:mt-6">
                     <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0"></span>
                     {error}
+                </div>
+            )}
+
+            {notice && (
+                <div className="mt-5 rounded-2xl border border-golf-100 bg-golf-50 p-4 text-xs font-bold leading-6 text-golf-800 md:mt-6">
+                    <div className="flex items-start gap-3">
+                        <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#176534]" />
+                        <span>{notice}</span>
+                    </div>
+                    {canResendConfirmation && (
+                        <button
+                            type="button"
+                            onClick={handleResendConfirmation}
+                            disabled={isLoading}
+                            className="mt-3 inline-flex min-h-[40px] items-center justify-center rounded-xl bg-white px-4 text-[11px] font-black uppercase tracking-[0.16em] text-golf-800 shadow-sm ring-1 ring-golf-100 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                            確認メールを再送する
+                        </button>
+                    )}
                 </div>
             )}
 
