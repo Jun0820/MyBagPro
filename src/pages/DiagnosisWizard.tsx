@@ -1179,17 +1179,17 @@ export const DiagnosisWizard = () => {
 
                     {/* 推奨形状の表示（ストローク選択後） */}
                     {recommended && (
-                        <div className="mb-8 bg-gradient-to-r from-golf-50 to-blue-50 p-5 rounded-2xl border border-golf-200">
+                        <div className="mb-8 rounded-2xl bg-gradient-to-r from-golf-50/85 to-blue-50/75 px-4 py-4 ring-1 ring-golf-100">
                             <div className="flex items-center gap-2 mb-3">
                                 <span className="text-xl">💡</span>
                                 <span className="font-bold text-golf-800">AI推奨パター形状</span>
                             </div>
-                            <div className="grid grid-cols-2 gap-4 mb-3">
-                                <div className="bg-white/80 p-3 rounded-xl">
+                            <div className="mb-3 grid grid-cols-2 gap-3">
+                                <div className="rounded-xl bg-white/80 px-3 py-2.5">
                                     <div className="text-xs text-slate-400 font-bold mb-1">推奨ヘッド</div>
                                     <div className="font-bold text-trust-navy text-sm">{recommended.head}</div>
                                 </div>
-                                <div className="bg-white/80 p-3 rounded-xl">
+                                <div className="rounded-xl bg-white/80 px-3 py-2.5">
                                     <div className="text-xs text-slate-400 font-bold mb-1">推奨ネック</div>
                                     <div className="font-bold text-trust-navy text-sm">{recommended.neck}</div>
                                 </div>
@@ -1267,7 +1267,7 @@ export const DiagnosisWizard = () => {
                     </div>
 
                     {/* 6. 現在使用中のパター（任意） */}
-                    <div className="mb-8 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div className="mb-8 rounded-xl bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100">
                         <label className="font-bold block mb-3 text-trust-navy text-lg">6. 現在使用中のパター（任意）</label>
                         <p className="text-xs text-slate-500 mb-3">※比較分析に使用します</p>
                         <div className="grid grid-cols-3 gap-3 mb-3">
@@ -1287,7 +1287,7 @@ export const DiagnosisWizard = () => {
         // For Ball & Clubs: Show Swing Data
         return (
             <StepCard title="スイングデータ" subtitle="スイングの特徴を教えてください" onBack={prevStep}>
-                <div className="bg-white/50 p-6 rounded-2xl border border-slate-100 shadow-inner mb-8">
+                <div className="mb-8 rounded-2xl bg-white/60 px-5 py-5 ring-1 ring-slate-100">
                     <label className="font-bold block mb-2 text-trust-navy text-lg flex justify-between items-end">
                         <span>ドライバーのヘッドスピード</span>
                         <span className="text-golf-600 text-3xl font-black font-eng">{profile.headSpeed}<span className="text-sm text-slate-400 font-medium ml-1">m/s</span></span>
@@ -1310,7 +1310,7 @@ export const DiagnosisWizard = () => {
                     </div>
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-7">
                     <label className="font-bold block mb-4 text-trust-navy text-lg">スイングテンポ</label>
                     <div className="flex flex-col gap-3">
                         {[
@@ -1340,7 +1340,7 @@ export const DiagnosisWizard = () => {
 
                 {/* 弾道高さの好み（ドライバー、FW、UT、アイアン） */}
                 {profile.targetCategory !== TargetCategory.BALL && profile.targetCategory !== TargetCategory.WEDGE && (
-                    <div className="mt-8">
+                    <div className="mt-7">
                         <label className="font-bold block mb-4 text-trust-navy text-lg">好みの弾道高さ</label>
                         <div className="flex flex-col gap-3">
                             {[
@@ -1371,7 +1371,7 @@ export const DiagnosisWizard = () => {
 
                 {/* 球筋（軌道）の好み（ドライバー、FW、UT、アイアン） */}
                 {profile.targetCategory !== TargetCategory.BALL && profile.targetCategory !== TargetCategory.WEDGE && (
-                    <div className="mt-8">
+                    <div className="mt-7">
                         <label className="font-bold block mb-4 text-trust-navy text-lg">好みの球筋（軌道）</label>
                         <div className="flex flex-col gap-3">
                             {[
@@ -1661,7 +1661,7 @@ export const DiagnosisWizard = () => {
                     </>
                 )}
 
-                <button onClick={() => setStep(step + 1)} disabled={!profile.swingTempo} className="w-full mt-10 bg-trust-navy text-white py-4 md:py-5 rounded-full font-bold text-lg shadow-xl shadow-trust-navy/20 hover:bg-slate-800 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all">メーカー選択へ</button>
+                <button onClick={() => setStep(step + 1)} disabled={!profile.swingTempo} className="mt-8 w-full rounded-full bg-trust-navy py-4 text-lg font-bold text-white shadow-xl shadow-trust-navy/20 transition-all hover:scale-[1.02] hover:bg-slate-800 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 md:py-4.5">メーカー選択へ</button>
             </StepCard>
         );
     }
@@ -1690,7 +1690,7 @@ export const DiagnosisWizard = () => {
 
         return (
             <StepCard title="詳細分析" subtitle={`${profile.targetCategory || 'クラブ'}の悩みやミスの傾向`} onBack={prevStep}>
-                <div className="space-y-6">
+                <div className="space-y-5">
                     <div>
                         <label className="font-bold block mb-3">ミス傾向 (複数選択可)</label>
                         <p className="text-xs text-slate-500 mb-4">※ {profile.targetCategory || 'このクラブ'}でよくあるミスを選択してください</p>
@@ -1708,7 +1708,7 @@ export const DiagnosisWizard = () => {
                         </div>
                     </div>
                     
-                    <div className="mt-8">
+                    <div className="mt-7">
                         <label className="font-bold block mb-3 text-trust-navy text-lg">具体的な悩みやこだわり (任意)</label>
                         <p className="text-xs text-slate-500 mb-4">今の${profile.targetCategory || 'クラブ'}について、AIに伝えたいことを具体的に入力してください</p>
                         <textarea
@@ -1719,7 +1719,7 @@ export const DiagnosisWizard = () => {
                         />
                     </div>
                 </div>
-                <button onClick={() => setStep(7)} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors">次へ</button>
+                <button onClick={() => setStep(7)} className="mt-7 w-full rounded-xl bg-trust-navy py-3.5 font-bold text-white transition-colors hover:bg-slate-800">次へ</button>
             </StepCard>
         );
     }
@@ -1762,8 +1762,8 @@ export const DiagnosisWizard = () => {
                 </div>
 
                 {profile.hasMeasurementData && (
-                    <div className="space-y-6 animate-fadeIn">
-                        <div className="bg-blue-50 p-4 rounded-xl border border-blue-200 mb-4">
+                    <div className="animate-fadeIn space-y-5">
+                        <div className="mb-4 rounded-xl bg-blue-50/70 px-4 py-3.5 ring-1 ring-blue-100">
                             <p className="text-sm text-blue-800">💡 計測データを入力すると、より精度の高い診断が可能になります</p>
                         </div>
 
@@ -1797,7 +1797,7 @@ export const DiagnosisWizard = () => {
                     </div>
                 )}
 
-                <button onClick={() => setStep(8)} className="w-full mt-8 bg-trust-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-colors">
+                <button onClick={() => setStep(8)} className="mt-7 w-full rounded-xl bg-trust-navy py-3.5 font-bold text-white transition-colors hover:bg-slate-800">
                     {profile.hasMeasurementData ? 'データを登録して次へ' : 'スキップして次へ'}
                 </button>
             </StepCard>

@@ -241,7 +241,7 @@ export const Home = () => {
             診断をはじめる
           </button>
 
-          <div className="mt-4 rounded-lg bg-[#fbfcfb] p-3 ring-1 ring-[#e8efea] md:mt-5 md:rounded-[24px] md:bg-white/10 md:ring-1 md:ring-white/10 md:p-4">
+          <div className="mt-4 rounded-lg bg-[#fbfcfb] p-3 ring-1 ring-[#eef3ef] md:mt-5 md:rounded-[24px] md:bg-white/10 md:ring-1 md:ring-white/10 md:p-4">
             <div className="text-xs font-black text-slate-700 md:text-base md:text-white">診断サンプル</div>
             <div className="mt-3 flex items-center gap-3 md:gap-5">
               <div className="flex h-20 w-20 items-center justify-center rounded-full border-8 border-[#e0e0e0] bg-white text-2xl font-black text-[#176534] md:h-24 md:w-24 md:border-[10px] md:border-white/35 md:text-3xl md:text-white">
@@ -271,18 +271,18 @@ export const Home = () => {
       </section>
 
       <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.25fr_0.95fr]">
-        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-6">
+        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-5">
           <div className="text-xs font-bold text-slate-500 md:text-sm">データが導く、最適なクラブ選び</div>
           <h2 className="mt-2 text-xl font-black tracking-tight text-[#151719] md:text-[2rem]">プロのデータとあなたのデータを並べる</h2>
           <p className="mt-2 text-xs leading-6 text-slate-600 md:text-sm md:leading-7">
             プロのデータとあなたのデータを比較して、最適なセッティングを見つけましょう。
           </p>
 
-          <div className="mt-4 grid gap-2 md:gap-4 md:mt-5 md:grid-cols-3">
+          <div className="mt-4 grid gap-2 md:mt-4.5 md:gap-3 md:grid-cols-3">
             {handleChartPoints.map((label, index) => (
-              <div key={label} className="rounded-lg bg-[#fbfcfb] p-3 md:rounded-[24px] md:p-3.5">
+              <div key={label} className="rounded-lg bg-[#fbfcfb] px-3 py-3 md:rounded-[24px] md:px-3.5 md:py-3">
                 <div className="text-xs font-black text-[#151719] md:text-sm">{label}</div>
-                <div className="mt-2 h-24 rounded-lg bg-white p-2 ring-1 ring-[#e6ece7] md:mt-3 md:h-36 md:rounded-[20px] md:p-3">
+                <div className="mt-2 h-24 rounded-lg bg-white p-2 ring-1 ring-[#eef2ef] md:mt-2.5 md:h-36 md:rounded-[20px] md:p-3">
                   {index === 0 && (
                     <div className="flex h-full items-end gap-1 md:gap-2">
                       {[84, 72, 91, 77, 88, 70, 95, 74, 86].map((point, idx) => (
@@ -323,11 +323,11 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-6 xl:self-end">
+        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-5 xl:self-end">
           <div className="text-xs font-bold text-slate-500 md:text-sm">多くのゴルファーに支持されています</div>
-          <div className="mt-3 space-y-2 md:mt-5 md:space-y-4">
+          <div className="mt-3 space-y-2 md:mt-4.5 md:space-y-3">
             {supportStats.map((stat) => (
-              <div key={stat.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 ring-1 ring-[#ebf0eb] md:rounded-[22px] md:px-4 md:py-4">
+              <div key={stat.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 ring-1 ring-[#f0f3f0] md:rounded-[22px] md:px-4 md:py-3.5">
                 <div className="text-xs font-black text-slate-500 md:text-sm">{stat.title}</div>
                 <div className="mt-1 text-xl font-black tracking-tight text-[#151719] md:mt-2 md:text-[1.8rem]">{stat.value}</div>
                 <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{stat.note}</div>
