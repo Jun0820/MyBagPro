@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
+import { useDiagnosis } from '../context/DiagnosisContext';
 
 const heroImage =
   'https://images.unsplash.com/photo-1510160493562-2a35f8ad1ebb?auto=format&fit=crop&w=1600&q=80';
@@ -96,13 +97,14 @@ const handleChartPoints = [
 
 export const Home = () => {
   const navigate = useNavigate();
+  const { user } = useDiagnosis();
 
   const handleDiagnosisStart = (source: 'hero' | 'sample' | 'footer') => {
     trackEvent('start_ai_diagnosis', {
       source_page: `home_${source}`,
-      destination: 'diagnosis',
+      destination: user.isLoggedIn ? 'diagnosis' : 'create_mypage_then_diagnosis',
     });
-    navigate('/diagnosis');
+    navigate(user.isLoggedIn ? '/diagnosis' : '/mypage?auth=register&next=diagnosis');
   };
 
   return (
@@ -125,13 +127,13 @@ export const Home = () => {
                 onClick={() => handleDiagnosisStart('hero')}
                 className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-14 md:rounded-2xl md:px-6 md:text-base"
               >
-                無料でクラブ診断をはじめる
+                {user.isLoggedIn ? '無料でクラブ診断をはじめる' : '無料でマイページを作成'}
               </button>
               <button
-                onClick={() => navigate('/mypage')}
+                onClick={() => navigate(user.isLoggedIn ? '/mypage?tab=clubs' : '/mypage?auth=register&next=mypage')}
                 className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#b8cfbd] bg-white px-4 text-sm font-black text-[#176534] transition hover:bg-[#f6fbf7] md:min-h-14 md:rounded-2xl md:px-6 md:text-base"
               >
-                自分のセッティングを分析する
+                {user.isLoggedIn ? '自分のセッティングを分析する' : '先にクラブを登録する'}
               </button>
             </div>
 

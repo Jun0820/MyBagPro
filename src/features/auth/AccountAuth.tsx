@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { User, Lock, Mail, Loader2, Calendar, Users, Trophy, Plus, Check } from 'lucide-react';
-import { type UserAccount, INITIAL_PROFILE, type UserProfile, Gender, GolfHistory } from '../../types/golf';
+import React, { useEffect, useState } from 'react';
+import { User, Lock, Mail, Loader2, Plus, CheckCircle2 } from 'lucide-react';
+import { type UserAccount, INITIAL_PROFILE, type UserProfile } from '../../types/golf';
 import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
 import { buildStoredSocialLinks } from '../../lib/userSocials';
@@ -9,27 +9,33 @@ interface AccountAuthProps {
     onLogin: (account: UserAccount, profile?: UserProfile) => void;
     onClose: () => void;
     currentProfile?: UserProfile;
+    initialMode?: 'register' | 'login';
+    intent?: 'create-profile' | 'login';
 }
 
-export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, currentProfile }) => {
-    const [isRegister, setIsRegister] = useState(false);
+export const AccountAuth: React.FC<AccountAuthProps> = ({
+    onLogin,
+    onClose,
+    currentProfile,
+    initialMode = 'register',
+    intent = 'create-profile',
+}) => {
+    const [isRegister, setIsRegister] = useState(initialMode === 'register');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const [gender, setGender] = useState<Gender | ''>('');
-    const [birthdate, setBirthdate] = useState('');
-    const [golfHistory, setGolfHistory] = useState<GolfHistory | ''>('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const draftClubCount = currentProfile?.myBag?.clubs?.length ?? 0;
     const draftBall = currentProfile?.myBag?.ball?.trim() || currentProfile?.currentBall?.trim() || null;
     const draftHeadSpeed = currentProfile?.headSpeed && currentProfile.headSpeed > 0 ? `${currentProfile.headSpeed} m/s` : null;
     const draftAverageScore = currentProfile?.averageScore ? `${currentProfile.averageScore}` : null;
-    const hasDraftToCarry =
-        draftClubCount > 0 ||
-        Boolean(draftBall) ||
-        Boolean(draftHeadSpeed) ||
-        Boolean(draftAverageScore);
+    const hasDraftToCarry = draftClubCount > 0 || Boolean(draftBall) || Boolean(draftHeadSpeed) || Boolean(draftAverageScore);
+
+    useEffect(() => {
+        setIsRegister(initialMode === 'register');
+        setError('');
+    }, [initialMode]);
 
     const translateError = (err: any) => {
         const msg = err?.message || '';
@@ -84,9 +90,9 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                             averageScore: signUpProfile.averageScore,
                         }),
                         age: signUpProfile.age,
-                        gender: gender || signUpProfile.gender,
-                        birthdate: birthdate || null, // Fix: send null instead of empty string
-                        golf_history: golfHistory || null
+                        gender: signUpProfile.gender,
+                        birthdate: signUpProfile.birthdate || null,
+                        golf_history: signUpProfile.golfHistory || null,
                     });
                     if (profileUpsertError) throw profileUpsertError;
 
@@ -132,7 +138,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
     };
 
     return (
-        <div className="relative max-h-[92vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.15)] ring-1 ring-slate-100 animate-fadeIn scrollbar-hide md:max-h-[95vh] md:rounded-[2.5rem] md:p-8">
+        <div className="relative max-h-[92vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.15)] ring-1 ring-slate-100 animate-fadeIn scrollbar-hide md:max-h-[95vh] md:rounded-[2.25rem] md:p-7">
             <button 
                 onClick={onClose} 
                 className="absolute right-4 top-4 rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-50 md:right-6 md:top-6"
@@ -140,8 +146,8 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                 <Plus size={20} className="rotate-45" />
             </button>
 
-            <div className="mb-6 text-center md:mb-8">
-                <div className="mb-5 inline-flex gap-1 rounded-2xl bg-slate-100 p-1 md:mb-6">
+            <div className="mb-6 text-center md:mb-7">
+                <div className="mb-4 inline-flex gap-1 rounded-2xl bg-slate-100 p-1 md:mb-5">
                     <button 
                         onClick={() => { setIsRegister(false); setError(''); }}
                         className={cn(
@@ -161,62 +167,46 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                         JOIN
                     </button>
                 </div>
-                <h2 className="mb-2 text-[1.9rem] font-black tracking-tight text-trust-navy md:text-3xl">
-                    {isRegister ? 'New Account' : 'Welcome Back'}
+                <h2 className="mb-2 text-[1.8rem] font-black tracking-tight text-trust-navy md:text-[2.25rem]">
+                    {isRegister ? 'まずマイページを作成' : 'ログインして再開'}
                 </h2>
-                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">
-                    {isRegister ? 'Join the MyBagPro Community' : 'Access your golf DNA insights'}
+                <p className="text-sm font-bold leading-6 text-slate-500">
+                    {isRegister
+                        ? 'クラブ登録と診断結果を保存して、次回も続きから使えるようにします。'
+                        : '保存したマイクラブと診断結果をここから再開できます。'}
                 </p>
             </div>
 
-            <div className="mb-5 grid gap-2 sm:grid-cols-3 md:mb-6">
-                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-left">
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Save</div>
-                    <div className="mt-1 text-xs font-black text-trust-navy">My Bag と診断結果を保存</div>
+            <div className="mb-5 rounded-[1.5rem] bg-slate-50 px-4 py-4 md:mb-6 md:px-5">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
+                    {intent === 'create-profile' ? 'Create First' : 'Resume'}
                 </div>
-                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-left">
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Resume</div>
-                    <div className="mt-1 text-xs font-black text-trust-navy">比較やお気に入りの続きから再開</div>
-                </div>
-                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-left">
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Cloud</div>
-                    <div className="mt-1 text-xs font-black text-trust-navy">ログイン後もクラウドで復元</div>
+                <div className="mt-2 space-y-2 text-sm font-bold leading-6 text-slate-600">
+                    <div className="flex items-start gap-2">
+                        <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#176534]" />
+                        <span>マイクラブと診断結果を保存できます。</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                        <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#176534]" />
+                        <span>あとでプロフィール情報を追加しても大丈夫です。</span>
+                    </div>
                 </div>
             </div>
 
             {hasDraftToCarry && (
-                <div className="mb-5 rounded-[1.5rem] bg-golf-50/55 p-4 ring-1 ring-golf-100 md:mb-6 md:p-5">
+                <div className="mb-5 rounded-[1.5rem] bg-golf-50/55 p-4 md:mb-6 md:p-5">
                     <div className="flex items-start justify-between gap-3">
                         <div>
                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">Current Draft</div>
-                            <h3 className="mt-1 text-sm font-black text-trust-navy md:text-base">
-                                いまの入力内容も、そのまま引き継げます
-                            </h3>
-                            <p className="mt-1 text-xs font-bold leading-relaxed text-slate-600">
-                                登録すると、My Bag と診断の途中状態をまとめて残して、次回も続きから再開できます。
-                            </p>
+                            <h3 className="mt-1 text-sm font-black text-trust-navy md:text-base">今の入力内容はそのまま引き継がれます</h3>
                         </div>
-                        <div className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700 shadow-sm">
-                            Keep
-                        </div>
+                        <div className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700 shadow-sm">Keep</div>
                     </div>
-                    <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Clubs</div>
-                            <div className="mt-1 text-sm font-black text-trust-navy">{draftClubCount}本を下書き保存</div>
-                        </div>
-                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Ball</div>
-                            <div className="mt-1 text-sm font-black text-trust-navy">{draftBall || '未入力'}</div>
-                        </div>
-                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Head Speed</div>
-                            <div className="mt-1 text-sm font-black text-trust-navy">{draftHeadSpeed || '未入力'}</div>
-                        </div>
-                        <div className="rounded-2xl bg-white/90 px-4 py-3 ring-1 ring-white/80">
-                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Average Score</div>
-                            <div className="mt-1 text-sm font-black text-trust-navy">{draftAverageScore || '未入力'}</div>
-                        </div>
+                    <div className="mt-3 flex flex-wrap gap-2 text-xs font-black text-slate-600">
+                        <span className="rounded-full bg-white px-3 py-1.5">{draftClubCount}本を下書き保存</span>
+                        {draftBall && <span className="rounded-full bg-white px-3 py-1.5">ボール: {draftBall}</span>}
+                        {draftHeadSpeed && <span className="rounded-full bg-white px-3 py-1.5">HS: {draftHeadSpeed}</span>}
+                        {draftAverageScore && <span className="rounded-full bg-white px-3 py-1.5">平均: {draftAverageScore}</span>}
                     </div>
                 </div>
             )}
@@ -264,53 +254,6 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                     </div>
                 </div>
 
-                {isRegister && (
-                    <div className="grid grid-cols-1 gap-3 pt-1 animate-fadeInDown md:grid-cols-2 md:gap-4 md:pt-2" style={{ animationDelay: '0.3s' }}>
-                        <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1 mb-1.5 block">Gender</label>
-                            <div className="relative group">
-                                <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-golf-500 transition-colors" size={18} />
-                                <select
-                                    value={gender}
-                                    onChange={e => setGender(e.target.value as Gender)}
-                                    className="w-full appearance-none rounded-[1.125rem] border border-slate-100 bg-slate-50 p-3.5 pl-12 text-sm font-bold text-slate-900 outline-none transition-all focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
-                                >
-                                    <option value="">未選択</option>
-                                    <option value={Gender.MALE}>男性</option>
-                                    <option value={Gender.FEMALE}>女性</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1 mb-1.5 block">Birthdate</label>
-                            <div className="relative group">
-                                <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-golf-500 transition-colors" size={18} />
-                                <input
-                                    type="date"
-                                    value={birthdate}
-                                    onChange={e => setBirthdate(e.target.value)}
-                                    className="w-full rounded-[1.125rem] border border-slate-100 bg-slate-50 p-3.5 pl-12 text-sm font-bold text-slate-900 outline-none transition-all focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
-                                />
-                            </div>
-                        </div>
-                        <div className="md:col-span-2">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1 mb-1.5 block">Golf History</label>
-                            <div className="relative group">
-                                <Trophy className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-golf-500 transition-colors" size={18} />
-                                <select
-                                    value={golfHistory}
-                                    onChange={e => setGolfHistory(e.target.value as GolfHistory)}
-                                    className="w-full appearance-none rounded-[1.125rem] border border-slate-100 bg-slate-50 p-3.5 pl-12 text-sm font-bold text-slate-900 outline-none transition-all focus:border-golf-500 focus:bg-white md:rounded-[1.25rem]"
-                                >
-                                    <option value="">ゴルフ歴を選択してください</option>
-                                    {Object.values(GolfHistory).map(h => (
-                                        <option key={h} value={h}>{h}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
 
             {error && (
@@ -334,32 +277,8 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({ onLogin, onClose, curr
                 )}
             </button>
 
-            {isRegister && (
-                    <div className="mt-5 rounded-2xl bg-blue-50/50 p-4 ring-1 ring-blue-100/50 md:mt-6">
-                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                        <Check size={12} strokeWidth={3} /> Registration Benefits
-                    </div>
-                    <ul className="text-[11px] text-blue-800 space-y-1.5 font-bold">
-                        <li className="flex gap-2"><span>・</span> AI診断結果がマイページに自動保存されます</li>
-                        <li className="flex gap-2"><span>・</span> あなた専用の「MyBag」URLをSNSでシェア可能に</li>
-                    </ul>
-                </div>
-            )}
-
-            <div className="mt-10 pt-8 border-t border-slate-100 overflow-hidden relative">
-                <div className="flex items-center gap-4 mb-6">
-                    <div className="h-[1px] flex-1 bg-slate-100"></div>
-                    <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] whitespace-nowrap">Social Access (Coming Soon)</p>
-                    <div className="h-[1px] flex-1 bg-slate-100"></div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 opacity-40">
-                    <button className="flex items-center justify-center gap-2 rounded-2xl bg-white py-3.5 text-[10px] font-black uppercase tracking-wider text-slate-400 ring-1 ring-slate-200 cursor-not-allowed">
-                        <img src="https://www.google.com/favicon.ico" className="w-4 h-4 grayscale" alt="Google" /> Google
-                    </button>
-                    <button className="flex items-center justify-center gap-2 rounded-2xl bg-slate-50 py-3.5 text-[10px] font-black uppercase tracking-wider text-slate-400 ring-1 ring-slate-100 cursor-not-allowed">
-                        LINE
-                    </button>
-                </div>
+            <div className="mt-5 text-center text-xs font-bold leading-6 text-slate-500 md:mt-6">
+                登録後にプロフィール詳細やベストスコアを追加できます。まずは My Page を作って、クラブ登録から始めれば大丈夫です。
             </div>
         </div>
     );

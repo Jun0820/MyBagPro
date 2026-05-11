@@ -43,7 +43,6 @@ export const MyGearPage = () => {
         manualSave,
         manualSaveMyBag,
         syncWithSupabase,
-        setShowAuth,
         restoreDiagnosisResult,
     } = useDiagnosis();
     const navigate = useNavigate();
@@ -385,17 +384,17 @@ export const MyGearPage = () => {
 
                         <div className="mt-4 flex flex-col gap-2">
                             <button
-                                onClick={() => setShowAuth(true)}
+                                onClick={() => navigate('/mypage?auth=register&next=mypage')}
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
                             >
                                 <LogIn size={16} />
-                                ログインして保存する
+                                無料でマイページを作成
                             </button>
                             <button
                                 onClick={() => openBagTabWithFocus()}
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-700 ring-1 ring-slate-200/80 transition-colors hover:bg-slate-50 md:min-h-[48px]"
                             >
-                                セッティング登録を始める
+                                先にクラブを登録する
                             </button>
                         </div>
                     </section>

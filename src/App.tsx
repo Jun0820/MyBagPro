@@ -74,6 +74,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [searchProfiles, setSearchProfiles] = useState<PublicSettingProfile[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
+  const authMode = (new URLSearchParams(location.search).get('auth') as 'login' | 'register' | null) || null;
+  const authNext = new URLSearchParams(location.search).get('next');
 
   const navItems = useMemo(
     () => [
@@ -94,12 +96,39 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     []
   );
 
+  const closeAuthFlow = () => {
+    setShowAuth(false);
+    const params = new URLSearchParams(location.search);
+    params.delete('auth');
+    params.delete('next');
+    navigate(
+      {
+        pathname: location.pathname,
+        search: params.toString() ? `?${params.toString()}` : '',
+      },
+      { replace: true }
+    );
+  };
+
+  const openAuthFlow = (mode: 'login' | 'register', next: 'diagnosis' | 'mypage' = 'mypage') => {
+    const params = new URLSearchParams(location.search);
+    params.set('auth', mode);
+    params.set('next', next);
+    navigate(
+      {
+        pathname: location.pathname === '/' ? '/mypage' : location.pathname,
+        search: `?${params.toString()}`,
+      },
+      { replace: true }
+    );
+  };
+
   const handleAuthEntry = () => {
     if (user.isLoggedIn) {
       navigate('/mypage');
       return;
     }
-    setShowAuth(true);
+    openAuthFlow('login', 'mypage');
   };
 
   const navigateWithMobileClose = (href: string) => {
@@ -115,6 +144,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname, location.search]);
+
+  useEffect(() => {
+    if (authMode) {
+      setShowAuth(true);
+      return;
+    }
+    setShowAuth(false);
+  }, [authMode, setShowAuth]);
 
   useEffect(() => {
     if (!searchOpen || searchArticles.length > 0 || searchProfiles.length > 0 || searchLoading) return;
@@ -205,10 +242,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               {user.isLoggedIn ? 'マイページ' : 'ログイン'}
             </button>
             <button
-              onClick={() => navigate('/diagnosis')}
+              onClick={() => {
+                if (user.isLoggedIn) {
+                  navigate('/diagnosis');
+                  return;
+                }
+                openAuthFlow('register', 'diagnosis');
+              }}
               className="inline-flex h-11 items-center justify-center rounded-xl bg-[#1c6a3d] px-4 text-sm font-black text-white shadow-[0_18px_32px_-24px_rgba(22,101,52,0.95)] transition hover:bg-[#155d35] md:px-6"
             >
-              クラブ診断をはじめる
+              {user.isLoggedIn ? 'クラブ診断をはじめる' : 'マイページを作る'}
             </button>
           </div>
 
@@ -260,10 +303,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               {user.isLoggedIn ? 'マイページ' : 'ログイン'}
             </button>
             <button
-              onClick={() => navigateWithMobileClose('/diagnosis')}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (user.isLoggedIn) {
+                  navigate('/diagnosis');
+                  return;
+                }
+                openAuthFlow('register', 'diagnosis');
+              }}
               className="inline-flex min-h-10 items-center justify-center rounded-2xl bg-[#1c6a3d] px-4 text-sm font-black text-white"
             >
-              診断を始める
+              {user.isLoggedIn ? '診断を始める' : '作成して始める'}
             </button>
           </div>
         </div>
@@ -432,10 +482,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             onLogin={(u, p) => {
               setUser(u);
               if (p) setProfile(p);
-              setShowAuth(false);
+              closeAuthFlow();
               const draftProfile = p || profile;
               const clubCount = draftProfile?.myBag?.clubs?.length || 0;
               const hasBall = Boolean(draftProfile?.myBag?.ball || draftProfile?.currentBall);
+              if (authNext === 'mypage') {
+                navigate('/mypage?welcome=1&tab=clubs&focus=missing-clubs');
+                return;
+              }
               const destination =
                 clubCount === 0
                   ? '/mypage?welcome=1&tab=clubs&focus=missing-clubs&next=starter-clubs'
@@ -444,8 +498,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   : '/mypage?welcome=1&next=diagnosis';
               navigate(destination);
             }}
-            onClose={() => setShowAuth(false)}
+            onClose={closeAuthFlow}
             currentProfile={profile}
+            initialMode={authMode === 'login' ? 'login' : 'register'}
+            intent={authMode === 'login' ? 'login' : 'create-profile'}
           />
         </div>
       )}
