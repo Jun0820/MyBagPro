@@ -183,10 +183,10 @@ export const BallDiagnosisApp: React.FC = () => {
             <h2 className="text-2xl font-black bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-8 text-center">
               診断モードを選択してください
             </h2>
-            <div className="grid grid-cols-1 gap-4 w-full">
+            <div className="grid grid-cols-1 gap-3.5 w-full">
               <button
                 onClick={() => handleSelectMode('lite')}
-                className="group relative p-6 rounded-2xl bg-slate-800/50 border border-white/10 hover:border-cyan-500/50 transition-all text-left overflow-hidden"
+                className="group relative overflow-hidden rounded-[1.35rem] bg-slate-800/45 px-5 py-5 text-left ring-1 ring-white/8 transition-all hover:bg-slate-800/55 hover:ring-cyan-500/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative z-10">
@@ -198,7 +198,7 @@ export const BallDiagnosisApp: React.FC = () => {
 
               <button
                 onClick={() => handleSelectMode('pro')}
-                className="group relative p-6 rounded-2xl bg-slate-800/50 border border-white/10 hover:border-emerald-500/50 transition-all text-left overflow-hidden"
+                className="group relative overflow-hidden rounded-[1.35rem] bg-slate-800/45 px-5 py-5 text-left ring-1 ring-white/8 transition-all hover:bg-slate-800/55 hover:ring-emerald-500/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative z-10">
@@ -252,4 +252,3 @@ export const BallDiagnosisApp: React.FC = () => {
 };
 
 export default BallDiagnosisApp;
-

@@ -659,7 +659,7 @@ export const ProSettingDetailPage = () => {
 
       {setting.sources.length > 0 && (
         <section className="mt-4 md:mt-6">
-          <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:rounded-[2rem] md:p-5">
+          <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-5">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
@@ -669,11 +669,11 @@ export const ProSettingDetailPage = () => {
                 要点のみ表示
               </p>
             </div>
-            <div className="mt-3 grid gap-2">
+            <div className="mt-3 grid gap-2.5">
               {setting.sources.map((source) => (
                 <div
                   key={`${source.type}-${source.url}`}
-                  className="rounded-2xl bg-slate-50 px-3 py-2.5"
+                  className="rounded-[1.1rem] bg-slate-50/80 px-3 py-2.5"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
@@ -695,11 +695,11 @@ export const ProSettingDetailPage = () => {
       )}
 
       <section className="mt-4 md:mt-6">
-        <div className="overflow-hidden rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200 md:rounded-[2rem]">
+        <div className="overflow-hidden rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem]">
           <button
             type="button"
             onClick={() => setIsMediaSectionOpen((open) => !open)}
-            className="flex w-full items-center justify-between gap-4 border-b border-slate-200 px-4 py-3.5 text-left md:px-7 md:py-4"
+            className="flex w-full items-center justify-between gap-4 border-b border-slate-200/80 px-4 py-3.5 text-left md:px-7 md:py-4"
           >
             <h2 className="text-xl font-black text-trust-navy md:text-2xl">動画と公式リンク</h2>
             <span className="inline-flex items-center gap-2 text-sm font-black text-slate-500">
@@ -730,7 +730,7 @@ export const ProSettingDetailPage = () => {
               )}
 
               {channelLinks.length > 0 && (
-                <div className="border-t border-slate-200 px-4 py-4 md:px-7">
+                <div className="border-t border-slate-200/80 px-4 py-4 md:px-7">
                   <div className="flex flex-wrap gap-3">
                     {channelLinks.map((link) => {
                       const Icon = link.icon;
@@ -748,7 +748,7 @@ export const ProSettingDetailPage = () => {
                               channel_label: link.label,
                             })
                           }
-                          className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-white"
+                          className="inline-flex items-center gap-2 rounded-full bg-slate-50/80 px-4 py-2 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50"
                         >
                           <Icon size={15} />
                           {link.label}
@@ -764,7 +764,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-4 rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200 md:mt-5 md:rounded-[2rem]">
+        <section className="mt-4 rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200/80 md:mt-5 md:rounded-[2rem]">
           <button
             type="button"
             onClick={() => setIsRelatedArticlesOpen((open) => !open)}
@@ -780,11 +780,11 @@ export const ProSettingDetailPage = () => {
             </span>
           </button>
           {isRelatedArticlesOpen && (
-            <div className="border-t border-slate-200 px-4 py-4 md:px-6">
+            <div className="border-t border-slate-200/80 px-4 py-4 md:px-6">
               <div className="mb-4 flex justify-end">
                 <button
                   onClick={() => navigate('/articles')}
-                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-black text-slate-600 ring-1 ring-slate-200 transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-full bg-slate-50/80 px-4 py-2 text-sm font-black text-slate-600 transition hover:bg-slate-100/80"
                 >
                   記事一覧
                   <ArrowRight size={14} />
@@ -795,7 +795,7 @@ export const ProSettingDetailPage = () => {
                   <button
                     key={article.slug}
                     onClick={() => navigate(`/articles/${article.slug}`)}
-                    className="rounded-[1.25rem] bg-slate-50 p-4 text-left ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:bg-white hover:ring-golf-300"
+                    className="rounded-[1.25rem] bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:bg-slate-50"
                   >
                     <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
                       {articleTypeLabel[article.articleType]}
@@ -815,7 +815,7 @@ export const ProSettingDetailPage = () => {
       )}
 
       {driverDetail && (
-        <section className="mt-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-5 md:rounded-[2rem] md:p-5">
+        <section className="mt-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:mt-5 md:rounded-[2rem] md:p-5">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">DRIVER DETAIL</div>

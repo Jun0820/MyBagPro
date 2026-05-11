@@ -474,7 +474,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
 
             <button
                onClick={() => handleSelect(currentQuestion.id.startsWith('shotData_') ? (answers.shotData?.[currentQuestion.id.split('_')[1] as keyof typeof answers.shotData] || currentQuestion.min) : (answers[currentQuestion.id as keyof DiagnosisAnswers] || currentQuestion.min))}
-               className="w-full max-w-md mx-auto p-10 rounded-[2.5rem] bg-white text-slate-900 font-black text-2xl tracking-tighter hover:bg-cyan-400 transition-all active:scale-95 flex items-center justify-center gap-3 shadow-2xl"
+               className="w-full max-w-md mx-auto rounded-[2rem] bg-white px-8 py-7 text-slate-900 font-black text-2xl tracking-tighter hover:bg-cyan-400 transition-all active:scale-95 flex items-center justify-center gap-3 shadow-xl shadow-slate-950/15"
             >
               CONTINUE <ChevronRight size={32} />
             </button>
@@ -499,10 +499,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
                         handleSelect(opt.value);
                       }
                     }}
-                    className={`w-full group relative flex items-center justify-between p-6 rounded-2xl text-left transition-all duration-300 active:scale-[0.98] animate-fadeIn border
+                    className={`w-full group relative flex items-center justify-between rounded-[1.35rem] px-5 py-5 text-left transition-all duration-300 active:scale-[0.98] animate-fadeIn ring-1
                       ${isSelected 
-                        ? 'bg-cyan-500/10 border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.15)]' 
-                        : 'bg-slate-800/40 border-white/5 hover:border-slate-600 hover:bg-slate-800/60'}`}
+                        ? 'bg-cyan-500/10 ring-cyan-500/60 shadow-[0_0_20px_rgba(34,211,238,0.12)]' 
+                        : 'bg-slate-800/40 ring-white/5 hover:bg-slate-800/55 hover:ring-slate-500/40'}`}
                     style={{ animationDelay: `${idx * 50}ms`, animationFillMode: 'both' }}
                   >
                     <div className="flex-1">
@@ -533,7 +533,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
                 <button
                   disabled={!Array.isArray(answers[currentQuestion.id as keyof DiagnosisAnswers]) || (answers[currentQuestion.id as keyof DiagnosisAnswers] as string[]).length === 0}
                   onClick={() => handleSelect(answers[currentQuestion.id as keyof DiagnosisAnswers])}
-                  className="w-full max-w-xl p-8 rounded-3xl bg-gradient-to-r from-cyan-600 to-emerald-600 text-white font-black text-xl tracking-widest shadow-xl shadow-cyan-900/20 active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4"
+                  className="w-full max-w-xl rounded-[1.75rem] bg-gradient-to-r from-cyan-600 to-emerald-600 px-7 py-6 text-white font-black text-xl tracking-widest shadow-lg shadow-cyan-900/15 active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4"
                 >
                   選択を確定して次へ <ChevronRight size={24} />
                 </button>
@@ -548,4 +548,3 @@ const ChatScreen: React.FC<ChatScreenProps> = ({
 };
 
 export default ChatScreen;
-
