@@ -15,6 +15,7 @@ import { Home } from './pages/Home';
 import { SeoManager } from './components/SeoManager';
 import { fetchPublishedArticles, type PublicArticle } from './lib/articles';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from './lib/contentProfiles';
+import { trackEvent } from './lib/analytics';
 
 const DiagnosisWizard = lazy(() =>
   import('./pages/DiagnosisWizard').then((module) => ({ default: module.DiagnosisWizard }))
@@ -111,6 +112,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [location.pathname, location.search, navigate, setShowAuth]);
 
   const openAuthFlow = (mode: 'login' | 'register', next: 'diagnosis' | 'mypage' = 'mypage') => {
+    trackEvent(mode === 'register' ? 'open_register' : 'open_login', {
+      source_surface: 'app_shell',
+      next_destination: next,
+      current_path: location.pathname,
+    });
     const params = new URLSearchParams(location.search);
     params.set('auth', mode);
     params.set('next', next);
@@ -506,6 +512,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             currentProfile={profile}
             initialMode={authMode === 'login' ? 'login' : 'register'}
             intent={authMode === 'login' ? 'login' : 'create-profile'}
+            nextDestination={authNext}
+            entryTracked={Boolean(authMode)}
           />
         </div>
       )}

@@ -4,6 +4,7 @@ import { type UserAccount, INITIAL_PROFILE, type UserProfile } from '../../types
 import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
 import { buildStoredSocialLinks } from '../../lib/userSocials';
+import { trackEvent } from '../../lib/analytics';
 
 interface AccountAuthProps {
     onLogin: (account: UserAccount, profile?: UserProfile) => void;
@@ -11,6 +12,8 @@ interface AccountAuthProps {
     currentProfile?: UserProfile;
     initialMode?: 'register' | 'login';
     intent?: 'create-profile' | 'login';
+    nextDestination?: string | null;
+    entryTracked?: boolean;
 }
 
 export const AccountAuth: React.FC<AccountAuthProps> = ({
@@ -19,6 +22,8 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
     currentProfile,
     initialMode = 'register',
     intent = 'create-profile',
+    nextDestination = null,
+    entryTracked = false,
 }) => {
     const [isRegister, setIsRegister] = useState(initialMode === 'register');
     const [email, setEmail] = useState('');
@@ -34,12 +39,31 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
     const draftAverageScore = currentProfile?.averageScore ? `${currentProfile.averageScore}` : null;
     const hasDraftToCarry = draftClubCount > 0 || Boolean(draftBall) || Boolean(draftHeadSpeed) || Boolean(draftAverageScore);
 
+    const authAnalyticsParams = (mode: 'register' | 'login' = isRegister ? 'register' : 'login') => ({
+        auth_mode: mode,
+        auth_intent: intent,
+        next_destination: nextDestination || 'unknown',
+        draft_club_count: draftClubCount,
+        has_draft_ball: Boolean(draftBall),
+        has_draft_head_speed: Boolean(draftHeadSpeed),
+        has_draft_average_score: Boolean(draftAverageScore),
+    });
+
     useEffect(() => {
         setIsRegister(initialMode === 'register');
         setError('');
         setNotice('');
         setCanResendConfirmation(false);
     }, [initialMode]);
+
+    useEffect(() => {
+        const mode = initialMode === 'login' ? 'login' : 'register';
+        if (!entryTracked) {
+            trackEvent(mode === 'register' ? 'open_register' : 'open_login', authAnalyticsParams(mode));
+        }
+        trackEvent('auth_modal_view', authAnalyticsParams(mode));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [initialMode, intent, nextDestination, entryTracked]);
 
     const translateError = (err: unknown) => {
         const msg = err instanceof Error ? err.message : String(err || '');
@@ -69,14 +93,26 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
 
         if (!normalizedEmail || !password) {
             setError('メールアドレスとパスワードを入力してください');
+            trackEvent('auth_validation_error', {
+                ...authAnalyticsParams(),
+                error_type: 'missing_email_or_password',
+            });
             return;
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
             setError('正しいメールアドレスを入力してください');
+            trackEvent('auth_validation_error', {
+                ...authAnalyticsParams(),
+                error_type: 'invalid_email',
+            });
             return;
         }
         if (password.length < 6) {
             setError('パスワードは6文字以上で入力してください');
+            trackEvent('auth_validation_error', {
+                ...authAnalyticsParams(),
+                error_type: 'short_password',
+            });
             return;
         }
 
@@ -86,8 +122,14 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                 if (!normalizedName) {
                     setError('お名前を入力してください');
                     setIsLoading(false);
+                    trackEvent('auth_validation_error', {
+                        ...authAnalyticsParams('register'),
+                        error_type: 'missing_name',
+                    });
                     return;
                 }
+
+                trackEvent('begin_signup', authAnalyticsParams('register'));
 
                 const { data, error: signUpError } = await supabase.auth.signUp({
                     email: normalizedEmail,
@@ -134,11 +176,32 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                         history: []
                     };
                     onLogin(newAccount, signUpProfile);
+                    trackEvent('sign_up', {
+                        ...authAnalyticsParams('register'),
+                        method: 'email',
+                        requires_email_confirmation: false,
+                    });
+                    trackEvent('signup_success', {
+                        ...authAnalyticsParams('register'),
+                        method: 'email',
+                        requires_email_confirmation: false,
+                    });
                 } else {
                     setNotice('確認メールを送信しました。メール内のリンクを開くとログインが完了します。届かない場合は迷惑メールフォルダも確認してください。');
                     setCanResendConfirmation(Boolean(data.user));
+                    trackEvent('signup_email_sent', {
+                        ...authAnalyticsParams('register'),
+                        method: 'email',
+                        requires_email_confirmation: true,
+                    });
+                    trackEvent('signup_success', {
+                        ...authAnalyticsParams('register'),
+                        method: 'email',
+                        requires_email_confirmation: true,
+                    });
                 }
             } else {
+                trackEvent('begin_login', authAnalyticsParams('login'));
                 const { data, error: signInError } = await supabase.auth.signInWithPassword({
                     email: normalizedEmail,
                     password,
@@ -157,10 +220,22 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                         history: []
                     };
                     onLogin(account);
+                    trackEvent('login', {
+                        ...authAnalyticsParams('login'),
+                        method: 'email',
+                    });
+                    trackEvent('login_success', {
+                        ...authAnalyticsParams('login'),
+                        method: 'email',
+                    });
                 }
             }
         } catch (err: unknown) {
             console.error("Auth error:", err);
+            trackEvent('auth_error', {
+                ...authAnalyticsParams(),
+                error_message: translateError(err),
+            });
             setError(translateError(err));
         } finally {
             setIsLoading(false);
@@ -188,8 +263,14 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
             if (resendError) throw resendError;
             setNotice('確認メールを再送しました。メール内のリンクからログインを完了してください。');
             setCanResendConfirmation(true);
+            trackEvent('signup_confirmation_resend', authAnalyticsParams('register'));
         } catch (err: unknown) {
             console.error("Auth resend error:", err);
+            trackEvent('auth_error', {
+                ...authAnalyticsParams('register'),
+                error_message: translateError(err),
+                action: 'resend_confirmation',
+            });
             setError(translateError(err));
         } finally {
             setIsLoading(false);
@@ -208,7 +289,12 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
             <div className="mb-6 text-center md:mb-7">
                 <div className="mb-4 inline-flex gap-1 rounded-2xl bg-slate-100 p-1 md:mb-5">
                     <button 
-                        onClick={() => { setIsRegister(false); setError(''); setNotice(''); }}
+                        onClick={() => {
+                            setIsRegister(false);
+                            setError('');
+                            setNotice('');
+                            trackEvent('auth_mode_switch', authAnalyticsParams('login'));
+                        }}
                         className={cn(
                             "rounded-xl px-5 py-2 text-[11px] font-black tracking-[0.18em] transition-all md:px-6 md:text-xs md:tracking-widest",
                             !isRegister ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"
@@ -217,7 +303,12 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                         LOGIN
                     </button>
                     <button 
-                        onClick={() => { setIsRegister(true); setError(''); setNotice(''); }}
+                        onClick={() => {
+                            setIsRegister(true);
+                            setError('');
+                            setNotice('');
+                            trackEvent('auth_mode_switch', authAnalyticsParams('register'));
+                        }}
                         className={cn(
                             "rounded-xl px-5 py-2 text-[11px] font-black tracking-[0.18em] transition-all md:px-6 md:text-xs md:tracking-widest",
                             isRegister ? "bg-white text-trust-navy shadow-sm" : "text-slate-400 hover:text-slate-600"

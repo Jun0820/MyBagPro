@@ -130,7 +130,13 @@ export const Home = () => {
                 {user.isLoggedIn ? '無料でクラブ診断をはじめる' : '無料でマイページを作成'}
               </button>
               <button
-                onClick={() => navigate(user.isLoggedIn ? '/mypage?tab=clubs' : '/mypage?auth=register&next=mypage')}
+                onClick={() => {
+                  trackEvent(user.isLoggedIn ? 'open_mybag_from_home' : 'open_register', {
+                    source_surface: 'home_hero_secondary',
+                    next_destination: 'mypage',
+                  });
+                  navigate(user.isLoggedIn ? '/mypage?tab=clubs' : '/mypage?auth=register&next=mypage');
+                }}
                 className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#b8cfbd] bg-white px-4 text-sm font-black text-[#176534] transition hover:bg-[#f6fbf7] md:min-h-14 md:rounded-2xl md:px-6 md:text-base"
               >
                 {user.isLoggedIn ? '自分のセッティングを分析する' : '先にクラブを登録する'}
