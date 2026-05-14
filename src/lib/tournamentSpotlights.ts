@@ -37,10 +37,10 @@ export const tournamentSpotlights: TournamentSpotlight[] = [
     tourKey: 'jgto',
     tourLabel: 'JGTO',
     tournamentName: '関西オープンゴルフ選手権競技',
-    statusLabel: '次戦注目',
-    eventDates: '2026年5月15日-18日',
+    statusLabel: '開催中',
+    eventDates: '2026年5月14日-17日',
     summary:
-      '国内男子の次戦に向けて、石川遼、中島啓太、生源寺龍憲のクラブ構成を先に確認。1Wだけでなく、2打目以降の番手設計を見やすくしました。',
+      '国内男子の開催週に合わせて、石川遼、中島啓太、生源寺龍憲のクラブ構成を確認。1Wだけでなく、2打目以降の番手設計を見やすくしました。',
     featuredPlayerSlugs: ['ryo-ishikawa', 'keita-nakajima', 'tatsunori-shogenji'],
   },
   {
