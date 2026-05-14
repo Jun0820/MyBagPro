@@ -81,7 +81,11 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
     };
 
     const getEmailRedirectTo = () => {
-        return `${AUTH_REDIRECT_ORIGIN}/mypage?welcome=1&tab=clubs&focus=missing-clubs`;
+        const redirectPath =
+            nextDestination === 'diagnosis'
+                ? '/diagnosis?welcome=1'
+                : '/mypage?welcome=1&tab=clubs&focus=missing-clubs';
+        return `${AUTH_REDIRECT_ORIGIN}${redirectPath}`;
     };
 
     const handleAuth = async () => {
@@ -319,30 +323,23 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
                     </button>
                 </div>
                 <h2 className="mb-2 text-[1.8rem] font-black tracking-tight text-trust-navy md:text-[2.25rem]">
-                    {isRegister ? 'まずマイページを作成' : 'ログインして再開'}
+                    {isRegister ? '無料登録して診断へ' : 'ログインして診断へ'}
                 </h2>
                 <p className="text-sm font-bold leading-6 text-slate-500">
                     {isRegister
-                        ? 'クラブ登録と診断結果を保存して、次回も続きから使えるようにします。'
+                        ? '入力は3つだけ。診断結果を保存できる状態で始められます。'
                         : '保存したマイクラブと診断結果をここから再開できます。'}
                 </p>
             </div>
 
-            <div className="mb-5 rounded-[1.5rem] bg-slate-50 px-4 py-4 md:mb-6 md:px-5">
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
-                    {intent === 'create-profile' ? 'Create First' : 'Resume'}
-                </div>
-                <div className="mt-2 space-y-2 text-sm font-bold leading-6 text-slate-600">
-                    <div className="flex items-start gap-2">
+            {isRegister && (
+                <div className="mb-5 rounded-[1.5rem] bg-slate-50 px-4 py-4 md:mb-6 md:px-5">
+                    <div className="flex items-start gap-2 text-sm font-bold leading-6 text-slate-600">
                         <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#176534]" />
-                        <span>マイクラブと診断結果を保存できます。</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                        <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#176534]" />
-                        <span>あとでプロフィール情報を追加しても大丈夫です。</span>
+                        <span>登録後すぐに診断へ進めます。クラブ詳細やスコア情報はあとから追加できます。</span>
                     </div>
                 </div>
-            </div>
+            )}
 
             {hasDraftToCarry && (
                 <div className="mb-5 rounded-[1.5rem] bg-golf-50/55 p-4 md:mb-6 md:p-5">
@@ -448,7 +445,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
             </button>
 
             <div className="mt-5 text-center text-xs font-bold leading-6 text-slate-500 md:mt-6">
-                登録後にプロフィール詳細やベストスコアを追加できます。まずは My Page を作って、クラブ登録から始めれば大丈夫です。
+                登録後にプロフィール詳細やベストスコアを追加できます。まずは診断に必要な最小情報だけで大丈夫です。
             </div>
         </div>
     );

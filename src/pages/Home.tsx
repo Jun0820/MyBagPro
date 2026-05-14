@@ -127,7 +127,7 @@ export const Home = () => {
                 onClick={() => handleDiagnosisStart('hero')}
                 className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-14 md:rounded-2xl md:px-6 md:text-base"
               >
-                {user.isLoggedIn ? '無料でクラブ診断をはじめる' : '無料でマイページを作成'}
+                {user.isLoggedIn ? '無料でクラブ診断をはじめる' : '無料登録して診断をはじめる'}
               </button>
               <button
                 onClick={() => {

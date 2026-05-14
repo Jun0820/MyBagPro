@@ -64,6 +64,9 @@ const RouteLoading = () => (
   </div>
 );
 
+const authReturnPath = (location: ReturnType<typeof useLocation>) =>
+  `${location.pathname}${location.search.replace(/^\?/, location.search ? '?' : '')}${location.hash || ''}`;
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { user, profile, setUser, setProfile, showAuth, setShowAuth } = useDiagnosis();
   const [showLegal, setShowLegal] = useState<'privacy' | 'terms' | null>(null);
@@ -77,6 +80,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const authMode = (new URLSearchParams(location.search).get('auth') as 'login' | 'register' | null) || null;
   const authNext = new URLSearchParams(location.search).get('next');
+  const authReturnTo = new URLSearchParams(location.search).get('returnTo');
 
   const navItems = useMemo(
     () => [
@@ -102,6 +106,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const params = new URLSearchParams(location.search);
     params.delete('auth');
     params.delete('next');
+    params.delete('returnTo');
     navigate(
       {
         pathname: location.pathname,
@@ -120,6 +125,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const params = new URLSearchParams(location.search);
     params.set('auth', mode);
     params.set('next', next);
+    if (next === 'diagnosis') params.set('returnTo', authReturnPath(location));
     navigate(
       {
         pathname: location.pathname === '/' ? '/mypage' : location.pathname,
@@ -261,7 +267,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               }}
               className="inline-flex h-11 items-center justify-center rounded-xl bg-[#1c6a3d] px-4 text-sm font-black text-white shadow-[0_18px_32px_-24px_rgba(22,101,52,0.95)] transition hover:bg-[#155d35] md:px-6"
             >
-              {user.isLoggedIn ? 'クラブ診断をはじめる' : 'マイページを作る'}
+              {user.isLoggedIn ? 'クラブ診断をはじめる' : '無料登録して診断'}
             </button>
           </div>
 
@@ -323,7 +329,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               }}
               className="inline-flex min-h-10 items-center justify-center rounded-2xl bg-[#1c6a3d] px-4 text-sm font-black text-white"
             >
-              {user.isLoggedIn ? '診断を始める' : '作成して始める'}
+              {user.isLoggedIn ? '診断を始める' : '無料登録して診断'}
             </button>
           </div>
         </div>
@@ -496,6 +502,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               const draftProfile = p || profile;
               const clubCount = draftProfile?.myBag?.clubs?.length || 0;
               const hasBall = Boolean(draftProfile?.myBag?.ball || draftProfile?.currentBall);
+              if (authNext === 'diagnosis') {
+                navigate(authReturnTo || '/diagnosis?welcome=1');
+                return;
+              }
               if (authNext === 'mypage') {
                 navigate('/mypage?welcome=1&tab=clubs&focus=missing-clubs');
                 return;
@@ -529,6 +539,60 @@ const ScrollToTop = () => {
   return null;
 };
 
+const RequireDiagnosisAuth = ({ children }: { children: React.ReactNode }) => {
+  const { user, setShowAuth } = useDiagnosis();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (user.isLoggedIn) return;
+
+    const params = new URLSearchParams(location.search);
+    if (params.get('auth') !== 'register') {
+      params.set('auth', 'register');
+      params.set('next', 'diagnosis');
+      params.set('returnTo', authReturnPath(location));
+      navigate(
+        {
+          pathname: location.pathname,
+          search: `?${params.toString()}`,
+        },
+        { replace: true }
+      );
+    }
+
+    setShowAuth(true);
+    trackEvent('diagnosis_auth_required', {
+      source_path: location.pathname,
+      next_destination: 'diagnosis',
+    });
+  }, [location, navigate, setShowAuth, user.isLoggedIn]);
+
+  if (!user.isLoggedIn) {
+    return (
+      <div className="mx-auto flex min-h-[58vh] max-w-2xl items-center justify-center">
+        <div className="w-full rounded-[2rem] bg-white p-6 text-center shadow-[0_28px_70px_-48px_rgba(15,15,16,0.35)] ring-1 ring-slate-200/80 md:p-9">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf6ef] text-[#176534]">
+            <Stethoscope size={26} />
+          </div>
+          <h1 className="mt-5 text-2xl font-black tracking-tight text-trust-navy md:text-3xl">診断前に無料登録</h1>
+          <p className="mt-3 text-sm font-bold leading-7 text-slate-600">
+            診断結果を保存してあとから見直せるように、まずはメール・パスワード・名前だけ登録してください。
+          </p>
+          <button
+            onClick={() => setShowAuth(true)}
+            className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-2xl bg-[#176534] px-5 text-sm font-black text-white transition hover:bg-[#13542b] sm:w-auto"
+          >
+            無料登録して診断へ進む
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return <>{children}</>;
+};
+
 function App() {
   return (
     <DiagnosisProvider>
@@ -549,9 +613,9 @@ function App() {
               <Route path="/compare" element={<Navigate to="/mypage" replace />} />
               <Route path="/articles" element={<ArticlesPage />} />
               <Route path="/articles/:slug" element={<ArticleDetailPage />} />
-              <Route path="/ball-diagnosis" element={<BallDiagnosisApp />} />
-              <Route path="/diagnosis" element={<DiagnosisWizard />} />
-              <Route path="/diagnosis/:category" element={<DiagnosisWizard />} />
+              <Route path="/ball-diagnosis" element={<RequireDiagnosisAuth><BallDiagnosisApp /></RequireDiagnosisAuth>} />
+              <Route path="/diagnosis" element={<RequireDiagnosisAuth><DiagnosisWizard /></RequireDiagnosisAuth>} />
+              <Route path="/diagnosis/:category" element={<RequireDiagnosisAuth><DiagnosisWizard /></RequireDiagnosisAuth>} />
               <Route path="/result" element={<ResultPage />} />
               <Route path="/result/:club" element={<ResultPage />} />
               <Route path="/result/:club/:mode" element={<ResultPage />} />
