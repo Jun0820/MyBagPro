@@ -33,6 +33,7 @@ type RichArticleBlock =
 
 const imagePattern = /^\[IMAGE\s+url="([^"]+)"\s+alt="([^"]+)"(?:\s+caption="([^"]+)")?\]$/;
 const calloutPattern = /^\[CALLOUT\s+title="([^"]+)"\]$/;
+const fallbackArticleImage = '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
 const parseRichArticleBody = (body: string): RichArticleBlock[] => {
   const lines = body.split('\n');
@@ -310,12 +311,12 @@ export const ArticleDetailPage = () => {
         記事一覧へ戻る
       </button>
 
-      <article className="bg-white px-4 py-5 shadow-sm ring-1 ring-slate-200/80 md:px-8 md:py-8">
+      <article className="bg-white px-4 py-5 shadow-sm ring-1 ring-slate-200/80 md:px-7 md:py-7">
         <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.15em] text-slate-500">
           <FileText size={14} />
           {articleTypeLabel[article.articleType]}
         </div>
-        <h1 className="mt-3 max-w-5xl text-[1.8rem] font-black tracking-tight text-trust-navy md:mt-4 md:text-[3.35rem] md:leading-[1.05]">{article.title}</h1>
+        <h1 className="mt-3 max-w-5xl text-[1.8rem] font-black tracking-tight text-trust-navy md:mt-4 md:text-5xl md:leading-tight">{article.title}</h1>
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-500 md:mt-4">
           <span className="inline-flex items-center gap-2">
             <CalendarDays size={16} />
@@ -329,7 +330,7 @@ export const ArticleDetailPage = () => {
           </p>
         )}
         {article.relatedProfileSlug && article.relatedProfileName && (
-          <div className="mt-3 rounded-[1.1rem] bg-golf-50/55 px-4 py-3.5 ring-1 ring-golf-100 md:mt-4 md:rounded-[1.35rem] md:px-4.5 md:py-4">
+          <div className="mt-3 rounded-lg bg-golf-50/55 px-4 py-3.5 ring-1 ring-golf-100 md:mt-4 md:px-5 md:py-4">
             <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">PROFILE LINK</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {article.relatedProfileName}のクラブセッティングを見る
@@ -339,14 +340,14 @@ export const ArticleDetailPage = () => {
             </p>
             <button
               onClick={() => navigate(`/settings/pros/${article.relatedProfileSlug}`)}
-              className="mt-3 inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-2.5 text-sm font-black text-white transition hover:bg-slate-800"
+              className="mt-3 inline-flex items-center gap-2 rounded-lg bg-trust-navy px-5 py-2.5 text-sm font-black text-white transition hover:bg-slate-800"
             >
               クラブセッティングを見る
               <ArrowRight size={16} />
             </button>
           </div>
         )}
-        <div className="mt-5 max-w-4xl space-y-4 md:mt-6 md:space-y-4">
+        <div className="mt-5 max-w-4xl space-y-4 md:mt-6">
           {richBlocks.map((block, blockIndex) => {
             if (block.type === 'heading') {
               return (
@@ -427,7 +428,16 @@ export const ArticleDetailPage = () => {
                 key={`${block.type}-${blockIndex}`}
                 className="overflow-hidden bg-white ring-1 ring-slate-200"
               >
-                <img src={block.url} alt={block.alt} className="max-h-[420px] w-full object-cover" />
+                <img
+                  src={block.url}
+                  alt={block.alt}
+                  className="max-h-[420px] w-full object-cover"
+                  onError={(event) => {
+                    const target = event.currentTarget;
+                    if (target.src.endsWith(fallbackArticleImage)) return;
+                    target.src = fallbackArticleImage;
+                  }}
+                />
                 {block.caption && (
                   <figcaption className="border-t border-slate-100 px-4 py-3 text-xs leading-6 text-slate-500 md:px-5">
                     {block.caption}
@@ -438,7 +448,7 @@ export const ArticleDetailPage = () => {
           })}
         </div>
         {tournamentSpotlight && tournamentProfiles.length > 0 && (
-          <section className="mt-4 rounded-[1.1rem] bg-amber-50/60 px-4 py-3.5 ring-1 ring-amber-100 md:mt-5 md:rounded-[1.35rem] md:px-4.5 md:py-4">
+          <section className="mt-4 rounded-lg bg-amber-50/60 px-4 py-3.5 ring-1 ring-amber-100 md:mt-5 md:px-5 md:py-4">
             <div className="text-[11px] font-black tracking-[0.14em] text-amber-700">TOURNAMENT PLAYERS</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {tournamentSpotlight.tournamentName}で追いたい注目選手
@@ -451,7 +461,7 @@ export const ArticleDetailPage = () => {
                 <button
                   key={profile.slug}
                   onClick={() => navigate(`/settings/pros/${profile.slug}`)}
-                  className="rounded-[1.05rem] bg-white px-4 py-3.5 text-left ring-1 ring-amber-100 transition hover:-translate-y-0.5 hover:ring-amber-200 md:rounded-[1.2rem]"
+                  className="rounded-lg bg-white px-4 py-3.5 text-left ring-1 ring-amber-100 transition hover:-translate-y-0.5 hover:ring-amber-200"
                 >
                   <div className="text-[11px] font-black tracking-[0.12em] text-amber-700">{profile.categoryLabel}</div>
                   <h3 className="mt-2 text-base font-black text-trust-navy md:text-lg">{profile.name}</h3>
@@ -466,7 +476,7 @@ export const ArticleDetailPage = () => {
           </section>
         )}
         {relatedProfile && (
-          <section className="mt-4 rounded-[1.1rem] bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100 md:mt-5 md:rounded-[1.35rem] md:px-4.5 md:py-4">
+          <section className="mt-4 rounded-lg bg-slate-50/80 px-4 py-3.5 ring-1 ring-slate-100 md:mt-5 md:px-5 md:py-4">
             <div className="text-[11px] font-black tracking-[0.14em] text-slate-500">SETTING SUMMARY</div>
             <h2 className="mt-2 text-lg font-black text-trust-navy md:text-xl">
               {relatedProfile.name}のクラブセッティング概要
@@ -481,14 +491,14 @@ export const ArticleDetailPage = () => {
             <div className="mt-3.5 flex flex-wrap gap-3">
               <button
                 onClick={() => navigate(`/settings/pros/${relatedProfile.slug}`)}
-                className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-4 py-2 text-sm font-black text-white transition hover:bg-slate-800"
+                className="inline-flex items-center gap-2 rounded-lg bg-trust-navy px-4 py-2 text-sm font-black text-white transition hover:bg-slate-800"
               >
                 詳細ページを見る
                 <ArrowRight size={14} />
               </button>
               <button
                 onClick={() => navigate(`/settings/pros?category=${relatedProfile.category}`)}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100"
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100"
               >
                 {relatedProfile.categoryLabel}をもっと見る
               </button>
@@ -498,7 +508,7 @@ export const ArticleDetailPage = () => {
       </article>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-5 md:rounded-[2rem] md:p-5">
+        <section className="mt-4 rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200 md:mt-5 md:p-5">
           <div className="text-xs font-black text-slate-400">次に読みたい記事</div>
           <h2 className="mt-2 text-xl font-black text-trust-navy md:text-2xl">セッティングの見方を深める</h2>
           <div className="mt-4 grid gap-3 md:mt-4.5 md:gap-3.5 md:grid-cols-3">
@@ -513,7 +523,7 @@ export const ArticleDetailPage = () => {
                   });
                   navigate(`/articles/${relatedArticle.slug}`);
                 }}
-                className="rounded-[1.1rem] bg-slate-50/80 p-3.5 text-left ring-1 ring-slate-100 transition-all hover:-translate-y-0.5 hover:bg-white hover:ring-slate-200 md:rounded-[1.35rem] md:p-4"
+                className="rounded-lg bg-slate-50/80 p-3.5 text-left ring-1 ring-slate-100 transition-all hover:-translate-y-0.5 hover:bg-white hover:ring-slate-200 md:p-4"
               >
                 <div className="text-[11px] font-black tracking-[0.12em] text-slate-500">
                   {articleTypeLabel[relatedArticle.articleType]}

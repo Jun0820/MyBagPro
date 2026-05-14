@@ -29,11 +29,12 @@ const formatPublishedAt = (publishedAt: string | null) => {
 };
 
 const articleImagePattern = /\[IMAGE\s+url="([^"]+)"\s+alt="([^"]+)"/;
+const fallbackArticleImage = '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
 const getArticleImage = (article: PublicArticle) => {
   const match = article.body.match(articleImagePattern);
   return {
-    url: match?.[1] || '/articles/golf-clubs-grass-pexels-20808740.jpg',
+    url: match?.[1] || fallbackArticleImage,
     alt: match?.[2] || article.title,
   };
 };
@@ -71,27 +72,27 @@ export const ArticlesPage = () => {
 
   return (
     <div className="min-h-screen pb-16">
-      <section className="bg-slate-950 px-5 py-7 text-white md:px-8 md:py-10">
+      <section className="bg-slate-950 px-5 py-7 text-white md:px-8 md:py-9">
         <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.15em] text-cyan-200">
           <Newspaper size={14} />
           更新記事
         </div>
-        <h1 className="mt-4 max-w-4xl text-[2rem] font-black tracking-tight md:mt-5 md:text-5xl">セッティングの見方と更新内容を、記事で分かりやすく残す。</h1>
+        <h1 className="mt-4 max-w-4xl text-[2rem] font-black tracking-tight md:mt-5 md:text-5xl">セッティングの見方と更新内容</h1>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300 md:mt-4 md:text-base md:leading-7">
           確認済みの掲載更新、比較や診断の使い方、セッティングの読み解き方をまとめています。
           プロフィールだけでは伝わりにくい背景を、あとから追いやすい形で公開します。
         </p>
 
         <div className="mt-5 grid gap-px overflow-hidden bg-white/10 sm:grid-cols-3">
-          <div className="bg-slate-950/90 px-4 py-3.5">
+          <div className="bg-slate-950/90 px-4 py-3">
             <div className="text-xs font-black text-slate-400">公開記事</div>
             <div className="mt-2 text-2xl font-black text-white">{articles.length}</div>
           </div>
-          <div className="bg-slate-950/90 px-4 py-3.5">
+          <div className="bg-slate-950/90 px-4 py-3">
             <div className="text-xs font-black text-slate-400">更新情報</div>
             <div className="mt-2 text-2xl font-black text-white">{updateCount}</div>
           </div>
-          <div className="bg-slate-950/90 px-4 py-3.5">
+          <div className="bg-slate-950/90 px-4 py-3">
             <div className="text-xs font-black text-slate-400">読みもの</div>
             <div className="mt-2 text-2xl font-black text-white">{columnCount + newsCount}</div>
           </div>
@@ -155,7 +156,17 @@ export const ArticlesPage = () => {
               return (
                 <>
             <div className="h-40 overflow-hidden md:h-full">
-              <img src={image.url} alt={image.alt} className="h-full w-full object-cover" loading="lazy" />
+              <img
+                src={image.url}
+                alt={image.alt}
+                className="h-full w-full object-cover"
+                loading="lazy"
+                onError={(event) => {
+                  const target = event.currentTarget;
+                  if (target.src.endsWith(fallbackArticleImage)) return;
+                  target.src = fallbackArticleImage;
+                }}
+              />
             </div>
             <div className="p-4 md:p-5">
             <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500">

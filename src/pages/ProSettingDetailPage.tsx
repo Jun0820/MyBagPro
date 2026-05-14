@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ChevronDown, Globe, Instagram, PlayCircle, ShoppingBag, Twitter } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDriverDetailBySlug } from '../data/featuredSettings';
@@ -202,6 +202,7 @@ export const ProSettingDetailPage = () => {
   const [distanceMode, setDistanceMode] = useState<'carry' | 'total'>('carry');
   const [isMediaSectionOpen, setIsMediaSectionOpen] = useState(false);
   const [isRelatedArticlesOpen, setIsRelatedArticlesOpen] = useState(false);
+  const relatedArticlesRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -422,6 +423,12 @@ export const ProSettingDetailPage = () => {
   ];
   const compactTagline = shortenTagline(setting.tagline);
   const compactSummary = shortenSummary(setting.summary, setting.name);
+  const openRelatedArticles = () => {
+    setIsRelatedArticlesOpen(true);
+    requestAnimationFrame(() => {
+      relatedArticlesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
 
   return (
     <div className="min-h-screen overflow-x-hidden pb-20">
@@ -501,10 +508,10 @@ export const ProSettingDetailPage = () => {
             </button>
             {relatedArticles.length > 0 && (
               <button
-                onClick={() => navigate(`/articles/${relatedArticles[0].slug}`)}
+                onClick={openRelatedArticles}
                 className="rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-black text-white transition hover:bg-white/15 md:text-sm"
               >
-                関連記事
+                関連記事を開く
               </button>
             )}
           </div>
@@ -512,7 +519,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-5">
+        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:p-5">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">PLAYER STATS</div>
@@ -524,7 +531,7 @@ export const ProSettingDetailPage = () => {
           </div>
           <div className="mt-3 grid gap-2 md:mt-5 md:grid-cols-3">
             {statCards.map((card) => (
-              <div key={card.label} className="rounded-[1rem] bg-slate-50 px-4 py-3 md:rounded-[1.25rem] md:py-3.5">
+              <div key={card.label} className="rounded-lg bg-slate-50 px-4 py-3 md:py-3.5">
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{card.label}</div>
                 <div className="mt-1 text-[1.55rem] font-black leading-none text-trust-navy md:mt-1.5 md:text-2xl">{card.value}</div>
               </div>
@@ -534,7 +541,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       <section className="mt-4 md:mt-6">
-        <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-5">
+        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-black text-trust-navy">クラブセッティング</h2>
@@ -559,7 +566,7 @@ export const ProSettingDetailPage = () => {
               ))}
             </div>
           </div>
-          <div className="mt-3 overflow-hidden rounded-[1.125rem] ring-1 ring-slate-200 md:mt-4 md:rounded-[1.5rem]">
+          <div className="mt-3 overflow-hidden rounded-lg ring-1 ring-slate-200 md:mt-4">
             <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
               {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
@@ -659,7 +666,7 @@ export const ProSettingDetailPage = () => {
 
       {setting.sources.length > 0 && (
         <section className="mt-4 md:mt-6">
-          <div className="rounded-[1.35rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-5">
+          <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:p-5">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">SOURCE NOTES</div>
@@ -673,7 +680,7 @@ export const ProSettingDetailPage = () => {
               {setting.sources.map((source) => (
                 <div
                   key={`${source.type}-${source.url}`}
-                  className="rounded-[1.1rem] bg-slate-50/80 px-3 py-2.5"
+                  className="rounded-lg bg-slate-50/80 px-3 py-2.5"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
@@ -695,7 +702,7 @@ export const ProSettingDetailPage = () => {
       )}
 
       <section className="mt-4 md:mt-6">
-        <div className="overflow-hidden rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem]">
+        <div className="overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-slate-200/80">
           <button
             type="button"
             onClick={() => setIsMediaSectionOpen((open) => !open)}
@@ -764,7 +771,7 @@ export const ProSettingDetailPage = () => {
       </section>
 
       {relatedArticles.length > 0 && (
-        <section className="mt-4 rounded-[1.35rem] bg-white shadow-sm ring-1 ring-slate-200/80 md:mt-5 md:rounded-[2rem]">
+        <section ref={relatedArticlesRef} className="mt-4 rounded-lg bg-white shadow-sm ring-1 ring-slate-200/80 md:mt-5">
           <button
             type="button"
             onClick={() => setIsRelatedArticlesOpen((open) => !open)}
@@ -795,7 +802,7 @@ export const ProSettingDetailPage = () => {
                   <button
                     key={article.slug}
                     onClick={() => navigate(`/articles/${article.slug}`)}
-                    className="rounded-[1.25rem] bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:bg-slate-50"
+                    className="rounded-lg bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:bg-slate-50"
                   >
                     <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">
                       {articleTypeLabel[article.articleType]}
@@ -815,7 +822,7 @@ export const ProSettingDetailPage = () => {
       )}
 
       {driverDetail && (
-        <section className="mt-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:mt-5 md:rounded-[2rem] md:p-5">
+        <section className="mt-4 rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:mt-5 md:p-5">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">DRIVER DETAIL</div>
@@ -825,7 +832,7 @@ export const ProSettingDetailPage = () => {
             </div>
             <button
               onClick={() => navigate(`/clubs/drivers/${driverDetail.slug}`)}
-              className="inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
+              className="inline-flex items-center gap-2 rounded-lg bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
             >
               ドライバー詳細を見る
               <ShoppingBag size={16} />
