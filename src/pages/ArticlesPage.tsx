@@ -28,6 +28,16 @@ const formatPublishedAt = (publishedAt: string | null) => {
   }).format(new Date(publishedAt));
 };
 
+const articleImagePattern = /\[IMAGE\s+url="([^"]+)"\s+alt="([^"]+)"/;
+
+const getArticleImage = (article: PublicArticle) => {
+  const match = article.body.match(articleImagePattern);
+  return {
+    url: match?.[1] || '/articles/golf-clubs-grass-pexels-20808740.jpg',
+    alt: match?.[2] || article.title,
+  };
+};
+
 export const ArticlesPage = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState<PublicArticle[]>([]);
@@ -60,28 +70,28 @@ export const ArticlesPage = () => {
   const newsCount = articles.filter((article) => article.articleType === 'news').length;
 
   return (
-    <div className="min-h-screen pb-20">
-      <section className="rounded-[1.5rem] bg-slate-950 px-5 py-7 text-white md:rounded-[2rem] md:px-10 md:py-14">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.15em] text-cyan-200">
+    <div className="min-h-screen pb-16">
+      <section className="bg-slate-950 px-5 py-7 text-white md:px-8 md:py-10">
+        <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.15em] text-cyan-200">
           <Newspaper size={14} />
           更新記事
         </div>
-        <h1 className="mt-4 text-[2rem] font-black tracking-tight md:mt-5 md:text-6xl">セッティングの見方と更新内容を、記事で分かりやすく残す。</h1>
+        <h1 className="mt-4 max-w-4xl text-[2rem] font-black tracking-tight md:mt-5 md:text-5xl">セッティングの見方と更新内容を、記事で分かりやすく残す。</h1>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300 md:mt-4 md:text-base md:leading-7">
           確認済みの掲載更新、比較や診断の使い方、セッティングの読み解き方をまとめています。
           プロフィールだけでは伝わりにくい背景を、あとから追いやすい形で公開します。
         </p>
 
-        <div className="mt-5 grid gap-2.5 sm:grid-cols-3">
-          <div className="rounded-[1rem] bg-white/5 px-4 py-3.5 ring-1 ring-white/10 md:rounded-2xl md:py-4">
+        <div className="mt-5 grid gap-px overflow-hidden bg-white/10 sm:grid-cols-3">
+          <div className="bg-slate-950/90 px-4 py-3.5">
             <div className="text-xs font-black text-slate-400">公開記事</div>
             <div className="mt-2 text-2xl font-black text-white">{articles.length}</div>
           </div>
-          <div className="rounded-[1rem] bg-white/5 px-4 py-3.5 ring-1 ring-white/10 md:rounded-2xl md:py-4">
+          <div className="bg-slate-950/90 px-4 py-3.5">
             <div className="text-xs font-black text-slate-400">更新情報</div>
             <div className="mt-2 text-2xl font-black text-white">{updateCount}</div>
           </div>
-          <div className="rounded-[1rem] bg-white/5 px-4 py-3.5 ring-1 ring-white/10 md:rounded-2xl md:py-4">
+          <div className="bg-slate-950/90 px-4 py-3.5">
             <div className="text-xs font-black text-slate-400">読みもの</div>
             <div className="mt-2 text-2xl font-black text-white">{columnCount + newsCount}</div>
           </div>
@@ -135,14 +145,19 @@ export const ArticlesPage = () => {
           <button
             key={article.slug}
             onClick={() => navigate(`/articles/${article.slug}`)}
-            className="rounded-[1.5rem] bg-white p-4 text-left shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-1 hover:shadow-xl md:rounded-[2rem] md:p-5"
+            className="grid overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-slate-200 transition-all hover:-translate-y-0.5 hover:shadow-md md:grid-cols-[220px_minmax(0,1fr)]"
           >
             {(() => {
               const spotlight = getTournamentSpotlightByArticleSlug(article.slug);
               const relatedCount = spotlight?.featuredPlayerSlugs.length || 0;
+              const image = getArticleImage(article);
 
               return (
                 <>
+            <div className="h-40 overflow-hidden md:h-full">
+              <img src={image.url} alt={image.alt} className="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <div className="p-4 md:p-5">
             <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500">
               <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black tracking-[0.12em] text-slate-600">
                 {articleTypeLabel[article.articleType]}
@@ -169,6 +184,7 @@ export const ArticlesPage = () => {
             <div className="mt-3 inline-flex items-center gap-2 text-sm font-black text-trust-navy md:mt-4">
               記事を読む
               <ArrowRight size={16} />
+            </div>
             </div>
                 </>
               );

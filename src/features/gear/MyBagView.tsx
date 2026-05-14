@@ -1,5 +1,6 @@
 import React from 'react';
 import { Instagram, Send, User, Globe, Share2, Download, Brain } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { type ClubSetting, type UserSocialLinks, TargetCategory } from '../../types/golf';
 import { generateBagImage } from '../../lib/shareImageGenerator';
@@ -21,6 +22,7 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
     setting, headSpeed, userName, snsLinks, coverPhoto, isPublic, onUpdateIsPublic, userId,
     bestScore, averageScore
 }) => {
+    const navigate = useNavigate();
     const sortedClubs = [...setting.clubs].sort((a, b) => {
         const distA = a.distance ? parseInt(String(a.distance).replace(/\D/g, ''), 10) : 0;
         const distB = b.distance ? parseInt(String(b.distance).replace(/\D/g, ''), 10) : 0;
@@ -92,10 +94,10 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
                     {coverPhoto ? (
                         <img src={coverPhoto} className="w-full h-full object-cover opacity-60" alt="Cover" />
                     ) : (
-                        <img 
-                            src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=2070&auto=format&fit=crop" 
+                        <img
+                            src="/articles/golf-clubs-grass-pexels-20808740.jpg"
                             className="w-full h-full object-cover opacity-20" 
-                            alt="Default Cover"
+                            alt="芝の上に並んだゴルフクラブ"
                         />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
@@ -136,13 +138,13 @@ export const MyBagView: React.FC<MyBagViewProps> = ({
                 {/* Quick Actions / Diagnosis Area */}
                 <div className="p-4 md:p-6 bg-slate-900 flex flex-col sm:flex-row gap-4">
                     <button 
-                        onClick={() => window.location.hash = '#/diagnosis/total_setting'}
+                        onClick={() => navigate('/diagnosis/total_setting')}
                         className="flex-1 flex items-center justify-center gap-3 py-4 bg-gradient-to-br from-golf-500 to-golf-700 text-white rounded-2xl shadow-xl shadow-golf-500/20 hover:scale-[1.02] transition-all font-black text-sm tracking-widest uppercase"
                     >
                         <Brain size={20} /> クラブセッティング診断を開始
                     </button>
                     <button 
-                        onClick={() => window.location.hash = '#/ball-diagnosis'}
+                        onClick={() => navigate('/ball-diagnosis')}
                         className="flex-1 flex items-center justify-center gap-3 py-4 bg-gradient-to-br from-cyan-500 to-cyan-700 text-white rounded-2xl shadow-xl shadow-cyan-500/20 hover:scale-[1.02] transition-all font-black text-sm tracking-widest uppercase"
                     >
                         ⚪ ボール診断を開始

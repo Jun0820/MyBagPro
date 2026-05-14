@@ -290,18 +290,18 @@ export const ArticleDetailPage = () => {
   }, [article?.relatedProfileSlug, article?.slug]);
 
   if (isLoading) {
-    return <div className="rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-8">記事を読み込んでいます...</div>;
+    return <div className="bg-white p-7 text-center text-sm font-bold text-slate-500 ring-1 ring-slate-200/80">記事を読み込んでいます...</div>;
   }
 
   if (!article) {
-    return <div className="rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-8">記事が見つかりません。</div>;
+    return <div className="bg-white p-7 text-center text-sm font-bold text-slate-500 ring-1 ring-slate-200/80">記事が見つかりません。</div>;
   }
 
   const tournamentSpotlight = getTournamentSpotlightByArticleSlug(article.slug);
   const richBlocks = parseRichArticleBody(article.body);
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-16">
       <button
         onClick={() => navigate('/articles')}
         className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy md:mb-5"
@@ -310,12 +310,12 @@ export const ArticleDetailPage = () => {
         記事一覧へ戻る
       </button>
 
-      <article className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-7">
-        <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-[11px] font-black tracking-[0.15em] text-slate-500">
+      <article className="bg-white px-4 py-5 shadow-sm ring-1 ring-slate-200/80 md:px-8 md:py-8">
+        <div className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.15em] text-slate-500">
           <FileText size={14} />
           {articleTypeLabel[article.articleType]}
         </div>
-        <h1 className="mt-3 text-[1.8rem] font-black tracking-tight text-trust-navy md:mt-4 md:text-[3.85rem]">{article.title}</h1>
+        <h1 className="mt-3 max-w-5xl text-[1.8rem] font-black tracking-tight text-trust-navy md:mt-4 md:text-[3.35rem] md:leading-[1.05]">{article.title}</h1>
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-500 md:mt-4">
           <span className="inline-flex items-center gap-2">
             <CalendarDays size={16} />
@@ -324,7 +324,7 @@ export const ArticleDetailPage = () => {
           {article.seasonYear && <span>{article.seasonYear}シーズン</span>}
         </div>
         {article.excerpt && (
-          <p className="mt-3 rounded-[1.1rem] bg-slate-50/80 px-4 py-3.5 text-sm leading-6 text-slate-700 md:mt-4 md:rounded-[1.35rem] md:px-4.5 md:py-4 md:leading-7">
+          <p className="mt-4 border-l-4 border-golf-600 bg-slate-50/80 px-4 py-3 text-sm leading-6 text-slate-700 md:max-w-4xl md:leading-7">
             {article.excerpt}
           </p>
         )}
@@ -346,7 +346,7 @@ export const ArticleDetailPage = () => {
             </button>
           </div>
         )}
-        <div className="mt-4 space-y-4 md:mt-5 md:space-y-4">
+        <div className="mt-5 max-w-4xl space-y-4 md:mt-6 md:space-y-4">
           {richBlocks.map((block, blockIndex) => {
             if (block.type === 'heading') {
               return (
@@ -373,7 +373,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="rounded-[1.1rem] bg-[#f8faf8] px-4 py-3.5 ring-1 ring-[#e8efe9] md:rounded-[1.35rem] md:px-4.5 md:py-4"
+                  className="border-l-4 border-[#176534] bg-[#f8faf8] px-4 py-3.5 ring-1 ring-[#e8efe9] md:px-5 md:py-4"
                 >
                   <ul className="space-y-2.5">
                     {block.items.map((item, itemIndex) => (
@@ -391,7 +391,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="rounded-[1.1rem] bg-golf-50/55 px-4 py-3.5 ring-1 ring-golf-100 md:rounded-[1.35rem] md:px-4.5 md:py-4"
+                  className="border-l-4 border-golf-600 bg-golf-50/55 px-4 py-3.5 ring-1 ring-golf-100 md:px-5 md:py-4"
                 >
                   <div className="text-[11px] font-black tracking-[0.14em] text-golf-700">{block.title}</div>
                   <div className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-700 md:leading-8">{block.content}</div>
@@ -403,7 +403,7 @@ export const ArticleDetailPage = () => {
               return (
                 <div
                   key={`${block.type}-${blockIndex}`}
-                  className="overflow-hidden rounded-[1.1rem] bg-[#fbfcfb] ring-1 ring-[#e1e9e3] md:rounded-[1.35rem]"
+                  className="overflow-hidden bg-[#fbfcfb] ring-1 ring-[#e1e9e3]"
                 >
                   <div className="border-b border-[#eef3ef] bg-[#f7faf7] px-4 py-2.5 text-[11px] font-black tracking-[0.14em] text-[#176534]">
                     図で整理
@@ -412,7 +412,7 @@ export const ArticleDetailPage = () => {
                     {block.lines.map((diagramLine, lineIndex) => (
                       <div
                         key={`${diagramLine}-${lineIndex}`}
-                        className="rounded-2xl bg-white px-4 py-2.5 font-mono text-xs leading-6 text-slate-700 ring-1 ring-[#e8efea] md:text-sm"
+                        className="bg-white px-4 py-2.5 font-mono text-xs leading-6 text-slate-700 ring-1 ring-[#e8efea] md:text-sm"
                       >
                         {diagramLine}
                       </div>
@@ -425,9 +425,9 @@ export const ArticleDetailPage = () => {
             return (
               <figure
                 key={`${block.type}-${blockIndex}`}
-                className="overflow-hidden rounded-[1.25rem] bg-white ring-1 ring-slate-200 md:rounded-[1.5rem]"
+                className="overflow-hidden bg-white ring-1 ring-slate-200"
               >
-                <img src={block.url} alt={block.alt} className="h-auto w-full object-cover" />
+                <img src={block.url} alt={block.alt} className="max-h-[420px] w-full object-cover" />
                 {block.caption && (
                   <figcaption className="border-t border-slate-100 px-4 py-3 text-xs leading-6 text-slate-500 md:px-5">
                     {block.caption}

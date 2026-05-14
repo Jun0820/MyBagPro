@@ -1,5 +1,7 @@
 import type { DiagnosisAnswers } from '../pages/ball-diagnosis/BallDiagnosisApp';
 
+const BALL_IMAGE = '/articles/golf-balls-club-pexels-6572967.jpg';
+
 export interface GolfBall {
   id: string;
   name: string;
@@ -27,7 +29,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'Pro V1x',
     brand: 'Titleist',
     type: 'スピン系・高弾道',
-    img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
+    img: BALL_IMAGE,
     desc: '最新のデュアルコア技術により、ドライバーでの圧倒的な低スピンとアイアンでの高弾道・高スピンを両立させたフラッグシップモデル。',
     profiles: {
       targetSpeed: ['44-47', '48-49', 'over50'],
@@ -42,7 +44,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'Pro V1',
     brand: 'Titleist',
     type: 'スピン系・中弾道',
-    img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80',
+    img: BALL_IMAGE,
     desc: 'すべてのゴルファーに推奨される完成度。Xと比べて中弾道で、より柔らかい打感と優れたショートゲームコントロールを提供。',
     profiles: {
       targetSpeed: ['40-43', '44-47', '48-49'],
@@ -57,7 +59,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'TP5',
     brand: 'TaylorMade',
     type: '5ピース・スピン系',
-    img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80',
+    img: BALL_IMAGE,
     desc: '独自の5層構造がもたらすグリーン周りでの最強のスピン量。アプローチをとにかく食いつかせたいプレーヤー向け。',
     profiles: {
       targetSpeed: ['40-43', '44-47'],
@@ -72,7 +74,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'TP5x',
     brand: 'TaylorMade',
     type: '5ピース・ディスタンス',
-    img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
+    img: BALL_IMAGE,
     desc: 'ツアーレベルのボールの中でトップクラスの初速。風に負けない強弾道で、5層フェースが飛距離を限界まで引き上げる。',
     profiles: {
       targetSpeed: ['44-47', '48-49', 'over50'],
@@ -87,7 +89,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'Chrome Tour',
     brand: 'Callaway',
     type: 'スピン系・ディスタンス',
-    img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80',
+    img: BALL_IMAGE,
     desc: '最新のエアロネットワークパターンにより、強風下でも落ち際まで伸びる弾道。飛距離とスピンの高次元なバランス。',
     profiles: {
       targetSpeed: ['44-47', '48-49'],
@@ -102,7 +104,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'Chrome Tour Triple Diamond',
     brand: 'Callaway',
     type: '低スピン・強弾道',
-    img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
+    img: BALL_IMAGE,
     desc: 'Callawayの現行低スピンツアーボール。速いスイングで、吹け上がりを抑えながら前に強く飛ばしたいプレーヤー向け。',
     profiles: {
       targetSpeed: ['48-49', 'over50'],
@@ -117,7 +119,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'Z-STAR ◆ (Diamond)',
     brand: 'Srixon',
     type: 'スピン系・アイアン強化',
-    img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80',
+    img: BALL_IMAGE,
     desc: 'アイアンでの強烈なスピンと飛距離性能を兼ね備えたモダンプロファイル。ハードヒッターがピンをデッドに狙うためのボール。',
     profiles: {
       targetSpeed: ['48-49', 'over50'],
@@ -132,7 +134,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'AVX',
     brand: 'Titleist',
     type: '低弾道・低スピン',
-    img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
+    img: BALL_IMAGE,
     desc: '極めて柔らかい打感と、吹け上がりを抑えた低弾道が特徴。スライスやフックの曲がり幅を抑えたいプレーヤーの救世主。',
     profiles: {
       targetSpeed: ['under40', '40-43', '44-47'],
@@ -147,7 +149,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'Tour Response',
     brand: 'TaylorMade',
     type: 'ウレタン系・バランス重視',
-    img: 'https://images.unsplash.com/photo-1592534571990-2ef42111161d?w=500&q=80',
+    img: BALL_IMAGE,
     desc: 'ツアー系ボールの性能に近づけつつ、価格とやさしさのバランスを取りたい人向け。ソフトな打感で幅広く使いやすいモデル。',
     profiles: {
       targetSpeed: ['40-43', '44-47'],
@@ -162,7 +164,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'SpeedSoft',
     brand: 'TaylorMade',
     type: 'ソフト系・やさしい飛距離',
-    img: 'https://images.unsplash.com/photo-1587329310686-91414b8e3cb7?w=500&q=80',
+    img: BALL_IMAGE,
     desc: 'TaylorMadeの現行ソフト系ディスタンスボール。低めのヘッドスピードでもつぶしやすく、楽に飛距離を出したい人向け。',
     profiles: {
       targetSpeed: ['under40', '40-43'],
@@ -177,7 +179,7 @@ export const BALL_DATABASE: GolfBall[] = [
     name: 'e12 Straight',
     brand: 'Bridgestone',
     type: '直進性・曲がり軽減',
-    img: 'https://images.unsplash.com/photo-1535136128453-34e8929e5fa2?w=500&q=80',
+    img: BALL_IMAGE,
     desc: 'Bridgestoneの現行e12シリーズ。フックやスライスを減らしながら前に進む弾道を求める人向け。',
     profiles: {
       targetSpeed: ['under40', '40-43', '44-47'],

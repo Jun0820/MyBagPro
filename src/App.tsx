@@ -1,5 +1,5 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import {
   Bell,
   Home as HomeIcon,
@@ -52,6 +52,9 @@ const ArticlesPage = lazy(() =>
 );
 const ArticleDetailPage = lazy(() =>
   import('./pages/ArticleDetailPage').then((module) => ({ default: module.ArticleDetailPage }))
+);
+const ComparePage = lazy(() =>
+  import('./pages/ComparePage').then((module) => ({ default: module.ComparePage }))
 );
 const BallDiagnosisApp = lazy(() => import('./pages/ball-diagnosis/BallDiagnosisApp'));
 const Sitemap = lazy(() =>
@@ -619,7 +622,7 @@ function App() {
               <Route path="/clubs/drivers" element={<DriversCatalogPage />} />
               <Route path="/clubs/drivers/:slug" element={<DriverDetailPage />} />
               <Route path="/buy/:category/:slug" element={<BuyPage />} />
-              <Route path="/compare" element={<Navigate to="/mypage" replace />} />
+              <Route path="/compare" element={<ComparePage />} />
               <Route path="/articles" element={<ArticlesPage />} />
               <Route path="/articles/:slug" element={<ArticleDetailPage />} />
               <Route path="/ball-diagnosis" element={<RequireDiagnosisAuth><BallDiagnosisApp /></RequireDiagnosisAuth>} />

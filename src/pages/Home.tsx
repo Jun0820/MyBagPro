@@ -13,42 +13,38 @@ import { trackEvent } from '../lib/analytics';
 import { useDiagnosis } from '../context/DiagnosisContext';
 
 const heroImage =
-  'https://images.unsplash.com/photo-1510160493562-2a35f8ad1ebb?auto=format&fit=crop&w=1600&q=80';
+  '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
 const contentCards = [
   {
     tag: 'NEW',
     title: '最新プロセッティング',
     subtitle: '人気プロの最新14本を俯瞰して比較',
-    image:
-      'https://images.unsplash.com/photo-1535132011086-b8818f016104?auto=format&fit=crop&w=900&q=80',
+    image: '/articles/golf-clubs-grass-pexels-20808740.jpg',
     href: '/settings/pros',
     label: 'プロのセッティング',
   },
   {
     tag: 'ランキング',
-    title: 'ドライバー比較ランキング',
-    subtitle: '飛距離・方向性・寛容性を軸に比較',
-    image:
-      'https://images.unsplash.com/photo-1627591641174-5f0fd692d1c3?auto=format&fit=crop&w=900&q=80',
-    href: '/compare',
-    label: 'クラブ比較',
+    title: '人気ドライバーを確認',
+    subtitle: 'モデル別の特徴から次の候補を探す',
+    image: '/articles/golf-balls-club-pexels-6572967.jpg',
+    href: '/clubs/drivers',
+    label: 'ドライバー一覧',
   },
   {
     tag: 'ガイド',
-    title: 'アイアンの選び方 完全ガイド',
-    subtitle: '中級者が失敗しないための整理',
-    image:
-      'https://images.unsplash.com/photo-1627384113972-f4c2f6bb77eb?auto=format&fit=crop&w=900&q=80',
-    href: '/articles',
+    title: '5番アイアンが苦手なら',
+    subtitle: 'UT・7Wで距離を作る考え方を整理',
+    image: '/articles/golf-clubs-grass-pexels-20808740.jpg',
+    href: '/articles/five-iron-hard-ut-7w-womens-pro-setting-2026',
     label: '記事・コラム',
   },
   {
     tag: 'お悩み解決',
     title: 'ドライバーのスライス改善ガイド',
     subtitle: 'クラブ選びで見直すべきポイントを整理',
-    image:
-      'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=900&q=80',
+    image: '/articles/golf-balls-club-pexels-6572967.jpg',
     href: '/articles/driver-slice-club-choice-2026',
     label: 'お悩み解決',
   },
@@ -193,7 +189,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.65fr_0.75fr]">
+      <section className="grid gap-4 md:gap-5 xl:grid-cols-[1.65fr_0.75fr]">
         <div>
           <div className="mb-3 flex items-center justify-between px-1 md:mb-3 md:px-0">
             <div>
@@ -204,21 +200,21 @@ export const Home = () => {
               <ArrowRight size={14} />
             </button>
           </div>
-          <div className="flex gap-3 overflow-x-auto pb-2 md:gap-4 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#e0e0e0] [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {contentCards.map((card) => (
               <button
                 key={card.title}
                 onClick={() => navigate(card.href)}
-                className="flex-shrink-0 overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-[#e3ebe4] transition hover:-translate-y-1 hover:shadow-lg md:rounded-[24px] w-[280px] md:w-auto md:flex-1 md:max-w-[calc(50%-0.5rem)] lg:max-w-[calc(25%-0.75rem)]"
+                className="overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-[#e3ebe4] transition hover:-translate-y-0.5 hover:shadow-md"
               >
-                <div className="relative h-28 overflow-hidden md:h-40">
+                <div className="relative h-28 overflow-hidden">
                   <img src={card.image} alt={card.title} className="h-full w-full object-cover" />
                   <div className="absolute left-2 top-2 rounded-full bg-[#2563eb] px-2 py-0.5 text-[8px] font-black text-white md:left-3 md:top-3 md:px-2.5 md:py-1 md:text-[10px]">
                     {card.tag}
                   </div>
                 </div>
-                <div className="px-3 py-2.5 md:px-4 md:py-3.5">
-                  <div className="text-sm font-black leading-6 text-[#151719] md:text-xl md:leading-7">{card.title}</div>
+                <div className="px-3 py-3">
+                  <div className="text-sm font-black leading-6 text-[#151719] md:text-base md:leading-6">{card.title}</div>
                   <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{card.subtitle}</div>
                   <div className="mt-2 inline-flex rounded-full bg-[#f1f6f2] px-2 py-0.5 text-[10px] font-black text-[#176534] md:mt-3 md:px-3 md:py-1 md:text-xs">
                     {card.label}

@@ -4,15 +4,9 @@ import { cn } from '../../lib/utils';
 import type { UserSocialLinks } from '../../types/golf';
 
 const BACKGROUND_TEMPLATES = [
-    { id: 'default', name: 'Classic Green', url: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=2070' },
-    { id: 'links', name: 'Elite Links', url: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070' },
-    { id: 'sunset', name: 'Sunset Play', url: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?q=80&w=2070' },
-    { id: 'grass', name: 'Lush Field', url: 'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?q=80&w=2070' },
-    { id: 'club', name: 'Premium Club', url: 'https://images.unsplash.com/photo-1537243916050-de57e84126fa?q=80&w=2070' },
-    { id: 'mist', name: 'Morning Mist', url: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=2070' },
-    { id: 'dark', name: 'Midnight', url: 'https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=2070' },
-    { id: 'sand', name: 'Bunker', url: 'https://images.unsplash.com/photo-1592919505780-303950717480?q=80&w=2070' },
-    { id: 'abstract', name: 'Minimalist', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2070' },
+    { id: 'default', name: 'Classic Green', url: '/articles/golf-clubs-grass-pexels-20808740.jpg' },
+    { id: 'green', name: 'Putting Green', url: '/articles/golf-green-putting-pexels-8218726.jpg' },
+    { id: 'ball', name: 'Ball & Club', url: '/articles/golf-balls-club-pexels-6572967.jpg' },
 ];
 
 interface ProfileManagerProps {
