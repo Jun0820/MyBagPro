@@ -6,6 +6,8 @@ import { cn } from '../../lib/utils';
 import { buildStoredSocialLinks } from '../../lib/userSocials';
 import { trackEvent } from '../../lib/analytics';
 
+const AUTH_REDIRECT_ORIGIN = import.meta.env.VITE_AUTH_REDIRECT_ORIGIN || 'https://www.mybagpro.jp';
+
 interface AccountAuthProps {
     onLogin: (account: UserAccount, profile?: UserProfile) => void;
     onClose: () => void;
@@ -79,8 +81,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
     };
 
     const getEmailRedirectTo = () => {
-        if (typeof window === 'undefined') return undefined;
-        return `${window.location.origin}/mypage?welcome=1&tab=clubs&focus=missing-clubs`;
+        return `${AUTH_REDIRECT_ORIGIN}/mypage?welcome=1&tab=clubs&focus=missing-clubs`;
     };
 
     const handleAuth = async () => {
