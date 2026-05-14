@@ -74,15 +74,15 @@ const featureCards = [
 ];
 
 const trustStats = [
-  { icon: BarChart3, label: '診断実績', value: '15,000件以上' },
-  { icon: UserRoundSearch, label: '分析プロ', value: '300名以上' },
-  { icon: Trophy, label: 'クラブデータ', value: '1,200本以上' },
+  { icon: BarChart3, label: 'AI診断', value: '課題を整理' },
+  { icon: UserRoundSearch, label: 'プロ比較', value: '14本を確認' },
+  { icon: Trophy, label: 'マイバッグ', value: '保存して見直す' },
 ];
 
 const supportStats = [
-  { title: '診断満足度', value: '96%', note: '診断結果に満足いただいています' },
-  { title: 'リピート率', value: '82%', note: '保存して使うユーザーが増えています' },
-  { title: 'スコア改善実感', value: '平均 7.2打改善', note: '登録と診断を併用した利用者ベース' },
+  { title: '1. 自分のクラブを登録', value: 'MyBag', note: 'ドライバーからパターまで、いまの14本を整理します。' },
+  { title: '2. AI診断を受ける', value: 'Diagnosis', note: 'ミス傾向や距離の階段から、見直す順番を出します。' },
+  { title: '3. プロの14本と比べる', value: 'Compare', note: '同じクラブを真似るのではなく、構成の考え方を参考にします。' },
 ];
 
 const handleChartPoints = [
@@ -231,7 +231,7 @@ export const Home = () => {
         <aside className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e3ebe4] md:rounded-[28px] md:ring-0 md:bg-[#15542f] md:p-5 md:text-white md:shadow-[0_24px_60px_-42px_rgba(21,84,47,0.8)] xl:p-6">
           <div className="text-lg font-black md:text-2xl">無料クラブ診断</div>
           <p className="mt-2 text-xs leading-6 text-slate-600 md:mt-3 md:text-sm md:leading-7 md:text-white/80">
-            たった30秒であなたのゴルフを分析。保存後は比較候補としていつでも見返せます。
+            登録後に診断を始めると、結果を保存してあとから見返せます。
           </p>
           <div className="mt-3 space-y-2 text-xs font-bold text-slate-700 md:mt-5 md:space-y-3 md:text-sm md:font-bold md:text-white/90">
             <div className="flex items-start gap-2"><CheckCircle2 size={14} className="mt-0.5 shrink-0 md:size-4 md:mt-1" /> スイングタイプやミス傾向を分析</div>
@@ -328,17 +328,16 @@ export const Home = () => {
         </div>
 
         <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-5 xl:self-end">
-          <div className="text-xs font-bold text-slate-500 md:text-sm">多くのゴルファーに支持されています</div>
+          <div className="text-xs font-bold text-slate-500 md:text-sm">MyBagProの使い方</div>
           <div className="mt-3 space-y-2 md:mt-4.5 md:space-y-3">
             {supportStats.map((stat) => (
               <div key={stat.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 ring-1 ring-[#f0f3f0] md:rounded-[22px] md:px-4 md:py-3.5">
                 <div className="text-xs font-black text-slate-500 md:text-sm">{stat.title}</div>
-                <div className="mt-1 text-xl font-black tracking-tight text-[#151719] md:mt-2 md:text-[1.8rem]">{stat.value}</div>
+                <div className="mt-1 text-xl font-black tracking-tight text-[#151719] md:mt-2 md:text-[1.6rem]">{stat.value}</div>
                 <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{stat.note}</div>
               </div>
             ))}
           </div>
-          <div className="mt-2 text-center text-[10px] font-bold text-slate-400 md:mt-4 md:text-xs">※2024年1月〜2024年12月の利用者アンケート結果より</div>
         </div>
       </section>
 
