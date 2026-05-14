@@ -267,8 +267,6 @@ export const ProsSettingsPage = () => {
 
         {filteredProfiles.map((setting) => {
           const visuals = getProfileVisuals(setting.slug, setting.instagramHandle, { preferInstagramPortrait: true });
-          const driver = setting.clubs.find((club) => club.category === 'Driver');
-          const speedLabel = setting.headSpeedMps ? `${setting.headSpeedMps.toFixed(1)}m/s` : '未公開';
 
           return (
             <button
@@ -281,13 +279,13 @@ export const ProsSettingsPage = () => {
                 });
                 navigate(`/settings/pros/${setting.slug}`);
               }}
-              className="rounded-lg bg-white p-3 text-left shadow-sm ring-1 ring-slate-200/80 transition-all hover:-translate-y-0.5 hover:ring-golf-300 hover:shadow-md md:p-3.5"
+              className="rounded-[1.125rem] bg-white p-2.5 text-left shadow-sm ring-1 ring-slate-200/80 transition-all hover:-translate-y-0.5 hover:ring-golf-300 hover:shadow-md md:rounded-[1.25rem] md:p-3"
             >
-              <div className="flex items-start gap-3">
+              <div className="flex items-center gap-2.5">
                 <img
                   src={visuals.portrait}
                   alt={`${setting.name}の写真またはプレースホルダー画像`}
-                  className={`h-12 w-12 shrink-0 rounded-full bg-white object-cover ring-1 ring-slate-200/80 md:h-14 md:w-14 ${
+                  className={`h-10 w-10 rounded-full bg-white object-cover ring-1 ring-slate-200/80 md:h-11 md:w-11 ${
                     visuals.portraitMedia ? '' : 'p-2'
                   }`}
                   onError={(event) => {
@@ -298,30 +296,11 @@ export const ProsSettingsPage = () => {
                     target.src = fallbackSrc;
                   }}
                 />
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-start gap-2">
-                    <div className="min-w-0 flex-1">
-                      <div className="truncate text-[15px] font-black text-trust-navy md:text-base">{setting.name}</div>
-                      {setting.kanaName && <div className="mt-0.5 truncate text-[10px] font-bold text-slate-500 md:text-[11px]">{setting.kanaName}</div>}
-                    </div>
-                    <ArrowRight size={16} className="mt-0.5 shrink-0 text-slate-400" />
-                  </div>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    <span className="rounded-md bg-golf-50 px-2 py-1 text-[10px] font-black text-golf-700">{setting.categoryLabel}</span>
-                    <span className="rounded-md bg-slate-100 px-2 py-1 text-[10px] font-black text-slate-600">{speedLabel}</span>
-                  </div>
-                  <div className="mt-2 grid gap-1.5 text-xs leading-5 text-slate-600">
-                    <div className="truncate">
-                      <span className="font-black text-slate-500">契約:</span> {setting.contractDisplay}
-                    </div>
-                    <div className="truncate">
-                      <span className="font-black text-slate-500">1W:</span> {driver?.model || '未公開'}
-                    </div>
-                    <div className="truncate">
-                      <span className="font-black text-slate-500">Ball:</span> {setting.ball || '未公開'}
-                    </div>
-                  </div>
+                <div className="min-w-0">
+                  <div className="text-[14px] font-black text-trust-navy md:text-base">{setting.name}</div>
+                  {setting.kanaName && <div className="mt-0.5 text-[10px] font-bold text-slate-500 md:text-[11px]">{setting.kanaName}</div>}
                 </div>
+                <ArrowRight size={16} className="ml-auto shrink-0 text-slate-400" />
               </div>
             </button>
           );
