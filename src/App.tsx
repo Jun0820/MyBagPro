@@ -103,6 +103,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const closeAuthFlow = useCallback(() => {
     setShowAuth(false);
+    if (!user.isLoggedIn && authNext === 'diagnosis') {
+      trackEvent('auth_modal_close', {
+        auth_mode: authMode || 'register',
+        next_destination: 'diagnosis',
+        source_path: location.pathname,
+      });
+      navigate('/', { replace: true });
+      return;
+    }
     const params = new URLSearchParams(location.search);
     params.delete('auth');
     params.delete('next');
@@ -114,7 +123,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       },
       { replace: true }
     );
-  }, [location.pathname, location.search, navigate, setShowAuth]);
+  }, [authMode, authNext, location.pathname, location.search, navigate, setShowAuth, user.isLoggedIn]);
 
   const openAuthFlow = (mode: 'login' | 'register', next: 'diagnosis' | 'mypage' = 'mypage') => {
     trackEvent(mode === 'register' ? 'open_register' : 'open_login', {
