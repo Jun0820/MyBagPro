@@ -294,18 +294,18 @@ export const ResultPage = () => {
     return (
         <div className="animate-fadeIn min-h-screen bg-[#f8fafc] pb-16 text-slate-900 md:pb-20">
             <div className="mx-auto w-full max-w-6xl px-4 pt-2 md:px-6">
-            <div className="mb-3 rounded-2xl bg-amber-50 px-4 py-2.5 text-sm font-bold text-amber-900 ring-1 ring-amber-200 md:mb-5">
+            <div className="mb-3 rounded-lg bg-amber-50 px-4 py-2.5 text-sm font-bold text-amber-900 ring-1 ring-amber-200 md:mb-5">
                 この診断はβ版です。精度向上中です。
             </div>
             {compareSource && (
-                <div className="mb-3 rounded-2xl bg-cyan-50 px-4 py-3.5 ring-1 ring-cyan-200 md:mb-5">
+                <div className="mb-3 rounded-lg bg-cyan-50 px-4 py-3.5 ring-1 ring-cyan-200 md:mb-5">
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">FROM COMPARE</div>
                     <div className="mt-2 text-base font-black text-trust-navy md:text-lg">{compareBannerTitle}</div>
                     <div className="mt-2 text-sm leading-6 text-slate-600">{compareBannerDescription}</div>
                 </div>
             )}
             {/* Hero Section */}
-            <div className="group relative mb-4 h-24 overflow-hidden rounded-[1.35rem] shadow-2xl shadow-slate-900/20 md:mb-6 md:h-52 md:rounded-[2.25rem]">
+            <div className="group relative mb-4 h-24 overflow-hidden rounded-lg shadow-xl shadow-slate-900/15 md:mb-6 md:h-48">
                 {/* Background: Deep Space Navy */}
                 <div className="absolute inset-0 bg-[#020617]"></div>
 
@@ -347,8 +347,8 @@ export const ResultPage = () => {
             )}
 
             {topModel && (
-                <section className="mb-5 rounded-[1.35rem] bg-white px-4 py-4 shadow-xl shadow-slate-200/40 ring-1 ring-slate-200 md:mb-7 md:rounded-[2rem] md:px-7 md:py-6">
-                    <div className="mb-3 rounded-[1.25rem] bg-golf-50 px-4 py-3.5 ring-1 ring-golf-200 md:mb-4 md:rounded-[1.5rem] md:px-5 md:py-4">
+                <section className="mb-5 rounded-lg bg-white px-4 py-4 shadow-sm ring-1 ring-slate-200 md:mb-7 md:px-6 md:py-5">
+                    <div className="mb-3 rounded-lg bg-golf-50 px-4 py-3.5 ring-1 ring-golf-200 md:mb-4 md:px-5">
                         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">{resultPrimaryMove.eyebrow}</div>
@@ -366,15 +366,15 @@ export const ResultPage = () => {
                     </div>
 
                     <div className="mb-3.5 grid gap-2 sm:grid-cols-3">
-                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-2.5">
+                        <div className="rounded-lg bg-slate-50 px-3.5 py-2.5">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">BEST MATCH</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{topModel.brand}</div>
                         </div>
-                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-2.5">
+                        <div className="rounded-lg bg-slate-50 px-3.5 py-2.5">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">MATCH SCORE</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">{topModel.matchPercentage.toFixed(1)}%</div>
                         </div>
-                        <div className="rounded-[1.1rem] bg-slate-50 px-3.5 py-2.5">
+                        <div className="rounded-lg bg-slate-50 px-3.5 py-2.5">
                             <div className="text-[10px] font-black tracking-[0.16em] text-slate-400">NEXT STEP</div>
                             <div className="mt-1 text-sm font-black text-trust-navy">
                                 {compareSource && comparePriorityCategory ? `${comparePriorityCategory} を保存 or 比較` : '保存 or 比較'}
@@ -411,14 +411,14 @@ export const ResultPage = () => {
                         <div className="grid gap-2 md:min-w-[320px] md:max-w-[360px]">
                             <button
                                 onClick={() => handleBuyClick(primaryShop.id)}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3 text-sm font-black text-white transition hover:bg-golf-600"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-golf-500 px-5 py-3 text-sm font-black text-white transition hover:bg-golf-600"
                             >
                                 {primaryShop.name}で価格を見る
                             </button>
 
                             <button
                                 onClick={handleSaveCompareShortlist}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                             >
                                 比較候補を残す
                             </button>
@@ -426,7 +426,7 @@ export const ResultPage = () => {
                             {compareSource && (
                                 <button
                                     onClick={handleSaveAndReturnToCompare}
-                                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-5 py-3 text-sm font-black text-cyan-700 transition hover:bg-cyan-100"
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-5 py-3 text-sm font-black text-cyan-700 transition hover:bg-cyan-100"
                                 >
                                     比較に戻って差分を見る
                                 </button>
@@ -444,14 +444,14 @@ export const ResultPage = () => {
                                         setShowAuth(true);
                                     }
                                 }}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-trust-navy px-5 py-3 text-sm font-black text-white transition hover:bg-slate-800"
                             >
                                 {user.isLoggedIn ? 'おすすめを保存する' : 'ログインして結果を保存'}
                             </button>
 
                             <button
                                 onClick={() => navigate('/diagnosis')}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                             >
                                 条件を変えてもう一度診断
                             </button>
@@ -469,7 +469,7 @@ export const ResultPage = () => {
 
             {/* 以下は従来の物理ベースの推論データ詳細 (Data Insights) アコーディオン化 */}
             <details className="group mb-6">
-                <summary className="flex list-none cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-200/50 py-2.5 text-sm font-bold text-trust-navy transition-colors select-none hover:bg-slate-200 [&::-webkit-details-marker]:hidden md:text-base">
+                <summary className="flex list-none cursor-pointer items-center justify-center gap-2 rounded-lg bg-slate-200/50 py-2.5 text-sm font-bold text-trust-navy transition-colors select-none hover:bg-slate-200 [&::-webkit-details-marker]:hidden md:text-base">
                     <Wrench size={16} /> 詳細な物理データ分析を見る (Data Insights) <ChevronDown size={16} className="group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="pt-5">
@@ -478,7 +478,7 @@ export const ResultPage = () => {
             {profile.targetCategory === TargetCategory.TOTAL_SETTING && (
                 <div className="mb-10 grid gap-5 px-4 md:grid-cols-2 md:px-0">
                     {result.weightFlowAnalysis && result.weightFlowAnalysis !== 'なし' && (
-                        <div className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-xl">
+                        <div className="group relative overflow-hidden rounded-lg border border-slate-100 bg-white p-5 shadow-sm">
                             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Activity size={80} className="text-slate-900" />
                             </div>
@@ -492,7 +492,7 @@ export const ResultPage = () => {
                         </div>
                     )}
                     {result.distanceGapAnalysis && result.distanceGapAnalysis !== 'なし' && (
-                        <div className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-xl">
+                        <div className="group relative overflow-hidden rounded-lg border border-slate-100 bg-white p-5 shadow-sm">
                             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Zap size={80} className="text-slate-900" />
                             </div>
@@ -511,16 +511,16 @@ export const ResultPage = () => {
             {result.currentGearAnalysis &&
                 (!profile.currentBrand || (profile.currentBrand !== 'Unknown' && profile.currentBrand !== '')) &&
                 (!profile.currentModel || (profile.currentModel !== 'Unknown' && profile.currentModel !== '')) && (
-                    <details className="group relative mb-8 overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-xl shadow-slate-200 transition-all duration-500 md:mb-10" open>
-                        <summary className="relative z-20 flex cursor-pointer list-none items-center justify-between p-5 text-lg font-bold transition-colors select-none hover:bg-slate-50 [&::-webkit-details-marker]:hidden md:p-6">
+                    <details className="group bg-white rounded-[2rem] mb-8 md:mb-12 relative overflow-hidden transition-all duration-500 shadow-xl shadow-slate-200 border border-slate-100" open>
+                        <summary className="font-bold text-lg p-6 md:p-8 flex items-center justify-between cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden relative z-20 hover:bg-slate-50 transition-colors">
                             <span className="flex items-center gap-3 font-eng tracking-wider text-xl">
                                 <span className="p-2 bg-slate-100 rounded-xl border border-slate-200"><Activity size={20} className="text-slate-600" /></span>
                                 <span className="text-slate-800">CURRENT GEAR ANALYSIS</span>
                             </span>
                             <span className="group-open:rotate-180 transition-transform duration-300 bg-slate-100 rounded-full p-2 border border-slate-200 text-slate-500"><ChevronDown size={20} /></span>
                         </summary>
-                        <div className="relative z-10 grid gap-4 p-4 pt-0 md:grid-cols-2 md:gap-6 md:p-6 md:pt-0">
-                            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-4 text-center transition-colors group-hover:border-slate-500/30 md:p-6">
+                        <div className="grid md:grid-cols-2 gap-4 md:gap-8 relative z-10 p-4 md:p-8 pt-0 md:pt-0">
+                            <div className="text-center bg-slate-900 p-4 md:p-8 rounded-2xl border border-slate-800 relative overflow-hidden group-hover:border-slate-500/30 transition-colors">
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/20 opacity-50"></div>
                                 <div className="relative z-10">
                                     <div className="text-[10px] md:text-xs font-bold text-slate-400 mb-1 md:mb-2 uppercase tracking-[0.2em] font-eng">Match Score</div>
@@ -534,14 +534,14 @@ export const ResultPage = () => {
                                     </div>
                                 </div>
                             </div>
-                                <div className="space-y-3">
-                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:bg-slate-100">
+                            <div className="space-y-4">
+                                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:bg-slate-100 transition-colors">
                                     <div className="text-xs font-bold text-slate-600 mb-2 flex items-center gap-2 uppercase tracking-wider font-eng">
                                         <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shadow-[0_0_10px_#94a3b8]"></span> PROS
                                     </div>
                                     <div className="text-sm leading-relaxed text-slate-600 font-medium">{result.currentGearAnalysis.pros}</div>
                                 </div>
-                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:bg-slate-100">
+                                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:bg-slate-100 transition-colors">
                                     <div className="text-xs font-bold text-red-500 mb-2 flex items-center gap-2 uppercase tracking-wider font-eng">
                                         <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_10px_#f87171]"></span> CONS
                                     </div>

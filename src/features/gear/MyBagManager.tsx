@@ -668,15 +668,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 </div>
             )}
 
-            <div className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
+            <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
                 <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-                    <div className="rounded-2xl bg-slate-50 p-3.5">
+                    <div className="rounded-lg bg-slate-50 p-3.5">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1</div>
                                 <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">最初に代表番手を入れる</h3>
                             </div>
-                            <div className="rounded-2xl bg-white px-4 py-2.5 text-right ring-1 ring-slate-200/80">
+                            <div className="rounded-lg bg-white px-4 py-2.5 text-right ring-1 ring-slate-200/80">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">登録本数</div>
                                 <div className="mt-1 text-2xl font-black text-trust-navy">{sortedClubs.length}<span className="text-sm text-slate-400">/{MAX_BAG_CLUBS}</span></div>
                                 <div className="mt-1 text-xs font-bold text-slate-500">目標は14本</div>
@@ -692,7 +692,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                         onClick={() => handleQuickAddStarter(slot.category, slot.number)}
                                         disabled={isDone || isBagAtCapacity}
                                         className={cn(
-                                            'rounded-2xl p-3.5 text-left transition-all ring-1 ring-inset',
+                                            'rounded-lg p-3.5 text-left transition-all ring-1 ring-inset',
                                             isDone ? 'bg-emerald-50 text-emerald-700 ring-emerald-200' : 'bg-white hover:bg-slate-50 ring-slate-200',
                                             (isDone || isBagAtCapacity) && 'cursor-default'
                                         )}
@@ -713,25 +713,25 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         </div>
                     </div>
 
-                    <div className="rounded-2xl bg-[#fbfcfb] p-3.5">
+                    <div className="rounded-lg bg-[#fbfcfb] p-3.5">
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 3</div>
                         <h3 className="mt-2 text-base font-black tracking-tight text-trust-navy">最後に保存する</h3>
                         <div className="mt-3 space-y-2.5">
                             <button
                                 onClick={() => saveCurrentSetting()}
-                                className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                                className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
                             >
                                 <Save size={14} />
                                 いまの内容を保存
                             </button>
-                            <div className="rounded-xl bg-slate-50 px-3 py-2.5">
+                            <div className="rounded-lg bg-slate-50 px-3 py-2.5">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">使用ボール</div>
                                 <input
                                     list="mybag-ball-suggestions"
                                     value={setting.ball || ''}
                                     onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value }))}
                                     placeholder="例: Pro V1 / TP5"
-                                    className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
+                                    className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm font-bold text-trust-navy outline-none transition-all focus:border-golf-500"
                                 />
                                 <datalist id="mybag-ball-suggestions">
                                     {BALL_MODEL_SUGGESTIONS.map((ballName) => (
@@ -745,7 +745,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             </div>
 
             {/* クラブ一覧 & 編集部 */}
-            <div className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
+            <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
                 <div className="mb-3.5 flex flex-col justify-between gap-3 border-b border-slate-100 pb-3 md:flex-row md:items-center">
                     <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-golf-500 rounded-full"></div>
@@ -753,7 +753,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 2 / 登録済みクラブを直す</div>
                              <h3 className="font-bold text-lg text-trust-navy uppercase tracking-tight">CLUB MANAGEMENT</h3>
                          </div>
-                         <div className="rounded-full border border-slate-100 bg-slate-50 px-3 py-1 text-[10px] font-black text-slate-400">いまの登録: {sortedClubs.length}/{MAX_BAG_CLUBS}本</div>
+                         <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-100 text-[10px] font-black text-slate-400">いまの登録: {sortedClubs.length}/{MAX_BAG_CLUBS}本</div>
                     </div>
                     <ShareImageExporter 
                         targetId="my-bag-export-area" 
