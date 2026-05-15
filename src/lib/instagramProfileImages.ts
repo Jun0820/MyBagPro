@@ -811,6 +811,30 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/miyuu-yamashita.jpg",
     "handle": "miyuu_yamashita"
   },
+  "minami-kiyomoto": {
+    "src": "/profile-images/minami-kiyomoto.jpg",
+    "handle": "mipamipa_1173"
+  },
+  "aihi-takano": {
+    "src": "/profile-images/aihi-takano.jpg",
+    "handle": "fol.gv"
+  },
+  "saki-baba": {
+    "src": "/profile-images/saki-baba.jpg",
+    "handle": "teba_.425"
+  },
+  "rui-hiraoka": {
+    "src": "/profile-images/rui-hiraoka.jpg",
+    "handle": "hiraokarui"
+  },
+  "reika-miyako": {
+    "src": "/profile-images/reika-miyako.jpg",
+    "handle": "miyakore___0218"
+  },
+  "momoka-miura": {
+    "src": "/profile-images/momoka-miura.jpg",
+    "handle": "momokamiura_official"
+  },
   "mayu-hosaka": {
     "src": "/profile-images/mayu-hosaka.jpg",
     "handle": "mayu.hosaka"
