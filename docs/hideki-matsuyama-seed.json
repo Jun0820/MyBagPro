@@ -15,17 +15,17 @@
     "best_score": 64,
     "ball_name": "Srixon Z-Star XV",
     "feature_1": "2021マスターズ覇者",
-    "feature_2": "2025年初戦優勝時WITB",
+    "feature_2": "2026年公式WITB一部確認",
     "feature_3": "ダンロップ中心",
-    "summary": "2026年マスターズ出場選手として、松山英樹の最新詳細WITBとして確認しやすい2025年ザ・セントリー優勝時の14本構成をもとに整理したクラブセッティングページです。",
+    "summary": "2026年シーズンの松山英樹について、Srixon/Dunlop公式ツアーページでZXi LS Driver、Z-Forged II Irons、Z-STAR XVを確認しつつ、14本の詳細は2025年ザ・セントリー優勝時WITBを補助ソースとして整理したページです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-04-10T00:00:00.000Z",
+    "verified_at": "2026-05-15T00:00:00.000Z",
     "website_url": "https://www.pgatour.com/player/32839/hideki-matsuyama"
   },
   "bagItems": [
-    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "ZX5 LS Mk II Driver", "loft_label": "9.5°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 8", "shaft_flex": "TX", "total_distance": 300, "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": true },
+    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "ZXi LS Driver", "total_distance": 300, "source_note": "Srixon/Dunlop公式ツアーページ（2026年5月15日確認）でZXi LS Driverを確認。ロフトやシャフトなどの詳細は公式ページで明記がないため、MyBagProではモデル更新を優先し、詳細14本はGolfWRX 2025 Sentryを補助参照。", "is_featured_item": true },
     { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi10 Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 9", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
     { "category": "Fairway Wood", "slot_order": 3, "brand": "Cobra", "model_name": "King RadSpeed Tour", "spec_label": "5W", "loft_label": "19°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD DI 10", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
     { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "4I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": false },
@@ -41,6 +41,7 @@
     { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "009M Center Shaft Tour Prototype", "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.", "is_featured_item": true }
   ],
   "sources": [
+    { "source_type": "official", "source_url": "https://us.dunlopsports.com/srixon/tour/tour-pros/hideki-matsuyama", "source_title": "Hideki Matsuyama WITB 2026 | Dunlop Sports US", "checked_at": "2026-05-15T00:00:00.000Z", "notes": "Official Srixon/Dunlop tour page lists ZXi LS Driver, Z-Forged II Irons and Z-STAR XV Golf Balls under What's In The Bag. It does not provide full 14-club shaft/loft details." },
     { "source_type": "official", "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama", "source_title": "Hideki Matsuyama PGA TOUR Player Profile", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official profile used for player context and 2026 season status." },
     { "source_type": "official", "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/stats", "source_title": "Hideki Matsuyama PGA TOUR Stats", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "PGA TOUR official stats page used for club head speed 115.33 mph, driving distance 300.0 yd, scoring average 69.25 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data." },
     { "source_type": "official", "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career", "source_title": "Hideki Matsuyama PGA TOUR Career", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Career page confirms all-time career low round and PGA TOUR career context." },
@@ -48,12 +49,12 @@
   ],
   "article": {
     "slug": "hideki-matsuyama-2026-setting-update",
-    "title": "松山英樹のクラブセッティング【2026年マスターズ出場】",
-    "excerpt": "2026年マスターズ出場選手として、松山英樹の最新詳細WITBとして確認しやすい14本構成を掲載しました。",
-    "body": "松山英樹のクラブセッティングについて、2026年マスターズ出場時点で参照しやすい最新詳細WITBとして、2025年ザ・セントリー優勝時の14本構成をベースに整理しました。Srixon ZX5 LS Mk IIドライバー、TaylorMade Qi10の3番ウッド、Cobra King RadSpeed Tourの5番ウッド、Srixon Z-Forged IIアイアン、Cleveland RTX 4 Forged Prototypeウェッジ、Scotty Cameron 009M Center Shaft Tour Prototypeパター、Srixon Z-Star XVという構成です。",
+    "title": "松山英樹のクラブセッティングを更新｜2026年公式WITB一部確認",
+    "excerpt": "松山英樹の2026年クラブセッティングとして、Srixon/Dunlop公式ページで確認できるZXi LS Driver、Z-Forged II、Z-STAR XVを反映しました。",
+    "body": "松山英樹のクラブセッティングについて、Srixon/Dunlop公式ツアーページで確認できる2026年時点のWITB情報を反映しました。公式ページではZXi LS Driver、Z-Forged II Irons、Z-STAR XV Golf Ballsが確認できます。一方で、フェアウェイウッド、ウェッジ、パター、シャフトなどを含む14本の詳細までは公式ページで明記されていないため、MyBagProでは2025年ザ・セントリー優勝時の詳細WITBを補助ソースとして残し、確認範囲が分かる形にしています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-10T00:00:00.000Z"
+    "published_at": "2026-05-15T00:00:00.000Z"
   }
 }

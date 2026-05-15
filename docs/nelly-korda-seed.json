@@ -11,14 +11,14 @@
     "season_year": 2026,
     "best_score": 64,
     "ball_name": "TaylorMade TP5x",
-    "feature_1": "2026シーズン基準",
+    "feature_1": "2026年5月確認",
     "feature_2": "テーラーメイド中心",
     "feature_3": "公式carry yardageあり",
-    "summary": "ネリー・コルダの2026年クラブセッティングを、2025年末の詳細WITBと2026年のTaylorMade公式プレーヤーページに加えて、公式carry yardageをPWまで確認できる形で整理したページです。",
+    "summary": "ネリー・コルダの2026年クラブセッティングを、2026年5月のTaylorMade公式優勝WITBと直近詳細WITBをもとに整理したページです。Qi4Dドライバー、Stealth 2の3W・7W、P770/P7CB、MG4/MG5系ウェッジ、TP5xの流れを確認できます。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-04-09T00:00:00.000Z",
+    "verified_at": "2026-05-15T00:00:00.000Z",
     "kana_name": "ネリー・コルダ"
   },
   "bagItems": [
@@ -30,7 +30,7 @@
       "shaft_brand": "Graphite Design",
       "shaft_model": "Tour AD FI 6",
       "shaft_flex": "S",
-      "source_note": "Detailed setup from GolfWRX 2025 December, with TaylorMade official 2026 page confirming the move to Qi4D driver.",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBとGolfWRX 2026 AprilでQi4D 10.5°、Graphite Design Tour AD FI 6-Sを確認。TaylorMade公式では44 3/4インチも確認。",
       "is_featured_item": true
     },
     {
@@ -44,7 +44,7 @@
       "shaft_model": "Ventus Red 7",
       "shaft_flex": "S",
       "carry_distance": 232,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは3Wは232yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでStealth 2 15.0° 3Wを確認。公式stock carry yardageでは3Wは232yd。",
       "is_featured_item": false
     },
     {
@@ -58,7 +58,7 @@
       "shaft_model": "Ventus Black 7",
       "shaft_flex": "S",
       "carry_distance": 218,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは7Wは218yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでStealth 2 21° 7Wを確認。公式stock carry yardageでは7Wは218yd。",
       "is_featured_item": false
     },
     {
@@ -72,7 +72,7 @@
       "shaft_model": "Ventus Blue HB 7",
       "shaft_flex": "S",
       "carry_distance": 200,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). Hybrid is set down to 25° in the source article. TaylorMade公式stock carry yardageでは25°ハイブリッドは200yd。",
+      "source_note": "直近詳細WITBで確認。Hybridは25°設定として掲載され、TaylorMade公式stock carry yardageでは25°ハイブリッドは200yd。",
       "is_featured_item": false
     },
     {
@@ -85,7 +85,7 @@
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
       "carry_distance": 185,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは5Iは185yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでP770 5Iを確認。公式stock carry yardageでは5Iは185yd。",
       "is_featured_item": false
     },
     {
@@ -98,7 +98,7 @@
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
       "carry_distance": 169,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは6Iは169yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでP7CB 6-PWを確認。公式stock carry yardageでは6Iは169yd。",
       "is_featured_item": false
     },
     {
@@ -111,7 +111,7 @@
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
       "carry_distance": 154,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは7Iは154yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでP7CB 6-PWを確認。公式stock carry yardageでは7Iは154yd。",
       "is_featured_item": false
     },
     {
@@ -124,7 +124,7 @@
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
       "carry_distance": 144,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは8Iは144yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでP7CB 6-PWを確認。公式stock carry yardageでは8Iは144yd。",
       "is_featured_item": false
     },
     {
@@ -137,7 +137,7 @@
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
       "carry_distance": 135,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは9Iは135yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでP7CB 6-PWを確認。公式stock carry yardageでは9Iは135yd。",
       "is_featured_item": false
     },
     {
@@ -150,7 +150,7 @@
       "shaft_model": "SteelFiber i80",
       "shaft_flex": "cw",
       "carry_distance": 124,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageではPWは124yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでP7CB 6-PWを確認。公式stock carry yardageではPWは124yd。",
       "is_featured_item": false
     },
     {
@@ -164,7 +164,7 @@
       "shaft_model": "SteelFiber i95",
       "shaft_flex": "cw",
       "carry_distance": 115,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは50°は115yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでMG4 50° SBを確認。公式stock carry yardageでは50°は115yd。",
       "is_featured_item": false
     },
     {
@@ -178,7 +178,7 @@
       "shaft_model": "SteelFiber i95",
       "shaft_flex": "cw",
       "carry_distance": 100,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは54°は100yd。",
+      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでMG5 Proto 54° HB、GolfWRX 2026 AprilでTaylorMade Proto 54-HB13を確認。公式stock carry yardageでは54°は100yd。",
       "is_featured_item": false
     },
     {
@@ -192,7 +192,7 @@
       "shaft_model": "SteelFiber i95",
       "shaft_flex": "cw",
       "carry_distance": 83,
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December). TaylorMade公式stock carry yardageでは58°は83yd。",
+      "source_note": "直近詳細WITBで確認。TaylorMade公式stock carry yardageでは58°は83yd。",
       "is_featured_item": false
     },
     {
@@ -200,11 +200,18 @@
       "slot_order": 14,
       "brand": "TaylorMade",
       "model_name": "TP Reserve B31 NK Proto",
-      "source_note": "Confirmed from GolfWRX Nelly Korda WITB 2025 (December).",
+      "source_note": "直近詳細WITBで確認。TaylorMade公式の2026年5月3日優勝WITBではパター詳細は明記なし。",
       "is_featured_item": false
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.taylormadegolf.jp/clubhouse/1428296-nelly-korda-witb.html",
+      "source_title": "「Qi4D」ドライバーと「TP5x」ボールを使用したネリー・コルダが2週連続優勝を達成！ | TaylorMade Golf",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "2026年5月3日公開のTaylorMade公式優勝WITB。Qi4D 10.5° Driver、Stealth 2 15° 3W、Stealth 2 21° 7W、P770 5I、P7CB 6-PW、MG4 50° SB、MG5 Proto 54° HB、TP5xを確認。"
+    },
     {
       "source_type": "official",
       "source_url": "https://www.taylormadegolf.com/tourplayers/nelly-korda.html?lang=en_US",
@@ -235,20 +242,20 @@
     },
     {
       "source_type": "article",
-      "source_url": "https://www.golfwrx.com/770935/nelly-korda-witb-2025-december/",
-      "source_title": "GolfWRX Nelly Korda WITB 2025 (December)",
-      "checked_at": "2026-04-09T00:00:00.000Z",
-      "notes": "Used for the most detailed recent full-bag breakdown."
+      "source_url": "https://www.golfwrx.com/777089/nelly-korda-witb-2026-april/",
+      "source_title": "GolfWRX Nelly Korda WITB 2026 (April)",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "2026年4月23日公開の詳細WITB。PING G425 Hybrid、Titleist Vokey SM11 58°、TaylorMade NK Proto putterなど、TaylorMade公式記事で明記されないクラブの確認にも使用。"
     }
   ],
   "article": {
     "slug": "nelly-korda-2026-setting-update",
-    "title": "ネリー・コルダの2026年クラブセッティングを掲載しました｜最新参照を反映",
-    "excerpt": "ネリー・コルダの2026年クラブセッティングとして、Qi4Dドライバーへの更新を含む最新参照ベースの内容と、PWまで含めた公式carry yardageを掲載しました。",
-    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年プレーヤーページと、直近で詳細が確認できるGolfWRXの2025年12月WITBをもとに更新しました。現在の大枠はQi4Dドライバー、Stealth 2フェアウェイウッド、PING G425ハイブリッド、P770とP7CBのコンボ、TaylorMadeとTitleistを組み合わせたウェッジ、TP Reserve B31 NK Protoパター、TaylorMade TP5xという流れです。2026年の公式ページではQi4DドライバーとP7CBアイアンの継続使用も確認でき、TaylorMade公式記事では一致番手のcarry yardageを3WからPW、ウェッジまで参照できます。",
+    "title": "ネリー・コルダの2026年クラブセッティングを更新しました｜5月公式優勝WITBを反映",
+    "excerpt": "ネリー・コルダの2026年クラブセッティングに、TaylorMade公式の2026年5月優勝WITBとGolfWRX 2026年4月WITBを反映しました。Qi4D、P7CB、TP5xまで確認できます。",
+    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年5月3日優勝WITBとGolfWRXの2026年4月WITBを反映しました。公式記事ではQi4D 10.5°ドライバー、Stealth 2の3W・7W、P770 5I、P7CB 6-PW、MG4 50° SB、MG5 Proto 54° HB、TP5xが確認できます。GolfWRX 2026年4月WITBでは、PING G425 Hybrid、Titleist Vokey SM11 58°、TaylorMade NK Protoパターまで含む詳細構成も確認できるため、MyBagPro上では公式確認と詳細WITBの役割を分けて整理しています。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-09T00:00:00.000Z"
+    "published_at": "2026-05-15T00:00:00.000Z"
   }
 }

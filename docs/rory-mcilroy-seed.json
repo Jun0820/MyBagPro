@@ -17,11 +17,11 @@
     "feature_1": "2026年4月確認",
     "feature_2": "テーラーメイド中心",
     "feature_3": "公式carry yardage詳細あり",
-    "summary": "ローリー・マキロイの2026年クラブセッティングを、2026年4月時点のWITBに加えてTaylorMade公式が公開した番手別carry yardageも確認できる形で整理したページです。",
+    "summary": "ローリー・マキロイの2026年クラブセッティングを、GolfWRXの2026年4月WITBとTaylorMade公式の2026年マスターズ優勝WITBをもとに、Qi4D、P760/Rors Proto、MG5、Spider Tour Xまで確認できる形で整理したページです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-04-10T00:00:00.000Z"
+    "verified_at": "2026-05-15T00:00:00.000Z"
   },
   "bagItems": [
     {
@@ -35,7 +35,7 @@
       "shaft_flex": "X",
       "carry_distance": 325,
       "total_distance": 316,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事ではDriverのstock carry yardageは325yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで確認。TaylorMade公式記事ではQi4D 9°を2クリックLower、Ventus Black 6X、45 5/8インチと記載。",
       "is_featured_item": true
     },
     {
@@ -62,7 +62,7 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black 9",
       "shaft_flex": "X",
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April).",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで確認。TaylorMade公式ではQi4D 5Wの完成ロフト17.5°、Ventus Black 9X、41 5/8インチEOGと記載。",
       "is_featured_item": false
     },
     {
@@ -147,56 +147,56 @@
       "category": "Wedge",
       "slot_order": 10,
       "brand": "TaylorMade",
-      "model_name": "MG4 Wedge",
+      "model_name": "MG5 Wedge",
       "spec_label": "PW",
       "loft_label": "46°",
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "carry_distance": 150,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事ではPWのstock carry yardageは150yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 46°を確認。Arnold Palmer Invitational時の公式stock carry yardageではPWは150yd。",
       "is_featured_item": false
     },
     {
       "category": "Wedge",
       "slot_order": 11,
       "brand": "TaylorMade",
-      "model_name": "MG4 Wedge",
+      "model_name": "MG5 Wedge",
       "spec_label": "AW",
       "loft_label": "50°",
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "carry_distance": 136,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では50°のstock carry yardageは136yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 50° SBを確認。Arnold Palmer Invitational時の公式stock carry yardageでは50°は136yd。",
       "is_featured_item": false
     },
     {
       "category": "Wedge",
       "slot_order": 12,
       "brand": "TaylorMade",
-      "model_name": "MG4 Wedge",
+      "model_name": "MG5 Wedge",
       "spec_label": "SW",
       "loft_label": "54°",
       "shaft_brand": "Project X",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "carry_distance": 125,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では54°のstock carry yardageは125yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 54° SBを確認。Arnold Palmer Invitational時の公式stock carry yardageでは54°は125yd。",
       "is_featured_item": false
     },
     {
       "category": "Wedge",
       "slot_order": 13,
       "brand": "TaylorMade",
-      "model_name": "MG4 Wedge",
+      "model_name": "MG5 Wedge",
       "spec_label": "LW",
       "loft_label": "60°",
       "shaft_brand": "Project X",
       "shaft_model": "Project X Wedge",
       "shaft_flex": "6.5",
       "carry_distance": 105,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では60°のstock carry yardageは105yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 60° LBを61°に調整していることを確認。Arnold Palmer Invitational時の公式stock carry yardageでは60°は105yd。",
       "is_featured_item": false
     },
     {
@@ -204,11 +204,18 @@
       "slot_order": 14,
       "brand": "TaylorMade",
       "model_name": "Spider Tour X Putter",
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April).",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで確認。TaylorMade公式ではSpider Tour X Short Slantの34 1/2インチEOG、2°ロフト、69°ライ角も記載。",
       "is_featured_item": false
     }
   ],
   "sources": [
+    {
+      "source_type": "official",
+      "source_url": "https://www.taylormadegolf.com/clubhouse/1368796-rory-mcilroy-winning-witb-in-augusta-2026.html?lang=en_US",
+      "source_title": "Rory McIlroy Winning WITB in Augusta 2026 | TaylorMade Golf",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "TaylorMade公式の2026年マスターズ優勝WITB。Qi4D Driver、Qi4D 5W、P760/Rors Proto irons、MG5 wedges、Spider Tour X、TP5の詳細を確認。"
+    },
     {
       "source_type": "official",
       "source_url": "https://www.taylormadegolf.com/tourplayers/rory-mcilroy.html?lang=en_US",
@@ -248,11 +255,11 @@
   "article": {
     "slug": "rory-mcilroy-2026-setting-update",
     "title": "ローリー・マキロイ クラブセッティング 2026年版 14本と使用ドライバー",
-    "excerpt": "ローリー・マキロイの2026年クラブセッティングを、14本の構成に加えてTaylorMade公式carry yardage付きで掲載しました。",
-    "body": "ローリー・マキロイのクラブセッティングについて、2026年4月時点で確認できた14本の構成を反映しました。Qi4Dドライバー、Qi10の3W、Qi4Dの5W、P760 4I、Rors Protoアイアン、MG4ウェッジ、Spider Tour Xパター、TaylorMade TP5という流れで、ローリー・マキロイの現在のクラブセッティングを確認できます。TaylorMade公式の現行プレーヤーページとArnold Palmer Invitational時の公式carry yardage記事も参照しつつ、詳細スペックはGolfWRXの最新WITBで確認しています。",
+    "excerpt": "ローリー・マキロイの2026年クラブセッティングに、TaylorMade公式の2026年マスターズ優勝WITBを追加反映しました。Qi4D、MG5、Spider Tour Xまで確認できます。",
+    "body": "ローリー・マキロイのクラブセッティングについて、TaylorMade公式の2026年マスターズ優勝WITBを追加反映しました。Qi4Dドライバー、Qi10の3W、Qi4Dの5W、P760 4I、Rors Protoアイアン、MG5ウェッジ、Spider Tour Xパター、TaylorMade TP5という流れで、2026年4月時点の構成を確認できます。TaylorMade公式記事では、Qi4Dドライバーのセッティング、5Wの完成ロフト、MG5ウェッジのロフト構成、Spider Tour Xのスペックまで確認できるため、従来のGolfWRX WITBと合わせて参照できるように整理しました。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-10T00:00:00.000Z"
+    "published_at": "2026-05-15T00:00:00.000Z"
   }
 }
