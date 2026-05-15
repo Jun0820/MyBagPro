@@ -490,6 +490,27 @@ export const ProSettingDetailPage = () => {
               <div key={fact.label} className="rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 md:rounded-2xl">
                 <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{fact.label}</dt>
                 <dd className="mt-1 text-sm font-black leading-5 text-white">{fact.value}</dd>
+                {fact.label === 'ボール' && fact.value !== '未公開' ? (
+                  <a
+                    href={getAffiliateUrl('', fact.value, 'RAKUTEN')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      trackEvent('click_affiliate_shop', {
+                        source_page: 'pro_setting_detail_ball_fact',
+                        profile_slug: setting.slug,
+                        profile_name: setting.name,
+                        shop_id: 'RAKUTEN',
+                        shop_name: '楽天市場',
+                        product_type: 'golf_ball',
+                        model_name: fact.value,
+                      });
+                    }}
+                    className="mt-2 inline-flex rounded-full bg-[#bf0000] px-3 py-1.5 text-[11px] font-black text-white transition hover:bg-[#a60000]"
+                  >
+                    楽天で見る
+                  </a>
+                ) : null}
               </div>
             ))}
           </dl>
