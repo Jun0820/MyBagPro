@@ -347,7 +347,7 @@ export const SharedBag = () => {
             <Link to="/mybag/create" className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white">
               自分のMy Bagを作る
             </Link>
-            <Link to="/settings/pros" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700">
+            <Link to="/pros" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700">
               プロのセッティングも見る
             </Link>
           </div>

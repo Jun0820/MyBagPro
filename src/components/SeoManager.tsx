@@ -10,7 +10,7 @@ const routeSeoMap: Record<string, { title: string; description: string; noindex?
     title: 'プロのクラブセッティング検索サイト',
     description: '石川遼、中島啓太、松山英樹など有名プロのクラブセッティングを検索できる My Bag Pro。ドライバー、アイアン、パター、使用ボールまで確認済みデータを掲載します。',
   },
-  '/settings/pros': {
+  '/pros': {
     title: 'プロのクラブセッティング一覧',
     description: '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名、カテゴリ、フリガナ、ヘッドスピードで絞り込めます。',
   },
@@ -58,7 +58,18 @@ const routeSeoMap: Record<string, { title: string; description: string; noindex?
 };
 
 const getSeoForPath = (pathname: string) => {
-  if (pathname.startsWith('/settings/pros/')) {
+  if (pathname === '/settings/pros' || pathname.startsWith('/settings/pros/')) {
+    return {
+      title: pathname === '/settings/pros' ? 'プロのクラブセッティング一覧' : 'プロのクラブセッティング詳細',
+      description:
+        pathname === '/settings/pros'
+          ? '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名、カテゴリ、フリガナ、ヘッドスピードで絞り込めます。'
+          : '選手ごとのクラブセッティング詳細ページです。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できます。',
+      noindex: true,
+    };
+  }
+
+  if (pathname.startsWith('/pros/')) {
     return {
       title: 'プロのクラブセッティング詳細',
       description: '選手ごとのクラブセッティング詳細ページです。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで確認できます。',
@@ -95,7 +106,21 @@ const getSeoForPath = (pathname: string) => {
     };
   }
 
+  if (pathname === '/settings' || pathname.startsWith('/settings/')) {
+    return {
+      title: '管理ページ',
+      description: 'My Bag Pro の管理・設定ページです。',
+      noindex: true,
+    };
+  }
+
   return routeSeoMap[pathname] || routeSeoMap['/'];
+};
+
+const getPublicSeoPath = (pathname: string) => {
+  if (pathname === '/settings/pros') return '/pros';
+  if (pathname.startsWith('/settings/pros/')) return pathname.replace('/settings/pros', '/pros');
+  return pathname;
 };
 
 export const SeoManager = () => {
@@ -107,7 +132,7 @@ export const SeoManager = () => {
 
   useEffect(() => {
     const seo = getSeoForPath(location.pathname);
-    const seoPath = getSeoPath(location.pathname);
+    const seoPath = getSeoPath(getPublicSeoPath(location.pathname));
     applySeo({
       title: seo.title,
       description: seo.description,

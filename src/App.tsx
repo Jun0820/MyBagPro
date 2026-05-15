@@ -87,7 +87,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const navItems = useMemo(
     () => [
-      { label: 'プロのセッティング', href: '/settings/pros' },
+      { label: 'プロのセッティング', href: '/pros' },
       { label: 'クラブ診断', href: '/diagnosis' },
       { label: '記事・コラム', href: '/articles' },
     ],
@@ -365,7 +365,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div>
             <div className="text-sm font-black text-white">サービス</div>
             <div className="mt-4 space-y-3 text-sm text-white/72">
-              <button onClick={() => navigate('/settings/pros')} className="block transition hover:text-[#c8a96a]">プロのセッティング</button>
+              <button onClick={() => navigate('/pros')} className="block transition hover:text-[#c8a96a]">プロのセッティング</button>
               <button onClick={() => navigate('/diagnosis')} className="block transition hover:text-[#c8a96a]">クラブ診断</button>
               <button onClick={() => navigate('/mypage')} className="block transition hover:text-[#c8a96a]">マイページ</button>
             </div>
@@ -457,7 +457,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         key={profile.slug}
                         onClick={() => {
                           setSearchOpen(false);
-                          navigate(`/settings/pros/${profile.slug}`);
+                          navigate(`/pros/${profile.slug}`);
                         }}
                         className="w-full rounded-2xl bg-slate-50 px-4 py-2.5 text-left ring-1 ring-slate-200/70 transition hover:bg-slate-100"
                       >
@@ -615,8 +615,8 @@ function App() {
           <Suspense fallback={<RouteLoading />}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/settings/pros" element={<ProsSettingsPage />} />
-              <Route path="/settings/pros/:slug" element={<ProSettingDetailPage />} />
+              <Route path="/pros" element={<ProsSettingsPage />} />
+              <Route path="/pros/:slug" element={<ProSettingDetailPage />} />
               <Route path="/settings/users" element={<UsersSettingsPage />} />
               <Route path="/settings/users/:id" element={<SharedBag />} />
               <Route path="/clubs/drivers" element={<DriversCatalogPage />} />

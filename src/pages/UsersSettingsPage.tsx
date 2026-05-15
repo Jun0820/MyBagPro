@@ -85,7 +85,7 @@ export const UsersSettingsPage = () => {
                 <ArrowRight size={16} />
               </button>
               <button
-                onClick={() => navigate('/settings/pros')}
+                onClick={() => navigate('/pros')}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-black text-white"
               >
                 先にプロのセッティングを見る

@@ -618,7 +618,7 @@ export const DiagnosisWizard = () => {
                                 <ArrowRight size={16} />
                             </button>
                             <button
-                                onClick={() => navigate('/settings/pros')}
+                                onClick={() => navigate('/pros')}
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 py-4 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700 sm:w-auto"
                             >
                                 先にプロのセッティングを見る
@@ -656,7 +656,7 @@ export const DiagnosisWizard = () => {
                             ゴルフボール診断へ
                         </button>
                         <button
-                            onClick={() => navigate('/settings/pros')}
+                            onClick={() => navigate('/pros')}
                             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-black text-slate-700 transition-colors hover:border-golf-400 hover:text-golf-700 sm:w-auto"
                         >
                             先にプロを見る

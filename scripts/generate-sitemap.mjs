@@ -8,10 +8,9 @@ const siteUrl = 'https://mybagpro.jp';
 
 const staticPaths = [
   '/',
-  '/settings/pros',
+  '/pros',
   '/articles',
   '/clubs/drivers',
-  '/settings/users',
   '/sitemap',
 ];
 
@@ -29,7 +28,7 @@ for (const file of seedFiles) {
     const profileSlug = raw?.profile?.slug;
     const articleSlug = raw?.article?.slug;
 
-    if (profileSlug) profilePaths.push(`/settings/pros/${profileSlug}`);
+    if (profileSlug) profilePaths.push(`/pros/${profileSlug}`);
     if (articleSlug) articlePaths.push(`/articles/${articleSlug}`);
   } catch (error) {
     console.error(`Failed to parse ${file}:`, error);

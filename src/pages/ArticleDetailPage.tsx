@@ -217,7 +217,7 @@ export const ArticleDetailPage = () => {
             '@type': 'Person',
             name: article.relatedProfileName,
             url: article.relatedProfileSlug
-              ? toAbsoluteUrl(getSeoPath(`/settings/pros/${article.relatedProfileSlug}`))
+              ? toAbsoluteUrl(getSeoPath(`/pros/${article.relatedProfileSlug}`))
               : undefined,
           }
         : undefined,
@@ -339,7 +339,7 @@ export const ArticleDetailPage = () => {
               この記事の元になった掲載ページから、ドライバー、アイアン、パター、使用ボールまで一覧で確認できます。
             </p>
             <button
-              onClick={() => navigate(`/settings/pros/${article.relatedProfileSlug}`)}
+              onClick={() => navigate(`/pros/${article.relatedProfileSlug}`)}
               className="mt-3 inline-flex items-center gap-2 rounded-lg bg-trust-navy px-5 py-2.5 text-sm font-black text-white transition hover:bg-slate-800"
             >
               クラブセッティングを見る
@@ -460,7 +460,7 @@ export const ArticleDetailPage = () => {
               {tournamentProfiles.map((profile) => (
                 <button
                   key={profile.slug}
-                  onClick={() => navigate(`/settings/pros/${profile.slug}`)}
+                  onClick={() => navigate(`/pros/${profile.slug}`)}
                   className="rounded-lg bg-white px-4 py-3.5 text-left ring-1 ring-amber-100 transition hover:-translate-y-0.5 hover:ring-amber-200"
                 >
                   <div className="text-[11px] font-black tracking-[0.12em] text-amber-700">{profile.categoryLabel}</div>
@@ -490,14 +490,14 @@ export const ArticleDetailPage = () => {
             </p>
             <div className="mt-3.5 flex flex-wrap gap-3">
               <button
-                onClick={() => navigate(`/settings/pros/${relatedProfile.slug}`)}
+                onClick={() => navigate(`/pros/${relatedProfile.slug}`)}
                 className="inline-flex items-center gap-2 rounded-lg bg-trust-navy px-4 py-2 text-sm font-black text-white transition hover:bg-slate-800"
               >
                 詳細ページを見る
                 <ArrowRight size={14} />
               </button>
               <button
-                onClick={() => navigate(`/settings/pros?category=${relatedProfile.category}`)}
+                onClick={() => navigate(`/pros?category=${relatedProfile.category}`)}
                 className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100"
               >
                 {relatedProfile.categoryLabel}をもっと見る

@@ -10,6 +10,18 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/settings/pros",
+      "destination": "/pros",
+      "permanent": true
+    },
+    {
+      "source": "/settings/pros/:slug",
+      "destination": "/pros/:slug",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!api/).*)",

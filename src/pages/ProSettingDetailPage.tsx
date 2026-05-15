@@ -235,7 +235,7 @@ export const ProSettingDetailPage = () => {
       type: 'profile',
       title: setting.name,
       subtitle: setting.style || setting.tagline,
-      href: `/settings/pros/${setting.slug}`,
+      href: `/pros/${setting.slug}`,
     });
   }, [setting]);
 
@@ -249,7 +249,7 @@ export const ProSettingDetailPage = () => {
       applySeo({
         title: 'プロのクラブセッティング詳細',
         description: '確認済みの14本のクラブセッティング詳細ページです。',
-        path: getSeoPath(`/settings/pros/${slug}`),
+        path: getSeoPath(`/pros/${slug}`),
       });
       return;
     }
@@ -257,7 +257,7 @@ export const ProSettingDetailPage = () => {
     applySeo({
       title: `${setting.name}のクラブセッティング${setting.seasonYear ? ` ${setting.seasonYear}年` : ''}`,
       description: `${setting.name}のクラブセッティング詳細ページ。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボール、契約メーカーまで確認できます。`,
-      path: getSeoPath(`/settings/pros/${slug}`),
+      path: getSeoPath(`/pros/${slug}`),
     });
 
     setStructuredData('profile-page', {
@@ -265,7 +265,7 @@ export const ProSettingDetailPage = () => {
       '@type': 'ProfilePage',
       name: `${setting.name}のクラブセッティング`,
       description: `${setting.name}のクラブセッティング詳細ページ。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボール、契約メーカーまで確認できます。`,
-      url: toAbsoluteUrl(getSeoPath(`/settings/pros/${slug}`)),
+      url: toAbsoluteUrl(getSeoPath(`/pros/${slug}`)),
       mainEntity: {
         '@type': 'Person',
         name: setting.name,
@@ -301,13 +301,13 @@ export const ProSettingDetailPage = () => {
           '@type': 'ListItem',
           position: 2,
           name: 'プロのクラブセッティング一覧',
-          item: toAbsoluteUrl('/settings/pros'),
+          item: toAbsoluteUrl('/pros'),
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: `${setting.name}のクラブセッティング`,
-          item: toAbsoluteUrl(getSeoPath(`/settings/pros/${slug}`)),
+          item: toAbsoluteUrl(getSeoPath(`/pros/${slug}`)),
         },
       ],
     });
@@ -387,7 +387,7 @@ export const ProSettingDetailPage = () => {
       <div className="min-h-[60vh] rounded-[1.5rem] bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/80 md:rounded-[2rem] md:p-8">
         <h1 className="text-3xl font-black text-trust-navy">セッティングが見つかりません。</h1>
         <button
-          onClick={() => navigate('/settings/pros')}
+          onClick={() => navigate('/pros')}
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
         >
           一覧へ戻る
@@ -434,7 +434,7 @@ export const ProSettingDetailPage = () => {
   return (
     <div className="min-h-screen overflow-x-hidden pb-20">
       <button
-        onClick={() => navigate('/settings/pros')}
+        onClick={() => navigate('/pros')}
         className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition-colors hover:text-trust-navy md:mb-6"
       >
         <ArrowLeft size={16} />
@@ -517,13 +517,13 @@ export const ProSettingDetailPage = () => {
 
           <div className="mt-3 flex flex-wrap gap-2 md:mt-4">
             <button
-              onClick={() => navigate(`/settings/pros?category=${setting.category}`)}
+              onClick={() => navigate(`/pros?category=${setting.category}`)}
               className="rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-black text-white transition hover:bg-white/15 md:text-sm"
             >
               {setting.categoryLabel}
             </button>
             <button
-              onClick={() => navigate('/settings/pros')}
+              onClick={() => navigate('/pros')}
               className="rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-black text-white transition hover:bg-white/15 md:text-sm"
             >
               一覧で探す

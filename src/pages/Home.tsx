@@ -21,7 +21,7 @@ const contentCards = [
     title: '最新プロセッティング',
     subtitle: '人気プロの最新14本を俯瞰して比較',
     image: '/articles/golf-clubs-grass-pexels-20808740.jpg',
-    href: '/settings/pros',
+    href: '/pros',
     label: 'プロのセッティング',
   },
   {

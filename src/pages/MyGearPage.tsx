@@ -287,7 +287,7 @@ export const MyGearPage = () => {
                                     診断履歴
                                 </button>
                                 <button
-                                    onClick={() => navigate('/settings/pros')}
+                                    onClick={() => navigate('/pros')}
                                     className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
                                 >
                                     <Trophy size={16} />

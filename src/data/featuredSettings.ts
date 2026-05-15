@@ -94,7 +94,7 @@ export const driverSpotlights: DriverSpotlight[] = [
 ];
 
 export const discoveryPaths = [
-  { label: 'プロから探す', description: 'ツアープロの14本を一覧で比較', href: '/settings/pros' },
+  { label: 'プロから探す', description: 'ツアープロの14本を一覧で比較', href: '/pros' },
   { label: 'みんなのMy Bag', description: '一般ゴルファーのリアルな構成を見る', href: '/settings/users' },
   { label: '人気ドライバー', description: 'いま使われているモデルから探す', href: '/clubs/drivers' },
   { label: 'ヘッドスピード別', description: '自分に近い層のバッグを参考にする', href: '/settings/users' },

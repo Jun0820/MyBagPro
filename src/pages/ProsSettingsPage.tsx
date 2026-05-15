@@ -277,7 +277,7 @@ export const ProsSettingsPage = () => {
                   profile_slug: setting.slug,
                   profile_name: setting.name,
                 });
-                navigate(`/settings/pros/${setting.slug}`);
+                navigate(`/pros/${setting.slug}`);
               }}
               className="rounded-[1.125rem] bg-white p-2.5 text-left shadow-sm ring-1 ring-slate-200/80 transition-all hover:-translate-y-0.5 hover:ring-golf-300 hover:shadow-md md:rounded-[1.25rem] md:p-3"
             >

@@ -387,7 +387,7 @@ export const ComparePage = () => {
         <h1 className="text-3xl font-black text-trust-navy">比較対象がありません。</h1>
         <p className="mt-3 text-sm text-slate-600">比較したいプロフィールを選んでから、このページへ進んでください。</p>
         <button
-          onClick={() => navigate('/settings/pros')}
+          onClick={() => navigate('/pros')}
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white"
         >
           プロ一覧へ戻る
