@@ -18,7 +18,8 @@
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-05-04T00:00:00.000Z",
-    "kana_name": "ミヤコ レイカ"
+    "kana_name": "ミヤコ レイカ",
+    "instagram_handle": "miyakore___0218"
   },
   "bagItems": [
     {
@@ -225,8 +226,22 @@
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/18857/2025/1/",
       "source_title": "GDO 都玲華 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
-      "checked_at": "2026-05-04T00:00:00.000Z",
+      "checked_at": "2026-05-15T00:00:00.000Z",
       "notes": "2025年時点で確認できた最新公開セッティング。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/miyakore___0218/",
+      "source_title": "都玲華 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://golf.hochi.co.jp/archives/123716",
+      "source_title": "都玲華、スタンレー電気とスポンサー契約",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "2026年シーズン文脈確認用。クラブセッティングの更新ソースではない。"
     }
   ],
   "article": {

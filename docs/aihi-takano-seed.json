@@ -17,7 +17,8 @@
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-05-04T00:00:00.000Z",
-    "kana_name": "タカノ アイヒ"
+    "kana_name": "タカノ アイヒ",
+    "instagram_handle": "fol.gv"
   },
   "bagItems": [
     {
@@ -159,6 +160,20 @@
       "source_title": "CLUB PING ツアープロ情報 髙野愛姫選手",
       "checked_at": "2026-05-04T00:00:00.000Z",
       "notes": "クラブセッティングは2026年3月4日時点と明記。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/fol.gv/",
+      "source_title": "髙野愛姫 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。JUN & ROPE公式プロフィールでも同アカウントを確認。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.junandrope.jp/progolfer/takano/",
+      "source_title": "高野愛姫 プロ - JUN & ROPE'",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "Instagramアカウント、プロフィール、2025年ヨネックスレディス優勝文脈の確認用。"
     },
     {
       "source_type": "article",

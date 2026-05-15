@@ -18,7 +18,8 @@
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-05-04T00:00:00.000Z",
-    "kana_name": "ミウラ モモカ"
+    "kana_name": "ミウラ モモカ",
+    "instagram_handle": "momokamiura_official"
   },
   "bagItems": [
     {
@@ -157,8 +158,22 @@
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/15987/2019/1/",
       "source_title": "GDO 三浦桃香 クラブセッティング 2019年 ダイキンオーキッドレディス",
-      "checked_at": "2026-05-04T00:00:00.000Z",
+      "checked_at": "2026-05-15T00:00:00.000Z",
       "notes": "現時点で確認できた最新の公開セッティングソース。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/momokamiura_official/",
+      "source_title": "三浦桃香 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.veragolf.jp/influencers/313",
+      "source_title": "三浦 桃香｜インフルエンサー",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウントとティーチングプロ/メディア活動文脈の確認用。"
     },
     {
       "source_type": "article",

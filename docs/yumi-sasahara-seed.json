@@ -18,7 +18,8 @@
     "latest_source_policy": "latest_confirmed_public_source",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-05-06T00:00:00.000Z"
+    "verified_at": "2026-05-15T00:00:00.000Z",
+    "instagram_handle": "yumi_sasahara_official"
   },
   "bagItems": [],
   "sources": [
@@ -28,6 +29,13 @@
       "source_title": "笹原優美 Official Site Profile",
       "checked_at": "2026-05-06T00:00:00.000Z",
       "notes": "クラブ契約テーラーメイド、ボール テーラーメイド、ウェア ジュン アンド ロペの公開確認用。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/yumi_sasahara_official/",
+      "source_title": "笹原優美 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。"
     },
     {
       "source_type": "article",

@@ -16,7 +16,8 @@
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-05-04T00:00:00.000Z",
-    "kana_name": "ヒラオカ ルイ"
+    "kana_name": "ヒラオカ ルイ",
+    "instagram_handle": "hiraokarui"
   },
   "bagItems": [
     {
@@ -155,8 +156,15 @@
       "source_type": "official",
       "source_url": "https://clubping.jp/tourpros/hiraoka.html",
       "source_title": "CLUB PING ツアープロ情報 平岡瑠依選手",
-      "checked_at": "2026-05-04T00:00:00.000Z",
+      "checked_at": "2026-05-15T00:00:00.000Z",
       "notes": "クラブセッティングは2026年3月4日時点と明記。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/hiraokarui/",
+      "source_title": "平岡瑠依 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。"
     }
   ],
   "article": {

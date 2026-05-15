@@ -18,7 +18,8 @@
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-05-04T00:00:00.000Z",
-    "kana_name": "ババ サキ"
+    "kana_name": "ババ サキ",
+    "instagram_handle": "teba_.425"
   },
   "bagItems": [
     {
@@ -203,6 +204,20 @@
       "source_title": "GDO 馬場咲希 クラブセッティング 2026年 ホンダLPGAタイランド",
       "checked_at": "2026-05-04T00:00:00.000Z",
       "notes": "2026年の14本構成と使用ボールを確認。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/teba_.425/",
+      "source_title": "馬場咲希 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/news/tgt/lpga/article/188510/1/",
+      "source_title": "まだまだ振れます馬場咲希の最新セッティング 1WをMAX→LSに替えたワケ",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "2026年ホンダLPGAタイランド時点の最新セッティング解説。既存14本データの補強ソース。"
     },
     {
       "source_type": "article",

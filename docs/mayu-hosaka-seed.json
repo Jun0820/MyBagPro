@@ -17,7 +17,8 @@
     "latest_source_policy": "latest_confirmed_public_source",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-05-06T00:00:00.000Z"
+    "verified_at": "2026-05-15T00:00:00.000Z",
+    "instagram_handle": "mayu.hosaka"
   },
   "bagItems": [],
   "sources": [
@@ -27,6 +28,13 @@
       "source_title": "GDO 保坂真由プロフィール",
       "checked_at": "2026-05-06T00:00:00.000Z",
       "notes": "生年月日、出身地、身長、2022年下部ツアー初優勝のプロフィール文脈確認用。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/mayu.hosaka/",
+      "source_title": "保坂真由 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。"
     },
     {
       "source_type": "article",

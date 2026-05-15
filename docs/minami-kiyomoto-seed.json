@@ -18,7 +18,8 @@
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-05-04T00:00:00.000Z",
-    "kana_name": "キヨモト ミナミ"
+    "kana_name": "キヨモト ミナミ",
+    "instagram_handle": "mipamipa_1173"
   },
   "bagItems": [
     {
@@ -205,6 +206,20 @@
       "source_title": "GDO 清本美波 クラブセッティング 2024年 HEIWA×PGMチャリティゴルフ 練習日",
       "checked_at": "2026-05-04T00:00:00.000Z",
       "notes": "現時点で確認できた最新の公開セッティングソース。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.instagram.com/mipamipa_1173/",
+      "source_title": "清本美波 Instagram",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "公式Instagramアカウント確認用。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://prtimes.jp/main/html/rd/p/000000184.000024046.html",
+      "source_title": "清本美波がMARK & LONAと2026年シーズンよりウェア契約",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "2026年シーズンのウェア契約とInstagramアカウント確認用。クラブセッティングの更新ソースではない。"
     },
     {
       "source_type": "article",

@@ -810,5 +810,13 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
   "miyuu-yamashita": {
     "src": "/profile-images/miyuu-yamashita.jpg",
     "handle": "miyuu_yamashita"
+  },
+  "mayu-hosaka": {
+    "src": "/profile-images/mayu-hosaka.jpg",
+    "handle": "mayu.hosaka"
+  },
+  "yumi-sasahara": {
+    "src": "/profile-images/yumi-sasahara.jpg",
+    "handle": "yumi_sasahara_official"
   }
 };
