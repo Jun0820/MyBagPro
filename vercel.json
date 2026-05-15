@@ -14,12 +14,12 @@
     {
       "source": "/settings/pros",
       "destination": "/pros",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/settings/pros/:slug",
       "destination": "/pros/:slug",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "rewrites": [
