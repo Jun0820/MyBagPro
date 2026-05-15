@@ -4,23 +4,40 @@ const RAKUTEN_AFFILIATE_ID = import.meta.env.VITE_RAKUTEN_AFFILIATE_ID || '1f433
 const YAHOO_VALUECOMMERCE_SID = '3762568';
 const YAHOO_VALUECOMMERCE_PID = '892534722';
 
-export const getAffiliateUrl = (brand: string, modelName: string, shop: 'AMAZON' | 'RAKUTEN' | 'RAKUTEN_GOLF_PARTNER' | 'RAKUTEN_GOLF_PARTNER_ANNEX' | 'YAHOO' = 'RAKUTEN'): string => {
-    const query = encodeURIComponent(`${brand} ${modelName}`);
+export type AffiliateShopId = 'AMAZON' | 'RAKUTEN' | 'RAKUTEN_GOLF_PARTNER' | 'RAKUTEN_GOLF_PARTNER_ANNEX' | 'YAHOO';
 
-    switch (shop) {
+const normalizeShopId = (shop: AffiliateShopId | string = 'RAKUTEN'): AffiliateShopId => {
+    const normalized = shop.toUpperCase();
+    if (normalized === 'AMAZON') return 'AMAZON';
+    if (normalized === 'YAHOO') return 'YAHOO';
+    if (normalized === 'RAKUTEN_GOLF_PARTNER') return 'RAKUTEN_GOLF_PARTNER';
+    if (normalized === 'RAKUTEN_GOLF_PARTNER_ANNEX') return 'RAKUTEN_GOLF_PARTNER_ANNEX';
+    return 'RAKUTEN';
+};
+
+const rakutenAffiliateUrl = (targetUrl: string): string => {
+    const target = encodeURIComponent(targetUrl);
+    return `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${target}&m=${target}`;
+};
+
+export const getRakutenAffiliateUrl = (targetUrl: string): string => rakutenAffiliateUrl(targetUrl);
+
+export const getAffiliateUrl = (brand: string, modelName: string, shop: AffiliateShopId | string = 'RAKUTEN'): string => {
+    const queryText = `${brand} ${modelName}`.trim().replace(/\s+/g, ' ');
+    const query = encodeURIComponent(queryText);
+    const shopId = normalizeShopId(shop);
+
+    switch (shopId) {
         case 'AMAZON':
             return `https://www.amazon.co.jp/s?k=${query}&tag=${AMAZON_ASSOCIATE_TAG}`;
         case 'RAKUTEN':
-            const target = encodeURIComponent(`https://search.rakuten.co.jp/search/mall/${query}`);
-            return `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${target}&m=${target}`;
+            return rakutenAffiliateUrl(`https://search.rakuten.co.jp/search/mall/${query}`);
         case 'RAKUTEN_GOLF_PARTNER':
             // Rakuten Golf Partner (Shop ID: 226919)
-            const rgpTarget = encodeURIComponent(`https://search.rakuten.co.jp/search/mall/${query}/?sid=226919`);
-            return `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${rgpTarget}&m=${rgpTarget}`;
+            return rakutenAffiliateUrl(`https://search.rakuten.co.jp/search/mall/${query}/?sid=226919`);
         case 'RAKUTEN_GOLF_PARTNER_ANNEX':
             // Rakuten Golf Partner Annex (Shop ID: 285653)
-            const annexTarget = encodeURIComponent(`https://search.rakuten.co.jp/search/mall/${query}/?sid=285653`);
-            return `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${annexTarget}&m=${annexTarget}`;
+            return rakutenAffiliateUrl(`https://search.rakuten.co.jp/search/mall/${query}/?sid=285653`);
         case 'YAHOO':
             const yahooTarget = encodeURIComponent(`https://shopping.yahoo.co.jp/search?p=${query}`);
             return `http://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${YAHOO_VALUECOMMERCE_SID}&pid=${YAHOO_VALUECOMMERCE_PID}&vc_url=${yahooTarget}`;

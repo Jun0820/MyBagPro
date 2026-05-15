@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ShoppingBag, AlertCircle, Loader2 } from 'lucide-react';
 import { searchRakutenProducts, getRakutenProductImage } from '../utils/rakutenApi';
-import { getAffiliateUrl } from '../utils/affiliate';
+import { getAffiliateUrl, getRakutenAffiliateUrl } from '../utils/affiliate';
 import { getRakutenCache, setRakutenCache, getCacheKey } from '../lib/rakutenCache';
+import { trackEvent } from '../lib/analytics';
 import { cn } from '../lib/utils';
 
 interface RakutenProductCardProps {
@@ -25,6 +26,18 @@ export const RakutenProductCard: React.FC<RakutenProductCardProps> = ({
     const [product, setProduct] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const fallbackAffiliateUrl = getAffiliateUrl(brand || '', model || '', 'RAKUTEN');
+    const trackFallbackClick = () => {
+        trackEvent('click_affiliate_shop', {
+            source_page: 'rakuten_product_card_fallback',
+            shop_id: 'RAKUTEN',
+            shop_name: '楽天市場',
+            brand,
+            model_name: model,
+            category,
+            reason: error || 'no_product',
+        });
+    };
 
     useEffect(() => {
         if (!brand || !model) return;
@@ -76,19 +89,50 @@ export const RakutenProductCard: React.FC<RakutenProductCardProps> = ({
 
     if (error || !product) {
         return (
-            <div className={cn('flex items-center gap-2 bg-slate-50 rounded-lg p-3 text-xs text-slate-500', className)}>
-                <AlertCircle size={14} />
-                {error || '画像なし'}
-            </div>
+            <a
+                href={fallbackAffiliateUrl}
+                onClick={trackFallbackClick}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                    'flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-4 text-left transition-all hover:border-[#bf0000]/40 hover:shadow-sm',
+                    className
+                )}
+            >
+                <div className="min-w-0">
+                    <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
+                        <AlertCircle size={14} />
+                        楽天の商品候補を検索
+                    </div>
+                    <div className="mt-1 truncate text-sm font-black text-trust-navy">
+                        {[brand, model].filter(Boolean).join(' ')}
+                    </div>
+                </div>
+                <div className="shrink-0 rounded-full bg-[#bf0000] px-3 py-2 text-xs font-black text-white">
+                    楽天で探す
+                </div>
+            </a>
         );
     }
 
     const imageUrl = getRakutenProductImage(product.mediumImageUrl, 'medium');
-    const affiliateUrl = getAffiliateUrl(product.itemUrl, 'rakuten');
+    const affiliateUrl = getRakutenAffiliateUrl(product.itemUrl);
 
     return (
         <a
             href={affiliateUrl}
+            onClick={() => {
+                trackEvent('click_affiliate_shop', {
+                    source_page: 'rakuten_product_card',
+                    shop_id: 'RAKUTEN',
+                    shop_name: '楽天市場',
+                    brand,
+                    model_name: model,
+                    category,
+                    product_name: product.itemName,
+                    product_shop_name: product.shopName,
+                });
+            }}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(

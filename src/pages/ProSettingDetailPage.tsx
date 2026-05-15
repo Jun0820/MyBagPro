@@ -8,6 +8,7 @@ import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '.
 import { getProfileVisuals } from '../lib/profileVisuals';
 import { saveRecentlyViewed } from '../lib/recentlyViewed';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
+import { getAffiliateUrl } from '../utils/affiliate';
 
 const formatClubLabel = (category: string, specLabel?: string) => {
   if (specLabel) return specLabel;
@@ -567,8 +568,8 @@ export const ProSettingDetailPage = () => {
             </div>
           </div>
           <div className="mt-3 overflow-hidden rounded-lg ring-1 ring-slate-200 md:mt-4">
-            <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr]">
-              {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離'].map((heading) => (
+            <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.1fr_1.8fr_2fr_0.8fr_0.8fr_1fr_1fr]">
+              {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離', '購入'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
                   {heading}
                 </div>
@@ -580,24 +581,11 @@ export const ProSettingDetailPage = () => {
                 const isDriver = club.category === 'Driver';
                 const shaftLabel = [club.shaftBrand, club.shaftModel].filter(Boolean).join(' ');
                 return (
-                  <button
+                  <div
                     key={`${setting.slug}-${club.category}-${club.specLabel || index}`}
-                    onClick={() => {
-                      if (isDriver && driverDetail) {
-                        trackEvent('view_product_detail', {
-                          source_page: 'pro_setting_detail',
-                          profile_slug: setting.slug,
-                          profile_name: setting.name,
-                          product_slug: driverDetail.slug,
-                          product_name: `${driverDetail.brand} ${driverDetail.name}`,
-                          category: 'drivers',
-                        });
-                        navigate(`/clubs/drivers/${driverDetail.slug}`);
-                      }
-                    }}
-                    className={`w-full text-left ${isDriver && driverDetail ? 'transition-colors hover:bg-cyan-50' : ''}`}
+                    className="w-full text-left"
                   >
-                    <div className="hidden gap-3 px-4 py-4 md:grid md:grid-cols-[0.7fr_1.2fr_2fr_2.2fr_1fr_1fr_1.2fr] md:items-center">
+                    <div className="hidden gap-3 px-4 py-4 md:grid md:grid-cols-[0.7fr_1.1fr_1.8fr_2fr_0.8fr_0.8fr_1fr_1fr] md:items-center">
                       <div>
                         <div className="text-sm font-black text-trust-navy">{formatClubLabel(club.category, club.specLabel)}</div>
                       </div>
@@ -620,6 +608,46 @@ export const ProSettingDetailPage = () => {
                         <div className="text-sm font-bold text-slate-600">
                           {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
                         </div>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <a
+                          href={getAffiliateUrl(club.brand || '', club.model, 'RAKUTEN')}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            trackEvent('click_affiliate_shop', {
+                              source_page: 'pro_setting_detail_club_table',
+                              profile_slug: setting.slug,
+                              profile_name: setting.name,
+                              shop_id: 'RAKUTEN',
+                              shop_name: '楽天市場',
+                              brand: club.brand || '',
+                              model_name: club.model,
+                              club_category: club.category,
+                            });
+                          }}
+                          className="inline-flex items-center justify-center rounded-full bg-[#bf0000] px-3 py-2 text-xs font-black text-white transition hover:bg-[#a60000]"
+                        >
+                          楽天で見る
+                        </a>
+                        {isDriver && driverDetail ? (
+                          <button
+                            onClick={() => {
+                              trackEvent('view_product_detail', {
+                                source_page: 'pro_setting_detail',
+                                profile_slug: setting.slug,
+                                profile_name: setting.name,
+                                product_slug: driverDetail.slug,
+                                product_name: `${driverDetail.brand} ${driverDetail.name}`,
+                                category: 'drivers',
+                              });
+                              navigate(`/clubs/drivers/${driverDetail.slug}`);
+                            }}
+                            className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-black text-trust-navy transition hover:border-cyan-300 hover:bg-cyan-50"
+                          >
+                            詳細
+                          </button>
+                        ) : null}
                       </div>
                     </div>
 
@@ -655,8 +683,49 @@ export const ProSettingDetailPage = () => {
                         </div>
                       </div>
 
+                      <div className="mt-3 flex gap-2">
+                        <a
+                          href={getAffiliateUrl(club.brand || '', club.model, 'RAKUTEN')}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            trackEvent('click_affiliate_shop', {
+                              source_page: 'pro_setting_detail_club_card',
+                              profile_slug: setting.slug,
+                              profile_name: setting.name,
+                              shop_id: 'RAKUTEN',
+                              shop_name: '楽天市場',
+                              brand: club.brand || '',
+                              model_name: club.model,
+                              club_category: club.category,
+                            });
+                          }}
+                          className="inline-flex flex-1 items-center justify-center rounded-full bg-[#bf0000] px-4 py-2.5 text-xs font-black text-white"
+                        >
+                          楽天で見る
+                        </a>
+                        {isDriver && driverDetail ? (
+                          <button
+                            onClick={() => {
+                              trackEvent('view_product_detail', {
+                                source_page: 'pro_setting_detail',
+                                profile_slug: setting.slug,
+                                profile_name: setting.name,
+                                product_slug: driverDetail.slug,
+                                product_name: `${driverDetail.brand} ${driverDetail.name}`,
+                                category: 'drivers',
+                              });
+                              navigate(`/clubs/drivers/${driverDetail.slug}`);
+                            }}
+                            className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2.5 text-xs font-black text-trust-navy"
+                          >
+                            詳細
+                          </button>
+                        ) : null}
+                      </div>
+
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
