@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, CalendarDays, Newspaper } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
+import { defaultArticleVisual, getArticleVisual, isGenericArticleImage } from '../lib/articleVisuals';
 import { getTournamentSpotlightByArticleSlug } from '../lib/tournamentSpotlights';
 
 type ArticleFilter = 'all' | PublicArticle['articleType'];
@@ -29,13 +30,19 @@ const formatPublishedAt = (publishedAt: string | null) => {
 };
 
 const articleImagePattern = /\[IMAGE\s+url="([^"]+)"\s+alt="([^"]+)"/;
-const fallbackArticleImage = '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
 const getArticleImage = (article: PublicArticle) => {
   const match = article.body.match(articleImagePattern);
+  const contextualVisual = getArticleVisual(article);
+  const bodyImageUrl = match?.[1];
+
+  if (!bodyImageUrl || isGenericArticleImage(bodyImageUrl)) {
+    return contextualVisual;
+  }
+
   return {
-    url: match?.[1] || fallbackArticleImage,
-    alt: match?.[2] || article.title,
+    url: bodyImageUrl,
+    alt: match?.[2] || contextualVisual.alt,
   };
 };
 
@@ -161,10 +168,11 @@ export const ArticlesPage = () => {
                 alt={image.alt}
                 className="h-full w-full object-cover"
                 loading="lazy"
+                decoding="async"
                 onError={(event) => {
                   const target = event.currentTarget;
-                  if (target.src.endsWith(fallbackArticleImage)) return;
-                  target.src = fallbackArticleImage;
+                  if (target.src.endsWith(defaultArticleVisual.url)) return;
+                  target.src = defaultArticleVisual.url;
                 }}
               />
             </div>

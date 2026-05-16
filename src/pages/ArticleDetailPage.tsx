@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, FileText } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPublishedArticleBySlug, fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { trackEvent } from '../lib/analytics';
+import { defaultArticleVisual, getArticleVisual, isGenericArticleImage } from '../lib/articleVisuals';
 import { fetchPublishedSettingProfileBySlug, type PublicSettingProfile } from '../lib/contentProfiles';
 import { saveRecentlyViewed } from '../lib/recentlyViewed';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
@@ -33,7 +34,6 @@ type RichArticleBlock =
 
 const imagePattern = /^\[IMAGE\s+url="([^"]+)"\s+alt="([^"]+)"(?:\s+caption="([^"]+)")?\]$/;
 const calloutPattern = /^\[CALLOUT\s+title="([^"]+)"\]$/;
-const fallbackArticleImage = '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
 const parseRichArticleBody = (body: string): RichArticleBlock[] => {
   const lines = body.split('\n');
@@ -299,7 +299,18 @@ export const ArticleDetailPage = () => {
   }
 
   const tournamentSpotlight = getTournamentSpotlightByArticleSlug(article.slug);
-  const richBlocks = parseRichArticleBody(article.body);
+  const articleVisual = getArticleVisual(article);
+  const articleVisualBlock: RichArticleBlock = { type: 'image', ...articleVisual };
+  const parsedBlocks = parseRichArticleBody(article.body);
+  const firstImageIndex = parsedBlocks.findIndex((block) => block.type === 'image');
+  const richBlocks: RichArticleBlock[] =
+    firstImageIndex === -1
+      ? [articleVisualBlock, ...parsedBlocks]
+      : parsedBlocks.map((block, blockIndex) =>
+          block.type === 'image' && blockIndex === firstImageIndex && isGenericArticleImage(block.url)
+            ? articleVisualBlock
+            : block
+        );
 
   return (
     <div className="min-h-screen pb-16">
@@ -432,10 +443,12 @@ export const ArticleDetailPage = () => {
                   src={block.url}
                   alt={block.alt}
                   className="max-h-[420px] w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                   onError={(event) => {
                     const target = event.currentTarget;
-                    if (target.src.endsWith(fallbackArticleImage)) return;
-                    target.src = fallbackArticleImage;
+                    if (target.src.endsWith(defaultArticleVisual.url)) return;
+                    target.src = defaultArticleVisual.url;
                   }}
                 />
                 {block.caption && (
