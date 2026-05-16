@@ -1,0 +1,58 @@
+{
+  "profile": {
+    "slug": "kohei-okada",
+    "display_name": "岡田 晃平",
+    "kana_name": "オカダ コウヘイ",
+    "nationality": "Japan",
+    "birthplace": "高知県",
+    "birth_date": "2002-02-18",
+    "height_cm": 173,
+    "profile_type": "tour_pro",
+    "segment": "showdown_2026_batch",
+    "season_year": 2026,
+    "head_speed_mps": 51.5,
+    "best_score": 62,
+    "ball_name": "Srixon Z-STAR XV",
+    "website_url": "https://www.jgto.org/player/100928/profile",
+    "feature_1": "飛んで曲がらないショット",
+    "feature_2": "Srixon中心",
+    "feature_3": "5W活用型",
+    "summary": "Dunlop公式プレーヤーページ、JGTOプロフィール、GOLF NETWORKのSHOWDOWN動画をもとに、岡田晃平の使用クラブと番手別飛距離を整理したプロフィール。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-05-16T00:00:00.000Z",
+    "youtube_channel": "https://www.youtube.com/watch?v=A7mmnxVB_ek"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "Srixon", "model_name": "ZXi LS Driver", "loft_label": "10.5°", "carry_distance": 300, "source_note": "Dunlop official player page confirms ZXi LS driver; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Srixon", "model_name": "ZXi Fairway Wood", "spec_label": "3W", "carry_distance": 270, "source_note": "Dunlop official player page confirms ZXi fairway wood #3; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "Srixon", "model_name": "ZXi Fairway Wood", "spec_label": "5W", "carry_distance": 250, "source_note": "5W distance follows GOLF NETWORK SHOWDOWN table; model is treated as Srixon FW based on video summary.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "ZXi7 Iron", "spec_label": "4I", "carry_distance": 225, "source_note": "Dunlop official player page lists ZXi7 #4; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "5I", "carry_distance": 205, "source_note": "Dunlop official player page lists Z-Forged II #5-PW; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "6I", "carry_distance": 195, "source_note": "Dunlop official player page lists Z-Forged II #5-PW; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "7I", "carry_distance": 185, "source_note": "Dunlop official player page lists Z-Forged II #5-PW; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "8I", "carry_distance": 175, "source_note": "Dunlop official player page lists Z-Forged II #5-PW; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "9I", "carry_distance": 160, "source_note": "Dunlop official player page lists Z-Forged II #5-PW; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "PW", "carry_distance": 140, "source_note": "Dunlop official player page lists Z-Forged II #5-PW; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Cleveland", "model_name": "RTZ Wedge", "spec_label": "50°", "loft_label": "50°", "carry_distance": 120, "source_note": "Dunlop official player page confirms Cleveland RTZ 50/56/60; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Cleveland", "model_name": "RTZ Wedge", "spec_label": "56°", "loft_label": "56°", "carry_distance": 100, "source_note": "Dunlop official player page confirms Cleveland RTZ 50/56/60; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Cleveland", "model_name": "RTZ Wedge", "spec_label": "60°", "loft_label": "60°", "carry_distance": 80, "source_note": "Dunlop official player page confirms Cleveland RTZ 50/56/60; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "Newport 2 Putter", "source_note": "GOLF NETWORK SHOWDOWN video summary identifies the putter as Scotty Cameron Newport 2. Dunlop/JGTO official maker context may list a different putter maker category, so this should be rechecked when a newer written WITB appears.", "is_featured_item": false }
+  ],
+  "sources": [
+    { "source_type": "official", "source_url": "https://www.jgto.org/player/100928/profile", "source_title": "JGTO 岡田晃平プロフィール", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "Used for bio fields and tour profile. JGTO lists Srixon driver/iron/ball maker context." },
+    { "source_type": "official", "source_url": "https://sports.dunlop.co.jp/golf/players/detail/kohei_okada.html", "source_title": "岡田 晃平 | 国内男子ツアープロ | DUNLOP GOLFING WORLD", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "Official Dunlop page lists Z-STAR XV, ZXi LS Driver, ZXi #3 FW, ZXi7/Z-Forged II irons and Cleveland RTZ wedges as of 2025-04-10." },
+    { "source_type": "article", "source_url": "https://www.youtube.com/watch?v=A7mmnxVB_ek", "source_title": "岡田晃平のクラブセッティング【SHOWDOWN男子トッププロゴルファー同士のガチンコ対決】", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "GOLF NETWORK video used for club-by-club distance table and 5W/putter notes." }
+  ],
+  "article": {
+    "slug": "kohei-okada-2026-setting-update",
+    "title": "岡田晃平のクラブセッティングを掲載｜Srixon中心の5W活用型",
+    "excerpt": "岡田晃平のクラブセッティングと番手別飛距離を掲載。ZXi LS、ZXi FW、Z-Forged II、Cleveland RTZ、Z-STAR XVを整理しました。",
+    "body": "岡田晃平のクラブセッティングを、Dunlop公式プレーヤーページ、JGTOプロフィール、GOLF NETWORKのSHOWDOWN動画をもとに掲載しました。1WはSrixon ZXi LS、3WはSrixon ZXi FW、動画上では5Wも入るウッド活用型の構成です。アイアンはDunlop公式でZXi7とZ-Forged II、ウェッジはCleveland RTZ、ボールはSrixon Z-STAR XVが確認できます。番手別飛距離では1W300yd、3W270yd、5W250yd、4I225ydと、ウッドで高さと距離を作りながら4Iへつなげる構成が特徴です。MyBagProでは、3WやUTが難しいゴルファーが5Wで距離階段を作る視点として参考にできます。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-16T00:00:00.000Z"
+  }
+}

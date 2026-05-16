@@ -1,0 +1,58 @@
+{
+  "profile": {
+    "slug": "shun-niimura",
+    "display_name": "新村 駿",
+    "kana_name": "ニイムラ シュン",
+    "nationality": "Japan",
+    "birthplace": "長野県松本市",
+    "birth_date": "2000-09-11",
+    "height_cm": 177,
+    "profile_type": "tour_pro",
+    "segment": "showdown_2026_batch",
+    "season_year": 2026,
+    "head_speed_mps": 52,
+    "best_score": 63,
+    "ball_name": "TaylorMade TP5x",
+    "website_url": "https://www.jgto.org/player/100483/profile",
+    "feature_1": "飛距離型",
+    "feature_2": "ミニドライバー活用",
+    "feature_3": "TaylorMade契約",
+    "summary": "TaylorMade公式ツアープレーヤーページ、JGTOプロフィール、GOLF NETWORKのSHOWDOWN動画をもとに、新村駿の使用クラブと番手別飛距離を整理したプロフィール。",
+    "latest_source_policy": "2026_season",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-05-16T00:00:00.000Z",
+    "youtube_channel": "https://www.youtube.com/watch?v=5RQuzusWk-k"
+  },
+  "bagItems": [
+    { "category": "Driver", "slot_order": 1, "brand": "TaylorMade", "model_name": "Qi35 Driver", "carry_distance": 300, "source_note": "TaylorMade official tour player page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": true },
+    { "category": "Driver", "slot_order": 2, "brand": "TaylorMade", "model_name": "r7 Quad Mini Driver", "spec_label": "Mini Driver", "loft_label": "13.5° adjusted to approx. 14°", "carry_distance": 280, "source_note": "Mini-driver usage is based on GOLF NETWORK video and ALBA coverage; exact sleeve setting is reported as around 14 degrees.", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 3, "brand": "TaylorMade", "model_name": "Qi35 Rescue", "spec_label": "3UT", "carry_distance": 255, "source_note": "TaylorMade official tour player page lists Qi35 Rescue; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 4, "brand": "TaylorMade", "model_name": "P770 Iron", "spec_label": "4I", "carry_distance": 235, "source_note": "TaylorMade official tour player page lists P770/P7MB irons; detailed split follows video summary.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "TaylorMade", "model_name": "P770 Iron", "spec_label": "5I", "carry_distance": 215, "source_note": "TaylorMade official tour player page lists P770/P7MB irons; detailed split follows video summary.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "TaylorMade", "model_name": "P7MB Iron", "spec_label": "6I", "carry_distance": 200, "source_note": "TaylorMade official tour player page lists P770/P7MB irons; detailed split follows video summary.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "TaylorMade", "model_name": "P7MB Iron", "spec_label": "7I", "carry_distance": 185, "source_note": "TaylorMade official tour player page lists P770/P7MB irons; detailed split follows video summary.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "TaylorMade", "model_name": "P7MB Iron", "spec_label": "8I", "carry_distance": 170, "source_note": "TaylorMade official tour player page lists P770/P7MB irons; detailed split follows video summary.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "TaylorMade", "model_name": "P7MB Iron", "spec_label": "9I", "carry_distance": 155, "source_note": "TaylorMade official tour player page lists P770/P7MB irons; detailed split follows video summary.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "TaylorMade", "model_name": "MG4 Chrome Wedge", "spec_label": "46°", "loft_label": "46°", "carry_distance": 140, "source_note": "TaylorMade official tour player page lists MG4 wedge; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "TaylorMade", "model_name": "MG4 Chrome Wedge", "spec_label": "50°", "loft_label": "50°", "carry_distance": 125, "source_note": "TaylorMade official tour player page lists MG4 wedge; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "TaylorMade", "model_name": "MG4 Chrome Wedge", "spec_label": "55°", "loft_label": "55°", "carry_distance": 110, "source_note": "TaylorMade official tour player page lists MG4 wedge; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "TaylorMade", "model_name": "MG4 Chrome Wedge", "spec_label": "60°", "loft_label": "60°", "carry_distance": 95, "source_note": "TaylorMade official tour player page lists MG4 wedge; distance from GOLF NETWORK SHOWDOWN.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "TaylorMade", "model_name": "Spider Tour X Putter", "source_note": "GOLF NETWORK SHOWDOWN video identifies the putter as Spider Tour X.", "is_featured_item": false }
+  ],
+  "sources": [
+    { "source_type": "official", "source_url": "https://www.jgto.org/player/100483/profile", "source_title": "JGTO 新村駿プロフィール", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "Used for bio fields, tour context and official maker usage categories." },
+    { "source_type": "official", "source_url": "https://www.taylormadegolf.jp/tourplayers-shun-niimura.html", "source_title": "新村 駿 | ツアープレーヤー | TaylorMade Golf", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "Official TaylorMade page lists Qi35 Driver, Qi35 TOUR FW, Qi35 Rescue, P770, P7MB, MG4 and TP5x." },
+    { "source_type": "article", "source_url": "https://www.youtube.com/watch?v=5RQuzusWk-k", "source_title": "新村駿クラブセッティング紹介【SHOWDOWN 堀川未来夢vs新村駿】", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "GOLF NETWORK video used for club-by-club distance table and putter naming." }
+  ],
+  "article": {
+    "slug": "shun-niimura-2026-setting-update",
+    "title": "新村駿のクラブセッティングを掲載｜Qi35とミニドライバー構成",
+    "excerpt": "新村駿の2026年クラブセッティングと番手別飛距離を掲載。Qi35、r7 Quad Mini、P770/P7MB、MG4、TP5xを整理しました。",
+    "body": "新村駿のクラブセッティングを、TaylorMade公式ツアープレーヤーページ、JGTOプロフィール、GOLF NETWORKのSHOWDOWN動画をもとに掲載しました。1WはTaylorMade Qi35、ティーショットの選択肢としてr7 Quad Mini Driver、ロングはQi35 Rescue、アイアンはP770/P7MB系、ウェッジはMG4、ボールはTP5xです。番手別飛距離では1W300yd、ミニドライバー280yd、3UT255ydと、3Wを無理に入れずミニドライバーで安定性と飛距離を両立する構成が特徴です。MyBagProでは、3Wが苦手なゴルファーがミニドライバーや強めUTで距離階段を作る参考として確認できます。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-16T00:00:00.000Z"
+  }
+}

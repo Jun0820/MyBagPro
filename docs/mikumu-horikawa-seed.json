@@ -2,194 +2,54 @@
   "profile": {
     "slug": "mikumu-horikawa",
     "display_name": "堀川 未来夢",
+    "kana_name": "ホリカワ ミクム",
     "nationality": "Japan",
-    "birthplace": "Kanagawa, Japan",
+    "birthplace": "神奈川県",
     "birth_date": "1992-12-16",
     "height_cm": 176,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
-    "season_year": 2024,
-    "ball_name": "Bridgestone Tour B X 2024",
-    "feature_1": "2024シーズン基準",
-    "feature_2": "ブリヂストン中心",
-    "feature_3": "14本確認済み",
-    "summary": "2024年東建ホームメイトカップ時点で確認できた堀川未来夢の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
-    "latest_source_policy": "2024_season",
+    "season_year": 2026,
+    "head_speed_mps": 48.5,
+    "ball_name": "Bridgestone TOUR B X",
+    "feature_1": "2026中日クラウンズ取材",
+    "feature_2": "FWとUTで距離階段を細かく設計",
+    "feature_3": "ブリヂストン中心",
+    "summary": "2026年中日クラウンズ取材とGOLF NETWORKのSHOWDOWN動画をもとに、堀川未来夢の14本、使用ボール、番手別飛距離を整理したプロフィール。",
+    "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-04-08T00:00:00.000Z"
+    "verified_at": "2026-05-16T00:00:00.000Z",
+    "youtube_channel": "https://www.youtube.com/watch?v=K6tY4rh_FAc"
   },
   "bagItems": [
-    {
-      "category": "Driver",
-      "slot_order": 1,
-      "brand": "Callaway",
-      "model_name": "Paradym Triple Diamond Driver",
-      "loft_label": "9 degrees plus",
-      "shaft_brand": "Graphite Design",
-      "shaft_model": "Tour AD PT",
-      "shaft_flex": "X",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": true
-    },
-    {
-      "category": "Fairway Wood",
-      "slot_order": 2,
-      "brand": "TaylorMade",
-      "model_name": "M4 Fairway Wood",
-      "spec_label": "3W",
-      "loft_label": "15 degrees",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Fairway Wood",
-      "slot_order": 3,
-      "brand": "TaylorMade",
-      "model_name": "M4 Fairway Wood",
-      "spec_label": "5W",
-      "loft_label": "18 degrees",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Fairway Wood",
-      "slot_order": 4,
-      "brand": "Bridgestone",
-      "model_name": "Tour B JGR Fairway Wood",
-      "spec_label": "7W",
-      "loft_label": "21 degrees",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Utility",
-      "slot_order": 5,
-      "brand": "Bridgestone",
-      "model_name": "J15 HY Utility Prototype",
-      "spec_label": "4U",
-      "loft_label": "23 degrees",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 6,
-      "brand": "Bridgestone",
-      "model_name": "Tour B X-CB Iron",
-      "spec_label": "5I",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 7,
-      "brand": "Bridgestone",
-      "model_name": "Tour B X-CB Iron",
-      "spec_label": "6I",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 8,
-      "brand": "Bridgestone",
-      "model_name": "Tour B X-CB Iron",
-      "spec_label": "7I",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 9,
-      "brand": "Bridgestone",
-      "model_name": "Tour B X-CB Iron",
-      "spec_label": "8I",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 10,
-      "brand": "Bridgestone",
-      "model_name": "Tour B X-CB Iron",
-      "spec_label": "9I",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 11,
-      "brand": "Bridgestone",
-      "model_name": "Tour B X-CB Iron",
-      "spec_label": "PW",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 12,
-      "brand": "Bridgestone",
-      "model_name": "Tour B XW-F Wedge",
-      "spec_label": "GW",
-      "loft_label": "52 degrees",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 13,
-      "brand": "Bridgestone",
-      "model_name": "Tour B XW-F Wedge",
-      "spec_label": "SW",
-      "loft_label": "58 degrees",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold EX Tour Issue",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Putter",
-      "slot_order": 14,
-      "brand": "Scotty Cameron",
-      "model_name": "Phantom X 6STR Putter",
-      "source_note": "Confirmed from GDO 2024 Token Homemate Cup setting page.",
-      "is_featured_item": false
-    }
+    { "category": "Driver", "slot_order": 1, "brand": "Callaway", "model_name": "Paradym Triple Diamond Driver", "loft_label": "9°+", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD GC", "shaft_flex": "X", "shaft_weight": "60g class", "carry_distance": 275, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "M4 Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD PT", "carry_distance": 250, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "TaylorMade", "model_name": "M4 Fairway Wood", "spec_label": "5W", "loft_label": "18°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD PT", "carry_distance": 235, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 4, "brand": "Bridgestone", "model_name": "TOUR B JGR Fairway Wood", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Graphite Design", "shaft_model": "Tour AD PT", "carry_distance": 215, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 5, "brand": "Bridgestone", "model_name": "J15 HY Utility", "spec_label": "4UT", "loft_label": "23°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 200, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Bridgestone", "model_name": "241CB Iron", "spec_label": "5I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 190, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Bridgestone", "model_name": "241CB Iron", "spec_label": "6I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 180, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Bridgestone", "model_name": "241CB Iron", "spec_label": "7I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 170, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Bridgestone", "model_name": "241CB Iron", "spec_label": "8I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 160, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Bridgestone", "model_name": "241CB Iron", "spec_label": "9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 150, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Bridgestone", "model_name": "241CB Iron", "spec_label": "PW", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 135, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Bridgestone", "model_name": "TOUR B XW-F Wedge", "spec_label": "52°", "loft_label": "52°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 110, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Bridgestone", "model_name": "TOUR B XW-F Wedge", "spec_label": "58°", "loft_label": "58°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold EX Tour Issue", "carry_distance": 90, "source_note": "GDO 2026 Chunichi Crowns setting page and GOLF NETWORK SHOWDOWN distance table.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "TaylorMade", "model_name": "Spider Tour Red Putter", "source_note": "GOLF NETWORK SHOWDOWN video identifies the putter as Spider Tour Red.", "is_featured_item": false }
   ],
   "sources": [
-    {
-      "source_type": "article",
-      "source_url": "https://news.golfdigest.co.jp/players/setting/9890/2024/1/",
-      "source_title": "GDO 堀川未来夢 クラブセッティング 2024年 東建ホームメイトカップ",
-      "checked_at": "2026-04-08T00:00:00.000Z",
-      "notes": "Used for bio fields, 2024 full bag, and ball confirmation."
-    }
+    { "source_type": "article", "source_url": "https://news.golfdigest.co.jp/players/setting/9890/2026/1/", "source_title": "GDO 堀川未来夢 クラブセッティング 2026年 中日クラウンズ", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "Used for 2026 full bag and ball confirmation." },
+    { "source_type": "article", "source_url": "https://www.youtube.com/watch?v=K6tY4rh_FAc", "source_title": "堀川未来夢クラブセッティング紹介【SHOWDOWN 堀川未来夢vs新村駿】", "checked_at": "2026-05-16T00:00:00.000Z", "notes": "GOLF NETWORK video used for club-by-club distance table and putter naming." }
   ],
   "article": {
-    "slug": "mikumu-horikawa-2024-setting-update",
-    "title": "堀川未来夢の2024年クラブセッティングを掲載しました",
-    "excerpt": "2024シーズン基準で、堀川未来夢の14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "堀川未来夢のセッティングについて、2024年東建ホームメイトカップ時点で確認できた14本のクラブ構成と使用ボールを反映しました。ブリヂストン中心の実戦セットとして今後も更新していきます。",
+    "slug": "mikumu-horikawa-2026-setting-update",
+    "title": "堀川未来夢のクラブセッティングを更新｜2026年中日クラウンズ",
+    "excerpt": "堀川未来夢の2026年クラブセッティングと番手別飛距離を更新。3W、5W、7W、4UTで作るロングゲームの距離階段に注目です。",
+    "body": "堀川未来夢のクラブセッティングを、2026年中日クラウンズ取材とGOLF NETWORKのSHOWDOWN動画をもとに更新しました。1Wはキャロウェイ Paradym Triple Diamond、3W・5WはTaylorMade M4、7WはBridgestone TOUR B JGR、4UTはJ15 HY。5IからPWはBridgestone 241CB、ウェッジは52度・58度、ボールはBridgestone TOUR B Xです。番手別飛距離では3W250yd、5W235yd、7W215yd、4UT200ydと、上の番手の距離階段が非常に細かく作られています。MyBagProでは、同じクラブをそのまま真似るだけでなく、3WからUTまでの距離ギャップをどう埋めるかの参考データとして確認できます。",
     "article_type": "update",
-    "season_year": 2024,
+    "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-08T00:00:00.000Z"
+    "published_at": "2026-05-16T00:00:00.000Z"
   }
 }
