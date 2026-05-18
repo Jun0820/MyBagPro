@@ -5,14 +5,18 @@ import { applySeo, getSeoPath } from '../lib/seo';
 
 const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined;
 
-const routeSeoMap: Record<string, { title: string; description: string; noindex?: boolean }> = {
+const routeSeoMap: Record<string, { title: string; description: string; noindex?: boolean; keywords?: string[]; image?: string }> = {
   '/': {
     title: 'プロのクラブセッティング検索サイト',
     description: '石川遼、中島啓太、松山英樹など有名プロのクラブセッティングを検索できる My Bag Pro。ドライバー、アイアン、パター、使用ボールまで確認済みデータを掲載します。',
+    keywords: ['クラブセッティング', 'プロ 使用クラブ', 'ゴルフ WITB', 'ゴルフクラブ 診断', 'MyBagPro'],
+    image: '/article-visuals/golf-bag-course.jpg',
   },
   '/pros': {
     title: 'プロのクラブセッティング一覧',
     description: '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名、カテゴリ、フリガナ、ヘッドスピードで絞り込めます。',
+    keywords: ['プロ クラブセッティング 一覧', '女子プロ クラブセッティング', '男子プロ 使用クラブ', 'ゴルフ WITB'],
+    image: '/article-visuals/clubs-grass.jpg',
   },
   '/settings/users': {
     title: 'みんなのMy Bag',
@@ -25,6 +29,8 @@ const routeSeoMap: Record<string, { title: string; description: string; noindex?
   '/articles': {
     title: '更新記事一覧',
     description: 'クラブセッティングの更新内容や掲載変更を記事として公開しています。',
+    keywords: ['クラブセッティング 記事', '使用クラブ 最新', 'ゴルフクラブ ニュース'],
+    image: '/article-visuals/green-flag.jpg',
   },
   '/sitemap': {
     title: 'サイトマップ',
@@ -139,6 +145,8 @@ export const SeoManager = () => {
       path: seoPath,
       noindex: seo.noindex,
       type: location.pathname.startsWith('/articles/') ? 'article' : 'website',
+      keywords: seo.keywords,
+      image: seo.image,
     });
     trackPageView(seoPath, `${seo.title} | My Bag Pro`);
   }, [location.pathname]);

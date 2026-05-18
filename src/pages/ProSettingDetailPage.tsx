@@ -254,17 +254,38 @@ export const ProSettingDetailPage = () => {
       return;
     }
 
+    const seasonLabel = setting.seasonYear ? `${setting.seasonYear}年` : '最新';
+    const seoClubNames = setting.clubs
+      .map((club) => [club.brand, club.model].filter(Boolean).join(' '))
+      .filter(Boolean);
+    const seoDriver = driverClub ? [driverClub.brand, driverClub.model].filter(Boolean).join(' ') : 'ドライバー';
+    const seoTitle = `${setting.name} クラブセッティング ${seasonLabel}｜使用クラブ・ボール`;
+    const seoDescription = `${setting.name}のクラブセッティング${seasonLabel}版。${seoDriver}、アイアン、ウェッジ、パター、使用ボール${setting.ball !== '未公開' ? `（${setting.ball}）` : ''}まで確認できます。`;
+    const seoImage = getProfileVisuals(setting.slug, setting.instagramHandle).hero;
+
     applySeo({
-      title: `${setting.name}のクラブセッティング${setting.seasonYear ? ` ${setting.seasonYear}年` : ''}`,
-      description: `${setting.name}のクラブセッティング詳細ページ。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボール、契約メーカーまで確認できます。`,
+      title: seoTitle,
+      description: seoDescription,
       path: getSeoPath(`/pros/${slug}`),
+      keywords: [
+        `${setting.name} クラブセッティング`,
+        `${setting.name} 使用クラブ`,
+        `${setting.name} ドライバー`,
+        `${setting.name} アイアン`,
+        `${setting.name} パター`,
+        `${setting.name} ボール`,
+        `${setting.name} WITB`,
+        ...seoClubNames.slice(0, 8),
+      ],
+      image: seoImage,
     });
 
     setStructuredData('profile-page', {
       '@context': 'https://schema.org',
       '@type': 'ProfilePage',
-      name: `${setting.name}のクラブセッティング`,
-      description: `${setting.name}のクラブセッティング詳細ページ。ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボール、契約メーカーまで確認できます。`,
+      name: seoTitle,
+      headline: seoTitle,
+      description: seoDescription,
       url: toAbsoluteUrl(getSeoPath(`/pros/${slug}`)),
       mainEntity: {
         '@type': 'Person',
@@ -274,6 +295,8 @@ export const ProSettingDetailPage = () => {
         birthDate: setting.birthDate || undefined,
         nationality: setting.nationality || undefined,
         homeLocation: setting.birthplace || undefined,
+        knowsAbout: ['ゴルフ', 'クラブセッティング', ...seoClubNames.slice(0, 10)],
+        sameAs: setting.sources.map((source) => source.url).filter(Boolean),
       },
       hasPart: {
         '@type': 'ItemList',

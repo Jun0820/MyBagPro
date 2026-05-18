@@ -29,8 +29,8 @@ export const tournamentSpotlights: TournamentSpotlight[] = [
     statusLabel: '結果更新',
     eventDates: '2026年5月14日-17日',
     summary:
-      'ロッティ・ウォード優勝、山下美夢有3位。山下美夢有、ジーノ・ティティクル、畑岡奈紗、岩井千怜の14本を比較しやすくしました。',
-    featuredPlayerSlugs: ['miyuu-yamashita', 'jeeno-thitikul', 'nasa-hataoka', 'chisato-iwai'],
+      'ロッティ・ウォード優勝、山下美夢有3位。ウォード、ヘラン・リュウ、山下美夢有の14本をFW・UTの距離設計から比較しやすくしました。',
+    featuredPlayerSlugs: ['lottie-woad', 'haeran-ryu', 'miyuu-yamashita', 'jeeno-thitikul'],
   },
   {
     articleSlug: 'kansai-open-2026-result-fujimoto-setting-watch',

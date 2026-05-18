@@ -195,11 +195,24 @@ export const ArticleDetailPage = () => {
       return;
     }
 
+    const visual = getArticleVisual(article);
+    const articleKeywords = [
+      article.title,
+      article.relatedProfileName ? `${article.relatedProfileName} クラブセッティング` : undefined,
+      article.relatedProfileName ? `${article.relatedProfileName} 使用クラブ` : undefined,
+      'クラブセッティング',
+      '使用クラブ',
+      'ゴルフクラブ',
+      'MyBagPro',
+    ].filter(Boolean) as string[];
+
     applySeo({
       title: article.title,
       description: article.excerpt || 'クラブセッティングの更新内容を公開する記事です。',
       path: getSeoPath(`/articles/${slug}`),
       type: 'article',
+      keywords: articleKeywords,
+      image: visual.url,
     });
 
     setStructuredData('article-page', {
@@ -208,6 +221,7 @@ export const ArticleDetailPage = () => {
       headline: article.title,
       description: article.excerpt || 'クラブセッティングの更新内容を公開する記事です。',
       articleSection: article.articleType,
+      image: toAbsoluteUrl(visual.url),
       datePublished: article.publishedAt || undefined,
       dateModified: article.publishedAt || undefined,
       mainEntityOfPage: toAbsoluteUrl(getSeoPath(`/articles/${slug}`)),

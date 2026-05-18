@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mybagpro.jp/sitemap.xml
+Sitemap: https://www.mybagpro.jp/sitemap.xml

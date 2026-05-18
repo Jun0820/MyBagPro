@@ -1,0 +1,226 @@
+{
+  "profile": {
+    "slug": "lottie-woad",
+    "display_name": "ロッティ・ウォード",
+    "kana_name": "ロッティ・ウォード",
+    "nationality": "England",
+    "birthplace": "イングランド サリー州ファーナム",
+    "birth_date": "2004-01-17",
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1",
+    "feature_1": "Kroger Queen City 2026優勝",
+    "feature_2": "Titleist中心",
+    "feature_3": "3W・2H構成",
+    "summary": "2026年Kroger Queen City Championshipを制したロッティ・ウォードのクラブセッティング。Golf MonthlyのWITBとTitleist公式情報をもとに、Titleist TSR3 Driver、GT2 3W、TSR2 Hybrid 18°・21°、T150 Iron、Vokey SM10、Odyssey White Hot Rossie、Titleist Pro V1まで整理しています。",
+    "latest_source_policy": "latest_confirmed_witb",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-05-18T00:00:00.000Z",
+    "website_url": "https://www.titleist.com/tour/4702/lottie-woad"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Titleist",
+      "model_name": "TSR3 Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus TR Red 6",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。Titleist契約後も成功実績のあるTSR3を継続使用と記載。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Titleist",
+      "model_name": "GT2 Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Diamana BB 63",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。Titleist公式でもGT2 Fairwayを掲載。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Hybrid",
+      "slot_order": 3,
+      "brand": "Titleist",
+      "model_name": "TSR2 Hybrid",
+      "spec_label": "3H",
+      "loft_label": "18°",
+      "shaft_brand": "Project X",
+      "shaft_model": "HZRDUS Smoke Black RDX 80hy",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。18°・21°の2本ハイブリッド構成。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Hybrid",
+      "slot_order": 4,
+      "brand": "Titleist",
+      "model_name": "TSR2 Hybrid",
+      "spec_label": "4H",
+      "loft_label": "21°",
+      "shaft_brand": "Project X",
+      "shaft_model": "HZRDUS Smoke Black RDX 80hy",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。上の距離をロングアイアンではなくハイブリッドで作る構成。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Titleist",
+      "model_name": "T150 Iron",
+      "spec_label": "5I",
+      "shaft_brand": "KBS",
+      "shaft_model": "Tour 120",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。5Iは新しいT150、6I-PWは2023 T150と記載。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Titleist",
+      "model_name": "T150 Iron",
+      "spec_label": "6I",
+      "shaft_brand": "KBS",
+      "shaft_model": "Tour 120",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。6I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Titleist",
+      "model_name": "T150 Iron",
+      "spec_label": "7I",
+      "shaft_brand": "KBS",
+      "shaft_model": "Tour 120",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。6I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Titleist",
+      "model_name": "T150 Iron",
+      "spec_label": "8I",
+      "shaft_brand": "KBS",
+      "shaft_model": "Tour 120",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。6I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Titleist",
+      "model_name": "T150 Iron",
+      "spec_label": "9I",
+      "shaft_brand": "KBS",
+      "shaft_model": "Tour 120",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。6I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Titleist",
+      "model_name": "T150 Iron",
+      "spec_label": "PW",
+      "shaft_brand": "KBS",
+      "shaft_model": "Tour 120",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。6I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "loft_label": "50.08F",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 950GH",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。50°・54°・58°の3本構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "loft_label": "54.10S",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 950GH",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。50°・54°・58°の3本構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey SM10 Wedge",
+      "loft_label": "58.06K",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 950GH",
+      "shaft_flex": "S",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。50°・54°・58°の3本構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "White Hot Rossie",
+      "shaft_model": "Stroke Lab",
+      "source_note": "Golf Monthly Lottie Woad WITBで確認。長く使用しているRossie型パター。",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/tour/lottie-woad-whats-in-the-bag",
+      "source_title": "Lottie Woad What's In The Bag? - Golf Monthly",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "2025年7月公開。14本の構成、シャフト、ボールを確認。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.titleist.com/tour/4702/lottie-woad",
+      "source_title": "Lottie Woad - Titleist",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "Titleist公式。Titleist Brand Ambassador、Pro V1、GT2 Fairwayなどを確認。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/tour/lottie-woad-facts-bio-wins",
+      "source_title": "Lottie Woad facts - Golf Monthly",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "プロフィール情報確認用。出身地と生年月日を確認。"
+    }
+  ],
+  "article": {
+    "slug": "lottie-woad-2026-setting-update",
+    "title": "ロッティ・ウォードのクラブセッティングを掲載｜Titleist中心の2H構成",
+    "excerpt": "2026年Kroger Queen City Championshipを制したロッティ・ウォードの14本を掲載。Titleist TSR3、GT2 3W、TSR2 Hybrid、T150、Vokey SM10、Pro V1まで整理しました。",
+    "body": "ロッティ・ウォードのクラブセッティングを、Golf MonthlyのWITBとTitleist公式情報をもとに掲載しました。ドライバーはTitleist TSR3、3WはGT2、ハイブリッドはTSR2の18°・21°、アイアンはT150、ウェッジはVokey SM10、パターはOdyssey White Hot Rossie、ボールはTitleist Pro V1です。MyBagProでは、ロングアイアンを増やしすぎず、3Wと2本のハイブリッドで上の距離を作る構成として整理しています。プロのスペックをそのまま真似るのではなく、5番アイアンや4番アイアンが難しいゴルファーがFW・UTで距離の階段を作る考え方として参考にできます。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-18T15:10:00+09:00"
+  }
+}

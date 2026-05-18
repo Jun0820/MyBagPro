@@ -1,9 +1,12 @@
 const SITE_NAME = 'My Bag Pro';
-const SITE_URL = 'https://mybagpro.jp';
+const SITE_URL = 'https://www.mybagpro.jp';
 
 export const getSiteUrl = () => SITE_URL;
 
-export const toAbsoluteUrl = (path = '/') => `${SITE_URL}${path}`;
+export const toAbsoluteUrl = (path = '/') => {
+  if (/^https?:\/\//i.test(path)) return path;
+  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
+};
 
 export interface SeoPayload {
   title: string;
@@ -11,6 +14,8 @@ export interface SeoPayload {
   path?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
+  keywords?: string[];
+  image?: string;
 }
 
 export const setStructuredData = (id: string, payload: Record<string, unknown>) => {
@@ -50,8 +55,17 @@ const upsertCanonical = (href: string) => {
   tag.setAttribute('href', href);
 };
 
-export const applySeo = ({ title, description, path = '/', type = 'website', noindex = false }: SeoPayload) => {
-  const absoluteUrl = `${SITE_URL}${path}`;
+export const applySeo = ({
+  title,
+  description,
+  path = '/',
+  type = 'website',
+  noindex = false,
+  keywords = [],
+  image,
+}: SeoPayload) => {
+  const absoluteUrl = toAbsoluteUrl(path);
+  const imageUrl = image ? toAbsoluteUrl(image) : toAbsoluteUrl('/article-visuals/golf-bag-course.jpg');
   document.title = `${title} | ${SITE_NAME}`;
 
   upsertMeta('meta[name="description"]', 'name', 'description', description);
@@ -59,8 +73,15 @@ export const applySeo = ({ title, description, path = '/', type = 'website', noi
   upsertMeta('meta[property="og:description"]', 'property', 'og:description', description);
   upsertMeta('meta[property="og:url"]', 'property', 'og:url', absoluteUrl);
   upsertMeta('meta[property="og:type"]', 'property', 'og:type', type);
+  upsertMeta('meta[property="og:site_name"]', 'property', 'og:site_name', SITE_NAME);
+  upsertMeta('meta[property="og:image"]', 'property', 'og:image', imageUrl);
   upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', `${title} | ${SITE_NAME}`);
   upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
+  upsertMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+  upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', imageUrl);
+  if (keywords.length > 0) {
+    upsertMeta('meta[name="keywords"]', 'name', 'keywords', keywords.join(', '));
+  }
   upsertMeta(
     'meta[name="robots"]',
     'name',

@@ -210,6 +210,7 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'madelene-sagstrom': { category: 'overseas_women', contractStatus: 'checking' },
   'ryann-odtoole': { category: 'overseas_women', contractStatus: 'checking' },
   'gaby-lopez': { category: 'overseas_women', contractStatus: 'checking' },
+  'lottie-woad': { category: 'overseas_women', contractStatus: 'club_contract', contractMaker: 'タイトリスト' },
   'collin-morikawa': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
   'hideki-matsuyama': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'ダンロップ' },
   'shane-lowry': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'ダンロップ' },
