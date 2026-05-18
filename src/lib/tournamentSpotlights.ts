@@ -18,8 +18,8 @@ export const tournamentSpotlights: TournamentSpotlight[] = [
     statusLabel: '結果更新',
     eventDates: '2026年5月14日-17日',
     summary:
-      'アーロン・ライがメジャー初制覇。ライとジョン・ラームの確認済み14本を、FW・UTで距離を作る視点から振り返ります。',
-    featuredPlayerSlugs: ['aaron-rai', 'jon-rahm'],
+      'アーロン・ライがメジャー初制覇。ライ、ジョン・ラーム、アレックス・スマリーの確認済み14本を、FW・UTで距離を作る視点から振り返ります。',
+    featuredPlayerSlugs: ['aaron-rai', 'jon-rahm', 'alex-smalley'],
   },
   {
     articleSlug: 'kroger-queen-city-2026-result-yamashita-setting-review',

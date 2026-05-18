@@ -1,0 +1,232 @@
+{
+  "profile": {
+    "slug": "alex-smalley",
+    "display_name": "アレックス・スマリー",
+    "kana_name": "アレックス・スマリー",
+    "nationality": "United States",
+    "birthplace": "アメリカ ニューヨーク州ロチェスター",
+    "birth_date": "1996-10-21",
+    "height_cm": 183,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1x",
+    "feature_1": "PGA Championship 2026上位",
+    "feature_2": "PING中心",
+    "feature_3": "4W・7W構成",
+    "summary": "2026年PGA Championshipで注目を集めたアレックス・スマリーのクラブセッティング。PING契約プロらしいG440 LST、G440 MAXの4W・7W、i240 4I、Blueprint S、S259ウェッジ、PLD Ally Blue H Prototypeまで整理しています。",
+    "latest_source_policy": "latest_tournament",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-05-18T00:00:00.000Z",
+    "website_url": "https://ping.com/en-us/discover-ping/ping-pros/pga-tour/alex-smalley"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G440 LST Driver",
+      "loft_label": "10.5°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Tensei 1K Pro Blue 60",
+      "shaft_flex": "TX",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。2025年から使用と記載。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "4W",
+      "loft_label": "17°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD DI 8",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。4W・7W構成。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "7W",
+      "loft_label": "21°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Diamana BB 83",
+      "shaft_flex": "TX",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。21°設定の7W。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "PING",
+      "model_name": "i240 Iron",
+      "spec_label": "4I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 Tour 130",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。4Iのみi240。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "PING",
+      "model_name": "Blueprint S Iron",
+      "spec_label": "5I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 Tour 130",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "PING",
+      "model_name": "Blueprint S Iron",
+      "spec_label": "6I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 Tour 130",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "PING",
+      "model_name": "Blueprint S Iron",
+      "spec_label": "7I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 Tour 130",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "PING",
+      "model_name": "Blueprint S Iron",
+      "spec_label": "8I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 Tour 130",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "PING",
+      "model_name": "Blueprint S Iron",
+      "spec_label": "9I",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 Tour 130",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "PING",
+      "model_name": "Blueprint S Iron",
+      "spec_label": "PW",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 Tour 130",
+      "shaft_flex": "X",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "PING",
+      "model_name": "S259 Wedge",
+      "loft_label": "50°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。50°・56°・60°構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "PING",
+      "model_name": "S259 Wedge",
+      "loft_label": "56°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。50°・56°・60°構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "PING",
+      "model_name": "S259 Wedge",
+      "loft_label": "60°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。50°・56°・60°構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "PING",
+      "model_name": "PLD Ally Blue H Prototype",
+      "source_note": "Golf Monthly Alex Smalley WITB 2026で確認。2026年に主に使用しているカスタムマレット型。",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/tour/alex-smalley-whats-in-the-bag-2026",
+      "source_title": "Alex Smalley WITB 2026 - Golf Monthly",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "2026年5月17日公開。14本の構成、シャフト、ボール、ウェア/シューズ情報まで確認。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.todays-golfer.com/equipment/witb/alex-smalley/",
+      "source_title": "Alex Smalley WITB - Today's Golfer",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "ユーザー提供ソース。WITB確認用。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://ping.com/en-us/discover-ping/ping-pros/pga-tour/alex-smalley",
+      "source_title": "PING Pro Alex Smalley",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "PING契約プロ確認用。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/46340/alex-smalley/stats",
+      "source_title": "Alex Smalley PGA TOUR Stats",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "PGA TOUR公式プロフィール・スタッツ確認用。"
+    }
+  ],
+  "article": {
+    "slug": "alex-smalley-2026-setting-update",
+    "title": "アレックス・スマリーのクラブセッティングを掲載｜PING中心の4W・7W構成",
+    "excerpt": "2026年PGA Championshipで注目されたアレックス・スマリーの14本を掲載。PING G440 LST、G440 MAXの4W・7W、Blueprint S、S259、PLD Ally Blue H Prototypeまで整理しました。",
+    "body": "アレックス・スマリーのクラブセッティングを、Golf Monthly、Today's Golfer、PING公式をもとに掲載しました。ドライバーはPING G440 LST、フェアウェイウッドはG440 MAXの4W・7W構成、アイアンはi240の4IとBlueprint Sの5I-PW、ウェッジはS259の50°・56°・60°、パターはPLD Ally Blue H Prototype、ボールはTitleist Pro V1xです。MyBagProでは、3Wではなく4Wを使い、さらに7Wで上の距離を作る設計を、5番アイアンや3Wが苦手なゴルファーにも参考になるポイントとして整理しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-18T12:50:00+09:00"
+  }
+}
