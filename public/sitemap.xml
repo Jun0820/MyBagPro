@@ -1447,6 +1447,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/articles/takanori-konishi-2025-setting-update</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/articles/takashi-ogiso-2025-setting-update</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -1676,6 +1682,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/articles/yoshimoto-hikaru-2026-setting-update</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/articles/yoshinori-fujimoto-2026-setting-update</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -2953,6 +2965,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/pros/takanori-konishi</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/pros/takashi-ogiso</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -3086,6 +3104,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/pros/yoshimoto-hikaru</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/pros/yoshinori-fujimoto</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

@@ -1,0 +1,203 @@
+{
+  "profile": {
+    "slug": "yoshinori-fujimoto",
+    "display_name": "藤本 佳則",
+    "kana_name": "フジモト ヨシノリ",
+    "nationality": "Japan",
+    "birthplace": "奈良県",
+    "birth_date": "1989-10-25",
+    "height_cm": 165,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "スリクソン Z-STAR XV ボール＜2025年＞",
+    "feature_1": "関西オープン2026優勝",
+    "feature_2": "Titleist GT3 Driver",
+    "feature_3": "3W・5W・UTアイアン構成",
+    "summary": "2026年関西オープン優勝時にGDOで確認できた藤本佳則のクラブセッティング。Titleist GT3 Driver、TaylorMade Qi10 3W、M5 5W、Titleist U505 Utility Iron、EZONE CB702 4I、Callaway X Forged Star 5I-PW、Mizuno T22、Vokey SM11、Odyssey Stroke Lab Turtle CS、Srixon Z-STAR XVまで整理しています。",
+    "latest_source_policy": "latest_tournament",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-05-18T00:00:00.000Z"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Titleist",
+      "model_name": "GT3 Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD GC",
+      "shaft_flex": "XXX",
+      "shaft_weight": "70g台",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "Qi10 Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Diamana RF",
+      "shaft_flex": "X",
+      "shaft_weight": "80g台",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "M5 Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "19°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD DI",
+      "shaft_flex": "X",
+      "shaft_weight": "90g台",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "Titleist",
+      "model_name": "U505 Utility Iron＜2023年＞",
+      "spec_label": "3U",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Yonex",
+      "model_name": "EZONE CB702 Forged Iron",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Callaway",
+      "model_name": "X Forged Star Iron＜2026年＞",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Callaway",
+      "model_name": "X Forged Star Iron＜2026年＞",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Callaway",
+      "model_name": "X Forged Star Iron＜2026年＞",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Callaway",
+      "model_name": "X Forged Star Iron＜2026年＞",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Callaway",
+      "model_name": "X Forged Star Iron＜2026年＞",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 11,
+      "brand": "Callaway",
+      "model_name": "X Forged Star Iron＜2026年＞",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。5I-PW。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Mizuno",
+      "model_name": "T22 Wedge",
+      "loft_label": "50°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM11 Wedge",
+      "loft_label": "58°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold EX Tour Issue",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Odyssey",
+      "model_name": "Stroke Lab Turtle CS",
+      "source_note": "GDO 2026 関西オープン取材で確認。",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/1123/2026/1/",
+      "source_title": "GDO 藤本佳則 クラブセッティング 2026年 関西オープン",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "2026年関西オープン取材。プロフィール、14本、使用ボールを確認。"
+    }
+  ],
+  "article": {
+    "slug": "yoshinori-fujimoto-2026-setting-update",
+    "title": "藤本佳則のクラブセッティングを掲載｜関西オープン2026優勝時の14本",
+    "excerpt": "2026年関西オープンを制した藤本佳則の14本を掲載。Titleist GT3、Qi10 3W、M5 5W、U505、X Forged Star、Z-STAR XVまで整理しました。",
+    "body": "藤本佳則のクラブセッティングを、GDOの2026年関西オープン取材情報をもとに掲載しました。ドライバーはTitleist GT3、3WはTaylorMade Qi10、5WはM5、ロングはTitleist U505 Utility IronとYonex EZONE CB702 4I、アイアンはCallaway X Forged Star 5I-PW、ウェッジはMizuno T22 50°とVokey SM11 58°、パターはOdyssey Stroke Lab Turtle CS、ボールはSrixon Z-STAR XVです。MyBagProでは、3W・5W・UTアイアン・4Iで上の距離を細かく作る構成として整理しています。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-18T15:30:00+09:00"
+  }
+}

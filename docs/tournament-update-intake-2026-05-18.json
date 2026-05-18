@@ -111,10 +111,17 @@
         {
           "position": 1,
           "name": "藤本佳則",
+          "slug": "yoshinori-fujimoto",
           "score": "-9",
           "resultNote": "優勝",
           "priority": "high",
-          "witbSources": []
+          "witbSources": [
+            {
+              "status": "confirmed",
+              "title": "GDO 藤本佳則 クラブセッティング 2026年 関西オープン",
+              "url": "https://news.golfdigest.co.jp/players/setting/1123/2026/1/"
+            }
+          ]
         },
         {
           "position": 2,
@@ -127,10 +134,17 @@
         {
           "position": 2,
           "name": "小西たかのり",
+          "slug": "takanori-konishi",
           "score": "-6",
           "resultNote": "2位タイ",
           "priority": "medium",
-          "witbSources": []
+          "witbSources": [
+            {
+              "status": "confirmed",
+              "title": "GDO 小西たかのり クラブセッティング 2025年 前澤杯 MAEZAWA CUP",
+              "url": "https://news.golfdigest.co.jp/players/setting/14646/2025/1/"
+            }
+          ]
         }
       ]
     },

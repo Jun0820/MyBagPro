@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-05-18T04:09:13.663Z",
+  "createdAt": "2026-05-18T04:21:24.570Z",
   "input": "docs/tournament-update-intake-2026-05-18.json",
   "rows": [
     {
@@ -133,13 +133,15 @@
       "position": 1,
       "name": "藤本佳則",
       "score": "-9",
-      "slug": "needs-slug",
-      "profileExists": false,
-      "seedFile": "",
-      "verifiedAt": "",
-      "sourceStatus": "missing",
-      "sourceUrls": [],
-      "action": "research_sources",
+      "slug": "yoshinori-fujimoto",
+      "profileExists": true,
+      "seedFile": "docs/yoshinori-fujimoto-seed.json",
+      "verifiedAt": "2026-05-18T00:00:00.000Z",
+      "sourceStatus": "confirmed",
+      "sourceUrls": [
+        "https://news.golfdigest.co.jp/players/setting/1123/2026/1/"
+      ],
+      "action": "review_update_profile",
       "clubSettingSearch": "https://www.google.com/search?q=%22%E8%97%A4%E6%9C%AC%E4%BD%B3%E5%89%87%22%20%E3%82%AF%E3%83%A9%E3%83%96%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0",
       "witbSearch": "https://www.google.com/search?q=%22%E8%97%A4%E6%9C%AC%E4%BD%B3%E5%89%87%22%20WITB"
     },
@@ -171,13 +173,15 @@
       "position": 2,
       "name": "小西たかのり",
       "score": "-6",
-      "slug": "needs-slug",
-      "profileExists": false,
-      "seedFile": "",
-      "verifiedAt": "",
-      "sourceStatus": "missing",
-      "sourceUrls": [],
-      "action": "research_sources",
+      "slug": "takanori-konishi",
+      "profileExists": true,
+      "seedFile": "docs/takanori-konishi-seed.json",
+      "verifiedAt": "2026-05-18T00:00:00.000Z",
+      "sourceStatus": "confirmed",
+      "sourceUrls": [
+        "https://news.golfdigest.co.jp/players/setting/14646/2025/1/"
+      ],
+      "action": "review_update_profile",
       "clubSettingSearch": "https://www.google.com/search?q=%22%E5%B0%8F%E8%A5%BF%E3%81%9F%E3%81%8B%E3%81%AE%E3%82%8A%22%20%E3%82%AF%E3%83%A9%E3%83%96%E3%82%BB%E3%83%83%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0",
       "witbSearch": "https://www.google.com/search?q=%22%E5%B0%8F%E8%A5%BF%E3%81%9F%E3%81%8B%E3%81%AE%E3%82%8A%22%20WITB"
     },

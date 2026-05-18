@@ -12,8 +12,8 @@
     "ball_name": "PRO V1x ボール＜2025年＞",
     "feature_1": "2025シーズン基準",
     "feature_2": "国内男子ツアー実戦セット",
-    "feature_3": "14本確認済み",
-    "summary": "2025年ミズノオープン最終日時点で確認できた阿久津未来也の14本セッティングを掲載するプロフィール。",
+    "feature_3": "距離表確認済み",
+    "summary": "2025年ミズノオープン最終日時点で確認できた阿久津未来也の14本セッティングに、GOLF NETWORK SHOWDOWNの番手別距離表を補足したプロフィール。",
     "latest_source_policy": "2025_season",
     "is_featured": true,
     "is_published": true,
@@ -30,6 +30,7 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus TR Blue",
       "shaft_flex": "S",
+      "carry_distance": 280,
       "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
       "is_featured_item": true
     },
@@ -38,12 +39,13 @@
       "slot_order": 2,
       "brand": "TaylorMade",
       "model_name": "Qi10 Fairway Wood HL",
-      "spec_label": "3W",
+      "spec_label": "4W",
       "loft_label": "16.5°",
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus TR Blue",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 250,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Treated as 4W distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -56,7 +58,8 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus TR Blue",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 230,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -69,7 +72,8 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus HB",
       "shaft_flex": "TX",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 215,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -78,7 +82,8 @@
       "brand": "Titleist",
       "model_name": "T200 Iron＜2023年＞",
       "spec_label": "5I",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 200,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -90,7 +95,8 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold AMT Tour White",
       "shaft_flex": "S200",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 185,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -102,7 +108,8 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold AMT Tour White",
       "shaft_flex": "S200",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 175,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -114,7 +121,8 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold AMT Tour White",
       "shaft_flex": "S200",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 165,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -126,7 +134,8 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold AMT Tour White",
       "shaft_flex": "S200",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 150,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -136,7 +145,8 @@
       "model_name": "Vokey SM9 Wedge",
       "spec_label": "PW",
       "loft_label": "46°",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 140,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -146,7 +156,8 @@
       "model_name": "Vokey SM9 Wedge",
       "spec_label": "GW",
       "loft_label": "50°",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 130,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -156,7 +167,8 @@
       "model_name": "Vokey SM9 Wedge",
       "spec_label": "SW",
       "loft_label": "54°",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 115,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -169,7 +181,8 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold EX",
       "shaft_flex": "S200",
-      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page.",
+      "carry_distance": 95,
+      "source_note": "Confirmed from GDO 2025 Mizuno Open setting page. Distance from GOLF NETWORK SHOWDOWN table.",
       "is_featured_item": false
     },
     {
@@ -188,6 +201,13 @@
       "source_title": "GDO 阿久津未来也 クラブセッティング 2025年 ミズノオープン最終日",
       "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Used for bio fields, 2025 setting, and ball confirmation."
+    },
+    {
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=L-LjptIM8ec",
+      "source_title": "GOLF NETWORK SHOWDOWN 阿久津未来也 クラブセッティング",
+      "checked_at": "2026-05-18T00:00:00.000Z",
+      "notes": "User-provided video/screenshot. Used only for displayed carry-distance table and ball label, not for unconfirmed club model changes."
     }
   ],
   "article": {

@@ -40,8 +40,8 @@ export const tournamentSpotlights: TournamentSpotlight[] = [
     statusLabel: '結果更新',
     eventDates: '2026年5月14日-17日',
     summary:
-      '藤本佳則が13年ぶりの復活優勝。上位3人の最新14本は追跡対象としつつ、国内男子の番手構成を見る視点を整理しています。',
-    featuredPlayerSlugs: ['tomohiro-ishizaka', 'yuta-ikeda', 'mikumu-horikawa'],
+      '藤本佳則が13年ぶりの復活優勝。藤本佳則と小西たかのりの確認済み14本を追加し、国内男子の番手構成を見る視点を整理しています。',
+    featuredPlayerSlugs: ['yoshinori-fujimoto', 'takanori-konishi', 'tomohiro-ishizaka', 'mikumu-horikawa'],
   },
   {
     articleSlug: 'sky-rkb-ladies-2026-kuwaki-setting-review',
