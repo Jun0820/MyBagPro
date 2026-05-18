@@ -11,6 +11,50 @@ export interface TournamentSpotlight {
 
 export const tournamentSpotlights: TournamentSpotlight[] = [
   {
+    articleSlug: 'pga-championship-2026-result-aaron-rai-setting-review',
+    tourKey: 'pga',
+    tourLabel: 'PGA TOUR',
+    tournamentName: 'PGA Championship',
+    statusLabel: '結果更新',
+    eventDates: '2026年5月14日-17日',
+    summary:
+      'アーロン・ライがメジャー初制覇。ライとジョン・ラームの確認済み14本を、FW・UTで距離を作る視点から振り返ります。',
+    featuredPlayerSlugs: ['aaron-rai', 'jon-rahm'],
+  },
+  {
+    articleSlug: 'kroger-queen-city-2026-result-yamashita-setting-review',
+    tourKey: 'lpga',
+    tourLabel: 'LPGA',
+    tournamentName: 'Kroger Queen City Championship',
+    statusLabel: '結果更新',
+    eventDates: '2026年5月14日-17日',
+    summary:
+      'ロッティ・ウォード優勝、山下美夢有3位。山下美夢有、ジーノ・ティティクル、畑岡奈紗、岩井千怜の14本を比較しやすくしました。',
+    featuredPlayerSlugs: ['miyuu-yamashita', 'jeeno-thitikul', 'nasa-hataoka', 'chisato-iwai'],
+  },
+  {
+    articleSlug: 'kansai-open-2026-result-fujimoto-setting-watch',
+    tourKey: 'jgto',
+    tourLabel: 'JGTO',
+    tournamentName: '関西オープンゴルフ選手権競技',
+    statusLabel: '結果更新',
+    eventDates: '2026年5月14日-17日',
+    summary:
+      '藤本佳則が13年ぶりの復活優勝。上位3人の最新14本は追跡対象としつつ、国内男子の番手構成を見る視点を整理しています。',
+    featuredPlayerSlugs: ['tomohiro-ishizaka', 'yuta-ikeda', 'mikumu-horikawa'],
+  },
+  {
+    articleSlug: 'sky-rkb-ladies-2026-kuwaki-setting-review',
+    tourKey: 'jlpga',
+    tourLabel: 'JLPGA',
+    tournamentName: 'Sky RKBレディスクラシック',
+    statusLabel: '結果更新',
+    eventDates: '2026年5月15日-17日',
+    summary:
+      '桑木志帆が約1年半ぶりの優勝。3U・4Uを入れたブリヂストン中心の構成から、女子プロの距離設計を振り返ります。',
+    featuredPlayerSlugs: ['shiho-kuwaki', 'aihi-takano', 'miyu-abe'],
+  },
+  {
     articleSlug: 'pga-championship-2026-aronimink-setting-watch',
     tourKey: 'pga',
     tourLabel: 'PGA TOUR',
