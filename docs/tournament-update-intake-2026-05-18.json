@@ -1,0 +1,181 @@
+{
+  "createdAt": "2026-05-18T13:10:00+09:00",
+  "notes": "Initial intake for the latest completed tournaments already handled on 2026-05-18. Keep this as an example for future weekly runs.",
+  "tournaments": [
+    {
+      "tourKey": "pga",
+      "tourLabel": "PGA TOUR",
+      "name": "PGA Championship",
+      "eventDates": "2026年5月14日-17日",
+      "resultSourceUrl": "https://www.pgachampionship.com/",
+      "articleSlug": "pga-championship-2026-result-aaron-rai-setting-review",
+      "topFinishers": [
+        {
+          "position": 1,
+          "name": "アーロン・ライ",
+          "slug": "aaron-rai",
+          "score": "-9",
+          "resultNote": "優勝",
+          "priority": "high",
+          "witbSources": [
+            {
+              "status": "confirmed",
+              "title": "Aaron Rai WITB",
+              "url": "https://www.golfmonthly.com/gear/gear-news/whats-in-aaron-rais-bag"
+            }
+          ]
+        },
+        {
+          "position": 2,
+          "name": "ジョン・ラーム",
+          "slug": "jon-rahm",
+          "score": "-6",
+          "resultNote": "2位タイ",
+          "priority": "high",
+          "witbSources": [
+            {
+              "status": "confirmed",
+              "title": "Jon Rahm WITB 2026",
+              "url": "https://www.golfmonthly.com/news/jon-rahm-winning-whats-in-the-bag-liv-golf-hong-kong-2026"
+            }
+          ]
+        },
+        {
+          "position": 2,
+          "name": "アレックス・スマリー",
+          "slug": "alex-smalley",
+          "score": "-6",
+          "resultNote": "2位タイ",
+          "priority": "high",
+          "witbSources": [
+            {
+              "status": "confirmed",
+              "title": "Alex Smalley WITB 2026",
+              "url": "https://www.golfmonthly.com/tour/alex-smalley-whats-in-the-bag-2026"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tourKey": "lpga",
+      "tourLabel": "LPGA",
+      "name": "Kroger Queen City Championship",
+      "eventDates": "2026年5月14日-17日",
+      "resultSourceUrl": "https://www.lpga.com/",
+      "articleSlug": "kroger-queen-city-2026-result-yamashita-setting-review",
+      "topFinishers": [
+        {
+          "position": 1,
+          "name": "ロッティ・ウォード",
+          "slug": "lottie-woad",
+          "score": "-12",
+          "resultNote": "優勝",
+          "priority": "high",
+          "witbSources": [
+            {
+              "status": "confirmed",
+              "title": "Lottie Woad WITB",
+              "url": "https://www.golfmonthly.com/tour/lottie-woad-whats-in-the-bag"
+            }
+          ]
+        },
+        {
+          "position": 2,
+          "name": "ヘラン・リュウ",
+          "slug": "haeran-ryu",
+          "score": "-10",
+          "resultNote": "2位",
+          "priority": "medium",
+          "witbSources": []
+        },
+        {
+          "position": 3,
+          "name": "山下美夢有",
+          "slug": "miyuu-yamashita",
+          "score": "-9",
+          "resultNote": "3位",
+          "priority": "high",
+          "witbSources": []
+        }
+      ]
+    },
+    {
+      "tourKey": "jgto",
+      "tourLabel": "JGTO",
+      "name": "関西オープンゴルフ選手権競技",
+      "eventDates": "2026年5月14日-17日",
+      "resultSourceUrl": "https://www.jgto.org/",
+      "articleSlug": "kansai-open-2026-result-fujimoto-setting-watch",
+      "topFinishers": [
+        {
+          "position": 1,
+          "name": "藤本佳則",
+          "score": "-9",
+          "resultNote": "優勝",
+          "priority": "high",
+          "witbSources": []
+        },
+        {
+          "position": 2,
+          "name": "大堀裕次郎",
+          "score": "-6",
+          "resultNote": "2位タイ",
+          "priority": "medium",
+          "witbSources": []
+        },
+        {
+          "position": 2,
+          "name": "小西たかのり",
+          "score": "-6",
+          "resultNote": "2位タイ",
+          "priority": "medium",
+          "witbSources": []
+        }
+      ]
+    },
+    {
+      "tourKey": "jlpga",
+      "tourLabel": "JLPGA",
+      "name": "Sky RKBレディスクラシック",
+      "eventDates": "2026年5月15日-17日",
+      "resultSourceUrl": "https://www.lpga.or.jp/",
+      "articleSlug": "sky-rkb-ladies-2026-kuwaki-setting-review",
+      "topFinishers": [
+        {
+          "position": 1,
+          "name": "桑木志帆",
+          "slug": "shiho-kuwaki",
+          "score": "-15",
+          "resultNote": "優勝",
+          "priority": "high",
+          "witbSources": []
+        },
+        {
+          "position": 2,
+          "name": "ウー・チャイェン",
+          "score": "-14",
+          "resultNote": "2位",
+          "priority": "medium",
+          "witbSources": []
+        },
+        {
+          "position": 3,
+          "name": "一ノ瀬優希",
+          "score": "-13",
+          "resultNote": "3位タイ",
+          "priority": "medium",
+          "witbSources": []
+        },
+        {
+          "position": 3,
+          "name": "濱田茉優",
+          "score": "-13",
+          "resultNote": "3位タイ",
+          "priority": "medium",
+          "witbSources": []
+        }
+      ]
+    }
+  ]
+}

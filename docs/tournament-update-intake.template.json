@@ -1,0 +1,39 @@
+{
+  "createdAt": "2026-05-18T00:00:00+09:00",
+  "notes": "Copy this file to docs/tournament-update-intake-YYYY-MM-DD.json, then fill in finished tournaments and top finishers.",
+  "tournaments": [
+    {
+      "tourKey": "pga",
+      "tourLabel": "PGA TOUR",
+      "name": "Tournament Name",
+      "eventDates": "2026年M月D日-D日",
+      "resultSourceUrl": "https://example.com/final-leaderboard",
+      "articleSlug": "tournament-name-2026-result-setting-review",
+      "topFinishers": [
+        {
+          "position": 1,
+          "name": "Player Name",
+          "slug": "player-name",
+          "score": "-12",
+          "resultNote": "優勝",
+          "priority": "high",
+          "witbSources": [
+            {
+              "status": "confirmed",
+              "title": "Player Name WITB 2026",
+              "url": "https://example.com/player-witb"
+            }
+          ]
+        },
+        {
+          "position": 2,
+          "name": "Player Without Confirmed WITB",
+          "score": "-10",
+          "resultNote": "2位",
+          "priority": "medium",
+          "witbSources": []
+        }
+      ]
+    }
+  ]
+}
