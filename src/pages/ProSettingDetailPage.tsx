@@ -203,6 +203,7 @@ export const ProSettingDetailPage = () => {
   const [distanceMode, setDistanceMode] = useState<'carry' | 'total'>('carry');
   const [isMediaSectionOpen, setIsMediaSectionOpen] = useState(false);
   const [isRelatedArticlesOpen, setIsRelatedArticlesOpen] = useState(false);
+  const [expandedClubKeys, setExpandedClubKeys] = useState<Record<string, boolean>>({});
   const relatedArticlesRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -453,6 +454,12 @@ export const ProSettingDetailPage = () => {
       relatedArticlesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   };
+  const toggleClubDetails = (clubKey: string) => {
+    setExpandedClubKeys((current) => ({
+      ...current,
+      [clubKey]: !current[clubKey],
+    }));
+  };
 
   return (
     <div className="min-h-screen overflow-x-hidden pb-20">
@@ -574,11 +581,11 @@ export const ProSettingDetailPage = () => {
               公開ソース確認分のみ掲載。
             </p>
           </div>
-          <div className="mt-3 grid gap-2 md:mt-5 md:grid-cols-3">
+          <div className="mt-3 grid grid-cols-3 gap-1.5 md:mt-5 md:gap-2">
             {statCards.map((card) => (
-              <div key={card.label} className="rounded-lg bg-slate-50 px-4 py-3 md:py-3.5">
-                <div className="text-[11px] font-black tracking-[0.14em] text-slate-400">{card.label}</div>
-                <div className="mt-1 text-[1.55rem] font-black leading-none text-trust-navy md:mt-1.5 md:text-2xl">{card.value}</div>
+              <div key={card.label} className="rounded-lg bg-slate-50 px-2.5 py-3 md:px-4 md:py-3.5">
+                <div className="text-[10px] font-black tracking-[0.08em] text-slate-400 md:text-[11px] md:tracking-[0.14em]">{card.label}</div>
+                <div className="mt-1 text-lg font-black leading-none text-trust-navy md:mt-1.5 md:text-2xl">{card.value}</div>
               </div>
             ))}
           </div>
@@ -624,9 +631,11 @@ export const ProSettingDetailPage = () => {
               {setting.clubs.map((club, index) => {
                 const isDriver = club.category === 'Driver';
                 const shaftLabel = [club.shaftBrand, club.shaftModel].filter(Boolean).join(' ');
+                const clubKey = `${setting.slug}-${club.category}-${club.specLabel || index}`;
+                const isExpanded = Boolean(expandedClubKeys[clubKey]);
                 return (
                   <div
-                    key={`${setting.slug}-${club.category}-${club.specLabel || index}`}
+                    key={clubKey}
                     className="w-full text-left"
                   >
                     <div className="hidden gap-3 px-4 py-4 md:grid md:grid-cols-[0.7fr_1.1fr_1.8fr_2fr_0.8fr_0.8fr_1fr_1fr] md:items-center">
@@ -695,78 +704,98 @@ export const ProSettingDetailPage = () => {
                       </div>
                     </div>
 
-                    <div className="px-4 py-3 md:hidden">
-                      <div className="flex items-start justify-between gap-3">
+                    <div className="md:hidden">
+                      <button
+                        type="button"
+                        onClick={() => toggleClubDetails(clubKey)}
+                        aria-expanded={isExpanded}
+                        className="grid w-full grid-cols-[2.8rem_4.4rem_minmax(0,1fr)_4.2rem_1.25rem] items-center gap-2 px-3 py-3 text-left"
+                      >
                         <div className="min-w-0">
-                          <div className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+                          <div className="text-[11px] font-black uppercase tracking-[0.1em] text-slate-500">
                             {formatClubLabel(club.category, club.specLabel)}
                           </div>
-                          <div className="mt-1 text-[15px] font-black leading-5 text-trust-navy">{club.model}</div>
-                          <div className="mt-1 text-sm font-bold leading-5 text-slate-600">{club.brand || '未公開'}</div>
                         </div>
-                        <div className="shrink-0 text-right">
-                          <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">
-                            {distanceMode === 'carry' ? 'キャリー' : '総距離'}
-                          </div>
-                          <div className="mt-1 text-[15px] font-black text-golf-700">
+                        <div className="min-w-0">
+                          <div className="truncate text-xs font-black text-slate-600">{club.brand || '未公開'}</div>
+                        </div>
+                        <div className="min-w-0">
+                          <div className="truncate text-sm font-black leading-5 text-trust-navy">{club.model}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-black text-golf-700">
                             {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
                           </div>
                         </div>
-                      </div>
+                        <ChevronDown
+                          size={16}
+                          className={`justify-self-end text-slate-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                        />
+                      </button>
 
-                      <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                        <div>
-                          <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">シャフト</div>
-                          <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || '未公開'}</div>
-                        </div>
-                        <div>
-                          <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">ロフト / 硬さ</div>
-                          <div className="mt-0.5 font-bold leading-5 text-slate-600">
-                            {[club.loft || '未公開', club.shaftFlex || '未公開'].join(' / ')}
+                      {isExpanded ? (
+                        <div className="border-t border-slate-100 px-3 pb-3 pt-3">
+                          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                            <div>
+                              <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">シャフト</div>
+                              <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || '未公開'}</div>
+                            </div>
+                            <div>
+                              <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">ロフト / 硬さ</div>
+                              <div className="mt-0.5 font-bold leading-5 text-slate-600">
+                                {[club.loft || '未公開', club.shaftFlex || '未公開'].join(' / ')}
+                              </div>
+                            </div>
+                          </div>
+
+                          {club.sourceNote ? (
+                            <div className="mt-2 rounded-md bg-slate-50 px-3 py-2 text-xs font-bold leading-5 text-slate-500">
+                              {club.sourceNote}
+                            </div>
+                          ) : null}
+
+                          <div className="mt-3 flex gap-2">
+                            <a
+                              href={getAffiliateUrl(club.brand || '', club.model, 'RAKUTEN')}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => {
+                                trackEvent('click_affiliate_shop', {
+                                  source_page: 'pro_setting_detail_club_card',
+                                  profile_slug: setting.slug,
+                                  profile_name: setting.name,
+                                  shop_id: 'RAKUTEN',
+                                  shop_name: '楽天市場',
+                                  brand: club.brand || '',
+                                  model_name: club.model,
+                                  club_category: club.category,
+                                });
+                              }}
+                              className="inline-flex flex-1 items-center justify-center rounded-full bg-[#bf0000] px-4 py-2.5 text-xs font-black text-white"
+                            >
+                              楽天で見る
+                            </a>
+                            {isDriver && driverDetail ? (
+                              <button
+                                onClick={() => {
+                                  trackEvent('view_product_detail', {
+                                    source_page: 'pro_setting_detail',
+                                    profile_slug: setting.slug,
+                                    profile_name: setting.name,
+                                    product_slug: driverDetail.slug,
+                                    product_name: `${driverDetail.brand} ${driverDetail.name}`,
+                                    category: 'drivers',
+                                  });
+                                  navigate(`/clubs/drivers/${driverDetail.slug}`);
+                                }}
+                                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2.5 text-xs font-black text-trust-navy"
+                              >
+                                詳細
+                              </button>
+                            ) : null}
                           </div>
                         </div>
-                      </div>
-
-                      <div className="mt-3 flex gap-2">
-                        <a
-                          href={getAffiliateUrl(club.brand || '', club.model, 'RAKUTEN')}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => {
-                            trackEvent('click_affiliate_shop', {
-                              source_page: 'pro_setting_detail_club_card',
-                              profile_slug: setting.slug,
-                              profile_name: setting.name,
-                              shop_id: 'RAKUTEN',
-                              shop_name: '楽天市場',
-                              brand: club.brand || '',
-                              model_name: club.model,
-                              club_category: club.category,
-                            });
-                          }}
-                          className="inline-flex flex-1 items-center justify-center rounded-full bg-[#bf0000] px-4 py-2.5 text-xs font-black text-white"
-                        >
-                          楽天で見る
-                        </a>
-                        {isDriver && driverDetail ? (
-                          <button
-                            onClick={() => {
-                              trackEvent('view_product_detail', {
-                                source_page: 'pro_setting_detail',
-                                profile_slug: setting.slug,
-                                profile_name: setting.name,
-                                product_slug: driverDetail.slug,
-                                product_name: `${driverDetail.brand} ${driverDetail.name}`,
-                                category: 'drivers',
-                              });
-                              navigate(`/clubs/drivers/${driverDetail.slug}`);
-                            }}
-                            className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2.5 text-xs font-black text-trust-navy"
-                          >
-                            詳細
-                          </button>
-                        ) : null}
-                      </div>
+                      ) : null}
 
                     </div>
                   </div>
