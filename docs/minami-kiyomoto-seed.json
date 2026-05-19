@@ -11,13 +11,13 @@
     "season_year": 2024,
     "ball_name": "TaylorMade TP5 Ball 2021",
     "feature_1": "最新公開セッティング",
-    "feature_2": "2024年取材ソース",
+    "feature_2": "GDO＋動画確認",
     "feature_3": "14本確認済み",
-    "summary": "清本美波の最新公開クラブセッティングとして、2024年HEIWA×PGMチャリティゴルフ練習日時点の14本構成を整理しました。Qi10 LSやP790、MG4ウェッジまで確認できます。",
+    "summary": "清本美波の最新公開クラブセッティングとして、GDOの2024年HEIWA×PGMチャリティゴルフ練習日取材と、前澤杯前日のクラブセッティング動画をもとに14本構成を整理しました。Qi10 LSやP790、MG4ウェッジまで確認できます。",
     "latest_source_policy": "latest_confirmed_public_source",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-05-04T00:00:00.000Z",
+    "verified_at": "2026-05-19T00:00:00.000Z",
     "kana_name": "キヨモト ミナミ",
     "instagram_handle": "mipamipa_1173"
   },
@@ -202,10 +202,17 @@
   "sources": [
     {
       "source_type": "article",
-      "source_url": "https://news.golfdigest.co.jp/players/setting/18508/",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/18508/2024/2/",
       "source_title": "GDO 清本美波 クラブセッティング 2024年 HEIWA×PGMチャリティゴルフ 練習日",
-      "checked_at": "2026-05-04T00:00:00.000Z",
+      "checked_at": "2026-05-19T00:00:00.000Z",
       "notes": "現時点で確認できた最新の公開セッティングソース。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.youtube.com/watch?v=yVEicb5TaHc&t=148s",
+      "source_title": "横田真一チャンネル：プロテスト1位合格の女子プロが男子ツアーに挑戦！ 前澤杯前日 清本美波さんのクラブセッティング",
+      "checked_at": "2026-05-19T00:00:00.000Z",
+      "notes": "クラブセッティング動画として確認。モデル名の断定はGDO掲載情報を優先し、動画は補助ソースとして扱う。"
     },
     {
       "source_type": "official",
@@ -239,8 +246,8 @@
   "article": {
     "slug": "minami-kiyomoto-latest-public-setting",
     "title": "清本美波の最新公開クラブセッティングを掲載しました",
-    "excerpt": "清本美波の最新公開セッティングとして、2024年HEIWA×PGMチャリティゴルフ練習日時点の14本を掲載しました。Qi10 LSやP790、MG4ウェッジまでまとめています。",
-    "body": "清本美波のページでは、現時点で公開確認できる最新ソースとして、2024年HEIWA×PGMチャリティゴルフ練習日時点の14本セッティングを掲載しました。Qi10 LSドライバー、Qi10の3Wと5W、Qi10レスキュー、P790アイアン、MG4ウェッジ、Spider TOUR X TRUSS TM1パターという流れです。2026年のヤマハレディース葛城やヤンマーハナサカレディースでの上位争いとあわせて見ると、若手らしい攻めのバッグ構成がより分かりやすくなります。",
+    "excerpt": "清本美波の最新公開セッティングとして、GDO掲載情報と前澤杯前日のクラブセッティング動画を確認しました。Qi10 LSやP790、MG4ウェッジまでまとめています。",
+    "body": "清本美波のページでは、現時点で公開確認できるソースとして、GDOの2024年HEIWA×PGMチャリティゴルフ練習日取材と、横田真一チャンネルの前澤杯前日クラブセッティング動画を確認しました。モデル名やシャフトなどの断定はGDO掲載情報を優先し、動画は補助ソースとして扱っています。\n\n掲載している14本は、Qi10 LSドライバー、Qi10の3Wと5W、Qi10レスキュー、P790アイアン、MG4ウェッジ、Spider TOUR X TRUSS TM1パターという流れです。6Iからのアイアン構成に、4U・5Uを入れて距離の階段を作る点は、5番アイアンやロングアイアンが難しいアマチュアにも参考になります。\n\n2026年のヤマハレディース葛城やヤンマーハナサカレディースでの上位争いとあわせて見ると、若手らしい攻めのバッグ構成がより分かりやすくなります。ただし、プロのシャフト重量やロフトをそのまま真似るより、自分のヘッドスピードとミス傾向に合わせてUTやFWの本数を調整する見方がおすすめです。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
