@@ -3,177 +3,56 @@
     "slug": "erika-hara",
     "display_name": "原英莉花",
     "nationality": "Japan",
-    "birthplace": "日本",
+    "birthplace": "神奈川県横浜市",
+    "birth_date": "1999-02-15",
+    "height_cm": 173,
     "profile_type": "tour_pro",
-    "segment": "needs_verification",
+    "segment": "overseas_women",
     "season_year": 2026,
-    "ball_name": "Titleist Pro V1",
-    "feature_1": "要再確認",
-    "feature_2": "公開保留",
-    "feature_3": "汎用データ検出",
-    "summary": "原英莉花のクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
-    "latest_source_policy": "needs_source_verification",
+    "ball_name": "Callaway CHROME TOUR Prototype",
+    "feature_1": "2026年GDO確認",
+    "feature_2": "ELYTE Triple Diamond",
+    "feature_3": "Callaway中心",
+    "summary": "2026年フォーティネット ファウンダーズカップ事前時点で確認された原英莉花のクラブセッティング。ELYTE Triple Diamondのウッド系、X PROTOTYPEアイアン、OPUSウェッジで構成されています。",
+    "latest_source_policy": "gdo_2026",
     "is_featured": false,
-    "is_published": false,
-    "verified_at": "2026-04-09T00:00:00.000Z",
-    "kana_name": "ハラ エリカ",
-    "birth_date": "1999-02-15"
+    "is_published": true,
+    "verified_at": "2026-05-22T00:00:00.000Z",
+    "kana_name": "ハラ エリカ"
   },
   "bagItems": [
-    {
-      "category": "Driver",
-      "slot_order": 1,
-      "brand": "Titleist",
-      "model_name": "GT2",
-      "loft_label": "10.5°",
-      "shaft_brand": "Fujikura",
-      "shaft_model": "VENTUS BLUE",
-      "shaft_flex": "S",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": true
-    },
-    {
-      "category": "Fairway Wood",
-      "slot_order": 2,
-      "brand": "Titleist",
-      "model_name": "GT2 Fairway Wood",
-      "spec_label": "3W",
-      "loft_label": "15°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Fairway Wood",
-      "slot_order": 3,
-      "brand": "Titleist",
-      "model_name": "GT2 Fairway Wood",
-      "spec_label": "5W",
-      "loft_label": "18°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Utility",
-      "slot_order": 4,
-      "brand": "Titleist",
-      "model_name": "GT2 Hybrid",
-      "spec_label": "4H",
-      "loft_label": "22°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Utility",
-      "slot_order": 5,
-      "brand": "Titleist",
-      "model_name": "GT2 Hybrid",
-      "spec_label": "5H",
-      "loft_label": "25°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 6,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "6I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 7,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "7I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 8,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "8I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 9,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "9I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 10,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "PW",
-      "loft_label": "46°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 11,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "AW",
-      "loft_label": "50°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 12,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "SW",
-      "loft_label": "54°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 13,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "LW",
-      "loft_label": "58°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Putter",
-      "slot_order": 14,
-      "brand": "Scotty Cameron",
-      "model_name": "Phantom X",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    }
+    { "category": "Driver", "slot_order": 1, "brand": "Callaway", "model_name": "ELYTE Triple Diamond Driver", "spec_label": "1W", "loft_label": "8.5°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLUE", "shaft_weight": "50g台", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article. Length 45.75 inches.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Callaway", "model_name": "ELYTE Triple Diamond Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLUE", "shaft_weight": "60g台", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "Callaway", "model_name": "ELYTE Triple Diamond Fairway Wood", "spec_label": "5W", "loft_label": "18°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLUE", "shaft_weight": "70g台", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article.", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 4, "brand": "Callaway", "model_name": "APEX Utility", "spec_label": "UT", "loft_label": "21°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS BLUE", "shaft_weight": "70g台", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 5, "brand": "Callaway", "model_name": "X PROTOTYPE Iron", "spec_label": "5I", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article. 5I-PW.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "Callaway", "model_name": "X PROTOTYPE Iron", "spec_label": "6I", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article. 5I-PW.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "Callaway", "model_name": "X PROTOTYPE Iron", "spec_label": "7I", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article. 5I-PW.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "Callaway", "model_name": "X PROTOTYPE Iron", "spec_label": "8I", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article. 5I-PW.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "Callaway", "model_name": "X PROTOTYPE Iron", "spec_label": "9I", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article. 5I-PW.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 10, "brand": "Callaway", "model_name": "X PROTOTYPE Iron", "spec_label": "PW", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article. 5I-PW.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Callaway", "model_name": "OPUS Wedge", "spec_label": "50°", "loft_label": "50°", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Callaway", "model_name": "OPUS Wedge", "spec_label": "56°", "loft_label": "56°", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Callaway", "model_name": "OPUS Wedge", "spec_label": "58°", "loft_label": "58°", "shaft_brand": "UST Mamiya", "shaft_model": "ATTAS FF IRON", "shaft_weight": "95g", "shaft_flex": "S", "source_note": "GDO 2026 Fortinet Founders Cup preview article.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Odyssey", "model_name": "TRI-HOT 5K ROSSIE Putter", "spec_label": "PT", "source_note": "GDO 2026 Fortinet Founders Cup preview article.", "is_featured_item": false }
   ],
   "sources": [
     {
       "source_type": "article",
-      "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
-      "source_title": "スポーツナビ 国内女子クラブセッティング一覧（原英莉花）",
-      "checked_at": "2026-04-09T00:00:00.000Z",
-      "notes": "Used as latest season reference."
+      "source_url": "https://news.golfdigest.co.jp/news/lpga/article/189215/1/",
+      "source_title": "GDO 原英莉花 クラブセッティング 2026年 フォーティネット ファウンダーズカップ",
+      "checked_at": "2026-05-22T00:00:00.000Z",
+      "notes": "Used for 2026 setting and ball confirmation."
     }
   ],
   "article": {
     "slug": "erika-hara-2026-setting-update",
-    "title": "原英莉花の2026年クラブセッティングを掲載しました",
-    "excerpt": "原英莉花のクラブセッティングは確認済みソースで再調査中です。",
-    "body": "原英莉花のクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
+    "title": "原英莉花の2026年クラブセッティングを更新しました",
+    "excerpt": "2026年フォーティネット ファウンダーズカップ事前時点の14本をGDO確認データで更新しました。",
+    "body": "原英莉花のクラブセッティングを、2026年フォーティネット ファウンダーズカップ事前時点のGDO公開情報で更新しました。\n\n## 今回の更新内容\n- ドライバー：Callaway ELYTE Triple Diamond Driver\n- FW/UT：3W、5W、21°ユーティリティを確認\n- アイアン：Callaway X PROTOTYPE Iron 5I-PW\n- ウェッジ：Callaway OPUS 50°、56°、58°\n- パター：Odyssey TRI-HOT 5K ROSSIE\n- ボール：Callaway CHROME TOUR Prototype\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、ロフト、シャフト重量、硬さまで一覧で確認できます。\n\n原英莉花のクラブセッティング詳細ページは /pros/erika-hara です。",
     "article_type": "update",
     "season_year": 2026,
-    "published": false,
-    "published_at": "2026-04-09T00:00:00.000Z"
+    "published": true,
+    "published_at": "2026-05-22T00:00:00.000Z"
   }
 }
