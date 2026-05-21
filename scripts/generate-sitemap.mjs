@@ -33,8 +33,8 @@ const addArticle = (slug) => {
 for (const file of seedFiles) {
   try {
     const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
-    const profileSlug = raw?.profile?.slug;
-    const articleSlug = raw?.article?.slug;
+    const profileSlug = raw?.profile?.is_published === false ? null : raw?.profile?.slug;
+    const articleSlug = raw?.article?.published === false ? null : raw?.article?.slug;
 
     addProfile(profileSlug);
     addArticle(articleSlug);
@@ -52,10 +52,15 @@ for (const file of docsJsonFiles) {
   try {
     const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
     if (Array.isArray(raw?.articles)) {
-      raw.articles.forEach((article) => addArticle(article?.slug));
+      raw.articles.forEach((article) => {
+        if (article?.published !== false) addArticle(article?.slug);
+      });
     }
     if (Array.isArray(raw?.profiles)) {
-      raw.profiles.forEach((entry) => addProfile(entry?.profile?.slug || entry?.slug));
+      raw.profiles.forEach((entry) => {
+        const profile = entry?.profile || entry;
+        if (profile?.is_published === true) addProfile(profile?.slug);
+      });
     }
   } catch {
     // Some docs files are diagnostic exports. They do not need to be sitemap inputs.

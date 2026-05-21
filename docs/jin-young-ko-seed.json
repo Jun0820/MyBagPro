@@ -7,16 +7,16 @@
     "birth_date": "1995-07-07",
     "height_cm": 169,
     "profile_type": "tour_pro",
-    "segment": "verified_batch",
+    "segment": "needs_verification",
     "season_year": 2026,
     "ball_name": "Titleist Pro V1",
-    "feature_1": "2026シーズン基準",
-    "feature_2": "女子ツアー実戦構成",
-    "feature_3": "14本確認済み",
-    "summary": "コ・ジンヨンの2026年クラブセッティングを、使用ドライバー、フェアウェイウッド、ハイブリッド、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるページです。",
-    "latest_source_policy": "2026_season",
+    "feature_1": "要再確認",
+    "feature_2": "公開保留",
+    "feature_3": "汎用データ検出",
+    "summary": "コ・ジンヨンのクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
+    "latest_source_policy": "needs_source_verification",
     "is_featured": false,
-    "is_published": true,
+    "is_published": false,
     "verified_at": "2026-04-09T00:00:00.000Z",
     "kana_name": "コ・ジンヨン"
   },
@@ -170,11 +170,11 @@
   "article": {
     "slug": "jin-young-ko-2026-setting-update",
     "title": "コ・ジンヨン クラブセッティング 2026年版 14本と使用ドライバー",
-    "excerpt": "コ・ジンヨンの2026年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
-    "body": "コ・ジンヨンのクラブセッティングについて、2026年シーズン基準で確認できた14本の構成を反映しました。Titleist GT2ドライバー、GT2フェアウェイウッド、GT2ハイブリッド、T100アイアン、Vokey SM10ウェッジ、Scotty Cameron Phantom X、Titleist Pro V1という流れで、コ・ジンヨンの現在のクラブセッティングを確認できます。詳細ページでは各番手のメーカー、クラブ名、シャフト、ロフトを一覧で見られます。",
+    "excerpt": "コ・ジンヨンのクラブセッティングは確認済みソースで再調査中です。",
+    "body": "コ・ジンヨンのクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
     "article_type": "update",
     "season_year": 2026,
-    "published": true,
+    "published": false,
     "published_at": "2026-04-09T00:00:00.000Z"
   }
 }

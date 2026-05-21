@@ -7,16 +7,16 @@
     "birth_date": "1994-10-23",
     "height_cm": 174,
     "profile_type": "tour_pro",
-    "segment": "verified_batch",
+    "segment": "needs_verification",
     "season_year": 2026,
     "ball_name": "Titleist Pro V1",
-    "feature_1": "2026シーズン基準",
-    "feature_2": "女子ツアー実戦構成",
-    "feature_3": "14本確認済み",
-    "summary": "2026年シーズン基準で確認したナナ・コルツ・マドセンの14本セッティング。",
-    "latest_source_policy": "2026_season",
+    "feature_1": "要再確認",
+    "feature_2": "公開保留",
+    "feature_3": "汎用データ検出",
+    "summary": "ナナ・コルツ・マドセンのクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
+    "latest_source_policy": "needs_source_verification",
     "is_featured": false,
-    "is_published": true,
+    "is_published": false,
     "verified_at": "2026-04-09T00:00:00.000Z"
   },
   "bagItems": [
@@ -169,11 +169,11 @@
   "article": {
     "slug": "nanna-koerstz-madsen-2026-setting-update",
     "title": "ナナ・コルツ・マドセンの2026年クラブセッティングを掲載しました",
-    "excerpt": "2026シーズン基準で、ナナ・コルツ・マドセンの14本のクラブセッティングと使用ボールを掲載しました。",
-    "body": "ナナ・コルツ・マドセンのセッティングについて、2026年シーズン基準で確認できた14本のクラブ構成と使用ボールを反映しました。",
+    "excerpt": "ナナ・コルツ・マドセンのクラブセッティングは確認済みソースで再調査中です。",
+    "body": "ナナ・コルツ・マドセンのクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
     "article_type": "update",
     "season_year": 2026,
-    "published": true,
+    "published": false,
     "published_at": "2026-04-09T00:00:00.000Z"
   }
 }

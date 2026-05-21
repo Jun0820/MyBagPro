@@ -1,0 +1,3913 @@
+{
+  "generated_at": "2026-05-21T15:00:55.077Z",
+  "reason": "Generic placeholder club settings detected by source_note and repeated Titleist T100 / Srixon ZXi patterns.",
+  "action": "Set affected seed profiles and their update articles to unpublished until verified by player-specific sources.",
+  "count": 71,
+  "profiles": [
+    {
+      "file": "alison-lee-seed.json",
+      "slug": "alison-lee",
+      "display_name": "アリソン・リー",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "allisen-corpuz-seed.json",
+      "slug": "allisen-corpuz",
+      "display_name": "アリセン・コープス",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "ally-ewing-seed.json",
+      "slug": "ally-ewing",
+      "display_name": "アリー・ユーイング",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "amy-yang-seed.json",
+      "slug": "amy-yang",
+      "display_name": "エイミー・ヤン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Ping",
+          "model_name": "G430 LST",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Ping",
+          "model_name": "G430 LST Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Ping",
+          "model_name": "G430 LST Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Ping",
+          "model_name": "G430 LST Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Ping",
+          "model_name": "G430 LST Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "andrea-lee-seed.json",
+      "slug": "andrea-lee",
+      "display_name": "アンドレア・リー",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": true,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Srixon",
+          "model_name": "ZXi",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Srixon",
+          "model_name": "ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Srixon",
+          "model_name": "ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Srixon",
+          "model_name": "ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Srixon",
+          "model_name": "ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "angel-yin-seed.json",
+      "slug": "angel-yin",
+      "display_name": "エンジェル・イン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Ping",
+          "model_name": "G430 LST",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Ping",
+          "model_name": "G430 LST Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Ping",
+          "model_name": "G430 LST Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Ping",
+          "model_name": "G430 LST Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Ping",
+          "model_name": "G430 LST Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "anna-nordqvist-seed.json",
+      "slug": "anna-nordqvist",
+      "display_name": "アンナ・ノルドクビスト",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "arimura-chie-seed.json",
+      "slug": "arimura-chie",
+      "display_name": "有村智恵",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "ariya-jutanugarn-seed.json",
+      "slug": "ariya-jutanugarn",
+      "display_name": "アリヤ・ジュタヌガーン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "ashleigh-buhai-seed.json",
+      "slug": "ashleigh-buhai",
+      "display_name": "アシュリー・ブハイ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": true,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Srixon",
+          "model_name": "ZXi",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Srixon",
+          "model_name": "ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Srixon",
+          "model_name": "ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Srixon",
+          "model_name": "ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Srixon",
+          "model_name": "ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "asuka-kashiwabara-seed.json",
+      "slug": "asuka-kashiwabara",
+      "display_name": "柏原明日架",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "ayaka-watanabe-seed.json",
+      "slug": "ayaka-watanabe",
+      "display_name": "渡邉彩香",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": false,
+        "srixon_zxi": true,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi7 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "brooke-henderson-seed.json",
+      "slug": "brooke-henderson",
+      "display_name": "ブルック・ヘンダーソン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "TaylorMade TP5x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "carlota-ciganda-seed.json",
+      "slug": "carlota-ciganda",
+      "display_name": "カルロタ・シガンダ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "celine-boutier-seed.json",
+      "slug": "celine-boutier",
+      "display_name": "セリーヌ・ブティエ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3 Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "charley-hull-seed.json",
+      "slug": "charley-hull",
+      "display_name": "チャーリー・ハル",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3 Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "danielle-kang-seed.json",
+      "slug": "danielle-kang",
+      "display_name": "ダニエル・カン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "erika-hara-seed.json",
+      "slug": "erika-hara",
+      "display_name": "原英莉花",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "erika-kikuchi-seed.json",
+      "slug": "erika-kikuchi",
+      "display_name": "菊地絵理香",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": false,
+        "srixon_zxi": true,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Bridgestone TOUR B XS",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi7 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "fukuda-mami-seed.json",
+      "slug": "fukuda-mami",
+      "display_name": "福田真未",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "gaby-lopez-seed.json",
+      "slug": "gaby-lopez",
+      "display_name": "ガビー・ロペス",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "georgia-hall-seed.json",
+      "slug": "georgia-hall",
+      "display_name": "ジョージア・ホール",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "goto-miu-seed.json",
+      "slug": "goto-miu",
+      "display_name": "後藤未有",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "haeran-ryu-seed.json",
+      "slug": "haeran-ryu",
+      "display_name": "リュ・ヘラン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": true,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Srixon",
+          "model_name": "ZXi",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Srixon",
+          "model_name": "ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Srixon",
+          "model_name": "ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Srixon",
+          "model_name": "ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Srixon",
+          "model_name": "ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "hannah-green-seed.json",
+      "slug": "hannah-green",
+      "display_name": "ハンナ・グリーン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3 Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "hina-arakaki-seed.json",
+      "slug": "hina-arakaki",
+      "display_name": "新垣比菜",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": false,
+        "srixon_zxi": true,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Bridgestone TOUR B XS",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi7 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "hinako-shibuno-seed.json",
+      "slug": "hinako-shibuno",
+      "display_name": "渋野日向子",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": false,
+        "srixon_zxi": true,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi7 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "hyo-joo-kim-seed.json",
+      "slug": "hyo-joo-kim",
+      "display_name": "キム・ヒョージュ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "inbee-park-seed.json",
+      "slug": "inbee-park",
+      "display_name": "パク・インビ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": true,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Srixon",
+          "model_name": "ZX5 Mk II",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Srixon",
+          "model_name": "ZX5 Mk II Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Srixon",
+          "model_name": "ZX5 Mk II Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Srixon",
+          "model_name": "ZX5 Mk II Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Srixon",
+          "model_name": "ZX5 Mk II Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "jennifer-kupcho-seed.json",
+      "slug": "jennifer-kupcho",
+      "display_name": "ジェニファー・カプチョ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "jin-young-ko-seed.json",
+      "slug": "jin-young-ko",
+      "display_name": "コ・ジンヨン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kanazawa-shina-seed.json",
+      "slug": "kanazawa-shina",
+      "display_name": "金澤志奈",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kasa-ritsuko-seed.json",
+      "slug": "kasa-ritsuko",
+      "display_name": "笠りつ子",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kawagishi-fumika-seed.json",
+      "slug": "kawagishi-fumika",
+      "display_name": "川岸史果",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kido-ai-seed.json",
+      "slug": "kido-ai",
+      "display_name": "木戸愛",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kokona-sakurai-seed.json",
+      "slug": "kokona-sakurai",
+      "display_name": "櫻井心那",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": false,
+        "srixon_zxi": true,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "DUNLOP SRIXON Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi7 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kotaki-mion-seed.json",
+      "slug": "kotaki-mion",
+      "display_name": "小滝水音",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kozuma-kotono-seed.json",
+      "slug": "kozuma-kotono",
+      "display_name": "香妻琴乃",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "kudo-haruka-seed.json",
+      "slug": "kudo-haruka",
+      "display_name": "工藤遥加",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "lauren-coughlin-seed.json",
+      "slug": "lauren-coughlin",
+      "display_name": "ローレン・コフリン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "leona-maguire-seed.json",
+      "slug": "leona-maguire",
+      "display_name": "レオナ・マグワイア",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Cleveland",
+          "model_name": "Launcher XL",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Cleveland",
+          "model_name": "Launcher XL Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Cleveland",
+          "model_name": "Launcher XL Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Cleveland",
+          "model_name": "Launcher XL Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Cleveland",
+          "model_name": "Launcher XL Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "lexi-thompson-seed.json",
+      "slug": "lexi-thompson",
+      "display_name": "レクシー・トンプソン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Bridgestone TOUR B X",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "lilia-vu-seed.json",
+      "slug": "lilia-vu",
+      "display_name": "リリア・ヴ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3 Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5U",
+          "brand": "Titleist",
+          "model_name": "GT2 Utility Metal",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "linn-grant-seed.json",
+      "slug": "linn-grant",
+      "display_name": "リン・グラント",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Ping",
+          "model_name": "G430 MAX 10K",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Ping",
+          "model_name": "G430 MAX 10K Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Ping",
+          "model_name": "G430 MAX 10K Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Ping",
+          "model_name": "G430 MAX 10K Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Ping",
+          "model_name": "G430 MAX 10K Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "madelene-sagstrom-seed.json",
+      "slug": "madelene-sagstrom",
+      "display_name": "マデレーネ・サーストレム",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "matsuda-rei-seed.json",
+      "slug": "matsuda-rei",
+      "display_name": "松田鈴英",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "maya-stark-seed.json",
+      "slug": "maya-stark",
+      "display_name": "マヤ・スターク",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "megan-khang-seed.json",
+      "slug": "megan-khang",
+      "display_name": "ミーガン・カン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "TaylorMade TP5x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "mikashima-kana-seed.json",
+      "slug": "mikashima-kana",
+      "display_name": "三ヶ島かな",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "minami-katsu-seed.json",
+      "slug": "minami-katsu",
+      "display_name": "勝みなみ",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": true,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Srixon Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "morita-haruka-seed.json",
+      "slug": "morita-haruka",
+      "display_name": "森田遥",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "morita-rikako-seed.json",
+      "slug": "morita-rikako",
+      "display_name": "森田理香子",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "moriya-jutanugarn-seed.json",
+      "slug": "moriya-jutanugarn",
+      "display_name": "モリヤ・ジュタヌガーン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "nagai-kana-seed.json",
+      "slug": "nagai-kana",
+      "display_name": "永井花奈",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "nana-suganuma-seed.json",
+      "slug": "nana-suganuma",
+      "display_name": "菅沼菜々",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": false,
+        "srixon_zxi": true,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "DUNLOP SRIXON Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi7 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "nanna-koerstz-madsen-seed.json",
+      "slug": "nanna-koerstz-madsen",
+      "display_name": "ナナ・コルツ・マドセン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "patty-tavatanakit-seed.json",
+      "slug": "patty-tavatanakit",
+      "display_name": "パティ・タバタナキット",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "rose-zhang-seed.json",
+      "slug": "rose-zhang",
+      "display_name": "ローズ・チャン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Callaway Chrome Tour X",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "ruoning-yin-seed.json",
+      "slug": "ruoning-yin",
+      "display_name": "イン・ルオニン",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Callaway Chrome Tour X",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "ryann-odtoole-seed.json",
+      "slug": "ryann-odtoole",
+      "display_name": "ライアン・オトゥール",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Titleist Pro V1x",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT3 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT3 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "saiki-fujita-seed.json",
+      "slug": "saiki-fujita",
+      "display_name": "藤田さいき",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Bridgestone TOUR B XS",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Bridgestone",
+          "model_name": "B3 MAX",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Bridgestone",
+          "model_name": "B3 MAX Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Bridgestone",
+          "model_name": "B3 MAX Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Bridgestone",
+          "model_name": "B3 MAX Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Bridgestone",
+          "model_name": "B3 MAX Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "saki-nagamine-seed.json",
+      "slug": "saki-nagamine",
+      "display_name": "永峰咲希",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": false,
+        "srixon_zxi": true,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "DUNLOP SRIXON Z-STAR XV",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Driver",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Dunlop",
+          "model_name": "Srixon ZXi7 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "sato-miyu-seed.json",
+      "slug": "sato-miyu",
+      "display_name": "佐藤心結",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "suga-fuka-seed.json",
+      "slug": "suga-fuka",
+      "display_name": "菅楓華",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "tsuruoka-karen-seed.json",
+      "slug": "tsuruoka-karen",
+      "display_name": "鶴岡果恋",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "ueda-momoko-seed.json",
+      "slug": "ueda-momoko",
+      "display_name": "上田桃子",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "usui-reika-seed.json",
+      "slug": "usui-reika",
+      "display_name": "臼井麗香",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "wakimoto-hana-seed.json",
+      "slug": "wakimoto-hana",
+      "display_name": "脇元華",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "yokomine-sakura-seed.json",
+      "slug": "yokomine-sakura",
+      "display_name": "横峯さくら",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "yoshimoto-hikaru-seed.json",
+      "slug": "yoshimoto-hikaru",
+      "display_name": "吉本ひかる",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": true
+      },
+      "current_ball": "Titleist Pro V1",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT2",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "Titleist",
+          "model_name": "GT2 Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    },
+    {
+      "file": "yuna-nishimura-seed.json",
+      "slug": "yuna-nishimura",
+      "display_name": "西村優菜",
+      "detected_patterns": {
+        "generic_source_note": true,
+        "titleist_t100": true,
+        "srixon_zxi": false,
+        "sportsnavi_generic": false
+      },
+      "current_ball": "Bridgestone TOUR B XS",
+      "first_items": [
+        {
+          "category": "Driver",
+          "brand": "PING",
+          "model_name": "G430 MAX 10K",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "3W",
+          "brand": "PING",
+          "model_name": "G430 MAX 10K Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Fairway Wood",
+          "spec_label": "5W",
+          "brand": "PING",
+          "model_name": "G430 MAX 10K Fairway Wood",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "4H",
+          "brand": "PING",
+          "model_name": "G430 MAX 10K Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Utility",
+          "spec_label": "5H",
+          "brand": "PING",
+          "model_name": "G430 MAX 10K Hybrid",
+          "source_note": "Confirmed from latest season setting references."
+        },
+        {
+          "category": "Iron",
+          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "T100 Iron",
+          "source_note": "Confirmed from latest season setting references."
+        }
+      ]
+    }
+  ]
+}
