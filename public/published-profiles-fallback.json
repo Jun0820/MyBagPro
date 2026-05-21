@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-21T15:56:09.872Z",
+  "generatedAt": "2026-05-21T16:05:10.660Z",
   "source": "supabase",
-  "count": 163,
+  "count": 164,
   "profiles": [
     {
       "profile": {
@@ -1119,11 +1119,11 @@
         },
         {
           "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "source_type": "official",
-          "source_url": "https://ryo-ishikawa.jp/profile/",
-          "source_title": "石川遼 オフィシャルサイト プロフィール",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/100/2026/1/",
+          "source_title": "GDO 石川遼 クラブセッティング 2026年 クラブカー選手権",
           "checked_at": "2026-04-07T00:00:00+00:00",
-          "notes": "Used for bio fields and best score."
+          "notes": "Used for 2026 driver, shaft, and ball confirmation."
         },
         {
           "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
@@ -1135,11 +1135,11 @@
         },
         {
           "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/100/2026/1/",
-          "source_title": "GDO 石川遼 クラブセッティング 2026年 クラブカー選手権",
+          "source_type": "official",
+          "source_url": "https://ryo-ishikawa.jp/profile/",
+          "source_title": "石川遼 オフィシャルサイト プロフィール",
           "checked_at": "2026-04-07T00:00:00+00:00",
-          "notes": "Used for 2026 driver, shaft, and ball confirmation."
+          "notes": "Used for bio fields and best score."
         }
       ]
     },
@@ -1694,10 +1694,10 @@
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/stats",
-          "source_title": "Hideki Matsuyama PGA TOUR Stats",
+          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama",
+          "source_title": "Hideki Matsuyama PGA TOUR Player Profile",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "PGA TOUR official stats page used for club head speed 115.33 mph, driving distance 300.0 yd, scoring average 69.25 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data."
+          "notes": "Official profile used for player context and 2026 season status."
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
@@ -1710,6 +1710,14 @@
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
           "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/stats",
+          "source_title": "Hideki Matsuyama PGA TOUR Stats",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "PGA TOUR official stats page used for club head speed 115.33 mph, driving distance 300.0 yd, scoring average 69.25 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data."
+        },
+        {
+          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
+          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career",
           "source_title": "Hideki Matsuyama PGA TOUR Career",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -1717,11 +1725,11 @@
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama",
-          "source_title": "Hideki Matsuyama PGA TOUR Player Profile",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official profile used for player context and 2026 season status."
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/773030/hideki-matsuyama-witb-2026-february/",
+          "source_title": "GolfWRX WITB 2026 (February)",
+          "checked_at": "2026-04-07T08:39:24.890986+00:00",
+          "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
@@ -1730,22 +1738,6 @@
           "source_title": "PGA TOUR player profile",
           "checked_at": "2026-04-07T08:39:24.890986+00:00",
           "notes": "Used for bio fields"
-        },
-        {
-          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/773030/hideki-matsuyama-witb-2026-february/",
-          "source_title": "GolfWRX WITB 2026 (February)",
-          "checked_at": "2026-04-07T08:39:24.890986+00:00",
-          "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
-        },
-        {
-          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/773030/hideki-matsuyama-witb-2026-february/",
-          "source_title": "GolfWRX WITB 2026 (February)",
-          "checked_at": "2026-04-07T08:06:41.596116+00:00",
-          "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
@@ -1760,7 +1752,7 @@
           "source_type": "article",
           "source_url": "https://www.golfwrx.com/773030/hideki-matsuyama-witb-2026-february/",
           "source_title": "GolfWRX WITB 2026 (February)",
-          "checked_at": "2026-04-07T07:53:09.032919+00:00",
+          "checked_at": "2026-04-07T08:06:41.596116+00:00",
           "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
         },
         {
@@ -1770,6 +1762,14 @@
           "source_title": "PGA TOUR player profile",
           "checked_at": "2026-04-07T07:53:09.032919+00:00",
           "notes": "Used for bio fields"
+        },
+        {
+          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/773030/hideki-matsuyama-witb-2026-february/",
+          "source_title": "GolfWRX WITB 2026 (February)",
+          "checked_at": "2026-04-07T07:53:09.032919+00:00",
+          "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
         }
       ]
     },
@@ -2044,19 +2044,19 @@
         },
         {
           "profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f",
-          "source_type": "official",
-          "source_url": "https://ping.com/en-us/tour/pros/in-gee-chun",
-          "source_title": "In Gee Chun - PING",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "契約情報と主要クラブ確認用。"
-        },
-        {
-          "profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f",
           "source_type": "article",
           "source_url": "https://www.golfwrx.com/732972/in-gee-chun-witb-2024/",
           "source_title": "In Gee Chun WITB - GolfWRX",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "詳細セッティング確認用。"
+        },
+        {
+          "profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f",
+          "source_type": "official",
+          "source_url": "https://ping.com/en-us/tour/pros/in-gee-chun",
+          "source_title": "In Gee Chun - PING",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "契約情報と主要クラブ確認用。"
         }
       ]
     },
@@ -2332,14 +2332,6 @@
         {
           "profile_id": "3a7dc7da-a283-4ed0-a70e-9bb381100a56",
           "source_type": "official",
-          "source_url": "https://www.jgto.org/player/16928/profile",
-          "source_title": "JGTO 久常涼プロフィール",
-          "checked_at": "2026-04-08T00:00:00+00:00",
-          "notes": "Used for birth date, height, birthplace, and lowest round."
-        },
-        {
-          "profile_id": "3a7dc7da-a283-4ed0-a70e-9bb381100a56",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/51287/ryo-hisatsune",
           "source_title": "PGA TOUR Ryo Hisatsune player profile",
           "checked_at": "2026-04-08T00:00:00+00:00",
@@ -2352,6 +2344,14 @@
           "source_title": "GDO 久常涼 クラブセッティング 2026年 ザ・アメリカンエキスプレス",
           "checked_at": "2026-04-08T00:00:00+00:00",
           "notes": "Used for 2026 full bag and ball confirmation."
+        },
+        {
+          "profile_id": "3a7dc7da-a283-4ed0-a70e-9bb381100a56",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/16928/profile",
+          "source_title": "JGTO 久常涼プロフィール",
+          "checked_at": "2026-04-08T00:00:00+00:00",
+          "notes": "Used for birth date, height, birthplace, and lowest round."
         }
       ]
     },
@@ -2634,19 +2634,19 @@
         },
         {
           "profile_id": "b0ec2489-1118-4d33-833c-dee974dcbd82",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/16755/2025/1/",
-          "source_title": "GDO 蝉川泰果 クラブセッティング 2025年 中日クラウンズ",
-          "checked_at": "2026-04-08T00:00:00+00:00",
-          "notes": "Used for 2025 full bag and ball confirmation."
-        },
-        {
-          "profile_id": "b0ec2489-1118-4d33-833c-dee974dcbd82",
           "source_type": "official",
           "source_url": "https://www.jgto.org/player/100466/profile",
           "source_title": "JGTO 蝉川泰果プロフィール",
           "checked_at": "2026-04-08T00:00:00+00:00",
           "notes": "Used for bio fields, club maker context, and official lowest round."
+        },
+        {
+          "profile_id": "b0ec2489-1118-4d33-833c-dee974dcbd82",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/16755/2025/1/",
+          "source_title": "GDO 蝉川泰果 クラブセッティング 2025年 中日クラウンズ",
+          "checked_at": "2026-04-08T00:00:00+00:00",
+          "notes": "Used for 2025 full bag and ball confirmation."
         }
       ]
     },
@@ -3479,14 +3479,6 @@
       "sources": [
         {
           "profile_id": "41efaf53-d897-42a0-a215-bdfcbd7861f5",
-          "source_type": "official",
-          "source_url": "https://www.taylormadegolf.jp/tourplayers-shun-niimura.html",
-          "source_title": "新村 駿 | ツアープレーヤー | TaylorMade Golf",
-          "checked_at": "2026-05-16T00:00:00+00:00",
-          "notes": "Official TaylorMade page lists Qi35 Driver, Qi35 TOUR FW, Qi35 Rescue, P770, P7MB, MG4 and TP5x."
-        },
-        {
-          "profile_id": "41efaf53-d897-42a0-a215-bdfcbd7861f5",
           "source_type": "article",
           "source_url": "https://www.youtube.com/watch?v=5RQuzusWk-k",
           "source_title": "新村駿クラブセッティング紹介【SHOWDOWN 堀川未来夢vs新村駿】",
@@ -3500,6 +3492,14 @@
           "source_title": "JGTO 新村駿プロフィール",
           "checked_at": "2026-05-16T00:00:00+00:00",
           "notes": "Used for bio fields, tour context and official maker usage categories."
+        },
+        {
+          "profile_id": "41efaf53-d897-42a0-a215-bdfcbd7861f5",
+          "source_type": "official",
+          "source_url": "https://www.taylormadegolf.jp/tourplayers-shun-niimura.html",
+          "source_title": "新村 駿 | ツアープレーヤー | TaylorMade Golf",
+          "checked_at": "2026-05-16T00:00:00+00:00",
+          "notes": "Official TaylorMade page lists Qi35 Driver, Qi35 TOUR FW, Qi35 Rescue, P770, P7MB, MG4 and TP5x."
         }
       ]
     },
@@ -3766,14 +3766,6 @@
       "sources": [
         {
           "profile_id": "03a120bf-a303-4e34-9741-67cf6df8247d",
-          "source_type": "official",
-          "source_url": "https://www.jgto.org/player/100928/profile",
-          "source_title": "JGTO 岡田晃平プロフィール",
-          "checked_at": "2026-05-16T00:00:00+00:00",
-          "notes": "Used for bio fields and tour profile. JGTO lists Srixon driver/iron/ball maker context."
-        },
-        {
-          "profile_id": "03a120bf-a303-4e34-9741-67cf6df8247d",
           "source_type": "article",
           "source_url": "https://www.youtube.com/watch?v=A7mmnxVB_ek",
           "source_title": "岡田晃平のクラブセッティング【SHOWDOWN男子トッププロゴルファー同士のガチンコ対決】",
@@ -3787,6 +3779,14 @@
           "source_title": "岡田 晃平 | 国内男子ツアープロ | DUNLOP GOLFING WORLD",
           "checked_at": "2026-05-16T00:00:00+00:00",
           "notes": "Official Dunlop page lists Z-STAR XV, ZXi LS Driver, ZXi #3 FW, ZXi7/Z-Forged II irons and Cleveland RTZ wedges as of 2025-04-10."
+        },
+        {
+          "profile_id": "03a120bf-a303-4e34-9741-67cf6df8247d",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/100928/profile",
+          "source_title": "JGTO 岡田晃平プロフィール",
+          "checked_at": "2026-05-16T00:00:00+00:00",
+          "notes": "Used for bio fields and tour profile. JGTO lists Srixon driver/iron/ball maker context."
         }
       ]
     },
@@ -4914,22 +4914,6 @@
       "sources": [
         {
           "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
-          "source_type": "official",
-          "source_url": "https://ping.com/en-us/tour/pros/sahith-theegala",
-          "source_title": "Sahith Theegala - PING",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "契約情報と主要クラブ確認用。"
-        },
-        {
-          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/stats",
-          "source_title": "Sahith Theegala PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード117.55mph、ドライビングディスタンス305.4yd、平均スコア68.71を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
-        },
-        {
-          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
           "source_type": "article",
           "source_url": "https://www.golfwrx.com/732873/sahith-theegala-witb-2024/",
           "source_title": "Sahith Theegala WITB - GolfWRX",
@@ -4943,6 +4927,22 @@
           "source_title": "Sahith Theegala PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
+        },
+        {
+          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/51634/sahith-theegala/stats",
+          "source_title": "Sahith Theegala PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード117.55mph、ドライビングディスタンス305.4yd、平均スコア68.71を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+        },
+        {
+          "profile_id": "6b8ad714-ce80-4aef-bc72-88b831aefb87",
+          "source_type": "official",
+          "source_url": "https://ping.com/en-us/tour/pros/sahith-theegala",
+          "source_title": "Sahith Theegala - PING",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "契約情報と主要クラブ確認用。"
         }
       ]
     },
@@ -5218,18 +5218,18 @@
         {
           "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
           "source_type": "official",
-          "source_url": "https://ping.com/en-us/discover-ping/ping-pros/pga-tour/alex-smalley",
-          "source_title": "PING Pro Alex Smalley",
-          "checked_at": "2026-05-18T00:00:00+00:00",
-          "notes": "PING契約プロ確認用。"
-        },
-        {
-          "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/46340/alex-smalley/stats",
           "source_title": "Alex Smalley PGA TOUR Stats",
           "checked_at": "2026-05-18T00:00:00+00:00",
           "notes": "PGA TOUR公式プロフィール・スタッツ確認用。"
+        },
+        {
+          "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
+          "source_type": "official",
+          "source_url": "https://ping.com/en-us/discover-ping/ping-pros/pga-tour/alex-smalley",
+          "source_title": "PING Pro Alex Smalley",
+          "checked_at": "2026-05-18T00:00:00+00:00",
+          "notes": "PING契約プロ確認用。"
         },
         {
           "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
@@ -5800,10 +5800,10 @@
         {
           "profile_id": "dc3f0d35-35f6-48f3-b050-41607bb89254",
           "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/tour/lottie-woad-facts-bio-wins",
-          "source_title": "Lottie Woad facts - Golf Monthly",
+          "source_url": "https://www.golfmonthly.com/tour/lottie-woad-whats-in-the-bag",
+          "source_title": "Lottie Woad What's In The Bag? - Golf Monthly",
           "checked_at": "2026-05-18T00:00:00+00:00",
-          "notes": "プロフィール情報確認用。出身地と生年月日を確認。"
+          "notes": "2025年7月公開。14本の構成、シャフト、ボールを確認。"
         },
         {
           "profile_id": "dc3f0d35-35f6-48f3-b050-41607bb89254",
@@ -5816,10 +5816,10 @@
         {
           "profile_id": "dc3f0d35-35f6-48f3-b050-41607bb89254",
           "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/tour/lottie-woad-whats-in-the-bag",
-          "source_title": "Lottie Woad What's In The Bag? - Golf Monthly",
+          "source_url": "https://www.golfmonthly.com/tour/lottie-woad-facts-bio-wins",
+          "source_title": "Lottie Woad facts - Golf Monthly",
           "checked_at": "2026-05-18T00:00:00+00:00",
-          "notes": "2025年7月公開。14本の構成、シャフト、ボールを確認。"
+          "notes": "プロフィール情報確認用。出身地と生年月日を確認。"
         }
       ]
     },
@@ -6661,18 +6661,18 @@
         {
           "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/48081/xander-schauffele/career",
-          "source_title": "Xander Schauffele PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
-        },
-        {
-          "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/48081/xander-schauffele/stats",
           "source_title": "Xander Schauffele PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード122.51mph、ドライビングディスタンス312.9yd、平均スコア69.56を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+        },
+        {
+          "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/48081/xander-schauffele/career",
+          "source_title": "Xander Schauffele PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
         },
         {
           "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
@@ -7235,18 +7235,18 @@
         {
           "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/39977/max-homa/stats",
-          "source_title": "Max Homa PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード121.09mph、ドライビングディスタンス306.1yd、平均スコア70.62を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
-        },
-        {
-          "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/39977/max-homa/career",
           "source_title": "Max Homa PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR career pageで通算ベストラウンド62を確認。"
+        },
+        {
+          "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/39977/max-homa/stats",
+          "source_title": "Max Homa PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード121.09mph、ドライビングディスタンス306.1yd、平均スコア70.62を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
         },
         {
           "profile_id": "d480cfd2-2756-49e0-84c7-72a060a83594",
@@ -7825,18 +7825,18 @@
         {
           "profile_id": "fb8a26b9-65c2-4e53-b08c-e3f3743e6b81",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/28089/jason-day/career",
-          "source_title": "Jason Day PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
-        },
-        {
-          "profile_id": "fb8a26b9-65c2-4e53-b08c-e3f3743e6b81",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/28089/jason-day/stats",
           "source_title": "Jason Day PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード115.68mph、ドライビングディスタンス299.4yd、平均スコア69.75を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+        },
+        {
+          "profile_id": "fb8a26b9-65c2-4e53-b08c-e3f3743e6b81",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/28089/jason-day/career",
+          "source_title": "Jason Day PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
         },
         {
           "profile_id": "fb8a26b9-65c2-4e53-b08c-e3f3743e6b81",
@@ -8406,19 +8406,19 @@
       "sources": [
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/777089/nelly-korda-witb-2026-april/",
-          "source_title": "GolfWRX Nelly Korda WITB 2026 (April)",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "2026年4月23日公開の詳細WITB。PING G425 Hybrid、Titleist Vokey SM11 58°、TaylorMade NK Proto putterなど、TaylorMade公式記事で明記されないクラブの確認にも使用。"
-        },
-        {
-          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
           "source_type": "official",
           "source_url": "https://www.taylormadegolf.jp/clubhouse/1428296-nelly-korda-witb.html",
           "source_title": "「Qi4D」ドライバーと「TP5x」ボールを使用したネリー・コルダが2週連続優勝を達成！ | TaylorMade Golf",
           "checked_at": "2026-05-15T00:00:00+00:00",
           "notes": "2026年5月3日公開のTaylorMade公式優勝WITB。Qi4D 10.5° Driver、Stealth 2 15° 3W、Stealth 2 21° 7W、P770 5I、P7CB 6-PW、MG4 50° SB、MG5 Proto 54° HB、TP5xを確認。"
+        },
+        {
+          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/777089/nelly-korda-witb-2026-april/",
+          "source_title": "GolfWRX Nelly Korda WITB 2026 (April)",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "2026年4月23日公開の詳細WITB。PING G425 Hybrid、Titleist Vokey SM11 58°、TaylorMade NK Proto putterなど、TaylorMade公式記事で明記されないクラブの確認にも使用。"
         },
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
@@ -8742,18 +8742,18 @@
         {
           "profile_id": "f5cc86f3-70b8-4509-8a72-087aca5b60de",
           "source_type": "official",
-          "source_url": "https://www.jgto.org/en/player/16914/data",
-          "source_title": "Aguri IWASAKI Tour Player Stats - JGTO",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "JGTO official stats page used for 2025 scoring average 71.507 and driving distance 299.51 yd."
-        },
-        {
-          "profile_id": "f5cc86f3-70b8-4509-8a72-087aca5b60de",
-          "source_type": "official",
           "source_url": "https://www.jgto.org/en/player/16914/profile",
           "source_title": "Aguri IWASAKI Player Profile - JGTO",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "JGTO official profile used for lowest 18-hole score 63."
+        },
+        {
+          "profile_id": "f5cc86f3-70b8-4509-8a72-087aca5b60de",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/en/player/16914/data",
+          "source_title": "Aguri IWASAKI Tour Player Stats - JGTO",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "JGTO official stats page used for 2025 scoring average 71.507 and driving distance 299.51 yd."
         },
         {
           "profile_id": "f5cc86f3-70b8-4509-8a72-087aca5b60de",
@@ -10447,19 +10447,19 @@
         },
         {
           "profile_id": "affd9e6f-4b1c-4b06-bd93-f4399b2bf72b",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/773954/shane-lowry-witb-2026-march/",
-          "source_title": "Shane Lowry WITB 2026 (March) – GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed 14-club breakdown."
-        },
-        {
-          "profile_id": "affd9e6f-4b1c-4b06-bd93-f4399b2bf72b",
           "source_type": "official",
           "source_url": "https://www.srixon.com/us/tour-team.html",
           "source_title": "Tour Team - Srixon",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Official brand team page used for contract context."
+        },
+        {
+          "profile_id": "affd9e6f-4b1c-4b06-bd93-f4399b2bf72b",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/773954/shane-lowry-witb-2026-march/",
+          "source_title": "Shane Lowry WITB 2026 (March) – GolfWRX",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed 14-club breakdown."
         }
       ]
     },
@@ -10735,18 +10735,18 @@
         {
           "profile_id": "53ea76f0-f39f-44aa-8789-e2e0e31cc688",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/34046/jordan-spieth/career",
-          "source_title": "Jordan Spieth PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式career。Career Lowest Round 61を確認。"
-        },
-        {
-          "profile_id": "53ea76f0-f39f-44aa-8789-e2e0e31cc688",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/34046/jordan-spieth/stats",
           "source_title": "Jordan Spieth PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR公式2026 stats。Club Head Speed 116.53 mph、Driving Distance 306.7 yd、Scoring Average (Actual) 70.00、Lowest Round 66を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
+        },
+        {
+          "profile_id": "53ea76f0-f39f-44aa-8789-e2e0e31cc688",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/34046/jordan-spieth/career",
+          "source_title": "Jordan Spieth PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式career。Career Lowest Round 61を確認。"
         },
         {
           "profile_id": "53ea76f0-f39f-44aa-8789-e2e0e31cc688",
@@ -12457,18 +12457,18 @@
         {
           "profile_id": "698cd82e-c851-4f30-a7ee-e35b100d44eb",
           "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-justin-roses-bag",
-          "source_title": "What’s in Justin Rose’s bag? - Golf Monthly",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Supporting source for current mixed setup."
-        },
-        {
-          "profile_id": "698cd82e-c851-4f30-a7ee-e35b100d44eb",
-          "source_type": "article",
           "source_url": "https://www.golfwrx.com/775349/justin-rose-witb-2026-march/",
           "source_title": "Justin Rose WITB 2026 (March) - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for latest detailed bag breakdown."
+        },
+        {
+          "profile_id": "698cd82e-c851-4f30-a7ee-e35b100d44eb",
+          "source_type": "article",
+          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-justin-roses-bag",
+          "source_title": "What’s in Justin Rose’s bag? - Golf Monthly",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Supporting source for current mixed setup."
         }
       ]
     },
@@ -14704,19 +14704,11 @@
         },
         {
           "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/16715/",
-          "source_title": "石坂友宏 クラブセッティング - GDO",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for current season full-bag breakdown."
-        },
-        {
-          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
           "source_type": "official",
-          "source_url": "https://www.jgto.org/en/player/16853/profile",
-          "source_title": "Tomohiro ISHIZAKA Player Profile - JGTO",
+          "source_url": "https://www.callawaygolf.jp/jp/pro-golfer/tomohiro-ishizaka",
+          "source_title": "石坂友宏 - キャロウェイゴルフ",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "JGTO official profile used for lowest 18-hole score 62."
+          "notes": "Callaway official player page used for current contract and equipment context."
         },
         {
           "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
@@ -14729,10 +14721,18 @@
         {
           "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
           "source_type": "official",
-          "source_url": "https://www.callawaygolf.jp/jp/pro-golfer/tomohiro-ishizaka",
-          "source_title": "石坂友宏 - キャロウェイゴルフ",
+          "source_url": "https://www.jgto.org/en/player/16853/profile",
+          "source_title": "Tomohiro ISHIZAKA Player Profile - JGTO",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Callaway official player page used for current contract and equipment context."
+          "notes": "JGTO official profile used for lowest 18-hole score 62."
+        },
+        {
+          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/16715/",
+          "source_title": "石坂友宏 クラブセッティング - GDO",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for current season full-bag breakdown."
         }
       ]
     },
@@ -15884,11 +15884,11 @@
         },
         {
           "profile_id": "4248a629-c191-486d-b513-cbdb16e04315",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/776282/rory-mcilroy-witb-2026-april/",
-          "source_title": "GolfWRX Rory McIlroy WITB 2026 (April)",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/28237/rory-mcilroy/stats",
+          "source_title": "Rory McIlroy PGA TOUR Stats",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
+          "notes": "PGA TOUR official stats page used for club head speed 123.87 mph, driving distance 315.5 yd, scoring average 69.00 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data."
         },
         {
           "profile_id": "4248a629-c191-486d-b513-cbdb16e04315",
@@ -15900,11 +15900,11 @@
         },
         {
           "profile_id": "4248a629-c191-486d-b513-cbdb16e04315",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/28237/rory-mcilroy/stats",
-          "source_title": "Rory McIlroy PGA TOUR Stats",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/776282/rory-mcilroy-witb-2026-april/",
+          "source_title": "GolfWRX Rory McIlroy WITB 2026 (April)",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "PGA TOUR official stats page used for club head speed 123.87 mph, driving distance 315.5 yd, scoring average 69.00 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data."
+          "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
         },
         {
           "profile_id": "4248a629-c191-486d-b513-cbdb16e04315",
@@ -16187,11 +16187,11 @@
         },
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/763621/bks-breakdowns-scottie-schefflers-witb-from-the-2025-open-championship/",
-          "source_title": "GolfWRX Scottie Scheffler WITB 2025 Open Championship",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/stats",
+          "source_title": "Scottie Scheffler PGA TOUR Stats",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used to confirm shafts and utility iron composition."
+          "notes": "PGA TOUR official stats page used for club head speed 120.30 mph, driving distance 312.3 yd, scoring average 67.85 and lowest round 63. These are official tour stats, not public TrackMan or GCQuad session data."
         },
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
@@ -16204,18 +16204,10 @@
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
           "source_type": "article",
-          "source_url": "https://www.golfwrx.com/772379/scotties-scheffler-winning-witb-the-2026-american-express/",
-          "source_title": "GolfWRX Scottie Scheffler winning WITB 2026 American Express",
+          "source_url": "https://www.golfwrx.com/763621/bks-breakdowns-scottie-schefflers-witb-from-the-2025-open-championship/",
+          "source_title": "GolfWRX Scottie Scheffler WITB 2025 Open Championship",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
-        },
-        {
-          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/stats",
-          "source_title": "Scottie Scheffler PGA TOUR Stats",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "PGA TOUR official stats page used for club head speed 120.30 mph, driving distance 312.3 yd, scoring average 67.85 and lowest round 63. These are official tour stats, not public TrackMan or GCQuad session data."
+          "notes": "Used to confirm shafts and utility iron composition."
         },
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
@@ -16224,6 +16216,14 @@
           "source_title": "GDO スコッティ・シェフラー クラブセッティング 2025年 全英オープン",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for profile and 2025 full bag confirmation."
+        },
+        {
+          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/772379/scotties-scheffler-winning-witb-the-2026-american-express/",
+          "source_title": "GolfWRX Scottie Scheffler winning WITB 2026 American Express",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
         }
       ]
     },
@@ -16498,19 +16498,19 @@
         },
         {
           "profile_id": "06bf00a1-241f-4de7-9dcb-8165e058b572",
-          "source_type": "official",
-          "source_url": "https://www.callawaygolf.com/tour-team/min-woo-lee/",
-          "source_title": "Min Woo Lee - Callaway Golf",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official Callaway team page used for player context and contract status."
-        },
-        {
-          "profile_id": "06bf00a1-241f-4de7-9dcb-8165e058b572",
           "source_type": "article",
           "source_url": "https://www.golfwrx.com/774826/min-woo-lee-witb-2026-march/",
           "source_title": "Min Woo Lee WITB 2026 (March) - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for latest detailed bag breakdown."
+        },
+        {
+          "profile_id": "06bf00a1-241f-4de7-9dcb-8165e058b572",
+          "source_type": "official",
+          "source_url": "https://www.callawaygolf.com/tour-team/min-woo-lee/",
+          "source_title": "Min Woo Lee - Callaway Golf",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Official Callaway team page used for player context and contract status."
         }
       ]
     },
@@ -16786,18 +16786,18 @@
         {
           "profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75",
           "source_type": "article",
-          "source_url": "https://www.golfwrx.com/774378/sungjae-im-witb-2026-march/",
-          "source_title": "Sungjae Im WITB 2026 (March) - GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed bag breakdown."
-        },
-        {
-          "profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75",
-          "source_type": "article",
           "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-sungjae-ims-bag",
           "source_title": "What’s in Sungjae Im’s bag? - Golf Monthly",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Supporting source for Titleist-centered setup and clubs."
+        },
+        {
+          "profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/774378/sungjae-im-witb-2026-march/",
+          "source_title": "Sungjae Im WITB 2026 (March) - GolfWRX",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed bag breakdown."
         }
       ]
     },
@@ -17073,18 +17073,18 @@
         {
           "profile_id": "29ed2498-c372-4fda-a22a-1e67c8fa181b",
           "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-patrick-reeds-bag",
-          "source_title": "What’s in Patrick Reed’s bag? - Golf Monthly",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for mixed-bag configuration and club details."
-        },
-        {
-          "profile_id": "29ed2498-c372-4fda-a22a-1e67c8fa181b",
-          "source_type": "article",
           "source_url": "https://www.golfpost.com/equipment/patrick-reed-witb",
           "source_title": "Patrick Reed WITB - Golf Post",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used as supporting source for lofts and club mix."
+        },
+        {
+          "profile_id": "29ed2498-c372-4fda-a22a-1e67c8fa181b",
+          "source_type": "article",
+          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-patrick-reeds-bag",
+          "source_title": "What’s in Patrick Reed’s bag? - Golf Monthly",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for mixed-bag configuration and club details."
         }
       ]
     },
@@ -17360,18 +17360,18 @@
         {
           "profile_id": "74968188-05b1-4c9a-9e29-315d79c65165",
           "source_type": "article",
-          "source_url": "https://www.golfwrx.com/779317/matt-fitzpatrick-witb-2026-april/",
-          "source_title": "Matt Fitzpatrick WITB 2026 (April) - GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed bag breakdown."
-        },
-        {
-          "profile_id": "74968188-05b1-4c9a-9e29-315d79c65165",
-          "source_type": "article",
           "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-matt-fitzpatricks-bag",
           "source_title": "What’s in Matt Fitzpatrick’s bag? - Golf Monthly",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Supporting source for current club mix."
+        },
+        {
+          "profile_id": "74968188-05b1-4c9a-9e29-315d79c65165",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/779317/matt-fitzpatrick-witb-2026-april/",
+          "source_title": "Matt Fitzpatrick WITB 2026 (April) - GolfWRX",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed bag breakdown."
         }
       ]
     },
@@ -17639,14 +17639,6 @@
         {
           "profile_id": "42cef182-2d33-4f74-9ae6-b4e241e514ba",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/27644/brian-harman/stats",
-          "source_title": "Brian Harman PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード110.44mph、ドライビングディスタンス293.8yd、平均スコア71.14を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
-        },
-        {
-          "profile_id": "42cef182-2d33-4f74-9ae6-b4e241e514ba",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/27644/brian-harman/career",
           "source_title": "Brian Harman PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
@@ -17655,10 +17647,10 @@
         {
           "profile_id": "42cef182-2d33-4f74-9ae6-b4e241e514ba",
           "source_type": "official",
-          "source_url": "https://www.titleist.com/tour/brian-harman",
-          "source_title": "Brian Harman | Titleist",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official Titleist player page used for contract context and ball confirmation."
+          "source_url": "https://www.pgatour.com/player/27644/brian-harman/stats",
+          "source_title": "Brian Harman PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード110.44mph、ドライビングディスタンス293.8yd、平均スコア71.14を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
         },
         {
           "profile_id": "42cef182-2d33-4f74-9ae6-b4e241e514ba",
@@ -17667,6 +17659,14 @@
           "source_title": "What Brian Harman had in the bag for his Valero Texas Open victory - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for detailed bag composition."
+        },
+        {
+          "profile_id": "42cef182-2d33-4f74-9ae6-b4e241e514ba",
+          "source_type": "official",
+          "source_url": "https://www.titleist.com/tour/brian-harman",
+          "source_title": "Brian Harman | Titleist",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Official Titleist player page used for contract context and ball confirmation."
         }
       ]
     },
@@ -18540,6 +18540,14 @@
         {
           "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
           "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/35450/patrick-cantlay/career",
+          "source_title": "Patrick Cantlay PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド60を確認。"
+        },
+        {
+          "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
+          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/35450/patrick-cantlay/stats",
           "source_title": "Patrick Cantlay PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
@@ -18548,10 +18556,10 @@
         {
           "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/35450/patrick-cantlay/career",
-          "source_title": "Patrick Cantlay PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド60を確認。"
+          "source_url": "https://www.titleist.com/tour/patrick-cantlay",
+          "source_title": "Patrick Cantlay | Titleist",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Official Titleist player page used for contract and ball context."
         },
         {
           "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
@@ -18560,14 +18568,6 @@
           "source_title": "Patrick Cantlay WITB 2025 (August) - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for latest detailed bag breakdown."
-        },
-        {
-          "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
-          "source_type": "official",
-          "source_url": "https://www.titleist.com/tour/patrick-cantlay",
-          "source_title": "Patrick Cantlay | Titleist",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official Titleist player page used for contract and ball context."
         }
       ]
     },
@@ -20581,18 +20581,18 @@
         {
           "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/results",
-          "source_title": "Lydia Ko | Results | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official results page used for current-season low round 64."
-        },
-        {
-          "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/stats",
           "source_title": "Lydia Ko | Statistics | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
+        },
+        {
+          "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/results",
+          "source_title": "Lydia Ko | Results | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official results page used for current-season low round 64."
         },
         {
           "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
@@ -20900,10 +20900,10 @@
         {
           "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
           "source_type": "official",
-          "source_url": "https://sports.dunlop.co.jp/golf/tour/player/yamashita_miyuu/",
-          "source_title": "山下 美夢有 選手情報 - ダンロップスポーツ",
+          "source_url": "https://www.lpga.com/athletes/miyu-yamashita/102077/stats",
+          "source_title": "Miyu Yamashita | Statistics | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official contract player page used to complement current season setup confirmation."
+          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
         },
         {
           "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
@@ -20916,10 +20916,10 @@
         {
           "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/miyu-yamashita/102077/stats",
-          "source_title": "Miyu Yamashita | Statistics | LPGA",
+          "source_url": "https://sports.dunlop.co.jp/golf/tour/player/yamashita_miyuu/",
+          "source_title": "山下 美夢有 選手情報 - ダンロップスポーツ",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
+          "notes": "Official contract player page used to complement current season setup confirmation."
         },
         {
           "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
@@ -22024,10 +22024,10 @@
         {
           "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/career",
-          "source_title": "Tommy Fleetwood PGA TOUR Career",
+          "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/stats",
+          "source_title": "Tommy Fleetwood PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式career。Lowest Round 62を確認。"
+          "notes": "PGA TOUR公式2026 stats。Club Head Speed 116.41 mph、Driving Distance 299.3 yd、Scoring Average 69.55を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
         },
         {
           "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
@@ -22040,10 +22040,10 @@
         {
           "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/stats",
-          "source_title": "Tommy Fleetwood PGA TOUR Stats",
+          "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/career",
+          "source_title": "Tommy Fleetwood PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式2026 stats。Club Head Speed 116.41 mph、Driving Distance 299.3 yd、Scoring Average 69.55を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
+          "notes": "PGA TOUR公式career。Lowest Round 62を確認。"
         },
         {
           "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
@@ -25899,301 +25899,6 @@
     },
     {
       "profile": {
-        "id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-        "slug": "collin-morikawa",
-        "display_name": "コリン・モリカワ",
-        "kana_name": "コリン・モリカワ",
-        "birth_date": "1997-02-06",
-        "height_cm": 175,
-        "birthplace": "アメリカ・カリフォルニア州ロサンゼルス",
-        "nationality": "United States",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2025,
-        "youtube_channel": "-",
-        "instagram_handle": "collin_morikawa",
-        "x_handle": "-",
-        "website_url": "-",
-        "head_speed_mps": 51.4,
-        "average_score": 68.7,
-        "best_score": 61,
-        "ball_name": "TaylorMade TP5 2024",
-        "feature_1": "2025シーズン基準",
-        "feature_2": "TaylorMade中心",
-        "feature_3": "TrackMan実測あり",
-        "summary": "コリン・モリカワの最新クラブセッティングページ。ベイカレント C レクサス時点で確認できた14本の構成に加えて、TaylorMade公式が公開したTrackMan実測データも確認できるように整理しています。",
-        "verified_at": "2026-04-08T00:00:00+00:00",
-        "latest_source_policy": "2025_season",
-        "is_featured": true,
-        "is_published": true,
-        "created_at": "2026-04-08T06:45:00.972485+00:00",
-        "updated_at": "2026-04-11T00:36:03.737412+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Driver",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 LS Driver",
-          "spec_label": null,
-          "loft_label": "9°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana D-LIMITED",
-          "shaft_weight": null,
-          "shaft_flex": "TX",
-          "carry_distance": 288,
-          "total_distance": 313,
-          "source_note": "TaylorMade公式 Pebble Beach記事のTrackMan実測では、Qi10 LS 9.0°でキャリー288yd、トータル313yd、クラブスピード115mph。クラブ構成自体はGDO 2025 Baycurrent C Lexus setting pageでも確認。",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Fairway Wood",
-          "brand": "TaylorMade",
-          "model_name": "SIM Fairway Wood",
-          "spec_label": "3W",
-          "loft_label": "14°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana D-LIMITED",
-          "shaft_weight": null,
-          "shaft_flex": "TX",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 2
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Fairway Wood",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 Fairway Wood",
-          "spec_label": "5W",
-          "loft_label": "18°",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana D-LIMITED",
-          "shaft_weight": null,
-          "shaft_flex": "TX",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 3
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Iron",
-          "brand": "TaylorMade",
-          "model_name": "P DHY Iron",
-          "spec_label": "4I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Iron",
-          "brand": "TaylorMade",
-          "model_name": "P7CB Iron",
-          "spec_label": "5I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 5
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Iron",
-          "brand": "TaylorMade",
-          "model_name": "P7CB Iron",
-          "spec_label": "6I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 6
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Iron",
-          "brand": "TaylorMade",
-          "model_name": "P730 Iron",
-          "spec_label": "7I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 7
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Iron",
-          "brand": "TaylorMade",
-          "model_name": "P730 Iron",
-          "spec_label": "8I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 8
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Iron",
-          "brand": "TaylorMade",
-          "model_name": "P730 Iron",
-          "spec_label": "9I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 9
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Wedge",
-          "brand": "TaylorMade",
-          "model_name": "P730 Iron",
-          "spec_label": "PW",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "X100",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 10
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Wedge",
-          "brand": "TaylorMade",
-          "model_name": "MG5 Wedge",
-          "spec_label": "GW",
-          "loft_label": "50°",
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "S400",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 11
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Wedge",
-          "brand": "TaylorMade",
-          "model_name": "MG5 Wedge",
-          "spec_label": "SW",
-          "loft_label": "56°",
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "S400",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 12
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Wedge",
-          "brand": "TaylorMade",
-          "model_name": "MG5 Wedge",
-          "spec_label": "LW",
-          "loft_label": "60°",
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold",
-          "shaft_weight": null,
-          "shaft_flex": "S400",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 13
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "category": "Putter",
-          "brand": "TaylorMade",
-          "model_name": "Spider Tour X Putter",
-          "spec_label": null,
-          "loft_label": null,
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "Diamana Putter",
-          "shaft_weight": null,
-          "shaft_flex": "1.0",
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
-          "slot_order": 14
-        }
-      ],
-      "sources": [
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "source_type": "official",
-          "source_url": "https://www.taylormadegolf.com/clubhouse/645086-team-taylormade-at-pebble-beach.html?lang=default",
-          "source_title": "Inside Practice Rounds at Pebble Beach with Rory McIlroy and Team TaylorMade | TaylorMade Golf",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "TaylorMade公式記事にTrackMan実測としてCollin MorikawaのQi10 LS 9.0°ドライバーでトータル313yd、キャリー288yd、ボールスピード171mph、クラブスピード115mphが掲載。"
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/career",
-          "source_title": "Collin Morikawa PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/stats",
-          "source_title": "Collin Morikawa PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード115.18mph、ドライビングディスタンス306.5yd、平均スコア68.67を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/18091/",
-          "source_title": "GDO コリン・モリカワ クラブセッティング 2025年 ベイカレント C レクサス",
-          "checked_at": "2026-04-08T00:00:00+00:00",
-          "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
-        }
-      ]
-    },
-    {
-      "profile": {
         "id": "73056993-fbf0-4d86-8283-a60cf057862b",
         "slug": "adam-scott",
         "display_name": "アダム・スコット",
@@ -26473,6 +26178,301 @@
     },
     {
       "profile": {
+        "id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+        "slug": "collin-morikawa",
+        "display_name": "コリン・モリカワ",
+        "kana_name": "コリン・モリカワ",
+        "birth_date": "1997-02-06",
+        "height_cm": 175,
+        "birthplace": "アメリカ・カリフォルニア州ロサンゼルス",
+        "nationality": "United States",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2025,
+        "youtube_channel": "-",
+        "instagram_handle": "collin_morikawa",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": 51.4,
+        "average_score": 68.7,
+        "best_score": 61,
+        "ball_name": "TaylorMade TP5 2024",
+        "feature_1": "2025シーズン基準",
+        "feature_2": "TaylorMade中心",
+        "feature_3": "TrackMan実測あり",
+        "summary": "コリン・モリカワの最新クラブセッティングページ。ベイカレント C レクサス時点で確認できた14本の構成に加えて、TaylorMade公式が公開したTrackMan実測データも確認できるように整理しています。",
+        "verified_at": "2026-04-08T00:00:00+00:00",
+        "latest_source_policy": "2025_season",
+        "is_featured": true,
+        "is_published": true,
+        "created_at": "2026-04-08T06:45:00.972485+00:00",
+        "updated_at": "2026-04-11T00:36:03.737412+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Driver",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 LS Driver",
+          "spec_label": null,
+          "loft_label": "9°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana D-LIMITED",
+          "shaft_weight": null,
+          "shaft_flex": "TX",
+          "carry_distance": 288,
+          "total_distance": 313,
+          "source_note": "TaylorMade公式 Pebble Beach記事のTrackMan実測では、Qi10 LS 9.0°でキャリー288yd、トータル313yd、クラブスピード115mph。クラブ構成自体はGDO 2025 Baycurrent C Lexus setting pageでも確認。",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "SIM Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "14°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana D-LIMITED",
+          "shaft_weight": null,
+          "shaft_flex": "TX",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18°",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana D-LIMITED",
+          "shaft_weight": null,
+          "shaft_flex": "TX",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P DHY Iron",
+          "spec_label": "4I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P7CB Iron",
+          "spec_label": "5I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 5
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P7CB Iron",
+          "spec_label": "6I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 6
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P730 Iron",
+          "spec_label": "7I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 7
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P730 Iron",
+          "spec_label": "8I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 8
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P730 Iron",
+          "spec_label": "9I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 9
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Wedge",
+          "brand": "TaylorMade",
+          "model_name": "P730 Iron",
+          "spec_label": "PW",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "X100",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 10
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Wedge",
+          "brand": "TaylorMade",
+          "model_name": "MG5 Wedge",
+          "spec_label": "GW",
+          "loft_label": "50°",
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "S400",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 11
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Wedge",
+          "brand": "TaylorMade",
+          "model_name": "MG5 Wedge",
+          "spec_label": "SW",
+          "loft_label": "56°",
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "S400",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 12
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Wedge",
+          "brand": "TaylorMade",
+          "model_name": "MG5 Wedge",
+          "spec_label": "LW",
+          "loft_label": "60°",
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold",
+          "shaft_weight": null,
+          "shaft_flex": "S400",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 13
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "category": "Putter",
+          "brand": "TaylorMade",
+          "model_name": "Spider Tour X Putter",
+          "spec_label": null,
+          "loft_label": null,
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "Diamana Putter",
+          "shaft_weight": null,
+          "shaft_flex": "1.0",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "Confirmed from GDO 2025 Baycurrent C Lexus setting page.",
+          "slot_order": 14
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/stats",
+          "source_title": "Collin Morikawa PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード115.18mph、ドライビングディスタンス306.5yd、平均スコア68.67を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/career",
+          "source_title": "Collin Morikawa PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "source_type": "official",
+          "source_url": "https://www.taylormadegolf.com/clubhouse/645086-team-taylormade-at-pebble-beach.html?lang=default",
+          "source_title": "Inside Practice Rounds at Pebble Beach with Rory McIlroy and Team TaylorMade | TaylorMade Golf",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "TaylorMade公式記事にTrackMan実測としてCollin MorikawaのQi10 LS 9.0°ドライバーでトータル313yd、キャリー288yd、ボールスピード171mph、クラブスピード115mphが掲載。"
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/18091/",
+          "source_title": "GDO コリン・モリカワ クラブセッティング 2025年 ベイカレント C レクサス",
+          "checked_at": "2026-04-08T00:00:00+00:00",
+          "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+        }
+      ]
+    },
+    {
+      "profile": {
         "id": "9f7d0830-2940-4759-a30e-4521b3196443",
         "slug": "justin-thomas",
         "display_name": "ジャスティン・トーマス",
@@ -26735,18 +26735,18 @@
         {
           "profile_id": "9f7d0830-2940-4759-a30e-4521b3196443",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/33448/justin-thomas/stats",
-          "source_title": "Justin Thomas PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式2026 stats。Club Head Speed 117.90 mph、Driving Distance 305.3 yd、Scoring Average 69.73を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
-        },
-        {
-          "profile_id": "9f7d0830-2940-4759-a30e-4521b3196443",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/33448/justin-thomas/career",
           "source_title": "Justin Thomas PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR公式career。Lowest Round 59を確認。"
+        },
+        {
+          "profile_id": "9f7d0830-2940-4759-a30e-4521b3196443",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/33448/justin-thomas/stats",
+          "source_title": "Justin Thomas PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式2026 stats。Club Head Speed 117.90 mph、Driving Distance 305.3 yd、Scoring Average 69.73を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
         },
         {
           "profile_id": "9f7d0830-2940-4759-a30e-4521b3196443",
@@ -28960,252 +28960,252 @@
     },
     {
       "profile": {
-        "id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
-        "slug": "hiroshi-iwata",
-        "display_name": "岩田 寛",
-        "kana_name": "イワタ ヒロシ",
-        "birth_date": "1981-01-31",
-        "height_cm": 178,
-        "birthplace": "宮城県",
-        "nationality": "Japan",
+        "id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+        "slug": "matt-mccarty",
+        "display_name": "マット・マッカーティ",
+        "kana_name": "マット・マッカーティ",
+        "birth_date": "1997-12-11",
+        "height_cm": 182,
+        "birthplace": "アメリカ合衆国 アリゾナ州",
+        "nationality": "United States",
         "profile_type": "tour_pro",
         "segment": "verified_batch",
         "season_year": 2024,
         "youtube_channel": "-",
-        "instagram_handle": "-",
-        "x_handle": "-",
+        "instagram_handle": "mattmccarty21",
+        "x_handle": "mattmccarty21",
         "website_url": "-",
         "head_speed_mps": null,
         "average_score": null,
         "best_score": null,
-        "ball_name": "Titleist Pro V1x",
+        "ball_name": "TaylorMade TP5 2024",
         "feature_1": "2024シーズン基準",
-        "feature_2": "国内男子ツアー実戦セット",
+        "feature_2": "PING中心",
         "feature_3": "14本確認済み",
-        "summary": "2024年カシオワールド時点で確認できた岩田寛の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
+        "summary": "マット・マッカーティの2024年クラブセッティングを、使用ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるプロフィールです。",
         "verified_at": "2026-04-08T00:00:00+00:00",
         "latest_source_policy": "2024_season",
         "is_featured": true,
         "is_published": true,
-        "created_at": "2026-04-08T03:19:06.345535+00:00",
-        "updated_at": "2026-04-10T17:25:27.74947+00:00",
+        "created_at": "2026-04-08T10:25:06.281612+00:00",
+        "updated_at": "2026-04-10T17:25:32.046094+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
       "bagItems": [
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Driver",
-          "brand": "Callaway",
-          "model_name": "Paradym Ai Smoke Triple Diamond Driver",
+          "brand": "PING",
+          "model_name": "G430 LST Driver",
           "spec_label": null,
-          "loft_label": "9 degrees",
-          "shaft_brand": "Graphite Design",
-          "shaft_model": "Tour AD PT",
-          "shaft_weight": null,
-          "shaft_flex": "7X",
+          "loft_label": "10.5°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "24 VENTUS BLUE",
+          "shaft_weight": "60g台",
+          "shaft_flex": "X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 1
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Fairway Wood",
-          "brand": "TaylorMade",
-          "model_name": "Qi10 Fairway Wood",
+          "brand": "PING",
+          "model_name": "G410 Fairway Wood",
           "spec_label": "3W",
-          "loft_label": "15 degrees",
-          "shaft_brand": "Graphite Design",
-          "shaft_model": "Tour AD PT",
-          "shaft_weight": null,
-          "shaft_flex": "8X",
+          "loft_label": "14.5°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "24 VENTUS BLUE",
+          "shaft_weight": "70g台",
+          "shaft_flex": "X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 2
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Fairway Wood",
-          "brand": "Callaway",
-          "model_name": "Paradym Triple Diamond Fairway Wood",
-          "spec_label": "5W",
-          "loft_label": "18 degrees",
-          "shaft_brand": "Graphite Design",
-          "shaft_model": "Tour AD PT",
-          "shaft_weight": null,
-          "shaft_flex": "8X",
+          "brand": "PING",
+          "model_name": "G430 MAX Fairway Wood",
+          "spec_label": "7W",
+          "loft_label": "21°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "24 VENTUS BLACK",
+          "shaft_weight": "80g台",
+          "shaft_flex": "X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 3
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
-          "category": "Utility",
-          "brand": "Srixon",
-          "model_name": "ZX Utility",
-          "spec_label": "3U",
-          "loft_label": "20 degrees",
-          "shaft_brand": null,
-          "shaft_model": null,
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "category": "Iron",
+          "brand": "PING",
+          "model_name": "Blueprint S Iron",
+          "spec_label": "4I",
+          "loft_label": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold 120",
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 4
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "620 Forged Iron",
-          "spec_label": "4I",
+          "brand": "PING",
+          "model_name": "Blueprint S Iron",
+          "spec_label": "5I",
           "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold 120",
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 5
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "620 Forged Iron",
-          "spec_label": "5I",
+          "brand": "PING",
+          "model_name": "Blueprint S Iron",
+          "spec_label": "6I",
           "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold 120",
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 6
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "620 Forged Iron",
-          "spec_label": "6I",
+          "brand": "PING",
+          "model_name": "Blueprint S Iron",
+          "spec_label": "7I",
           "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold 120",
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 7
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "620 Forged Iron",
-          "spec_label": "7I",
+          "brand": "PING",
+          "model_name": "Blueprint S Iron",
+          "spec_label": "8I",
           "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold 120",
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 8
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "620 Forged Iron",
-          "spec_label": "8I",
+          "brand": "PING",
+          "model_name": "Blueprint S Iron",
+          "spec_label": "9I",
           "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold 120",
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 9
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
-          "category": "Iron",
-          "brand": "Titleist",
-          "model_name": "620 Forged Iron",
-          "spec_label": "9I",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "category": "Wedge",
+          "brand": "PING",
+          "model_name": "Blueprint S Iron",
+          "spec_label": "PW",
           "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold 120",
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 10
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Wedge",
-          "brand": "Yonex",
-          "model_name": "EZONE MB310",
-          "spec_label": "PW",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
+          "brand": "PING",
+          "model_name": "GLIDE FORGED PRO Wedge",
+          "spec_label": "GW",
+          "loft_label": "50°",
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold Tour Issue",
           "shaft_weight": null,
-          "shaft_flex": null,
+          "shaft_flex": "S400",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 11
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Wedge",
-          "brand": "Titleist",
-          "model_name": "Vokey SM10 Wedge",
-          "spec_label": "GW",
-          "loft_label": "52 degrees",
-          "shaft_brand": null,
-          "shaft_model": null,
+          "brand": "PING",
+          "model_name": "GLIDE FORGED PRO Wedge",
+          "spec_label": "SW",
+          "loft_label": "54°",
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold Tour Issue",
           "shaft_weight": null,
-          "shaft_flex": null,
+          "shaft_flex": "S400",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 12
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Wedge",
-          "brand": "Titleist",
-          "model_name": "Vokey SM10 Wedge",
-          "spec_label": "SW",
-          "loft_label": "58 degrees",
-          "shaft_brand": null,
-          "shaft_model": null,
+          "brand": "PING",
+          "model_name": "GLIDE FORGED PRO Wedge",
+          "spec_label": "LW",
+          "loft_label": "60°",
+          "shaft_brand": "True Temper",
+          "shaft_model": "Dynamic Gold Tour Issue",
           "shaft_weight": null,
-          "shaft_flex": null,
+          "shaft_flex": "S400",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 13
         },
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "category": "Putter",
-          "brand": "Odyssey",
-          "model_name": "White Hot 2-Ball Blade",
+          "brand": "PING",
+          "model_name": "PLD Custom Tyne C Putter",
           "spec_label": null,
           "loft_label": null,
           "shaft_brand": null,
@@ -29214,16 +29214,16 @@
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
+          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
           "slot_order": 14
         }
       ],
       "sources": [
         {
-          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/93/2024/1/",
-          "source_title": "GDO 岩田寛 クラブセッティング 2024年 カシオワールド",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/19177/2024/1/",
+          "source_title": "GDO マット・マッカーティ クラブセッティング 2024年 ブラックデザート選手権",
           "checked_at": "2026-04-08T00:00:00+00:00",
           "notes": "Used for bio fields, 2024 full bag, and ball confirmation."
         }
@@ -29510,252 +29510,252 @@
     },
     {
       "profile": {
-        "id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
-        "slug": "matt-mccarty",
-        "display_name": "マット・マッカーティ",
-        "kana_name": "マット・マッカーティ",
-        "birth_date": "1997-12-11",
-        "height_cm": 182,
-        "birthplace": "アメリカ合衆国 アリゾナ州",
-        "nationality": "United States",
+        "id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+        "slug": "hiroshi-iwata",
+        "display_name": "岩田 寛",
+        "kana_name": "イワタ ヒロシ",
+        "birth_date": "1981-01-31",
+        "height_cm": 178,
+        "birthplace": "宮城県",
+        "nationality": "Japan",
         "profile_type": "tour_pro",
         "segment": "verified_batch",
         "season_year": 2024,
         "youtube_channel": "-",
-        "instagram_handle": "mattmccarty21",
-        "x_handle": "mattmccarty21",
+        "instagram_handle": "-",
+        "x_handle": "-",
         "website_url": "-",
         "head_speed_mps": null,
         "average_score": null,
         "best_score": null,
-        "ball_name": "TaylorMade TP5 2024",
+        "ball_name": "Titleist Pro V1x",
         "feature_1": "2024シーズン基準",
-        "feature_2": "PING中心",
+        "feature_2": "国内男子ツアー実戦セット",
         "feature_3": "14本確認済み",
-        "summary": "マット・マッカーティの2024年クラブセッティングを、使用ドライバー、フェアウェイウッド、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるプロフィールです。",
+        "summary": "2024年カシオワールド時点で確認できた岩田寛の14本のクラブセッティングと使用ボールを掲載するプロフィール。",
         "verified_at": "2026-04-08T00:00:00+00:00",
         "latest_source_policy": "2024_season",
         "is_featured": true,
         "is_published": true,
-        "created_at": "2026-04-08T10:25:06.281612+00:00",
-        "updated_at": "2026-04-10T17:25:32.046094+00:00",
+        "created_at": "2026-04-08T03:19:06.345535+00:00",
+        "updated_at": "2026-04-10T17:25:27.74947+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
       "bagItems": [
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Driver",
-          "brand": "PING",
-          "model_name": "G430 LST Driver",
+          "brand": "Callaway",
+          "model_name": "Paradym Ai Smoke Triple Diamond Driver",
           "spec_label": null,
-          "loft_label": "10.5°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "24 VENTUS BLUE",
-          "shaft_weight": "60g台",
-          "shaft_flex": "X",
+          "loft_label": "9 degrees",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD PT",
+          "shaft_weight": null,
+          "shaft_flex": "7X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 1
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Fairway Wood",
-          "brand": "PING",
-          "model_name": "G410 Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi10 Fairway Wood",
           "spec_label": "3W",
-          "loft_label": "14.5°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "24 VENTUS BLUE",
-          "shaft_weight": "70g台",
-          "shaft_flex": "X",
+          "loft_label": "15 degrees",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD PT",
+          "shaft_weight": null,
+          "shaft_flex": "8X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 2
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Fairway Wood",
-          "brand": "PING",
-          "model_name": "G430 MAX Fairway Wood",
-          "spec_label": "7W",
-          "loft_label": "21°",
-          "shaft_brand": "Fujikura",
-          "shaft_model": "24 VENTUS BLACK",
-          "shaft_weight": "80g台",
-          "shaft_flex": "X",
+          "brand": "Callaway",
+          "model_name": "Paradym Triple Diamond Fairway Wood",
+          "spec_label": "5W",
+          "loft_label": "18 degrees",
+          "shaft_brand": "Graphite Design",
+          "shaft_model": "Tour AD PT",
+          "shaft_weight": null,
+          "shaft_flex": "8X",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 3
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
-          "category": "Iron",
-          "brand": "PING",
-          "model_name": "Blueprint S Iron",
-          "spec_label": "4I",
-          "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold 120",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "category": "Utility",
+          "brand": "Srixon",
+          "model_name": "ZX Utility",
+          "spec_label": "3U",
+          "loft_label": "20 degrees",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 4
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Iron",
-          "brand": "PING",
-          "model_name": "Blueprint S Iron",
-          "spec_label": "5I",
+          "brand": "Titleist",
+          "model_name": "620 Forged Iron",
+          "spec_label": "4I",
           "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold 120",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 5
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Iron",
-          "brand": "PING",
-          "model_name": "Blueprint S Iron",
-          "spec_label": "6I",
+          "brand": "Titleist",
+          "model_name": "620 Forged Iron",
+          "spec_label": "5I",
           "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold 120",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 6
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Iron",
-          "brand": "PING",
-          "model_name": "Blueprint S Iron",
-          "spec_label": "7I",
+          "brand": "Titleist",
+          "model_name": "620 Forged Iron",
+          "spec_label": "6I",
           "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold 120",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 7
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Iron",
-          "brand": "PING",
-          "model_name": "Blueprint S Iron",
-          "spec_label": "8I",
+          "brand": "Titleist",
+          "model_name": "620 Forged Iron",
+          "spec_label": "7I",
           "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold 120",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 8
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Iron",
-          "brand": "PING",
-          "model_name": "Blueprint S Iron",
-          "spec_label": "9I",
+          "brand": "Titleist",
+          "model_name": "620 Forged Iron",
+          "spec_label": "8I",
           "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold 120",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 9
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
-          "category": "Wedge",
-          "brand": "PING",
-          "model_name": "Blueprint S Iron",
-          "spec_label": "PW",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
+          "category": "Iron",
+          "brand": "Titleist",
+          "model_name": "620 Forged Iron",
+          "spec_label": "9I",
           "loft_label": null,
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold 120",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 10
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Wedge",
-          "brand": "PING",
-          "model_name": "GLIDE FORGED PRO Wedge",
-          "spec_label": "GW",
-          "loft_label": "50°",
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold Tour Issue",
+          "brand": "Yonex",
+          "model_name": "EZONE MB310",
+          "spec_label": "PW",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
-          "shaft_flex": "S400",
+          "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 11
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Wedge",
-          "brand": "PING",
-          "model_name": "GLIDE FORGED PRO Wedge",
-          "spec_label": "SW",
-          "loft_label": "54°",
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold Tour Issue",
+          "brand": "Titleist",
+          "model_name": "Vokey SM10 Wedge",
+          "spec_label": "GW",
+          "loft_label": "52 degrees",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
-          "shaft_flex": "S400",
+          "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 12
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Wedge",
-          "brand": "PING",
-          "model_name": "GLIDE FORGED PRO Wedge",
-          "spec_label": "LW",
-          "loft_label": "60°",
-          "shaft_brand": "True Temper",
-          "shaft_model": "Dynamic Gold Tour Issue",
+          "brand": "Titleist",
+          "model_name": "Vokey SM10 Wedge",
+          "spec_label": "SW",
+          "loft_label": "58 degrees",
+          "shaft_brand": null,
+          "shaft_model": null,
           "shaft_weight": null,
-          "shaft_flex": "S400",
+          "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 13
         },
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "category": "Putter",
-          "brand": "PING",
-          "model_name": "PLD Custom Tyne C Putter",
+          "brand": "Odyssey",
+          "model_name": "White Hot 2-Ball Blade",
           "spec_label": null,
           "loft_label": null,
           "shaft_brand": null,
@@ -29764,16 +29764,16 @@
           "shaft_flex": null,
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "Confirmed from GDO 2024 Black Desert Championship setting page.",
+          "source_note": "Confirmed from GDO 2024 Casio World setting page.",
           "slot_order": 14
         }
       ],
       "sources": [
         {
-          "profile_id": "2422b358-14b3-4b84-a95b-d0b33759f1f6",
+          "profile_id": "1347a535-50cc-40c1-9510-2065a8e9b3d8",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/19177/2024/1/",
-          "source_title": "GDO マット・マッカーティ クラブセッティング 2024年 ブラックデザート選手権",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/93/2024/1/",
+          "source_title": "GDO 岩田寛 クラブセッティング 2024年 カシオワールド",
           "checked_at": "2026-04-08T00:00:00+00:00",
           "notes": "Used for bio fields, 2024 full bag, and ball confirmation."
         }
@@ -30881,6 +30881,253 @@
     },
     {
       "profile": {
+        "id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+        "slug": "seira-oki",
+        "display_name": "沖せいら",
+        "kana_name": "オキ セイラ",
+        "birth_date": "1992-09-25",
+        "height_cm": 161,
+        "birthplace": "山口県防府市",
+        "nationality": "Japan",
+        "profile_type": "tour_pro",
+        "segment": "verified_batch",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "seira_oki",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": null,
+        "ball_name": "TOUR B X ボール",
+        "feature_1": "キャロウェイ中心",
+        "feature_2": "2026年2月記事",
+        "feature_3": "公開範囲で構成整理",
+        "summary": "公開ギア紹介記事をもとに整理した沖せいらのセッティング。",
+        "verified_at": "2026-04-09T00:00:00+00:00",
+        "latest_source_policy": "verified_source_available",
+        "is_featured": false,
+        "is_published": true,
+        "created_at": "2026-04-09T11:32:56.863055+00:00",
+        "updated_at": "2026-04-18T23:36:40.147963+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Driver",
+          "brand": "Callaway",
+          "model_name": "PARADYM Driver",
+          "spec_label": null,
+          "loft_label": "10.5度",
+          "shaft_brand": "Mitsubishi Chemical",
+          "shaft_model": "TENSEI TM70",
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Fairway Wood",
+          "brand": "Yamaha",
+          "model_name": "RMX VD Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15度",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Fairway Wood",
+          "brand": "Callaway",
+          "model_name": "PARADYM X Fairway Wood",
+          "spec_label": "7W",
+          "loft_label": "21度",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Utility",
+          "brand": "Callaway",
+          "model_name": "PARADYM Utility",
+          "spec_label": "5U",
+          "loft_label": "24度",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Iron",
+          "brand": "Cobra",
+          "model_name": "KING FORGED TOUR IRON",
+          "spec_label": "4I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
+          "slot_order": 5
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Iron",
+          "brand": "Cobra",
+          "model_name": "KING FORGED TOUR IRON",
+          "spec_label": "5I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
+          "slot_order": 6
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Iron",
+          "brand": "Cobra",
+          "model_name": "KING FORGED TOUR IRON",
+          "spec_label": "6I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
+          "slot_order": 7
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Iron",
+          "brand": "Cobra",
+          "model_name": "KING FORGED TOUR IRON",
+          "spec_label": "7I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
+          "slot_order": 8
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Iron",
+          "brand": "Cobra",
+          "model_name": "KING FORGED TOUR IRON",
+          "spec_label": "8I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
+          "slot_order": 9
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Iron",
+          "brand": "Cobra",
+          "model_name": "KING FORGED TOUR IRON",
+          "spec_label": "9I",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
+          "slot_order": 10
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Iron",
+          "brand": "Cobra",
+          "model_name": "KING FORGED TOUR IRON",
+          "spec_label": "PW",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
+          "slot_order": 11
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "category": "Wedge",
+          "brand": "TaylorMade",
+          "model_name": "M2 Wedge",
+          "spec_label": null,
+          "loft_label": "48度",
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
+          "slot_order": 12
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "source_type": "article",
+          "source_url": "https://golfeaglecafe.com/seira-oki/",
+          "source_title": "沖せいらプロ クラブセッティング パター ボール紹介2026 | ゴルフイーグルカフェ",
+          "checked_at": "2026-04-19T00:00:00+00:00",
+          "notes": "公開確認できたドライバーからウェッジ、使用ボールまでの構成整理用。"
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "source_type": "article",
+          "source_url": "https://www.alba.co.jp/tour/players/2901/",
+          "source_title": "沖せいら プロフィール｜ALBA Net",
+          "checked_at": "2026-04-19T00:00:00+00:00",
+          "notes": "生年月日、出身地、身長の確認用。"
+        }
+      ]
+    },
+    {
+      "profile": {
         "id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
         "slug": "minami-kiyomoto",
         "display_name": "清本美波",
@@ -31143,10 +31390,10 @@
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
           "source_type": "article",
-          "source_url": "https://www.youtube.com/watch?v=yVEicb5TaHc&t=148s",
-          "source_title": "横田真一チャンネル：プロテスト1位合格の女子プロが男子ツアーに挑戦！ 前澤杯前日 清本美波さんのクラブセッティング",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/18508/2024/2/",
+          "source_title": "GDO 清本美波 クラブセッティング 2024年 HEIWA×PGMチャリティゴルフ 練習日",
           "checked_at": "2026-05-19T00:00:00+00:00",
-          "notes": "クラブセッティング動画として確認。現行モデル確認はTaylorMade公式、詳細スペック確認はGDO掲載情報を優先し、動画は補助ソースとして扱う。"
+          "notes": "2024年時点の詳細スペック確認用。2026年の現行モデル確認はTaylorMade公式を優先。"
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
@@ -31159,18 +31406,10 @@
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/18508/2024/2/",
-          "source_title": "GDO 清本美波 クラブセッティング 2024年 HEIWA×PGMチャリティゴルフ 練習日",
+          "source_url": "https://www.youtube.com/watch?v=yVEicb5TaHc&t=148s",
+          "source_title": "横田真一チャンネル：プロテスト1位合格の女子プロが男子ツアーに挑戦！ 前澤杯前日 清本美波さんのクラブセッティング",
           "checked_at": "2026-05-19T00:00:00+00:00",
-          "notes": "2024年時点の詳細スペック確認用。2026年の現行モデル確認はTaylorMade公式を優先。"
-        },
-        {
-          "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
-          "source_type": "official",
-          "source_url": "https://prtimes.jp/main/html/rd/p/000000184.000024046.html",
-          "source_title": "清本美波がMARK & LONAと2026年シーズンよりウェア契約",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "2026年シーズンのウェア契約とInstagramアカウント確認用。クラブセッティングの更新ソースではない。"
+          "notes": "クラブセッティング動画として確認。現行モデル確認はTaylorMade公式、詳細スペック確認はGDO掲載情報を優先し、動画は補助ソースとして扱う。"
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
@@ -31182,11 +31421,11 @@
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/189657/1/",
-          "source_title": "清本美波『メチャクチャ上出来』4位発進 “クセ”の持ち球が強風にハマる",
-          "checked_at": "2026-05-04T00:00:00+00:00",
-          "notes": "2026年ヤマハレディース葛城での大会文脈確認用。"
+          "source_type": "official",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000184.000024046.html",
+          "source_title": "清本美波がMARK & LONAと2026年シーズンよりウェア契約",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "2026年シーズンのウェア契約とInstagramアカウント確認用。クラブセッティングの更新ソースではない。"
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
@@ -31195,6 +31434,14 @@
           "source_title": "大須賀望が首位スタート 清本美波2位／国内女子下部開幕戦",
           "checked_at": "2026-05-04T00:00:00+00:00",
           "notes": "2026年4月の下部ツアー上位発進記事。"
+        },
+        {
+          "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/189657/1/",
+          "source_title": "清本美波『メチャクチャ上出来』4位発進 “クセ”の持ち球が強風にハマる",
+          "checked_at": "2026-05-04T00:00:00+00:00",
+          "notes": "2026年ヤマハレディース葛城での大会文脈確認用。"
         }
       ]
     },
@@ -31334,6 +31581,14 @@
         {
           "profile_id": "8b4a1ed6-1a42-4310-a653-58a04be2e4f1",
           "source_type": "article",
+          "source_url": "https://mycaddie.jp/tour/player/369/setting",
+          "source_title": "my caddie 川崎志穂のギアセッティング・使用ギア情報",
+          "checked_at": "2026-05-06T00:00:00+00:00",
+          "notes": "2026年1月16日現在と記載の最新公開ギアカテゴリ構成。"
+        },
+        {
+          "profile_id": "8b4a1ed6-1a42-4310-a653-58a04be2e4f1",
+          "source_type": "article",
           "source_url": "https://mycaddie.jp/news/tour/detail/TN024807",
           "source_title": "宮里藍『インパクトゾーンが長い』 川崎志穂とともにB3MAXシリーズをアピール",
           "checked_at": "2026-05-06T00:00:00+00:00",
@@ -31346,14 +31601,6 @@
           "source_title": "GDO 川崎志穂プロフィール",
           "checked_at": "2026-05-06T00:00:00+00:00",
           "notes": "171cmの長身と260yd超のロングドライブという選手文脈確認用。"
-        },
-        {
-          "profile_id": "8b4a1ed6-1a42-4310-a653-58a04be2e4f1",
-          "source_type": "article",
-          "source_url": "https://mycaddie.jp/tour/player/369/setting",
-          "source_title": "my caddie 川崎志穂のギアセッティング・使用ギア情報",
-          "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "2026年1月16日現在と記載の最新公開ギアカテゴリ構成。"
         }
       ]
     },
@@ -34648,18 +34895,18 @@
         {
           "profile_id": "0871079f-1d57-4b99-9ec3-450a3e1de356",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/18322/",
-          "source_title": "GDO 桑木志帆 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Source listed 12本構成として確認できたクラブのみ反映。"
-        },
-        {
-          "profile_id": "0871079f-1d57-4b99-9ec3-450a3e1de356",
-          "source_type": "article",
           "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
           "source_title": "スポーツナビ 国内女子クラブセッティング一覧（桑木志帆）",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
+        },
+        {
+          "profile_id": "0871079f-1d57-4b99-9ec3-450a3e1de356",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/18322/",
+          "source_title": "GDO 桑木志帆 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Source listed 12本構成として確認できたクラブのみ反映。"
         }
       ]
     },
@@ -35473,6 +35720,285 @@
           "source_title": "GDO 内田ことこ クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for full bag and ball confirmation."
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+        "slug": "saki-nagamine",
+        "display_name": "永峰咲希",
+        "kana_name": "ナガミネ サキ",
+        "birth_date": "1995-04-28",
+        "height_cm": 158,
+        "birthplace": "宮崎県宮崎市",
+        "nationality": "Japan",
+        "profile_type": "tour_pro",
+        "segment": "domestic_women",
+        "season_year": 2026,
+        "youtube_channel": "-",
+        "instagram_handle": "-",
+        "x_handle": "-",
+        "website_url": "-",
+        "head_speed_mps": null,
+        "average_score": null,
+        "best_score": null,
+        "ball_name": "Titleist Pro V1 2023",
+        "feature_1": "2026年GDO確認",
+        "feature_2": "契約フリー初年度",
+        "feature_3": "GT3 / P770 / SM11",
+        "summary": "2026年ダイキンオーキッドレディス時点で確認された永峰咲希のクラブセッティング。契約フリー初年度にTitleist GT3、TaylorMade P770、Vokey SM11、Pro V1を選んだ14本です。",
+        "verified_at": "2026-05-22T00:00:00+00:00",
+        "latest_source_policy": "gdo_2026_tour_gear",
+        "is_featured": false,
+        "is_published": true,
+        "created_at": "2026-04-09T06:46:00.330139+00:00",
+        "updated_at": "2026-05-21T16:04:42.708827+00:00",
+        "contractStatus": null,
+        "contractMaker": null
+      },
+      "bagItems": [
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Driver",
+          "brand": "Titleist",
+          "model_name": "GT3 Driver",
+          "spec_label": "1W",
+          "loft_label": "10.5°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "SPEEDER NX GREEN",
+          "shaft_weight": "50g台",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 1
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Fairway Wood",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "spec_label": "3W",
+          "loft_label": "15°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "SPEEDER NX GREEN",
+          "shaft_weight": "50g台",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 2
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Fairway Wood",
+          "brand": "Titleist",
+          "model_name": "GT2 Fairway Wood",
+          "spec_label": "7W",
+          "loft_label": "21°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "SPEEDER NX GREEN",
+          "shaft_weight": "50g台",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 3
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Fairway Wood",
+          "brand": "TaylorMade",
+          "model_name": "Qi35 Fairway Wood",
+          "spec_label": "9W",
+          "loft_label": "24°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "VENTUS TR BLUE",
+          "shaft_weight": "70g台",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 4
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Utility",
+          "brand": "TaylorMade",
+          "model_name": "Qi4D Rescue",
+          "spec_label": "6UT",
+          "loft_label": "28°",
+          "shaft_brand": "Fujikura",
+          "shaft_model": "TR HYBRID",
+          "shaft_weight": "75g",
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 5
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P770 Iron",
+          "spec_label": "6I",
+          "loft_label": null,
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO MODUS3 Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.",
+          "slot_order": 6
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P770 Iron",
+          "spec_label": "7I",
+          "loft_label": null,
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO MODUS3 Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.",
+          "slot_order": 7
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P770 Iron",
+          "spec_label": "8I",
+          "loft_label": null,
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO MODUS3 Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.",
+          "slot_order": 8
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Iron",
+          "brand": "TaylorMade",
+          "model_name": "P770 Iron",
+          "spec_label": "9I",
+          "loft_label": null,
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO MODUS3 Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.",
+          "slot_order": 9
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Wedge",
+          "brand": "TaylorMade",
+          "model_name": "P7CB Iron",
+          "spec_label": "PW",
+          "loft_label": null,
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO MODUS3 Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. PW only P7CB.",
+          "slot_order": 10
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Wedge",
+          "brand": "Titleist",
+          "model_name": "Vokey Design SM11 Wedge",
+          "spec_label": "48°",
+          "loft_label": "48°",
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 11
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Wedge",
+          "brand": "Titleist",
+          "model_name": "Vokey Design SM11 Wedge",
+          "spec_label": "54°",
+          "loft_label": "54°",
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 12
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Wedge",
+          "brand": "Titleist",
+          "model_name": "Vokey Design SM11 Wedge",
+          "spec_label": "58°",
+          "loft_label": "58°",
+          "shaft_brand": "Nippon Shaft",
+          "shaft_model": "NS PRO Prototype",
+          "shaft_weight": null,
+          "shaft_flex": "S",
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 13
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "category": "Putter",
+          "brand": "Scotty Cameron",
+          "model_name": "Phantom 5 S Putter",
+          "spec_label": "PT",
+          "loft_label": null,
+          "shaft_brand": null,
+          "shaft_model": null,
+          "shaft_weight": null,
+          "shaft_flex": null,
+          "carry_distance": null,
+          "total_distance": null,
+          "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.",
+          "slot_order": 14
+        }
+      ],
+      "sources": [
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/news/tgt/jlpga/article/189001/1/",
+          "source_title": "GDO 永峰咲希の最新14本 2026年 ダイキンオーキッドレディス",
+          "checked_at": "2026-05-22T00:00:00+00:00",
+          "notes": "Used for 2026 full bag and ball confirmation."
+        },
+        {
+          "profile_id": "a6a630d8-11a5-4f46-9e15-36ee9d79ce23",
+          "source_type": "article",
+          "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
+          "source_title": "スポーツナビ 国内女子クラブセッティング一覧（永峰咲希）",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
         }
       ]
     },
@@ -36336,10 +36862,10 @@
         {
           "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
           "source_type": "article",
-          "source_url": "https://yumi-sasahara.amebaownd.com/pages/228451/profile",
-          "source_title": "笹原優美 Official Site Profile",
+          "source_url": "https://goltama.net/golfer/yumi-sasahara/",
+          "source_title": "ゴル魂！ 笹原優美 プロフィール",
           "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "クラブ契約テーラーメイド、ボール テーラーメイド、ウェア ジュン アンド ロペの公開確認用。"
+          "notes": "クラブ／テーラーメイド、ボール／テーラーメイド、ウェア／ジュンアンドロペ、シューズ／ナイキの公開確認用。"
         },
         {
           "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
@@ -36352,18 +36878,18 @@
         {
           "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
           "source_type": "article",
-          "source_url": "https://goltama.net/golfer/yumi-sasahara/",
-          "source_title": "ゴル魂！ 笹原優美 プロフィール",
-          "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "クラブ／テーラーメイド、ボール／テーラーメイド、ウェア／ジュンアンドロペ、シューズ／ナイキの公開確認用。"
-        },
-        {
-          "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
-          "source_type": "article",
           "source_url": "https://www.alba.co.jp/tour/players/1706/",
           "source_title": "ALBA 笹原優美プロフィール",
           "checked_at": "2026-05-06T00:00:00+00:00",
           "notes": "基本プロフィール確認用。"
+        },
+        {
+          "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
+          "source_type": "article",
+          "source_url": "https://yumi-sasahara.amebaownd.com/pages/228451/profile",
+          "source_title": "笹原優美 Official Site Profile",
+          "checked_at": "2026-05-06T00:00:00+00:00",
+          "notes": "クラブ契約テーラーメイド、ボール テーラーメイド、ウェア ジュン アンド ロペの公開確認用。"
         }
       ]
     },
@@ -37460,18 +37986,18 @@
         {
           "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
           "source_type": "article",
-          "source_url": "https://www.lpga.com/players/yuri-yoshida/98611",
-          "source_title": "LPGA Player Profile: Yuri Yoshida",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        },
-        {
-          "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/16327/2025/1/",
           "source_title": "GDO 吉田優利 クラブセッティング 2025年 ファウンダーズカップ",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for full bag and ball confirmation."
+        },
+        {
+          "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
+          "source_type": "article",
+          "source_url": "https://www.lpga.com/players/yuri-yoshida/98611",
+          "source_title": "LPGA Player Profile: Yuri Yoshida",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
         }
       ]
     },
@@ -37801,14 +38327,6 @@
         {
           "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/144969/1/",
-          "source_title": "保坂真由ツアー初V スタイヤーノ梨々菜とのPO制す／女子下部",
-          "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "2022年ラシンク・ニンジニア／RKBレディース優勝の確認用。"
-        },
-        {
-          "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/profile/9970/",
           "source_title": "GDO 保坂真由プロフィール",
           "checked_at": "2026-05-06T00:00:00+00:00",
@@ -37821,6 +38339,14 @@
           "source_title": "ALBA 保坂真由プロフィール",
           "checked_at": "2026-05-06T00:00:00+00:00",
           "notes": "基本プロフィールと得意クラブの公開確認用。"
+        },
+        {
+          "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/144969/1/",
+          "source_title": "保坂真由ツアー初V スタイヤーノ梨々菜とのPO制す／女子下部",
+          "checked_at": "2026-05-06T00:00:00+00:00",
+          "notes": "2022年ラシンク・ニンジニア／RKBレディース優勝の確認用。"
         },
         {
           "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
@@ -40034,253 +40560,6 @@
     },
     {
       "profile": {
-        "id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-        "slug": "seira-oki",
-        "display_name": "沖せいら",
-        "kana_name": "オキ セイラ",
-        "birth_date": "1992-09-25",
-        "height_cm": 161,
-        "birthplace": "山口県防府市",
-        "nationality": "Japan",
-        "profile_type": "tour_pro",
-        "segment": "verified_batch",
-        "season_year": 2026,
-        "youtube_channel": "-",
-        "instagram_handle": "seira_oki",
-        "x_handle": "-",
-        "website_url": "-",
-        "head_speed_mps": null,
-        "average_score": null,
-        "best_score": null,
-        "ball_name": "TOUR B X ボール",
-        "feature_1": "キャロウェイ中心",
-        "feature_2": "2026年2月記事",
-        "feature_3": "公開範囲で構成整理",
-        "summary": "公開ギア紹介記事をもとに整理した沖せいらのセッティング。",
-        "verified_at": "2026-04-09T00:00:00+00:00",
-        "latest_source_policy": "verified_source_available",
-        "is_featured": false,
-        "is_published": true,
-        "created_at": "2026-04-09T11:32:56.863055+00:00",
-        "updated_at": "2026-04-18T23:36:40.147963+00:00",
-        "contractStatus": null,
-        "contractMaker": null
-      },
-      "bagItems": [
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Driver",
-          "brand": "Callaway",
-          "model_name": "PARADYM Driver",
-          "spec_label": null,
-          "loft_label": "10.5度",
-          "shaft_brand": "Mitsubishi Chemical",
-          "shaft_model": "TENSEI TM70",
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
-          "slot_order": 1
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Fairway Wood",
-          "brand": "Yamaha",
-          "model_name": "RMX VD Fairway Wood",
-          "spec_label": "3W",
-          "loft_label": "15度",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
-          "slot_order": 2
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Fairway Wood",
-          "brand": "Callaway",
-          "model_name": "PARADYM X Fairway Wood",
-          "spec_label": "7W",
-          "loft_label": "21度",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
-          "slot_order": 3
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Utility",
-          "brand": "Callaway",
-          "model_name": "PARADYM Utility",
-          "spec_label": "5U",
-          "loft_label": "24度",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
-          "slot_order": 4
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Iron",
-          "brand": "Cobra",
-          "model_name": "KING FORGED TOUR IRON",
-          "spec_label": "4I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
-          "slot_order": 5
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Iron",
-          "brand": "Cobra",
-          "model_name": "KING FORGED TOUR IRON",
-          "spec_label": "5I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
-          "slot_order": 6
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Iron",
-          "brand": "Cobra",
-          "model_name": "KING FORGED TOUR IRON",
-          "spec_label": "6I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
-          "slot_order": 7
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Iron",
-          "brand": "Cobra",
-          "model_name": "KING FORGED TOUR IRON",
-          "spec_label": "7I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
-          "slot_order": 8
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Iron",
-          "brand": "Cobra",
-          "model_name": "KING FORGED TOUR IRON",
-          "spec_label": "8I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
-          "slot_order": 9
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Iron",
-          "brand": "Cobra",
-          "model_name": "KING FORGED TOUR IRON",
-          "spec_label": "9I",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
-          "slot_order": 10
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Iron",
-          "brand": "Cobra",
-          "model_name": "KING FORGED TOUR IRON",
-          "spec_label": "PW",
-          "loft_label": null,
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェの(#4-PW)表記を番手ごとに展開。",
-          "slot_order": 11
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "category": "Wedge",
-          "brand": "TaylorMade",
-          "model_name": "M2 Wedge",
-          "spec_label": null,
-          "loft_label": "48度",
-          "shaft_brand": null,
-          "shaft_model": null,
-          "shaft_weight": null,
-          "shaft_flex": null,
-          "carry_distance": null,
-          "total_distance": null,
-          "source_note": "ゴルフイーグルカフェ 2026年2月記事より確認。",
-          "slot_order": 12
-        }
-      ],
-      "sources": [
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "source_type": "article",
-          "source_url": "https://www.alba.co.jp/tour/players/2901/",
-          "source_title": "沖せいら プロフィール｜ALBA Net",
-          "checked_at": "2026-04-19T00:00:00+00:00",
-          "notes": "生年月日、出身地、身長の確認用。"
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "source_type": "article",
-          "source_url": "https://golfeaglecafe.com/seira-oki/",
-          "source_title": "沖せいらプロ クラブセッティング パター ボール紹介2026 | ゴルフイーグルカフェ",
-          "checked_at": "2026-04-19T00:00:00+00:00",
-          "notes": "公開確認できたドライバーからウェッジ、使用ボールまでの構成整理用。"
-        }
-      ]
-    },
-    {
-      "profile": {
         "id": "5f163b2b-266e-4820-b9f2-da185a6f0400",
         "slug": "nasa-hataoka",
         "display_name": "畑岡奈紗",
@@ -41986,18 +42265,18 @@
         {
           "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
           "source_type": "official",
-          "source_url": "https://www.junandrope.jp/progolfer/takano/",
-          "source_title": "高野愛姫 プロ - JUN & ROPE'",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "Instagramアカウント、プロフィール、2025年ヨネックスレディス優勝文脈の確認用。"
-        },
-        {
-          "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
-          "source_type": "official",
           "source_url": "https://www.instagram.com/fol.gv/",
           "source_title": "髙野愛姫 Instagram",
           "checked_at": "2026-05-15T00:00:00+00:00",
           "notes": "公式Instagramアカウント確認用。JUN & ROPE公式プロフィールでも同アカウントを確認。"
+        },
+        {
+          "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
+          "source_type": "official",
+          "source_url": "https://www.junandrope.jp/progolfer/takano/",
+          "source_title": "高野愛姫 プロ - JUN & ROPE'",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "Instagramアカウント、プロフィール、2025年ヨネックスレディス優勝文脈の確認用。"
         },
         {
           "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
@@ -42281,18 +42560,18 @@
         {
           "profile_id": "084ef678-7ea5-492f-882e-53df481cd247",
           "source_type": "article",
-          "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
-          "source_title": "スポーツナビ 国内女子クラブセッティング一覧（安田祐香）",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        },
-        {
-          "profile_id": "084ef678-7ea5-492f-882e-53df481cd247",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/17793/2025/3/",
           "source_title": "GDO 安田祐香 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for full bag and ball confirmation."
+        },
+        {
+          "profile_id": "084ef678-7ea5-492f-882e-53df481cd247",
+          "source_type": "article",
+          "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
+          "source_title": "スポーツナビ 国内女子クラブセッティング一覧（安田祐香）",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
         }
       ]
     },
@@ -42823,18 +43102,18 @@
         {
           "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/stats/10505/2026/",
-          "source_title": "GDO 仲宗根澄香 2026年度スタッツ/ランキング",
-          "checked_at": "2026-05-04T00:00:00+00:00",
-          "notes": "2026年ヤマハレディース葛城2位など大会文脈確認用。"
-        },
-        {
-          "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
-          "source_type": "article",
           "source_url": "https://www.skygroup.jp/company/player/",
           "source_title": "Sky株式会社 所属選手（ゴルフ）",
           "checked_at": "2026-05-04T00:00:00+00:00",
           "notes": "所属情報の確認用。"
+        },
+        {
+          "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/stats/10505/2026/",
+          "source_title": "GDO 仲宗根澄香 2026年度スタッツ/ランキング",
+          "checked_at": "2026-05-04T00:00:00+00:00",
+          "notes": "2026年ヤマハレディース葛城2位など大会文脈確認用。"
         },
         {
           "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
@@ -43405,18 +43684,18 @@
         {
           "profile_id": "7fe1b5d2-15eb-4303-940b-307e6429c7ad",
           "source_type": "official",
-          "source_url": "https://www.lpga.or.jp/stats/2025/lpga/distance/1",
-          "source_title": "ドライビングディスタンス｜JLPGA｜2025",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "JLPGA official distance page confirms 2025 driving distance 250.95 yd. Public TrackMan or GCQuad numeric session data was not confirmed."
-        },
-        {
-          "profile_id": "7fe1b5d2-15eb-4303-940b-307e6429c7ad",
-          "source_type": "official",
           "source_url": "https://www.lpga.or.jp/stats/2025/lpga/stroke/1",
           "source_title": "平均ストローク｜JLPGA｜2025",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "JLPGA official stats page used for 2025 average stroke 70.2759."
+        },
+        {
+          "profile_id": "7fe1b5d2-15eb-4303-940b-307e6429c7ad",
+          "source_type": "official",
+          "source_url": "https://www.lpga.or.jp/stats/2025/lpga/distance/1",
+          "source_title": "ドライビングディスタンス｜JLPGA｜2025",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "JLPGA official distance page confirms 2025 driving distance 250.95 yd. Public TrackMan or GCQuad numeric session data was not confirmed."
         },
         {
           "profile_id": "7fe1b5d2-15eb-4303-940b-307e6429c7ad",
@@ -45389,19 +45668,19 @@
       "sources": [
         {
           "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",
-          "source_type": "article",
-          "source_url": "https://www.veragolf.jp/influencers/313",
-          "source_title": "三浦 桃香｜インフルエンサー",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "公式Instagramアカウントとティーチングプロ/メディア活動文脈の確認用。"
-        },
-        {
-          "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",
           "source_type": "official",
           "source_url": "https://www.instagram.com/momokamiura_official/",
           "source_title": "三浦桃香 Instagram",
           "checked_at": "2026-05-15T00:00:00+00:00",
           "notes": "公式Instagramアカウント確認用。"
+        },
+        {
+          "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",
+          "source_type": "article",
+          "source_url": "https://www.veragolf.jp/influencers/313",
+          "source_title": "三浦 桃香｜インフルエンサー",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "公式Instagramアカウントとティーチングプロ/メディア活動文脈の確認用。"
         },
         {
           "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",

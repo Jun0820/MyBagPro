@@ -7,174 +7,52 @@
     "birth_date": "1995-04-28",
     "height_cm": 158,
     "profile_type": "tour_pro",
-    "segment": "needs_verification",
+    "segment": "domestic_women",
     "season_year": 2026,
-    "ball_name": "DUNLOP SRIXON Z-STAR XV",
-    "feature_1": "要再確認",
-    "feature_2": "公開保留",
-    "feature_3": "汎用データ検出",
-    "summary": "永峰咲希のクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
-    "latest_source_policy": "needs_source_verification",
+    "ball_name": "Titleist Pro V1 2023",
+    "feature_1": "2026年GDO確認",
+    "feature_2": "契約フリー初年度",
+    "feature_3": "GT3 / P770 / SM11",
+    "summary": "2026年ダイキンオーキッドレディス時点で確認された永峰咲希のクラブセッティング。契約フリー初年度にTitleist GT3、TaylorMade P770、Vokey SM11、Pro V1を選んだ14本です。",
+    "latest_source_policy": "gdo_2026_tour_gear",
     "is_featured": false,
-    "is_published": false,
-    "verified_at": "2026-04-09T00:00:00.000Z",
+    "is_published": true,
+    "verified_at": "2026-05-22T00:00:00.000Z",
     "kana_name": "ナガミネ サキ"
   },
   "bagItems": [
-    {
-      "category": "Driver",
-      "slot_order": 1,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi Driver",
-      "loft_label": "10.5°",
-      "shaft_brand": "Fujikura",
-      "shaft_model": "VENTUS BLUE",
-      "shaft_flex": "S",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": true
-    },
-    {
-      "category": "Fairway Wood",
-      "slot_order": 2,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi Fairway Wood",
-      "spec_label": "3W",
-      "loft_label": "15°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Fairway Wood",
-      "slot_order": 3,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi Fairway Wood",
-      "spec_label": "5W",
-      "loft_label": "18°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Utility",
-      "slot_order": 4,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi Hybrid",
-      "spec_label": "4H",
-      "loft_label": "22°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Utility",
-      "slot_order": 5,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi Hybrid",
-      "spec_label": "5H",
-      "loft_label": "25°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 6,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi7 Iron",
-      "spec_label": "6I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 7,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi7 Iron",
-      "spec_label": "7I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 8,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi7 Iron",
-      "spec_label": "8I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 9,
-      "brand": "Dunlop",
-      "model_name": "Srixon ZXi7 Iron",
-      "spec_label": "9I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 10,
-      "brand": "Cleveland",
-      "model_name": "RTX 6 ZipCore",
-      "spec_label": "PW",
-      "loft_label": "46°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 11,
-      "brand": "Cleveland",
-      "model_name": "RTX 6 ZipCore",
-      "spec_label": "AW",
-      "loft_label": "50°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 12,
-      "brand": "Cleveland",
-      "model_name": "RTX 6 ZipCore",
-      "spec_label": "SW",
-      "loft_label": "54°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 13,
-      "brand": "Cleveland",
-      "model_name": "RTX 6 ZipCore",
-      "spec_label": "LW",
-      "loft_label": "58°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Putter",
-      "slot_order": 14,
-      "brand": "Odyssey",
-      "model_name": "Ai-ONE #7",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    }
+    { "category": "Driver", "slot_order": 1, "brand": "Titleist", "model_name": "GT3 Driver", "spec_label": "1W", "loft_label": "10.5°", "shaft_brand": "Fujikura", "shaft_model": "SPEEDER NX GREEN", "shaft_weight": "50g台", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": true },
+    { "category": "Fairway Wood", "slot_order": 2, "brand": "Titleist", "model_name": "GT2 Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Fujikura", "shaft_model": "SPEEDER NX GREEN", "shaft_weight": "50g台", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 3, "brand": "Titleist", "model_name": "GT2 Fairway Wood", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Fujikura", "shaft_model": "SPEEDER NX GREEN", "shaft_weight": "50g台", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false },
+    { "category": "Fairway Wood", "slot_order": 4, "brand": "TaylorMade", "model_name": "Qi35 Fairway Wood", "spec_label": "9W", "loft_label": "24°", "shaft_brand": "Fujikura", "shaft_model": "VENTUS TR BLUE", "shaft_weight": "70g台", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false },
+    { "category": "Utility", "slot_order": 5, "brand": "TaylorMade", "model_name": "Qi4D Rescue", "spec_label": "6UT", "loft_label": "28°", "shaft_brand": "Fujikura", "shaft_model": "TR HYBRID", "shaft_weight": "75g", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 6, "brand": "TaylorMade", "model_name": "P770 Iron", "spec_label": "6I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 7, "brand": "TaylorMade", "model_name": "P770 Iron", "spec_label": "7I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 8, "brand": "TaylorMade", "model_name": "P770 Iron", "spec_label": "8I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.", "is_featured_item": false },
+    { "category": "Iron", "slot_order": 9, "brand": "TaylorMade", "model_name": "P770 Iron", "spec_label": "9I", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. 6I-9I.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 10, "brand": "TaylorMade", "model_name": "P7CB Iron", "spec_label": "PW", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO MODUS3 Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article. PW only P7CB.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey Design SM11 Wedge", "spec_label": "48°", "loft_label": "48°", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey Design SM11 Wedge", "spec_label": "54°", "loft_label": "54°", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false },
+    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey Design SM11 Wedge", "spec_label": "58°", "loft_label": "58°", "shaft_brand": "Nippon Shaft", "shaft_model": "NS PRO Prototype", "shaft_flex": "S", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false },
+    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "Phantom 5 S Putter", "spec_label": "PT", "source_note": "GDO 2026 Daikin Orchid Ladies tour-gear article.", "is_featured_item": false }
   ],
   "sources": [
     {
       "source_type": "article",
-      "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
-      "source_title": "スポーツナビ 国内女子クラブセッティング一覧（永峰咲希）",
-      "checked_at": "2026-04-09T00:00:00.000Z",
-      "notes": "Used as latest season reference."
+      "source_url": "https://news.golfdigest.co.jp/news/tgt/jlpga/article/189001/1/",
+      "source_title": "GDO 永峰咲希の最新14本 2026年 ダイキンオーキッドレディス",
+      "checked_at": "2026-05-22T00:00:00.000Z",
+      "notes": "Used for 2026 full bag and ball confirmation."
     }
   ],
   "article": {
     "slug": "saki-nagamine-2026-setting-update",
-    "title": "永峰咲希の2026年クラブセッティングを掲載しました",
-    "excerpt": "永峰咲希のクラブセッティングは確認済みソースで再調査中です。",
-    "body": "永峰咲希のクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
+    "title": "永峰咲希の2026年クラブセッティングを更新しました",
+    "excerpt": "2026年ダイキンオーキッドレディス時点の14本をGDO確認データで更新しました。",
+    "body": "永峰咲希のクラブセッティングを、2026年ダイキンオーキッドレディス時点のGDO公開情報で更新しました。\n\n## 今回の更新内容\n- ドライバー：Titleist GT3 Driver\n- FW/UT：GT2の3W・7W、TaylorMade Qi35 9W、Qi4D Rescue 6UTを確認\n- アイアン：TaylorMade P770 Iron 6I-9I、PWはP7CB\n- ウェッジ：Titleist Vokey Design SM11 48°・54°・58°\n- パター：Scotty Cameron Phantom 5 S\n- ボール：Titleist Pro V1 2023\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、ロフト、シャフト重量、硬さまで一覧で確認できます。\n\n永峰咲希のクラブセッティング詳細ページは /pros/saki-nagamine です。",
     "article_type": "update",
     "season_year": 2026,
-    "published": false,
-    "published_at": "2026-04-09T00:00:00.000Z"
+    "published": true,
+    "published_at": "2026-05-22T00:00:00.000Z"
   }
 }
