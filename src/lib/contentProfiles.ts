@@ -8,6 +8,7 @@ export interface PublicBagClub {
   loft?: string;
   shaftBrand?: string;
   shaftModel?: string;
+  shaftWeight?: string;
   shaftFlex?: string;
   specLabel?: string;
   carryDistance?: number | null;
@@ -98,6 +99,7 @@ interface BagItemRow {
   loft_label: string | null;
   shaft_brand: string | null;
   shaft_model: string | null;
+  shaft_weight: string | null;
   shaft_flex: string | null;
   carry_distance: number | null;
   total_distance: number | null;
@@ -153,6 +155,7 @@ interface SeedProfilePackage {
     loft_label?: string | null;
     shaft_brand?: string | null;
     shaft_model?: string | null;
+    shaft_weight?: string | null;
     shaft_flex?: string | null;
     carry_distance?: number | null;
     total_distance?: number | null;
@@ -167,6 +170,7 @@ interface SeedProfilePackage {
     loft_label?: string | null;
     shaft_brand?: string | null;
     shaft_model?: string | null;
+    shaft_weight?: string | null;
     shaft_flex?: string | null;
     carry_distance?: number | null;
     total_distance?: number | null;
@@ -259,6 +263,7 @@ const buildProfiles = (
         loft: formatLoftLabel(item.loft_label),
         shaftBrand: item.shaft_brand || undefined,
         shaftModel: item.shaft_model || undefined,
+        shaftWeight: item.shaft_weight || undefined,
         shaftFlex: item.shaft_flex || undefined,
         carryDistance: item.carry_distance,
         totalDistance: item.total_distance,
@@ -384,6 +389,7 @@ const buildProfilesFromSeedPackages = (packages: SeedProfilePackage[]): PublicSe
         loft_label: item.loft_label || null,
         shaft_brand: item.shaft_brand || null,
         shaft_model: item.shaft_model || null,
+        shaft_weight: item.shaft_weight || null,
         shaft_flex: item.shaft_flex || null,
         carry_distance: item.carry_distance ?? null,
         total_distance: item.total_distance ?? null,
@@ -473,7 +479,7 @@ export const fetchPublishedSettingProfiles = async (): Promise<PublicSettingProf
       fetchAllSupabaseRows<BagItemRow>((from, to) =>
         supabase
           .from('setting_bag_items')
-          .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
+          .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_weight, shaft_flex, carry_distance, total_distance, source_note, slot_order')
           .in('profile_id', profileIds)
           .order('profile_id', { ascending: true })
           .order('slot_order', { ascending: true })
@@ -515,7 +521,7 @@ export const fetchPublishedSettingProfileBySlug = async (slug: string): Promise<
 
     const { data: bagItems } = await supabase
       .from('setting_bag_items')
-      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
+      .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_weight, shaft_flex, carry_distance, total_distance, source_note, slot_order')
       .eq('profile_id', profile.id)
       .order('slot_order', { ascending: true });
 

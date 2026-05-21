@@ -97,7 +97,7 @@ async function main() {
     fetchAllRows((from, to) =>
       supabase
         .from('setting_bag_items')
-        .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_flex, carry_distance, total_distance, source_note, slot_order')
+        .select('profile_id, category, brand, model_name, spec_label, loft_label, shaft_brand, shaft_model, shaft_weight, shaft_flex, carry_distance, total_distance, source_note, slot_order')
         .in('profile_id', profileIds)
         .order('profile_id', { ascending: true })
         .order('slot_order', { ascending: true })

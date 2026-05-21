@@ -619,8 +619,8 @@ export const ProSettingDetailPage = () => {
             </div>
           </div>
           <div className="mt-3 overflow-hidden rounded-lg ring-1 ring-slate-200 md:mt-4">
-            <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.7fr_1.1fr_1.8fr_2fr_0.8fr_0.8fr_1fr_1fr]">
-              {['クラブ', 'メーカー', 'クラブ名', 'シャフト', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離', '購入'].map((heading) => (
+            <div className="hidden bg-slate-100 md:grid md:grid-cols-[0.65fr_1fr_1.7fr_1.85fr_0.7fr_0.7fr_0.7fr_0.9fr_0.9fr]">
+              {['クラブ', 'メーカー', 'クラブ名', 'シャフト', '重量', 'ロフト', '硬さ', distanceMode === 'carry' ? 'キャリー' : '総距離', '購入'].map((heading) => (
                 <div key={heading} className="px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
                   {heading}
                 </div>
@@ -638,7 +638,7 @@ export const ProSettingDetailPage = () => {
                     key={clubKey}
                     className="w-full text-left"
                   >
-                    <div className="hidden gap-3 px-4 py-4 md:grid md:grid-cols-[0.7fr_1.1fr_1.8fr_2fr_0.8fr_0.8fr_1fr_1fr] md:items-center">
+                    <div className="hidden gap-3 px-4 py-4 md:grid md:grid-cols-[0.65fr_1fr_1.7fr_1.85fr_0.7fr_0.7fr_0.7fr_0.9fr_0.9fr] md:items-center">
                       <div>
                         <div className="text-sm font-black text-trust-navy">{formatClubLabel(club.category, club.specLabel)}</div>
                       </div>
@@ -650,6 +650,9 @@ export const ProSettingDetailPage = () => {
                       </div>
                       <div>
                         <div className="text-sm font-bold text-slate-600">{shaftLabel || '未公開'}</div>
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-slate-600">{club.shaftWeight || '未公開'}</div>
                       </div>
                       <div>
                         <div className="text-sm font-bold text-slate-600">{club.loft || '未公開'}</div>
@@ -739,6 +742,10 @@ export const ProSettingDetailPage = () => {
                             <div>
                               <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">シャフト</div>
                               <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || '未公開'}</div>
+                            </div>
+                            <div>
+                              <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">重量</div>
+                              <div className="mt-0.5 font-bold leading-5 text-slate-600">{club.shaftWeight || '未公開'}</div>
                             </div>
                             <div>
                               <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">ロフト / 硬さ</div>
