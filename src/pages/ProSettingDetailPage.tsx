@@ -19,9 +19,11 @@ const formatClubLabel = (category: string, specLabel?: string) => {
 
 const formatDistanceForMode = (
   mode: 'carry' | 'total',
+  category: string,
   carryDistance?: number | null,
   totalDistance?: number | null
 ) => {
+  if (category === 'Putter') return '-';
   const value = mode === 'carry' ? carryDistance : totalDistance;
   if (typeof value === 'number') return `${value} yd`;
   return '未公開';
@@ -662,7 +664,7 @@ export const ProSettingDetailPage = () => {
                       </div>
                       <div>
                         <div className="text-sm font-bold text-slate-600">
-                          {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
+                          {formatDistanceForMode(distanceMode, club.category, club.carryDistance, club.totalDistance)}
                         </div>
                       </div>
                       <div className="flex flex-col gap-2">
@@ -727,7 +729,7 @@ export const ProSettingDetailPage = () => {
                         </div>
                         <div className="text-right">
                           <div className="text-sm font-black text-golf-700">
-                            {formatDistanceForMode(distanceMode, club.carryDistance, club.totalDistance)}
+                            {formatDistanceForMode(distanceMode, club.category, club.carryDistance, club.totalDistance)}
                           </div>
                         </div>
                         <ChevronDown

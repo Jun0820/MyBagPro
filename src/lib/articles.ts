@@ -22,6 +22,8 @@ interface ArticleRow {
   published_at: string | null;
   season_year: number | null;
   related_profile_id: string | null;
+  related_profile_slug?: string | null;
+  related_profile_name?: string | null;
 }
 
 interface FetchArticlesOptions {
@@ -38,6 +40,8 @@ interface FallbackArticleRow {
   published_at: string | null;
   season_year: number | null;
   related_profile_id?: string | null;
+  related_profile_slug?: string | null;
+  related_profile_name?: string | null;
 }
 
 const FALLBACK_ARTICLES_PATH = '/published-articles-fallback.json';
@@ -52,6 +56,8 @@ const mapArticle = (row: ArticleRow): PublicArticle => ({
   publishedAt: row.published_at,
   seasonYear: row.season_year,
   relatedProfileId: row.related_profile_id,
+  relatedProfileSlug: row.related_profile_slug || null,
+  relatedProfileName: row.related_profile_name || null,
 });
 
 const loadPublishedArticlesFallback = async (): Promise<PublicArticle[]> => {

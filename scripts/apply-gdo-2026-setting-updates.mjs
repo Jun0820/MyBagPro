@@ -191,16 +191,52 @@ const buildItemsFromEntry = (entry, sourceNote) => {
   return [];
 };
 
-const makeArticle = (seed, gdo) => ({
-  slug: `${seed.profile.slug}-2026-setting-update`,
-  title: `${seed.profile.display_name}の2026年クラブセッティングを更新しました`,
-  excerpt: `${gdo.tournament || '2026年取材'}時点の使用クラブとボールをGDO確認データで更新しました。`,
-  body: `${seed.profile.display_name}のクラブセッティングについて、${gdo.tournament || '2026年取材'}時点でGDOが公開した情報をもとに更新しました。ドライバー、ウッド・UT、アイアン、ウェッジ、パター、ボールまで、確認できた範囲を反映しています。プロのスペックをそのまま真似るのではなく、番手構成や距離の作り方を自分のバッグ見直しに活用してください。`,
-  article_type: 'update',
-  season_year: 2026,
-  published: true,
-  published_at: CHECKED_AT,
-});
+const findFirst = (items, predicate) => items.find(predicate);
+const summarizeClub = (item) => {
+  if (!item) return '未公開';
+  return [item.brand, item.model_name].filter(Boolean).join(' ') || item.model_name || '未公開';
+};
+
+const makeArticle = (seed, gdo) => {
+  const name = seed.profile.display_name;
+  const tournamentLabel = gdo.tournament || '2026年取材';
+  const clubs = seed.bagItems || [];
+  const driver = findFirst(clubs, (item) => item.category === 'Driver');
+  const woodsAndUtilities = clubs.filter((item) => item.category === 'Fairway Wood' || item.category === 'Utility');
+  const irons = clubs.filter((item) => item.category === 'Iron');
+  const wedges = clubs.filter((item) => item.category === 'Wedge');
+  const putter = findFirst(clubs, (item) => item.category === 'Putter');
+  const ball = seed.profile.ball_name || '未公開';
+  const detailPath = `/pros/${seed.profile.slug}`;
+
+  return {
+    slug: `${seed.profile.slug}-2026-setting-update`,
+    title: `${name}の2026年クラブセッティングを更新しました`,
+    excerpt: `${tournamentLabel}時点の使用クラブとボールをGDO確認データで更新しました。`,
+    body: `${name}のクラブセッティングについて、${tournamentLabel}時点でGDOが公開した情報をもとに更新しました。
+
+## 今回の更新内容
+- ドライバー：${summarizeClub(driver)}
+- FW/UT：${woodsAndUtilities.map((item) => item.spec_label || item.category).filter(Boolean).join('、') || '未公開'}を確認
+- アイアン：${irons.map((item) => item.spec_label).filter(Boolean).join('、') || '未公開'}を確認
+- ウェッジ：${wedges.map((item) => item.spec_label || item.loft_label).filter(Boolean).join('、') || '未公開'}を確認
+- パター：${summarizeClub(putter)}
+- ボール：${ball}
+
+## MyBagProで確認できること
+詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。
+
+${name}のクラブセッティング詳細ページは ${detailPath} です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。
+
+[CALLOUT title="真似るときの注意点"]
+プロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。
+[/CALLOUT]`,
+    article_type: 'update',
+    season_year: 2026,
+    published: true,
+    published_at: CHECKED_AT,
+  };
+};
 
 const updateSeed = (check) => {
   const filePath = path.join(projectRoot, check.file);

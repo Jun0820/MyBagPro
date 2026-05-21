@@ -97,7 +97,26 @@ async function loadFromSupabase() {
     .limit(500);
 
   if (error) throw error;
-  return data || [];
+  const articles = data || [];
+  const profileIds = [...new Set(articles.map((article) => article.related_profile_id).filter(Boolean))];
+  if (profileIds.length === 0) return articles;
+
+  const { data: profiles, error: profileError } = await supabase
+    .from('setting_profiles')
+    .select('id, slug, display_name')
+    .in('id', profileIds);
+
+  if (profileError) throw profileError;
+  const profileMap = new Map((profiles || []).map((profile) => [profile.id, profile]));
+
+  return articles.map((article) => {
+    const profile = article.related_profile_id ? profileMap.get(article.related_profile_id) : null;
+    return {
+      ...article,
+      related_profile_slug: profile?.slug || null,
+      related_profile_name: profile?.display_name || null,
+    };
+  });
 }
 
 async function main() {
@@ -132,6 +151,8 @@ async function main() {
     published_at: article.published_at || null,
     season_year: article.season_year ?? null,
     related_profile_id: article.related_profile_id || null,
+    related_profile_slug: article.related_profile_slug || null,
+    related_profile_name: article.related_profile_name || null,
   }));
 
   fs.writeFileSync(
