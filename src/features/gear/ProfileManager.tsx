@@ -7,6 +7,11 @@ const BACKGROUND_TEMPLATES = [
     { id: 'default', name: 'Classic Green', url: '/articles/golf-clubs-grass-pexels-20808740.jpg' },
     { id: 'green', name: 'Putting Green', url: '/articles/golf-green-putting-pexels-8218726.jpg' },
     { id: 'ball', name: 'Ball & Club', url: '/articles/golf-balls-club-pexels-6572967.jpg' },
+    { id: 'bag', name: 'Golf Bag', url: '/article-visuals/golf-bag-course.jpg' },
+    { id: 'driver', name: 'Driver Tee', url: '/article-visuals/driver-tee.jpg' },
+    { id: 'iron', name: 'Iron Shot', url: '/article-visuals/iron-ball.jpg' },
+    { id: 'wedge', name: 'Bunker Wedge', url: '/article-visuals/bunker-wedge.jpg' },
+    { id: 'putting', name: 'Putting Practice', url: '/article-visuals/putting-practice.jpg' },
 ];
 
 interface ProfileManagerProps {
