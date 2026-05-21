@@ -130,14 +130,14 @@ const ClubRow = ({
     const currentSelectValue = `${entry.category}:${entry.number || (entry.category === TargetCategory.PUTTER ? 'PT' : '')}`;
 
     return (
-        <div className={cn("group relative overflow-hidden rounded-2xl border bg-white shadow-sm transition-all", isPending ? 'border-cyan-300 ring-1 ring-cyan-100' : 'border-slate-200')}>
+        <div className={cn("group relative overflow-hidden rounded-xl border bg-white shadow-sm transition-all", isPending ? 'border-cyan-300 ring-1 ring-cyan-100' : 'border-slate-200')}>
             <button
                 type="button"
                 onClick={onToggle}
-                className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition-colors hover:bg-slate-50"
+                className="flex w-full items-center justify-between gap-2 px-3 py-2.5 text-left transition-colors hover:bg-slate-50 md:px-4"
             >
-                <div className="flex min-w-0 flex-1 items-center gap-3">
-                    <div className={cn(getCategoryColor(entry.category), "shrink-0 rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-white")}>
+                <div className="flex min-w-0 flex-1 items-center gap-2.5">
+                    <div className={cn(getCategoryColor(entry.category), "shrink-0 rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.14em] text-white")}>
                         {entry.number || getCategoryLabel(entry.category)}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -170,15 +170,15 @@ const ClubRow = ({
             </button>
 
             {isExpanded && (
-                <div className="border-t border-slate-100 px-4 py-2.5">
-                    <div className="mb-2.5 grid gap-2.5 lg:grid-cols-[220px_1fr]">
+                <div className="border-t border-slate-100 px-3 py-3 md:px-4">
+                    <div className="mb-2.5 grid gap-2.5 lg:grid-cols-[200px_1fr]">
                         <div>
                             <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">番手を変更</div>
                             <div className="relative">
                                 <select
                                     value={currentSelectValue}
                                     onChange={handleCategoryNumberChange}
-                                    className="h-10 w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 pl-4 pr-10 text-sm font-bold text-trust-navy outline-none"
+                                    className="h-10 w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 pl-3 pr-9 text-sm font-bold text-trust-navy outline-none"
                                 >
                                     <option value={`${entry.category}:${entry.number}`}>番手を変更...</option>
                                     {clubOptions.map(opt => (
@@ -201,7 +201,7 @@ const ClubRow = ({
                                             placeholder="-"
                                             value={entry.distance}
                                             onChange={(e) => onUpdate({ ...entry, distance: e.target.value })}
-                                            className="w-full rounded-xl border border-golf-200 bg-golf-50/50 px-3 py-2.5 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
+                                            className="w-full rounded-lg border border-golf-200 bg-golf-50/50 px-3 py-2.5 text-center text-sm font-bold text-golf-800 outline-none focus:border-golf-500"
                                         />
                                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-golf-400">Y</span>
                                     </div>
@@ -214,7 +214,7 @@ const ClubRow = ({
                                             placeholder="-"
                                             value={entry.carryDistance || ''}
                                             onChange={(e) => onUpdate({ ...entry, carryDistance: e.target.value })}
-                                            className="w-full rounded-xl border border-cyan-200 bg-cyan-50/50 px-3 py-2.5 text-center text-sm font-bold text-cyan-800 outline-none focus:border-cyan-500"
+                                            className="w-full rounded-lg border border-cyan-200 bg-cyan-50/50 px-3 py-2.5 text-center text-sm font-bold text-cyan-800 outline-none focus:border-cyan-500"
                                         />
                                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-cyan-500">Y</span>
                                     </div>
@@ -227,7 +227,7 @@ const ClubRow = ({
                                             placeholder="-"
                                             value={entry.loft}
                                             onChange={(e) => onUpdate({ ...entry, loft: e.target.value })}
-                                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
+                                            className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-center text-sm font-bold text-slate-900 outline-none focus:border-golf-500"
                                         />
                                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400">°</span>
                                     </div>
@@ -254,7 +254,7 @@ const ClubRow = ({
                             compact={true}
                         />
 
-                        <div className="grid gap-2.5 xl:grid-cols-[1fr_280px]">
+                        <div className="grid gap-2.5 xl:grid-cols-[1fr_260px]">
                             <div className="min-w-0">
                                 <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">シャフト</div>
                                 {!isPutter ? (
@@ -274,13 +274,13 @@ const ClubRow = ({
                                         value={entry.shaft}
                                         onChange={(e) => onUpdate({ ...entry, shaft: e.target.value })}
                                         placeholder="シャフト名"
-                                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-golf-500"
+                                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-golf-500"
                                     />
                                 )}
                             </div>
                         </div>
 
-                        <details className="rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2">
+                        <details className="rounded-lg border border-slate-200 bg-slate-50/80 px-3 py-2">
                             <summary className="cursor-pointer list-none text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
                                 メモを開く
                             </summary>
@@ -289,7 +289,7 @@ const ClubRow = ({
                                 value={entry.worry || ''}
                                 onChange={(e) => onUpdate({ ...entry, worry: e.target.value })}
                                 placeholder="捕まりすぎる、上がりすぎる、など"
-                                className="mt-2.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-golf-500"
+                                className="mt-2.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-golf-500"
                             />
                         </details>
 
@@ -300,7 +300,7 @@ const ClubRow = ({
                                     onRemove();
                                 }
                             }}
-                            className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-4 text-xs font-black text-rose-700 transition-colors hover:bg-rose-100"
+                            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-rose-200 bg-rose-50 px-4 text-xs font-black text-rose-700 transition-colors hover:bg-rose-100"
                             title="削除"
                         >
                             <Trash2 size={14} />
@@ -669,21 +669,21 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             )}
 
             <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200 md:p-5">
-                <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="grid gap-3 lg:grid-cols-[1.25fr_0.75fr]">
                     <div className="rounded-lg bg-slate-50 p-3.5">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">STEP 1</div>
                                 <h3 className="mt-1 text-lg font-black tracking-tight text-trust-navy">最初に代表番手を入れる</h3>
                             </div>
-                            <div className="rounded-lg bg-white px-4 py-2.5 text-right ring-1 ring-slate-200/80">
+                            <div className="rounded-lg bg-white px-3.5 py-2.5 text-right ring-1 ring-slate-200/80">
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">登録本数</div>
                                 <div className="mt-1 text-2xl font-black text-trust-navy">{sortedClubs.length}<span className="text-sm text-slate-400">/{MAX_BAG_CLUBS}</span></div>
                                 <div className="mt-1 text-xs font-bold text-slate-500">目標は14本</div>
                             </div>
                         </div>
 
-                        <div className="mt-3.5 grid gap-2.5 sm:grid-cols-3">
+                        <div className="mt-3 grid gap-2.5 sm:grid-cols-3">
                             {starterSlots.map((slot) => {
                                 const isDone = registeredCategories.has(slot.category);
                                 return (
@@ -719,7 +719,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="mt-3 space-y-2.5">
                             <button
                                 onClick={() => saveCurrentSetting()}
-                                className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
+                                className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 py-2.5 text-sm font-black text-white transition-colors hover:bg-slate-800"
                             >
                                 <Save size={14} />
                                 いまの内容を保存

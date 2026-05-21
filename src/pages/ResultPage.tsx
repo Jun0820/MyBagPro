@@ -305,7 +305,7 @@ export const ResultPage = () => {
                 </div>
             )}
             {/* Hero Section */}
-            <div className="group relative mb-4 h-24 overflow-hidden rounded-lg shadow-xl shadow-slate-900/15 md:mb-6 md:h-48">
+            <div className="group relative mb-4 h-24 overflow-hidden rounded-lg shadow-xl shadow-slate-900/15 md:mb-6 md:h-44">
                 {/* Background: Deep Space Navy */}
                 <div className="absolute inset-0 bg-[#020617]"></div>
 
@@ -357,7 +357,7 @@ export const ResultPage = () => {
                             </div>
                             <button
                                 onClick={resultPrimaryMove.onClick}
-                                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700 md:w-auto"
+                                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-golf-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-golf-700 md:w-auto"
                             >
                                 {resultPrimaryMove.actionLabel}
                                 <ChevronDown size={16} className="-rotate-90" />

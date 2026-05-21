@@ -239,7 +239,7 @@ export const MyGearPage = () => {
                 </div>
 
                 <div className="grid gap-6 lg:grid-cols-[230px_minmax(0,1fr)] xl:grid-cols-[250px_minmax(0,1fr)]">
-                    <aside className="hidden space-y-4 lg:block">
+                    <aside className="hidden space-y-3 lg:block">
                         <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e9efe9]">
                             <div className="flex items-center gap-4">
                                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eaede7] text-2xl font-black text-[#176534]">
@@ -270,7 +270,7 @@ export const MyGearPage = () => {
                                             key={item.key}
                                             onClick={() => setActiveTab(item.key)}
                                             className={cn(
-                                                'flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black transition',
+                                                'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-black transition',
                                                 selected ? 'bg-[#edf6ef] text-[#166534]' : 'text-slate-600 hover:bg-slate-50'
                                             )}
                                         >
@@ -281,28 +281,41 @@ export const MyGearPage = () => {
                                 })}
                                 <button
                                     onClick={() => navigate('/diagnosis')}
-                                    className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
                                 >
                                     <History size={16} />
                                     診断履歴
                                 </button>
                                 <button
                                     onClick={() => navigate('/pros')}
-                                    className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
                                 >
                                     <Trophy size={16} />
                                     お気に入りプロ
                                 </button>
                             </div>
                         </div>
+
+                        <div className="rounded-lg bg-[#163c29] p-4 text-white shadow-sm">
+                            <div className="text-sm font-black">登録クラブから診断へ</div>
+                            <p className="mt-1 text-xs leading-5 text-white/75">
+                                保存した番手と飛距離を診断に使えます。
+                            </p>
+                            <button
+                                onClick={() => navigate('/diagnosis')}
+                                className="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-[#c8a96a] px-4 py-2.5 text-xs font-black text-[#163c29] transition hover:bg-[#d4b67c]"
+                            >
+                                クラブ診断をはじめる
+                            </button>
+                        </div>
                     </aside>
 
                     <div className="min-w-0">
-                        <section className="mb-5 border-b border-[#dfe7df] pb-4">
+                        <section className="mb-4 border-b border-[#dfe7df] pb-4">
                             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                                 <div>
                                     <div className="text-sm font-bold text-slate-500">あなたのゴルフデータと診断結果を確認できます。</div>
-                                    <h1 className="mt-2 text-3xl font-black tracking-tight text-[#151719] md:text-5xl">マイページ</h1>
+                                    <h1 className="mt-1 text-3xl font-black tracking-tight text-[#151719] md:text-5xl">マイページ</h1>
                                 </div>
                                 <div className="flex flex-col gap-3 lg:min-w-[360px]">
                                     {user.isLoggedIn && (
@@ -337,21 +350,21 @@ export const MyGearPage = () => {
                         </section>
 
                 {!user.isLoggedIn && (
-                    <section className="mb-5 rounded-lg bg-white p-4 shadow-sm ring-1 ring-golf-200/70 md:p-5">
-                        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                            <div>
+                    <section className="mb-4 rounded-lg bg-white p-4 shadow-sm ring-1 ring-golf-200/70 md:p-5">
+                        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                            <div className="min-w-0">
                                 <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">
                                     <LogIn size={12} />
                                     Guest Mode
                                 </div>
-                                <h2 className="mt-2 text-lg font-black tracking-tight text-trust-navy md:text-2xl">
+                                <h2 className="mt-1 text-lg font-black tracking-tight text-trust-navy md:text-2xl">
                                     内容を保存して、続きから再開できます
                                 </h2>
                                 <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                                    クラブ登録、診断結果、お気に入りをアカウントに保存します。
+                                    クラブ登録、診断結果、お気に入りがアカウントに残ります。
                                 </p>
                             </div>
-                            <div className="flex flex-col gap-2 md:min-w-[220px]">
+                            <div className="flex shrink-0 flex-col gap-2 md:min-w-[220px]">
                             <button
                                 onClick={() => setShowAuth(true)}
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 py-3 text-sm font-black text-white transition-colors hover:bg-slate-800"
@@ -421,7 +434,7 @@ export const MyGearPage = () => {
                                                 </div>
                                             </div>
                                             <div className="grid flex-1 grid-cols-2 gap-2 text-sm font-bold text-slate-600 md:w-full">
-                                                    <div className="rounded-lg bg-white/80 p-3">
+                                                <div className="rounded-lg bg-white/80 p-3">
                                                     <div className="text-[10px] uppercase text-slate-400">登録クラブ</div>
                                                     <div className="mt-1 text-lg font-black text-[#151719]">{compactMyClubs.length}<span className="ml-1 text-xs text-slate-400">/14</span></div>
                                                 </div>
