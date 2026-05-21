@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T03:05:50.262Z",
+  "generatedAt": "2026-05-21T05:32:06.529Z",
   "source": "supabase",
   "count": 230,
   "profiles": [
@@ -30812,7 +30812,7 @@
         "is_featured": false,
         "is_published": true,
         "created_at": "2026-04-09T07:17:33.39481+00:00",
-        "updated_at": "2026-05-21T03:05:01.026626+00:00",
+        "updated_at": "2026-05-21T05:31:08.905568+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
@@ -30840,11 +30840,11 @@
           "spec_label": "3W",
           "loft_label": "15°",
           "shaft_brand": "Graphite Design",
-          "shaft_model": null,
-          "shaft_flex": null,
+          "shaft_model": "TOUR AD UB",
+          "shaft_flex": "S",
           "carry_distance": null,
           "total_distance": null,
-          "source_note": "本人YouTubeで確認。映像上はYAMAHAロゴ、ゴールドウェイト、三角形のカーボンデザイン、15°刻印。3年近く愛用し、5Wとの差が出るようになったこと、狭いホールのティーショットで刻めることを評価。",
+          "source_note": "本人YouTubeで確認。3WはRMX VD Fairway Woodの15°。シャフトはGraphite Design TOUR AD UBの50g台S。3年近く愛用し、5Wとの差が出るようになったこと、狭いホールのティーショットで刻めることを評価。",
           "slot_order": 2
         },
         {
