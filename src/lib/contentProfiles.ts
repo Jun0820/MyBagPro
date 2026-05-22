@@ -58,6 +58,7 @@ export interface PublicSettingProfile {
   sources: PublicProfileSource[];
   seasonYear?: number | null;
   latestSourcePolicy?: string | null;
+  verifiedAt?: string | null;
 }
 
 interface SettingProfileRow {
@@ -83,6 +84,7 @@ interface SettingProfileRow {
   feature_3: string | null;
   summary: string | null;
   latest_source_policy: string | null;
+  verified_at?: string | null;
   is_featured: boolean;
   display_order?: number | null;
   category?: ProfileCategory | null;
@@ -140,6 +142,7 @@ interface SeedProfilePackage {
     feature_3?: string | null;
     summary?: string | null;
     latest_source_policy?: string | null;
+    verified_at?: string | null;
     is_featured?: boolean;
     display_order?: number | null;
     category?: ProfileCategory | null;
@@ -335,6 +338,7 @@ const buildProfiles = (
       sources,
       seasonYear: profile.season_year,
       latestSourcePolicy: profile.latest_source_policy,
+      verifiedAt: profile.verified_at || null,
     };
   });
 
@@ -371,6 +375,7 @@ const buildProfilesFromSeedPackages = (packages: SeedProfilePackage[]): PublicSe
       feature_3: profile.feature_3 || null,
       summary: profile.summary || null,
       latest_source_policy: profile.latest_source_policy || null,
+      verified_at: profile.verified_at || null,
       is_featured: profile.is_featured ?? false,
       display_order: profile.display_order ?? null,
       category: profile.category ?? null,

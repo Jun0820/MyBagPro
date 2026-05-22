@@ -31,6 +31,16 @@ const formatDistanceForMode = (
 
 const formatStatLabel = (value?: string) => value || '未公開';
 
+const formatJapaneseDate = (value?: string | null, mode: 'month' | 'date' = 'month') => {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  if (mode === 'date') {
+    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+  }
+  return `${date.getFullYear()}年${date.getMonth() + 1}月`;
+};
+
 const formatSourceTypeLabel = (type: string) => {
   const labels: Record<string, string> = {
     official: '公式',
@@ -76,6 +86,55 @@ const extractSourcePeriodTag = (setting: PublicSettingProfile) => {
   if (Number.isNaN(date.getTime())) return setting.seasonYear ? `${setting.seasonYear}年` : null;
   return `${date.getFullYear()}年${date.getMonth() + 1}月`;
 };
+
+const extractCoverageBase = (setting: PublicSettingProfile) => {
+  const sourceTexts = [
+    ...setting.sources.map((source) => [source.title, source.notes].filter(Boolean).join(' ')),
+    ...setting.clubs.map((club) => club.sourceNote).filter(Boolean),
+    setting.summary,
+  ].join('\n');
+
+  const interviewedMatch = sourceTexts.match(/取材[:：]\s*([^。\n]+)/);
+  if (interviewedMatch?.[1]) return interviewedMatch[1].trim();
+
+  const dateMatch = sourceTexts.match(/(20\d{2}年\d{1,2}月(?:\d{1,2}日)?)/);
+  if (dateMatch?.[1]) return dateMatch[1];
+
+  const eventMatch = sourceTexts.match(
+    /(20\d{2}年[^。\n]*?(?:トーナメント|選手権|オープン|カップ|クラウンズ|Championship|Open|Classic|Invitational|Cup|Masters))/i
+  );
+  if (eventMatch?.[1]) return eventMatch[1].trim();
+
+  const checkedAt = setting.sources.find((source) => source.checkedAt)?.checkedAt;
+  return formatJapaneseDate(checkedAt, 'month') || (setting.seasonYear ? `${setting.seasonYear}年シーズン` : '確認ソースベース');
+};
+
+const getLatestConfirmedDate = (setting: PublicSettingProfile) => {
+  const verifiedAt = formatJapaneseDate(setting.verifiedAt, 'month');
+  if (verifiedAt) return verifiedAt;
+
+  const timestamps = setting.sources
+    .map((source) => (source.checkedAt ? new Date(source.checkedAt).getTime() : null))
+    .filter((value): value is number => typeof value === 'number' && !Number.isNaN(value));
+
+  if (timestamps.length === 0) return '未公開';
+  return formatJapaneseDate(new Date(Math.max(...timestamps)).toISOString(), 'month') || '未公開';
+};
+
+const buildDataFreshnessItems = (setting: PublicSettingProfile) => [
+  {
+    label: '掲載版',
+    value: setting.seasonYear ? `${setting.seasonYear}年確認版` : '最新確認版',
+  },
+  {
+    label: '取材ベース',
+    value: extractCoverageBase(setting),
+  },
+  {
+    label: '最新確認日',
+    value: getLatestConfirmedDate(setting),
+  },
+];
 
 const shortenTagline = (tagline: string) =>
   tagline
@@ -448,6 +507,7 @@ export const ProSettingDetailPage = () => {
     { label: '平均スコア', value: formatStatLabel(setting.averageScore) },
     { label: 'ベストスコア', value: formatStatLabel(setting.bestScore) },
   ];
+  const dataFreshnessItems = buildDataFreshnessItems(setting);
   const compactTagline = shortenTagline(setting.tagline);
   const compactSummary = shortenSummary(setting.summary, setting.name);
   const openRelatedArticles = () => {
@@ -543,6 +603,15 @@ export const ProSettingDetailPage = () => {
                     楽天で見る
                   </a>
                 ) : null}
+              </div>
+            ))}
+          </dl>
+
+          <dl className="mt-3 grid gap-2 rounded-lg border border-white/10 bg-white/5 p-3 md:mt-4 md:grid-cols-3">
+            {dataFreshnessItems.map((item) => (
+              <div key={item.label} className="min-w-0">
+                <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{item.label}</dt>
+                <dd className="mt-1 text-sm font-black leading-5 text-white md:text-base">{item.value}</dd>
               </div>
             ))}
           </dl>
