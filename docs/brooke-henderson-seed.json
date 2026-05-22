@@ -7,173 +7,105 @@
     "birth_date": "1997-09-10",
     "height_cm": 163,
     "profile_type": "tour_pro",
-    "segment": "needs_verification",
+    "segment": "lpga_verified",
     "season_year": 2026,
     "ball_name": "TaylorMade TP5x",
-    "feature_1": "要再確認",
-    "feature_2": "公開保留",
-    "feature_3": "汎用データ検出",
-    "summary": "ブルック・ヘンダーソンのクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
-    "latest_source_policy": "needs_source_verification",
+    "feature_1": "TaylorMade公式確認",
+    "feature_2": "Qi4D世代",
+    "feature_3": "P7CBアイアン",
+    "summary": "TaylorMade公式ツアープレーヤーページで確認できたブルック・ヘンダーソンの公開クラブ構成。Qi4D Driver、Qi4D Fairway、Qi4D Rescue、P7CB、MG5、Spider Tour X、TP5xまでを、番手詳細を無理に補わずカテゴリ単位で整理しています。",
+    "latest_source_policy": "taylormade_official_2026",
     "is_featured": false,
-    "is_published": false,
-    "verified_at": "2026-04-09T00:00:00.000Z"
+    "is_published": true,
+    "verified_at": "2026-05-22T00:00:00.000Z"
   },
   "bagItems": [
     {
       "category": "Driver",
       "slot_order": 1,
       "brand": "TaylorMade",
-      "model_name": "Qi10 LS",
-      "loft_label": "10.5°",
-      "shaft_brand": "Fujikura",
-      "shaft_model": "VENTUS BLUE",
-      "shaft_flex": "S",
-      "source_note": "Confirmed from latest season setting references.",
+      "model_name": "Qi4D Driver",
+      "spec_label": "1W",
+      "source_note": "TaylorMade公式 Brooke Henderson WITBページで確認。ロフト・シャフトは公式ページ上では未記載。",
       "is_featured_item": true
     },
     {
       "category": "Fairway Wood",
       "slot_order": 2,
       "brand": "TaylorMade",
-      "model_name": "Qi10 LS Fairway Wood",
-      "spec_label": "3W",
-      "loft_label": "15°",
-      "source_note": "Confirmed from latest season setting references.",
+      "model_name": "Qi4D Fairway",
+      "spec_label": "FW",
+      "source_note": "TaylorMade公式 Brooke Henderson WITBページで確認。番手・ロフト・シャフトは公式ページ上では未記載。",
       "is_featured_item": false
     },
     {
-      "category": "Fairway Wood",
+      "category": "Utility",
       "slot_order": 3,
       "brand": "TaylorMade",
-      "model_name": "Qi10 LS Fairway Wood",
-      "spec_label": "5W",
-      "loft_label": "18°",
-      "source_note": "Confirmed from latest season setting references.",
+      "model_name": "Qi4D Rescue",
+      "spec_label": "Rescue",
+      "source_note": "TaylorMade公式 Brooke Henderson WITBページで確認。番手・ロフト・シャフトは公式ページ上では未記載。",
       "is_featured_item": false
     },
     {
-      "category": "Utility",
+      "category": "Iron",
       "slot_order": 4,
       "brand": "TaylorMade",
-      "model_name": "Qi10 LS Hybrid",
-      "spec_label": "4H",
-      "loft_label": "22°",
-      "source_note": "Confirmed from latest season setting references.",
+      "model_name": "P7CB Iron",
+      "spec_label": "Iron",
+      "source_note": "TaylorMade公式 Brooke Henderson WITBページで確認。番手範囲・シャフトは公式ページ上では未記載。",
       "is_featured_item": false
     },
     {
-      "category": "Utility",
+      "category": "Wedge",
       "slot_order": 5,
       "brand": "TaylorMade",
-      "model_name": "Qi10 LS Hybrid",
-      "spec_label": "5H",
-      "loft_label": "25°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 6,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "6I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 7,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "7I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 8,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "8I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Iron",
-      "slot_order": 9,
-      "brand": "Titleist",
-      "model_name": "T100 Iron",
-      "spec_label": "9I",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 10,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "PW",
-      "loft_label": "46°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 11,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "AW",
-      "loft_label": "50°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 12,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "SW",
-      "loft_label": "54°",
-      "source_note": "Confirmed from latest season setting references.",
-      "is_featured_item": false
-    },
-    {
-      "category": "Wedge",
-      "slot_order": 13,
-      "brand": "Titleist",
-      "model_name": "Vokey SM10",
-      "spec_label": "LW",
-      "loft_label": "58°",
-      "source_note": "Confirmed from latest season setting references.",
+      "model_name": "MG5 Wedge",
+      "spec_label": "Wedge",
+      "source_note": "TaylorMade公式 Brooke Henderson WITBページで確認。ロフト・シャフトは公式ページ上では未記載。",
       "is_featured_item": false
     },
     {
       "category": "Putter",
-      "slot_order": 14,
-      "brand": "Scotty Cameron",
-      "model_name": "Phantom X",
-      "source_note": "Confirmed from latest season setting references.",
+      "slot_order": 6,
+      "brand": "TaylorMade",
+      "model_name": "Spider Tour X Putter",
+      "source_note": "TaylorMade公式 Brooke Henderson WITBページで確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Ball",
+      "slot_order": 7,
+      "brand": "TaylorMade",
+      "model_name": "TP5x Golf Balls",
+      "source_note": "TaylorMade公式 Brooke Henderson WITBページで確認。",
       "is_featured_item": false
     }
   ],
   "sources": [
     {
-      "source_type": "article",
+      "source_type": "official",
+      "source_url": "https://www.taylormadegolf.com/tourplayers/brooke-henderson.html?lang=en_US",
+      "source_title": "Brooke Henderson WITB | TaylorMade Golf",
+      "checked_at": "2026-05-22T00:00:00.000Z",
+      "notes": "TaylorMade公式ツアープレーヤーページ。Qi4D Driver、Qi4D Fairway、Qi4D Rescue、P7CB Irons、MG5 Wedge、Spider Tour X、TP5x Golf Ballsを確認。"
+    },
+    {
+      "source_type": "official",
       "source_url": "https://www.lpga.com/players/brooke-henderson/98177",
       "source_title": "LPGA Player Profile: Brooke Henderson",
-      "checked_at": "2026-04-09T00:00:00.000Z",
-      "notes": "Used as latest season reference."
+      "checked_at": "2026-05-22T00:00:00.000Z",
+      "notes": "プロフィール補助ソース。クラブ構成はTaylorMade公式WITBを優先。"
     }
   ],
   "article": {
     "slug": "brooke-henderson-2026-setting-update",
-    "title": "ブルック・ヘンダーソンの2026年クラブセッティングを掲載しました",
-    "excerpt": "ブルック・ヘンダーソンのクラブセッティングは確認済みソースで再調査中です。",
-    "body": "ブルック・ヘンダーソンのクラブセッティングは、汎用テンプレート由来の可能性が検出されたため、確認済みソースで再調査するまで公開を保留しています。",
+    "title": "ブルック・ヘンダーソンの2026年クラブ構成を更新しました",
+    "excerpt": "TaylorMade公式WITBをもとに、ブルック・ヘンダーソンのQi4D Driver、Qi4D Fairway、Qi4D Rescue、P7CB、MG5、Spider Tour X、TP5xを整理しました。",
+    "body": "ブルック・ヘンダーソンのクラブ構成を、TaylorMade公式ツアープレーヤーページの公開情報をもとに更新しました。\n\n公式ページで確認できる現行構成は、Qi4D Driver、Qi4D Fairway、Qi4D Rescue、P7CB Irons、MG5 Wedge、Spider Tour X、TP5x Golf Ballsです。ロフト、シャフト、アイアンの番手範囲などの細部は公式ページ上では確認できないため、MyBagProでは推測で14本を埋めず、確認できるカテゴリ構成として掲載しています。\n\n以前のページにはTitleist系の汎用テンプレート由来と思われる内容が混ざっていたため、今回の更新でTaylorMade公式情報に差し替えました。\n\nアマチュアが参考にするなら、細かなスペックよりも、ドライバーからFW、レスキュー、P7CB、MG5、Spider Tour X、TP5xまで同一メーカーで流れを作っている点です。ウッド系とレスキューでロングゲームを整理し、アイアン以下をシンプルにまとめる考え方は、バッグ全体の統一感を考えるうえで参考になります。\n\nブルック・ヘンダーソンのクラブ構成詳細は、MyBagProの選手ページ `/pros/brooke-henderson` で確認できます。",
     "article_type": "update",
     "season_year": 2026,
-    "published": false,
-    "published_at": "2026-04-09T00:00:00.000Z"
+    "published": true,
+    "published_at": "2026-05-22T00:00:00.000Z"
   }
 }
