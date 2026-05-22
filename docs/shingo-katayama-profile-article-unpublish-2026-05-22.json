@@ -1,0 +1,15 @@
+{
+  "articles": [
+    {
+      "slug": "shingo-katayama-profile-published",
+      "title": "片山晋呉のプロフィールを掲載しました",
+      "excerpt": "片山晋呉のプロフィール記事は、クラブセッティング情報の再確認に合わせて公開を一時保留しています。",
+      "body": "片山晋呉のプロフィール記事は、関連するクラブセッティング情報の出典と更新時期を再確認するため、一時的に公開を保留しています。確認済みの情報に整理でき次第、MyBagPro上で再公開します。",
+      "article_type": "update",
+      "related_profile_slug": "shingo-katayama",
+      "season_year": 2026,
+      "published": false,
+      "published_at": "2026-05-22T00:00:00.000Z"
+    }
+  ]
+}

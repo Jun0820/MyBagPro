@@ -7,17 +7,17 @@
     "birth_date": "1973-01-31",
     "height_cm": 171,
     "profile_type": "tour_pro",
-    "segment": "verified_batch",
+    "segment": "needs_verification",
     "season_year": 2026,
     "ball_name": "ダイワ オノフ ボール",
-    "feature_1": "日本男子ツアー",
-    "feature_2": "賞金王5回",
-    "feature_3": "ツアー31勝",
-    "summary": "2013年東建ホームメイトカップで確認できた片山晋呉の14本セッティングを掲載しています。",
-    "latest_source_policy": "verified_source_available",
-    "is_featured": true,
-    "is_published": true,
-    "verified_at": "2026-04-10T00:00:00.000Z",
+    "feature_1": "要再確認",
+    "feature_2": "公開保留",
+    "feature_3": "最新ソース待ち",
+    "summary": "片山晋呉のクラブセッティングは、掲載ソースが古いため、最新または十分に明確な確認ソースが見つかるまで公開を保留しています。",
+    "latest_source_policy": "needs_source_verification",
+    "is_featured": false,
+    "is_published": false,
+    "verified_at": "2026-05-22T00:00:00.000Z",
     "kana_name": "カタヤマ シンゴ"
   },
   "bagItems": [
@@ -55,11 +55,11 @@
   "article": {
     "slug": "shingo-katayama-2026-setting-update",
     "title": "片山晋呉のクラブセッティングを掲載しました",
-    "excerpt": "GDOの2013年東建ホームメイトカップ取材をもとに、片山晋呉の14本セッティングを掲載しました。",
-    "body": "片山晋呉について、GDOの2013年東建ホームメイトカップ取材で確認できた内容をもとに14本全体を整理しました。ドライバー、3本のフェアウェイウッド、2本のユーティリティ、6I-PW、2本のウェッジ、パターまで構成全体が見えるページに更新しています。",
+    "excerpt": "片山晋呉のクラブセッティングは、最新または十分に明確な確認ソースで再調査中です。",
+    "body": "片山晋呉のクラブセッティングは、掲載ソースが古いため、最新または十分に明確な確認ソースが見つかるまで公開を保留しています。",
     "article_type": "update",
     "season_year": 2026,
-    "published": true,
+    "published": false,
     "published_at": "2026-04-10T00:00:00.000Z"
   }
 }
