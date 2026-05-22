@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-21T06:51:11.627Z",
-  "checkedCount": 107,
-  "needsUpdateCount": 23,
-  "found2026Count": 42,
+  "generatedAt": "2026-05-22T01:15:59.378Z",
+  "checkedCount": 108,
+  "needsUpdateCount": 0,
+  "found2026Count": 43,
   "checks": [
     {
       "file": "docs/adam-scott-seed.json",
@@ -79,14 +79,14 @@
       "slug": "aguri-iwasaki",
       "name": "岩崎 亜久竜",
       "gdoId": "18431",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/18431/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/18431/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18431/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/18431/2026/1/",
         "title": "岩崎亜久竜 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -261,12 +261,12 @@
       "gdoId": "17824",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/17824/"
+        "https://news.golfdigest.co.jp/players/setting/17824/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17824/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/17824/2026/1/",
         "title": "古江彩佳 クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
@@ -1131,12 +1131,12 @@
       "gdoId": "3057",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/3057/"
+        "https://news.golfdigest.co.jp/players/setting/3057/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/3057/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/3057/2026/1/",
         "title": "ジェイソン・デイ クラブセッティング 2026年 ザ・アメリカンエキスプレス",
@@ -1189,14 +1189,14 @@
       "slug": "jinichiro-kozuma",
       "name": "香妻 陣一朗",
       "gdoId": "6526",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/6526/"
+        "https://news.golfdigest.co.jp/players/setting/6526/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6526/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/6526/2026/1/",
         "title": "香妻陣一朗 クラブセッティング 2026年 前澤杯 ※練習日撮影のため15本",
@@ -1311,12 +1311,12 @@
       "gdoId": "8581",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/8581/"
+        "https://news.golfdigest.co.jp/players/setting/8581/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/8581/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/8581/2026/1/",
         "title": "ジョーダン・スピース クラブセッティング 2026年 WMフェニックスオープン",
@@ -1804,14 +1804,14 @@
       "slug": "kensei-hirata",
       "name": "平田 憲聖",
       "gdoId": "17181",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/17181/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/17181/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17181/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/17181/2026/1/",
         "title": "平田憲聖 クラブセッティング ※練習日のためパター2本",
@@ -2706,12 +2706,12 @@
       "gdoId": "17669",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/17669/"
+        "https://news.golfdigest.co.jp/players/setting/17669/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17669/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/17669/2026/1/",
         "title": "山下美夢有 クラブセッティング トーナメント・オブ・チャンピオンズ ※練習日のため15本",
@@ -3374,14 +3374,14 @@
       "slug": "ren-yonezawa",
       "name": "米澤 蓮",
       "gdoId": "18057",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/18057/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/18057/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18057/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/18057/2026/1/",
         "title": "米澤蓮 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -3439,14 +3439,14 @@
       "slug": "riki-kawamoto",
       "name": "河本 力",
       "gdoId": "18052",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/18052/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/18052/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18052/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/18052/2026/1/",
         "title": "河本力 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -3976,12 +3976,12 @@
       "gdoId": "15054",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/15054/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/15054/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/15054/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/15054/2026/1/",
         "title": "小祝さくら クラブセッティング ダイキンオーキッドレディス※練習日のため15本",
@@ -4171,12 +4171,12 @@
       "gdoId": "16244",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/16244/2025/2/"
+        "https://news.golfdigest.co.jp/players/setting/16244/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/16244/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/16244/2026/1/",
         "title": "高橋彩華 クラブセッティング 2026年 ダイキンオーキッドレディス",
@@ -4251,12 +4251,12 @@
       "gdoId": "18322",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/18322/"
+        "https://news.golfdigest.co.jp/players/setting/18322/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18322/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/18322/2026/1/",
         "title": "桑木志帆 クラブセッティング 2026年 ダイキンオーキッドレディス",
@@ -4444,14 +4444,14 @@
       "slug": "shugo-imahira",
       "name": "今平 周吾",
       "gdoId": "6535",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/6535/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/6535/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6535/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/6535/2026/1/",
         "title": "今平周吾 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -4694,14 +4694,14 @@
       "slug": "taisei-shimizu",
       "name": "清水 大成",
       "gdoId": "17195",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/17195/"
+        "https://news.golfdigest.co.jp/players/setting/17195/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17195/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/17195/2026/1/",
         "title": "清水大成 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -4759,14 +4759,14 @@
       "slug": "takahiro-hataji",
       "name": "幡地 隆寛",
       "gdoId": "6406",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/6406/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/6406/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6406/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/6406/2026/1/",
         "title": "幡地隆寛 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -5029,14 +5029,14 @@
       "slug": "tatsunori-shogenji",
       "name": "生源寺 龍憲",
       "gdoId": "17497",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/17497/2025/3/"
+        "https://news.golfdigest.co.jp/players/setting/17497/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17497/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/17497/2026/1/",
         "title": "生源寺龍憲 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -5364,14 +5364,14 @@
       "slug": "tomoharu-otsuki",
       "name": "大槻 智春",
       "gdoId": "6680",
-      "currentGdoYear": 2023,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/6680/"
+        "https://news.golfdigest.co.jp/players/setting/6680/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6680/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/6680/2026/1/",
         "title": "大槻智春 クラブセッティング 2026年 中日クラウンズ ※練習日のため16本",
@@ -5744,14 +5744,14 @@
       "slug": "xander-schauffele",
       "name": "ザンダー・シャウフェレ",
       "gdoId": "16894",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/16894/2025/2/"
+        "https://news.golfdigest.co.jp/players/setting/16894/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/16894/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/16894/2026/1/",
         "title": "ザンダー・シャウフェレ クラブセッティング 2026年 WMフェニックスオープン",
@@ -5889,14 +5889,14 @@
       "slug": "yosuke-asaji",
       "name": "浅地 洋佑",
       "gdoId": "6659",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/6659/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/6659/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6659/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/6659/2026/1/",
         "title": "浅地洋佑 クラブセッティング 2026年 東建ホームメイトカップ",
@@ -6014,14 +6014,14 @@
       "slug": "yui-kawamoto",
       "name": "河本 結",
       "gdoId": "12505",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/12505/"
+        "https://news.golfdigest.co.jp/players/setting/12505/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/12505/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/12505/2026/1/",
         "title": "河本結 クラブセッティング 2026年 ワールドレディスチャンピオンシップサロンパスカップ",
@@ -6086,12 +6086,12 @@
       "gdoId": "16822",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/16822/"
+        "https://news.golfdigest.co.jp/players/setting/16822/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/16822/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/16822/2026/1/",
         "title": "笹生優花 クラブセッティング 2026年 ホンダLPGA",
@@ -6355,18 +6355,93 @@
       }
     },
     {
+      "file": "docs/yuna-nishimura-seed.json",
+      "slug": "yuna-nishimura",
+      "name": "西村優菜",
+      "gdoId": "17688",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/17688/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17688/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/17688/2026/1/",
+        "title": "西村優菜 クラブセッティング 2026年 フォーティネット ファウンダーズカップ ※練習日のため16本",
+        "playerName": "西村優菜",
+        "year": 2026,
+        "tournament": "フォーティネット ファウンダーズカップ ※練習日のため16本",
+        "situation": "取材：2026年 フォーティネット ファウンダーズカップ ※練習日のため16本",
+        "itemCount": 10,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "QUANTUM ◆◆◆(トリプルダイヤ)MAX ドライバー(9度)",
+            "shaft": "SPEEDER NX VIOLET(スピーダー エヌエックス バイオレット)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "パラダイム Ai スモーク MAX D フェアウェイウッド(3番15度)",
+            "shaft": "SPEEDER NX VIOLET(スピーダー エヌエックス バイオレット)(重さ50g台、硬さR)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "QUANTUM MINI BUFFY フェアウェイウッド(5番18度)",
+            "shaft": ""
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "QUANTUM MINI SPINNER フェアウェイウッド(7番21度、9番24度)",
+            "shaft": "SPEEDER NX BLACK(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "GBB エピック スター ユーティリティ(6番26度)",
+            "shaft": "MCH シャフト(重さ60g台、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "APEX Ai200 アイアン(6番)",
+            "shaft": "MCH シャフト(重さ70g、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "X フォージド STAR アイアン＜2026年＞(7番～PW)",
+            "shaft": "MCH シャフト(重さ70g、硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "X フォージド ウェッジ＜2026年＞(48度、50度、52度、58度)",
+            "shaft": "MCH シャフト(重さ80g、硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "Ai-ONE #7 S パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "CHROME TOUR(クロムツアー)X ボール＜2026年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/yuri-yoshida-seed.json",
       "slug": "yuri-yoshida",
       "name": "吉田優利",
       "gdoId": "16327",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/16327/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/16327/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/16327/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/16327/2026/1/",
         "title": "吉田優利 クラブセッティング 2026年 ホンダLPGA",
@@ -6491,12 +6566,12 @@
       "gdoId": "120",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/120/2017/1/"
+        "https://news.golfdigest.co.jp/players/setting/120/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/120/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/120/2026/1/",
         "title": "池田勇太 クラブセッティング 2026年 東建ホームメイトカップ",
