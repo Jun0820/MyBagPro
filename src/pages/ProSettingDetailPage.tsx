@@ -41,6 +41,12 @@ const formatJapaneseDate = (value?: string | null, mode: 'month' | 'date' = 'mon
   return `${date.getFullYear()}年${date.getMonth() + 1}月`;
 };
 
+const formatIsoDateText = (value: string) => {
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return null;
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+};
+
 const formatSourceTypeLabel = (type: string) => {
   const labels: Record<string, string> = {
     official: '公式',
@@ -72,43 +78,6 @@ const simplifySourceNote = (value?: string | null) => {
   return value.replace(/\s+/g, ' ').trim().slice(0, 36);
 };
 
-const extractSourcePeriodTag = (setting: PublicSettingProfile) => {
-  const summaryMonthMatch = setting.summary.match(/(20\d{2}年\d{1,2}月)/);
-  if (summaryMonthMatch?.[1]) return summaryMonthMatch[1];
-
-  const summaryYearMatch = setting.summary.match(/(20\d{2}年)/);
-  if (summaryYearMatch?.[1]) return summaryYearMatch[1];
-
-  const checkedAt = setting.sources.find((source) => source.checkedAt)?.checkedAt;
-  if (!checkedAt) return setting.seasonYear ? `${setting.seasonYear}年` : null;
-
-  const date = new Date(checkedAt);
-  if (Number.isNaN(date.getTime())) return setting.seasonYear ? `${setting.seasonYear}年` : null;
-  return `${date.getFullYear()}年${date.getMonth() + 1}月`;
-};
-
-const extractCoverageBase = (setting: PublicSettingProfile) => {
-  const sourceTexts = [
-    ...setting.sources.map((source) => [source.title, source.notes].filter(Boolean).join(' ')),
-    ...setting.clubs.map((club) => club.sourceNote).filter(Boolean),
-    setting.summary,
-  ].join('\n');
-
-  const interviewedMatch = sourceTexts.match(/取材[:：]\s*([^。\n]+)/);
-  if (interviewedMatch?.[1]) return interviewedMatch[1].trim();
-
-  const dateMatch = sourceTexts.match(/(20\d{2}年\d{1,2}月(?:\d{1,2}日)?)/);
-  if (dateMatch?.[1]) return dateMatch[1];
-
-  const eventMatch = sourceTexts.match(
-    /(20\d{2}年[^。\n]*?(?:トーナメント|選手権|オープン|カップ|クラウンズ|Championship|Open|Classic|Invitational|Cup|Masters))/i
-  );
-  if (eventMatch?.[1]) return eventMatch[1].trim();
-
-  const checkedAt = setting.sources.find((source) => source.checkedAt)?.checkedAt;
-  return formatJapaneseDate(checkedAt, 'month') || (setting.seasonYear ? `${setting.seasonYear}年シーズン` : '確認ソースベース');
-};
-
 const getLatestConfirmedDate = (setting: PublicSettingProfile) => {
   const verifiedAt = formatJapaneseDate(setting.verifiedAt, 'month');
   if (verifiedAt) return verifiedAt;
@@ -127,14 +96,49 @@ const buildDataFreshnessItems = (setting: PublicSettingProfile) => [
     value: setting.seasonYear ? `${setting.seasonYear}年確認版` : '最新確認版',
   },
   {
-    label: '取材ベース',
-    value: extractCoverageBase(setting),
-  },
-  {
     label: '最新確認日',
     value: getLatestConfirmedDate(setting),
   },
 ];
+
+const extractSourceDateLabel = (source: { title: string; notes?: string | null }) => {
+  const text = [source.title, source.notes].filter(Boolean).join(' ');
+
+  const publishedIsoMatch = text.match(/Published\s+(20\d{2}-\d{1,2}-\d{1,2})/i);
+  if (publishedIsoMatch?.[1]) return formatIsoDateText(publishedIsoMatch[1]);
+
+  const japaneseFullDateMatch = text.match(/(20\d{2}年\d{1,2}月\d{1,2}日)/);
+  if (japaneseFullDateMatch?.[1]) return japaneseFullDateMatch[1];
+
+  const japaneseMonthMatch = text.match(/(20\d{2}年\d{1,2}月)/);
+  if (japaneseMonthMatch?.[1]) return japaneseMonthMatch[1];
+
+  const witbMonthMatch = text.match(/WITB\s+(20\d{2})\s*\((January|February|March|April|May|June|July|August|September|October|November|December)\)/i);
+  if (witbMonthMatch?.[1] && witbMonthMatch?.[2]) {
+    const monthMap: Record<string, number> = {
+      january: 1,
+      february: 2,
+      march: 3,
+      april: 4,
+      may: 5,
+      june: 6,
+      july: 7,
+      august: 8,
+      september: 9,
+      october: 10,
+      november: 11,
+      december: 12,
+    };
+    return `${witbMonthMatch[1]}年${monthMap[witbMonthMatch[2].toLowerCase()]}月`;
+  }
+
+  const yearEventMatch = text.match(
+    /(20\d{2}年[^。\n]*?(?:トーナメント|選手権|オープン|カップ|クラウンズ|Championship|Open|Classic|Invitational|Cup|Masters))/i
+  );
+  if (yearEventMatch?.[1]) return yearEventMatch[1].trim();
+
+  return null;
+};
 
 const shortenTagline = (tagline: string) =>
   tagline
@@ -495,7 +499,6 @@ export const ProSettingDetailPage = () => {
   if (xChannelUrl) channelLinks.push({ label: 'X', url: xChannelUrl, icon: Twitter });
 
   const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
-  const sourcePeriodTag = extractSourcePeriodTag(setting);
   const profileFacts = [
     { label: '生年月日', value: setting.birthDate || '未公開' },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
@@ -539,11 +542,6 @@ export const ProSettingDetailPage = () => {
             <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-cyan-200">
               {setting.type}
             </div>
-            {sourcePeriodTag && (
-              <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-black text-white/75">
-                {sourcePeriodTag}
-              </div>
-            )}
           </div>
 
           <div className="mt-3 flex items-start gap-3 md:mt-4 md:gap-4">
@@ -607,7 +605,7 @@ export const ProSettingDetailPage = () => {
             ))}
           </dl>
 
-          <dl className="mt-3 grid gap-2 rounded-lg border border-white/10 bg-white/5 p-3 md:mt-4 md:grid-cols-3">
+          <dl className="mt-3 grid gap-2 rounded-lg border border-white/10 bg-white/5 p-3 md:mt-4 md:grid-cols-2">
             {dataFreshnessItems.map((item) => (
               <div key={item.label} className="min-w-0">
                 <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{item.label}</dt>
@@ -897,25 +895,29 @@ export const ProSettingDetailPage = () => {
               </p>
             </div>
             <div className="mt-3 grid gap-2.5">
-              {setting.sources.map((source) => (
-                <div
-                  key={`${source.type}-${source.url}`}
-                  className="rounded-lg bg-slate-50/80 px-3 py-2.5"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="min-w-0">
-                      <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">{formatSourceTypeLabel(source.type)}</div>
-                      <div className="mt-1 truncate text-sm font-black text-trust-navy">{source.title}</div>
-                    </div>
-                    {source.checkedAt && (
-                      <div className="shrink-0 text-[11px] font-bold text-slate-500">
-                        {new Intl.DateTimeFormat('ja-JP').format(new Date(source.checkedAt))}
+              {setting.sources.map((source) => {
+                const sourceDateLabel = extractSourceDateLabel(source);
+                return (
+                  <div
+                    key={`${source.type}-${source.url}`}
+                    className="rounded-lg bg-slate-50/80 px-3 py-2.5"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">{formatSourceTypeLabel(source.type)}</div>
+                        <div className="mt-1 truncate text-sm font-black text-trust-navy">{source.title}</div>
                       </div>
-                    )}
+                      {sourceDateLabel && (
+                        <div className="shrink-0 text-right text-[11px] font-bold leading-4 text-slate-500">
+                          <div className="text-[10px] font-black tracking-[0.12em] text-slate-400">記事日</div>
+                          <div>{sourceDateLabel}</div>
+                        </div>
+                      )}
+                    </div>
+                    {source.notes && <p className="mt-1 text-xs font-bold text-slate-500">{simplifySourceNote(source.notes)}</p>}
                   </div>
-                  {source.notes && <p className="mt-1 text-xs font-bold text-slate-500">{simplifySourceNote(source.notes)}</p>}
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
