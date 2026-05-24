@@ -129,6 +129,20 @@ const extractSourceDateLabel = (source: { title: string; notes?: string | null }
   return null;
 };
 
+const toUsagePeriodLabel = (value?: string | null) => {
+  if (!value) return null;
+
+  const yearMonthMatch = value.match(/(20\d{2})年\s*(\d{1,2})月/);
+  if (yearMonthMatch?.[1] && yearMonthMatch?.[2]) {
+    return `${yearMonthMatch[1]}年${Number(yearMonthMatch[2])}月`;
+  }
+
+  const yearMatch = value.match(/(20\d{2})年/);
+  if (yearMatch?.[1]) return `${yearMatch[1]}年`;
+
+  return null;
+};
+
 const pickUsageConfirmedSource = (setting: PublicSettingProfile) => {
   const sourcesWithDate = setting.sources.filter((source) => extractSourceDateLabel(source));
   return (
@@ -143,7 +157,8 @@ const getUsageConfirmedPeriod = (setting: PublicSettingProfile) => {
   const source = pickUsageConfirmedSource(setting);
   if (source) {
     const dateLabel = extractSourceDateLabel(source);
-    if (dateLabel) return dateLabel;
+    const usagePeriodLabel = toUsagePeriodLabel(dateLabel);
+    if (usagePeriodLabel) return usagePeriodLabel;
   }
 
   return setting.seasonYear ? `${setting.seasonYear}年確認` : '確認時期未公開';

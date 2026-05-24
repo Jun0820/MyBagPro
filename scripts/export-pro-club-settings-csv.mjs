@@ -118,6 +118,18 @@ const extractSourceDateLabel = (source = {}) => {
   return '';
 };
 
+const toUsagePeriodLabel = (value = '') => {
+  const yearMonthMatch = value.match(/(20\d{2})年\s*(\d{1,2})月/);
+  if (yearMonthMatch?.[1] && yearMonthMatch?.[2]) {
+    return `${yearMonthMatch[1]}年${Number(yearMonthMatch[2])}月`;
+  }
+
+  const yearMatch = value.match(/(20\d{2})年/);
+  if (yearMatch?.[1]) return `${yearMatch[1]}年`;
+
+  return '';
+};
+
 const getUsageConfirmedPeriod = (sources = [], seasonYear = null) => {
   const sourcesWithDate = sources.filter((source) => extractSourceDateLabel(source));
   const source =
@@ -126,7 +138,8 @@ const getUsageConfirmedPeriod = (sources = [], seasonYear = null) => {
     sourcesWithDate.find((item) => item.source_type === 'official') ||
     sourcesWithDate[0];
   const sourceDate = extractSourceDateLabel(source);
-  if (sourceDate) return sourceDate;
+  const usagePeriodLabel = toUsagePeriodLabel(sourceDate);
+  if (usagePeriodLabel) return usagePeriodLabel;
   return seasonYear ? `${seasonYear}年確認` : '';
 };
 
