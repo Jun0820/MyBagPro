@@ -90,17 +90,6 @@ const getLatestConfirmedDate = (setting: PublicSettingProfile) => {
   return formatJapaneseDate(new Date(Math.max(...timestamps)).toISOString(), 'month') || '未公開';
 };
 
-const buildDataFreshnessItems = (setting: PublicSettingProfile) => [
-  {
-    label: '掲載版',
-    value: setting.seasonYear ? `${setting.seasonYear}年確認版` : '最新確認版',
-  },
-  {
-    label: '最新確認日',
-    value: getLatestConfirmedDate(setting),
-  },
-];
-
 const extractSourceDateLabel = (source: { title: string; notes?: string | null }) => {
   const text = [source.title, source.notes].filter(Boolean).join(' ');
 
@@ -139,6 +128,37 @@ const extractSourceDateLabel = (source: { title: string; notes?: string | null }
 
   return null;
 };
+
+const pickUsageConfirmedSource = (setting: PublicSettingProfile) => {
+  const sourcesWithDate = setting.sources.filter((source) => extractSourceDateLabel(source));
+  return (
+    sourcesWithDate.find((source) => source.type === 'article') ||
+    sourcesWithDate.find((source) => source.type === 'youtube') ||
+    sourcesWithDate.find((source) => source.type === 'official') ||
+    sourcesWithDate[0]
+  );
+};
+
+const getUsageConfirmedPeriod = (setting: PublicSettingProfile) => {
+  const source = pickUsageConfirmedSource(setting);
+  if (source) {
+    const dateLabel = extractSourceDateLabel(source);
+    if (dateLabel) return dateLabel;
+  }
+
+  return setting.seasonYear ? `${setting.seasonYear}年確認` : '確認時期未公開';
+};
+
+const buildDataFreshnessItems = (setting: PublicSettingProfile) => [
+  {
+    label: '使用確認時期',
+    value: getUsageConfirmedPeriod(setting),
+  },
+  {
+    label: '更新日',
+    value: getLatestConfirmedDate(setting),
+  },
+];
 
 const shortenTagline = (tagline: string) =>
   tagline

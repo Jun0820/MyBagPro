@@ -18,8 +18,9 @@ const columns = [
   ['kana_name', '読み'],
   ['profile_type', 'プロフィール種別'],
   ['segment', 'カテゴリ'],
-  ['season_year', '掲載版'],
-  ['verified_at', '最新確認日'],
+  ['season_year', '年度'],
+  ['usage_confirmed_period', '使用確認時期'],
+  ['verified_at', '更新日'],
   ['is_published', '公開状態'],
   ['pro_page_url', 'プロ詳細URL'],
   ['slot_order', '並び順'],
@@ -49,6 +50,12 @@ const formatDate = (value) => {
   return date.toISOString().slice(0, 10);
 };
 
+const formatIsoDateText = (value) => {
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return '';
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+};
+
 const normalizeValue = (value) => {
   if (value === null || value === undefined) return '';
   if (typeof value === 'boolean') return value ? 'true' : 'false';
@@ -70,6 +77,59 @@ const pickPrimarySource = (sources = []) => {
   );
 };
 
+const extractSourceDateLabel = (source = {}) => {
+  const text = [source.source_title, source.notes].filter(Boolean).join(' ');
+
+  const publishedIsoMatch = text.match(/Published\s+(20\d{2}-\d{1,2}-\d{1,2})/i);
+  if (publishedIsoMatch?.[1]) return formatIsoDateText(publishedIsoMatch[1]);
+
+  const japaneseFullDateMatch = text.match(/(20\d{2}年\d{1,2}月\d{1,2}日)/);
+  if (japaneseFullDateMatch?.[1]) return japaneseFullDateMatch[1];
+
+  const japaneseMonthMatch = text.match(/(20\d{2}年\d{1,2}月)/);
+  if (japaneseMonthMatch?.[1]) return japaneseMonthMatch[1];
+
+  const witbMonthMatch = text.match(
+    /WITB\s+(20\d{2})\s*\((January|February|March|April|May|June|July|August|September|October|November|December)\)/i
+  );
+  if (witbMonthMatch?.[1] && witbMonthMatch?.[2]) {
+    const monthMap = {
+      january: 1,
+      february: 2,
+      march: 3,
+      april: 4,
+      may: 5,
+      june: 6,
+      july: 7,
+      august: 8,
+      september: 9,
+      october: 10,
+      november: 11,
+      december: 12,
+    };
+    return `${witbMonthMatch[1]}年${monthMap[witbMonthMatch[2].toLowerCase()]}月`;
+  }
+
+  const yearEventMatch = text.match(
+    /(20\d{2}年[^。\n]*?(?:トーナメント|選手権|オープン|カップ|クラウンズ|Championship|Open|Classic|Invitational|Cup|Masters))/i
+  );
+  if (yearEventMatch?.[1]) return yearEventMatch[1].trim();
+
+  return '';
+};
+
+const getUsageConfirmedPeriod = (sources = [], seasonYear = null) => {
+  const sourcesWithDate = sources.filter((source) => extractSourceDateLabel(source));
+  const source =
+    sourcesWithDate.find((item) => item.source_type === 'article') ||
+    sourcesWithDate.find((item) => item.source_type === 'youtube') ||
+    sourcesWithDate.find((item) => item.source_type === 'official') ||
+    sourcesWithDate[0];
+  const sourceDate = extractSourceDateLabel(source);
+  if (sourceDate) return sourceDate;
+  return seasonYear ? `${seasonYear}年確認` : '';
+};
+
 const rows = [];
 
 for (const entry of profiles) {
@@ -84,6 +144,7 @@ for (const entry of profiles) {
     profile_type: profile.profile_type,
     segment: profile.segment,
     season_year: profile.season_year,
+    usage_confirmed_period: getUsageConfirmedPeriod(sources, profile.season_year),
     verified_at: formatDate(profile.verified_at),
     is_published: profile.is_published,
     pro_page_url: profile.slug ? `https://www.mybagpro.jp/pros/${profile.slug}` : '',
