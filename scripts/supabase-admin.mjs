@@ -406,18 +406,12 @@ async function upsertSettingProfileFromFile(filepath) {
   }
 
   if (sources.length > 0) {
-    const { data: existingSources, error: existingSourcesError } = await supabase
+    const { error: deleteSourcesError } = await supabase
       .from('content_sources')
-      .select('source_type, source_url, source_title')
+      .delete()
       .eq('profile_id', upsertedProfile.id);
 
-    if (existingSourcesError) throw existingSourcesError;
-
-    const existingKeys = new Set(
-      (existingSources || []).map((source) =>
-        `${source.source_type}__${source.source_url || ''}__${source.source_title || ''}`
-      )
-    );
+    if (deleteSourcesError) throw deleteSourcesError;
 
     const newSources = sources
       .map((source) => ({
@@ -428,10 +422,7 @@ async function upsertSettingProfileFromFile(filepath) {
         checked_at: source.checked_at || null,
         notes: source.notes || null,
       }))
-      .filter((source) => {
-        const key = `${source.source_type}__${source.source_url || ''}__${source.source_title || ''}`;
-        return !existingKeys.has(key);
-      });
+      .filter((source) => source.source_type && source.source_url && source.source_title);
 
     if (newSources.length > 0) {
       const { error: sourcesError } = await supabase
