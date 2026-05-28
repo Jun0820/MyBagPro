@@ -403,6 +403,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/articles/jiyai-shin-2026-setting-update</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/articles/jm-eagle-la-championship-2026-spotlight</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1856,6 +1862,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/pros/jinichiro-kozuma</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/pros/jiyai-shin</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

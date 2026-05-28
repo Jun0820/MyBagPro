@@ -3,30 +3,36 @@
     "slug": "ai-suzuki",
     "display_name": "鈴木愛",
     "nationality": "Japan",
-    "birthplace": "徳島県三好市",
+    "birthplace": "徳島県東みよし町",
     "birth_date": "1994-05-09",
-    "height_cm": 161,
+    "height_cm": 155,
     "profile_type": "tour_pro",
-    "segment": "verified_batch",
-    "season_year": 2025,
-    "ball_name": null,
-    "feature_1": "PING公式 2025年10月",
-    "feature_2": "G440 LST",
-    "feature_3": "14本確認済み",
-    "summary": "PING公式の2025年10月8日時点で確認できる鈴木愛の14本セッティング。",
-    "latest_source_policy": "2025_official_ping",
+    "segment": "jlpga_verified",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1x 2025",
+    "feature_1": "2026年GDO確認",
+    "feature_2": "PING G440中心",
+    "feature_3": "6Iからアイアン",
+    "summary": "GDOの2026年ダイキンオーキッドレディス取材で確認できた鈴木愛のクラブセッティング。PING G440 K、G440 FW/HY、Blueprint S、s159、Scottsdale Tech、Pro V1xを整理しました。",
+    "latest_source_policy": "gdo_2026",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-04-20T00:00:00.000Z"
+    "verified_at": "2026-05-28T00:00:00.000Z",
+    "kana_name": "スズキ アイ"
   },
   "bagItems": [
     {
       "category": "Driver",
       "slot_order": 1,
       "brand": "PING",
-      "model_name": "G440 LST Driver",
-      "loft_label": "9度",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "model_name": "G440 K Driver",
+      "spec_label": "1W",
+      "loft_label": "9°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "VENTUS BLUE",
+      "shaft_weight": "50g台",
+      "shaft_flex": "R",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。G440 K Driver 9°、VENTUS BLUE 50g台 R。",
       "is_featured_item": true
     },
     {
@@ -35,7 +41,12 @@
       "brand": "PING",
       "model_name": "G440 LST Fairway Wood",
       "spec_label": "3W",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "loft_label": "15°",
+      "shaft_brand": "PING",
+      "shaft_model": "ALTA CB",
+      "shaft_weight": "65g",
+      "shaft_flex": "R",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。G440 LST Fairway Wood 3W 15°、ALTA CB 65R。",
       "is_featured_item": false
     },
     {
@@ -44,27 +55,40 @@
       "brand": "PING",
       "model_name": "G440 MAX Fairway Wood",
       "spec_label": "5W",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "loft_label": "19°",
+      "shaft_brand": "PING",
+      "shaft_model": "ALTA CB",
+      "shaft_weight": "65g",
+      "shaft_flex": "R",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。G440 MAX Fairway Wood 5W 19°、ALTA CB 65R。",
       "is_featured_item": false
     },
     {
       "category": "Utility",
       "slot_order": 4,
       "brand": "PING",
-      "model_name": "G440 Hybrid",
-      "spec_label": "4H",
-      "loft_label": "23度",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "model_name": "G440 Hybrid Utility",
+      "spec_label": "4UT",
+      "loft_label": "22°",
+      "shaft_brand": "PING",
+      "shaft_model": "ALTA CB BLUE",
+      "shaft_weight": "75g",
+      "shaft_flex": "SR",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。G440 Hybrid Utility 4番22°・5番26°、ALTA CB BLUE 75SR。",
       "is_featured_item": false
     },
     {
       "category": "Utility",
       "slot_order": 5,
       "brand": "PING",
-      "model_name": "G440 Hybrid",
-      "spec_label": "5H",
-      "loft_label": "26度",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "model_name": "G440 Hybrid Utility",
+      "spec_label": "5UT",
+      "loft_label": "26°",
+      "shaft_brand": "PING",
+      "shaft_model": "ALTA CB BLUE",
+      "shaft_weight": "75g",
+      "shaft_flex": "SR",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。G440 Hybrid Utility 4番22°・5番26°、ALTA CB BLUE 75SR。",
       "is_featured_item": false
     },
     {
@@ -73,7 +97,10 @@
       "brand": "PING",
       "model_name": "Blueprint S Iron",
       "spec_label": "6I",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。6I-9I/WはBlueprint S、N.S.PRO 850GH S。",
       "is_featured_item": false
     },
     {
@@ -82,7 +109,10 @@
       "brand": "PING",
       "model_name": "Blueprint S Iron",
       "spec_label": "7I",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。6I-9I/WはBlueprint S、N.S.PRO 850GH S。",
       "is_featured_item": false
     },
     {
@@ -91,7 +121,10 @@
       "brand": "PING",
       "model_name": "Blueprint S Iron",
       "spec_label": "8I",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。6I-9I/WはBlueprint S、N.S.PRO 850GH S。",
       "is_featured_item": false
     },
     {
@@ -100,7 +133,10 @@
       "brand": "PING",
       "model_name": "Blueprint S Iron",
       "spec_label": "9I",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。6I-9I/WはBlueprint S、N.S.PRO 850GH S。",
       "is_featured_item": false
     },
     {
@@ -108,8 +144,11 @@
       "slot_order": 10,
       "brand": "PING",
       "model_name": "Blueprint S Iron",
-      "spec_label": "PW",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "spec_label": "W",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。6I-9I/WはBlueprint S、N.S.PRO 850GH S。",
       "is_featured_item": false
     },
     {
@@ -117,9 +156,12 @@
       "slot_order": 11,
       "brand": "PING",
       "model_name": "s159 Wedge",
-      "spec_label": "GW",
-      "loft_label": "50度S",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "spec_label": "50°",
+      "loft_label": "50°",
+      "shaft_brand": "PING",
+      "shaft_model": "CFS WEDGE",
+      "shaft_flex": "R",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。s159 Wedge 50°・54°・58°、CFS WEDGE R。",
       "is_featured_item": false
     },
     {
@@ -127,9 +169,12 @@
       "slot_order": 12,
       "brand": "PING",
       "model_name": "s159 Wedge",
-      "spec_label": "SW",
-      "loft_label": "54度S",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "spec_label": "54°",
+      "loft_label": "54°",
+      "shaft_brand": "PING",
+      "shaft_model": "CFS WEDGE",
+      "shaft_flex": "R",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。s159 Wedge 50°・54°・58°、CFS WEDGE R。",
       "is_featured_item": false
     },
     {
@@ -137,37 +182,48 @@
       "slot_order": 13,
       "brand": "PING",
       "model_name": "s159 Wedge",
-      "spec_label": "LW",
-      "loft_label": "58度B",
-      "source_note": "PING公式 2025年10月8日情報。",
+      "spec_label": "58°",
+      "loft_label": "58°",
+      "shaft_brand": "PING",
+      "shaft_model": "CFS WEDGE",
+      "shaft_flex": "R",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。s159 Wedge 50°・54°・58°、CFS WEDGE R。",
       "is_featured_item": false
     },
     {
       "category": "Putter",
       "slot_order": 14,
       "brand": "PING",
-      "model_name": "PLD KUSHIN",
-      "source_note": "PING公式 2025年10月8日情報。",
-      "is_featured_item": true
+      "model_name": "Scottsdale Tech ALLY BLUE ONSET Putter",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Ball",
+      "slot_order": 15,
+      "brand": "Titleist",
+      "model_name": "Pro V1x 2025",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。",
+      "is_featured_item": false
     }
   ],
   "sources": [
     {
-      "source_type": "official",
-      "source_url": "https://clubping.jp/tourpros/ai_suzuki.html",
-      "source_title": "ツアープロ情報 鈴木愛選手│CLUB PING",
-      "checked_at": "2026-04-20T00:00:00.000Z",
-      "notes": "PING公式の2025年10月8日時点クラブ情報。"
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6807/2026/1/",
+      "source_title": "GDO 鈴木愛 クラブセッティング 2026年 ダイキンオーキッドレディス",
+      "checked_at": "2026-05-28T00:00:00.000Z",
+      "notes": "2026年ダイキンオーキッドレディス取材。GDOで確認できた番手のみ掲載。"
     }
   ],
   "article": {
     "slug": "ai-suzuki-2026-setting-update",
-    "title": "鈴木愛の最新クラブセッティングを更新しました",
-    "excerpt": "PING公式の2025年10月8日時点情報をもとに、鈴木愛の14本セッティングを更新しました。",
-    "body": "鈴木愛のセッティングについて、PING公式のツアープロ情報をもとに14本全体を更新しました。G440 LSTドライバー、G440の3番・5番ウッド、G440ハイブリッド、Blueprint Sアイアン、s159ウェッジ、PLD KUSHINパターという構成です。",
+    "title": "鈴木愛の2026年クラブセッティングを更新しました",
+    "excerpt": "GDOの2026年ダイキンオーキッドレディス取材をもとに、鈴木愛のPING G440中心セッティングを整理しました。",
+    "body": "鈴木愛のクラブセッティングを、GDOの2026年ダイキンオーキッドレディス取材情報をもとに更新しました。\n\n1WはPING G440 K Driver、FWはG440 LSTの3WとG440 MAXの5W。さらにG440 Hybrid Utilityの4UT・5UTを入れて、6IからBlueprint S Ironにつなげています。\n\nウェッジはPING s159の50°、54°、58°。パターはPING Scottsdale Tech ALLY BLUE ONSET、ボールはTitleist Pro V1x 2025です。\n\nアマチュアが参考にするなら、5WとUT2本を使って長い距離を作り、6Iからアイアンに入る流れです。ヘッドスピードに不安がある人ほど、無理に5番アイアンを入れるより距離階段を整えやすい考え方です。\n\n鈴木愛のクラブセッティング詳細は、MyBagProの選手ページ `/pros/ai-suzuki` で確認できます。",
     "article_type": "update",
-    "season_year": 2025,
+    "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-20T00:00:00.000Z"
+    "published_at": "2026-05-28T00:00:00.000Z"
   }
 }
