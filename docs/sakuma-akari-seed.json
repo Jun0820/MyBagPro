@@ -5,17 +5,17 @@
     "nationality": "Japan",
     "birthplace": "埼玉県",
     "profile_type": "tour_pro",
-    "segment": "verified_batch",
+    "segment": "jlpga_verified",
     "season_year": 2026,
-    "ball_name": null,
-    "feature_1": "2026シーズン基準",
+    "ball_name": "Titleist PRO V1x 2025",
+    "feature_1": "GDO 2026取材確認",
     "feature_2": "PING契約",
-    "feature_3": "14本確認済み",
-    "summary": "PING公式の2026年3月4日時点情報をもとに整理した佐久間朱莉の14本セッティング。",
-    "latest_source_policy": "2026_season",
+    "feature_3": "G430 MAX 10K中心",
+    "summary": "佐久間朱莉の2026年クラブセッティングは、GDOの2026年ダイキンオーキッドレディス取材をもとに更新しました。PING G430 MAX 10K、G430 MAX FW、G430ハイブリッド、i240 / Blueprintのコンボ、s259ウェッジ、SCOTTSDALE DS72、Titleist PRO V1x 2025を確認しています。",
+    "latest_source_policy": "使用確認時期: 2026年3月。GDOの2026年ダイキンオーキッドレディス取材ページで確認できる番手・モデル・ロフト・シャフトを掲載。",
     "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-04-20T00:00:00.000Z",
+    "verified_at": "2026-05-28T00:00:00.000Z",
     "kana_name": "サクマ シュリ",
     "birth_date": "2002-12-11"
   },
@@ -26,7 +26,11 @@
       "brand": "PING",
       "model_name": "G430 MAX 10K Driver",
       "loft_label": "9°",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO Regio Formula MB+",
+      "shaft_weight": "55g",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": true
     },
     {
@@ -35,7 +39,12 @@
       "brand": "PING",
       "model_name": "G430 MAX Fairway Wood",
       "spec_label": "3W",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "loft_label": "15°",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO Regio Formula MB+",
+      "shaft_weight": "55g",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -44,7 +53,12 @@
       "brand": "PING",
       "model_name": "G430 MAX Fairway Wood",
       "spec_label": "7W",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "loft_label": "21°",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO Regio Formula MB+",
+      "shaft_weight": "55g",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -54,7 +68,9 @@
       "model_name": "G430 Hybrid",
       "spec_label": "5H",
       "loft_label": "26°",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO Prototype",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -63,7 +79,9 @@
       "brand": "PING",
       "model_name": "i240 Iron",
       "spec_label": "5I",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO MODUS3 HYBRID Graphite On Steel Technology",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -72,7 +90,10 @@
       "brand": "PING",
       "model_name": "Blueprint S Iron",
       "spec_label": "6I",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -81,7 +102,10 @@
       "brand": "PING",
       "model_name": "Blueprint S Iron",
       "spec_label": "7I",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -90,7 +114,10 @@
       "brand": "PING",
       "model_name": "Blueprint T Iron",
       "spec_label": "8I",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -99,7 +126,10 @@
       "brand": "PING",
       "model_name": "Blueprint T Iron",
       "spec_label": "9I",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -108,7 +138,10 @@
       "brand": "PING",
       "model_name": "Blueprint T Iron",
       "spec_label": "PW",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -118,7 +151,10 @@
       "model_name": "s259 Wedge",
       "spec_label": "GW",
       "loft_label": "50度S",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO Prototype",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -128,7 +164,10 @@
       "model_name": "s259 Wedge",
       "spec_label": "SW",
       "loft_label": "54度S",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO Prototype",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -138,7 +177,10 @@
       "model_name": "s259 Wedge",
       "spec_label": "LW",
       "loft_label": "58度E",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO Prototype",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": false
     },
     {
@@ -146,27 +188,43 @@
       "slot_order": 14,
       "brand": "PING",
       "model_name": "SCOTTSDALE DS72 Putter",
-      "source_note": "PING公式 2026年3月4日情報。",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Ball",
+      "slot_order": 15,
+      "brand": "Titleist",
+      "model_name": "PRO V1x Ball",
+      "spec_label": "2025",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材ページより確認。",
       "is_featured_item": true
     }
   ],
   "sources": [
     {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/18138/2026/1/",
+      "source_title": "GDO 佐久間朱莉 クラブセッティング 2026年 ダイキンオーキッドレディス",
+      "checked_at": "2026-03-08T00:00:00.000Z",
+      "notes": "2026年ダイキンオーキッドレディス取材。番手、モデル、ロフト、シャフト、ボールを確認。"
+    },
+    {
       "source_type": "official",
       "source_url": "https://clubping.jp/tourpros/sakuma.html",
       "source_title": "ツアープロ情報 佐久間朱莉選手│CLUB PING",
-      "checked_at": "2026-04-20T00:00:00.000Z",
-      "notes": "PING公式の2026年3月4日時点クラブ情報。"
+      "checked_at": "2026-03-04T00:00:00.000Z",
+      "notes": "PING公式の2026年3月4日時点クラブ情報。GDO取材情報の補助ソース。"
     }
   ],
   "article": {
     "slug": "sakuma-akari-2026-setting-update",
-    "title": "佐久間朱莉の2026年クラブセッティングを掲載しました",
-    "excerpt": "PING公式の2026年3月4日時点情報をもとに、佐久間朱莉の14本セッティングを掲載しました。",
-    "body": "佐久間朱莉のセッティングについて、PING公式のツアープロ情報をもとに14本全体を更新しました。G430 MAX 10Kドライバー、G430 MAXの3番・7番ウッド、G430ハイブリッド、i240とBlueprintのコンボアイアン、s259ウェッジ、SCOTTSDALE DS72パターという構成です。",
+    "title": "佐久間朱莉の2026年クラブセッティングを更新しました",
+    "excerpt": "佐久間朱莉の2026年セッティングをGDOのダイキンオーキッドレディス取材情報で更新。PING中心の14本とPRO V1x 2025を整理しました。",
+    "body": "佐久間朱莉のクラブセッティングを、GDOの2026年ダイキンオーキッドレディス取材ページをもとに更新しました。\n\n今回確認できた構成は、PING G430 MAX 10Kドライバー、G430 MAXフェアウェイウッドの3W・7W、G430ハイブリッド5番、i240の5番アイアン、Blueprint Sの6・7番、Blueprint Tの8番〜W、s259ウェッジ50・54・58度、SCOTTSDALE DS72パター、Titleist PRO V1x 2025です。\n\n特に見どころは、上の番手を3W・7W・5Hで整理し、5番アイアンから下をi240 / Blueprintのコンボにしている点です。長い距離はウッドとハイブリッドで高さと安定感を作り、アイアンは番手ごとに求める操作性を変えている構成と見られます。\n\nアマチュアが参考にするなら、同じスペックをそのまま選ぶより、3Wと7Wの間隔、5Hと5Iのつながり、ウェッジ3本のロフト構成を見るのがおすすめです。ロングアイアンが苦手な人にとっては、7Wと5Hで距離を作る考え方が特に参考になります。\n\n佐久間朱莉のクラブセッティング詳細は、MyBagProの選手ページ `/pros/sakuma-akari` で確認できます。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-20T00:00:00.000Z"
+    "published_at": "2026-05-28T00:00:00.000Z"
   }
 }
