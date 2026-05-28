@@ -73,6 +73,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/articles/arimura-chie-2026-setting-update</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/articles/ayaka-furue-2026-setting-update</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -674,6 +680,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/articles/min-woo-lee-2026-setting-update</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/articles/minami-katsu-2026-setting-update</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1633,6 +1645,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/pros/arimura-chie</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/pros/ayaka-furue</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2018,6 +2036,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/pros/min-woo-lee</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/pros/minami-katsu</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
