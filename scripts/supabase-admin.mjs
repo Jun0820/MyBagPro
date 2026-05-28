@@ -112,6 +112,26 @@ function loadSeedProfiles() {
   }).filter(Boolean);
 }
 
+function parseProfileMetadata() {
+  const metadataFile = path.join(projectRoot, 'src/lib/profileMetadata.ts');
+  if (!fs.existsSync(metadataFile)) return new Map();
+
+  const source = fs.readFileSync(metadataFile, 'utf8');
+  const entries = [];
+  const linePattern = /^\s*'([^']+)':\s*\{\s*([^}]*)\},?\s*$/gm;
+
+  for (const match of source.matchAll(linePattern)) {
+    const [, slug, body] = match;
+    const category = body.match(/category:\s*'([^']+)'/)?.[1] || null;
+    const contractStatus = body.match(/contractStatus:\s*'([^']+)'/)?.[1] || null;
+    const contractMaker = body.match(/contractMaker:\s*'([^']+)'/)?.[1] || null;
+
+    entries.push([slug, { category, contractStatus, contractMaker }]);
+  }
+
+  return new Map(entries);
+}
+
 function isMeaningfulText(value) {
   return typeof value === 'string' && value.trim() && !['-', '－', '—', '未公開'].includes(value.trim());
 }
@@ -550,6 +570,7 @@ async function syncProfileFields({ dryRun = false } = {}) {
   const socialOverrideMap = new Map(
     parseProfileSocialOverrides().map((entry) => [entry.slug, entry])
   );
+  const metadataMap = parseProfileMetadata();
   const fieldOverrides = loadProfileFieldOverrides();
   const seedProfiles = loadSeedProfiles();
 
@@ -599,9 +620,10 @@ async function syncProfileFields({ dryRun = false } = {}) {
     const websiteUrl = finalizeTextValue(
       withFallback(overrides.website_url, seedProfile.website_url, profile.website_url)
     );
-    const category = withFallback(seedProfile.category, profile.category);
-    const contractStatus = withFallback(seedProfile.contractStatus, profile.contractStatus);
-    const contractMaker = withFallback(seedProfile.contractMaker, profile.contractMaker);
+    const metadata = metadataMap.get(seedProfile.slug);
+    const category = withFallback(seedProfile.category, metadata?.category, profile.category);
+    const contractStatus = withFallback(seedProfile.contractStatus, metadata?.contractStatus, profile.contractStatus);
+    const contractMaker = withFallback(seedProfile.contractMaker, metadata?.contractMaker, profile.contractMaker);
 
     if (!kanaName || !birthDate || !heightCm || !birthplace) {
       unresolved.push({
