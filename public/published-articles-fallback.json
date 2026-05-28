@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-28T09:58:36.978Z",
+  "generatedAt": "2026-05-28T11:48:43.848Z",
   "source": "supabase",
-  "count": 266,
+  "count": 267,
   "articles": [
     {
       "slug": "saki-baba-2026-setting-update",
@@ -110,6 +110,18 @@
       "related_profile_id": "c399130a-231f-4f8b-94d8-15c9ce15c02c",
       "related_profile_slug": "nanako-inagaki",
       "related_profile_name": "稲垣那奈子"
+    },
+    {
+      "slug": "saiki-fujita-2026-setting-update",
+      "title": "藤田さいきの2026年クラブセッティングを更新しました",
+      "excerpt": "藤田さいきの2026年セッティングをALBA記事ベースで更新。PING G440、Callaway X FORGED、OPUS SP、日本シャフトの組み合わせを整理しました。",
+      "body": "藤田さいきの2026年クラブセッティングを、ALBA Netの国内女子ツアー開幕戦取材記事をもとに更新しました。\n\n今回確認できた大きなポイントは、PING G440のウッド系と日本シャフトのレジオフォーミュラ、そしてCallawayのアイアン・ウェッジを組み合わせている点です。1WはPING G440 MAX 9°、3W・5WはPING G440 LST 15°・19°。4UはPING G440、5UはONOFF KUROで、ロングゲームは高さと安定感を作りやすい構成になっています。\n\nアイアンは6IのみCallaway X FORGED MAX、7I〜PWはX FORGED STAR。ウェッジはOPUS SPの48°・52°・60°です。6Iから下をアイアンにしつつ、4U・5Uで距離の階段を作る流れは、ロングアイアンが重く感じるアマチュアにも参考になります。\n\nただし、藤田プロは日本シャフトとの信頼関係をもとに細かく調整された専用スペックを使っています。プロのシャフトやロフトをそのまま真似るより、自分のヘッドスピード、球の高さ、ミスの傾向に合わせて置き換えることが大切です。\n\n藤田さいきのクラブセッティング詳細は、MyBagProの選手ページ `/pros/saiki-fujita` で確認できます。",
+      "article_type": "update",
+      "published_at": "2026-05-28T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "9f9db604-c75f-48c2-8559-fb4050550c45",
+      "related_profile_slug": "saiki-fujita",
+      "related_profile_name": "藤田さいき"
     },
     {
       "slug": "lala-anai-2026-setting-update",
@@ -400,18 +412,6 @@
       "related_profile_name": "清水 大成"
     },
     {
-      "slug": "yosuke-asaji-2026-setting-update",
-      "title": "浅地 洋佑の2026年クラブセッティングを更新しました",
-      "excerpt": "東建ホームメイトカップ時点の使用クラブとボールをGDO確認データで更新しました。",
-      "body": "浅地 洋佑のクラブセッティングについて、東建ホームメイトカップ時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：Titleist タイトリスト GTS2 ドライバー\n- FW/UT：3W、7W、4UTを確認\n- アイアン：5I、6I、7I、8I、9Iを確認\n- ウェッジ：PW、50°、54°、58°、60°を確認\n- パター：ミルドコレクション TX パター #6M\n- ボール：PRO V1 ボール＜2025年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\n浅地 洋佑のクラブセッティング詳細ページは /pros/yosuke-asaji です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
-      "article_type": "update",
-      "published_at": "2026-05-21T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "47ed50a8-0f3f-488f-b971-e9894c11d4dc",
-      "related_profile_slug": "yosuke-asaji",
-      "related_profile_name": "浅地 洋佑"
-    },
-    {
       "slug": "aguri-iwasaki-2026-setting-update",
       "title": "岩崎 亜久竜の2026年クラブセッティングを更新しました",
       "excerpt": "東建ホームメイトカップ時点の使用クラブとボールをGDO確認データで更新しました。",
@@ -484,18 +484,6 @@
       "related_profile_name": "米澤 蓮"
     },
     {
-      "slug": "sayaka-takahashi-2026-setting-update",
-      "title": "高橋彩華の2026年クラブセッティングを更新しました",
-      "excerpt": "ダイキンオーキッドレディス時点の使用クラブとボールをGDO確認データで更新しました。",
-      "body": "高橋彩華のクラブセッティングについて、ダイキンオーキッドレディス時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：Qi35 ドライバー\n- FW/UT：3W、7W、4UT、5UTを確認\n- アイアン：6I、7I、8I、9Iを確認\n- ウェッジ：PW、50°、54°、58°を確認\n- パター：Spider(スパイダー)TOUR X パター\n- ボール：PRO(プロ)V1x ボール＜2025年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\n高橋彩華のクラブセッティング詳細ページは /pros/sayaka-takahashi です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
-      "article_type": "update",
-      "published_at": "2026-05-21T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "d6009495-3fd9-498e-8777-dc0d557906b1",
-      "related_profile_slug": "sayaka-takahashi",
-      "related_profile_name": "高橋彩華"
-    },
-    {
       "slug": "yuka-saso-2026-setting-update",
       "title": "笹生優花の2026年クラブセッティングを更新しました",
       "excerpt": "ホンダLPGA時点の使用クラブとボールをGDO確認データで更新しました。",
@@ -506,6 +494,18 @@
       "related_profile_id": "c647d87e-42dc-4d59-8424-bede31f74144",
       "related_profile_slug": "yuka-saso",
       "related_profile_name": "笹生優花"
+    },
+    {
+      "slug": "sayaka-takahashi-2026-setting-update",
+      "title": "高橋彩華の2026年クラブセッティングを更新しました",
+      "excerpt": "ダイキンオーキッドレディス時点の使用クラブとボールをGDO確認データで更新しました。",
+      "body": "高橋彩華のクラブセッティングについて、ダイキンオーキッドレディス時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：Qi35 ドライバー\n- FW/UT：3W、7W、4UT、5UTを確認\n- アイアン：6I、7I、8I、9Iを確認\n- ウェッジ：PW、50°、54°、58°を確認\n- パター：Spider(スパイダー)TOUR X パター\n- ボール：PRO(プロ)V1x ボール＜2025年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\n高橋彩華のクラブセッティング詳細ページは /pros/sayaka-takahashi です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
+      "article_type": "update",
+      "published_at": "2026-05-21T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "d6009495-3fd9-498e-8777-dc0d557906b1",
+      "related_profile_slug": "sayaka-takahashi",
+      "related_profile_name": "高橋彩華"
     },
     {
       "slug": "shiho-kuwaki-2026-setting-update",
@@ -592,18 +592,6 @@
       "related_profile_name": "小祝さくら"
     },
     {
-      "slug": "xander-schauffele-2026-setting-update",
-      "title": "ザンダー・シャウフェレの2026年クラブセッティングを更新しました",
-      "excerpt": "WMフェニックスオープン時点の使用クラブとボールをGDO確認データで更新しました。",
-      "body": "ザンダー・シャウフェレのクラブセッティングについて、WMフェニックスオープン時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：パラダイム Ai スモーク ◆◆◆(トリプルダイヤモンド) ドライバー\n- FW/UT：FW、UWを確認\n- アイアン：4I、5I、6I、7I、8I、9Iを確認\n- ウェッジ：PW、52°、57°、61°を確認\n- パター：TOULON(トゥーロン)パター ラスベガス\n- ボール：CHROME TOUR(クロムツアー)ボール＜2024年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\nザンダー・シャウフェレのクラブセッティング詳細ページは /pros/xander-schauffele です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
-      "article_type": "update",
-      "published_at": "2026-05-21T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
-      "related_profile_slug": "xander-schauffele",
-      "related_profile_name": "ザンダー・シャウフェレ"
-    },
-    {
       "slug": "miyuu-yamashita-2026-setting-update",
       "title": "山下美夢有の2026年クラブセッティングを更新しました",
       "excerpt": "2026年取材時点の使用クラブとボールをGDO確認データで更新しました。",
@@ -616,6 +604,18 @@
       "related_profile_name": "山下美夢有"
     },
     {
+      "slug": "xander-schauffele-2026-setting-update",
+      "title": "ザンダー・シャウフェレの2026年クラブセッティングを更新しました",
+      "excerpt": "WMフェニックスオープン時点の使用クラブとボールをGDO確認データで更新しました。",
+      "body": "ザンダー・シャウフェレのクラブセッティングについて、WMフェニックスオープン時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：パラダイム Ai スモーク ◆◆◆(トリプルダイヤモンド) ドライバー\n- FW/UT：FW、UWを確認\n- アイアン：4I、5I、6I、7I、8I、9Iを確認\n- ウェッジ：PW、52°、57°、61°を確認\n- パター：TOULON(トゥーロン)パター ラスベガス\n- ボール：CHROME TOUR(クロムツアー)ボール＜2024年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\nザンダー・シャウフェレのクラブセッティング詳細ページは /pros/xander-schauffele です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
+      "article_type": "update",
+      "published_at": "2026-05-21T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
+      "related_profile_slug": "xander-schauffele",
+      "related_profile_name": "ザンダー・シャウフェレ"
+    },
+    {
       "slug": "yui-kawamoto-2026-setting-update",
       "title": "河本 結の2026年クラブセッティングを更新しました",
       "excerpt": "ワールドレディスチャンピオンシップサロンパスカップ時点の使用クラブとボールをGDO確認データで更新しました。",
@@ -626,18 +626,6 @@
       "related_profile_id": "da7d1b6a-e88b-4eb6-b145-c8a30e64d532",
       "related_profile_slug": "yui-kawamoto",
       "related_profile_name": "河本 結"
-    },
-    {
-      "slug": "tomoharu-otsuki-2026-setting-update",
-      "title": "大槻 智春の2026年クラブセッティングを更新しました",
-      "excerpt": "中日クラウンズ ※練習日のため16本時点の使用クラブとボールをGDO確認データで更新しました。",
-      "body": "大槻 智春のクラブセッティングについて、中日クラウンズ ※練習日のため16本時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：プロギア RS ドライバー\n- FW/UT：3W、FW、UTを確認\n- アイアン：4I、5I、6I、7I、8I、9Iを確認\n- ウェッジ：46°、50°、54°、60°を確認\n- パター：Scotty Cameron スコッティキャメロン 009M\n- ボール：PRO(プロ)V1 ボール＜2025年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\n大槻 智春のクラブセッティング詳細ページは /pros/tomoharu-otsuki です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
-      "article_type": "update",
-      "published_at": "2026-05-21T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "fb6b43e6-f2ce-4811-8e88-49d6d7a9389a",
-      "related_profile_slug": "tomoharu-otsuki",
-      "related_profile_name": "大槻 智春"
     },
     {
       "slug": "kensei-hirata-2026-setting-update",
@@ -662,6 +650,30 @@
       "related_profile_id": "ee197e80-abfa-4082-8d0a-c49392cb1460",
       "related_profile_slug": "riki-kawamoto",
       "related_profile_name": "河本 力"
+    },
+    {
+      "slug": "yosuke-asaji-2026-setting-update",
+      "title": "浅地 洋佑の2026年クラブセッティングを更新しました",
+      "excerpt": "東建ホームメイトカップ時点の使用クラブとボールをGDO確認データで更新しました。",
+      "body": "浅地 洋佑のクラブセッティングについて、東建ホームメイトカップ時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：Titleist タイトリスト GTS2 ドライバー\n- FW/UT：3W、7W、4UTを確認\n- アイアン：5I、6I、7I、8I、9Iを確認\n- ウェッジ：PW、50°、54°、58°、60°を確認\n- パター：ミルドコレクション TX パター #6M\n- ボール：PRO V1 ボール＜2025年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\n浅地 洋佑のクラブセッティング詳細ページは /pros/yosuke-asaji です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
+      "article_type": "update",
+      "published_at": "2026-05-21T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "47ed50a8-0f3f-488f-b971-e9894c11d4dc",
+      "related_profile_slug": "yosuke-asaji",
+      "related_profile_name": "浅地 洋佑"
+    },
+    {
+      "slug": "tomoharu-otsuki-2026-setting-update",
+      "title": "大槻 智春の2026年クラブセッティングを更新しました",
+      "excerpt": "中日クラウンズ ※練習日のため16本時点の使用クラブとボールをGDO確認データで更新しました。",
+      "body": "大槻 智春のクラブセッティングについて、中日クラウンズ ※練習日のため16本時点でGDOが公開した情報をもとに更新しました。\n\n## 今回の更新内容\n- ドライバー：プロギア RS ドライバー\n- FW/UT：3W、FW、UTを確認\n- アイアン：4I、5I、6I、7I、8I、9Iを確認\n- ウェッジ：46°、50°、54°、60°を確認\n- パター：Scotty Cameron スコッティキャメロン 009M\n- ボール：PRO(プロ)V1 ボール＜2025年＞\n\n## MyBagProで確認できること\n詳細ページでは、番手、メーカー、モデル、シャフト、重量、ロフト、硬さまで一覧で確認できます。\n\n大槻 智春のクラブセッティング詳細ページは /pros/tomoharu-otsuki です。この記事上部の「クラブセッティングを見る」ボタンからも移動できます。\n\n[CALLOUT title=\"真似るときの注意点\"]\nプロのセッティングは、ヘッドスピード、打ち出し、スピン量、コース条件に合わせて作られています。同じモデルをそのまま選ぶより、番手構成や距離の作り方を自分のバッグに置き換えて考えるのがおすすめです。\n[/CALLOUT]",
+      "article_type": "update",
+      "published_at": "2026-05-21T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "fb6b43e6-f2ce-4811-8e88-49d6d7a9389a",
+      "related_profile_slug": "tomoharu-otsuki",
+      "related_profile_name": "大槻 智春"
     },
     {
       "slug": "site-update-mobile-pro-setting-detail-2026-05-19",
@@ -2440,18 +2452,6 @@
       "related_profile_name": "安田祐香"
     },
     {
-      "slug": "mao-saigo-2026-setting-update",
-      "title": "西郷真央の2026年クラブセッティングを掲載しました",
-      "excerpt": "2026シーズン基準で、西郷真央の14本のクラブセッティングと使用ボールを掲載しました。LPGA公式プロフィールと2026年のGDOセッティング記事をもとに更新しています。",
-      "body": "西郷真央の2026年クラブセッティングについて、2026年トーナメント・オブ・チャンピオンズ時点で確認できた14本の構成を反映しました。使用ドライバーはTitleist GT3 Driver、使用ボールはTitleist Pro V1xです。掲載ページではフェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パターまで一覧で確認できます。2025年シェブロン選手権優勝後のプロフィール文脈も踏まえつつ、LPGA公式プロフィールとTitleist公式、GDOの2026年セッティング記事を参照して整理しています。",
-      "article_type": "update",
-      "published_at": "2026-04-09T00:00:00+00:00",
-      "season_year": 2026,
-      "related_profile_id": "de32529b-46e2-4853-b17f-81fcfa05ba06",
-      "related_profile_slug": "mao-saigo",
-      "related_profile_name": "西郷真央"
-    },
-    {
       "slug": "chisato-iwai-2026-setting-update",
       "title": "岩井千怜の2026年クラブセッティングを掲載しました",
       "excerpt": "2026シーズン基準で、岩井千怜の14本のクラブセッティングと使用ボールを掲載しました。",
@@ -2462,6 +2462,18 @@
       "related_profile_id": "cec81c4e-4512-4e07-a50b-3dd19c644da6",
       "related_profile_slug": "chisato-iwai",
       "related_profile_name": "岩井千怜"
+    },
+    {
+      "slug": "mao-saigo-2026-setting-update",
+      "title": "西郷真央の2026年クラブセッティングを掲載しました",
+      "excerpt": "2026シーズン基準で、西郷真央の14本のクラブセッティングと使用ボールを掲載しました。LPGA公式プロフィールと2026年のGDOセッティング記事をもとに更新しています。",
+      "body": "西郷真央の2026年クラブセッティングについて、2026年トーナメント・オブ・チャンピオンズ時点で確認できた14本の構成を反映しました。使用ドライバーはTitleist GT3 Driver、使用ボールはTitleist Pro V1xです。掲載ページではフェアウェイウッド、ユーティリティ、アイアン、ウェッジ、パターまで一覧で確認できます。2025年シェブロン選手権優勝後のプロフィール文脈も踏まえつつ、LPGA公式プロフィールとTitleist公式、GDOの2026年セッティング記事を参照して整理しています。",
+      "article_type": "update",
+      "published_at": "2026-04-09T00:00:00+00:00",
+      "season_year": 2026,
+      "related_profile_id": "de32529b-46e2-4853-b17f-81fcfa05ba06",
+      "related_profile_slug": "mao-saigo",
+      "related_profile_name": "西郷真央"
     },
     {
       "slug": "jeeno-thitikul-2026-setting-update",
