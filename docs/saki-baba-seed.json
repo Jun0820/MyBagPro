@@ -7,19 +7,18 @@
     "birth_date": "2005-04-25",
     "height_cm": 175,
     "profile_type": "tour_pro",
-    "segment": "verified_batch",
+    "segment": "lpga_verified",
     "season_year": 2026,
     "ball_name": "Bridgestone TOUR B X 2026",
-    "feature_1": "2026シーズン基準",
-    "feature_2": "米女子ツアー参戦中",
-    "feature_3": "14本確認済み",
-    "summary": "2026年ホンダLPGAタイランド時点で確認できた馬場咲希のクラブセッティング。BX1LSドライバー、ブリヂストンのウッド、241CBアイアン、BITING SPINウェッジまで全体像を整理しています。",
-    "latest_source_policy": "2026_season",
-    "is_featured": true,
+    "feature_1": "2026年GDO確認",
+    "feature_2": "Bridgestone中心",
+    "feature_3": "241CBアイアン",
+    "summary": "GDOの2026年ホンダLPGAタイランド取材で確認できた馬場咲希のクラブセッティング。BX1LS、Tour B XD-F、B2HT、241CB、BITING SPIN、Spider X、TOUR B Xを整理しました。",
+    "latest_source_policy": "gdo_2026",
+    "is_featured": false,
     "is_published": true,
-    "verified_at": "2026-05-04T00:00:00.000Z",
-    "kana_name": "ババ サキ",
-    "instagram_handle": "teba_.425"
+    "verified_at": "2026-05-28T00:00:00.000Z",
+    "kana_name": "ババ サキ"
   },
   "bagItems": [
     {
@@ -27,40 +26,41 @@
       "slot_order": 1,
       "brand": "Bridgestone",
       "model_name": "BX1LS Driver",
+      "spec_label": "1W",
       "loft_label": "9°",
       "shaft_brand": "Mitsubishi Chemical",
       "shaft_model": "Diamana WB",
-      "shaft_flex": "S",
       "shaft_weight": "50g台",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。BX1LS Driver 9°、Diamana WB 50g台 S。",
       "is_featured_item": true
     },
     {
       "category": "Fairway Wood",
       "slot_order": 2,
       "brand": "Bridgestone",
-      "model_name": "Tour B XD-F Fairway Wood",
+      "model_name": "Tour B XD-F Fairway Wood 2016",
       "spec_label": "3W",
       "loft_label": "15°",
       "shaft_brand": "Fujikura",
       "shaft_model": "VENTUS BLACK",
-      "shaft_flex": "S",
       "shaft_weight": "50g台",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。Tour B XD-F 2016 3W 15°・5W 18°、VENTUS BLACK 50g台 S。",
       "is_featured_item": false
     },
     {
       "category": "Fairway Wood",
       "slot_order": 3,
       "brand": "Bridgestone",
-      "model_name": "Tour B XD-F Fairway Wood",
+      "model_name": "Tour B XD-F Fairway Wood 2016",
       "spec_label": "5W",
       "loft_label": "18°",
       "shaft_brand": "Fujikura",
       "shaft_model": "VENTUS BLACK",
-      "shaft_flex": "S",
       "shaft_weight": "50g台",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。Tour B XD-F 2016 3W 15°・5W 18°、VENTUS BLACK 50g台 S。",
       "is_featured_item": false
     },
     {
@@ -68,13 +68,13 @@
       "slot_order": 4,
       "brand": "Bridgestone",
       "model_name": "B2HT Hybrid Utility",
-      "spec_label": "4H",
+      "spec_label": "4UT",
       "loft_label": "22°",
-      "shaft_brand": "Graphite Design",
+      "shaft_brand": "Fujikura",
       "shaft_model": "TR HYBRID",
-      "shaft_flex": "S",
       "shaft_weight": "85g",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。B2HT Hybrid Utility 4番22°、TR HYBRID 85g S。",
       "is_featured_item": false
     },
     {
@@ -84,9 +84,9 @@
       "model_name": "241CB Iron",
       "spec_label": "5I",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。5I-PWは241CB、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -96,9 +96,9 @@
       "model_name": "241CB Iron",
       "spec_label": "6I",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。5I-PWは241CB、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -108,9 +108,9 @@
       "model_name": "241CB Iron",
       "spec_label": "7I",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。5I-PWは241CB、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -120,9 +120,9 @@
       "model_name": "241CB Iron",
       "spec_label": "8I",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。5I-PWは241CB、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -132,9 +132,9 @@
       "model_name": "241CB Iron",
       "spec_label": "9I",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。5I-PWは241CB、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -144,9 +144,9 @@
       "model_name": "241CB Iron",
       "spec_label": "PW",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。5I-PWは241CB、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -154,12 +154,12 @@
       "slot_order": 11,
       "brand": "Bridgestone",
       "model_name": "BITING SPIN Wedge",
-      "spec_label": "GW",
+      "spec_label": "50°",
       "loft_label": "50°",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。BITING SPIN Wedge 50°・54°・58°、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -167,12 +167,12 @@
       "slot_order": 12,
       "brand": "Bridgestone",
       "model_name": "BITING SPIN Wedge",
-      "spec_label": "SW",
+      "spec_label": "54°",
       "loft_label": "54°",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。BITING SPIN Wedge 50°・54°・58°、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -180,12 +180,12 @@
       "slot_order": 13,
       "brand": "Bridgestone",
       "model_name": "BITING SPIN Wedge",
-      "spec_label": "LW",
+      "spec_label": "58°",
       "loft_label": "58°",
       "shaft_brand": "Nippon Shaft",
-      "shaft_model": "NS PRO Modus3 Tour 105",
+      "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "S",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。BITING SPIN Wedge 50°・54°・58°、N.S.PRO MODUS3 TOUR 105 S。",
       "is_featured_item": false
     },
     {
@@ -193,8 +193,16 @@
       "slot_order": 14,
       "brand": "TaylorMade",
       "model_name": "Spider X SX-32 Putter",
-      "source_note": "Confirmed from GDO 2026 Honda LPGA Thailand setting page.",
-      "is_featured_item": true
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Ball",
+      "slot_order": 15,
+      "brand": "Bridgestone",
+      "model_name": "TOUR B X 2026",
+      "source_note": "GDO 2026年ホンダLPGAタイランド取材で確認。",
+      "is_featured_item": false
     }
   ],
   "sources": [
@@ -202,40 +210,18 @@
       "source_type": "article",
       "source_url": "https://news.golfdigest.co.jp/players/setting/18619/2026/1/",
       "source_title": "GDO 馬場咲希 クラブセッティング 2026年 ホンダLPGAタイランド",
-      "checked_at": "2026-05-04T00:00:00.000Z",
-      "notes": "2026年の14本構成と使用ボールを確認。"
-    },
-    {
-      "source_type": "official",
-      "source_url": "https://www.instagram.com/teba_.425/",
-      "source_title": "馬場咲希 Instagram",
-      "checked_at": "2026-05-15T00:00:00.000Z",
-      "notes": "公式Instagramアカウント確認用。"
-    },
-    {
-      "source_type": "article",
-      "source_url": "https://news.golfdigest.co.jp/news/tgt/lpga/article/188510/1/",
-      "source_title": "まだまだ振れます馬場咲希の最新セッティング 1WをMAX→LSに替えたワケ",
-      "checked_at": "2026-05-15T00:00:00.000Z",
-      "notes": "2026年ホンダLPGAタイランド時点の最新セッティング解説。既存14本データの補強ソース。"
-    },
-    {
-      "source_type": "article",
-      "source_url": "https://news.golfdigest.co.jp/players/stats/18619/",
-      "source_title": "GDO 馬場咲希 2026年度スタッツ/ランキング",
-      "checked_at": "2026-05-04T00:00:00.000Z",
-      "notes": "2026年の主戦ツアーと飛距離目安の確認用。"
+      "checked_at": "2026-05-28T00:00:00.000Z",
+      "notes": "2026年ホンダLPGAタイランド取材。GDOで確認できた番手のみ掲載。"
     }
   ],
   "article": {
     "slug": "saki-baba-2026-setting-update",
-    "title": "馬場咲希の2026年クラブセッティングを掲載しました",
-    "excerpt": "ホンダLPGAタイランド時点で確認できた馬場咲希の14本セッティングを掲載しました。BX1LSドライバーや241CBアイアン、TOUR B Xボールまでまとめています。",
-    "body": "馬場咲希の2026年シーズン序盤のセッティングとして、ホンダLPGAタイランド時点で確認できた14本を反映しました。ブリヂストンのBX1LSドライバー、ツアーB XD-Fの3Wと5W、B2HTハイブリッド、241CBアイアン、BITING SPINウェッジ、Spider Xパターという流れです。米女子ツアーを主戦場にする中で、飛距離と再現性のバランスが見える実戦構成としてページ内で確認できます。",
+    "title": "馬場咲希の2026年クラブセッティングを更新しました",
+    "excerpt": "GDOの2026年ホンダLPGAタイランド取材をもとに、馬場咲希のBridgestone中心セッティングを整理しました。",
+    "body": "馬場咲希のクラブセッティングを、GDOの2026年ホンダLPGAタイランド取材情報をもとに更新しました。\n\n1WはBridgestone BX1LS Driver、FWはTour B XD-Fの3Wと5W。4UTにはB2HT Hybrid Utilityを入れ、アイアンは241CBの5I〜PWです。\n\nウェッジはBITING SPINの50°、54°、58°、パターはTaylorMade Spider X SX-32、ボールはTOUR B X 2026です。\n\nアマチュアが参考にするなら、5Wと4UTを使って長い距離を作り、5Iからアイアンへつなぐ流れです。米女子ツアーで戦うセッティングなので、飛距離だけでなく球の高さと再現性のバランスを見ると学びがあります。\n\n馬場咲希のクラブセッティング詳細は、MyBagProの選手ページ `/pros/saki-baba` で確認できます。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-05-04T12:00:00+09:00",
-    "related_profile_slug": "saki-baba"
+    "published_at": "2026-05-28T00:00:00.000Z"
   }
 }

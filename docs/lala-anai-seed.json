@@ -1,0 +1,218 @@
+{
+  "profile": {
+    "slug": "lala-anai",
+    "display_name": "穴井詩",
+    "nationality": "Japan",
+    "birthplace": "愛知・岡崎市",
+    "birth_date": "1987-11-11",
+    "height_cm": 165,
+    "profile_type": "tour_pro",
+    "segment": "jlpga_verified",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1 2025",
+    "feature_1": "2026年GDO確認",
+    "feature_2": "Qi4D 1W/FW",
+    "feature_3": "5Iからアイアン",
+    "summary": "GDOの2026年ダイキンオーキッドレディス取材で確認できた穴井詩のクラブセッティング。Qi4D、Rogue Utility、JPX 921 Tour、RTZ、Grind Studio、Phantom 7.2、Pro V1を整理しました。",
+    "latest_source_policy": "gdo_2026",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-28T00:00:00.000Z",
+    "kana_name": "アナイ ララ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "TaylorMade",
+      "model_name": "Qi4D Driver",
+      "spec_label": "1W",
+      "loft_label": "9°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "SPEEDER NX GOLD",
+      "shaft_weight": "50g台",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。Qi4D Driver 9°、SPEEDER NX GOLD 50g台 S。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "Qi4D Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "SPEEDER NX GOLD",
+      "shaft_weight": "60g台",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。Qi4D Fairway Wood 3W 15°・5W 18°・7W 21°、SPEEDER NX GOLD 60g台 S。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "Qi4D Fairway Wood",
+      "spec_label": "5W",
+      "loft_label": "18°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "SPEEDER NX GOLD",
+      "shaft_weight": "60g台",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。Qi4D Fairway Wood 3W 15°・5W 18°・7W 21°、SPEEDER NX GOLD 60g台 S。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 4,
+      "brand": "TaylorMade",
+      "model_name": "Qi4D Fairway Wood",
+      "spec_label": "7W",
+      "loft_label": "21°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "SPEEDER NX GOLD",
+      "shaft_weight": "60g台",
+      "shaft_flex": "S",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。Qi4D Fairway Wood 3W 15°・5W 18°・7W 21°、SPEEDER NX GOLD 60g台 S。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 5,
+      "brand": "Callaway",
+      "model_name": "Rogue Utility",
+      "spec_label": "5UT",
+      "loft_label": "24°",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。Callaway Rogue Utility 5番24°。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Mizuno",
+      "model_name": "JPX 921 TOUR Iron",
+      "spec_label": "5I",
+      "shaft_brand": "KBS",
+      "shaft_model": "KBS Tour FLT 115",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。5I-PWはJPX 921 TOUR、KBS Tour FLT 115。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Mizuno",
+      "model_name": "JPX 921 TOUR Iron",
+      "spec_label": "6I",
+      "shaft_brand": "KBS",
+      "shaft_model": "KBS Tour FLT 115",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。5I-PWはJPX 921 TOUR、KBS Tour FLT 115。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Mizuno",
+      "model_name": "JPX 921 TOUR Iron",
+      "spec_label": "7I",
+      "shaft_brand": "KBS",
+      "shaft_model": "KBS Tour FLT 115",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。5I-PWはJPX 921 TOUR、KBS Tour FLT 115。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Mizuno",
+      "model_name": "JPX 921 TOUR Iron",
+      "spec_label": "8I",
+      "shaft_brand": "KBS",
+      "shaft_model": "KBS Tour FLT 115",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。5I-PWはJPX 921 TOUR、KBS Tour FLT 115。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Mizuno",
+      "model_name": "JPX 921 TOUR Iron",
+      "spec_label": "9I",
+      "shaft_brand": "KBS",
+      "shaft_model": "KBS Tour FLT 115",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。5I-PWはJPX 921 TOUR、KBS Tour FLT 115。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 11,
+      "brand": "Mizuno",
+      "model_name": "JPX 921 TOUR Iron",
+      "spec_label": "PW",
+      "shaft_brand": "KBS",
+      "shaft_model": "KBS Tour FLT 115",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。5I-PWはJPX 921 TOUR、KBS Tour FLT 115。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Cleveland",
+      "model_name": "RTZ Wedge",
+      "spec_label": "52°",
+      "loft_label": "52°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue Onyx Black",
+      "shaft_flex": "S200",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。RTZ Wedge 52°、Dynamic Gold Tour Issue Onyx Black S200。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Grind Studio",
+      "model_name": "Grind Studio Wedge",
+      "spec_label": "58°",
+      "loft_label": "58°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue Onyx Black",
+      "shaft_flex": "S200",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。Grind Studio 58°、Dynamic Gold Tour Issue Onyx Black S200。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "Phantom 7.2 Putter",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Ball",
+      "slot_order": 15,
+      "brand": "Titleist",
+      "model_name": "Pro V1 2025",
+      "source_note": "GDO 2026年ダイキンオーキッドレディス取材で確認。",
+      "is_featured_item": false
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://news.golfdigest.co.jp/players/setting/6509/2026/1/",
+      "source_title": "GDO 穴井詩 クラブセッティング 2026年 ダイキンオーキッドレディス",
+      "checked_at": "2026-05-28T00:00:00.000Z",
+      "notes": "2026年ダイキンオーキッドレディス取材。GDOで確認できた番手のみ掲載。"
+    }
+  ],
+  "article": {
+    "slug": "lala-anai-2026-setting-update",
+    "title": "穴井詩の2026年クラブセッティングを掲載しました",
+    "excerpt": "GDOの2026年ダイキンオーキッドレディス取材をもとに、穴井詩のQi4DとJPX 921 TOUR中心の構成を整理しました。",
+    "body": "穴井詩のクラブセッティングを、GDOの2026年ダイキンオーキッドレディス取材情報をもとに掲載しました。\n\n1WはTaylorMade Qi4D Driver、FWもQi4Dの3W・5W・7W。5UTにはCallaway Rogue Utilityを入れ、アイアンはMizuno JPX 921 TOURの5I〜PWです。\n\nウェッジはCleveland RTZ 52°とGrind Studio 58°、パターはScotty Cameron Phantom 7.2、ボールはTitleist Pro V1 2025です。\n\nアマチュアが参考にするなら、3W・5W・7Wを厚くして長い距離を作り、5Iからアイアンに入る構成です。ウッド系が得意な人にとっては、ロングアイアンを増やすより距離階段を作りやすい考え方です。\n\n穴井詩のクラブセッティング詳細は、MyBagProの選手ページ `/pros/lala-anai` で確認できます。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-28T00:00:00.000Z"
+  }
+}

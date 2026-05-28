@@ -595,6 +595,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/articles/lala-anai-2026-setting-update</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/articles/lottie-woad-2026-setting-update</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -787,6 +793,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/articles/nanako-inagaki-2026-setting-update</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/articles/nanoko-hayashi-2026-setting-update</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -794,6 +806,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/articles/naoyuki-kataoka-2025-setting-update</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/articles/narika-miyata-2026-setting-update</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1975,6 +1993,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/pros/lala-anai</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/pros/lottie-woad</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2125,6 +2149,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/pros/nanako-inagaki</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/pros/nanoko-hayashi</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2132,6 +2162,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/pros/naoyuki-kataoka</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/pros/narika-miyata</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
