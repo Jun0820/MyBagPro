@@ -1,0 +1,126 @@
+{
+  "profile": {
+    "slug": "erina-hara",
+    "display_name": "原江里菜",
+    "nationality": "Japan",
+    "birthplace": "愛知県豊田市",
+    "birth_date": "1987-11-07",
+    "height_cm": 164,
+    "profile_type": "tour_pro",
+    "segment": "jlpga_verified",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1x",
+    "feature_1": "動画確認範囲",
+    "feature_2": "契約フリー",
+    "feature_3": "やさしさ重視",
+    "summary": "原江里菜のクラブセッティングは、2025年12月公開の横田真一チャンネル動画で確認できた範囲を掲載しています。PING G440 MAX系のウッド、TaylorMade STEALTH 2系のユーティリティ、PXGパター、Titleist Pro V1xなど、楽に球を上げながら実戦で使いやすいクラブ選びが見える構成です。",
+    "latest_source_policy": "使用確認時期: 2025年12月。横田真一チャンネルのクラブセッティング動画で、画面表示・音声・クラブ外観から確認できた範囲のみ掲載。モデル名やスペックを読み切れない番手は推測で補完しない。",
+    "is_featured": false,
+    "is_published": true,
+    "verified_at": "2026-05-29T00:00:00.000Z",
+    "kana_name": "ハラ エリナ"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "PING",
+      "model_name": "G440 MAX Driver",
+      "spec_label": "1W",
+      "loft_label": "10.5°",
+      "shaft_flex": "SR",
+      "source_note": "横田真一チャンネル動画内でPING G440 MAX系ヘッド、10.5°、SRの会話を確認。シャフトモデルは映像だけでは未確定。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "PING",
+      "model_name": "G440 MAX Fairway Wood",
+      "spec_label": "3W",
+      "source_note": "動画内でスプーンもG440 MAX系として紹介される場面を確認。ロフト・シャフト詳細は未確定。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "STEALTH 2 Rescue",
+      "spec_label": "UT",
+      "source_note": "動画内でSTEALTH 2系ユーティリティとして紹介される場面を確認。番手・ロフトは映像だけでは未確定。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Utility",
+      "slot_order": 4,
+      "brand": "PING",
+      "model_name": "G440 Hybrid",
+      "spec_label": "UT",
+      "source_note": "動画内でPING G440系ユーティリティを試す・戻す文脈を確認。番手とロフトは未確定のため詳細補完なし。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Srixon",
+      "model_name": "ZX Mk II series Iron",
+      "spec_label": "Iron",
+      "shaft_brand": "Nippon Shaft",
+      "shaft_model": "N.S.PRO 850GH",
+      "shaft_flex": "R",
+      "source_note": "動画内でMk II系アイアンとN.S.PRO 850GH Rの会話を確認。詳細な番手構成は未確定。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 6,
+      "brand": "PRGR",
+      "model_name": "Wedge",
+      "spec_label": "Wedge",
+      "source_note": "動画内で長年使っているウェッジとして紹介され、PRGR系の文脈を確認。ロフト・モデル名は未確定。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 7,
+      "brand": "PXG",
+      "model_name": "Putter",
+      "source_note": "動画序盤でPXGパターとして紹介。モデル名は映像だけでは未確定。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Ball",
+      "slot_order": 8,
+      "brand": "Titleist",
+      "model_name": "Pro V1x",
+      "source_note": "動画内でTitleist Pro V1xを確認。",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=a8j82O83Em4",
+      "source_title": "原江里菜さんクラブセッティング　まさかのお下がりがエースに！？",
+      "checked_at": "2025-12-03T02:30:17.000Z",
+      "notes": "横田真一チャンネルのクラブセッティング動画。画面表示・音声・クラブ外観で確認できた範囲を反映。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.alba.co.jp/tour/players/216/",
+      "source_title": "ALBA 原江里菜 プロフィール",
+      "checked_at": "2025-04-18T18:38:00.000Z",
+      "notes": "プロフィール基本情報を確認。クラブセッティングの主ソースではない。"
+    }
+  ],
+  "article": {
+    "slug": "erina-hara-2026-setting-update",
+    "title": "原江里菜のクラブセッティングを動画確認ベースで追加しました",
+    "excerpt": "原江里菜のクラブセッティングを横田真一チャンネル動画で確認できた範囲から追加。PING G440 MAX系、STEALTH 2系UT、PXGパター、Pro V1xなどを整理しました。",
+    "body": "原江里菜のクラブセッティングページを、2025年12月公開の横田真一チャンネル動画をもとに追加しました。\n\n今回の更新では、動画内で確認できた範囲に限定して、PING G440 MAX系のウッド、TaylorMade STEALTH 2系ユーティリティ、PXGパター、Titleist Pro V1xなどを掲載しています。番手やロフト、シャフトまで読み切れないクラブは、推測で補完せず、ソースノートに未確定として残しました。\n\nセッティング全体としては、難しい番手を無理に使うより、球の上がりやすさと安心感を優先する考え方が見えます。アマチュアが参考にするなら、同じモデルをそのまま買うことよりも、ウッド・UTで距離を作る発想や、打ちやすいシャフト重量に落とし込む視点が大切です。\n\n原江里菜のクラブセッティング詳細は、MyBagProの選手ページ `/pros/erina-hara` で確認できます。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-29T00:00:00.000Z"
+  }
+}
