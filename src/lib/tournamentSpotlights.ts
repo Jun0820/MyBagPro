@@ -11,6 +11,17 @@ export interface TournamentSpotlight {
 
 export const tournamentSpotlights: TournamentSpotlight[] = [
   {
+    articleSlug: 'resorttrust-ladies-2026-round2-setting-watch',
+    tourKey: 'jlpga',
+    tourLabel: 'JLPGA',
+    tournamentName: 'リゾートトラスト レディス',
+    statusLabel: '開催中',
+    eventDates: '2026年5月28日-31日',
+    summary:
+      '2R終了時点で都玲華と佐久間朱莉が首位。河本結、吉田鈴も含め、上位勢の確認済み14本を週末観戦の入口にします。',
+    featuredPlayerSlugs: ['reika-miyako', 'sakuma-akari', 'yui-kawamoto', 'rin-yoshida'],
+  },
+  {
     articleSlug: 'pga-championship-2026-result-aaron-rai-setting-review',
     tourKey: 'pga',
     tourLabel: 'PGA TOUR',
