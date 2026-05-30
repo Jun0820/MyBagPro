@@ -14,7 +14,13 @@
     "is_featured": false,
     "is_published": true,
     "verified_at": "2026-05-30T00:00:00.000Z",
-    "kana_name": "サエキ ミキ"
+    "kana_name": "サエキ ミキ",
+    "birth_date": "1984-09-22",
+    "height_cm": 163,
+    "birthplace": "広島県東広島市",
+    "instagram_handle": "threeprecious",
+    "x_handle": "Threeprecious",
+    "website_url": "http://miki-saiki.pargolf.co.jp/"
   },
   "bagItems": [
     {
@@ -141,6 +147,13 @@
       "source_title": "佐伯三貴 クラブセッティング",
       "checked_at": "2026-05-30T00:00:00.000Z",
       "notes": "クラブセッティング動画。ユーザー手動確認の番手・モデル・ロフト・シャフト・フレックスを反映。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://news.golfdigest.co.jp/players/profile/200/",
+      "source_title": "GDO 佐伯三貴 プロフィール",
+      "checked_at": "2026-05-30T00:00:00.000Z",
+      "notes": "生年月日、出身地、身長、プロ転向、通算勝利、公式サイト、X、Instagramを確認。"
     }
   ],
   "article": {

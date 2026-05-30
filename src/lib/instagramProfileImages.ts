@@ -3,6 +3,10 @@ export const instagramProfileImages: Record<string, string | { src: string; hand
     "src": "/profile-images/yuto-katsuragawa.jpg",
     "handle": "yutokatsu"
   },
+  "miki-saeki": {
+    "src": "/profile-images/miki-saeki.jpg",
+    "handle": "threeprecious"
+  },
   "in-gee-chun": {
     "src": "/profile-images/in-gee-chun.jpg",
     "handle": "ingeechun_dumbo"

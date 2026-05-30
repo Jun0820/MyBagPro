@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T03:44:29.773Z",
+  "generatedAt": "2026-05-30T04:24:27.862Z",
   "source": "supabase",
   "count": 182,
   "profiles": [
@@ -1119,14 +1119,6 @@
         },
         {
           "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
-          "source_type": "official",
-          "source_url": "https://ryo-ishikawa.jp/profile/",
-          "source_title": "石川遼 オフィシャルサイト プロフィール",
-          "checked_at": "2026-04-07T00:00:00+00:00",
-          "notes": "Used for bio fields and best score."
-        },
-        {
-          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
           "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/100/2026/1/",
           "source_title": "GDO 石川遼 クラブセッティング 2026年 クラブカー選手権",
@@ -1140,6 +1132,14 @@
           "source_title": "JGTO 石川遼プロフィール",
           "checked_at": "2026-04-07T00:00:00+00:00",
           "notes": "Used to support official player profile fields."
+        },
+        {
+          "profile_id": "55bab78f-895e-4d50-95f0-dcfa4973ba36",
+          "source_type": "official",
+          "source_url": "https://ryo-ishikawa.jp/profile/",
+          "source_title": "石川遼 オフィシャルサイト プロフィール",
+          "checked_at": "2026-04-07T00:00:00+00:00",
+          "notes": "Used for bio fields and best score."
         }
       ]
     },
@@ -1693,11 +1693,11 @@
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career",
-          "source_title": "Hideki Matsuyama PGA TOUR Career",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/751995/hideki-matsuyama-witb-2025-january-the-sentry/",
+          "source_title": "Hideki Matsuyama’s winning WITB: 2025 Sentry - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Career page confirms all-time career low round and PGA TOUR career context."
+          "notes": "Latest detailed full-bag breakdown found for Matsuyama."
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
@@ -1710,6 +1710,14 @@
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
           "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career",
+          "source_title": "Hideki Matsuyama PGA TOUR Career",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Career page confirms all-time career low round and PGA TOUR career context."
+        },
+        {
+          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
+          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/stats",
           "source_title": "Hideki Matsuyama PGA TOUR Stats",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -1717,14 +1725,6 @@
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/751995/hideki-matsuyama-witb-2025-january-the-sentry/",
-          "source_title": "Hideki Matsuyama’s winning WITB: 2025 Sentry - GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Latest detailed full-bag breakdown found for Matsuyama."
-        },
-        {
-          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
           "source_type": "official",
           "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama",
           "source_title": "PGA TOUR player profile",
@@ -1741,19 +1741,19 @@
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/773030/hideki-matsuyama-witb-2026-february/",
-          "source_title": "GolfWRX WITB 2026 (February)",
-          "checked_at": "2026-04-07T08:06:41.596116+00:00",
-          "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
-        },
-        {
-          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
           "source_type": "official",
           "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama",
           "source_title": "PGA TOUR player profile",
           "checked_at": "2026-04-07T08:06:41.596116+00:00",
           "notes": "Used for bio fields"
+        },
+        {
+          "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/773030/hideki-matsuyama-witb-2026-february/",
+          "source_title": "GolfWRX WITB 2026 (February)",
+          "checked_at": "2026-04-07T08:06:41.596116+00:00",
+          "notes": "Used for 2026 driver and ball research. Review against official/youtube/instagram policy before publish."
         },
         {
           "profile_id": "9cdf444d-7f3a-463e-b700-359041f39566",
@@ -2044,19 +2044,19 @@
         },
         {
           "profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/732972/in-gee-chun-witb-2024/",
-          "source_title": "In Gee Chun WITB - GolfWRX",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "詳細セッティング確認用。"
-        },
-        {
-          "profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f",
           "source_type": "official",
           "source_url": "https://ping.com/en-us/tour/pros/in-gee-chun",
           "source_title": "In Gee Chun - PING",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "契約情報と主要クラブ確認用。"
+        },
+        {
+          "profile_id": "ae990593-5709-4cf1-a08f-8d47b1d75b7f",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/732972/in-gee-chun-witb-2024/",
+          "source_title": "In Gee Chun WITB - GolfWRX",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "詳細セッティング確認用。"
         }
       ]
     },
@@ -2921,14 +2921,6 @@
         },
         {
           "profile_id": "2680bce9-eca2-4df8-8787-159a9c85c439",
-          "source_type": "official",
-          "source_url": "https://www.jgto.org/player/100452/profile",
-          "source_title": "JGTO 中島啓太プロフィール",
-          "checked_at": "2026-04-07T00:00:00+00:00",
-          "notes": "Used for bio fields."
-        },
-        {
-          "profile_id": "2680bce9-eca2-4df8-8787-159a9c85c439",
           "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/17258/2026/1/",
           "source_title": "GDO 中島啓太 2026年 ソニーオープン セッティング",
@@ -2942,6 +2934,14 @@
           "source_title": "GDO 中島啓太 2026年度スタッツ/ランキング",
           "checked_at": "2026-04-07T00:00:00+00:00",
           "notes": "Used to support 2026 season context."
+        },
+        {
+          "profile_id": "2680bce9-eca2-4df8-8787-159a9c85c439",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/100452/profile",
+          "source_title": "JGTO 中島啓太プロフィール",
+          "checked_at": "2026-04-07T00:00:00+00:00",
+          "notes": "Used for bio fields."
         }
       ]
     },
@@ -3480,14 +3480,6 @@
         {
           "profile_id": "41efaf53-d897-42a0-a215-bdfcbd7861f5",
           "source_type": "official",
-          "source_url": "https://www.jgto.org/player/100483/profile",
-          "source_title": "JGTO 新村駿プロフィール",
-          "checked_at": "2026-05-16T00:00:00+00:00",
-          "notes": "Used for bio fields, tour context and official maker usage categories."
-        },
-        {
-          "profile_id": "41efaf53-d897-42a0-a215-bdfcbd7861f5",
-          "source_type": "official",
           "source_url": "https://www.taylormadegolf.jp/tourplayers-shun-niimura.html",
           "source_title": "新村 駿 | ツアープレーヤー | TaylorMade Golf",
           "checked_at": "2026-05-16T00:00:00+00:00",
@@ -3500,6 +3492,14 @@
           "source_title": "新村駿クラブセッティング紹介【SHOWDOWN 堀川未来夢vs新村駿】",
           "checked_at": "2026-05-16T00:00:00+00:00",
           "notes": "GOLF NETWORK video used for club-by-club distance table and putter naming."
+        },
+        {
+          "profile_id": "41efaf53-d897-42a0-a215-bdfcbd7861f5",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/player/100483/profile",
+          "source_title": "JGTO 新村駿プロフィール",
+          "checked_at": "2026-05-16T00:00:00+00:00",
+          "notes": "Used for bio fields, tour context and official maker usage categories."
         }
       ]
     },
@@ -3766,14 +3766,6 @@
       "sources": [
         {
           "profile_id": "03a120bf-a303-4e34-9741-67cf6df8247d",
-          "source_type": "official",
-          "source_url": "https://sports.dunlop.co.jp/golf/players/detail/kohei_okada.html",
-          "source_title": "岡田 晃平 | 国内男子ツアープロ | DUNLOP GOLFING WORLD",
-          "checked_at": "2026-05-16T00:00:00+00:00",
-          "notes": "Official Dunlop page lists Z-STAR XV, ZXi LS Driver, ZXi #3 FW, ZXi7/Z-Forged II irons and Cleveland RTZ wedges as of 2025-04-10."
-        },
-        {
-          "profile_id": "03a120bf-a303-4e34-9741-67cf6df8247d",
           "source_type": "article",
           "source_url": "https://www.youtube.com/watch?v=A7mmnxVB_ek",
           "source_title": "岡田晃平のクラブセッティング【SHOWDOWN男子トッププロゴルファー同士のガチンコ対決】",
@@ -3787,6 +3779,14 @@
           "source_title": "JGTO 岡田晃平プロフィール",
           "checked_at": "2026-05-16T00:00:00+00:00",
           "notes": "Used for bio fields and tour profile. JGTO lists Srixon driver/iron/ball maker context."
+        },
+        {
+          "profile_id": "03a120bf-a303-4e34-9741-67cf6df8247d",
+          "source_type": "official",
+          "source_url": "https://sports.dunlop.co.jp/golf/players/detail/kohei_okada.html",
+          "source_title": "岡田 晃平 | 国内男子ツアープロ | DUNLOP GOLFING WORLD",
+          "checked_at": "2026-05-16T00:00:00+00:00",
+          "notes": "Official Dunlop page lists Z-STAR XV, ZXi LS Driver, ZXi #3 FW, ZXi7/Z-Forged II irons and Cleveland RTZ wedges as of 2025-04-10."
         }
       ]
     },
@@ -5209,11 +5209,11 @@
       "sources": [
         {
           "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
-          "source_type": "official",
-          "source_url": "https://ping.com/en-us/discover-ping/ping-pros/pga-tour/alex-smalley",
-          "source_title": "PING Pro Alex Smalley",
+          "source_type": "article",
+          "source_url": "https://www.golfmonthly.com/tour/alex-smalley-whats-in-the-bag-2026",
+          "source_title": "Alex Smalley WITB 2026 - Golf Monthly",
           "checked_at": "2026-05-18T00:00:00+00:00",
-          "notes": "PING契約プロ確認用。"
+          "notes": "2026年5月17日公開。14本の構成、シャフト、ボール、ウェア/シューズ情報まで確認。"
         },
         {
           "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
@@ -5226,18 +5226,18 @@
         {
           "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
           "source_type": "official",
+          "source_url": "https://ping.com/en-us/discover-ping/ping-pros/pga-tour/alex-smalley",
+          "source_title": "PING Pro Alex Smalley",
+          "checked_at": "2026-05-18T00:00:00+00:00",
+          "notes": "PING契約プロ確認用。"
+        },
+        {
+          "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
+          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/46340/alex-smalley/stats",
           "source_title": "Alex Smalley PGA TOUR Stats",
           "checked_at": "2026-05-18T00:00:00+00:00",
           "notes": "PGA TOUR公式プロフィール・スタッツ確認用。"
-        },
-        {
-          "profile_id": "9759a6f6-d791-44b6-ba90-0f200ab713be",
-          "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/tour/alex-smalley-whats-in-the-bag-2026",
-          "source_title": "Alex Smalley WITB 2026 - Golf Monthly",
-          "checked_at": "2026-05-18T00:00:00+00:00",
-          "notes": "2026年5月17日公開。14本の構成、シャフト、ボール、ウェア/シューズ情報まで確認。"
         }
       ]
     },
@@ -6661,18 +6661,18 @@
         {
           "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/48081/xander-schauffele/stats",
-          "source_title": "Xander Schauffele PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード122.51mph、ドライビングディスタンス312.9yd、平均スコア69.56を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
-        },
-        {
-          "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/48081/xander-schauffele/career",
           "source_title": "Xander Schauffele PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
+        },
+        {
+          "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/48081/xander-schauffele/stats",
+          "source_title": "Xander Schauffele PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード122.51mph、ドライビングディスタンス312.9yd、平均スコア69.56を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
         },
         {
           "profile_id": "72d41277-a092-432c-a3bc-c922c83d9365",
@@ -8120,18 +8120,18 @@
         {
           "profile_id": "de32529b-46e2-4853-b17f-81fcfa05ba06",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/mao-saigo/101918/overview",
-          "source_title": "Mao Saigo | Overview | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official LPGA player page used to confirm current profile context and latest win record."
-        },
-        {
-          "profile_id": "de32529b-46e2-4853-b17f-81fcfa05ba06",
-          "source_type": "official",
           "source_url": "https://www.titleist.com/tour/4743/mao-saigo",
           "source_title": "Mao Saigo | Golfer | Titleist",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Official Titleist player page used to confirm current ball information."
+        },
+        {
+          "profile_id": "de32529b-46e2-4853-b17f-81fcfa05ba06",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/mao-saigo/101918/overview",
+          "source_title": "Mao Saigo | Overview | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Official LPGA player page used to confirm current profile context and latest win record."
         },
         {
           "profile_id": "de32529b-46e2-4853-b17f-81fcfa05ba06",
@@ -8406,19 +8406,19 @@
       "sources": [
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/777089/nelly-korda-witb-2026-april/",
-          "source_title": "GolfWRX Nelly Korda WITB 2026 (April)",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "2026年4月23日公開の詳細WITB。PING G425 Hybrid、Titleist Vokey SM11 58°、TaylorMade NK Proto putterなど、TaylorMade公式記事で明記されないクラブの確認にも使用。"
-        },
-        {
-          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
           "source_type": "official",
           "source_url": "https://www.taylormadegolf.jp/clubhouse/1428296-nelly-korda-witb.html",
           "source_title": "「Qi4D」ドライバーと「TP5x」ボールを使用したネリー・コルダが2週連続優勝を達成！ | TaylorMade Golf",
           "checked_at": "2026-05-15T00:00:00+00:00",
           "notes": "2026年5月3日公開のTaylorMade公式優勝WITB。Qi4D 10.5° Driver、Stealth 2 15° 3W、Stealth 2 21° 7W、P770 5I、P7CB 6-PW、MG4 50° SB、MG5 Proto 54° HB、TP5xを確認。"
+        },
+        {
+          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/777089/nelly-korda-witb-2026-april/",
+          "source_title": "GolfWRX Nelly Korda WITB 2026 (April)",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "2026年4月23日公開の詳細WITB。PING G425 Hybrid、Titleist Vokey SM11 58°、TaylorMade NK Proto putterなど、TaylorMade公式記事で明記されないクラブの確認にも使用。"
         },
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
@@ -8431,14 +8431,6 @@
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/nelly-korda/98350/results",
-          "source_title": "Nelly Korda | Results | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official results page used for current-season low round 64."
-        },
-        {
-          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/nelly-korda/98350/stats",
           "source_title": "Nelly Korda | Statistics | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -8447,10 +8439,10 @@
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
           "source_type": "official",
-          "source_url": "https://www.taylormadegolf.com/tourplayers/nelly-korda.html?lang=en_US",
-          "source_title": "Nelly Korda WITB | TaylorMade Golf",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Official current player page used to confirm the current TaylorMade-centered setup, including Qi4D driver and TP5x ball."
+          "source_url": "https://www.lpga.com/athletes/nelly-korda/98350/results",
+          "source_title": "Nelly Korda | Results | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official results page used for current-season low round 64."
         },
         {
           "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
@@ -8467,6 +8459,14 @@
           "source_title": "スポーツナビ 米国女子クラブセッティング一覧（ネリー・コルダ）",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used as latest season reference."
+        },
+        {
+          "profile_id": "d867a5ce-c504-4fcb-a240-0abb19502d97",
+          "source_type": "official",
+          "source_url": "https://www.taylormadegolf.com/tourplayers/nelly-korda.html?lang=en_US",
+          "source_title": "Nelly Korda WITB | TaylorMade Golf",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Official current player page used to confirm the current TaylorMade-centered setup, including Qi4D driver and TP5x ball."
         }
       ]
     },
@@ -9028,19 +9028,19 @@
       "sources": [
         {
           "profile_id": "cec81c4e-4512-4e07-a50b-3dd19c644da6",
-          "source_type": "official",
-          "source_url": "https://www.yonex.co.jp/news/2026/3618.html",
-          "source_title": "ヨネックス 岩井姉妹・鍋谷太一選手ら契約プロがジュニアを直接指導 2026",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used for club contract confirmation."
-        },
-        {
-          "profile_id": "cec81c4e-4512-4e07-a50b-3dd19c644da6",
           "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/18297/2026/1/",
           "source_title": "GDO 岩井千怜 クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for 2026 full bag and ball confirmation."
+        },
+        {
+          "profile_id": "cec81c4e-4512-4e07-a50b-3dd19c644da6",
+          "source_type": "official",
+          "source_url": "https://www.yonex.co.jp/news/2026/3618.html",
+          "source_title": "ヨネックス 岩井姉妹・鍋谷太一選手ら契約プロがジュニアを直接指導 2026",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used for club contract confirmation."
         }
       ]
     },
@@ -9307,19 +9307,19 @@
       "sources": [
         {
           "profile_id": "5bab6a5d-aaef-48ad-b2fd-415d7d47ba59",
-          "source_type": "official",
-          "source_url": "https://www.yonex.co.jp/news/2026/3618.html",
-          "source_title": "ヨネックス 岩井姉妹・鍋谷太一選手ら契約プロがジュニアを直接指導 2026",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used for club contract confirmation."
-        },
-        {
-          "profile_id": "5bab6a5d-aaef-48ad-b2fd-415d7d47ba59",
           "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/18071/2026/1/",
           "source_title": "GDO 岩井明愛 クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for 2026 full bag and ball confirmation."
+        },
+        {
+          "profile_id": "5bab6a5d-aaef-48ad-b2fd-415d7d47ba59",
+          "source_type": "official",
+          "source_url": "https://www.yonex.co.jp/news/2026/3618.html",
+          "source_title": "ヨネックス 岩井姉妹・鍋谷太一選手ら契約プロがジュニアを直接指導 2026",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used for club contract confirmation."
         }
       ]
     },
@@ -12457,18 +12457,18 @@
         {
           "profile_id": "698cd82e-c851-4f30-a7ee-e35b100d44eb",
           "source_type": "article",
-          "source_url": "https://www.golfwrx.com/775349/justin-rose-witb-2026-march/",
-          "source_title": "Justin Rose WITB 2026 (March) - GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed bag breakdown."
-        },
-        {
-          "profile_id": "698cd82e-c851-4f30-a7ee-e35b100d44eb",
-          "source_type": "article",
           "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-justin-roses-bag",
           "source_title": "What’s in Justin Rose’s bag? - Golf Monthly",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Supporting source for current mixed setup."
+        },
+        {
+          "profile_id": "698cd82e-c851-4f30-a7ee-e35b100d44eb",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/775349/justin-rose-witb-2026-march/",
+          "source_title": "Justin Rose WITB 2026 (March) - GolfWRX",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed bag breakdown."
         }
       ]
     },
@@ -14418,30 +14418,6 @@
         {
           "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
           "source_type": "official",
-          "source_url": "https://www.jgto.org/en/player/16853/profile",
-          "source_title": "Tomohiro ISHIZAKA Player Profile - JGTO",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "JGTO official profile used for lowest 18-hole score 62."
-        },
-        {
-          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
-          "source_type": "official",
-          "source_url": "https://www.jgto.org/en/player/16853/data",
-          "source_title": "Tomohiro ISHIZAKA Tour Player Stats - JGTO",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "JGTO official stats page used for 2025 scoring average 70.904 and driving distance 274.23 yd."
-        },
-        {
-          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/16715/",
-          "source_title": "石坂友宏 クラブセッティング - GDO",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for current season full-bag breakdown."
-        },
-        {
-          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
-          "source_type": "official",
           "source_url": "https://www.callawaygolf.jp/jp/pro-golfer/tomohiro-ishizaka",
           "source_title": "石坂友宏 - キャロウェイゴルフ",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -14454,6 +14430,30 @@
           "source_title": "JGTO 石坂友宏 プロフィール",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for basic bio fields. Club setting details pending additional confirmation."
+        },
+        {
+          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/16715/",
+          "source_title": "石坂友宏 クラブセッティング - GDO",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for current season full-bag breakdown."
+        },
+        {
+          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/en/player/16853/profile",
+          "source_title": "Tomohiro ISHIZAKA Player Profile - JGTO",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "JGTO official profile used for lowest 18-hole score 62."
+        },
+        {
+          "profile_id": "d7d2de6f-50b4-48a2-9b12-db35a390080b",
+          "source_type": "official",
+          "source_url": "https://www.jgto.org/en/player/16853/data",
+          "source_title": "Tomohiro ISHIZAKA Tour Player Stats - JGTO",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "JGTO official stats page used for 2025 scoring average 70.904 and driving distance 274.23 yd."
         }
       ]
     },
@@ -15007,19 +15007,19 @@
         },
         {
           "profile_id": "01ea7141-fb8e-4068-a61a-f9d99763c813",
-          "source_type": "official",
-          "source_url": "https://www.srixon.com/us/tour-team.html",
-          "source_title": "Tour Team - Srixon",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official Srixon team page used for ball and sponsor context."
-        },
-        {
-          "profile_id": "01ea7141-fb8e-4068-a61a-f9d99763c813",
           "source_type": "article",
           "source_url": "https://www.golfwrx.com/778500/brooks-koepka-witb-2026-april/",
           "source_title": "Brooks Koepka WITB 2026 (April) - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for latest detailed bag breakdown."
+        },
+        {
+          "profile_id": "01ea7141-fb8e-4068-a61a-f9d99763c813",
+          "source_type": "official",
+          "source_url": "https://www.srixon.com/us/tour-team.html",
+          "source_title": "Tour Team - Srixon",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Official Srixon team page used for ball and sponsor context."
         }
       ]
     },
@@ -15311,6 +15311,14 @@
         {
           "profile_id": "4248a629-c191-486d-b513-cbdb16e04315",
           "source_type": "official",
+          "source_url": "https://www.taylormadegolf.com/tourplayers/rory-mcilroy.html?lang=en_US",
+          "source_title": "Rory McIlroy WITB | TaylorMade Golf",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Official current player page confirms Qi4D driver/fairway family and TaylorMade-centered setup."
+        },
+        {
+          "profile_id": "4248a629-c191-486d-b513-cbdb16e04315",
+          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/28237/rory-mcilroy/stats",
           "source_title": "Rory McIlroy PGA TOUR Stats",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -15331,14 +15339,6 @@
           "source_title": "GolfWRX Rory McIlroy WITB 2026 (April)",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
-        },
-        {
-          "profile_id": "4248a629-c191-486d-b513-cbdb16e04315",
-          "source_type": "official",
-          "source_url": "https://www.taylormadegolf.com/tourplayers/rory-mcilroy.html?lang=en_US",
-          "source_title": "Rory McIlroy WITB | TaylorMade Golf",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Official current player page confirms Qi4D driver/fairway family and TaylorMade-centered setup."
         }
       ]
     },
@@ -15606,6 +15606,14 @@
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
           "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/career",
+          "source_title": "Scottie Scheffler PGA TOUR Career",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Career page also confirms all-time lowest round reference."
+        },
+        {
+          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
+          "source_type": "official",
           "source_url": "https://www.taylormadegolf.com/tourplayers/scottie-scheffler.html?lang=en_US",
           "source_title": "Scottie Scheffler WITB | TaylorMade Golf",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -15622,14 +15630,6 @@
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
           "source_type": "article",
-          "source_url": "https://www.golfwrx.com/763621/bks-breakdowns-scottie-schefflers-witb-from-the-2025-open-championship/",
-          "source_title": "GolfWRX Scottie Scheffler WITB 2025 Open Championship",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used to confirm shafts and utility iron composition."
-        },
-        {
-          "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/17786/",
           "source_title": "GDO スコッティ・シェフラー クラブセッティング 2025年 全英オープン",
           "checked_at": "2026-04-10T00:00:00+00:00",
@@ -15637,11 +15637,11 @@
         },
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/46046/scottie-scheffler/career",
-          "source_title": "Scottie Scheffler PGA TOUR Career",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/763621/bks-breakdowns-scottie-schefflers-witb-from-the-2025-open-championship/",
+          "source_title": "GolfWRX Scottie Scheffler WITB 2025 Open Championship",
           "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Career page also confirms all-time lowest round reference."
+          "notes": "Used to confirm shafts and utility iron composition."
         },
         {
           "profile_id": "353b0380-abaf-4418-80ed-8816954f68da",
@@ -16212,18 +16212,18 @@
         {
           "profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75",
           "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-sungjae-ims-bag",
-          "source_title": "What’s in Sungjae Im’s bag? - Golf Monthly",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Supporting source for Titleist-centered setup and clubs."
-        },
-        {
-          "profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75",
-          "source_type": "article",
           "source_url": "https://www.golfwrx.com/774378/sungjae-im-witb-2026-march/",
           "source_title": "Sungjae Im WITB 2026 (March) - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for latest detailed bag breakdown."
+        },
+        {
+          "profile_id": "832e0ead-0717-4ea0-8cce-df3ef422ea75",
+          "source_type": "article",
+          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-sungjae-ims-bag",
+          "source_title": "What’s in Sungjae Im’s bag? - Golf Monthly",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Supporting source for Titleist-centered setup and clubs."
         }
       ]
     },
@@ -16499,18 +16499,18 @@
         {
           "profile_id": "29ed2498-c372-4fda-a22a-1e67c8fa181b",
           "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-patrick-reeds-bag",
-          "source_title": "What’s in Patrick Reed’s bag? - Golf Monthly",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for mixed-bag configuration and club details."
-        },
-        {
-          "profile_id": "29ed2498-c372-4fda-a22a-1e67c8fa181b",
-          "source_type": "article",
           "source_url": "https://www.golfpost.com/equipment/patrick-reed-witb",
           "source_title": "Patrick Reed WITB - Golf Post",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used as supporting source for lofts and club mix."
+        },
+        {
+          "profile_id": "29ed2498-c372-4fda-a22a-1e67c8fa181b",
+          "source_type": "article",
+          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-patrick-reeds-bag",
+          "source_title": "What’s in Patrick Reed’s bag? - Golf Monthly",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for mixed-bag configuration and club details."
         }
       ]
     },
@@ -16786,18 +16786,18 @@
         {
           "profile_id": "74968188-05b1-4c9a-9e29-315d79c65165",
           "source_type": "article",
-          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-matt-fitzpatricks-bag",
-          "source_title": "What’s in Matt Fitzpatrick’s bag? - Golf Monthly",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Supporting source for current club mix."
-        },
-        {
-          "profile_id": "74968188-05b1-4c9a-9e29-315d79c65165",
-          "source_type": "article",
           "source_url": "https://www.golfwrx.com/779317/matt-fitzpatrick-witb-2026-april/",
           "source_title": "Matt Fitzpatrick WITB 2026 (April) - GolfWRX",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for latest detailed bag breakdown."
+        },
+        {
+          "profile_id": "74968188-05b1-4c9a-9e29-315d79c65165",
+          "source_type": "article",
+          "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-matt-fitzpatricks-bag",
+          "source_title": "What’s in Matt Fitzpatrick’s bag? - Golf Monthly",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Supporting source for current club mix."
         }
       ]
     },
@@ -17981,19 +17981,19 @@
         },
         {
           "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/765261/patrick-cantlay-witb-2025-august/",
-          "source_title": "Patrick Cantlay WITB 2025 (August) - GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed bag breakdown."
-        },
-        {
-          "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
           "source_type": "official",
           "source_url": "https://www.titleist.com/tour/patrick-cantlay",
           "source_title": "Patrick Cantlay | Titleist",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Official Titleist player page used for contract and ball context."
+        },
+        {
+          "profile_id": "ba7a4d9b-0941-41ea-9362-036d710e1caa",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/765261/patrick-cantlay-witb-2025-august/",
+          "source_title": "Patrick Cantlay WITB 2025 (August) - GolfWRX",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed bag breakdown."
         }
       ]
     },
@@ -18547,19 +18547,19 @@
         },
         {
           "profile_id": "39063999-911e-45f5-a26c-2147c2089d75",
-          "source_type": "article",
-          "source_url": "https://www.golfwrx.com/760840/corey-conners-witb-2025-may/",
-          "source_title": "Corey Conners WITB 2025 (May) - GolfWRX",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used for latest detailed bag breakdown."
-        },
-        {
-          "profile_id": "39063999-911e-45f5-a26c-2147c2089d75",
           "source_type": "official",
           "source_url": "https://ping.com/en-us/tour/pros/corey-conners",
           "source_title": "Corey Conners - PING",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Official PING player page used for contract context."
+        },
+        {
+          "profile_id": "39063999-911e-45f5-a26c-2147c2089d75",
+          "source_type": "article",
+          "source_url": "https://www.golfwrx.com/760840/corey-conners-witb-2025-may/",
+          "source_title": "Corey Conners WITB 2025 (May) - GolfWRX",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used for latest detailed bag breakdown."
         }
       ]
     },
@@ -18819,18 +18819,18 @@
         {
           "profile_id": "eb973a3d-0a3a-4c5f-95e6-2a5872324278",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/46414/aaron-rai/career",
-          "source_title": "Aaron Rai PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式career。Lowest Round 62を確認。"
-        },
-        {
-          "profile_id": "eb973a3d-0a3a-4c5f-95e6-2a5872324278",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/46414/aaron-rai/stats",
           "source_title": "Aaron Rai PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR公式2026 stats。Club Head Speed 113.31 mph、Driving Distance 285.2 yd、Scoring Average 70.00、Season Lowest Round 66を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
+        },
+        {
+          "profile_id": "eb973a3d-0a3a-4c5f-95e6-2a5872324278",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/46414/aaron-rai/career",
+          "source_title": "Aaron Rai PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式career。Lowest Round 62を確認。"
         },
         {
           "profile_id": "eb973a3d-0a3a-4c5f-95e6-2a5872324278",
@@ -19130,18 +19130,18 @@
         {
           "profile_id": "936537b7-16ce-4e8a-bc36-7fd808549920",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/33141/keegan-bradley/stats",
-          "source_title": "Keegan Bradley PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式2026 stats。Club Head Speed 114.91 mph、Driving Distance 306.1 yd、Scoring Average (Actual) 70.79、Season Lowest Round 63を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
-        },
-        {
-          "profile_id": "936537b7-16ce-4e8a-bc36-7fd808549920",
-          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/33141/keegan-bradley/career",
           "source_title": "Keegan Bradley PGA TOUR Career",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "PGA TOUR公式career。Career Lowest Round 60を確認。"
+        },
+        {
+          "profile_id": "936537b7-16ce-4e8a-bc36-7fd808549920",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/33141/keegan-bradley/stats",
+          "source_title": "Keegan Bradley PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式2026 stats。Club Head Speed 114.91 mph、Driving Distance 306.1 yd、Scoring Average (Actual) 70.79、Season Lowest Round 63を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
         },
         {
           "profile_id": "936537b7-16ce-4e8a-bc36-7fd808549920",
@@ -19433,18 +19433,18 @@
         {
           "profile_id": "17e21119-0e64-42fc-9bbc-5d8dabbdfb3d",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/16456/2024/1/",
-          "source_title": "GDO ジョン・ラーム クラブセッティング 2024年 LIVゴルフ・マヤコバ",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "Used to support 2024-2026 bag continuity and profile details."
-        },
-        {
-          "profile_id": "17e21119-0e64-42fc-9bbc-5d8dabbdfb3d",
-          "source_type": "article",
           "source_url": "https://www.golfmonthly.com/news/jon-rahm-winning-whats-in-the-bag-liv-golf-hong-kong-2026",
           "source_title": "Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "Used for 2026 winning setup and ball confirmation."
+        },
+        {
+          "profile_id": "17e21119-0e64-42fc-9bbc-5d8dabbdfb3d",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/16456/2024/1/",
+          "source_title": "GDO ジョン・ラーム クラブセッティング 2024年 LIVゴルフ・マヤコバ",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "Used to support 2024-2026 bag continuity and profile details."
         }
       ]
     },
@@ -19712,18 +19712,18 @@
         {
           "profile_id": "a6fc97d7-c45b-4eb6-90b2-e429aff66592",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/9890/2026/1/",
-          "source_title": "GDO 堀川未来夢 クラブセッティング 2026年 中日クラウンズ",
-          "checked_at": "2026-05-16T00:00:00+00:00",
-          "notes": "Used for 2026 full bag and ball confirmation."
-        },
-        {
-          "profile_id": "a6fc97d7-c45b-4eb6-90b2-e429aff66592",
-          "source_type": "article",
           "source_url": "https://www.youtube.com/watch?v=K6tY4rh_FAc",
           "source_title": "堀川未来夢クラブセッティング紹介【SHOWDOWN 堀川未来夢vs新村駿】",
           "checked_at": "2026-05-16T00:00:00+00:00",
           "notes": "GOLF NETWORK video used for club-by-club distance table and putter naming."
+        },
+        {
+          "profile_id": "a6fc97d7-c45b-4eb6-90b2-e429aff66592",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/9890/2026/1/",
+          "source_title": "GDO 堀川未来夢 クラブセッティング 2026年 中日クラウンズ",
+          "checked_at": "2026-05-16T00:00:00+00:00",
+          "notes": "Used for 2026 full bag and ball confirmation."
         },
         {
           "profile_id": "a6fc97d7-c45b-4eb6-90b2-e429aff66592",
@@ -19999,18 +19999,18 @@
         {
           "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/results",
-          "source_title": "Lydia Ko | Results | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official results page used for current-season low round 64."
-        },
-        {
-          "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/stats",
           "source_title": "Lydia Ko | Statistics | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
+        },
+        {
+          "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/lydia-ko/98109/results",
+          "source_title": "Lydia Ko | Results | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official results page used for current-season low round 64."
         },
         {
           "profile_id": "2decc7a9-4325-42d6-a9b4-29c26056263e",
@@ -20318,18 +20318,18 @@
         {
           "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/athletes/miyu-yamashita/102077/results",
-          "source_title": "Miyu Yamashita | Results | LPGA",
-          "checked_at": "2026-04-10T00:00:00+00:00",
-          "notes": "LPGA official results page used for current-season low round 67."
-        },
-        {
-          "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
-          "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/miyu-yamashita/102077/stats",
           "source_title": "Miyu Yamashita | Statistics | LPGA",
           "checked_at": "2026-04-10T00:00:00+00:00",
           "notes": "LPGA official stats page used to confirm current strokes gained profile. Public TrackMan or GCQuad numeric session data was not confirmed."
+        },
+        {
+          "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/athletes/miyu-yamashita/102077/results",
+          "source_title": "Miyu Yamashita | Results | LPGA",
+          "checked_at": "2026-04-10T00:00:00+00:00",
+          "notes": "LPGA official results page used for current-season low round 67."
         },
         {
           "profile_id": "0359e02d-f8b5-4691-baf9-a2eb61d7a130",
@@ -20884,18 +20884,18 @@
         {
           "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
           "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/stats",
-          "source_title": "Tommy Fleetwood PGA TOUR Stats",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR公式2026 stats。Club Head Speed 116.41 mph、Driving Distance 299.3 yd、Scoring Average 69.55を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
-        },
-        {
-          "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
-          "source_type": "official",
           "source_url": "https://www.taylormadegolf.com/tourplayers/tommy-fleetwood.html?lang=en_US",
           "source_title": "Tommy Fleetwood WITB | TaylorMade Golf",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "TaylorMade公式の現行プレーヤーページ。Qi4D LS Driver、R7 Quad Mini Driver、Qi4D Fairway、P7TW、MG5、Hi-Toe 4、Spider Tour、TP5x系の現行構成確認用。"
+        },
+        {
+          "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
+          "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/30911/tommy-fleetwood/stats",
+          "source_title": "Tommy Fleetwood PGA TOUR Stats",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR公式2026 stats。Club Head Speed 116.41 mph、Driving Distance 299.3 yd、Scoring Average 69.55を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
         },
         {
           "profile_id": "1765e680-a539-497d-ac44-5b93f5fae23e",
@@ -21737,6 +21737,14 @@
         {
           "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
           "source_type": "official",
+          "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/career",
+          "source_title": "Collin Morikawa PGA TOUR Career",
+          "checked_at": "2026-04-11T00:00:00+00:00",
+          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
+        },
+        {
+          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
+          "source_type": "official",
           "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/stats",
           "source_title": "Collin Morikawa PGA TOUR Stats",
           "checked_at": "2026-04-11T00:00:00+00:00",
@@ -21749,14 +21757,6 @@
           "source_title": "Inside Practice Rounds at Pebble Beach with Rory McIlroy and Team TaylorMade | TaylorMade Golf",
           "checked_at": "2026-04-11T00:00:00+00:00",
           "notes": "TaylorMade公式記事にTrackMan実測としてCollin MorikawaのQi10 LS 9.0°ドライバーでトータル313yd、キャリー288yd、ボールスピード171mph、クラブスピード115mphが掲載。"
-        },
-        {
-          "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
-          "source_type": "official",
-          "source_url": "https://www.pgatour.com/player/50525/collin-morikawa/career",
-          "source_title": "Collin Morikawa PGA TOUR Career",
-          "checked_at": "2026-04-11T00:00:00+00:00",
-          "notes": "PGA TOUR career pageで通算ベストラウンド61を確認。"
         },
         {
           "profile_id": "b0641d2e-d054-4593-bac5-393bfb58789a",
@@ -31157,14 +31157,6 @@
         {
           "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
           "source_type": "article",
-          "source_url": "https://goltama.net/golfer/yumi-sasahara/",
-          "source_title": "ゴル魂！ 笹原優美 プロフィール",
-          "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "クラブ／テーラーメイド、ボール／テーラーメイド、ウェア／ジュンアンドロペ、シューズ／ナイキの公開確認用。"
-        },
-        {
-          "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
-          "source_type": "article",
           "source_url": "https://yumi-sasahara.amebaownd.com/pages/228451/profile",
           "source_title": "笹原優美 Official Site Profile",
           "checked_at": "2026-05-06T00:00:00+00:00",
@@ -31185,6 +31177,14 @@
           "source_title": "GDO 笹原優美プロフィール",
           "checked_at": "2026-05-06T00:00:00+00:00",
           "notes": "生年月日、出身地、身長、ツアー経歴確認用。"
+        },
+        {
+          "profile_id": "3ed05300-147d-42e9-a006-1e94131b4e3e",
+          "source_type": "article",
+          "source_url": "https://goltama.net/golfer/yumi-sasahara/",
+          "source_title": "ゴル魂！ 笹原優美 プロフィール",
+          "checked_at": "2026-05-06T00:00:00+00:00",
+          "notes": "クラブ／テーラーメイド、ボール／テーラーメイド、ウェア／ジュンアンドロペ、シューズ／ナイキの公開確認用。"
         }
       ]
     },
@@ -32018,18 +32018,18 @@
         {
           "profile_id": "8b0cb01d-e490-4686-bad3-d68a1dd3b71c",
           "source_type": "official",
-          "source_url": "https://sports.dunlop.co.jp/golf/players/detail/ayano-yasuda.html",
-          "source_title": "DUNLOP 安田彩乃 使用ギア",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Player profile and official gear list as of 2025-03-30."
-        },
-        {
-          "profile_id": "8b0cb01d-e490-4686-bad3-d68a1dd3b71c",
-          "source_type": "official",
           "source_url": "https://news.golfdigest.co.jp/players/stats/10932/",
           "source_title": "GDO 安田彩乃 プロフィール",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for birthplace, birth date, and height confirmation."
+        },
+        {
+          "profile_id": "8b0cb01d-e490-4686-bad3-d68a1dd3b71c",
+          "source_type": "official",
+          "source_url": "https://sports.dunlop.co.jp/golf/players/detail/ayano-yasuda.html",
+          "source_title": "DUNLOP 安田彩乃 使用ギア",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Player profile and official gear list as of 2025-03-30."
         }
       ]
     },
@@ -32367,18 +32367,18 @@
         {
           "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
           "source_type": "article",
-          "source_url": "https://www.alba.co.jp/tour/players/1368/",
-          "source_title": "ALBA 保坂真由プロフィール",
-          "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "基本プロフィールと得意クラブの公開確認用。"
-        },
-        {
-          "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/144969/1/",
           "source_title": "保坂真由ツアー初V スタイヤーノ梨々菜とのPO制す／女子下部",
           "checked_at": "2026-05-06T00:00:00+00:00",
           "notes": "2022年ラシンク・ニンジニア／RKBレディース優勝の確認用。"
+        },
+        {
+          "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
+          "source_type": "article",
+          "source_url": "https://www.alba.co.jp/tour/players/1368/",
+          "source_title": "ALBA 保坂真由プロフィール",
+          "checked_at": "2026-05-06T00:00:00+00:00",
+          "notes": "基本プロフィールと得意クラブの公開確認用。"
         },
         {
           "profile_id": "45bf86fe-d5dd-455f-ae20-81ffdc6b390b",
@@ -32917,18 +32917,18 @@
         {
           "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
           "source_type": "article",
-          "source_url": "https://www.skygroup.jp/company/player/",
-          "source_title": "Sky株式会社 所属選手（ゴルフ）",
-          "checked_at": "2026-05-04T00:00:00+00:00",
-          "notes": "所属情報の確認用。"
-        },
-        {
-          "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
-          "source_type": "article",
           "source_url": "https://golfeaglecafe.com/nakasone-sumika/",
           "source_title": "仲宗根澄香プロ クラブセッティング パター ボール紹介2026",
           "checked_at": "2026-05-04T00:00:00+00:00",
           "notes": "現時点で確認できた最新の公開セッティングまとめ記事。"
+        },
+        {
+          "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
+          "source_type": "article",
+          "source_url": "https://www.skygroup.jp/company/player/",
+          "source_title": "Sky株式会社 所属選手（ゴルフ）",
+          "checked_at": "2026-05-04T00:00:00+00:00",
+          "notes": "所属情報の確認用。"
         },
         {
           "profile_id": "125967a4-e94b-4a7f-93e3-69d63180cb00",
@@ -33204,18 +33204,18 @@
         {
           "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
           "source_type": "official",
-          "source_url": "https://www.instagram.com/fol.gv/",
-          "source_title": "髙野愛姫 Instagram",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "公式Instagramアカウント確認用。JUN & ROPE公式プロフィールでも同アカウントを確認。"
-        },
-        {
-          "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
-          "source_type": "official",
           "source_url": "https://www.junandrope.jp/progolfer/takano/",
           "source_title": "高野愛姫 プロ - JUN & ROPE'",
           "checked_at": "2026-05-15T00:00:00+00:00",
           "notes": "Instagramアカウント、プロフィール、2025年ヨネックスレディス優勝文脈の確認用。"
+        },
+        {
+          "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
+          "source_type": "official",
+          "source_url": "https://www.instagram.com/fol.gv/",
+          "source_title": "髙野愛姫 Instagram",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "公式Instagramアカウント確認用。JUN & ROPE公式プロフィールでも同アカウントを確認。"
         },
         {
           "profile_id": "ae0675e0-a502-4d39-9869-332f32aa886f",
@@ -35531,19 +35531,19 @@
       "sources": [
         {
           "profile_id": "febeab2a-51d5-435b-a389-e7373c3f937a",
-          "source_type": "article",
-          "source_url": "https://www.todays-golfer.com/equipment/witb/what-s-in-the-bag-maja-stark/",
-          "source_title": "Today's Golfer What's In The Bag: Maja Stark (May 2026 update)",
-          "checked_at": "2026-05-22T00:00:00+00:00",
-          "notes": "Last updated 2026-05-07. PING G430 Max 10K、G430 MAX FW、G430 Hybrid、Blueprint S 4-PW、s159、Vokey SM10 WedgeWorks、Anser 2、Pro V1を確認。"
-        },
-        {
-          "profile_id": "febeab2a-51d5-435b-a389-e7373c3f937a",
           "source_type": "official",
           "source_url": "https://www.lpga.com/players/maya-stark/98626",
           "source_title": "LPGA Player Profile: Maja Stark",
           "checked_at": "2026-05-22T00:00:00+00:00",
           "notes": "プロフィール補助ソース。クラブ構成はToday's Golfer May 2026 updateを優先。"
+        },
+        {
+          "profile_id": "febeab2a-51d5-435b-a389-e7373c3f937a",
+          "source_type": "article",
+          "source_url": "https://www.todays-golfer.com/equipment/witb/what-s-in-the-bag-maja-stark/",
+          "source_title": "Today's Golfer What's In The Bag: Maja Stark (May 2026 update)",
+          "checked_at": "2026-05-22T00:00:00+00:00",
+          "notes": "Last updated 2026-05-07. PING G430 Max 10K、G430 MAX FW、G430 Hybrid、Blueprint S 4-PW、s159、Vokey SM10 WedgeWorks、Anser 2、Pro V1を確認。"
         }
       ]
     },
@@ -35779,18 +35779,18 @@
         {
           "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
           "source_type": "article",
-          "source_url": "https://www.alba.co.jp/tour/players/2901/",
-          "source_title": "沖せいら プロフィール｜ALBA Net",
-          "checked_at": "2026-04-19T00:00:00+00:00",
-          "notes": "生年月日、出身地、身長の確認用。"
-        },
-        {
-          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
-          "source_type": "article",
           "source_url": "https://golfeaglecafe.com/seira-oki/",
           "source_title": "沖せいらプロ クラブセッティング パター ボール紹介2026 | ゴルフイーグルカフェ",
           "checked_at": "2026-04-19T00:00:00+00:00",
           "notes": "公開確認できたドライバーからウェッジ、使用ボールまでの構成整理用。"
+        },
+        {
+          "profile_id": "c9c83bc8-1cab-47f9-b04c-4df3cd0ea90d",
+          "source_type": "article",
+          "source_url": "https://www.alba.co.jp/tour/players/2901/",
+          "source_title": "沖せいら プロフィール｜ALBA Net",
+          "checked_at": "2026-04-19T00:00:00+00:00",
+          "notes": "生年月日、出身地、身長の確認用。"
         }
       ]
     },
@@ -39308,18 +39308,18 @@
         {
           "profile_id": "0871079f-1d57-4b99-9ec3-450a3e1de356",
           "source_type": "article",
-          "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
-          "source_title": "スポーツナビ 国内女子クラブセッティング一覧（桑木志帆）",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        },
-        {
-          "profile_id": "0871079f-1d57-4b99-9ec3-450a3e1de356",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/18322/",
           "source_title": "GDO 桑木志帆 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Source listed 12本構成として確認できたクラブのみ反映。"
+        },
+        {
+          "profile_id": "0871079f-1d57-4b99-9ec3-450a3e1de356",
+          "source_type": "article",
+          "source_url": "https://sports.yahoo.co.jp/golf/settinglist/jlpga",
+          "source_title": "スポーツナビ 国内女子クラブセッティング一覧（桑木志帆）",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
         }
       ]
     },
@@ -42329,18 +42329,18 @@
         {
           "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
           "source_type": "article",
-          "source_url": "https://www.lpga.com/players/yuri-yoshida/98611",
-          "source_title": "LPGA Player Profile: Yuri Yoshida",
-          "checked_at": "2026-04-09T00:00:00+00:00",
-          "notes": "Used as latest season reference."
-        },
-        {
-          "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/16327/2025/1/",
           "source_title": "GDO 吉田優利 クラブセッティング 2025年 ファウンダーズカップ",
           "checked_at": "2026-04-09T00:00:00+00:00",
           "notes": "Used for full bag and ball confirmation."
+        },
+        {
+          "profile_id": "d350ecc5-f987-4878-b2c4-82189e02de3d",
+          "source_type": "article",
+          "source_url": "https://www.lpga.com/players/yuri-yoshida/98611",
+          "source_title": "LPGA Player Profile: Yuri Yoshida",
+          "checked_at": "2026-04-09T00:00:00+00:00",
+          "notes": "Used as latest season reference."
         }
       ]
     },
@@ -44767,19 +44767,19 @@
       "sources": [
         {
           "profile_id": "7930cf84-c6e9-466b-95b4-731896c41c48",
-          "source_type": "official",
-          "source_url": "https://www.lpga.com/players/minami-katsu/98609",
-          "source_title": "LPGA Player Profile: Minami Katsu",
-          "checked_at": "2026-05-28T00:00:00+00:00",
-          "notes": "プロフィール補助ソース。クラブ構成の正本はGDOセッティングページを優先。"
-        },
-        {
-          "profile_id": "7930cf84-c6e9-466b-95b4-731896c41c48",
           "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/11068/2026/1/",
           "source_title": "GDO 勝みなみ クラブセッティング 2026年 ホンダLPGA",
           "checked_at": "2026-05-28T00:00:00+00:00",
           "notes": "2026年ホンダLPGA取材。1W、FW、UT、アイアン、ウェッジ、パター、ボールを確認。"
+        },
+        {
+          "profile_id": "7930cf84-c6e9-466b-95b4-731896c41c48",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/minami-katsu/98609",
+          "source_title": "LPGA Player Profile: Minami Katsu",
+          "checked_at": "2026-05-28T00:00:00+00:00",
+          "notes": "プロフィール補助ソース。クラブ構成の正本はGDOセッティングページを優先。"
         }
       ]
     },
@@ -45198,10 +45198,10 @@
         {
           "profile_id": "8b4a1ed6-1a42-4310-a653-58a04be2e4f1",
           "source_type": "article",
-          "source_url": "https://mycaddie.jp/tour/player/369/setting",
-          "source_title": "my caddie 川崎志穂のギアセッティング・使用ギア情報",
+          "source_url": "https://news.golfdigest.co.jp/players/profile/16754/",
+          "source_title": "GDO 川崎志穂プロフィール",
           "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "2026年1月16日現在と記載の最新公開ギアカテゴリ構成。"
+          "notes": "171cmの長身と260yd超のロングドライブという選手文脈確認用。"
         },
         {
           "profile_id": "8b4a1ed6-1a42-4310-a653-58a04be2e4f1",
@@ -45214,10 +45214,10 @@
         {
           "profile_id": "8b4a1ed6-1a42-4310-a653-58a04be2e4f1",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/profile/16754/",
-          "source_title": "GDO 川崎志穂プロフィール",
+          "source_url": "https://mycaddie.jp/tour/player/369/setting",
+          "source_title": "my caddie 川崎志穂のギアセッティング・使用ギア情報",
           "checked_at": "2026-05-06T00:00:00+00:00",
-          "notes": "171cmの長身と260yd超のロングドライブという選手文脈確認用。"
+          "notes": "2026年1月16日現在と記載の最新公開ギアカテゴリ構成。"
         }
       ]
     },
@@ -45793,17 +45793,17 @@
         "slug": "miki-saeki",
         "display_name": "佐伯三貴",
         "kana_name": "サエキ ミキ",
-        "birth_date": null,
-        "height_cm": null,
-        "birthplace": null,
+        "birth_date": "1984-09-22",
+        "height_cm": 163,
+        "birthplace": "広島県東広島市",
         "nationality": "Japan",
         "profile_type": "tour_pro",
         "segment": "jlpga_verified",
         "season_year": 2026,
         "youtube_channel": null,
-        "instagram_handle": null,
-        "x_handle": null,
-        "website_url": null,
+        "instagram_handle": "threeprecious",
+        "x_handle": "Threeprecious",
+        "website_url": "http://miki-saiki.pargolf.co.jp/",
         "head_speed_mps": null,
         "average_score": null,
         "best_score": null,
@@ -45817,7 +45817,7 @@
         "is_featured": false,
         "is_published": true,
         "created_at": "2026-05-30T03:43:45.168009+00:00",
-        "updated_at": "2026-05-30T03:43:45.168009+00:00",
+        "updated_at": "2026-05-30T04:22:01.910938+00:00",
         "contractStatus": null,
         "contractMaker": null
       },
@@ -45984,6 +45984,14 @@
         }
       ],
       "sources": [
+        {
+          "profile_id": "0e9adf95-7fc2-4738-ac31-636edc7f8908",
+          "source_type": "official",
+          "source_url": "https://news.golfdigest.co.jp/players/profile/200/",
+          "source_title": "GDO 佐伯三貴 プロフィール",
+          "checked_at": "2026-05-30T00:00:00+00:00",
+          "notes": "生年月日、出身地、身長、プロ転向、通算勝利、公式サイト、X、Instagramを確認。"
+        },
         {
           "profile_id": "0e9adf95-7fc2-4738-ac31-636edc7f8908",
           "source_type": "youtube",
@@ -46233,14 +46241,6 @@
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
-          "source_type": "official",
-          "source_url": "https://www.taylormadegolf.jp/tourplayers-minami-kiyomoto2026.html",
-          "source_title": "清本 美波 | ツアープレーヤー | TaylorMade Golf 2026",
-          "checked_at": "2026-05-19T00:00:00+00:00",
-          "notes": "TaylorMade公式ツアープレーヤーページ。Qi4Dドライバー、Qi4Dフェアウェイウッド、P790アイアン、Qi4Dレスキュー、Qi4D MAXレスキュー、MG5クロームウェッジ、TP5ボールの現行モデル確認用。"
-        },
-        {
-          "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
           "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/players/setting/18508/2024/2/",
           "source_title": "GDO 清本美波 クラブセッティング 2024年 HEIWA×PGMチャリティゴルフ 練習日",
@@ -46250,10 +46250,10 @@
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
           "source_type": "official",
-          "source_url": "https://prtimes.jp/main/html/rd/p/000000184.000024046.html",
-          "source_title": "清本美波がMARK & LONAと2026年シーズンよりウェア契約",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "2026年シーズンのウェア契約とInstagramアカウント確認用。クラブセッティングの更新ソースではない。"
+          "source_url": "https://www.taylormadegolf.jp/tourplayers-minami-kiyomoto2026.html",
+          "source_title": "清本 美波 | ツアープレーヤー | TaylorMade Golf 2026",
+          "checked_at": "2026-05-19T00:00:00+00:00",
+          "notes": "TaylorMade公式ツアープレーヤーページ。Qi4Dドライバー、Qi4Dフェアウェイウッド、P790アイアン、Qi4Dレスキュー、Qi4D MAXレスキュー、MG5クロームウェッジ、TP5ボールの現行モデル確認用。"
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
@@ -46265,11 +46265,11 @@
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/189657/1/",
-          "source_title": "清本美波『メチャクチャ上出来』4位発進 “クセ”の持ち球が強風にハマる",
-          "checked_at": "2026-05-04T00:00:00+00:00",
-          "notes": "2026年ヤマハレディース葛城での大会文脈確認用。"
+          "source_type": "official",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000184.000024046.html",
+          "source_title": "清本美波がMARK & LONAと2026年シーズンよりウェア契約",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "2026年シーズンのウェア契約とInstagramアカウント確認用。クラブセッティングの更新ソースではない。"
         },
         {
           "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
@@ -46278,6 +46278,14 @@
           "source_title": "大須賀望が首位スタート 清本美波2位／国内女子下部開幕戦",
           "checked_at": "2026-05-04T00:00:00+00:00",
           "notes": "2026年4月の下部ツアー上位発進記事。"
+        },
+        {
+          "profile_id": "db9b9e81-f694-4be9-be27-5be91e5ea4a4",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/news/jlpga/article/189657/1/",
+          "source_title": "清本美波『メチャクチャ上出来』4位発進 “クセ”の持ち球が強風にハマる",
+          "checked_at": "2026-05-04T00:00:00+00:00",
+          "notes": "2026年ヤマハレディース葛城での大会文脈確認用。"
         }
       ]
     },
@@ -47987,19 +47995,19 @@
       "sources": [
         {
           "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
-          "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/17955/2026/1/",
-          "source_title": "GDO 渋野日向子 クラブセッティング 2026年 ファウンダーズカップ",
-          "checked_at": "2026-05-27T00:00:00+00:00",
-          "notes": "Published 2026-03-22. 2026年ファウンダーズカップ取材。1W、FW、UT、アイアン、ウェッジ、パター、ボールを確認。"
-        },
-        {
-          "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
           "source_type": "official",
           "source_url": "https://www.lpga.com/athletes/hinako-shibuno/100176/results",
           "source_title": "LPGA Results: Hinako Shibuno",
           "checked_at": "2026-05-27T00:00:00+00:00",
           "notes": "プロフィール補助ソース。クラブ構成の正本はGDOセッティングページを優先。"
+        },
+        {
+          "profile_id": "6c51c58a-3659-44fa-89f2-3a9a5d74b788",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/17955/2026/1/",
+          "source_title": "GDO 渋野日向子 クラブセッティング 2026年 ファウンダーズカップ",
+          "checked_at": "2026-05-27T00:00:00+00:00",
+          "notes": "Published 2026-03-22. 2026年ファウンダーズカップ取材。1W、FW、UT、アイアン、ウェッジ、パター、ボールを確認。"
         }
       ]
     },
@@ -48155,18 +48163,18 @@
         {
           "profile_id": "cfb6d862-c6e1-46a5-ba74-d57b369e7920",
           "source_type": "official",
-          "source_url": "https://www.lpga.com/players/brooke-henderson/98177",
-          "source_title": "LPGA Player Profile: Brooke Henderson",
-          "checked_at": "2026-05-22T00:00:00+00:00",
-          "notes": "プロフィール補助ソース。クラブ構成はTaylorMade公式WITBを優先。"
-        },
-        {
-          "profile_id": "cfb6d862-c6e1-46a5-ba74-d57b369e7920",
-          "source_type": "official",
           "source_url": "https://www.taylormadegolf.com/tourplayers/brooke-henderson.html?lang=en_US",
           "source_title": "Brooke Henderson WITB | TaylorMade Golf",
           "checked_at": "2026-05-22T00:00:00+00:00",
           "notes": "TaylorMade公式ツアープレーヤーページ。Qi4D Driver、Qi4D Fairway、Qi4D Rescue、P7CB Irons、MG5 Wedge、Spider Tour X、TP5x Golf Ballsを確認。"
+        },
+        {
+          "profile_id": "cfb6d862-c6e1-46a5-ba74-d57b369e7920",
+          "source_type": "official",
+          "source_url": "https://www.lpga.com/players/brooke-henderson/98177",
+          "source_title": "LPGA Player Profile: Brooke Henderson",
+          "checked_at": "2026-05-22T00:00:00+00:00",
+          "notes": "プロフィール補助ソース。クラブ構成はTaylorMade公式WITBを優先。"
         }
       ]
     },
@@ -50148,18 +50156,18 @@
         {
           "profile_id": "295838ce-10b7-4f5b-8608-045b5b61a829",
           "source_type": "article",
-          "source_url": "https://news.golfdigest.co.jp/players/setting/19151/2024/1/",
-          "source_title": "GDO 寺西飛香留 クラブセッティング 2024年 パナソニックオープン",
-          "checked_at": "2026-05-04T00:00:00+00:00",
-          "notes": "2024年時点で確認できた最新公開セッティング。"
-        },
-        {
-          "profile_id": "295838ce-10b7-4f5b-8608-045b5b61a829",
-          "source_type": "article",
           "source_url": "https://news.golfdigest.co.jp/news/jgto/article/172424/1/",
           "source_title": "男子ツアー予選会に挑んだ23歳女子は“ギアマニア” 寺西飛香留のセッティング",
           "checked_at": "2026-05-04T00:00:00+00:00",
           "notes": "14本構成の補足確認用。"
+        },
+        {
+          "profile_id": "295838ce-10b7-4f5b-8608-045b5b61a829",
+          "source_type": "article",
+          "source_url": "https://news.golfdigest.co.jp/players/setting/19151/2024/1/",
+          "source_title": "GDO 寺西飛香留 クラブセッティング 2024年 パナソニックオープン",
+          "checked_at": "2026-05-04T00:00:00+00:00",
+          "notes": "2024年時点で確認できた最新公開セッティング。"
         }
       ]
     },
@@ -50426,19 +50434,19 @@
       "sources": [
         {
           "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",
-          "source_type": "official",
-          "source_url": "https://www.instagram.com/momokamiura_official/",
-          "source_title": "三浦桃香 Instagram",
-          "checked_at": "2026-05-15T00:00:00+00:00",
-          "notes": "公式Instagramアカウント確認用。"
-        },
-        {
-          "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",
           "source_type": "article",
           "source_url": "https://www.veragolf.jp/influencers/313",
           "source_title": "三浦 桃香｜インフルエンサー",
           "checked_at": "2026-05-15T00:00:00+00:00",
           "notes": "公式Instagramアカウントとティーチングプロ/メディア活動文脈の確認用。"
+        },
+        {
+          "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",
+          "source_type": "official",
+          "source_url": "https://www.instagram.com/momokamiura_official/",
+          "source_title": "三浦桃香 Instagram",
+          "checked_at": "2026-05-15T00:00:00+00:00",
+          "notes": "公式Instagramアカウント確認用。"
         },
         {
           "profile_id": "4da8b6b8-436b-4c09-aa97-1980fec2349d",
