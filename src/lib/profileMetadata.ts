@@ -132,6 +132,7 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'kido-ai': { category: 'japan_women', contractStatus: 'checking' },
   'arimura-chie': { category: 'japan_women', contractStatus: 'checking' },
   'erina-hara': { category: 'japan_women', contractStatus: 'free_contract' },
+  'miki-saeki': { category: 'japan_women', contractStatus: 'club_contract', contractMaker: 'キャロウェイ' },
   'erika-hara': { category: 'overseas_women', contractStatus: 'checking' },
   'kawagishi-fumika': { category: 'japan_women', contractStatus: 'checking' },
   'kudo-haruka': { category: 'japan_women', contractStatus: 'checking' },
