@@ -8,16 +8,16 @@
     "height_cm": 180,
     "profile_type": "tour_pro",
     "segment": "verified_batch",
-    "season_year": 2025,
+    "season_year": 2026,
     "head_speed_mps": 52,
     "average_score": 69.55,
     "best_score": 62,
-    "ball_name": "TaylorMade TP5x pix 2024",
-    "feature_1": "2025シーズン基準",
-    "feature_2": "TaylorMade中心",
-    "feature_3": "stock carry yardage追加",
-    "summary": "トミー・フリートウッドのクラブセッティングページ。確認済みWITBに加え、Golf MonthlyがTaylorMade公開値として掲載したstock carry yardageも確認できるように整理しています。",
-    "latest_source_policy": "2025_season",
+    "ball_name": "TaylorMade TP5x Pix",
+    "feature_1": "2026年4月確認",
+    "feature_2": "Qi4D LS＋R7 Quad Mini",
+    "feature_3": "9W活用セッティング",
+    "summary": "トミー・フリートウッドの2026年クラブセッティングを、Golf Monthlyの2026年WITBをもとに、Qi4D LSドライバー、R7 Quad Mini、Qi35/Qi10フェアウェイ、P7TW、Hi-Toe 4/MG5、Spider Tour Blackまで確認できる形で整理したページです。",
+    "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
     "verified_at": "2026-05-31T00:00:00.000Z",
@@ -28,28 +28,28 @@
       "category": "Driver",
       "slot_order": 1,
       "brand": "TaylorMade",
-      "model_name": "Qi35 Driver",
-      "loft_label": "9°",
+      "model_name": "Qi4D LS Driver",
+      "loft_label": "10.5°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "VENTUS TR BLUE",
+      "shaft_model": "Ventus TR Blue",
       "shaft_flex": "X",
       "shaft_weight": "60g台",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 Driverは300yd。",
-      "is_featured_item": true,
-      "carry_distance": 300
+      "carry_distance": 300,
+      "source_note": "Golf Monthly 2026 WITBでQi4D LS 10.5°、Fujikura Ventus TR Blue 6 Xを確認。距離はTaylorMade公開値として紹介されたstock yardageのDriver 300yd。",
+      "is_featured_item": true
     },
     {
       "category": "Driver",
       "slot_order": 2,
       "brand": "TaylorMade",
-      "model_name": "r7 QUAD Mini Driver",
+      "model_name": "R7 Quad Mini Driver",
       "spec_label": "Mini",
       "loft_label": "13.5°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "VENTUS TR BLUE",
+      "shaft_model": "Ventus TR Blue",
       "shaft_flex": "X",
       "shaft_weight": "60g台",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf Monthly 2026 WITBでR7 Quad Mini 13.5°、Fujikura Ventus TR Blue 6 Xを確認。3W代替として使うティーショット重視の番手。",
       "is_featured_item": false
     },
     {
@@ -61,11 +61,11 @@
       "loft_label": "18°",
       "shaft_brand": "Mitsubishi Chemical",
       "shaft_model": "Kuro Kage",
-      "shaft_flex": "X",
+      "shaft_flex": "TX",
       "shaft_weight": "80g台",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 5Wは260yd。",
-      "is_featured_item": false,
-      "carry_distance": 260
+      "carry_distance": 260,
+      "source_note": "Golf Monthly 2026 WITBでQi35 18°、Mitsubishi Kuro Kage 80 TXを確認。距離はTaylorMade公開値として紹介されたstock yardageの5W 260yd。",
+      "is_featured_item": false
     },
     {
       "category": "Fairway Wood",
@@ -76,9 +76,9 @@
       "loft_label": "24°",
       "shaft_brand": "Mitsubishi Chemical",
       "shaft_model": "Kuro Kage",
-      "shaft_flex": "X",
+      "shaft_flex": "TX",
       "shaft_weight": "80g台",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf Monthly 2026 WITBでQi10 24°、Mitsubishi Kuro Kage 80 TXを確認。記事ではコースによりGAPR Lo 4Iを入れることもあると説明されているため、9Wは高弾道を作る選択肢として整理。",
       "is_featured_item": false
     },
     {
@@ -90,10 +90,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 5Iは215yd。",
-      "is_featured_item": false,
       "shaft_weight": "125g",
-      "carry_distance": 215
+      "carry_distance": 215,
+      "source_note": "Golf Monthly 2026 WITBでP7TW 5I-PW、True Temper Project X 6.5を確認。距離はTaylorMade公開値として紹介されたstock yardageの5I 215yd。",
+      "is_featured_item": false
     },
     {
       "category": "Iron",
@@ -104,10 +104,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 6Iは200yd。",
-      "is_featured_item": false,
       "shaft_weight": "125g",
-      "carry_distance": 200
+      "carry_distance": 200,
+      "source_note": "Golf Monthly 2026 WITBでP7TW 5I-PW、True Temper Project X 6.5を確認。距離はstock yardageの6I 200yd。",
+      "is_featured_item": false
     },
     {
       "category": "Iron",
@@ -118,10 +118,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 7Iは186yd。",
-      "is_featured_item": false,
       "shaft_weight": "125g",
-      "carry_distance": 186
+      "carry_distance": 186,
+      "source_note": "Golf Monthly 2026 WITBでP7TW 5I-PW、True Temper Project X 6.5を確認。距離はstock yardageの7I 186yd。",
+      "is_featured_item": false
     },
     {
       "category": "Iron",
@@ -132,10 +132,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 8Iは173yd。",
-      "is_featured_item": false,
       "shaft_weight": "125g",
-      "carry_distance": 173
+      "carry_distance": 173,
+      "source_note": "Golf Monthly 2026 WITBでP7TW 5I-PW、True Temper Project X 6.5を確認。距離はstock yardageの8I 173yd。",
+      "is_featured_item": false
     },
     {
       "category": "Iron",
@@ -146,10 +146,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 9Iは160yd。",
-      "is_featured_item": false,
       "shaft_weight": "125g",
-      "carry_distance": 160
+      "carry_distance": 160,
+      "source_note": "Golf Monthly 2026 WITBでP7TW 5I-PW、True Temper Project X 6.5を確認。距離はstock yardageの9I 160yd。",
+      "is_featured_item": false
     },
     {
       "category": "Wedge",
@@ -160,62 +160,69 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 PWは145yd。",
-      "is_featured_item": false,
       "shaft_weight": "125g",
-      "carry_distance": 145
+      "carry_distance": 145,
+      "source_note": "Golf Monthly 2026 WITBでP7TW 5I-PW、True Temper Project X 6.5を確認。距離はstock yardageのPW 145yd。",
+      "is_featured_item": false
     },
     {
       "category": "Wedge",
       "slot_order": 11,
       "brand": "TaylorMade",
-      "model_name": "HI-TOE 4 Wedge",
+      "model_name": "Hi-Toe 4 Wedge",
       "spec_label": "GW",
       "loft_label": "52°",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 Gap Wedgeは125yd。",
-      "is_featured_item": false,
-      "carry_distance": 125
+      "carry_distance": 125,
+      "source_note": "Golf Monthly 2026 WITBでHi-Toe 4 52°、Dynamic Gold Tour Issue S400を確認。距離はstock yardageのGap Wedge 125yd。",
+      "is_featured_item": false
     },
     {
       "category": "Wedge",
       "slot_order": 12,
       "brand": "TaylorMade",
-      "model_name": "MG Prototype Wedge",
+      "model_name": "MG5 Wedge",
       "spec_label": "SW",
       "loft_label": "56°",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf Monthly 2026 WITBでMG5 56°、Dynamic Gold Tour Issue S400を確認。",
       "is_featured_item": false
     },
     {
       "category": "Wedge",
       "slot_order": 13,
       "brand": "TaylorMade",
-      "model_name": "MG Prototype Wedge",
+      "model_name": "MG5 Wedge",
       "spec_label": "LW",
       "loft_label": "60°",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 Lob Wedgeは100yd。",
-      "is_featured_item": false,
-      "carry_distance": 100
+      "carry_distance": 100,
+      "source_note": "Golf Monthly 2026 WITBでMG5 60°、Dynamic Gold Tour Issue S400を確認。距離はstock yardageのLob Wedge 100yd。",
+      "is_featured_item": false
     },
     {
       "category": "Putter",
       "slot_order": 14,
       "brand": "TaylorMade",
       "model_name": "Spider Tour Black Putter",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf Monthly 2026 WITBで、2026年マスターズ時にSpider Tour Blackを使用していると確認。",
       "is_featured_item": false
     }
   ],
   "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/tour/tommy-fleetwood-whats-in-the-bag-2026",
+      "source_title": "Golf Monthly Tommy Fleetwood WITB 2026",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "2026年4月11日公開。Qi4D LS 10.5°/Ventus TR Blue 6 X、R7 Quad Mini 13.5°/Ventus TR Blue 6 X、Qi35 18°とQi10 24°/Kuro Kage 80 TX、P7TW 5-PW/Project X 6.5、Hi-Toe 4 52°、MG5 56°・60°、Spider Tour Black、TP5x Pixを確認。GAPR Lo 4Iはコースにより入れる候補として記載。"
+    },
     {
       "source_type": "official",
       "source_url": "https://www.taylormadegolf.com/tourplayers/tommy-fleetwood.html?lang=en_US",
@@ -250,16 +257,30 @@
       "source_title": "Golf Monthly What Are Tommy Fleetwood’s Stock Yardages?",
       "checked_at": "2026-05-31T00:00:00.000Z",
       "notes": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。Driver 300yd、3W 280yd、5W 260yd、7W 240yd、4I 225yd、5I 215yd、6I 200yd、7I 186yd、8I 173yd、9I 160yd、PW 145yd、GW 125yd、LW 100ydを確認。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.todays-golfer.com/equipment/witb/tommy-fleetwood-witb/",
+      "source_title": "Today’s Golfer Tommy Fleetwood WITB",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "ユーザー提供の参考URL。Golf Monthlyで確認した2026年WITB内容との照合対象として登録。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.youtube.com/watch?v=MivaVNoWT88",
+      "source_title": "Tommy Fleetwood WITB reference video",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "ユーザー提供の参考動画。クラブ構成確認の補助ソースとして登録。"
     }
   ],
   "article": {
-    "slug": "tommy-fleetwood-2025-setting-update",
-    "title": "トミー・フリートウッドの最新クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
-    "excerpt": "トミー・フリートウッドのWITBに加え、TaylorMade公開値として紹介されたstock yardageを追加しました。",
-    "body": "トミー・フリートウッドのクラブセッティングを確認したい人向けに、ツアー選手権時点で確認できた14本のクラブ構成と使用ボールを維持しつつ、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追加しました。バッグ詳細はQi35 Driver、r7 QUAD Mini Driver、Qi35 Fairway Wood、P7TW Iron、HI-TOE 4 Wedge、MG Prototype Wedge、Spider Tour Black Putter、TaylorMade TP5x pixという流れで、数値面はPGA TOUR公式2026 stats/careerを参照しています。TaylorMade公式の現行プレーヤーページではQi4D LS DriverとR7 Quad Mini Driverを中心とした最新構成も確認できます。\n\nGolf MonthlyがTaylorMade公開値として紹介したstock yardageも追加しました。Driver 300yd、5W 260yd、7I 186yd、PW 145yd、GW 125yd、LW 100ydなど、方向性重視のトッププロがどのように距離階段を作っているかを確認できます。",
+    "slug": "tommy-fleetwood-2026-setting-update",
+    "title": "トミー・フリートウッド クラブセッティング2026｜Qi4D LSとR7 Quad Mini",
+    "excerpt": "トミー・フリートウッドの2026年クラブセッティングを、Qi4D LS、R7 Quad Mini、9W、P7TW、MG5まで確認できる形で更新しました。",
+    "body": "トミー・フリートウッドのクラブセッティングを2026年版として更新しました。Golf Monthlyの2026年WITBでは、ドライバーにTaylorMade Qi4D LS 10.5°、ミニドライバーにR7 Quad Mini 13.5°を使用。フェアウェイウッドはQi35 18°とQi10 24°を使い、どちらもKuro Kage 80 TXでそろえています。アイアンはP7TWの5I〜PW、ウェッジはHi-Toe 4 52°とMG5 56°・60°、パターはSpider Tour Black、ボールはTP5x Pixです。\n\n注目したいのは、3Wではなくミニドライバーと9Wを組み合わせる上の番手構成です。フリートウッドはコースによってGAPR Lo 4Iも選択肢に入れるため、MyBagProでは14本の固定コピーではなく「ティーショットの安定」「高い球で止める番手」「ロングアイアンの入れ替え候補」という視点で見るのがおすすめです。",
     "article_type": "update",
-    "season_year": 2025,
+    "season_year": 2026,
     "published": true,
-    "published_at": "2026-04-08T00:00:00.000Z"
+    "published_at": "2026-05-31T00:00:00.000Z"
   }
 }
