@@ -1,0 +1,241 @@
+{
+  "profile": {
+    "slug": "bryson-dechambeau",
+    "display_name": "ブライソン・デシャンボー",
+    "kana_name": "ブライソン・デシャンボー",
+    "nationality": "United States",
+    "birthplace": "アメリカ合衆国 カリフォルニア州モデスト",
+    "birth_date": "1993-09-16",
+    "height_cm": 185,
+    "profile_type": "tour_pro",
+    "segment": "verified_batch",
+    "season_year": 2026,
+    "ball_name": "Titleist Pro V1x",
+    "feature_1": "2026年5月確認",
+    "feature_2": "Krank・Avoda中心",
+    "feature_3": "ワンレングス系アイアン",
+    "summary": "ブライソン・デシャンボーの2026年5月時点クラブセッティングを、GolfWRXとNational Club GolferのWITBをもとに、Krank Formula Fire Pro、Avoda Prototype、Ping/Bettinardiウェッジ、SIKアームロックパターまで整理したページです。番手別距離はキャリー断定せず、参考Stock Yardageとして記事内で扱います。",
+    "latest_source_policy": "latest_tournament",
+    "is_featured": true,
+    "is_published": true,
+    "verified_at": "2026-05-31T00:00:00.000Z",
+    "instagram_handle": "brysondechambeau",
+    "website_url": "https://www.brysondechambeau.com/"
+  },
+  "bagItems": [
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Krank",
+      "model_name": "Formula Fire Pro Driver",
+      "spec_label": "1W",
+      "loft_label": "6°",
+      "shaft_brand": "Project X",
+      "shaft_model": "Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBで確認。2026年3月Singapore時点の5°構成とは異なり、5月PGA Championship週は6°表記。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Krank",
+      "model_name": "Formula Fire Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "10°",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBで確認。10°の超低ロフトFW。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "Krank",
+      "model_name": "Formula Fire Fairway Wood",
+      "spec_label": "3+W",
+      "loft_label": "13°",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBで3+-woodとして確認。National Club Golferでも13°表記。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Avoda",
+      "model_name": "Prototype Iron",
+      "spec_label": "5I",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBでAvoda Prototype 5I-PWを確認。ワンレングス系のBrysonらしい中核構成。",
+      "is_featured_item": true
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Avoda",
+      "model_name": "Prototype Iron",
+      "spec_label": "6I",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBでAvoda Prototype 5I-PWを確認。ワンレングス系のBrysonらしい中核構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Avoda",
+      "model_name": "Prototype Iron",
+      "spec_label": "7I",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBでAvoda Prototype 5I-PWを確認。ワンレングス系のBrysonらしい中核構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Avoda",
+      "model_name": "Prototype Iron",
+      "spec_label": "8I",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBでAvoda Prototype 5I-PWを確認。ワンレングス系のBrysonらしい中核構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Avoda",
+      "model_name": "Prototype Iron",
+      "spec_label": "9I",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBでAvoda Prototype 5I-PWを確認。ワンレングス系のBrysonらしい中核構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Avoda",
+      "model_name": "Prototype Iron",
+      "spec_label": "PW",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBでAvoda Prototype 5I-PWを確認。ワンレングス系のBrysonらしい中核構成。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "PING",
+      "model_name": "S159 Wedge",
+      "spec_label": "46°",
+      "loft_label": "46° @45°",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBでPing S159 46 @45を確認。National Club Golferは46°として掲載。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Bettinardi",
+      "model_name": "HLX 6.0 Wedge",
+      "spec_label": "52°",
+      "loft_label": "52°",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBで確認。Singapore優勝時のHLX 5.0から5月時点ではHLX 6.0表記。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Bettinardi",
+      "model_name": "HLX 6.0 Wedge",
+      "spec_label": "56°",
+      "loft_label": "56°",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBで確認。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "PING",
+      "model_name": "Glide 2.0 Wedge",
+      "spec_label": "60°",
+      "loft_label": "60°",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "BAD Prototype",
+      "source_note": "GolfWRX 2026年5月WITBとNational Club Golfer 2026 WITBで確認。Singapore優勝時のPing Glide 4.0から5月時点ではGlide 2.0表記。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "SIK",
+      "model_name": "Pro C-Series Armlock Putter",
+      "shaft_brand": "LA Golf",
+      "shaft_model": "C2L-180",
+      "source_note": "GolfWRX 2026年5月WITBでSIK Pro C-Series Armlock、LA Golf C2L-180、JumboMax JumboFlat 17を確認。",
+      "is_featured_item": true
+    }
+  ],
+  "sources": [
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfwrx.com/778092/bryson-dechambeau-witb-2026-may/",
+      "source_title": "GolfWRX Bryson DeChambeau WITB 2026 (May)",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "2026年5月14日公開。Driver Krank Formula Fire Pro 6°、3W 10°、3+W 13°、Avoda Prototype 5-PW、Ping S159/Bettinardi HLX 6.0/Ping Glide 2.0、SIK Pro C-Series Armlock、JumboMax gripsを確認。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.nationalclubgolfer.com/tour/witb/bryson-dechambeau-witb/",
+      "source_title": "National Club Golfer Bryson DeChambeau WITB 2026",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "2026年WITBとしてKrank、Avoda、Ping、Bettinardi、SIK、JumboMax、Titleist Pro V1xを確認。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.livgolf.com/news/winners-bag-equipment-bryson-dechambeau-liv-golf-singapore-2026",
+      "source_title": "LIV Golf Singapore 2026 winners bag Bryson DeChambeau",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "2026年3月Singapore優勝時のバッグ。5月版とはドライバー、アイアン範囲、ウェッジ構成に差分あり。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/news/bryson-dechambeau-winning-whats-in-the-bag-liv-golf-singapore-2026",
+      "source_title": "Golf Monthly Bryson DeChambeau Singapore Winning WITB 2026",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "Singapore優勝時WITBの差分確認用。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.bunkered.co.uk/gear/bryson-dechambeau-stock-yardages/",
+      "source_title": "bunkered Bryson DeChambeau Stock Yardages 2025",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "2025年4月11日公開、4月13日更新。Driver 343、3W 300、5W 290、5I 246、6I 231、7I 220、8I 202、9I 185、PW 170、46° 160、GW 139、SW 121、LW 102をStock Yardageとして確認。キャリー明記なし。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/tour/what-are-bryson-dechambeaus-stock-yardages",
+      "source_title": "Golf Monthly What Are Bryson DeChambeau Stock Yardages?",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "2023年公開のStock Yardages。2025 bunkeredより古いため補助ソース扱い。"
+    }
+  ],
+  "article": {
+    "slug": "bryson-dechambeau-2026-setting-stock-yardage",
+    "title": "ブライソン・デシャンボー クラブセッティング2026｜KrankとAvodaの異色WITB",
+    "excerpt": "ブライソン・デシャンボーの2026年5月WITBを、Krank、Avoda、Ping/Bettinardiウェッジ、SIKアームロックまで整理。Stock Yardageはキャリー断定せず参考値として解説します。",
+    "body": "ブライソン・デシャンボーの2026年クラブセッティングは、一般的なツアープロのバッグとはかなり違います。2026年5月のGolfWRX WITBでは、ドライバーがKrank Formula Fire Pro 6°、フェアウェイウッドがKrank Formula Fireの10°と13°、アイアンがAvoda Prototype 5I〜PW。ウェッジはPing S159、Bettinardi HLX 6.0、Ping Glide 2.0を組み合わせ、パターはSIK Pro C-Series Armlockです。\n\nMyBagProで見るべきポイントは、単に飛ぶクラブを並べていることではありません。6°ドライバー、10°の3W、ワンレングス系アイアン、太いJumboMaxグリップまで、スイングとクラブを一体で設計している点です。アマチュアがそのまま真似るのは現実的ではありませんが、「上の番手で何をしたいか」「アイアンの長さや弾道をどう揃えるか」という考え方は参考になります。\n\n注意したいのは、2026年に入ってもバッグが固定ではないことです。LIV Golf Singapore優勝時はドライバーが5°、アイアン範囲やウェッジ構成も5月版とは一部違います。Brysonのページでは、5月時点の最新WITBを本体データとして掲載し、Singapore時点の差分は確認ソースとして残しています。\n\n番手別距離については、2025年にbunkeredがStock YardageとしてDriver 343y、3W 300y、5W 290y、5I 246y、7I 220y、PW 170y、46° 160y、LW 102yなどを紹介しています。ただし、出典ではキャリー距離と明記されていないため、MyBagProではキャリー表として断定せず、参考Stock Yardageとして扱います。距離の数字よりも、各番手の役割と距離階段の作り方を見るのがおすすめです。",
+    "article_type": "update",
+    "season_year": 2026,
+    "published": true,
+    "published_at": "2026-05-31T00:00:00.000Z"
+  }
+}
