@@ -27,10 +27,11 @@
       "model_name": "XXIO X Driver 2024",
       "loft_label": "10.5°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "VENTUS RED 50",
+      "shaft_model": "VENTUS RED",
       "shaft_flex": "R",
       "source_note": "GDO 2025年KKT杯バンテリンレディス取材より確認。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Fairway Wood",

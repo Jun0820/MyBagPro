@@ -79,7 +79,7 @@
       "loft_label": "22°",
       "shaft_brand": "Graphite Design",
       "shaft_model": "TOUR AD HYBRID",
-      "shaft_weight": "65",
+      "shaft_weight": "65g",
       "shaft_flex": "S",
       "source_note": "本人YouTubeで確認。G430 HYBRID 4U、22°。シャフトはGraphite Design TOUR AD HYBRID-65 S。5番アイアンの代わりに投入し、UTの楽さに気づくきっかけになった1本。",
       "is_featured_item": false
@@ -93,7 +93,7 @@
       "loft_label": "26°",
       "shaft_brand": "Graphite Design",
       "shaft_model": "TOUR AD HYBRID",
-      "shaft_weight": "65",
+      "shaft_weight": "65g",
       "shaft_flex": "S",
       "source_note": "本人YouTubeで確認。G430 HYBRID 5U、26°。シャフトはGraphite Design TOUR AD HYBRID-65 S。6番アイアンの代わりに投入。",
       "is_featured_item": false
@@ -107,7 +107,7 @@
       "loft_label": "30°",
       "shaft_brand": "Graphite Design",
       "shaft_model": "TOUR AD HYBRID",
-      "shaft_weight": "65",
+      "shaft_weight": "65g",
       "shaft_flex": "S",
       "source_note": "本人YouTubeで確認。G430 HYBRID 6U、30°。シャフトはGraphite Design TOUR AD HYBRID-65 S。7番アイアンの代わりに投入。PINGのUTは座りが良く、雨や朝露でも水フライヤーが起きにくい点を高く評価。",
       "is_featured_item": true
@@ -122,7 +122,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "本人YouTubeで確認。8IはSTEALTH GLOIRE Iron。かっこよさより優しく飛ぶことを重視し、1番手近く飛ぶ安心感を評価。風に負けにくいよう、ウッド系よりあえて重めのシャフトを選択。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Iron",
@@ -134,7 +135,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "本人YouTubeで確認。9IはSTEALTH GLOIRE Iron。8Iと同じ飛び系・やさしさ重視の流れ。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Iron",
@@ -146,7 +148,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "本人YouTubeで確認。PWはSTEALTH GLOIRE Iron。8I、9Iと同じ飛び系・やさしさ重視の流れ。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Wedge",

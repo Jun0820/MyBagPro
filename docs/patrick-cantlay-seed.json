@@ -24,26 +24,210 @@
     "verified_at": "2026-04-10T00:00:00.000Z"
   },
   "bagItems": [
-    { "category": "Driver", "slot_order": 1, "brand": "Titleist", "model_name": "GT2 Driver", "loft_label": "9°", "shaft_brand": "Mitsubishi", "shaft_model": "Diamana ZF 60", "shaft_flex": "TX", "total_distance": 304.8, "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August). PGA TOUR公式ドライビングディスタンス平均は304.8yd。", "is_featured_item": true },
-    { "category": "Fairway Wood", "slot_order": 2, "brand": "Titleist", "model_name": "915F Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Mitsubishi", "shaft_model": "Diamana ZF 70", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Fairway Wood", "slot_order": 3, "brand": "Titleist", "model_name": "TS2 Fairway Wood", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Mitsubishi", "shaft_model": "Diamana ZF 80", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "ZX5 Mk II Iron", "spec_label": "4I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold 120", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 5, "brand": "Titleist", "model_name": "718 AP2 Iron", "spec_label": "5I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold 120", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 6, "brand": "Titleist", "model_name": "718 AP2 Iron", "spec_label": "6I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold 120", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 7, "brand": "Titleist", "model_name": "718 AP2 Iron", "spec_label": "7I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold 120", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 8, "brand": "Titleist", "model_name": "718 AP2 Iron", "spec_label": "8I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold 120", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 9, "brand": "Titleist", "model_name": "718 AP2 Iron", "spec_label": "9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold 120", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 10, "brand": "Titleist", "model_name": "Vokey Design SM7", "spec_label": "PW", "loft_label": "47°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "shaft_flex": "S300", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey Design SM7", "spec_label": "AW", "loft_label": "51°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "shaft_flex": "S300", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "loft_label": "57°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "shaft_flex": "S300", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "LW", "loft_label": "61°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold", "shaft_flex": "S200", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 14, "brand": "Scotty Cameron", "model_name": "Phantom 7.2 Tour Prototype", "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).", "is_featured_item": true }
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Titleist",
+      "model_name": "GT2 Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Diamana ZF",
+      "shaft_flex": "TX",
+      "total_distance": 304.8,
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August). PGA TOUR公式ドライビングディスタンス平均は304.8yd。",
+      "is_featured_item": true,
+      "shaft_weight": "60g台"
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "Titleist",
+      "model_name": "915F Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Diamana ZF",
+      "shaft_flex": "TX",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "Titleist",
+      "model_name": "TS2 Fairway Wood",
+      "spec_label": "7W",
+      "loft_label": "21°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Diamana ZF",
+      "shaft_flex": "TX",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false,
+      "shaft_weight": "80g台"
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Srixon",
+      "model_name": "ZX5 Mk II Iron",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold 120",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Titleist",
+      "model_name": "718 AP2 Iron",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold 120",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Titleist",
+      "model_name": "718 AP2 Iron",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold 120",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Titleist",
+      "model_name": "718 AP2 Iron",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold 120",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Titleist",
+      "model_name": "718 AP2 Iron",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold 120",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Titleist",
+      "model_name": "718 AP2 Iron",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold 120",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM7",
+      "spec_label": "PW",
+      "loft_label": "47°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold",
+      "shaft_flex": "S300",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM7",
+      "spec_label": "AW",
+      "loft_label": "51°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold",
+      "shaft_flex": "S300",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM10",
+      "spec_label": "SW",
+      "loft_label": "57°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold",
+      "shaft_flex": "S300",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM10",
+      "spec_label": "LW",
+      "loft_label": "61°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold",
+      "shaft_flex": "S200",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "Scotty Cameron",
+      "model_name": "Phantom 7.2 Tour Prototype",
+      "source_note": "Confirmed from GolfWRX Patrick Cantlay WITB 2025 (August).",
+      "is_featured_item": true
+    }
   ],
   "sources": [
-    { "source_type": "article", "source_url": "https://www.golfwrx.com/765261/patrick-cantlay-witb-2025-august/", "source_title": "Patrick Cantlay WITB 2025 (August) - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for latest detailed bag breakdown." },
-    { "source_type": "official", "source_url": "https://www.titleist.com/tour/patrick-cantlay", "source_title": "Patrick Cantlay | Titleist", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official Titleist player page used for contract and ball context." },
-    { "source_type": "official", "source_url": "https://www.pgatour.com/player/35450/patrick-cantlay/stats", "source_title": "Patrick Cantlay PGA TOUR Stats", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード115.27mph、ドライビングディスタンス304.8yd、平均スコア68.10を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。" },
-    { "source_type": "official", "source_url": "https://www.pgatour.com/player/35450/patrick-cantlay/career", "source_title": "Patrick Cantlay PGA TOUR Career", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "PGA TOUR career pageで通算ベストラウンド60を確認。" }
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfwrx.com/765261/patrick-cantlay-witb-2025-august/",
+      "source_title": "Patrick Cantlay WITB 2025 (August) - GolfWRX",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for latest detailed bag breakdown."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.titleist.com/tour/patrick-cantlay",
+      "source_title": "Patrick Cantlay | Titleist",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Official Titleist player page used for contract and ball context."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/35450/patrick-cantlay/stats",
+      "source_title": "Patrick Cantlay PGA TOUR Stats",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式スタッツページ。クラブヘッドスピード115.27mph、ドライビングディスタンス304.8yd、平均スコア68.10を確認。公開TrackMan/GCQuad計測ではなくツアー公式スタッツ。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/35450/patrick-cantlay/career",
+      "source_title": "Patrick Cantlay PGA TOUR Career",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR career pageで通算ベストラウンド60を確認。"
+    }
   ],
   "article": {
     "slug": "patrick-cantlay-2026-setting-update",

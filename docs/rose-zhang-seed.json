@@ -30,10 +30,11 @@
       "spec_label": "1W",
       "loft_label": "9°",
       "shaft_brand": "Mitsubishi",
-      "shaft_model": "Diamana BB 53",
+      "shaft_model": "Diamana BB",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Rose Zhang WITB 2025（last updated 2025-04-15）で確認。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "53g"
     },
     {
       "category": "Fairway Wood",
@@ -43,10 +44,11 @@
       "spec_label": "3W",
       "loft_label": "15°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 6",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "source_note": "Golf Monthly Rose Zhang WITB 2025（last updated 2025-04-15）で確認。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "60g台"
     },
     {
       "category": "Fairway Wood",
@@ -56,10 +58,11 @@
       "spec_label": "5W",
       "loft_label": "18°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 7",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "source_note": "Golf Monthly Rose Zhang WITB 2025（last updated 2025-04-15）で確認。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Utility",

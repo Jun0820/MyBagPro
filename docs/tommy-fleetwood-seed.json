@@ -9,7 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2025,
-    "head_speed_mps": 52.0,
+    "head_speed_mps": 52,
     "average_score": 69.55,
     "best_score": 62,
     "ball_name": "TaylorMade TP5x pix 2024",
@@ -90,7 +90,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -102,7 +103,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -114,7 +116,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -126,7 +129,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -138,7 +142,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",
@@ -150,7 +155,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",

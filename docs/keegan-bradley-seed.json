@@ -24,27 +24,219 @@
     "verified_at": "2026-04-10T00:00:00.000Z"
   },
   "bagItems": [
-    { "category": "Driver", "slot_order": 1, "brand": "Ping", "model_name": "G430 LST Driver", "loft_label": "10.5°", "shaft_brand": "Fujikura", "shaft_model": "Ventus Black 6", "shaft_flex": "X", "total_distance": 306, "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship. PGA TOUR公式2026 statsではDriving Distance 306.1yd。", "is_featured_item": true },
-    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi10 HL Fairway Wood", "spec_label": "3W", "loft_label": "16.5°", "shaft_brand": "Aldila", "shaft_model": "Rogue White 130 MSI 70", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Fairway Wood", "slot_order": 3, "brand": "TaylorMade", "model_name": "Qi35 Fairway Wood", "spec_label": "7W", "loft_label": "21°", "shaft_brand": "Aldila", "shaft_model": "Rogue White 130 MSI 70", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 4, "brand": "Srixon", "model_name": "ZX5 Mk II Iron", "spec_label": "3I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 5, "brand": "Srixon", "model_name": "ZX5 Mk II Iron", "spec_label": "4I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 6, "brand": "Srixon", "model_name": "ZX5 Mk II Iron", "spec_label": "5I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 7, "brand": "Srixon", "model_name": "ZX7 Mk II Iron", "spec_label": "6I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 8, "brand": "Srixon", "model_name": "ZX7 Mk II Iron", "spec_label": "7I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 9, "brand": "Srixon", "model_name": "ZX7 Mk II Iron", "spec_label": "8I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 10, "brand": "Srixon", "model_name": "ZX7 Mk II Iron", "spec_label": "9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 11, "brand": "Srixon", "model_name": "Z-Forged II Iron", "spec_label": "PW", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 12, "brand": "Cleveland", "model_name": "RTZ Tour Rack Wedge", "spec_label": "AW", "loft_label": "52°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 13, "brand": "Cleveland", "model_name": "RTZ Tour Rack Wedge", "spec_label": "SW", "loft_label": "56°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 14, "brand": "Cleveland", "model_name": "RTZ Tour Rack Wedge", "spec_label": "LW", "loft_label": "58°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 15, "brand": "Odyssey", "model_name": "Ai-One Cruiser Jailbird", "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.", "is_featured_item": true }
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Ping",
+      "model_name": "G430 LST Driver",
+      "loft_label": "10.5°",
+      "shaft_brand": "Fujikura",
+      "shaft_model": "Ventus Black",
+      "shaft_flex": "X",
+      "total_distance": 306,
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship. PGA TOUR公式2026 statsではDriving Distance 306.1yd。",
+      "is_featured_item": true,
+      "shaft_weight": "60g台"
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "Qi10 HL Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "16.5°",
+      "shaft_brand": "Aldila",
+      "shaft_model": "Rogue White 130 MSI 70",
+      "shaft_flex": "TX",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "Qi35 Fairway Wood",
+      "spec_label": "7W",
+      "loft_label": "21°",
+      "shaft_brand": "Aldila",
+      "shaft_model": "Rogue White 130 MSI 70",
+      "shaft_flex": "TX",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Srixon",
+      "model_name": "ZX5 Mk II Iron",
+      "spec_label": "3I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Srixon",
+      "model_name": "ZX5 Mk II Iron",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Srixon",
+      "model_name": "ZX5 Mk II Iron",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Srixon",
+      "model_name": "ZX7 Mk II Iron",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Srixon",
+      "model_name": "ZX7 Mk II Iron",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Srixon",
+      "model_name": "ZX7 Mk II Iron",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 10,
+      "brand": "Srixon",
+      "model_name": "ZX7 Mk II Iron",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Srixon",
+      "model_name": "Z-Forged II Iron",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Cleveland",
+      "model_name": "RTZ Tour Rack Wedge",
+      "spec_label": "AW",
+      "loft_label": "52°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Cleveland",
+      "model_name": "RTZ Tour Rack Wedge",
+      "spec_label": "SW",
+      "loft_label": "56°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 14,
+      "brand": "Cleveland",
+      "model_name": "RTZ Tour Rack Wedge",
+      "spec_label": "LW",
+      "loft_label": "58°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 15,
+      "brand": "Odyssey",
+      "model_name": "Ai-One Cruiser Jailbird",
+      "source_note": "Confirmed from GolfWRX Keegan Bradley winning WITB 2025 Travelers Championship.",
+      "is_featured_item": true
+    }
   ],
   "sources": [
-    { "source_type": "official", "source_url": "https://www.pgatour.com/player/33141/keegan-bradley/stats", "source_title": "Keegan Bradley PGA TOUR Stats", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "PGA TOUR公式2026 stats。Club Head Speed 114.91 mph、Driving Distance 306.1 yd、Scoring Average (Actual) 70.79、Season Lowest Round 63を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。" },
-    { "source_type": "official", "source_url": "https://www.pgatour.com/player/33141/keegan-bradley/career", "source_title": "Keegan Bradley PGA TOUR Career", "checked_at": "2026-04-11T00:00:00.000Z", "notes": "PGA TOUR公式career。Career Lowest Round 60を確認。" },
-    { "source_type": "article", "source_url": "https://www.golfwrx.com/762194/keegan-bradley-witb-2025-june/", "source_title": "Keegan Bradley’s winning WITB: 2025 Travelers Championship - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for detailed winning bag breakdown." },
-    { "source_type": "official", "source_url": "https://www.srixon.com/us/tour-team.html", "source_title": "Tour Team - Srixon", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Official brand team page used for contract and ball context." }
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/33141/keegan-bradley/stats",
+      "source_title": "Keegan Bradley PGA TOUR Stats",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式2026 stats。Club Head Speed 114.91 mph、Driving Distance 306.1 yd、Scoring Average (Actual) 70.79、Season Lowest Round 63を確認。公開TrackMan/GCQuadセッションではなくPGA TOUR公式スタッツ。"
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/33141/keegan-bradley/career",
+      "source_title": "Keegan Bradley PGA TOUR Career",
+      "checked_at": "2026-04-11T00:00:00.000Z",
+      "notes": "PGA TOUR公式career。Career Lowest Round 60を確認。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfwrx.com/762194/keegan-bradley-witb-2025-june/",
+      "source_title": "Keegan Bradley’s winning WITB: 2025 Travelers Championship - GolfWRX",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for detailed winning bag breakdown."
+    },
+    {
+      "source_type": "official",
+      "source_url": "https://www.srixon.com/us/tour-team.html",
+      "source_title": "Tour Team - Srixon",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Official brand team page used for contract and ball context."
+    }
   ],
   "article": {
     "slug": "keegan-bradley-2026-setting-update",

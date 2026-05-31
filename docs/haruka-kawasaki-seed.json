@@ -165,7 +165,8 @@
       "shaft_flex": "R",
       "carry_distance": 108,
       "source_note": "ホトオープン公式YouTubeで確認。番手表では48° 108y。JAWS RAW Wedge、N.S.PRO 850GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "84.5g"
     },
     {
       "category": "Wedge",
@@ -179,7 +180,8 @@
       "shaft_flex": "R",
       "carry_distance": 97,
       "source_note": "ホトオープン公式YouTubeで確認。番手表では52° 97y。JAWS RAW Wedge、N.S.PRO 850GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "84.5g"
     },
     {
       "category": "Wedge",
@@ -193,7 +195,8 @@
       "shaft_flex": "R",
       "carry_distance": 80,
       "source_note": "ホトオープン公式YouTubeで確認。番手表では58° 80y。JAWS RAW Wedge、N.S.PRO 850GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "84.5g"
     },
     {
       "category": "Putter",

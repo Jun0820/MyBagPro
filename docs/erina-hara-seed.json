@@ -40,10 +40,11 @@
       "model_name": "G440 MAX Fairway Wood",
       "spec_label": "3W",
       "loft_label": "15°",
-      "shaft_model": "LIN-Q RED EX 5",
+      "shaft_model": "LIN-Q RED EX",
       "shaft_flex": "R",
       "source_note": "横田真一チャンネル動画をもとに手動確認。PING G440 MAX 3W 15°、LIN-Q RED EX 5 R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Fairway Wood",
@@ -52,10 +53,11 @@
       "model_name": "G440 MAX Fairway Wood",
       "spec_label": "5W",
       "loft_label": "19°",
-      "shaft_model": "LIN-Q RED EX 5",
+      "shaft_model": "LIN-Q RED EX",
       "shaft_flex": "R",
       "source_note": "横田真一チャンネル動画をもとに手動確認。PING G440 MAX 5W 19°、LIN-Q RED EX 5 R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Utility",
@@ -103,7 +105,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "R",
       "source_note": "横田真一チャンネル動画をもとに手動確認。SRIXON ZX5 Mk II 6I〜PW、N.S.PRO 850GH R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "87g"
     },
     {
       "category": "Wedge",

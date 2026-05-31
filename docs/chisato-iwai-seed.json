@@ -163,7 +163,8 @@
       "shaft_model": "NS PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2026 Tournament of Champions setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -176,7 +177,8 @@
       "shaft_model": "NS PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2026 Tournament of Champions setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -189,7 +191,8 @@
       "shaft_model": "NS PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2026 Tournament of Champions setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Putter",

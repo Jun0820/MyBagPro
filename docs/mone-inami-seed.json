@@ -9,7 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "head_speed_mps": 41.0,
+    "head_speed_mps": 41,
     "ball_name": "TOUR B X ボール＜2024年＞",
     "feature_1": "2025年ダイキン練習日",
     "feature_2": "15本構成",
@@ -115,7 +115,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -127,7 +128,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -139,7 +141,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -151,7 +154,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -163,7 +167,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "GDOではtQ Ironのみ記載。練習日15本表記と他クラブ本数から6I-PWの5本構成として展開。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -176,7 +181,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page. Practice-day setup listed 15 clubs.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -189,7 +195,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page. Practice-day setup listed 15 clubs.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -202,7 +209,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page. Practice-day setup listed 15 clubs.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Putter",

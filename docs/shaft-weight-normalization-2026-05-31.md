@@ -1,0 +1,1059 @@
+# Shaft Weight Normalization - 2026-05-31
+
+## Policy
+
+- Exact gram values are only filled when the script has a model/flex rule with enough confidence.
+- Graphite shaft series numbers without a verified exact model/flex match are stored as weight classes such as `60g台`.
+- Ambiguous shafts are left blank for manual review rather than guessed.
+
+## Exact Weight Updates
+
+
+## Weight Class Updates
+
+
+## Left Blank For Manual Review
+
+- アーロン・ライ 1W (docs/aaron-rai-seed.json): `Synergy Blue 70` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 5I (docs/aaron-rai-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 6I (docs/aaron-rai-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 7I (docs/aaron-rai-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 8I (docs/aaron-rai-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 9I (docs/aaron-rai-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 46° (docs/aaron-rai-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 54° (docs/aaron-rai-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アーロン・ライ 60° (docs/aaron-rai-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- アダム・スコット SW (docs/adam-scott-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- アダム・スコット LW (docs/adam-scott-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 4I (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 5I (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 6I (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 7I (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 8I (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 9I (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 PW (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 52° (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 56° (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- 岩崎 亜久竜 60° (docs/aguri-iwasaki-seed.json): `トゥルーテンパー ダイナミックゴールド ツアーイシュー` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- 鈴木愛 50° (docs/ai-suzuki-seed.json): `CFS WEDGE` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 鈴木愛 54° (docs/ai-suzuki-seed.json): `CFS WEDGE` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 鈴木愛 58° (docs/ai-suzuki-seed.json): `CFS WEDGE` flex `R` - weight not filled: model/flex is not enough for a confident value
+- アレックス・スマリー  (docs/alex-smalley-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- アレックス・スマリー  (docs/alex-smalley-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- アレックス・スマリー  (docs/alex-smalley-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- アリソン・リー  (docs/alison-lee-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- アリセン・コープス  (docs/allisen-corpuz-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- アリー・ユーイング  (docs/ally-ewing-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- エイミー・ヤン  (docs/amy-yang-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- アンドレア・リー  (docs/andrea-lee-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- エンジェル・イン  (docs/angel-yin-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- アンナ・ノルドクビスト  (docs/anna-nordqvist-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 青木瀬令奈 5W (docs/aoki-serena-seed.json): `ATTAS COOOL 6` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 青木瀬令奈 7W (docs/aoki-serena-seed.json): `ATTAS COOOL 6` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 青木瀬令奈 9W (docs/aoki-serena-seed.json): `ATTAS COOOL 6` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 有村智恵 1W (docs/arimura-chie-seed.json): `Tour AD Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- アリヤ・ジュタヌガーン  (docs/ariya-jutanugarn-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- アシュリー・ブハイ  (docs/ashleigh-buhai-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 柏原明日架 48° (docs/asuka-kashiwabara-seed.json): `N.S.PRO MODUS3 105 Wedge` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 柏原明日架 52° (docs/asuka-kashiwabara-seed.json): `N.S.PRO MODUS3 105 Wedge` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 柏原明日架 56° (docs/asuka-kashiwabara-seed.json): `N.S.PRO MODUS3 105 Wedge` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 柏原明日架 60° (docs/asuka-kashiwabara-seed.json): `N.S.PRO MODUS3 105 Wedge` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 渡邉彩香  (docs/ayaka-watanabe-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン  (docs/brian-harman-seed.json): `Tour AD IZ-5` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 3W (docs/brian-harman-seed.json): `Speeder 661 Evolution II` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 3I (docs/brian-harman-seed.json): `HZRDUS Smoke Black` flex `90` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 4I (docs/brian-harman-seed.json): `HZRDUS Smoke Black` flex `90` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 5I (docs/brian-harman-seed.json): `HZRDUS Smoke Black` flex `90` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 6I (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 7I (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 8I (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン 9I (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン PW (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン AW (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン SW (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ブライアン・ハーマン LW (docs/brian-harman-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ 3I (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ 4I (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ 5I (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ 6I (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ 7I (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ 8I (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ 9I (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ PW (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ AW (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ SW (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ブルックス・ケプカ LW (docs/brooks-koepka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 7W (docs/cameron-smith-seed.json): `Elements Proto` flex `8F5` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 2I (docs/cameron-smith-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 3I (docs/cameron-smith-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 5I (docs/cameron-smith-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 6I (docs/cameron-smith-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 7I (docs/cameron-smith-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 8I (docs/cameron-smith-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス 9I (docs/cameron-smith-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス PW (docs/cameron-smith-seed.json): `Tour 130X` flex `X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス AW (docs/cameron-smith-seed.json): `Tour 130X` flex `X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス SW (docs/cameron-smith-seed.json): `Tour 130X` flex `X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・スミス LW (docs/cameron-smith-seed.json): `Tour 130X` flex `X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング  (docs/cameron-young-seed.json): `Ventus HB Black Velocore+` flex `10X` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング 4I (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング 5I (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング 6I (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング 7I (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング 8I (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング 9I (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング PW (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング GW (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング SW (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キャメロン・ヤング LW (docs/cameron-young-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- カルロタ・シガンダ  (docs/carlota-ciganda-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- セリーヌ・ブティエ  (docs/celine-boutier-seed.json): `VENTUS BLACK` flex `S` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル 1W (docs/charley-hull-seed.json): `ATTAS 6Star 6` flex `X` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル HY (docs/charley-hull-seed.json): `iRod` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル HY (docs/charley-hull-seed.json): `iRod` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル 4I (docs/charley-hull-seed.json): `N.S.PRO MODUS3 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル 5I (docs/charley-hull-seed.json): `N.S.PRO MODUS3 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル 6I (docs/charley-hull-seed.json): `N.S.PRO MODUS3 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル 7I (docs/charley-hull-seed.json): `N.S.PRO MODUS3 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル 8I (docs/charley-hull-seed.json): `N.S.PRO MODUS3 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル 9I (docs/charley-hull-seed.json): `N.S.PRO MODUS3 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- チャーリー・ハル PW (docs/charley-hull-seed.json): `N.S.PRO MODUS3 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ  (docs/collin-morikawa-seed.json): `Diamana D-LIMITED` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 3W (docs/collin-morikawa-seed.json): `Diamana D-LIMITED` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 5W (docs/collin-morikawa-seed.json): `Diamana D-LIMITED` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 4I (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 5I (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 6I (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 7I (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 8I (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ 9I (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ PW (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ GW (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ SW (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ LW (docs/collin-morikawa-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- コリン・モリカワ  (docs/collin-morikawa-seed.json): `Diamana Putter` flex `1.0` - weight not filled: model/flex is not enough for a confident value
+- コーリー・コナーズ  (docs/corey-conners-seed.json): `LIN-Q M40X White` flex `6F5` - weight not filled: model/flex is not enough for a confident value
+- コーリー・コナーズ 3W (docs/corey-conners-seed.json): `LIN-Q M40X Blue` flex `7F5` - weight not filled: model/flex is not enough for a confident value
+- コーリー・コナーズ 5W (docs/corey-conners-seed.json): `LIN-Q M40X Blue` flex `6F5` - weight not filled: model/flex is not enough for a confident value
+- 出水田 大二郎  (docs/daijiro-izumida-seed.json): `Kurokage XD60` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ダニエル・カン  (docs/danielle-kang-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 岡山絵里  (docs/eri-okayama-seed.json): `Speeder 661 Evolution V` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 菊地絵理香  (docs/erika-kikuchi-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 原江里菜 1W (docs/erina-hara-seed.json): `VANQUISH VV 5` flex `SR` - weight not filled: model/flex is not enough for a confident value
+- 原江里菜 4U (docs/erina-hara-seed.json): `Tour AD U-65` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 原江里菜 5U (docs/erina-hara-seed.json): `Tour AD U-65` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 原江里菜 6U (docs/erina-hara-seed.json): `Tour AD U-65` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 原江里菜 58° (docs/erina-hara-seed.json): `Dynamic Gold 95` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 福田真未  (docs/fukuda-mami-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ガビー・ロペス  (docs/gaby-lopez-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ジョージア・ホール  (docs/georgia-hall-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 後藤未有  (docs/goto-miu-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- リュ・ヘラン  (docs/haeran-ryu-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ハンナ・グリーン  (docs/hannah-green-seed.json): `VENTUS BLACK` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 川﨑春花 6I (docs/haruka-kawasaki-seed.json): `LEXIA IL7LT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 川﨑春花 7I (docs/haruka-kawasaki-seed.json): `LEXIA IL7LT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 川﨑春花 8I (docs/haruka-kawasaki-seed.json): `LEXIA IL7LT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 川﨑春花 9I (docs/haruka-kawasaki-seed.json): `LEXIA IL7LT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 川﨑春花 PW (docs/haruka-kawasaki-seed.json): `LEXIA IL7LT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 4I (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 5I (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 6I (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 7I (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 8I (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 9I (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 PW (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 AW (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 SW (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 松山英樹 LW (docs/hideki-matsuyama-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人  (docs/hideto-tanihara-seed.json): `Tour AD VF` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 3W (docs/hideto-tanihara-seed.json): `Tour AD VF` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 5W (docs/hideto-tanihara-seed.json): `Tour AD VF` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 7W (docs/hideto-tanihara-seed.json): `Tour AD VF` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 4I (docs/hideto-tanihara-seed.json): `AMT Tour White` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 5I (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 6I (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 7I (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 8I (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 9I (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 PW (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 GW (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷原 秀人 SW (docs/hideto-tanihara-seed.json): `Dynamic Gold EX Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 4I (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 5I (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 6I (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 7I (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 8I (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 9I (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 PW (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 GW (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 SW (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 寺西飛香留 LW (docs/hikaru-teranishi-seed.json): `Dynamic Gold MID Tour Issue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 新垣比菜  (docs/hina-arakaki-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 渋野日向子 1W (docs/hinako-shibuno-seed.json): `SPEEDER NX GOLD` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 渋野日向子 4UT (docs/hinako-shibuno-seed.json): `VENTUS HB BLUE` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 渋野日向子 5UT (docs/hinako-shibuno-seed.json): `VENTUS HB BLUE` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 岩田 寛  (docs/hiroshi-iwata-seed.json): `Tour AD PT` flex `7X` - weight not filled: model/flex is not enough for a confident value
+- 岩田 寛 3W (docs/hiroshi-iwata-seed.json): `Tour AD PT` flex `8X` - weight not filled: model/flex is not enough for a confident value
+- 岩田 寛 5W (docs/hiroshi-iwata-seed.json): `Tour AD PT` flex `8X` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 1W (docs/hyo-joo-kim-seed.json): `REXIS KAIZA-M` flex `6S` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 3W (docs/hyo-joo-kim-seed.json): `REXIS KAIZA-M2` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 5W (docs/hyo-joo-kim-seed.json): `REXIS KAIZA-M2` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ H (docs/hyo-joo-kim-seed.json): `REXIS KAIZA` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 5I (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 6I (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 7I (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 8I (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ 9I (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ PW (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ AW (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ SW (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キム・ヒョージュ LW (docs/hyo-joo-kim-seed.json): `N.S. PRO Zelos` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- パク・インビ  (docs/inbee-park-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 5I (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 6I (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 7I (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 8I (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 9I (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 PW (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 GW (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 SW (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 石川 遼 LW (docs/ishikawa-ryo-seed.json): `Modus System3+ Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ジーノ・ティティクル  (docs/jeeno-thitikul-seed.json): `Tour AD DI` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ジェニファー・カプチョ  (docs/jennifer-kupcho-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- コ・ジンヨン  (docs/jin-young-ko-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 4I (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 5I (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 6I (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 7I (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 8I (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 9I (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 PW (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 48° (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールドEX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 54° (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールドEX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 香妻 陣一朗 60° (docs/jinichiro-kozuma-seed.json): `トゥルーテンパー ダイナミックゴールドEX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 申ジエ 6I (docs/jiyai-shin-seed.json): `Tour AD AD-65 Type II` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 申ジエ 7I (docs/jiyai-shin-seed.json): `Tour AD AD-65 Type II` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 申ジエ 8I (docs/jiyai-shin-seed.json): `Tour AD AD-65 Type II` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 申ジエ 9I (docs/jiyai-shin-seed.json): `Tour AD AD-65 Type II` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 申ジエ PW (docs/jiyai-shin-seed.json): `Tour AD AD-65 Type II` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ホアキン・ニーマン 4H (docs/joaquin-niemann-seed.json): `Tour AD DI Hybrid` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ジョン・ラーム  (docs/jon-rahm-seed.json): `Tour Hybrid Prototype 105` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ 2I (docs/justin-rose-seed.json): `MMT Utility` flex `105 TX` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ 4I (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ 5I (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ 6I (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ 7I (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ 8I (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ 9I (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ PW (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ AW (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ SW (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・ローズ LW (docs/justin-rose-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス  (docs/justin-thomas-seed.json): `Diamana Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 3W (docs/justin-thomas-seed.json): `TENSEI AV Raw Blue` flex `85TX` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 5W (docs/justin-thomas-seed.json): `Motore Speeder VC 9.2` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 4I (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 5I (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 6I (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 7I (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 8I (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス 9I (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス PW (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス GW (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス SW (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ジャスティン・トーマス LW (docs/justin-thomas-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら 5I (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら 6I (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら 7I (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら 8I (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら 9I (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら PW (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら AW (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら SW (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 神谷そら LW (docs/kamiya-sora-seed.json): `Dynamic Gold 105` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 金田久美子 1W (docs/kaneda-kumiko-seed.json): `TOUR AD GC-4` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 金田久美子 5W (docs/kaneda-kumiko-seed.json): `TOUR AD XC` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 金田久美子 7W (docs/kaneda-kumiko-seed.json): `TOUR AD XC` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 6I (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 7I (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 8I (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 9I (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 PW (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 AW (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 SW (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 仲村果乃 LW (docs/kano-nakamura-seed.json): `SteelFiber i95cw` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笠りつ子  (docs/kasa-ritsuko-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 川岸史果  (docs/kawagishi-fumika-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 6I (docs/kazuki-higa-seed.json): `Project X 6.0` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 7I (docs/kazuki-higa-seed.json): `Project X 6.0` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 8I (docs/kazuki-higa-seed.json): `Project X 6.0` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 9I (docs/kazuki-higa-seed.json): `Project X 6.0` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 PW (docs/kazuki-higa-seed.json): `Project X 6.0` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 GW (docs/kazuki-higa-seed.json): `Project X 6.0` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 SW (docs/kazuki-higa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 比嘉 一貴 LW (docs/kazuki-higa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 3W (docs/keegan-bradley-seed.json): `Rogue White 130 MSI 70` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 7W (docs/keegan-bradley-seed.json): `Rogue White 130 MSI 70` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 3I (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 4I (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 5I (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 6I (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 7I (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 8I (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー 9I (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー PW (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー AW (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー SW (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- キーガン・ブラッドリー LW (docs/keegan-bradley-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 UT (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 5I (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 6I (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 7I (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 8I (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 9I (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 46° (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 50° (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 54° (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 平田 憲聖 59° (docs/kensei-hirata-seed.json): `日本シャフト NSプロ MODUS3 TOUR 115` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 木戸愛  (docs/kido-ai-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 櫻井心那 1W (docs/kokona-sakurai-seed.json): `TENSEI WHITE` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 櫻井心那 3W (docs/kokona-sakurai-seed.json): `TENSEI WHITE` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 中里 光之介  (docs/konosuke-nakazato-seed.json): `Speeder TR757` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小滝水音  (docs/kotaki-mion-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ 5I (docs/kotoko-uchida-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ 6I (docs/kotoko-uchida-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ 7I (docs/kotoko-uchida-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ 8I (docs/kotoko-uchida-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ 9I (docs/kotoko-uchida-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ PW (docs/kotoko-uchida-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ AW (docs/kotoko-uchida-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 内田ことこ SW (docs/kotoko-uchida-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 香妻琴乃  (docs/kozuma-kotono-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 工藤遥加  (docs/kudo-haruka-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 5I (docs/lala-anai-seed.json): `KBS Tour FLT 115` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 6I (docs/lala-anai-seed.json): `KBS Tour FLT 115` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 7I (docs/lala-anai-seed.json): `KBS Tour FLT 115` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 8I (docs/lala-anai-seed.json): `KBS Tour FLT 115` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 9I (docs/lala-anai-seed.json): `KBS Tour FLT 115` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 PW (docs/lala-anai-seed.json): `KBS Tour FLT 115` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 52° (docs/lala-anai-seed.json): `Dynamic Gold Tour Issue Onyx Black` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 穴井詩 58° (docs/lala-anai-seed.json): `Dynamic Gold Tour Issue Onyx Black` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- ローレン・コフリン  (docs/lauren-coughlin-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- レオナ・マグワイア  (docs/leona-maguire-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- レクシー・トンプソン  (docs/lexi-thompson-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- リリア・ヴ  (docs/lilia-vu-seed.json): `VENTUS BLACK` flex `S` - weight not filled: model/flex is not enough for a confident value
+- リン・グラント  (docs/linn-grant-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード 3H (docs/lottie-woad-seed.json): `HZRDUS Smoke Black RDX 80hy` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード 4H (docs/lottie-woad-seed.json): `HZRDUS Smoke Black RDX 80hy` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード 5I (docs/lottie-woad-seed.json): `Tour 120` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード 6I (docs/lottie-woad-seed.json): `Tour 120` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード 7I (docs/lottie-woad-seed.json): `Tour 120` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード 8I (docs/lottie-woad-seed.json): `Tour 120` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード 9I (docs/lottie-woad-seed.json): `Tour 120` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード PW (docs/lottie-woad-seed.json): `Tour 120` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ロッティ・ウォード  (docs/lottie-woad-seed.json): `Stroke Lab` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ 4I (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ 5I (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ 6I (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ 7I (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ 8I (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ 9I (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ PW (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ GW (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ SW (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ルドビグ・オーベリ LW (docs/ludvig-aberg-seed.json): `Tour 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マデレーネ・サーストレム  (docs/madelene-sagstrom-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央  (docs/mao-saigo-seed.json): `N.S.PRO Regio Formula M+` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 3W (docs/mao-saigo-seed.json): `N.S.PRO Regio Formula B+` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 7W (docs/mao-saigo-seed.json): `N.S.PRO Regio Formula B+` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 4U (docs/mao-saigo-seed.json): `LIN-Q HY Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 5U (docs/mao-saigo-seed.json): `LIN-Q HY Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 6I (docs/mao-saigo-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 7I (docs/mao-saigo-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 8I (docs/mao-saigo-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 西郷真央 9I (docs/mao-saigo-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 松田鈴英  (docs/matsuda-rei-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック 3I (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック 4I (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック 5I (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック 6I (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック 7I (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック 8I (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック 9I (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック PW (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック AW (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック SW (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・フィッツパトリック LW (docs/matt-fitzpatrick-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ 4I (docs/matt-mccarty-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ 5I (docs/matt-mccarty-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ 6I (docs/matt-mccarty-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ 7I (docs/matt-mccarty-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ 8I (docs/matt-mccarty-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ 9I (docs/matt-mccarty-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ PW (docs/matt-mccarty-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ GW (docs/matt-mccarty-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ SW (docs/matt-mccarty-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- マット・マッカーティ LW (docs/matt-mccarty-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ 5I (docs/max-homa-seed.json): `$-Taper 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ 6I (docs/max-homa-seed.json): `$-Taper 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ 7I (docs/max-homa-seed.json): `$-Taper 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ 8I (docs/max-homa-seed.json): `$-Taper 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ 9I (docs/max-homa-seed.json): `$-Taper 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ PW (docs/max-homa-seed.json): `$-Taper 130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ AW (docs/max-homa-seed.json): `Hi-Rev 2.0 135` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ SW (docs/max-homa-seed.json): `Hi-Rev 2.0 135` flex `X` - weight not filled: model/flex is not enough for a confident value
+- マックス・ホーマ LW (docs/max-homa-seed.json): `Hi-Rev 2.0 125` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク  (docs/maya-stark-seed.json): `VENTUS Blue Wood` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 3W (docs/maya-stark-seed.json): `Tour AD-XC 6` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 4H (docs/maya-stark-seed.json): `AWT 2.0` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 4I (docs/maya-stark-seed.json): `AWT` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 5I (docs/maya-stark-seed.json): `AWT` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 6I (docs/maya-stark-seed.json): `AWT` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 7I (docs/maya-stark-seed.json): `AWT` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 8I (docs/maya-stark-seed.json): `AWT` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク 9I (docs/maya-stark-seed.json): `AWT` flex `S` - weight not filled: model/flex is not enough for a confident value
+- マヤ・スターク PW (docs/maya-stark-seed.json): `AWT` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ミーガン・カン  (docs/megan-khang-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 三ヶ島かな  (docs/mikashima-kana-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也  (docs/mikiya-akutsu-seed.json): `Ventus TR Blue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 4W (docs/mikiya-akutsu-seed.json): `Ventus TR Blue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 7W (docs/mikiya-akutsu-seed.json): `Ventus TR Blue` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 5U (docs/mikiya-akutsu-seed.json): `Ventus HB` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 6I (docs/mikiya-akutsu-seed.json): `Dynamic Gold AMT Tour White` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 7I (docs/mikiya-akutsu-seed.json): `Dynamic Gold AMT Tour White` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 8I (docs/mikiya-akutsu-seed.json): `Dynamic Gold AMT Tour White` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 9I (docs/mikiya-akutsu-seed.json): `Dynamic Gold AMT Tour White` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 阿久津 未来也 LW (docs/mikiya-akutsu-seed.json): `Dynamic Gold EX` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 3W (docs/mikumu-horikawa-seed.json): `Tour AD PT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 5W (docs/mikumu-horikawa-seed.json): `Tour AD PT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 7W (docs/mikumu-horikawa-seed.json): `Tour AD PT` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 4UT (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 5I (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 6I (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 7I (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 8I (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 9I (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 PW (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 52° (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 堀川 未来夢 58° (docs/mikumu-horikawa-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー 4I (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー 5I (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー 6I (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー 7I (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー 8I (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー 9I (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー PW (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー AW (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー SW (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ミンウ・リー LW (docs/min-woo-lee-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 5I (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 6I (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 7I (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 8I (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 9I (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 50° (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 54° (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 勝みなみ 58° (docs/minami-katsu-seed.json): `N.S.PRO 950GH neo` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 清本美波 4U (docs/minami-kiyomoto-seed.json): `VENTUS HB-7` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 清本美波 5U (docs/minami-kiyomoto-seed.json): `VENTUS HB-7` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 清本美波 5U (docs/minami-kiyomoto-seed.json): `VENTUS HB-7` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 清本美波 7I〜PW (docs/minami-kiyomoto-seed.json): `MCI-70` flex `R` - weight not filled: model/flex is not enough for a confident value
+- ミンジー・リー 5I (docs/minjee-lee-seed.json): `SteelFiber i80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ミンジー・リー 6I (docs/minjee-lee-seed.json): `SteelFiber i80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ミンジー・リー 7I (docs/minjee-lee-seed.json): `SteelFiber i80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ミンジー・リー 8I (docs/minjee-lee-seed.json): `SteelFiber i80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ミンジー・リー 9I (docs/minjee-lee-seed.json): `SteelFiber i80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ミンジー・リー PW (docs/minjee-lee-seed.json): `SteelFiber i80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 6I (docs/miyuu-abe-seed.json): `SteelFiber i70 cw` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 7I (docs/miyuu-abe-seed.json): `SteelFiber i70 cw` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 8I (docs/miyuu-abe-seed.json): `SteelFiber i70 cw` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 9I (docs/miyuu-abe-seed.json): `SteelFiber i70 cw` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 PW (docs/miyuu-abe-seed.json): `SteelFiber i70 cw` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 AW (docs/miyuu-abe-seed.json): `Dynamic Gold 95` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 SW (docs/miyuu-abe-seed.json): `Dynamic Gold 95` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 阿部未悠 LW (docs/miyuu-abe-seed.json): `Dynamic Gold 95` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 三浦桃香  (docs/momoka-miura-seed.json): `Kuro Kage XD60` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 森田遥  (docs/morita-haruka-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 森田理香子  (docs/morita-rikako-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- モリヤ・ジュタヌガーン  (docs/moriya-jutanugarn-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永井花奈  (docs/nagai-kana-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 4I (docs/nakajima-keita-seed.json): `Modus System3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 5I (docs/nakajima-keita-seed.json): `Modus System3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 6I (docs/nakajima-keita-seed.json): `Modus System3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 7I (docs/nakajima-keita-seed.json): `Modus System3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 8I (docs/nakajima-keita-seed.json): `Modus System3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 9I (docs/nakajima-keita-seed.json): `Modus System3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 PW (docs/nakajima-keita-seed.json): `Dynamic Gold Weight Lock` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 GW (docs/nakajima-keita-seed.json): `Dynamic Gold Weight Lock` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 SW (docs/nakajima-keita-seed.json): `Dynamic Gold Weight Lock` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 中島 啓太 LW (docs/nakajima-keita-seed.json): `Dynamic Gold Weight Lock` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ナナ・コルツ・マドセン  (docs/nanna-koerstz-madsen-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 林菜乃子  (docs/nanoko-hayashi-seed.json): `Speeder 569 Evolution 3` flex `SR` - weight not filled: model/flex is not enough for a confident value
+- 林菜乃子 3W (docs/nanoko-hayashi-seed.json): `Speeder 569 Evolution 4` flex `SR` - weight not filled: model/flex is not enough for a confident value
+- 林菜乃子 5W (docs/nanoko-hayashi-seed.json): `Speeder 569 Evolution 4` flex `SR` - weight not filled: model/flex is not enough for a confident value
+- 林菜乃子 7W (docs/nanoko-hayashi-seed.json): `Speeder 569 Evolution 4` flex `SR` - weight not filled: model/flex is not enough for a confident value
+- 林菜乃子 4UT (docs/nanoko-hayashi-seed.json): `MCF 70` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 林菜乃子 5UT (docs/nanoko-hayashi-seed.json): `MCF 70` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之  (docs/naoyuki-kataoka-seed.json): `Diamana WS` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 3W (docs/naoyuki-kataoka-seed.json): `Diamana GT` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 5W (docs/naoyuki-kataoka-seed.json): `Diamana GT` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 7W (docs/naoyuki-kataoka-seed.json): `Diamana GT` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 4I (docs/naoyuki-kataoka-seed.json): `NS PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 5I (docs/naoyuki-kataoka-seed.json): `NS PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 6I (docs/naoyuki-kataoka-seed.json): `NS PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 7I (docs/naoyuki-kataoka-seed.json): `NS PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 8I (docs/naoyuki-kataoka-seed.json): `NS PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 9I (docs/naoyuki-kataoka-seed.json): `NS PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 PW (docs/naoyuki-kataoka-seed.json): `NS PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 GW (docs/naoyuki-kataoka-seed.json): `Dynamic Gold EX` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 片岡 尚之 SW (docs/naoyuki-kataoka-seed.json): `Dynamic Gold EX` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 宮田成華 54° (docs/narika-miyata-seed.json): `Dynamic Gold` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 宮田成華 58° (docs/narika-miyata-seed.json): `Dynamic Gold` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ 5I (docs/nelly-korda-seed.json): `SteelFiber i80` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ 6I (docs/nelly-korda-seed.json): `SteelFiber i80` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ 7I (docs/nelly-korda-seed.json): `SteelFiber i80` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ 8I (docs/nelly-korda-seed.json): `SteelFiber i80` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ 9I (docs/nelly-korda-seed.json): `SteelFiber i80` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ PW (docs/nelly-korda-seed.json): `SteelFiber i80` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ AW (docs/nelly-korda-seed.json): `SteelFiber i95` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ SW (docs/nelly-korda-seed.json): `SteelFiber i95` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ネリー・コルダ LW (docs/nelly-korda-seed.json): `SteelFiber i95` flex `cw` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー  (docs/nick-taylor-seed.json): `Atmos Blue Tour Spec` flex `6X` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー 3W (docs/nick-taylor-seed.json): `Atmos Blue Tour Spec` flex `6X` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー  (docs/nick-taylor-seed.json): `Tour AD DI-95` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー 4I (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー 5I (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー 6I (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー 7I (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー 8I (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー 9I (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー PW (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー SW (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニック・テイラー LW (docs/nick-taylor-seed.json): `Dynamic Gold` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー  (docs/nicolai-hojgaard-seed.json): `Ventus TR Black` flex `7X` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 3HL (docs/nicolai-hojgaard-seed.json): `TENSEI Pro White 1K` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 7W (docs/nicolai-hojgaard-seed.json): `TENSEI Pro 1K` flex `80TX` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 4I (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 5I (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 6I (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 7I (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 8I (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー 9I (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー PW (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー SW (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ニコライ・ホイゴー LW (docs/nicolai-hojgaard-seed.json): `LZ 6.5` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 植竹希望 6I (docs/nozomi-uetake-seed.json): `C-Taper 95` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 植竹希望 7I (docs/nozomi-uetake-seed.json): `C-Taper 95` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 植竹希望 8I (docs/nozomi-uetake-seed.json): `C-Taper 95` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 植竹希望 9I (docs/nozomi-uetake-seed.json): `C-Taper 95` flex `R` - weight not filled: model/flex is not enough for a confident value
+- 植竹希望 PW (docs/nozomi-uetake-seed.json): `C-Taper 95` flex `R` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー 4I (docs/patrick-cantlay-seed.json): `Dynamic Gold 120` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー 5I (docs/patrick-cantlay-seed.json): `Dynamic Gold 120` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー 6I (docs/patrick-cantlay-seed.json): `Dynamic Gold 120` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー 7I (docs/patrick-cantlay-seed.json): `Dynamic Gold 120` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー 8I (docs/patrick-cantlay-seed.json): `Dynamic Gold 120` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー 9I (docs/patrick-cantlay-seed.json): `Dynamic Gold 120` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー PW (docs/patrick-cantlay-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー AW (docs/patrick-cantlay-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー SW (docs/patrick-cantlay-seed.json): `Dynamic Gold` flex `S300` - weight not filled: model/flex is not enough for a confident value
+- パトリック・キャントレー LW (docs/patrick-cantlay-seed.json): `Dynamic Gold` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード  (docs/patrick-reed-seed.json): `Rogue Silver 125 MSI` flex `70 TX` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 3W (docs/patrick-reed-seed.json): `Rogue Silver 125 MSI` flex `80 TX` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 3H (docs/patrick-reed-seed.json): `Recoil Dart` flex `90 X` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 4I (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 5I (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 6I (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 7I (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 8I (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード 9I (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード PW (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード AW (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード SW (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- パトリック・リード LW (docs/patrick-reed-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- パティ・タバタナキット  (docs/patty-tavatanakit-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ  (docs/peter-malnati-seed.json): `Project X Denali Blue` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ 3W (docs/peter-malnati-seed.json): `Ventus TR Blue` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ  (docs/peter-malnati-seed.json): `Tour AD DI95` flex `X` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ 4I (docs/peter-malnati-seed.json): `AMT Tour White S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ 5I (docs/peter-malnati-seed.json): `AMT Tour White S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ 6I (docs/peter-malnati-seed.json): `AMT Tour White S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ 7I (docs/peter-malnati-seed.json): `AMT Tour White S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ 8I (docs/peter-malnati-seed.json): `AMT Tour White S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ 9I (docs/peter-malnati-seed.json): `AMT Tour White S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ PW (docs/peter-malnati-seed.json): `Dynamic Gold Tour Issue S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ GW (docs/peter-malnati-seed.json): `Dynamic Gold Tour Issue S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ SW (docs/peter-malnati-seed.json): `Dynamic Gold Tour Issue S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ピーター・マルナチ LW (docs/peter-malnati-seed.json): `Dynamic Gold Tour Issue S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 米澤 蓮 46° (docs/ren-yonezawa-seed.json): `トゥルーテンパー ダイナミックゴールドEX(S400)` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 米澤 蓮 52° (docs/ren-yonezawa-seed.json): `トゥルーテンパー ダイナミックゴールドEX(S400)` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 米澤 蓮 58° (docs/ren-yonezawa-seed.json): `トゥルーテンパー ダイナミックゴールドEX(S400)` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 3UT (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(6.5)` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 4I (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 5I (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 6I (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 7I (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 8I (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 9I (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 46° (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 50° (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 55° (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 河本 力 60° (docs/riki-kawamoto-seed.json): `トゥルーテンパー プロジェクトX(7.0)` flex `7.0` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也  (docs/rikuya-hoshino-seed.json): `Diamana Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 3W (docs/rikuya-hoshino-seed.json): `XT` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 5W (docs/rikuya-hoshino-seed.json): `Diamana Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 4I (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 5I (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 6I (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 7I (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 8I (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 9I (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 PW (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 GW (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 SW (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 星野 陸也 LW (docs/rikuya-hoshino-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 吉田鈴 5U (docs/rin-yoshida-seed.json): `DIAMOND SPEEDER` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 吉田鈴 6U (docs/rin-yoshida-seed.json): `DIAMOND SPEEDER` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ローリー・マキロイ LW (docs/rory-mcilroy-seed.json): `Project X Wedge` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 4I (docs/rose-zhang-seed.json): `Tour Hybrid Prototype 65` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 5I (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 6I (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 7I (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 8I (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 9I (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン PW (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 50° (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 54° (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ローズ・チャン 58° (docs/rose-zhang-seed.json): `$ Taper Lite 110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- イン・ルオニン  (docs/ruoning-yin-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ライアン・オトゥール  (docs/ryann-odtoole-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 4I (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 5I (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 6I (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 7I (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 8I (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 9I (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 PW (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 GW (docs/ryo-hisatsune-seed.json): `Project X 6.5` flex `6.5` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 SW (docs/ryo-hisatsune-seed.json): `Dynamic Gold` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 久常 涼 LW (docs/ryo-hisatsune-seed.json): `Dynamic Gold` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 木下 稜介  (docs/ryosuke-kinoshita-seed.json): `Speeder Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 木下 稜介 3W (docs/ryosuke-kinoshita-seed.json): `Speeder Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 木下 稜介 5W (docs/ryosuke-kinoshita-seed.json): `VENTUS BLACK` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 永野 竜太郎  (docs/ryutaro-nagano-seed.json): `Tour AD Quattro Tech MD-8` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき 1W (docs/saiki-fujita-seed.json): `N.S.PRO Regio Formula MB+` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき 3W (docs/saiki-fujita-seed.json): `N.S.PRO Regio Formula MB+` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき 5W (docs/saiki-fujita-seed.json): `N.S.PRO Regio Formula MB+` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき 4U (docs/saiki-fujita-seed.json): `N.S.PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき 5U (docs/saiki-fujita-seed.json): `N.S.PRO G.O.S.T HL` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき 6I (docs/saiki-fujita-seed.json): `N.S.PRO G.O.S.T HL` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき A (docs/saiki-fujita-seed.json): `N.S.PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき S (docs/saiki-fujita-seed.json): `N.S.PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤田さいき LW (docs/saiki-fujita-seed.json): `N.S.PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 6I (docs/saki-nagamine-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 7I (docs/saki-nagamine-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 8I (docs/saki-nagamine-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 9I (docs/saki-nagamine-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 PW (docs/saki-nagamine-seed.json): `N.S.PRO MODUS3 Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 48° (docs/saki-nagamine-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 54° (docs/saki-nagamine-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 永峰咲希 58° (docs/saki-nagamine-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 佐久間朱莉 5H (docs/sakuma-akari-seed.json): `N.S.PRO Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 佐久間朱莉 5I (docs/sakuma-akari-seed.json): `N.S.PRO MODUS3 HYBRID Graphite On Steel Technology` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 佐久間朱莉 GW (docs/sakuma-akari-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 佐久間朱莉 SW (docs/sakuma-akari-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 佐久間朱莉 LW (docs/sakuma-akari-seed.json): `N.S.PRO Prototype` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 5I (docs/sakura-koiwai-seed.json): `日本シャフト NSプロ プロトタイプ` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 6I (docs/sakura-koiwai-seed.json): `日本シャフト NSプロ プロトタイプ` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 7I (docs/sakura-koiwai-seed.json): `日本シャフト NSプロ プロトタイプ` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 8I (docs/sakura-koiwai-seed.json): `日本シャフト NSプロ プロトタイプ` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 9I (docs/sakura-koiwai-seed.json): `日本シャフト NSプロ プロトタイプ` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら PW (docs/sakura-koiwai-seed.json): `日本シャフト NSプロ プロトタイプ` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 48° (docs/sakura-koiwai-seed.json): `NSプロ モーダス3 ツアー105` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 50° (docs/sakura-koiwai-seed.json): `NSプロ モーダス3 ツアー105` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小祝さくら 58° (docs/sakura-koiwai-seed.json): `NSプロ モーダス3 ツアー105` flex `S` - weight not filled: model/flex is not enough for a confident value
+- サム・バーンズ AW (docs/sam-burns-seed.json): `Dynamic Gold S400 Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- サム・バーンズ SW (docs/sam-burns-seed.json): `Dynamic Gold S400 Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- サム・バーンズ LW (docs/sam-burns-seed.json): `Dynamic Gold S400 Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ 4I (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ 5I (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ 6I (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ 7I (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ 8I (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ 9I (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ PW (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ GW (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ SW (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- サミ・バリマキ LW (docs/sami-valimaki-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 佐藤心結  (docs/sato-miyu-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 小平 智 5W (docs/satoshi-kodaira-seed.json): `Tour AD Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小平 智 5I (docs/satoshi-kodaira-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小平 智 6I (docs/satoshi-kodaira-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小平 智 7I (docs/satoshi-kodaira-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小平 智 8I (docs/satoshi-kodaira-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小平 智 9I (docs/satoshi-kodaira-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小平 智 PW (docs/satoshi-kodaira-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー 4I (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー 5I (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー 6I (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー 7I (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー 8I (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー 9I (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー PW (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー AW (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー SW (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- スコッティ・シェフラー LW (docs/scottie-scheffler-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 沖せいら  (docs/seira-oki-seed.json): `TENSEI TM70` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ  (docs/sepp-straka-seed.json): `VENTUS BLUE` flex `6X` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 3W (docs/sepp-straka-seed.json): `VENTUS BLUE` flex `7X` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 5W (docs/sepp-straka-seed.json): `VENTUS BLUE` flex `8X` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 3U (docs/sepp-straka-seed.json): `Recoil Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 4I (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 5I (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 6I (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 7I (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 8I (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ 9I (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ PW (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ GW (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- セップ・ストラカ SW (docs/sepp-straka-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー 4I (docs/shane-lowry-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー 5I (docs/shane-lowry-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー 6I (docs/shane-lowry-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー 7I (docs/shane-lowry-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー 8I (docs/shane-lowry-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー 9I (docs/shane-lowry-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー PW (docs/shane-lowry-seed.json): `Tour` flex `130 X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー AW (docs/shane-lowry-seed.json): `Tour Wedge` flex `X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー SW (docs/shane-lowry-seed.json): `Tour Wedge` flex `X` - weight not filled: model/flex is not enough for a confident value
+- シェーン・ローリー LW (docs/shane-lowry-seed.json): `Tour Wedge` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 桑木志帆 3UT (docs/shiho-kuwaki-seed.json): `三菱ケミカル TENSEI 1K ハイブリッド 70HY` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 桑木志帆 4UT (docs/shiho-kuwaki-seed.json): `三菱ケミカル TENSEI 1K ハイブリッド 70HY` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 片山 晋呉  (docs/shingo-katayama-seed.json): `Labospec 358` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 秋吉 翔太  (docs/shota-akiyoshi-seed.json): `Speeder Evolution 2 757` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 4I (docs/shugo-imahira-seed.json): `NSプロモーダス3 プロトタイプ フレックスS` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 5I (docs/shugo-imahira-seed.json): `NSプロモーダス3 プロトタイプ フレックスS` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 6I (docs/shugo-imahira-seed.json): `NSプロモーダス3 プロトタイプ フレックスS` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 7I (docs/shugo-imahira-seed.json): `NSプロモーダス3 プロトタイプ フレックスS` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 8I (docs/shugo-imahira-seed.json): `NSプロモーダス3 プロトタイプ フレックスS` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 9I (docs/shugo-imahira-seed.json): `NSプロモーダス3 プロトタイプ フレックスS` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 PW (docs/shugo-imahira-seed.json): `NSプロモーダス3 プロトタイプ フレックスS` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 52° (docs/shugo-imahira-seed.json): `ダイナミックゴールド ツアーイシューS200` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 今平 周吾 60° (docs/shugo-imahira-seed.json): `ダイナミックゴールド ツアーイシューS200` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 竹安 俊也  (docs/shunya-takeyasu-seed.json): `Tour AD MJ-7` flex `X` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ 4I (docs/sungjae-im-seed.json): `AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ 5I (docs/sungjae-im-seed.json): `AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ 6I (docs/sungjae-im-seed.json): `AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ 7I (docs/sungjae-im-seed.json): `AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ 8I (docs/sungjae-im-seed.json): `AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ 9I (docs/sungjae-im-seed.json): `AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ PW (docs/sungjae-im-seed.json): `AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ AW (docs/sungjae-im-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ SW (docs/sungjae-im-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- イム・ソンジェ LW (docs/sungjae-im-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一  (docs/taichi-nabetani-seed.json): `Ventus Black` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 3W (docs/taichi-nabetani-seed.json): `Ventus Black` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 5W (docs/taichi-nabetani-seed.json): `Ventus Black` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 4I (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 5I (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 6I (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 7I (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 8I (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 9I (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 PW (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 GW (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 鍋谷 太一 SW (docs/taichi-nabetani-seed.json): `Dynamic Gold EX Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 3W (docs/taiga-semikawa-seed.json): `Tour AD Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 4I (docs/taiga-semikawa-seed.json): `Tour V 120` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 5I (docs/taiga-semikawa-seed.json): `Tour V 120` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 6I (docs/taiga-semikawa-seed.json): `Tour V 120` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 7I (docs/taiga-semikawa-seed.json): `Tour V 120` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 8I (docs/taiga-semikawa-seed.json): `Tour V 120` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 9I (docs/taiga-semikawa-seed.json): `Tour V 120` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 PW (docs/taiga-semikawa-seed.json): `Tour V 120` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 50° (docs/taiga-semikawa-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 56° (docs/taiga-semikawa-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 蝉川 泰果 60° (docs/taiga-semikawa-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 4I (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 5I (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 6I (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 7I (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 8I (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 9I (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 47° (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 52° (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 55° (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 清水 大成 60° (docs/taisei-shimizu-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 4I (docs/takahiro-hataji-seed.json): `KBSプロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 5I (docs/takahiro-hataji-seed.json): `KBSプロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 6I (docs/takahiro-hataji-seed.json): `KBSプロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 7I (docs/takahiro-hataji-seed.json): `KBSプロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 8I (docs/takahiro-hataji-seed.json): `KBSプロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 9I (docs/takahiro-hataji-seed.json): `KBSプロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 46° (docs/takahiro-hataji-seed.json): `KBS V TEN 130 S` flex `130` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 52° (docs/takahiro-hataji-seed.json): `KBS V TEN 130 S` flex `130` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 57° (docs/takahiro-hataji-seed.json): `KBS V TEN 130 S` flex `130` - weight not filled: model/flex is not enough for a confident value
+- 幡地 隆寛 62° (docs/takahiro-hataji-seed.json): `KBS V TEN 130 S` flex `130` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵  (docs/takamitsu-tokimatsu-seed.json): `VENTUS BLACK` flex `6X` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 3W (docs/takamitsu-tokimatsu-seed.json): `VENTUS BLACK` flex `7X` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 5W (docs/takamitsu-tokimatsu-seed.json): `VENTUS BLACK` flex `8X` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 4I (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 5I (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 6I (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 7I (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 8I (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 9I (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 PW (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 GW (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 SW (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 時松 源蔵 LW (docs/takamitsu-tokimatsu-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬  (docs/takashi-ogiso-seed.json): `Tour AD PT` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 3W (docs/takashi-ogiso-seed.json): `Tour AD PT` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 5W (docs/takashi-ogiso-seed.json): `Tour AD PT` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 4U (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 5I (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 6I (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 7I (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 8I (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 9I (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 PW (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 GW (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 SW (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小木曽 喬 LW (docs/takashi-ogiso-seed.json): `NS PRO MODUS3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実  (docs/takumi-kanaya-seed.json): `The ATTAS` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 3W (docs/takumi-kanaya-seed.json): `The ATTAS` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 3H (docs/takumi-kanaya-seed.json): `ATTAS Hybrid` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 5I (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 6I (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 7I (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 8I (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 9I (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 PW (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 GW (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 SW (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 金谷 拓実 LW (docs/takumi-kanaya-seed.json): `Dynamic Gold AMT Tour White` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 4UT (docs/tatsunori-shogenji-seed.json): `NSプロ モーダス3 ハイブリッド グラファイト オン スチール テクノロジー` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 5I (docs/tatsunori-shogenji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 6I (docs/tatsunori-shogenji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 7I (docs/tatsunori-shogenji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 8I (docs/tatsunori-shogenji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 9I (docs/tatsunori-shogenji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 PW (docs/tatsunori-shogenji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 50° (docs/tatsunori-shogenji-seed.json): `日本シャフト NSプロモーダス3 WEDGE` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 54° (docs/tatsunori-shogenji-seed.json): `日本シャフト NSプロモーダス3 WEDGE` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 生源寺 龍憲 58° (docs/tatsunori-shogenji-seed.json): `日本シャフト NSプロモーダス3 WEDGE` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- トーマス・デトリー  (docs/thomas-detry-seed.json): `TENSEI CK Pro Blue` flex `70 TX` - weight not filled: model/flex is not enough for a confident value
+- トーマス・デトリー 3W (docs/thomas-detry-seed.json): `TENSEI 1K Blue` flex `85 TX` - weight not filled: model/flex is not enough for a confident value
+- トーマス・デトリー  (docs/thomas-detry-seed.json): `TENSEI CK Pro White Hybrid` flex `100TX` - weight not filled: model/flex is not enough for a confident value
+- トーマス・デトリー GW (docs/thomas-detry-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- トーマス・デトリー SW (docs/thomas-detry-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- トーマス・デトリー LW (docs/thomas-detry-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- トム・キム 3I (docs/tom-kim-seed.json): `MODUS3 Hybrid HL` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- トム・キム PW (docs/tom-kim-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トム・キム GW (docs/tom-kim-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トム・キム LW (docs/tom-kim-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トミー・フリートウッド GW (docs/tommy-fleetwood-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- トミー・フリートウッド SW (docs/tommy-fleetwood-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- トミー・フリートウッド LW (docs/tommy-fleetwood-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 UT (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー AMTツアーホワイト` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 4I (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 5I (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 6I (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 7I (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 8I (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 9I (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 46° (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 50° (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 54° (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 大槻 智春 60° (docs/tomoharu-otsuki-seed.json): `トゥルーテンパー ダイナミックゴールド EX ツアーイシュー` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 石坂 友宏  (docs/tomohiro-ishizaka-seed.json): `Ventus TR Blue` flex `6X` - weight not filled: model/flex is not enough for a confident value
+- 石坂 友宏 3W (docs/tomohiro-ishizaka-seed.json): `Ventus TR Blue` flex `7X` - weight not filled: model/flex is not enough for a confident value
+- 石坂 友宏 19° (docs/tomohiro-ishizaka-seed.json): `Ventus TR Blue` flex `8X` - weight not filled: model/flex is not enough for a confident value
+- 石坂 友宏 SW (docs/tomohiro-ishizaka-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 石坂 友宏 LW (docs/tomohiro-ishizaka-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世  (docs/tomoyo-ikemura-seed.json): `Diamana Black Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世  (docs/tomoyo-ikemura-seed.json): `Diamana WB` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 7W (docs/tomoyo-ikemura-seed.json): `NS PRO Prototype` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 9W (docs/tomoyo-ikemura-seed.json): `NS PRO Prototype` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 6I (docs/tomoyo-ikemura-seed.json): `OT Tour i110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 7I (docs/tomoyo-ikemura-seed.json): `OT Tour i110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 8I (docs/tomoyo-ikemura-seed.json): `OT Tour i110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 9I (docs/tomoyo-ikemura-seed.json): `OT Tour i110` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 PW (docs/tomoyo-ikemura-seed.json): `Dynamic Gold` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 GW (docs/tomoyo-ikemura-seed.json): `Dynamic Gold` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 SW (docs/tomoyo-ikemura-seed.json): `Dynamic Gold` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 LW (docs/tomoyo-ikemura-seed.json): `Dynamic Gold` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 池村 寛世 LW2 (docs/tomoyo-ikemura-seed.json): `Dynamic Gold` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ  (docs/tony-finau-seed.json): `VENTUS BLACK` flex `6X` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 3W (docs/tony-finau-seed.json): `VENTUS BLACK` flex `7X` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 5W (docs/tony-finau-seed.json): `VENTUS BLACK` flex `8X` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 4U (docs/tony-finau-seed.json): `Tour AD DI Hybrid` flex `X` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 5I (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 6I (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 7I (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 8I (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ 9I (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ PW (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ GW (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ SW (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- トニー・フィナウ LW (docs/tony-finau-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹  (docs/toru-taniguchi-seed.json): `Tour AD PT` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 4W (docs/toru-taniguchi-seed.json): `Tour AD DI` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 7W (docs/toru-taniguchi-seed.json): `Tour AD DI` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 4U (docs/toru-taniguchi-seed.json): `Tour AD DI Hybrid` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 5U (docs/toru-taniguchi-seed.json): `Tour AD DI Hybrid` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 5I (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 6I (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 7I (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 8I (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 9I (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 PW (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 GW (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 谷口 徹 SW (docs/toru-taniguchi-seed.json): `Dynamic Gold Tour Issue` flex `S200` - weight not filled: model/flex is not enough for a confident value
+- 鶴岡果恋  (docs/tsuruoka-karen-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 上田桃子  (docs/ueda-momoko-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 臼井麗香  (docs/usui-reika-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ビクトル・ホブラン GW (docs/viktor-hovland-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ビクトル・ホブラン SW (docs/viktor-hovland-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- ビクトル・ホブラン LW (docs/viktor-hovland-seed.json): `Dynamic Gold Tour Issue` flex `S400` - weight not filled: model/flex is not enough for a confident value
+- 神谷和奏  (docs/wakana-kamiya-seed.json): `SYUHARI` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 脇元華  (docs/wakimoto-hana-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク  (docs/wyndham-clark-seed.json): `HZRDUS Smoke Green` flex `6.5TX` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク 3W (docs/wyndham-clark-seed.json): `HZRDUS Smoke Black RDX` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク 4I (docs/wyndham-clark-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク 5I (docs/wyndham-clark-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク 6I (docs/wyndham-clark-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク 7I (docs/wyndham-clark-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク 8I (docs/wyndham-clark-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク 9I (docs/wyndham-clark-seed.json): `Dynamic Gold X7` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク PW (docs/wyndham-clark-seed.json): `Dynamic Gold S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク GW (docs/wyndham-clark-seed.json): `Dynamic Gold S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク SW (docs/wyndham-clark-seed.json): `Dynamic Gold S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ウィンダム・クラーク LW (docs/wyndham-clark-seed.json): `Dynamic Gold S400` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 4I (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 5I (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 6I (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 7I (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 8I (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 9I (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ PW (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 52° (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 57° (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ 61° (docs/xander-schauffele-seed.json): `ダイナミックゴールド ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- ザンダー・シャウフェレ  (docs/xander-schauffele-seed.json): `プロトタイプ 7CH` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 横峯さくら  (docs/yokomine-sakura-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉本ひかる  (docs/yoshimoto-hikaru-seed.json): `VENTUS BLUE` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 3U (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 4I (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 5I (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 6I (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 7I (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 8I (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 9I (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則 PW (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則  (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 藤本 佳則  (docs/yoshinori-fujimoto-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 4UT (docs/yosuke-asaji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 5I (docs/yosuke-asaji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 6I (docs/yosuke-asaji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 7I (docs/yosuke-asaji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 8I (docs/yosuke-asaji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 9I (docs/yosuke-asaji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 PW (docs/yosuke-asaji-seed.json): `NSプロ モーダス3 システム3 ツアー125` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 50° (docs/yosuke-asaji-seed.json): `トゥルーテンパー ダイナミックゴールドEX ウェイトロック ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 54° (docs/yosuke-asaji-seed.json): `トゥルーテンパー ダイナミックゴールドEX ウェイトロック ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 58° (docs/yosuke-asaji-seed.json): `トゥルーテンパー ダイナミックゴールドEX ウェイトロック ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 浅地 洋佑 60° (docs/yosuke-asaji-seed.json): `トゥルーテンパー ダイナミックゴールドEX ウェイトロック ツアーイシュー` flex `X100` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 3W (docs/yosuke-tsukada-seed.json): `Speeder EVOLUTION757` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 3I (docs/yosuke-tsukada-seed.json): `Modus3 Hybrid Graphite On Steel Technology` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 4I (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 5I (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 6I (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 7I (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 8I (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 9I (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 PW (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 GW (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 SW (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 塚田陽亮 LW (docs/yosuke-tsukada-seed.json): `NSPRO Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 河本 結 58° (docs/yui-kawamoto-seed.json): `NSプロ モーダスプロトタイプ` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 1W (docs/yuka-saso-seed.json): `IMIDE AND SUNS(イミドアンドサンズ)プロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 4I (docs/yuka-saso-seed.json): `日本シャフト NSプロ プロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 5I (docs/yuka-saso-seed.json): `日本シャフト NSプロ プロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 6I (docs/yuka-saso-seed.json): `日本シャフト NSプロ プロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 7I (docs/yuka-saso-seed.json): `日本シャフト NSプロ プロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 8I (docs/yuka-saso-seed.json): `日本シャフト NSプロ プロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 9I (docs/yuka-saso-seed.json): `日本シャフト NSプロ プロトタイプ` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 46° (docs/yuka-saso-seed.json): `NSプロ モーダス3 ツアー105` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 50° (docs/yuka-saso-seed.json): `NSプロ モーダス3 ツアー105` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 56° (docs/yuka-saso-seed.json): `NSプロ モーダス3 ツアー105` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 笹生優花 60° (docs/yuka-saso-seed.json): `NSプロ モーダス3 ツアー105` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 3U (docs/yuki-inamori-seed.json): `TENSEI Pro 1K Hybrid` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 4U (docs/yuki-inamori-seed.json): `i95` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 5I (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 6I (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 7I (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 8I (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 9I (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 PW (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 GW (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 稲森 佑貴 LW (docs/yuki-inamori-seed.json): `Modus3 Prototype` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 4U (docs/yuna-araki-seed.json): `TENSEI PRO 1K HY80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 5U (docs/yuna-araki-seed.json): `TENSEI PRO 1K HY80` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 5I (docs/yuna-araki-seed.json): `REXIS KAIZA-i HP 9` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 6I (docs/yuna-araki-seed.json): `REXIS KAIZA-i HP 9` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 7I (docs/yuna-araki-seed.json): `REXIS KAIZA-i HP 9` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 8I (docs/yuna-araki-seed.json): `REXIS KAIZA-i HP 9` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 9I (docs/yuna-araki-seed.json): `REXIS KAIZA-i HP 9` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 PW (docs/yuna-araki-seed.json): `REXIS KAIZA-i HP 9` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 AW (docs/yuna-araki-seed.json): `N.S.PRO 1150GH TOUR` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 荒木優奈 LW (docs/yuna-araki-seed.json): `N.S.PRO 1150GH TOUR` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 4UT (docs/yuri-yoshida-seed.json): `The ATTAS` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 5UT (docs/yuri-yoshida-seed.json): `The ATTAS` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 6I (docs/yuri-yoshida-seed.json): `KBS ツアー` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 7I (docs/yuri-yoshida-seed.json): `KBS ツアー` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 8I (docs/yuri-yoshida-seed.json): `KBS ツアー` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 9I (docs/yuri-yoshida-seed.json): `KBS ツアー` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 PW (docs/yuri-yoshida-seed.json): `KBS ツアー` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 48° (docs/yuri-yoshida-seed.json): `KBS ツアー 90` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 52° (docs/yuri-yoshida-seed.json): `KBS ツアー 90` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 吉田優利 58° (docs/yuri-yoshida-seed.json): `KBS ツアー 90` flex `S` - weight not filled: model/flex is not enough for a confident value
+- 宮里 優作  (docs/yusaku-miyazato-seed.json): `Tour AD MJ-7` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 5W (docs/yuta-ikeda-seed.json): `NSプロ モーダス3 プロトタイプ` flex `TX` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 4W (docs/yuta-ikeda-seed.json): `NSプロ モーダス3 ツアー130` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 5I (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 6I (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 7I (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 8I (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 9I (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 PW (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 GW (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 50° (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 池田 勇太 58° (docs/yuta-ikeda-seed.json): `日本シャフト NSプロ モーダス3 プロトタイプ システム5` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太  (docs/yuta-sugiura-seed.json): `Speeder Evolution 7` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 3W (docs/yuta-sugiura-seed.json): `Speeder Evolution` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 3U (docs/yuta-sugiura-seed.json): `Speeder TR Hybrid` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 3U (docs/yuta-sugiura-seed.json): `Speeder TR Hybrid` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 4I (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 5I (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 6I (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 7I (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 8I (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 9I (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 PW (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 GW (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 杉浦 悠太 SW (docs/yuta-sugiura-seed.json): `Dynamic Gold EX Tour Issue` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 4I (docs/yuto-katsuragawa-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 5I (docs/yuto-katsuragawa-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 6I (docs/yuto-katsuragawa-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 7I (docs/yuto-katsuragawa-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 8I (docs/yuto-katsuragawa-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 9I (docs/yuto-katsuragawa-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 PW (docs/yuto-katsuragawa-seed.json): `Dynamic Gold 120` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 桂川 有人 LW (docs/yuto-katsuragawa-seed.json): `Dynamic Gold Tour Issue Weight Lock` flex `blank` - weight not filled: model/flex is not enough for a confident value
+- 小斉平 優和 4I (docs/yuwa-kosaihira-seed.json): `Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小斉平 優和 5I (docs/yuwa-kosaihira-seed.json): `Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小斉平 優和 6I (docs/yuwa-kosaihira-seed.json): `Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小斉平 優和 7I (docs/yuwa-kosaihira-seed.json): `Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小斉平 優和 8I (docs/yuwa-kosaihira-seed.json): `Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小斉平 優和 9I (docs/yuwa-kosaihira-seed.json): `Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value
+- 小斉平 優和 PW (docs/yuwa-kosaihira-seed.json): `Prototype` flex `X` - weight not filled: model/flex is not enough for a confident value

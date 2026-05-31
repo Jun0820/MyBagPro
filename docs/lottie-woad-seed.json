@@ -28,10 +28,11 @@
       "model_name": "TSR3 Driver",
       "loft_label": "9°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus TR Red 6",
+      "shaft_model": "Ventus TR Red",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Lottie Woad WITBで確認。Titleist契約後も成功実績のあるTSR3を継続使用と記載。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "60g台"
     },
     {
       "category": "Fairway Wood",
@@ -41,10 +42,11 @@
       "spec_label": "3W",
       "loft_label": "15°",
       "shaft_brand": "Mitsubishi",
-      "shaft_model": "Diamana BB 63",
+      "shaft_model": "Diamana BB",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Lottie Woad WITBで確認。Titleist公式でもGT2 Fairwayを掲載。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "63g"
     },
     {
       "category": "Hybrid",
@@ -154,7 +156,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Lottie Woad WITBで確認。50°・54°・58°の3本構成。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -166,7 +169,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Lottie Woad WITBで確認。50°・54°・58°の3本構成。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -178,7 +182,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Lottie Woad WITBで確認。50°・54°・58°の3本構成。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Putter",

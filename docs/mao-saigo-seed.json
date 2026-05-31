@@ -9,7 +9,7 @@
     "profile_type": "tour_pro",
     "segment": "verified_batch",
     "season_year": 2026,
-    "head_speed_mps": 43.0,
+    "head_speed_mps": 43,
     "ball_name": "Titleist Pro V1x",
     "feature_1": "2026シーズン基準",
     "feature_2": "2025シェブロン選手権優勝",
@@ -146,7 +146,8 @@
       "shaft_model": "MODUS3 TOUR105",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2026 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "106.5g"
     },
     {
       "category": "Wedge",
@@ -159,7 +160,8 @@
       "shaft_model": "MODUS3 TOUR105",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2026 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "106.5g"
     },
     {
       "category": "Wedge",
@@ -172,7 +174,8 @@
       "shaft_model": "MODUS3 TOUR105",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2026 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "106.5g"
     },
     {
       "category": "Wedge",
@@ -185,7 +188,8 @@
       "shaft_model": "MODUS3 TOUR105",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2026 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "106.5g"
     },
     {
       "category": "Putter",

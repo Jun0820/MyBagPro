@@ -185,7 +185,8 @@
       "shaft_model": "N.S.PRO MODUS3 TOUR 105 WEDGE",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "106.5g"
     },
     {
       "category": "Putter",

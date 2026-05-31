@@ -22,25 +22,199 @@
     "verified_at": "2026-04-10T00:00:00.000Z"
   },
   "bagItems": [
-    { "category": "Driver", "slot_order": 1, "brand": "Cobra", "model_name": "DS-Adapt LS Driver", "loft_label": "9°", "shaft_brand": "Mitsubishi", "shaft_model": "Diamana D+ Limited 70", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": true },
-    { "category": "Fairway Wood", "slot_order": 2, "brand": "TaylorMade", "model_name": "Qi35 Tour Fairway Wood", "spec_label": "3W", "loft_label": "15°", "shaft_brand": "Mitsubishi", "shaft_model": "Tensei 1K Black 75", "shaft_flex": "TX", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Utility", "slot_order": 3, "brand": "TaylorMade", "model_name": "P-UDI", "spec_label": "2I", "shaft_brand": "Mitsubishi", "shaft_model": "MMT Utility", "shaft_flex": "105 TX", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 4, "brand": "Honma", "model_name": "Rose Proto Iron", "spec_label": "4I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 5, "brand": "Honma", "model_name": "Rose Proto Iron", "spec_label": "5I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 6, "brand": "Honma", "model_name": "Rose Proto Iron", "spec_label": "6I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 7, "brand": "Honma", "model_name": "Rose Proto Iron", "spec_label": "7I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 8, "brand": "Honma", "model_name": "Rose Proto Iron", "spec_label": "8I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Iron", "slot_order": 9, "brand": "Honma", "model_name": "Rose Proto Iron", "spec_label": "9I", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 10, "brand": "Honma", "model_name": "Rose Proto Iron", "spec_label": "PW", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "X100", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 11, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "AW", "loft_label": "52°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 12, "brand": "Titleist", "model_name": "Vokey Design SM10", "spec_label": "SW", "loft_label": "56°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Wedge", "slot_order": 13, "brand": "Titleist", "model_name": "Vokey Design WedgeWorks", "spec_label": "LW", "loft_label": "60°", "shaft_brand": "True Temper", "shaft_model": "Dynamic Gold Tour Issue", "shaft_flex": "S400", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": false },
-    { "category": "Putter", "slot_order": 14, "brand": "L.A.B. Golf", "model_name": "DF3", "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).", "is_featured_item": true }
+    {
+      "category": "Driver",
+      "slot_order": 1,
+      "brand": "Cobra",
+      "model_name": "DS-Adapt LS Driver",
+      "loft_label": "9°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Diamana D+ Limited",
+      "shaft_flex": "TX",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": true,
+      "shaft_weight": "70g台"
+    },
+    {
+      "category": "Fairway Wood",
+      "slot_order": 2,
+      "brand": "TaylorMade",
+      "model_name": "Qi35 Tour Fairway Wood",
+      "spec_label": "3W",
+      "loft_label": "15°",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "Tensei 1K Black",
+      "shaft_flex": "TX",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false,
+      "shaft_weight": "75g"
+    },
+    {
+      "category": "Utility",
+      "slot_order": 3,
+      "brand": "TaylorMade",
+      "model_name": "P-UDI",
+      "spec_label": "2I",
+      "shaft_brand": "Mitsubishi",
+      "shaft_model": "MMT Utility",
+      "shaft_flex": "105 TX",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 4,
+      "brand": "Honma",
+      "model_name": "Rose Proto Iron",
+      "spec_label": "4I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 5,
+      "brand": "Honma",
+      "model_name": "Rose Proto Iron",
+      "spec_label": "5I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 6,
+      "brand": "Honma",
+      "model_name": "Rose Proto Iron",
+      "spec_label": "6I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 7,
+      "brand": "Honma",
+      "model_name": "Rose Proto Iron",
+      "spec_label": "7I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 8,
+      "brand": "Honma",
+      "model_name": "Rose Proto Iron",
+      "spec_label": "8I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Iron",
+      "slot_order": 9,
+      "brand": "Honma",
+      "model_name": "Rose Proto Iron",
+      "spec_label": "9I",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 10,
+      "brand": "Honma",
+      "model_name": "Rose Proto Iron",
+      "spec_label": "PW",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "X100",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 11,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM10",
+      "spec_label": "AW",
+      "loft_label": "52°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 12,
+      "brand": "Titleist",
+      "model_name": "Vokey Design SM10",
+      "spec_label": "SW",
+      "loft_label": "56°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 13,
+      "brand": "Titleist",
+      "model_name": "Vokey Design WedgeWorks",
+      "spec_label": "LW",
+      "loft_label": "60°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_flex": "S400",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": false
+    },
+    {
+      "category": "Putter",
+      "slot_order": 14,
+      "brand": "L.A.B. Golf",
+      "model_name": "DF3",
+      "source_note": "Confirmed from GolfWRX Justin Rose WITB 2026 (March).",
+      "is_featured_item": true
+    }
   ],
   "sources": [
-    { "source_type": "official", "source_url": "https://www.pgatour.com/player/22405/justin-rose/stats", "source_title": "Justin Rose PGA TOUR Stats", "checked_at": "2026-04-20T00:00:00.000Z", "notes": "PGA TOUR公式statsでClub Head Speed 117.27 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。" },
-    { "source_type": "article", "source_url": "https://www.golfwrx.com/775349/justin-rose-witb-2026-march/", "source_title": "Justin Rose WITB 2026 (March) - GolfWRX", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Used for latest detailed bag breakdown." },
-    { "source_type": "article", "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-justin-roses-bag", "source_title": "What’s in Justin Rose’s bag? - Golf Monthly", "checked_at": "2026-04-10T00:00:00.000Z", "notes": "Supporting source for current mixed setup." }
+    {
+      "source_type": "official",
+      "source_url": "https://www.pgatour.com/player/22405/justin-rose/stats",
+      "source_title": "Justin Rose PGA TOUR Stats",
+      "checked_at": "2026-04-20T00:00:00.000Z",
+      "notes": "PGA TOUR公式statsでClub Head Speed 117.27 mphを確認。公開TrackMan/GCQuadではなくツアー公式スタッツ。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfwrx.com/775349/justin-rose-witb-2026-march/",
+      "source_title": "Justin Rose WITB 2026 (March) - GolfWRX",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Used for latest detailed bag breakdown."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/gear/gear-news/whats-in-justin-roses-bag",
+      "source_title": "What’s in Justin Rose’s bag? - Golf Monthly",
+      "checked_at": "2026-04-10T00:00:00.000Z",
+      "notes": "Supporting source for current mixed setup."
+    }
   ],
   "article": {
     "slug": "justin-rose-2026-setting-update",

@@ -28,10 +28,11 @@
       "model_name": "G430 LST Driver",
       "loft_label": "9°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Speeder NX 50",
+      "shaft_model": "Speeder NX",
       "shaft_flex": "R",
       "source_note": "Confirmed from publicly available 2026 club-setting roundup source.",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Fairway Wood",

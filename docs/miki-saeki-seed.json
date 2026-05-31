@@ -30,10 +30,11 @@
       "model_name": "ELYTE Triple Diamond Driver",
       "spec_label": "1W",
       "loft_label": "9°",
-      "shaft_model": "Diamana Prototype 50",
+      "shaft_model": "Diamana Prototype",
       "shaft_flex": "SR",
       "source_note": "クラブセッティング動画をもとに手動確認。ELYTE ◆◆◆ 9°、Diamana Prototype 50 SR。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Fairway Wood",
@@ -42,10 +43,11 @@
       "model_name": "ELYTE Fairway Wood",
       "spec_label": "3W",
       "loft_label": "15°",
-      "shaft_model": "Diamana WB 53",
+      "shaft_model": "Diamana WB",
       "shaft_flex": "SR",
       "source_note": "クラブセッティング動画をもとに手動確認。ELYTE 3W 15°、Diamana WB 53 SR。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "53g"
     },
     {
       "category": "Fairway Wood",
@@ -54,10 +56,11 @@
       "model_name": "ELYTE Fairway Wood",
       "spec_label": "5W",
       "loft_label": "18°",
-      "shaft_model": "Diamana WB 53",
+      "shaft_model": "Diamana WB",
       "shaft_flex": "SR",
       "source_note": "クラブセッティング動画をもとに手動確認。ELYTE 5W 18°、Diamana WB 53 SR。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "53g"
     },
     {
       "category": "Utility",
@@ -66,10 +69,11 @@
       "model_name": "APEX UW 2023",
       "spec_label": "UW",
       "loft_label": "21°",
-      "shaft_model": "Diamana Prototype 50",
+      "shaft_model": "Diamana Prototype",
       "shaft_flex": "SR",
       "source_note": "クラブセッティング動画をもとに手動確認。APEX UW 2023 21°、Diamana Prototype 50 SR。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Utility",
@@ -78,10 +82,11 @@
       "model_name": "APEX UW 2023",
       "spec_label": "UW",
       "loft_label": "23°",
-      "shaft_model": "Diamana Prototype 50",
+      "shaft_model": "Diamana Prototype",
       "shaft_flex": "SR",
       "source_note": "クラブセッティング動画をもとに手動確認。APEX UW 2023 23°、Diamana Prototype 50 SR。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Iron",
@@ -92,7 +97,8 @@
       "shaft_model": "N.S.PRO 750GH neo",
       "shaft_flex": "R",
       "source_note": "クラブセッティング動画をもとに手動確認。Callaway X FORGED Prototype 6I〜PW、N.S.PRO 750GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "74.5g"
     },
     {
       "category": "Wedge",
@@ -104,7 +110,8 @@
       "shaft_model": "N.S.PRO 750GH neo",
       "shaft_flex": "R",
       "source_note": "クラブセッティング動画をもとに手動確認。Callaway OPUS 48°、N.S.PRO 750GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "74.5g"
     },
     {
       "category": "Wedge",
@@ -116,7 +123,8 @@
       "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "R",
       "source_note": "クラブセッティング動画をもとに手動確認。Callaway OPUS 52°、N.S.PRO MODUS3 TOUR 105 R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "103g"
     },
     {
       "category": "Wedge",
@@ -128,7 +136,8 @@
       "shaft_model": "N.S.PRO MODUS3 TOUR 105",
       "shaft_flex": "R",
       "source_note": "クラブセッティング動画をもとに手動確認。Callaway OPUS 56°、N.S.PRO MODUS3 TOUR 105 R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "103g"
     },
     {
       "category": "Putter",

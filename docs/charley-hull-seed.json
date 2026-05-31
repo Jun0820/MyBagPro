@@ -152,7 +152,8 @@
       "shaft_model": "N.S.PRO MODUS3 TOUR 120",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Charley Hull WITB 2026で確認。48°・54°・60°構成。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "114g"
     },
     {
       "category": "Wedge",
@@ -165,7 +166,8 @@
       "shaft_model": "N.S.PRO MODUS3 TOUR 120",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Charley Hull WITB 2026で確認。48°・54°・60°構成。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "114g"
     },
     {
       "category": "Wedge",
@@ -178,7 +180,8 @@
       "shaft_model": "N.S.PRO MODUS3 TOUR 120",
       "shaft_flex": "S",
       "source_note": "Golf Monthly Charley Hull WITB 2026で確認。48°・54°・60°構成。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "114g"
     },
     {
       "category": "Putter",

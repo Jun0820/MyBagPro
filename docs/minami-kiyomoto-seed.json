@@ -30,12 +30,13 @@
       "model_name": "Qi4D core Driver",
       "spec_label": "1W",
       "loft_label": "10.5°(+1°)",
-      "shaft_model": "SPEEDER NX Gold 50",
+      "shaft_model": "SPEEDER NX Gold",
       "shaft_flex": "SR",
       "carry_distance": 200,
       "total_distance": 230,
       "source_note": "前澤杯前日のクラブセッティング動画をもとに手動確認。Qi4D core 10.5°(+1°)、NXゴールド 50 SR。HS39.8m/s、総距離230yd、キャリー200yd。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Fairway Wood",
@@ -44,10 +45,11 @@
       "model_name": "Qi4D Fairway Wood",
       "spec_label": "3W",
       "loft_label": "15°(+0.5°)",
-      "shaft_model": "SPEEDER NX Gold 50",
+      "shaft_model": "SPEEDER NX Gold",
       "shaft_flex": "S",
       "source_note": "前澤杯前日のクラブセッティング動画をもとに手動確認。Qi4D 3W 15°(+0.5°)、NXゴールド 50 S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Fairway Wood",
@@ -56,10 +58,11 @@
       "model_name": "Qi4D Fairway Wood",
       "spec_label": "5W",
       "loft_label": "18°",
-      "shaft_model": "SPEEDER NX Gold 50",
+      "shaft_model": "SPEEDER NX Gold",
       "shaft_flex": "S",
       "source_note": "前澤杯前日のクラブセッティング動画をもとに手動確認。Qi4D 5W 18°、NXゴールド 50 S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "50g台"
     },
     {
       "category": "Utility",
@@ -118,7 +121,8 @@
       "shaft_model": "N.S.PRO 850GH neo",
       "shaft_flex": "R",
       "source_note": "前澤杯前日のクラブセッティング動画をもとに手動確認。TaylorMade MG5 48°、N.S.PRO 850GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "84.5g"
     },
     {
       "category": "Wedge",
@@ -130,7 +134,8 @@
       "shaft_model": "N.S.PRO 850GH neo",
       "shaft_flex": "R",
       "source_note": "前澤杯前日のクラブセッティング動画をもとに手動確認。TaylorMade MG5 52°、N.S.PRO 850GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "84.5g"
     },
     {
       "category": "Wedge",
@@ -142,7 +147,8 @@
       "shaft_model": "N.S.PRO 850GH neo",
       "shaft_flex": "R",
       "source_note": "前澤杯前日のクラブセッティング動画をもとに手動確認。TaylorMade MG5 56°、N.S.PRO 850GH neo R。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "84.5g"
     },
     {
       "category": "Putter",

@@ -54,10 +54,11 @@
       "spec_label": "5W",
       "loft_label": "18 degrees",
       "shaft_brand": "Mitsubishi Chemical",
-      "shaft_model": "TENSEI AV 85",
+      "shaft_model": "TENSEI AV",
       "shaft_flex": "TX",
       "source_note": "Confirmed from GDO 2025 Sony Open setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "85g"
     },
     {
       "category": "Utility",

@@ -107,7 +107,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "GDO 2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認。TW757 Vx 7I-PW、N.S.PRO 850GH S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Iron",
@@ -119,7 +120,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "GDO 2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認。TW757 Vx 7I-PW、N.S.PRO 850GH S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Iron",
@@ -131,7 +133,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "GDO 2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認。TW757 Vx 7I-PW、N.S.PRO 850GH S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Wedge",
@@ -143,7 +146,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "GDO 2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認。TW757 Vx 7I-PW、N.S.PRO 850GH S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Wedge",
@@ -156,7 +160,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "S",
       "source_note": "GDO 2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認。TW-W 48°、N.S.PRO 850GH S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "91g"
     },
     {
       "category": "Wedge",
@@ -169,7 +174,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "GDO 2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認。RM22 50°・56°、N.S.PRO 950GH S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -182,7 +188,8 @@
       "shaft_model": "N.S.PRO 950GH",
       "shaft_flex": "S",
       "source_note": "GDO 2025年ミヤギテレビ杯ダンロップ女子オープン取材で確認。RM22 50°・56°、N.S.PRO 950GH S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Putter",

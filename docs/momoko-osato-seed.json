@@ -74,7 +74,8 @@
       "shaft_model": "N.S.PRO 850GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。4U・5U・6UはG410 HY、N.S.PRO 850GH neo S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "88g"
     },
     {
       "category": "Utility",
@@ -87,7 +88,8 @@
       "shaft_model": "N.S.PRO 850GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。5UはG410 HY 26°、N.S.PRO 850GH neo S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "88g"
     },
     {
       "category": "Utility",
@@ -100,7 +102,8 @@
       "shaft_model": "N.S.PRO 850GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。6UはG410 HY 30°、N.S.PRO 850GH neo S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "88g"
     },
     {
       "category": "Iron",
@@ -112,7 +115,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。アイアンは7I〜PW、Mizuno Pro 243、N.S.PRO 950GH neo S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -124,7 +128,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。Mizuno Pro 243 7I〜PW。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -136,7 +141,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。Mizuno Pro 243 7I〜PW。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -148,7 +154,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。Mizuno Pro 243 7I〜PW。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -161,7 +168,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。50°はPING s159、N.S.PRO 950GH neo S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -174,7 +182,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。56°・58°はPING GLIDE 4.0、N.S.PRO 950GH neo S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -187,7 +196,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "みんなのゴルフダイジェスト 2025年8月23日公開記事で確認。58°はPING GLIDE 4.0、N.S.PRO 950GH neo S。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Putter",

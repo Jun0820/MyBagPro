@@ -31,12 +31,13 @@
       "model_name": "Qi4D Driver",
       "loft_label": "9°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 6",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "carry_distance": 325,
       "total_distance": 316,
       "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで確認。TaylorMade公式記事ではQi4D 9°を2クリックLower、Ventus Black 6X、45 5/8インチと記載。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "60g台"
     },
     {
       "category": "Fairway Wood",
@@ -46,11 +47,12 @@
       "spec_label": "3W",
       "loft_label": "15°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 8",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "carry_distance": 295,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では3Wのstock carry yardageは295yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "80g台"
     },
     {
       "category": "Fairway Wood",
@@ -60,10 +62,11 @@
       "spec_label": "5W",
       "loft_label": "18°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 9",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで確認。TaylorMade公式ではQi4D 5Wの完成ロフト17.5°、Ventus Black 9X、41 5/8インチEOGと記載。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "90g台"
     },
     {
       "category": "Iron",
@@ -76,7 +79,8 @@
       "shaft_flex": "7.0",
       "carry_distance": 245,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では4Iのstock carry yardageは245yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "130g"
     },
     {
       "category": "Iron",
@@ -89,7 +93,8 @@
       "shaft_flex": "7.0",
       "carry_distance": 225,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では5Iのstock carry yardageは225yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "130g"
     },
     {
       "category": "Iron",
@@ -102,7 +107,8 @@
       "shaft_flex": "7.0",
       "carry_distance": 210,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では6Iのstock carry yardageは210yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "130g"
     },
     {
       "category": "Iron",
@@ -115,7 +121,8 @@
       "shaft_flex": "7.0",
       "carry_distance": 195,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では7Iのstock carry yardageは195yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "130g"
     },
     {
       "category": "Iron",
@@ -128,7 +135,8 @@
       "shaft_flex": "7.0",
       "carry_distance": 180,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では8Iのstock carry yardageは180yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "130g"
     },
     {
       "category": "Iron",
@@ -141,7 +149,8 @@
       "shaft_flex": "7.0",
       "carry_distance": 165,
       "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では9Iのstock carry yardageは165yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "130g"
     },
     {
       "category": "Wedge",
@@ -155,7 +164,8 @@
       "shaft_flex": "6.5",
       "carry_distance": 150,
       "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 46°を確認。Arnold Palmer Invitational時の公式stock carry yardageではPWは150yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",
@@ -169,7 +179,8 @@
       "shaft_flex": "6.5",
       "carry_distance": 136,
       "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 50° SBを確認。Arnold Palmer Invitational時の公式stock carry yardageでは50°は136yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",
@@ -183,7 +194,8 @@
       "shaft_flex": "6.5",
       "carry_distance": 125,
       "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 54° SBを確認。Arnold Palmer Invitational時の公式stock carry yardageでは54°は125yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",

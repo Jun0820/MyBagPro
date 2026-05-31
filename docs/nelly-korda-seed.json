@@ -28,10 +28,11 @@
       "brand": "TaylorMade",
       "model_name": "Qi4D Driver",
       "shaft_brand": "Graphite Design",
-      "shaft_model": "Tour AD FI 6",
+      "shaft_model": "Tour AD FI",
       "shaft_flex": "S",
       "source_note": "TaylorMade公式の2026年5月3日優勝WITBとGolfWRX 2026 AprilでQi4D 10.5°、Graphite Design Tour AD FI 6-Sを確認。TaylorMade公式では44 3/4インチも確認。",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "60g台"
     },
     {
       "category": "Fairway Wood",
@@ -41,11 +42,12 @@
       "spec_label": "3W",
       "loft_label": "15°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Red 7",
+      "shaft_model": "Ventus Red",
       "shaft_flex": "S",
       "carry_distance": 232,
       "source_note": "TaylorMade公式の2026年5月3日優勝WITBでStealth 2 15.0° 3Wを確認。公式stock carry yardageでは3Wは232yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Fairway Wood",
@@ -55,11 +57,12 @@
       "spec_label": "7W",
       "loft_label": "21°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 7",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "S",
       "carry_distance": 218,
       "source_note": "TaylorMade公式の2026年5月3日優勝WITBでStealth 2 21° 7Wを確認。公式stock carry yardageでは7Wは218yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Utility",
@@ -69,11 +72,12 @@
       "spec_label": "H",
       "loft_label": "26°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Blue HB 7",
+      "shaft_model": "Ventus Blue HB",
       "shaft_flex": "S",
       "carry_distance": 200,
       "source_note": "直近詳細WITBで確認。Hybridは25°設定として掲載され、TaylorMade公式stock carry yardageでは25°ハイブリッドは200yd。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Iron",

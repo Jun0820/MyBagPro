@@ -149,7 +149,8 @@
       "shaft_model": "Modus3 System3 Tour125",
       "shaft_flex": "X",
       "source_note": "Confirmed from GDO 2026 Hero Indian Open setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "129.5g"
     },
     {
       "category": "Wedge",
@@ -162,7 +163,8 @@
       "shaft_model": "Modus3 System3 Tour125",
       "shaft_flex": "X",
       "source_note": "Confirmed from GDO 2026 Hero Indian Open setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "129.5g"
     },
     {
       "category": "Wedge",

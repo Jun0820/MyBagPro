@@ -31,11 +31,12 @@
       "model_name": "Qi10 Driver",
       "loft_label": "8°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 7",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "total_distance": 312,
       "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Fairway Wood",
@@ -45,10 +46,11 @@
       "spec_label": "3W",
       "loft_label": "15°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 8",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "80g台"
     },
     {
       "category": "Fairway Wood",
@@ -58,10 +60,11 @@
       "spec_label": "7W",
       "loft_label": "21°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 9",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "90g台"
     },
     {
       "category": "Utility",

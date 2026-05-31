@@ -102,7 +102,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "ALBA使用ギア表では7I〜PWとして確認。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -114,7 +115,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "ALBA使用ギア表では7I〜PWとして確認。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Iron",
@@ -126,7 +128,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "ALBA使用ギア表では7I〜PWとして確認。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",
@@ -138,7 +141,8 @@
       "shaft_model": "N.S.PRO 950GH neo",
       "shaft_flex": "S",
       "source_note": "ALBA使用ギア表では7I〜PWとして確認。",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "98g"
     },
     {
       "category": "Wedge",

@@ -100,7 +100,8 @@
       "shaft_model": "N.S.PRO 750GH Wrap Tech",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Iron",
@@ -112,7 +113,8 @@
       "shaft_model": "N.S.PRO 750GH Wrap Tech",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Iron",
@@ -124,7 +126,8 @@
       "shaft_model": "N.S.PRO 750GH Wrap Tech",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Iron",
@@ -136,7 +139,8 @@
       "shaft_model": "N.S.PRO 750GH Wrap Tech",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Iron",
@@ -148,7 +152,8 @@
       "shaft_model": "N.S.PRO 750GH Wrap Tech",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Wedge",
@@ -161,7 +166,8 @@
       "shaft_model": "N.S.PRO 750GH Wrap Tech",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Wedge",
@@ -174,7 +180,8 @@
       "shaft_model": "N.S.PRO 750GH Wrap Tech",
       "shaft_flex": "S",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Wedge",
@@ -187,7 +194,8 @@
       "shaft_model": "N.S.PRO 850GH",
       "shaft_flex": "R",
       "source_note": "Confirmed from GDO 2025 setting page.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "87g"
     },
     {
       "category": "Putter",
@@ -218,4 +226,3 @@
     "published_at": "2026-04-09T00:00:00.000Z"
   }
 }
-

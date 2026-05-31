@@ -29,10 +29,11 @@
       "model_name": "Quantum Triple Diamond Driver",
       "loft_label": "10.5°",
       "shaft_brand": "Fujikura",
-      "shaft_model": "Ventus Black 7",
+      "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": true
+      "is_featured_item": true,
+      "shaft_weight": "70g台"
     },
     {
       "category": "Fairway Wood",
@@ -42,10 +43,11 @@
       "spec_label": "3W",
       "loft_label": "16°",
       "shaft_brand": "Graphite Design",
-      "shaft_model": "Tour AD DI 8",
+      "shaft_model": "Tour AD DI",
       "shaft_flex": "X",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "85g"
     },
     {
       "category": "Fairway Wood",
@@ -55,10 +57,11 @@
       "spec_label": "5W",
       "loft_label": "18°",
       "shaft_brand": "Graphite Design",
-      "shaft_model": "Tour AD DI 8",
+      "shaft_model": "Tour AD DI",
       "shaft_flex": "X",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "85g"
     },
     {
       "category": "Utility",
@@ -82,7 +85,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -94,7 +98,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -106,7 +111,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -118,7 +124,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Iron",
@@ -130,7 +137,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",
@@ -142,7 +150,8 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",
@@ -155,7 +164,8 @@
       "shaft_model": "Project X 125",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",
@@ -168,7 +178,8 @@
       "shaft_model": "Project X 125",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Wedge",
@@ -181,7 +192,8 @@
       "shaft_model": "Project X 125",
       "shaft_flex": "6.5",
       "source_note": "Confirmed from Golf Monthly Jon Rahm winning WITB LIV Golf Hong Kong 2026.",
-      "is_featured_item": false
+      "is_featured_item": false,
+      "shaft_weight": "125g"
     },
     {
       "category": "Putter",
