@@ -193,8 +193,8 @@ const buildItemsFromEntry = (entry, sourceNote) => {
 
 const findFirst = (items, predicate) => items.find(predicate);
 const summarizeClub = (item) => {
-  if (!item) return '未公開';
-  return [item.brand, item.model_name].filter(Boolean).join(' ') || item.model_name || '未公開';
+  if (!item) return '-';
+  return [item.brand, item.model_name].filter(Boolean).join(' ') || item.model_name || '-';
 };
 
 const makeArticle = (seed, gdo) => {
@@ -206,7 +206,7 @@ const makeArticle = (seed, gdo) => {
   const irons = clubs.filter((item) => item.category === 'Iron');
   const wedges = clubs.filter((item) => item.category === 'Wedge');
   const putter = findFirst(clubs, (item) => item.category === 'Putter');
-  const ball = seed.profile.ball_name || '未公開';
+  const ball = seed.profile.ball_name || '-';
   const detailPath = `/pros/${seed.profile.slug}`;
 
   return {
@@ -217,9 +217,9 @@ const makeArticle = (seed, gdo) => {
 
 ## 今回の更新内容
 - ドライバー：${summarizeClub(driver)}
-- FW/UT：${woodsAndUtilities.map((item) => item.spec_label || item.category).filter(Boolean).join('、') || '未公開'}を確認
-- アイアン：${irons.map((item) => item.spec_label).filter(Boolean).join('、') || '未公開'}を確認
-- ウェッジ：${wedges.map((item) => item.spec_label || item.loft_label).filter(Boolean).join('、') || '未公開'}を確認
+- FW/UT：${woodsAndUtilities.map((item) => item.spec_label || item.category).filter(Boolean).join('、') || '-'}を確認
+- アイアン：${irons.map((item) => item.spec_label).filter(Boolean).join('、') || '-'}を確認
+- ウェッジ：${wedges.map((item) => item.spec_label || item.loft_label).filter(Boolean).join('、') || '-'}を確認
 - パター：${summarizeClub(putter)}
 - ボール：${ball}
 

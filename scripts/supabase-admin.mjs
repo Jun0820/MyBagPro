@@ -607,7 +607,7 @@ async function syncProfileFields({ dryRun = false } = {}) {
     );
     const birthDate = withFallback(overrides.birth_date, seedProfile.birth_date, profile.birth_date);
     const heightCm = withFallback(overrides.height_cm, seedProfile.height_cm, profile.height_cm);
-    const birthplace = withFallback(overrides.birthplace, seedProfile.birthplace, profile.birthplace, '未公開');
+    const birthplace = withFallback(overrides.birthplace, seedProfile.birthplace, profile.birthplace, '-');
     const youtubeChannel = finalizeTextValue(
       withFallback(overrides.youtube_channel, seedProfile.youtube_channel, profile.youtube_channel)
     );

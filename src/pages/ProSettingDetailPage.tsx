@@ -10,6 +10,8 @@ import { saveRecentlyViewed } from '../lib/recentlyViewed';
 import { applySeo, getSeoPath, removeStructuredData, setStructuredData, toAbsoluteUrl } from '../lib/seo';
 import { getAffiliateUrl } from '../utils/affiliate';
 
+const EMPTY_LABEL = '-';
+
 const formatClubLabel = (category: string, specLabel?: string) => {
   if (specLabel) return specLabel;
   if (category === 'Driver') return '1W';
@@ -26,10 +28,10 @@ const formatDistanceForMode = (
   if (category === 'Putter') return '-';
   const value = mode === 'carry' ? carryDistance : totalDistance;
   if (typeof value === 'number') return `${value} yd`;
-  return '未公開';
+  return EMPTY_LABEL;
 };
 
-const formatStatLabel = (value?: string) => value || '未公開';
+const formatStatLabel = (value?: string) => value || EMPTY_LABEL;
 
 const formatJapaneseDate = (value?: string | null, mode: 'month' | 'date' = 'month') => {
   if (!value) return null;
@@ -86,8 +88,8 @@ const getLatestConfirmedDate = (setting: PublicSettingProfile) => {
     .map((source) => (source.checkedAt ? new Date(source.checkedAt).getTime() : null))
     .filter((value): value is number => typeof value === 'number' && !Number.isNaN(value));
 
-  if (timestamps.length === 0) return '未公開';
-  return formatJapaneseDate(new Date(Math.max(...timestamps)).toISOString(), 'month') || '未公開';
+  if (timestamps.length === 0) return EMPTY_LABEL;
+  return formatJapaneseDate(new Date(Math.max(...timestamps)).toISOString(), 'month') || EMPTY_LABEL;
 };
 
 const extractSourceDateLabel = (source: { title: string; notes?: string | null }) => {
@@ -161,7 +163,7 @@ const getUsageConfirmedPeriod = (setting: PublicSettingProfile) => {
     if (usagePeriodLabel) return usagePeriodLabel;
   }
 
-  return setting.seasonYear ? `${setting.seasonYear}年確認` : '確認時期未公開';
+  return setting.seasonYear ? `${setting.seasonYear}年確認` : EMPTY_LABEL;
 };
 
 const buildDataFreshnessItems = (setting: PublicSettingProfile) => [
@@ -220,8 +222,8 @@ const formatBirthplace = (birthplace?: string | null, nationality?: string | nul
     const raw = (birthplace || '').trim();
     if (raw && hasJapaneseText(raw)) return `${raw} 🇯🇵`;
     const base = raw.split(',')[0].trim();
-    const normalized = prefectureMap[base] || base || '未公開';
-    return normalized === '未公開' ? normalized : `${normalized} 🇯🇵`;
+    const normalized = prefectureMap[base] || base || EMPTY_LABEL;
+    return normalized === EMPTY_LABEL ? normalized : `${normalized} 🇯🇵`;
   }
 
   if (birthplace && hasJapaneseText(birthplace)) {
@@ -230,7 +232,7 @@ const formatBirthplace = (birthplace?: string | null, nationality?: string | nul
 
   const country = nationality ? countryMap[nationality] : undefined;
   if (country) return `${country.label} ${country.flag}`;
-  return nationality || birthplace || '未公開';
+  return nationality || birthplace || EMPTY_LABEL;
 };
 
 const getYoutubeEmbedUrl = (url: string) => {
@@ -361,7 +363,7 @@ export const ProSettingDetailPage = () => {
       .filter(Boolean);
     const seoDriver = driverClub ? [driverClub.brand, driverClub.model].filter(Boolean).join(' ') : 'ドライバー';
     const seoTitle = `${setting.name} クラブセッティング ${seasonLabel}｜使用クラブ・ボール`;
-    const seoDescription = `${setting.name}のクラブセッティング${seasonLabel}版。${seoDriver}、アイアン、ウェッジ、パター、使用ボール${setting.ball !== '未公開' ? `（${setting.ball}）` : ''}まで確認できます。`;
+    const seoDescription = `${setting.name}のクラブセッティング${seasonLabel}版。${seoDriver}、アイアン、ウェッジ、パター、使用ボール${setting.ball !== EMPTY_LABEL ? `（${setting.ball}）` : ''}まで確認できます。`;
     const seoImage = getProfileVisuals(setting.slug, setting.instagramHandle).hero;
 
     applySeo({
@@ -461,7 +463,7 @@ export const ProSettingDetailPage = () => {
           name: `${setting.name}はどのボールとドライバーを使っていますか？`,
           acceptedAnswer: {
             '@type': 'Answer',
-            text: `${setting.name}の使用ボールは${setting.ball}、掲載ドライバーは${driverClub ? driverClub.model : '未公開'}です。`,
+            text: `${setting.name}の使用ボールは${setting.ball}、掲載ドライバーは${driverClub ? driverClub.model : EMPTY_LABEL}です。`,
           },
         },
       ],
@@ -535,7 +537,7 @@ export const ProSettingDetailPage = () => {
 
   const visuals = getProfileVisuals(setting.slug, setting.instagramHandle);
   const profileFacts = [
-    { label: '生年月日', value: setting.birthDate || '未公開' },
+    { label: '生年月日', value: setting.birthDate || EMPTY_LABEL },
     { label: '出身地', value: formatBirthplace(setting.birthplace, setting.nationality) },
     { label: '契約', value: setting.contractDisplay },
     { label: 'ボール', value: setting.ball },
@@ -615,7 +617,7 @@ export const ProSettingDetailPage = () => {
               <div key={fact.label} className="rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 md:rounded-2xl">
                 <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{fact.label}</dt>
                 <dd className="mt-1 text-sm font-black leading-5 text-white">{fact.value}</dd>
-                {fact.label === 'ボール' && fact.value !== '未公開' ? (
+                {fact.label === 'ボール' && fact.value !== EMPTY_LABEL ? (
                   <a
                     href={getAffiliateUrl('', fact.value, 'RAKUTEN')}
                     target="_blank"
@@ -747,22 +749,22 @@ export const ProSettingDetailPage = () => {
                         <div className="text-sm font-black text-trust-navy">{formatClubLabel(club.category, club.specLabel)}</div>
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-slate-600">{club.brand || '未公開'}</div>
+                        <div className="text-sm font-bold text-slate-600">{club.brand || EMPTY_LABEL}</div>
                       </div>
                       <div>
                         <div className="text-sm font-black text-trust-navy">{club.model}</div>
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-slate-600">{shaftLabel || '未公開'}</div>
+                        <div className="text-sm font-bold text-slate-600">{shaftLabel || EMPTY_LABEL}</div>
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-slate-600">{club.shaftWeight || '未公開'}</div>
+                        <div className="text-sm font-bold text-slate-600">{club.shaftWeight || EMPTY_LABEL}</div>
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-slate-600">{club.loft || '未公開'}</div>
+                        <div className="text-sm font-bold text-slate-600">{club.loft || EMPTY_LABEL}</div>
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-slate-600">{club.shaftFlex || '未公開'}</div>
+                        <div className="text-sm font-bold text-slate-600">{club.shaftFlex || EMPTY_LABEL}</div>
                       </div>
                       <div>
                         <div className="text-sm font-bold text-slate-600">
@@ -824,7 +826,7 @@ export const ProSettingDetailPage = () => {
                           </div>
                         </div>
                         <div className="min-w-0">
-                          <div className="truncate text-xs font-black text-slate-600">{club.brand || '未公開'}</div>
+                          <div className="truncate text-xs font-black text-slate-600">{club.brand || EMPTY_LABEL}</div>
                         </div>
                         <div className="min-w-0">
                           <div className="truncate text-sm font-black leading-5 text-trust-navy">{club.model}</div>
@@ -845,16 +847,16 @@ export const ProSettingDetailPage = () => {
                           <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
                             <div>
                               <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">シャフト</div>
-                              <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || '未公開'}</div>
+                              <div className="mt-0.5 font-bold leading-5 text-slate-600">{shaftLabel || EMPTY_LABEL}</div>
                             </div>
                             <div>
                               <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">重量</div>
-                              <div className="mt-0.5 font-bold leading-5 text-slate-600">{club.shaftWeight || '未公開'}</div>
+                              <div className="mt-0.5 font-bold leading-5 text-slate-600">{club.shaftWeight || EMPTY_LABEL}</div>
                             </div>
                             <div>
                               <div className="text-[10px] font-black tracking-[0.14em] text-slate-400">ロフト / 硬さ</div>
                               <div className="mt-0.5 font-bold leading-5 text-slate-600">
-                                {[club.loft || '未公開', club.shaftFlex || '未公開'].join(' / ')}
+                                {[club.loft || EMPTY_LABEL, club.shaftFlex || EMPTY_LABEL].join(' / ')}
                               </div>
                             </div>
                           </div>

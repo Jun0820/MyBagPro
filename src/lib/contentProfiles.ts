@@ -195,6 +195,7 @@ let fallbackProfilesPromise: Promise<PublicSettingProfile[]> | null = null;
 const PROFILE_LIST_FETCH_LIMIT = 500;
 const SUPABASE_PAGE_SIZE = 1000;
 const PLACEHOLDER_VALUES = new Set(['-', '－', '—', '未公開']);
+const EMPTY_LABEL = '-';
 
 const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfile['type']> = {
   tour_pro: 'Tour Pro',
@@ -203,8 +204,8 @@ const typeLabelMap: Record<SettingProfileRow['profile_type'], PublicSettingProfi
   legend: 'Legend',
 };
 
-const formatHeadSpeed = (value: number | null) => (value ? `${value.toFixed(1)} m/s` : '未公開');
-const formatAverageScore = (value: number | null) => (value ? `${value}` : '未公開');
+const formatHeadSpeed = (value: number | null) => (value ? `${value.toFixed(1)} m/s` : EMPTY_LABEL);
+const formatAverageScore = (value: number | null) => (value ? `${value}` : EMPTY_LABEL);
 const formatBestScore = (value: number | null) => (value ? `${value}` : undefined);
 const normalizeOptionalText = (value: string | null | undefined) => {
   if (!value) return undefined;
@@ -328,7 +329,7 @@ const buildProfiles = (
       averageScore: formatAverageScore(profile.average_score),
       bestScore: formatBestScore(profile.best_score),
       style: inferStyle(strengths),
-      ball: profile.ball_name || '未公開',
+      ball: normalizeOptionalText(profile.ball_name) || EMPTY_LABEL,
       strengths: strengths.length > 0 ? strengths : ['確認中'],
       clubs,
       youtubeChannel: normalizeOptionalText(profile.youtube_channel),

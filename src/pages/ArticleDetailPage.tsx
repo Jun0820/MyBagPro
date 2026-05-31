@@ -510,7 +510,7 @@ export const ArticleDetailPage = () => {
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-700 md:leading-8">
               {relatedProfile.name}の{relatedProfile.seasonYear ? `${relatedProfile.seasonYear}年` : '最新'}クラブセッティングでは、
-              使用ドライバー{relatedProfile.clubs.find((club) => club.category === 'Driver')?.model || '未公開'}、
+              使用ドライバー{relatedProfile.clubs.find((club) => club.category === 'Driver')?.model || '-'}、
               使用ボール{relatedProfile.ball}、
               契約メーカー{relatedProfile.contractDisplay}を確認できます。詳細ページではクラブ名、メーカー、シャフト、ロフト、
               硬さ、飛距離まで一覧で見られます。
