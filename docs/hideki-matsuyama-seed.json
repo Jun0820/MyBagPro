@@ -13,15 +13,15 @@
     "head_speed_mps": 51.5,
     "average_score": 69.25,
     "best_score": 64,
-    "ball_name": "Srixon Z-Star XV",
+    "ball_name": "Srixon Z-STAR XV",
     "feature_1": "2021マスターズ覇者",
-    "feature_2": "2026年公式WITB一部確認",
-    "feature_3": "ダンロップ中心",
-    "summary": "2026年シーズンの松山英樹について、Srixon/Dunlop公式ツアーページでZXi LS Driver、Z-Forged II Irons、Z-STAR XVを確認しつつ、14本の詳細は2025年ザ・セントリー優勝時WITBを補助ソースとして整理したページです。",
-    "latest_source_policy": "2026_season",
+    "feature_2": "Tour AD FIへ変更",
+    "feature_3": "2026年3月公開WITB",
+    "summary": "2026年3月28日公開のみんなのゴルフダイジェスト記事を主ソースに、松山英樹の最新クラブセッティングを整理。ZXi LSプロトの9度、Tour AD FI 80TX、Qi10 3W、Cobra RADSPEED Tour 5W、Z-Forged II、RTX4 Forged Prototype、Newport 2 Tour Proto、Srixon Z-STAR XVまで掲載しています。",
+    "latest_source_policy": "使用確認時期: 2026年WMフェニックス指定練習日。みんなのゴルフダイジェスト2026年3月28日公開記事を主ソースに、練習日撮影時の15本構成として確認。3Iはコース状況で入れ替える候補として掲載。",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-05-15T00:00:00.000Z",
+    "verified_at": "2026-05-31T00:00:00.000Z",
     "website_url": "https://www.pgatour.com/player/32839/hideki-matsuyama"
   },
   "bagItems": [
@@ -29,9 +29,15 @@
       "category": "Driver",
       "slot_order": 1,
       "brand": "Srixon",
-      "model_name": "ZXi LS Driver",
+      "model_name": "ZXi LS Prototype Driver",
+      "spec_label": "1W",
+      "loft_label": "9°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD FI",
+      "shaft_weight": "80g台",
+      "shaft_flex": "TX",
       "total_distance": 300,
-      "source_note": "Srixon/Dunlop公式ツアーページ（2026年5月15日確認）でZXi LS Driverを確認。ロフトやシャフトなどの詳細は公式ページで明記がないため、MyBagProではモデル更新を優先し、詳細14本はGolfWRX 2025 Sentryを補助参照。",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。シルバーフェースのZXi LSプロト、Tour AD FI 80TX。",
       "is_featured_item": true
     },
     {
@@ -43,35 +49,37 @@
       "loft_label": "15°",
       "shaft_brand": "Graphite Design",
       "shaft_model": "Tour AD DI",
+      "shaft_weight": "90g台",
       "shaft_flex": "TX",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
-      "is_featured_item": false,
-      "shaft_weight": "90g台"
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。3WはTaylorMade Qi10 15°、Tour AD DI 90TX。",
+      "is_featured_item": false
     },
     {
       "category": "Fairway Wood",
       "slot_order": 3,
       "brand": "Cobra",
-      "model_name": "King RadSpeed Tour",
+      "model_name": "King RADSPEED Tour Fairway Wood",
       "spec_label": "5W",
-      "loft_label": "19°",
+      "loft_label": "17.5°",
       "shaft_brand": "Graphite Design",
       "shaft_model": "Tour AD DI",
+      "shaft_weight": "100g台",
       "shaft_flex": "TX",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
-      "is_featured_item": false,
-      "shaft_weight": "100g台"
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。5WはCobra RADSPEED Tour 17.5°、Tour AD DI 100TX。コースにより7Wや3U等と入れ替える可能性あり。",
+      "is_featured_item": false
     },
     {
       "category": "Iron",
       "slot_order": 4,
       "brand": "Srixon",
-      "model_name": "Z-Forged II Iron",
-      "spec_label": "4I",
-      "shaft_brand": "True Temper",
-      "shaft_model": "Dynamic Gold Tour Issue",
-      "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "model_name": "ZXi5 Iron",
+      "spec_label": "3I",
+      "loft_label": "20°",
+      "shaft_brand": "Graphite Design",
+      "shaft_model": "Tour AD DI HY Prototype",
+      "shaft_weight": "115g",
+      "shaft_flex": "SX",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。撮影時はZXi5 3I 20°も所持。練習日撮影のため15本構成で、コース状況により入れ替え候補。",
       "is_featured_item": false
     },
     {
@@ -79,11 +87,12 @@
       "slot_order": 5,
       "brand": "Srixon",
       "model_name": "Z-Forged II Iron",
-      "spec_label": "5I",
+      "spec_label": "4I",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。アイアン基本セットは4I〜9I、Z-Forged II、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
@@ -91,11 +100,12 @@
       "slot_order": 6,
       "brand": "Srixon",
       "model_name": "Z-Forged II Iron",
-      "spec_label": "6I",
+      "spec_label": "5I",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。アイアン基本セットは4I〜9I、Z-Forged II、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
@@ -103,11 +113,12 @@
       "slot_order": 7,
       "brand": "Srixon",
       "model_name": "Z-Forged II Iron",
-      "spec_label": "7I",
+      "spec_label": "6I",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。アイアン基本セットは4I〜9I、Z-Forged II、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
@@ -115,11 +126,12 @@
       "slot_order": 8,
       "brand": "Srixon",
       "model_name": "Z-Forged II Iron",
-      "spec_label": "8I",
+      "spec_label": "7I",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。アイアン基本セットは4I〜9I、Z-Forged II、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
@@ -127,24 +139,25 @@
       "slot_order": 9,
       "brand": "Srixon",
       "model_name": "Z-Forged II Iron",
-      "spec_label": "9I",
+      "spec_label": "8I",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。アイアン基本セットは4I〜9I、Z-Forged II、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
-      "category": "Wedge",
+      "category": "Iron",
       "slot_order": 10,
-      "brand": "Cleveland",
-      "model_name": "RTX 4 Forged Prototype",
-      "spec_label": "PW",
-      "loft_label": "48°",
+      "brand": "Srixon",
+      "model_name": "Z-Forged II Iron",
+      "spec_label": "9I",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。アイアン基本セットは4I〜9I、Z-Forged II、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
@@ -152,12 +165,13 @@
       "slot_order": 11,
       "brand": "Cleveland",
       "model_name": "RTX 4 Forged Prototype",
-      "spec_label": "AW",
-      "loft_label": "52°",
+      "spec_label": "PW",
+      "loft_label": "48°",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。RTX4 Forged Prototype 48°、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
@@ -165,12 +179,13 @@
       "slot_order": 12,
       "brand": "Cleveland",
       "model_name": "RTX 4 Forged Prototype",
-      "spec_label": "SW",
-      "loft_label": "56°",
+      "spec_label": "AW",
+      "loft_label": "52°",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。RTX4 Forged Prototype 52°、DG Tour Issue S400。",
       "is_featured_item": false
     },
     {
@@ -178,68 +193,86 @@
       "slot_order": 13,
       "brand": "Cleveland",
       "model_name": "RTX 4 Forged Prototype",
-      "spec_label": "LW",
-      "loft_label": "60°",
+      "spec_label": "SW",
+      "loft_label": "56°",
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。RTX4 Forged Prototype 56°、DG Tour Issue S400。",
+      "is_featured_item": false
+    },
+    {
+      "category": "Wedge",
+      "slot_order": 14,
+      "brand": "Cleveland",
+      "model_name": "RTX 4 Forged Prototype",
+      "spec_label": "LW",
+      "loft_label": "60°→62°",
+      "shaft_brand": "True Temper",
+      "shaft_model": "Dynamic Gold Tour Issue",
+      "shaft_weight": "130g台",
+      "shaft_flex": "X100",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。RTX4 Forged Prototype 60°を2°寝かせて62°、DG Tour Issue X100。",
       "is_featured_item": false
     },
     {
       "category": "Putter",
-      "slot_order": 14,
+      "slot_order": 15,
       "brand": "Scotty Cameron",
-      "model_name": "009M Center Shaft Tour Prototype",
-      "source_note": "Confirmed from GolfWRX Hideki Matsuyama winning WITB 2025 Sentry.",
+      "model_name": "Newport 2 Tour Prototype",
+      "spec_label": "PT",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。Scotty Cameron Newport 2 Tour Prototype。近年は複数のNewport系をテスト・投入。",
       "is_featured_item": true
+    },
+    {
+      "category": "Ball",
+      "slot_order": 16,
+      "brand": "Srixon",
+      "model_name": "Z-STAR XV",
+      "spec_label": "Ball",
+      "source_note": "みんなのゴルフダイジェスト2026年3月28日公開記事で確認。WMフェニックス指定練習日撮影時のセッティング。使用ボールはSrixon Z-STAR XV。",
+      "is_featured_item": false
     }
   ],
   "sources": [
     {
-      "source_type": "official",
-      "source_url": "https://us.dunlopsports.com/srixon/tour/tour-pros/hideki-matsuyama",
-      "source_title": "Hideki Matsuyama WITB 2026 | Dunlop Sports US",
-      "checked_at": "2026-05-15T00:00:00.000Z",
-      "notes": "Official Srixon/Dunlop tour page lists ZXi LS Driver, Z-Forged II Irons and Z-STAR XV Golf Balls under What's In The Bag. It does not provide full 14-club shaft/loft details."
+      "source_type": "article",
+      "source_url": "https://www.golfdigest-minna.jp/_ct/17830112",
+      "source_title": "松山英樹の最新クラブセッティング！ 1Wシャフトを約15年使い続けた「ツアーAD DI」からグリーンの「FI」にチェンジ",
+      "checked_at": "2026-03-28T00:00:00.000Z",
+      "notes": "2026年WMフェニックス指定練習日撮影時の詳細クラブセッティング。ドライバーのTour AD FI変更、3W/5W、3I、4I〜9I、ウェッジ、パター、ボールを確認。練習日撮影のため15本構成。"
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.todays-golfer.com/equipment/witb/hideki-matsuyama/",
+      "source_title": "What’s In The Bag: Hideki Matsuyama (September 2025 Update)",
+      "checked_at": "2025-09-02T00:00:00.000Z",
+      "notes": "2025年9月更新のWITB補助ソース。ZX5 Mk II LS時点の情報を含むため、2026年3月公開のみんなのゴルフダイジェスト記事を優先。"
     },
     {
       "source_type": "official",
-      "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama",
-      "source_title": "Hideki Matsuyama PGA TOUR Player Profile",
-      "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Official profile used for player context and 2026 season status."
+      "source_url": "https://us.dunlopsports.com/srixon/tour/tour-pros/hideki-matsuyama",
+      "source_title": "Hideki Matsuyama | Srixon/Dunlop Tour Pros",
+      "checked_at": "2026-05-15T00:00:00.000Z",
+      "notes": "Official Srixon/Dunlop tour page. Official context for Srixon staff/player equipment, but full 14-club shaft/loft details are not all listed."
     },
     {
       "source_type": "official",
       "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/stats",
       "source_title": "Hideki Matsuyama PGA TOUR Stats",
       "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "PGA TOUR official stats page used for club head speed 115.33 mph, driving distance 300.0 yd, scoring average 69.25 and lowest round 64. These are official tour stats, not public TrackMan or GCQuad session data."
-    },
-    {
-      "source_type": "official",
-      "source_url": "https://www.pgatour.com/player/32839/hideki-matsuyama/career",
-      "source_title": "Hideki Matsuyama PGA TOUR Career",
-      "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Career page confirms all-time career low round and PGA TOUR career context."
-    },
-    {
-      "source_type": "article",
-      "source_url": "https://www.golfwrx.com/751995/hideki-matsuyama-witb-2025-january-the-sentry/",
-      "source_title": "Hideki Matsuyama’s winning WITB: 2025 Sentry - GolfWRX",
-      "checked_at": "2026-04-10T00:00:00.000Z",
-      "notes": "Latest detailed full-bag breakdown found for Matsuyama."
+      "notes": "PGA TOUR official stats page used for club head speed, driving distance, scoring average and low round context."
     }
   ],
   "article": {
     "slug": "hideki-matsuyama-2026-setting-update",
-    "title": "松山英樹のクラブセッティングを更新｜2026年公式WITB一部確認",
-    "excerpt": "松山英樹の2026年クラブセッティングとして、Srixon/Dunlop公式ページで確認できるZXi LS Driver、Z-Forged II、Z-STAR XVを反映しました。",
-    "body": "松山英樹のクラブセッティングについて、Srixon/Dunlop公式ツアーページで確認できる2026年時点のWITB情報を反映しました。公式ページではZXi LS Driver、Z-Forged II Irons、Z-STAR XV Golf Ballsが確認できます。一方で、フェアウェイウッド、ウェッジ、パター、シャフトなどを含む14本の詳細までは公式ページで明記されていないため、MyBagProでは2025年ザ・セントリー優勝時の詳細WITBを補助ソースとして残し、確認範囲が分かる形にしています。",
+    "title": "松山英樹のクラブセッティングを更新｜Tour AD FI投入を反映",
+    "excerpt": "松山英樹の2026年最新クラブセッティングを更新。ZXi LSプロト、Tour AD FI 80TX、Qi10 3W、RADSPEED Tour 5W、Z-Forged II、RTX4、Newport 2、Z-STAR XVまで整理しました。",
+    "body": "松山英樹のクラブセッティングを、2026年3月28日公開のみんなのゴルフダイジェスト記事を主ソースに更新しました。\n\n今回の大きな変更点は、1Wシャフトです。長く使ってきたTour AD DI系から、Graphite Design Tour AD FI 80TXへ変更した内容を反映しています。ヘッドはSrixon ZXi LS Prototype Driver 9°です。\n\n3WはTaylorMade Qi10 15°、5WはCobra King RADSPEED Tour 17.5°。どちらもTour AD DIの重めスペックで、3Wは90TX、5Wは100TXです。撮影時はSrixon ZXi5の3I 20°も確認されていますが、記事内で練習日撮影の15本構成と明記されているため、MyBagProでは入れ替え候補として掲載しています。\n\nアイアンはSrixon Z-Forged IIの4I〜9I、シャフトはDynamic Gold Tour Issue S400。ウェッジはCleveland RTX4 Forged Prototypeの48°、52°、56°、60°を2°寝かせた62°で、LWのみX100として整理しました。\n\nパターはScotty Cameron Newport 2 Tour Prototype、ボールはSrixon Z-STAR XVです。\n\nアマチュアが参考にするなら、同じ重さやTXフレックスを真似ることではなく、3W・5W・3Iをコースに応じて入れ替える考え方、そしてウェッジ4本でショートゲームの距離を細かく作る設計です。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-05-15T00:00:00.000Z"
+    "published_at": "2026-05-31T00:00:00.000Z"
   }
 }
