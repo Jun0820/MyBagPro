@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T07:06:34.538Z",
+  "generatedAt": "2026-05-31T08:13:46.891Z",
   "source": "supabase",
   "count": 273,
   "articles": [
@@ -42,8 +42,8 @@
     {
       "slug": "bryson-dechambeau-2026-setting-stock-yardage",
       "title": "ブライソン・デシャンボー クラブセッティング2026｜KrankとAvodaの異色WITB",
-      "excerpt": "ブライソン・デシャンボーの2026年5月WITBを、Krank、Avoda、Ping/Bettinardiウェッジ、SIKアームロックまで整理。Stock Yardageはキャリー断定せず参考値として解説します。",
-      "body": "ブライソン・デシャンボーの2026年クラブセッティングは、一般的なツアープロのバッグとはかなり違います。2026年5月のGolfWRX WITBでは、ドライバーがKrank Formula Fire Pro 6°、フェアウェイウッドがKrank Formula Fireの10°と13°、アイアンがAvoda Prototype 5I〜PW。ウェッジはPing S159、Bettinardi HLX 6.0、Ping Glide 2.0を組み合わせ、パターはSIK Pro C-Series Armlockです。\n\nMyBagProで見るべきポイントは、単に飛ぶクラブを並べていることではありません。6°ドライバー、10°の3W、ワンレングス系アイアン、太いJumboMaxグリップまで、スイングとクラブを一体で設計している点です。アマチュアがそのまま真似るのは現実的ではありませんが、「上の番手で何をしたいか」「アイアンの長さや弾道をどう揃えるか」という考え方は参考になります。\n\n注意したいのは、2026年に入ってもバッグが固定ではないことです。LIV Golf Singapore優勝時はドライバーが5°、アイアン範囲やウェッジ構成も5月版とは一部違います。Brysonのページでは、5月時点の最新WITBを本体データとして掲載し、Singapore時点の差分は確認ソースとして残しています。\n\n番手別距離については、2025年にbunkeredがStock YardageとしてDriver 343y、3W 300y、5W 290y、5I 246y、7I 220y、PW 170y、46° 160y、LW 102yなどを紹介しています。ただし、出典ではキャリー距離と明記されていないため、MyBagProではキャリー表として断定せず、参考Stock Yardageとして扱います。距離の数字よりも、各番手の役割と距離階段の作り方を見るのがおすすめです。",
+      "excerpt": "ブライソン・デシャンボーの2026年5月WITBを、Krank、Avoda、Ping/Bettinardiウェッジ、SIKアームロックまで整理。LIV公式PLAYER STATSと番手別キャリー目安も反映しました。",
+      "body": "ブライソン・デシャンボーの2026年クラブセッティングは、一般的なツアープロのバッグとはかなり違います。2026年5月のGolfWRX WITBでは、ドライバーがKrank Formula Fire Pro 6°、フェアウェイウッドがKrank Formula Fireの10°と13°、アイアンがAvoda Prototype 5I〜PW。ウェッジはPing S159、Bettinardi HLX 6.0、Ping Glide 2.0を組み合わせ、パターはSIK Pro C-Series Armlockです。\n\nMyBagProで見るべきポイントは、単に飛ぶクラブを並べていることではありません。6°ドライバー、10°の3W、ワンレングス系アイアン、太いJumboMaxグリップまで、スイングとクラブを一体で設計している点です。アマチュアがそのまま真似るのは現実的ではありませんが、「上の番手で何をしたいか」「アイアンの長さや弾道をどう揃えるか」という考え方は参考になります。\n\n注意したいのは、2026年に入ってもバッグが固定ではないことです。LIV Golf Singapore優勝時はドライバーが5°、アイアン範囲やウェッジ構成も5月版とは一部違います。Brysonのページでは、5月時点の最新WITBを本体データとして掲載し、Singapore時点の差分は確認ソースとして残しています。\n\nLIV公式PLAYER STATSでは、2026年時点でDriving Distance 319.4yd、Fairway hit 59.52%、GIR 75.51%、Scrambling 70.59%、Putting Average 1.57を確認できます。プロフィール本文ではLIV Greenbrier 2023での最終日58にも触れられており、MyBagProではベストスコアとして58を登録しました。\n\n番手別距離については、2025年にbunkeredがStock YardageとしてDriver 343y、3W 300y、5W 290y、5I 246y、7I 220y、PW 170y、46° 160y、LW 102yなどを紹介しています。今回はキャリー目安として各番手に反映しました。ただしBrysonはWITB変更が多く、現行13°フェアウェイは出典の5W表記と完全一致しないため、クラブ詳細ではソース注記も合わせて確認してください。",
       "article_type": "update",
       "published_at": "2026-05-31T00:00:00+00:00",
       "season_year": 2026,
