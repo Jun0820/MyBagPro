@@ -18,8 +18,19 @@ export const tournamentSpotlights: TournamentSpotlight[] = [
     statusLabel: '開催中',
     eventDates: '2026年5月28日-31日',
     summary:
-      '2R終了時点で都玲華と佐久間朱莉が首位。河本結、吉田鈴も含め、上位勢の確認済み14本を週末観戦の入口にします。',
-    featuredPlayerSlugs: ['reika-miyako', 'sakuma-akari', 'yui-kawamoto', 'rin-yoshida'],
+      '3R終了時点で神谷そらが首位。河本結、政田夢乃、佐久間朱莉も含め、上位勢の確認済み14本を最終日観戦の入口にします。',
+    featuredPlayerSlugs: ['kamiya-sora', 'yui-kawamoto', 'yumeno-masada', 'sakuma-akari'],
+  },
+  {
+    articleSlug: 'mizuno-open-2026-final-day-kodaira-setting-watch',
+    tourKey: 'jgto',
+    tourLabel: 'JGTO',
+    tournamentName: '〜全英への道〜ミズノオープン',
+    statusLabel: '開催中',
+    eventDates: '2026年5月28日-31日',
+    summary:
+      '全英出場権がかかる国内男子の重要週。小平智、米澤蓮、木下稜介、生源寺龍憲の確認済みページから、風と硬い地面に強い番手構成を見ます。',
+    featuredPlayerSlugs: ['satoshi-kodaira', 'ren-yonezawa', 'ryosuke-kinoshita', 'tatsunori-shogenji'],
   },
   {
     articleSlug: 'pga-championship-2026-result-aaron-rai-setting-review',
