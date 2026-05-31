@@ -16,12 +16,12 @@
     "ball_name": "TaylorMade TP5",
     "feature_1": "2026年4月確認",
     "feature_2": "テーラーメイド中心",
-    "feature_3": "公式carry yardage詳細あり",
-    "summary": "ローリー・マキロイの2026年クラブセッティングを、GolfWRXの2026年4月WITBとTaylorMade公式の2026年マスターズ優勝WITBをもとに、Qi4D、P760/Rors Proto、MG5、Spider Tour Xまで確認できる形で整理したページです。",
+    "feature_3": "stock carry yardage確認済み",
+    "summary": "ローリー・マキロイのクラブセッティングを、2026年WITBと2025年にTaylorMade提供値として紹介されたstock carry yardageを分けて確認できるように整理したページです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-05-15T00:00:00.000Z"
+    "verified_at": "2026-05-31T00:00:00.000Z"
   },
   "bagItems": [
     {
@@ -34,8 +34,7 @@
       "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "carry_distance": 325,
-      "total_distance": 316,
-      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで確認。TaylorMade公式記事ではQi4D 9°を2クリックLower、Ventus Black 6X、45 5/8インチと記載。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBでQi4D Driverを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（Driver/Qi10 325yd）を目安として掲載。",
       "is_featured_item": true,
       "shaft_weight": "60g台"
     },
@@ -50,7 +49,7 @@
       "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "carry_distance": 295,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では3Wのstock carry yardageは295yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで3Wを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（3W/Qi10 295yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "80g台"
     },
@@ -78,7 +77,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
       "carry_distance": 245,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では4Iのstock carry yardageは245yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで4Iを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（4I/Prototype 245yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "130g"
     },
@@ -92,7 +91,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
       "carry_distance": 225,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では5Iのstock carry yardageは225yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで5Iを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（5I/Rors Proto 225yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "130g"
     },
@@ -106,7 +105,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
       "carry_distance": 210,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では6Iのstock carry yardageは210yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで6Iを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（6I/Rors Proto 210yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "130g"
     },
@@ -120,7 +119,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
       "carry_distance": 195,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では7Iのstock carry yardageは195yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで7Iを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（7I/Rors Proto 195yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "130g"
     },
@@ -134,7 +133,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
       "carry_distance": 180,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では8Iのstock carry yardageは180yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで8Iを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（8I/Rors Proto 180yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "130g"
     },
@@ -148,7 +147,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "7.0",
       "carry_distance": 165,
-      "source_note": "Confirmed from GolfWRX Rory McIlroy WITB 2026 (April). TaylorMade公式のArnold Palmer Invitational記事では9Iのstock carry yardageは165yd。",
+      "source_note": "GolfWRX 2026 AprilとTaylorMade公式2026年マスターズ優勝WITBで9Iを確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（9I/Rors Proto 165yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "130g"
     },
@@ -163,7 +162,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "carry_distance": 150,
-      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 46°を確認。Arnold Palmer Invitational時の公式stock carry yardageではPWは150yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 46°を確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（46° 150yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "125g"
     },
@@ -178,7 +177,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "carry_distance": 136,
-      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 50° SBを確認。Arnold Palmer Invitational時の公式stock carry yardageでは50°は136yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 50°を確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（50° 136yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "125g"
     },
@@ -193,7 +192,7 @@
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
       "carry_distance": 125,
-      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 54° SBを確認。Arnold Palmer Invitational時の公式stock carry yardageでは54°は125yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 54°を確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（54° 125yd）を目安として掲載。",
       "is_featured_item": false,
       "shaft_weight": "125g"
     },
@@ -208,7 +207,7 @@
       "shaft_model": "Project X Wedge",
       "shaft_flex": "6.5",
       "carry_distance": 105,
-      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 60° LBを61°に調整していることを確認。Arnold Palmer Invitational時の公式stock carry yardageでは60°は105yd。",
+      "source_note": "TaylorMade公式2026年マスターズ優勝WITBでMG5 60°を確認。距離はBunkered 2025年4月のTaylorMade提供stock carry yardage（60° 105yd）を目安として掲載。",
       "is_featured_item": false
     },
     {
@@ -262,13 +261,20 @@
       "source_title": "GolfWRX Rory McIlroy WITB 2026 (April)",
       "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.bunkered.co.uk/gear/rory-mcilroy-stock-yardages/",
+      "source_title": "bunkered Rory McIlroy stock yardages",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "2025年4月11日公開、2025年4月13日更新。TaylorMade提供のstock carry yardageとして、Driver 325yd、3W 295yd、3I 258yd、4I 245yd、5I 225yd、6I 210yd、7I 195yd、8I 180yd、9I 165yd、46° 150yd、50° 136yd、54° 125yd、60° 105ydを確認。"
     }
   ],
   "article": {
     "slug": "rory-mcilroy-2026-setting-update",
     "title": "ローリー・マキロイ クラブセッティング 2026年版 14本と使用ドライバー",
-    "excerpt": "ローリー・マキロイの2026年クラブセッティングに、TaylorMade公式の2026年マスターズ優勝WITBを追加反映しました。Qi4D、MG5、Spider Tour Xまで確認できます。",
-    "body": "ローリー・マキロイのクラブセッティングについて、TaylorMade公式の2026年マスターズ優勝WITBを追加反映しました。Qi4Dドライバー、Qi10の3W、Qi4Dの5W、P760 4I、Rors Protoアイアン、MG5ウェッジ、Spider Tour Xパター、TaylorMade TP5という流れで、2026年4月時点の構成を確認できます。TaylorMade公式記事では、Qi4Dドライバーのセッティング、5Wの完成ロフト、MG5ウェッジのロフト構成、Spider Tour Xのスペックまで確認できるため、従来のGolfWRX WITBと合わせて参照できるように整理しました。",
+    "excerpt": "ローリー・マキロイのWITBに加え、TaylorMade提供値として紹介されたstock carry yardageも確認できるように更新しました。",
+    "body": "ローリー・マキロイのクラブセッティングについて、TaylorMade公式の2026年マスターズ優勝WITBを追加反映しました。Qi4Dドライバー、Qi10の3W、Qi4Dの5W、P760 4I、Rors Protoアイアン、MG5ウェッジ、Spider Tour Xパター、TaylorMade TP5という流れで、2026年4月時点の構成を確認できます。TaylorMade公式記事では、Qi4Dドライバーのセッティング、5Wの完成ロフト、MG5ウェッジのロフト構成、Spider Tour Xのスペックまで確認できるため、従来のGolfWRX WITBと合わせて参照できるように整理しました。\n\n2025年4月にbunkeredが紹介したTaylorMade提供のstock carry yardageも追加しました。Driver 325yd、3W 295yd、3I 258yd（参考値）、4I 245yd、7I 195yd、46° 150ydなど、プロの距離階段を自分の番手構成と比較しやすいデータです。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

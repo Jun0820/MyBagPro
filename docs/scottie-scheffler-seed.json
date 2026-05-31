@@ -16,12 +16,12 @@
     "ball_name": "Titleist Pro V1",
     "feature_1": "2026年1月確認",
     "feature_2": "テーラーメイド中心",
-    "feature_3": "14本確認済み",
-    "summary": "スコッティ・シェフラーの2026年クラブセッティングを、2026年1月の優勝時WITBをもとに、使用ドライバー、フェアウェイウッド、ユーティリティアイアン、アイアン、ウェッジ、パター、使用ボールまで14本ベースで確認できるページです。",
+    "feature_3": "stock carry yardage追加",
+    "summary": "スコッティ・シェフラーの2026年クラブセッティングを、優勝時WITBとGolf Monthly掲載のStock Yardage（Carry）をあわせて確認できるページです。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-04-10T00:00:00.000Z"
+    "verified_at": "2026-05-31T00:00:00.000Z"
   },
   "bagItems": [
     {
@@ -34,9 +34,10 @@
       "shaft_model": "Ventus Black",
       "shaft_flex": "X",
       "total_distance": 312,
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 Driverは300yd carry。",
       "is_featured_item": true,
-      "shaft_weight": "70g台"
+      "shaft_weight": "70g台",
+      "carry_distance": 300
     },
     {
       "category": "Fairway Wood",
@@ -48,9 +49,10 @@
       "shaft_brand": "Fujikura",
       "shaft_model": "Ventus Black",
       "shaft_flex": "X",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 3Wは270yd carry。",
       "is_featured_item": false,
-      "shaft_weight": "80g台"
+      "shaft_weight": "80g台",
+      "carry_distance": 270
     },
     {
       "category": "Fairway Wood",
@@ -75,8 +77,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 4Iは226yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 226
     },
     {
       "category": "Iron",
@@ -87,8 +90,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 5Iは212yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 212
     },
     {
       "category": "Iron",
@@ -99,8 +103,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 6Iは198yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 198
     },
     {
       "category": "Iron",
@@ -111,8 +116,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 7Iは184yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 184
     },
     {
       "category": "Iron",
@@ -123,8 +129,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 8Iは170yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 170
     },
     {
       "category": "Iron",
@@ -135,8 +142,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 9Iは156yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 156
     },
     {
       "category": "Wedge",
@@ -147,8 +155,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "X100",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 PWは144yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 144
     },
     {
       "category": "Wedge",
@@ -160,8 +169,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 50°は131yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 131
     },
     {
       "category": "Wedge",
@@ -173,8 +183,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 56°は118yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 118
     },
     {
       "category": "Wedge",
@@ -186,8 +197,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GolfWRX Scottie Scheffler winning WITB 2026 American Express.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyのStock Yardage (Carry)表で確認。WITBとは別の距離目安として掲載。 60°は105yd carry。",
+      "is_featured_item": false,
+      "carry_distance": 105
     },
     {
       "category": "Putter",
@@ -226,13 +238,20 @@
       "source_title": "GolfWRX Scottie Scheffler winning WITB 2026 American Express",
       "checked_at": "2026-04-10T00:00:00.000Z",
       "notes": "Used for latest detailed 14-club breakdown and ball confirmation."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/tour/what-are-scottie-scheffler-stock-yardages",
+      "source_title": "Golf Monthly What Are Scottie Scheffler’s Stock Yardages?",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "表見出しがStock Yardage (Carry)。Driver 300yd、3W 270yd、3I 245yd、4I 226yd、5I 212yd、6I 198yd、7I 184yd、8I 170yd、9I 156yd、PW 144yd、50° 131yd、56° 118yd、60° 105ydを確認。"
     }
   ],
   "article": {
     "slug": "scottie-scheffler-2026-setting-update",
     "title": "スコッティ・シェフラー クラブセッティング 2026年版 14本と使用ドライバー",
-    "excerpt": "スコッティ・シェフラーの2026年クラブセッティングを、14本の構成、使用ドライバー、使用ボールまで分かる形で掲載しました。",
-    "body": "スコッティ・シェフラーのクラブセッティングについて、2026年1月のアメリカン・エキスプレス優勝時点で確認できた14本の構成を反映しました。Qi10ドライバー、Qi10 3W、Qi4D 7W、ZU85 4I、P7TWアイアン、Vokeyウェッジ、Spider Tour Xパター、Titleist Pro V1という流れで、スコッティ・シェフラーの現在のクラブセッティングを確認できます。TaylorMade公式の現行プレーヤーページも参照しつつ、詳細スペックはGolfWRXの最新優勝WITBをベースに整理しています。",
+    "excerpt": "スコッティ・シェフラーのWITBに加え、Golf Monthly掲載のStock Yardage（Carry）を追加しました。",
+    "body": "スコッティ・シェフラーのクラブセッティングについて、2026年1月のアメリカン・エキスプレス優勝時点で確認できた14本の構成を反映しました。Qi10ドライバー、Qi10 3W、Qi4D 7W、ZU85 4I、P7TWアイアン、Vokeyウェッジ、Spider Tour Xパター、Titleist Pro V1という流れで、スコッティ・シェフラーの現在のクラブセッティングを確認できます。TaylorMade公式の現行プレーヤーページも参照しつつ、詳細スペックはGolfWRXの最新優勝WITBをベースに整理しています。\n\nGolf MonthlyのStock Yardage（Carry）表も追加し、Driver 300yd、3W 270yd、7I 184yd、PW 144yd、50° 131yd、60° 105ydなどを確認できるようにしました。クラブ名だけでなく距離階段を見ることで、アマチュアも番手構成の作り方を比較しやすくなります。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,

@@ -15,12 +15,12 @@
     "ball_name": "TaylorMade TP5x pix 2024",
     "feature_1": "2025シーズン基準",
     "feature_2": "TaylorMade中心",
-    "feature_3": "PGA TOUR公式スタッツ追加",
-    "summary": "トミー・フリートウッドのクラブセッティングページ。ツアー選手権時点で確認できた14本の構成に加えて、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も確認できるように整理しています。",
+    "feature_3": "stock carry yardage追加",
+    "summary": "トミー・フリートウッドのクラブセッティングページ。確認済みWITBに加え、Golf MonthlyがTaylorMade公開値として掲載したstock carry yardageも確認できるように整理しています。",
     "latest_source_policy": "2025_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-04-08T00:00:00.000Z",
+    "verified_at": "2026-05-31T00:00:00.000Z",
     "kana_name": "トミー・フリートウッド"
   },
   "bagItems": [
@@ -34,9 +34,9 @@
       "shaft_model": "VENTUS TR BLUE",
       "shaft_flex": "X",
       "shaft_weight": "60g台",
-      "total_distance": 299,
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page. PGA TOUR公式2026 statsではDriving Distance 299.3yd。",
-      "is_featured_item": true
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 Driverは300yd。",
+      "is_featured_item": true,
+      "carry_distance": 300
     },
     {
       "category": "Driver",
@@ -63,8 +63,9 @@
       "shaft_model": "Kuro Kage",
       "shaft_flex": "X",
       "shaft_weight": "80g台",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 5Wは260yd。",
+      "is_featured_item": false,
+      "carry_distance": 260
     },
     {
       "category": "Fairway Wood",
@@ -89,9 +90,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 5Iは215yd。",
       "is_featured_item": false,
-      "shaft_weight": "125g"
+      "shaft_weight": "125g",
+      "carry_distance": 215
     },
     {
       "category": "Iron",
@@ -102,9 +104,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 6Iは200yd。",
       "is_featured_item": false,
-      "shaft_weight": "125g"
+      "shaft_weight": "125g",
+      "carry_distance": 200
     },
     {
       "category": "Iron",
@@ -115,9 +118,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 7Iは186yd。",
       "is_featured_item": false,
-      "shaft_weight": "125g"
+      "shaft_weight": "125g",
+      "carry_distance": 186
     },
     {
       "category": "Iron",
@@ -128,9 +132,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 8Iは173yd。",
       "is_featured_item": false,
-      "shaft_weight": "125g"
+      "shaft_weight": "125g",
+      "carry_distance": 173
     },
     {
       "category": "Iron",
@@ -141,9 +146,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 9Iは160yd。",
       "is_featured_item": false,
-      "shaft_weight": "125g"
+      "shaft_weight": "125g",
+      "carry_distance": 160
     },
     {
       "category": "Wedge",
@@ -154,9 +160,10 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Project X",
       "shaft_flex": "6.5",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 PWは145yd。",
       "is_featured_item": false,
-      "shaft_weight": "125g"
+      "shaft_weight": "125g",
+      "carry_distance": 145
     },
     {
       "category": "Wedge",
@@ -168,8 +175,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 Gap Wedgeは125yd。",
+      "is_featured_item": false,
+      "carry_distance": 125
     },
     {
       "category": "Wedge",
@@ -194,8 +202,9 @@
       "shaft_brand": "True Temper",
       "shaft_model": "Dynamic Gold Tour Issue",
       "shaft_flex": "S400",
-      "source_note": "Confirmed from GDO 2025 Tour Championship setting page.",
-      "is_featured_item": false
+      "source_note": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。現行WITBと番手構成が完全一致しないため、距離目安として掲載。 Lob Wedgeは100yd。",
+      "is_featured_item": false,
+      "carry_distance": 100
     },
     {
       "category": "Putter",
@@ -234,13 +243,20 @@
       "source_title": "GDO トミー・フリートウッド クラブセッティング 2025年 ツアー選手権",
       "checked_at": "2026-04-08T00:00:00.000Z",
       "notes": "Used for bio fields, 2025 full bag, and ball confirmation."
+    },
+    {
+      "source_type": "article",
+      "source_url": "https://www.golfmonthly.com/tour/what-are-tommy-fleetwood-stock-yardages",
+      "source_title": "Golf Monthly What Are Tommy Fleetwood’s Stock Yardages?",
+      "checked_at": "2026-05-31T00:00:00.000Z",
+      "notes": "Golf MonthlyがTaylorMade公開値として掲載したstock yardage。Driver 300yd、3W 280yd、5W 260yd、7W 240yd、4I 225yd、5I 215yd、6I 200yd、7I 186yd、8I 173yd、9I 160yd、PW 145yd、GW 125yd、LW 100ydを確認。"
     }
   ],
   "article": {
     "slug": "tommy-fleetwood-2025-setting-update",
     "title": "トミー・フリートウッドの最新クラブセッティングを更新しました｜PGA TOUR公式スタッツを追加",
-    "excerpt": "トミー・フリートウッドのクラブセッティングとして、14本構成に加えてPGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離を追加しました。",
-    "body": "トミー・フリートウッドのクラブセッティングを確認したい人向けに、ツアー選手権時点で確認できた14本のクラブ構成と使用ボールを維持しつつ、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追加しました。バッグ詳細はQi35 Driver、r7 QUAD Mini Driver、Qi35 Fairway Wood、P7TW Iron、HI-TOE 4 Wedge、MG Prototype Wedge、Spider Tour Black Putter、TaylorMade TP5x pixという流れで、数値面はPGA TOUR公式2026 stats/careerを参照しています。TaylorMade公式の現行プレーヤーページではQi4D LS DriverとR7 Quad Mini Driverを中心とした最新構成も確認できます。",
+    "excerpt": "トミー・フリートウッドのWITBに加え、TaylorMade公開値として紹介されたstock yardageを追加しました。",
+    "body": "トミー・フリートウッドのクラブセッティングを確認したい人向けに、ツアー選手権時点で確認できた14本のクラブ構成と使用ボールを維持しつつ、PGA TOUR公式のクラブヘッドスピード、平均スコア、ベストスコア、飛距離も追加しました。バッグ詳細はQi35 Driver、r7 QUAD Mini Driver、Qi35 Fairway Wood、P7TW Iron、HI-TOE 4 Wedge、MG Prototype Wedge、Spider Tour Black Putter、TaylorMade TP5x pixという流れで、数値面はPGA TOUR公式2026 stats/careerを参照しています。TaylorMade公式の現行プレーヤーページではQi4D LS DriverとR7 Quad Mini Driverを中心とした最新構成も確認できます。\n\nGolf MonthlyがTaylorMade公開値として紹介したstock yardageも追加しました。Driver 300yd、5W 260yd、7I 186yd、PW 145yd、GW 125yd、LW 100ydなど、方向性重視のトッププロがどのように距離階段を作っているかを確認できます。",
     "article_type": "update",
     "season_year": 2025,
     "published": true,
