@@ -12,6 +12,20 @@ const json = (res: any, status: number, body: Record<string, unknown>) => {
 
 const toText = (value: unknown) => (typeof value === 'string' ? value : value == null ? '' : String(value));
 
+const isUuid = (value: string) =>
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+
+const generateUuid = () => {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+    return crypto.randomUUID();
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (char) => {
+    const rand = Math.random() * 16 | 0;
+    const value = char === 'x' ? rand : (rand & 0x3) | 0x8;
+    return value.toString(16);
+  });
+};
+
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -63,9 +77,19 @@ export default async function handler(req: any, res: any) {
       updated_at: new Date().toISOString(),
     };
 
+    const idMap = new Map<string, string>();
+    const toPersistedClubId = (rawId: unknown) => {
+      const textId = toText(rawId);
+      if (textId && isUuid(textId)) return textId;
+      if (textId && idMap.has(textId)) return idMap.get(textId) as string;
+      const nextId = generateUuid();
+      if (textId) idMap.set(textId, nextId);
+      return nextId;
+    };
+
     const normalizedClubs = Array.isArray(clubPayloads)
       ? clubPayloads.map((club: any) => ({
-          id: toText(club?.id),
+          id: toPersistedClubId(club?.id),
           user_id: user.id,
           category: toText(club?.category),
           brand: toText(club?.brand),
@@ -110,7 +134,12 @@ export default async function handler(req: any, res: any) {
 
     const verifiedIds = new Set((verifyResult.data || []).map((row) => row.id));
     const expectedById = new Map(dedupedClubs.map((club) => [club.id, club]));
-    const expected = Array.isArray(expectedIds) ? expectedIds.map((id) => toText(id)).filter(Boolean) : [];
+    const expected = Array.isArray(expectedIds)
+      ? expectedIds.map((id) => {
+          const textId = toText(id);
+          return idMap.get(textId) || textId;
+        }).filter(Boolean)
+      : [];
     const missingIds = expected.filter((id) => !verifiedIds.has(id));
 
     if ((verifyResult.data || []).length !== dedupedClubs.length) {

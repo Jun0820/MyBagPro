@@ -12,6 +12,17 @@ import { BagShareCard } from '../features/share/BagShareCard';
 import { trackEvent } from '../lib/analytics';
 import { saveDiagnosisRankingsToCompare } from '../lib/diagnosisCompare';
 
+const generateClubId = () => {
+    if (typeof globalThis !== 'undefined' && globalThis.crypto?.randomUUID) {
+        return globalThis.crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (char) => {
+        const rand = Math.random() * 16 | 0;
+        const value = char === 'x' ? rand : (rand & 0x3) | 0x8;
+        return value.toString(16);
+    });
+};
+
 // Trajectory Animation Component (Local or Imported)
 const TrajectoryAnimation = () => (
     <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden mix-blend-overlay opacity-30">
@@ -151,7 +162,7 @@ export const ResultPage = () => {
         if (!topModel) return;
         const category = profile.targetCategory || TargetCategory.DRIVER;
         const newClub = {
-            id: Math.random().toString(36),
+            id: generateClubId(),
             category: category as string,
             brand: topModel.brand || '',
             model: topModel.modelName || '',
