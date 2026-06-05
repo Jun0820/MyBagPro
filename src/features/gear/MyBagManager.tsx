@@ -409,6 +409,18 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         onManualSave?.(next);
     }, [onManualSave]);
 
+    useEffect(() => {
+        if (!onManualSave) return;
+        if (!hasUnsavedChanges) return;
+        if (isManualSaveInFlight || saveStatus === 'saving') return;
+
+        const timer = window.setTimeout(() => {
+            saveCurrentSetting();
+        }, 1600);
+
+        return () => window.clearTimeout(timer);
+    }, [hasUnsavedChanges, isManualSaveInFlight, onManualSave, saveCurrentSetting, saveStatus, setting]);
+
     const sortedClubs = [...setting.clubs].sort((a, b) => {
         // 1. Parse distances (extract digits only)
         const distA = a.distance ? parseInt(String(a.distance).replace(/\D/g, ''), 10) : 0;
