@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-22T01:15:59.378Z",
-  "checkedCount": 108,
-  "needsUpdateCount": 0,
-  "found2026Count": 43,
+  "generatedAt": "2026-06-07T06:27:30.640Z",
+  "checkedCount": 129,
+  "needsUpdateCount": 4,
+  "found2026Count": 65,
   "checks": [
     {
       "file": "docs/adam-scott-seed.json",
@@ -135,6 +135,71 @@
       }
     },
     {
+      "file": "docs/ai-suzuki-seed.json",
+      "slug": "ai-suzuki",
+      "name": "鈴木愛",
+      "gdoId": "6807",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/6807/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6807/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/6807/2026/1/",
+        "title": "鈴木愛 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "鈴木愛",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "G440 K ドライバー(9度)",
+            "shaft": "VENTUS BLUE(ベンタス ブルー)(重さ50g台、硬さR)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "G440 LST フェアウェイウッド(3番15度)",
+            "shaft": "ALTA CB(65R)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "G440 MAX フェアウェイウッド(5番19度)",
+            "shaft": "ALTA CB(65R)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "G440 ハイブリッドユーティリティ(4番22度、5番26度)",
+            "shaft": "ALTA CB BLUE(75SR)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ブループリント S アイアン(6番～9、W)",
+            "shaft": "NSプロ 850GH(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "s159 ウェッジ(50、54、58度)",
+            "shaft": "CFS WEDGE(R)"
+          },
+          {
+            "genre": "パター",
+            "product": "ピン スコッツデールテック ALLY BLUE ONSET",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/akie-iwai-seed.json",
       "slug": "akie-iwai",
       "name": "岩井明愛",
@@ -249,6 +314,146 @@
           {
             "genre": "ボール",
             "product": "スリクソン Z-STAR XV ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/arimura-chie-seed.json",
+      "slug": "arimura-chie",
+      "name": "有村智恵",
+      "gdoId": "203",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/203/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/203/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/203/2026/1/",
+        "title": "有村智恵 クラブセッティング 2026年 Vポイント×SMBCレディス",
+        "playerName": "有村智恵",
+        "year": 2026,
+        "tournament": "Vポイント×SMBCレディス",
+        "situation": "取材：2026年 Vポイント×SMBCレディス",
+        "itemCount": 10,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "RMX 116 ドライバー(10.5度)",
+            "shaft": "グラファイトデザイン Tour AD プロトタイプ(硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "RMX VD フェアウェイウッド(5番18度)",
+            "shaft": "Tour AD(ツアー エーディ)TP(重さ50g台、硬さR1)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "RMX フェアウェイウッド(7番20度)",
+            "shaft": "Tour AD(ツアー エーディ)TP(重さ50g台、硬さR1)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "RMX(リミックス)VD ユーティリティ(5番24度)",
+            "shaft": "三菱ケミカル フブキ(重さ65g、硬さR)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "RMX DD-1 アイアン(7番)",
+            "shaft": "日本シャフト NSプロ750 ラップテック(硬さR)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ヤマハ RMX DD-1 TOUR MODEL(8番～PW)",
+            "shaft": "日本シャフト NSプロ750 ラップテック(硬さR)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY FORGED(ボーケイ フォージド)ウェッジ＜2025年＞(48度)",
+            "shaft": "日本シャフト NSプロ750 ラップテック(硬さR)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY FORGED(ボーケイ フォージド)ウェッジ＜2025年＞(52、58度)",
+            "shaft": "NSプロ 950GH neo(硬さSR)"
+          },
+          {
+            "genre": "パター",
+            "product": "オデッセイ ホワイトホット ブラックシリーズ#7",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "TOUR(ツアー)B X ボール＜2026年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/asuka-kashiwabara-seed.json",
+      "slug": "asuka-kashiwabara",
+      "name": "柏原明日架",
+      "gdoId": "9853",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/9853/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/9853/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/9853/2026/1/",
+        "title": "柏原明日架 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "柏原明日架",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "QUANTUM ◆◆◆(トリプルダイヤ) ドライバー(9度＋)",
+            "shaft": "ディアマナ スティンガー(重さ53g、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "パラダイム Ai スモーク ◆◆◆(トリプルダイヤモンド)T フェアウェイウッド(3番14度)",
+            "shaft": "ディアマナ カイリ(重さ60g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "APEX UW＜2023年＞(3番19度、4番23度)",
+            "shaft": "ディアマナ WB(重さ73g、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "APEX アイアン(6番)",
+            "shaft": "NSプロ 850GH neo"
+          },
+          {
+            "genre": "アイアン",
+            "product": "X FORGED STAR アイアン(7番～PW)",
+            "shaft": "NSプロ 850GH neo"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM10 ウェッジ(48度、52度、56度、60度)",
+            "shaft": "日本シャフト NSプロモーダス3 105ウェッジ(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "WHITE HOT OG パター ROSSIE(ホワイト・ホット OG パター ロッシー)S",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "CHROME TOUR(クロムツアー)X ボール＜2026年＞",
             "shaft": ""
           }
         ]
@@ -720,6 +925,71 @@
       }
     },
     {
+      "file": "docs/erika-kikuchi-seed.json",
+      "slug": "erika-kikuchi",
+      "name": "菊地絵理香",
+      "gdoId": "486",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/486/2024/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/486/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/486/2024/1/",
+        "title": "菊地絵理香 クラブセッティング 2024年 ミヤギテレビ杯ダンロップ女子オープン",
+        "playerName": "菊地絵理香",
+        "year": 2024,
+        "tournament": "ミヤギテレビ杯ダンロップ女子オープン",
+        "situation": "取材：2024年 ミヤギテレビ杯ダンロップ女子オープン",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "GT3 ドライバー(10度)",
+            "shaft": "SPEEDER NX BLACK(重さ50g台、硬さSR)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "プロギア RS5(3番15度、5番18度)",
+            "shaft": "SPEEDER 569(硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ROGUE(ローグ)ST MAX フェアウェイウッド(7番21度)",
+            "shaft": "SPEEDER NX GREEN(スピーダー エヌエックス グリーン)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "GT2 フェアウェイウッド(9番21度)",
+            "shaft": "SPEEDER NX BLACK(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "T350 アイアン＜2023年＞(7番～PW)",
+            "shaft": "NSプロ ゼロス7(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM10 ウェッジ(46度、52度、58度)",
+            "shaft": "日本シャフト NSプロ ゼロス8(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "オデッセイ ジラフビーム 2BALL-BLADE パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/haruka-amamoto-seed.json",
       "slug": "haruka-amamoto",
       "name": "天本ハルカ",
@@ -796,54 +1066,59 @@
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/19030/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": false,
+      "needsUpdate": true,
       "gdo": {
-        "url": "https://news.golfdigest.co.jp/players/setting/19030/2025/2/",
-        "title": "入谷響 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
+        "url": "https://news.golfdigest.co.jp/players/setting/19030/2026/1/",
+        "title": "入谷響 クラブセッティング 2026年 ブリヂストンレディス",
         "playerName": "入谷響",
-        "year": 2025,
-        "tournament": "ミヤギテレビ杯ダンロップ女子オープン",
-        "situation": "取材：2025年 ミヤギテレビ杯ダンロップ女子オープン",
-        "itemCount": 8,
+        "year": 2026,
+        "tournament": "ブリヂストンレディス",
+        "situation": "取材：2026年 ブリヂストンレディス",
+        "itemCount": 9,
         "entries": [
           {
             "genre": "ドライバー",
-            "product": "スリクソン ZXi LS ドライバー(9度)",
-            "shaft": "TENSEI Pro Orange 1K(テンセイ プロ オレンジ ワンケー)(重さ60g台、硬さS)"
+            "product": "スリクソン ZXi LS ドライバー(8度)",
+            "shaft": "24 VENTUS BLUE(ベンタス ブルー)(重さ60g台、硬さS、長さ45インチ)"
           },
           {
             "genre": "FW＆UT",
-            "product": "スリクソン ZXi フェアウェイウッド(3番15度)",
-            "shaft": "ディアマナ WB(重さ63g、硬さS)"
+            "product": "スリクソン ZXi フェアウェイウッド(3番13.5度)",
+            "shaft": "24 VENTUS BLUE(ベンタス ブルー)(重さ60g台、硬さS)"
           },
           {
             "genre": "FW＆UT",
-            "product": "スリクソン ZXi ハイブリッドユーティリティ(2番17度、4番22度)",
-            "shaft": "TENSEI 1K ハイブリッド(重さ70g台、S)"
+            "product": "スリクソン ZXi ハイブリッドユーティリティ(2番17度、3番19度)",
+            "shaft": "藤倉コンポジット 24 VENTUS RED HB(重さ70g台、硬さS)"
           },
           {
             "genre": "アイアン",
-            "product": "スリクソン ZXi5 アイアン(5番～PW)",
+            "product": "スリクソン ZXi5 アイアン(5番、6番)",
+            "shaft": "日本シャフト NSプロ モーダス3 ハイブリッド HL (硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン ZXi5 アイアン(7番)",
+            "shaft": "NSプロ モーダス3 ツアー105(硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン ZXi7 アイアン(8番～PW)",
             "shaft": "NSプロ モーダス3 ツアー105(硬さS)"
           },
           {
             "genre": "ウェッジ",
-            "product": "RTZ ウェッジ(48度、52度)",
-            "shaft": "NSプロ モーダス3 ツアー105(硬さS)"
-          },
-          {
-            "genre": "ウェッジ",
-            "product": "RTZツアーラック(58度)",
+            "product": "RTZ ウェッジ(48度、52度、58度)",
             "shaft": "NSプロ モーダス3 ツアー105(硬さS)"
           },
           {
             "genre": "パター",
-            "product": "TP コレクション DELMONTE TB1 パター",
+            "product": "Spider(スパイダー)TOUR X パター",
             "shaft": ""
           },
           {
             "genre": "ボール",
-            "product": "スリクソン Z-STAR ダイヤモンド ボール〈2025年〉",
+            "product": "スリクソン Z-STAR XV ボール＜2025年＞",
             "shaft": ""
           }
         ]
@@ -985,6 +1260,71 @@
       }
     },
     {
+      "file": "docs/hinako-shibuno-seed.json",
+      "slug": "hinako-shibuno",
+      "name": "渋野日向子",
+      "gdoId": "17955",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/17955/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17955/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/17955/2026/1/",
+        "title": "渋野日向子 クラブセッティング 2026年 ファウンダーズカップ",
+        "playerName": "渋野日向子",
+        "year": 2026,
+        "tournament": "ファウンダーズカップ",
+        "situation": "取材：2026年 ファウンダーズカップ",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "スリクソン ZXi LS ドライバープロトタイプ(10.5度)",
+            "shaft": "SPEEDER NX GOLD"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "Qi4D フェアウェイウッド(3番15度、5番18度)",
+            "shaft": "24 VENTUS BLUE(ベンタス ブルー)(50g台、S)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "Qi4D レスキュー(4番22度、5番25度)",
+            "shaft": "VENTUS HB BLUE(ベンタス ハイブリッド ブルー)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン ZXi5 アイアン(6番)",
+            "shaft": "NSプロ 950GH(硬さR)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン ZXi7 アイアン(7番～PW)",
+            "shaft": "NSプロ 950GH(硬さR)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(50度、54度、58度)",
+            "shaft": "NSプロ 950GH(硬さR)"
+          },
+          {
+            "genre": "パター",
+            "product": "テーラーメイド スパイダーツアーV ダブルベンド",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "スリクソン Z-STAR XV ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/hiroshi-iwata-seed.json",
       "slug": "hiroshi-iwata",
       "name": "岩田 寛",
@@ -1044,6 +1384,71 @@
           {
             "genre": "パター",
             "product": "PRO(プロ)V1x ボールPRO(プロ)V1x ボール",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/hori-kotone-seed.json",
+      "slug": "hori-kotone",
+      "name": "堀琴音",
+      "gdoId": "11188",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/11188/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/11188/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/11188/2026/1/",
+        "title": "堀琴音 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "堀琴音",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "QUANTUM ◆◆◆(トリプルダイヤ)MAX ドライバー(10.5度)",
+            "shaft": "Tour AD(ツアー エーディ)HD(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "パラダイム Ai スモーク MAX フェアウェイウッド(3番15度、5番18度)",
+            "shaft": "Tour AD(ツアー エーディ)HD(50g台、S)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "Qi35 フェアウェイウッド(7番21度)",
+            "shaft": "Tour AD(ツアー エーディ)HD(50g台、S)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ツアーステージ X-DRIVE GR ユーティリティ(2010年モデル)(4番23度、5番25度)",
+            "shaft": "MCH シャフト(60g台、S)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ツアーB X-CB アイアン(2016年)(6番～PW)",
+            "shaft": "MCH シャフト(80g台、R)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "ジューシー tT(51、58度)",
+            "shaft": "NSプロ 950GH(S)"
+          },
+          {
+            "genre": "パター",
+            "product": "スコッティキャメロン FUTURA X DUALバランス",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "TOUR(ツアー)B X ボール＜2026年＞",
             "shaft": ""
           }
         ]
@@ -1250,6 +1655,66 @@
       }
     },
     {
+      "file": "docs/jiyai-shin-seed.json",
+      "slug": "jiyai-shin",
+      "name": "申ジエ",
+      "gdoId": "217",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/217/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/217/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/217/2026/1/",
+        "title": "申ジエ クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "申ジエ",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 7,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "GT2 ドライバー(9度)",
+            "shaft": "The ATTAS(ジ・アッタス)V2(重さ50g台、硬さS"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ステルス プラス フェアウェイウッド(3番15度、5番19度)",
+            "shaft": "SPEEDER NX(スピーダー エヌエックス)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ステルス2 レスキュー(4番22度、5番25度)",
+            "shaft": "MCH シャフト(重さ60g台、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "三浦技研 CB-302(6番～PW)",
+            "shaft": "グラファイトデザイン ツアーAD AD-65 タイプⅡ(硬さS"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "三浦技研 MG-R01ウェッジ(50、54、60度)",
+            "shaft": "NSプロ 850GH(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "スコッティキャメロン スーパーラットⅡ",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1 ボール＜2023年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/jon-rahm-seed.json",
       "slug": "jon-rahm",
       "name": "ジョン・ラーム",
@@ -1376,24 +1841,29 @@
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/11392/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": false,
+      "needsUpdate": true,
       "gdo": {
-        "url": "https://news.golfdigest.co.jp/players/setting/11392/2025/1/",
-        "title": "ジャスティン・トーマス クラブセッティング 2025年 RBCヘリテージ",
+        "url": "https://news.golfdigest.co.jp/players/setting/11392/2026/1/",
+        "title": "ジャスティン・トーマス クラブセッティング 2026年 ザ・メモリアルトーナメント ※練習日のために15本",
         "playerName": "ジャスティン・トーマス",
-        "year": 2025,
-        "tournament": "RBCヘリテージ",
-        "situation": "取材：2025年 RBCヘリテージ",
-        "itemCount": 10,
+        "year": 2026,
+        "tournament": "ザ・メモリアルトーナメント ※練習日のために15本",
+        "situation": "取材：2026年 ザ・メモリアルトーナメント ※練習日のために15本",
+        "itemCount": 12,
         "entries": [
           {
             "genre": "ドライバー",
-            "product": "GT2 ドライバー(10度)",
-            "shaft": "三菱ディアマナ プロトタイプ"
+            "product": "GTS2 ドライバー(9度)",
+            "shaft": "三菱ケミカル ディアマナホワイトボード(重さ60g台、硬さTX)"
+          },
+          {
+            "genre": "ドライバー",
+            "product": "GTS300(13度)",
+            "shaft": "三菱ケミカル ディアマナホワイトボード(重さ60g台、硬さTX)"
           },
           {
             "genre": "FW＆UT",
-            "product": "TS3 フェアウェイウッド(3番15度)",
+            "product": "GTS3 フェアウェイウッド(3番15度)",
             "shaft": "三菱ケミカル TENSEI AV Raw ブルー 85TX"
           },
           {
@@ -1404,31 +1874,36 @@
           {
             "genre": "アイアン",
             "product": "T200 アイアン＜2023年＞(4番)",
-            "shaft": "トゥルーテンパー ダイナミックゴールド ツアー イシュー X100"
+            "shaft": "トゥルーテンパー ダイナミックゴールド ツアーイシュー(X100)"
           },
           {
             "genre": "アイアン",
             "product": "T100 アイアン＜2023年＞(5番)",
-            "shaft": "トゥルーテンパー ダイナミックゴールド ツアー イシュー X100"
+            "shaft": "トゥルーテンパー ダイナミックゴールド ツアーイシュー(X100)"
           },
           {
             "genre": "アイアン",
             "product": "タイトリスト 621.JT(6番～9番)",
-            "shaft": "トゥルーテンパー ダイナミックゴールド ツアー イシュー X100"
+            "shaft": "トゥルーテンパー ダイナミックゴールド ツアーイシュー(X100)"
           },
           {
             "genre": "ウェッジ",
-            "product": "VOKEY(ボーケイ)SM10 ウェッジ(46度)",
-            "shaft": "トゥルーテンパー ダイナミックゴールド ツアー イシューX100"
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(46度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド(X100)"
           },
           {
             "genre": "ウェッジ",
-            "product": "VOKEY(ボーケイ)SM10 ウェッジ(52度、56度、60度)",
-            "shaft": "トゥルーテンパー ダイナミックゴールド ツアー イシュー S400"
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(52.5、56度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド(S400)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "ボーケイSM11ウェッジワークス(60.5度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド(S400)"
           },
           {
             "genre": "パター",
-            "product": "スコッティキャメロン ファントム5 ツアー プロトタイプ",
+            "product": "スコッティキャメロン ファントム9.5Rプロトタイプ",
             "shaft": ""
           },
           {
@@ -1600,6 +2075,71 @@
       }
     },
     {
+      "file": "docs/kanazawa-shina-seed.json",
+      "slug": "kanazawa-shina",
+      "name": "金澤志奈",
+      "gdoId": "16563",
+      "currentGdoYear": 2025,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/16563/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/16563/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/16563/2025/2/",
+        "title": "金澤志奈 クラブセッティング 2025年 ミヤギテレビ杯ダンロップ女子オープン",
+        "playerName": "金澤志奈",
+        "year": 2025,
+        "tournament": "ミヤギテレビ杯ダンロップ女子オープン",
+        "situation": "取材：2025年 ミヤギテレビ杯ダンロップ女子オープン",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "ツアーワールド TR20 460 ドライバー(9.5度)",
+            "shaft": "ディアマナ BF(重さ50g台、硬さSR)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ツアーワールド GS フェアウェイウッド(3番15度、5番18度、7番21度)",
+            "shaft": "Tour AD(ツアー エーディ)TP(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "TW717 ユーティリティ(5番25度、6番28度)",
+            "shaft": ""
+          },
+          {
+            "genre": "アイアン",
+            "product": "ツアーワールド TW757 Vx アイアン(7番～PW)",
+            "shaft": "NSプロ 850GH(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "ツアーワールド TW-W ウェッジ(48度)",
+            "shaft": "NSプロ 850GH(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "RM22 ウェッジ(50度、56度)",
+            "shaft": "NSプロ 950GH(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "WHITE HOT(ホワイト・ホット)OG パター #1WS＜2020年＞",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "TOUR(ツアー)B XS ボール＜2024年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/kano-nakamura-seed.json",
       "slug": "kano-nakamura",
       "name": "仲村果乃",
@@ -1654,6 +2194,81 @@
           {
             "genre": "ボール",
             "product": "TOUR(ツアー)B X ボール",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/kasa-ritsuko-seed.json",
+      "slug": "kasa-ritsuko",
+      "name": "笠りつ子",
+      "gdoId": "434",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/434/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/434/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/434/2026/1/",
+        "title": "笠りつ子 クラブセッティング 2026年 Vポイント×SMBCレディス",
+        "playerName": "笠りつ子",
+        "year": 2026,
+        "tournament": "Vポイント×SMBCレディス",
+        "situation": "取材：2026年 Vポイント×SMBCレディス",
+        "itemCount": 10,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "パラダイム ◆◆◆(トリプルダイヤモンド)ドライバー(10度)",
+            "shaft": "Tour AD(ツアー エーディ)TP(重さ60g台、硬さSR)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "G440 MAX フェアウェイウッド(3番15度)",
+            "shaft": "Tour AD(ツアー エーディ)DI(重さ60g台、硬さSR)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ツアーワールド TW737 FWc フェアウェイウッド(7番21度)",
+            "shaft": "本間ゴルフ VIZARD EX-C 65(硬さSR)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ELYTE(エリート)MAX FAST ユーティリティ(4番21度)",
+            "shaft": "グラファイトデザイン ツアーAD DI-75 HYBRID(硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ツアーワールド TW737 P アイアン(5番、7～10番)",
+            "shaft": "NSプロ 850GH(硬さR)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ツアーワールド TW727P アイアン(6番)",
+            "shaft": "NSプロ 850GH(硬さR)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY FORGED(ボーケイ フォージド)ウェッジ＜2025年＞(46度)",
+            "shaft": "NSプロ 850GH(硬さR)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "本間ゴルフ ツアーワールド TW-W ウェッジ(52、57度)",
+            "shaft": "NSプロ 850GH(硬さR)"
+          },
+          {
+            "genre": "パター",
+            "product": "オデッセイ DAMASCUS MILLED SEVEN DB パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
             "shaft": ""
           }
         ]
@@ -1940,6 +2555,66 @@
       }
     },
     {
+      "file": "docs/kota-kaneko-seed.json",
+      "slug": "kota-kaneko",
+      "name": "金子駆大",
+      "gdoId": "18407",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/18407/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18407/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/18407/2026/1/",
+        "title": "金子駆大 クラブセッティング 2026年「東建ホームメイトカップ」 ※練習日撮影のため15本",
+        "playerName": "金子駆大",
+        "year": 2026,
+        "tournament": "「東建ホームメイトカップ」 ※練習日撮影のため15本",
+        "situation": "取材：2026年「東建ホームメイトカップ」 ※練習日撮影のため15本",
+        "itemCount": 7,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "G440 MAX ドライバー(10.5度)",
+            "shaft": "VENTUS TR BLUE(ベンタス ティーアール ブルー)(重さ60g台、硬さX)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "Qi4D フェアウェイウッド(3HL16.5度、7番21度、9番24度)",
+            "shaft": "VENTUS TR BLUE(ベンタス ティーアール ブルー)(3HL＝重さ70g台、硬さX／7番＆9番＝重さ90g台、硬さX)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "T200 アイアン＜2023年＞(4番)",
+            "shaft": "日本シャフト NSプロ モーダス3 システム3 プラス プロトタイプ(硬さX)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "P760 アイアン(5～9番)",
+            "shaft": "日本シャフト NSプロ モーダス3 システム3 プラス プロトタイプ(硬さX)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(46、52、56、60度)",
+            "shaft": "日本シャフト NSプロモーダス3 システム3＋ プロトタイプ(46、52、56度＝硬さX／60度＝硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "Ai-ONE CRUISER(クルーザー)アームロック #7 DB パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1 ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/kotoko-uchida-seed.json",
       "slug": "kotoko-uchida",
       "name": "内田ことこ",
@@ -1999,6 +2674,71 @@
           {
             "genre": "ボール",
             "product": "スリクソン Z-STAR XV ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/lala-anai-seed.json",
+      "slug": "lala-anai",
+      "name": "穴井詩",
+      "gdoId": "6509",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/6509/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6509/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/6509/2026/1/",
+        "title": "穴井詩 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "穴井詩",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "Qi4D ドライバー(9度)",
+            "shaft": "SPEEDER NX GOLD(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "Qi4D フェアウェイウッド(3番15度、5番18度、7番21度)",
+            "shaft": "SPEEDER NX GOLD(重さ60g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "キャロウェイ ローグ ユーティリティ(5番24度)",
+            "shaft": ""
+          },
+          {
+            "genre": "アイアン",
+            "product": "JPX 921 TOUR アイアン(5番～PW)",
+            "shaft": "KBS ツアー FLT115"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "RTZ ウェッジ(52度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド ツアーイシュー オニキスブラック(S200)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "グラインドスタジオ(58度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド ツアーイシュー オニキスブラック(S200)"
+          },
+          {
+            "genre": "パター",
+            "product": "PHANTOM(ファントム)7.2 パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1 ボール＜2025年＞",
             "shaft": ""
           }
         ]
@@ -2384,6 +3124,71 @@
           {
             "genre": "ボール",
             "product": "TOUR(ツアー)B X ボール＜2026年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/minami-katsu-seed.json",
+      "slug": "minami-katsu",
+      "name": "勝みなみ",
+      "gdoId": "11068",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/11068/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/11068/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/11068/2026/1/",
+        "title": "勝みなみ クラブセッティング 2026年 ホンダLPGA",
+        "playerName": "勝みなみ",
+        "year": 2026,
+        "tournament": "ホンダLPGA",
+        "situation": "取材：2026年 ホンダLPGA",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "スリクソン ZXi ドライバープロトタイプ(10.5度)",
+            "shaft": "ディアマナ GT(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "スリクソン ZXi フェアウェイウッド(3番15度、5番18度)",
+            "shaft": "ディアマナ GT(重さ60g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "GT2 ユーティリティ メタル(4番21度、5番24度)",
+            "shaft": "三菱ケミカル TENSEI PRO 1Kハイブリッド(重さ60g台、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン ZXi5 アイアン(5番)",
+            "shaft": "NSプロ 950GH neo"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン Z-FORGED(フォージド)II アイアン(6番～9番)",
+            "shaft": "NSプロ 950GH neo"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "RTZ ウェッジ(50、54、58度)",
+            "shaft": "NSプロ 950GH neo"
+          },
+          {
+            "genre": "パター",
+            "product": "WHITE HOT VERSA ONE CH プロトタイプ",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "スリクソン Z-STAR ダイヤモンド ボール〈2025年〉",
             "shaft": ""
           }
         ]
@@ -2965,6 +3770,71 @@
       }
     },
     {
+      "file": "docs/nanako-inagaki-seed.json",
+      "slug": "nanako-inagaki",
+      "name": "稲垣那奈子",
+      "gdoId": "18379",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/18379/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18379/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/18379/2026/1/",
+        "title": "稲垣那奈子 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "稲垣那奈子",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "JPX ONE ドライバー(9度)",
+            "shaft": "24 VENTUS RED(ベンタス レッド)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "JPX ONE フェアウェイウッド(3番15度、5番18度)",
+            "shaft": "SPEEDER NX GOLD(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "JPX ONE ユーティリティ(4番22度)",
+            "shaft": "VENTUS HB BLUE(ベンタス ハイブリッド ブルー)(重さ70g台、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ミズノプロ 243 アイアン(6番～PW)",
+            "shaft": "NSプロ 850GH(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "ミズノプロ T-3 ウェッジ(48度、54度)",
+            "shaft": "NSプロ 950GH(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(58度)",
+            "shaft": "NSプロ 950GH(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "Ai-DUAL TRI-BEAM JAILBIRD MINI パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
       "file": "docs/naoyuki-kataoka-seed.json",
       "slug": "naoyuki-kataoka",
       "name": "片岡 尚之",
@@ -3034,6 +3904,136 @@
           {
             "genre": "ボール",
             "product": "スリクソン Z-STAR XV ボール",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/narika-miyata-seed.json",
+      "slug": "narika-miyata",
+      "name": "宮田成華",
+      "gdoId": "17927",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/17927/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17927/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/17927/2026/1/",
+        "title": "宮田成華 クラブセッティング 2026年 ホンダLPGA",
+        "playerName": "宮田成華",
+        "year": 2026,
+        "tournament": "ホンダLPGA",
+        "situation": "取材：2026年 ホンダLPGA",
+        "itemCount": 9,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "G440 LST ドライバー(9度)",
+            "shaft": "Tour AD(ツアー エーディ)VF(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "ドライバー",
+            "product": "GT280 ミニドライバー(13度)",
+            "shaft": "Tour AD(ツアー エーディ)VF(60g台、S)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "GT2 フェアウェイウッド(16.5度)",
+            "shaft": "Tour AD(ツアー エーディ)VF(60g台、S)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "GT2 ユーティリティ メタル(3番18度、5番24度)",
+            "shaft": "ツアーAD DI ハイブリッド(80g台、S)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ミズノプロ 243 アイアン(6番―PW)",
+            "shaft": "NSプロ 950GH(S)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM10 ウェッジ(48度)",
+            "shaft": "NSプロ 950GH(S)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM10 ウェッジ(54、58度)",
+            "shaft": "ダイナミックゴールド(S200)"
+          },
+          {
+            "genre": "パター",
+            "product": "スタジオスタイル ニューポート 2 プラス パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/nasa-hataoka-seed.json",
+      "slug": "nasa-hataoka",
+      "name": "畑岡奈紗",
+      "gdoId": "17056",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/17056/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17056/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/17056/2026/1/",
+        "title": "畑岡奈紗 クラブセッティング 2026年 トーナメント・オブ・チャンピオンズ",
+        "playerName": "畑岡奈紗",
+        "year": 2026,
+        "tournament": "トーナメント・オブ・チャンピオンズ",
+        "situation": "取材：2026年 トーナメント・オブ・チャンピオンズ",
+        "itemCount": 7,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "ダンロップ スリクソン ZXi プロトタイプ(10.5度)",
+            "shaft": "ディアマナ WB(重さ53g、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "スリクソン ZXi フェアウェイウッド(3番15度)",
+            "shaft": "TENSEI Pro White 1K(テンセイ プロ ホワイト ワンケー)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "GT2 ユーティリティ メタル(4番21度、5番24度)",
+            "shaft": "三菱ケミカル TENSEI Pro 1Kハイブリッド(重さ70g台、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン ZXi7 アイアン(5～9番)",
+            "shaft": "NSプロ 850GH neo(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "RTZ ウェッジ(46、50、54、58度)",
+            "shaft": "NSプロ 950GH(硬さR)"
+          },
+          {
+            "genre": "パター",
+            "product": "スコッツデールTR パター PIPER C",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "スリクソン Z-STAR ダイヤモンド ボール〈2025年〉",
             "shaft": ""
           }
         ]
@@ -3429,6 +4429,76 @@
           {
             "genre": "ボール",
             "product": "PRO(プロ)V1x ボール＜2025年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/rickie-fowler-seed.json",
+      "slug": "rickie-fowler",
+      "name": "リッキー・ファウラー",
+      "gdoId": "4566",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/4566/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/4566/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/4566/2026/1/",
+        "title": "リッキー・ファウラー クラブセッティング 2026年 ザ・アメリカンエキスプレス",
+        "playerName": "リッキー・ファウラー",
+        "year": 2026,
+        "tournament": "ザ・アメリカンエキスプレス",
+        "situation": "取材：2026年 ザ・アメリカンエキスプレス",
+        "itemCount": 9,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "OPTM X ドライバー(9度)",
+            "shaft": "USTマミヤ LIN-Q PowerCore WHITE プロトタイプ(重さ60g台、硬さTX)"
+          },
+          {
+            "genre": "ドライバー",
+            "product": "コブラ KING TEC MD ミニドライバー(13度)",
+            "shaft": "USTマミヤ LIN-Q PowerCore BLUE プロトタイプ(重さ70g台、硬さTX)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "コブラ KING TEC フェアウェイウッド(5番17.5度)",
+            "shaft": "USTマミヤ LIN-Q PowerCore BLUE プロトタイプ(重さ80g台、硬さTX)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "コブラ 3DP TOUR RF アイアン(4番～PW)",
+            "shaft": "トゥルーテンパー エアロテック スチールファイバー i125cw"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "コブラ スネークバイトウェッジ(52度)",
+            "shaft": "ダイナミックゴールド ツアーイシュー(S400)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "KING ウェッジ(56度)",
+            "shaft": "ダイナミックゴールド ツアーイシュー(S400)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "RTZ ウェッジツアーラック(60度)",
+            "shaft": "ダイナミックゴールド ツアーイシュー(S400)"
+          },
+          {
+            "genre": "パター",
+            "product": "スコッティ・キャメロン GoLo プロトタイプ",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1 ボール＜2023年＞",
             "shaft": ""
           }
         ]
@@ -3964,6 +5034,146 @@
           {
             "genre": "ボール",
             "product": "TOUR(ツアー)B X ボール＜2026年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/saki-nagamine-seed.json",
+      "slug": "saki-nagamine",
+      "name": "永峰咲希",
+      "gdoId": "9860",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/9860/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/9860/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/9860/2026/1/",
+        "title": "永峰咲希 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "永峰咲希",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 9,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "GT3 ドライバー(10.5度)",
+            "shaft": "SPEEDER NX GREEN(スピーダー エヌエックス グリーン)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "GT2 フェアウェイウッド(3番 15度、7番21度)",
+            "shaft": "SPEEDER NX GREEN(スピーダー エヌエックス グリーン)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "Qi35 フェアウェイウッド(9番24度)",
+            "shaft": "VENTUS TR BLUE(ベンタス ティーアール ブルー)(重さ70g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "Qi4D レスキュー(6番28度)",
+            "shaft": "藤倉コンポジットTR HYBRID(重さ75g、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "P770 アイアン＜2024年＞(6～9番)",
+            "shaft": "日本シャフト NSプロモーダス3プロトタイプ(硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "P7CB アイアン(PW)",
+            "shaft": "日本シャフト NSプロモーダス3プロトタイプ(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(48、54、58度)",
+            "shaft": "日本シャフト NSプロ プロトタイプ(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "スコッティキャメロン Phantom 5 S パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1 ボール＜2023年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/sakuma-akari-seed.json",
+      "slug": "sakuma-akari",
+      "name": "佐久間朱莉",
+      "gdoId": "18138",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/18138/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18138/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/18138/2026/1/",
+        "title": "佐久間朱莉 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "佐久間朱莉",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 9,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "G430 MAX 10K ドライバー(9度)",
+            "shaft": "NSプロ レジオ フォーミュラ MB+(重さ55g、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "G430 MAX フェアウェイウッド(3番 15度、7番21度)",
+            "shaft": "NSプロ レジオ フォーミュラ MB+(重さ55g、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "G430 ハイブリッド(5番26度)",
+            "shaft": "日本シャフト NSプロ プロトタイプ"
+          },
+          {
+            "genre": "アイアン",
+            "product": "i240 アイアン(5番)",
+            "shaft": "NSプロ モーダス3 ハイブリッド グラファイト オン スチール テクノロジー"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ブループリント S アイアン(6,7番)",
+            "shaft": "NSプロ 850GH(硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ブループリント T アイアン(8番～W)",
+            "shaft": "NSプロ 850GH(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "s259 ウェッジ(50、54、58度)",
+            "shaft": "日本シャフト NSプロ プロトタイプ(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "スコッツデール DS72 パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
             "shaft": ""
           }
         ]
@@ -4559,6 +5769,66 @@
           {
             "genre": "ボール",
             "product": "プロ V1X ボール",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/suga-fuka-seed.json",
+      "slug": "suga-fuka",
+      "name": "菅楓華",
+      "gdoId": "18841",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/18841/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18841/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/18841/2026/1/",
+        "title": "菅楓華 クラブセッティング 2026年 ダイキンオーキッドレディス",
+        "playerName": "菅楓華",
+        "year": 2026,
+        "tournament": "ダイキンオーキッドレディス",
+        "situation": "取材：2026年 ダイキンオーキッドレディス",
+        "itemCount": 7,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "スリクソン ZXi TR ドライバー(9度)",
+            "shaft": "TENSEI Pro Blue 1K(テンセイ プロ ブルー ワンケー)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "スリクソン ZXi フェアウェイウッド(3番15度)",
+            "shaft": "TENSEI Pro Blue 1K(テンセイ プロ ブルー ワンケー)(重さ50g台、硬さS)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "スリクソン ZXi ハイブリッドユーティリティ(3番19度、4番22度、5番25度)",
+            "shaft": "三菱ケミカル TENSEI Pro 1K Hybrid(重さ70g台、硬さS)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "スリクソン ZXi5 アイアン(6番～PW)",
+            "shaft": "NSプロ 850GH neo(硬さS)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "RTZ ウェッジ(48、54、58度)",
+            "shaft": "NSプロ 850GH neo(硬さS)"
+          },
+          {
+            "genre": "パター",
+            "product": "TRI-BEAM #2 パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "スリクソン Z-STAR XV ボール＜2025年＞",
             "shaft": ""
           }
         ]
@@ -5299,61 +6569,71 @@
       "slug": "tommy-fleetwood",
       "name": "トミー・フリートウッド",
       "gdoId": "6264",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
         "https://news.golfdigest.co.jp/players/setting/6264/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6264/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": false,
+      "needsUpdate": true,
       "gdo": {
-        "url": "https://news.golfdigest.co.jp/players/setting/6264/2025/3/",
-        "title": "トミー・フリートウッド クラブセッティング 2025年 ツアー選手権",
+        "url": "https://news.golfdigest.co.jp/players/setting/6264/2026/1/",
+        "title": "トミー・フリートウッド クラブセッティング 2026年 ザ・メモリアルトーナメント",
         "playerName": "トミー・フリートウッド",
-        "year": 2025,
-        "tournament": "ツアー選手権",
-        "situation": "取材：2025年 ツアー選手権",
-        "itemCount": 8,
+        "year": 2026,
+        "tournament": "ザ・メモリアルトーナメント",
+        "situation": "取材：2026年 ザ・メモリアルトーナメント",
+        "itemCount": 10,
         "entries": [
           {
             "genre": "ドライバー",
-            "product": "Qi35 ドライバー(9度)",
-            "shaft": "VENTUS TR BLUE(ベンタス ティーアール ブルー)(重さ60g台、硬さX)"
+            "product": "Qi4D LS ドライバー(9度)",
+            "shaft": "藤倉コンポジット VENTUS TR(重さ60g台、硬さX)"
           },
           {
             "genre": "ドライバー",
             "product": "r7 QUAD(アールセブンクワット)ミニドライバー(13.5度)",
-            "shaft": "VENTUS TR BLUE(ベンタス ティーアール ブルー)(重さ60g台、硬さX)"
+            "shaft": "藤倉コンポジット VENTUS TR(重さ60g台、硬さX)"
           },
           {
             "genre": "FW＆UT",
             "product": "Qi35 フェアウェイウッド(5番18度)",
-            "shaft": "三菱ケミカル クロカゲ(80g台、硬さX)"
+            "shaft": "三菱ケミカル クロカゲ(重さ80g台、硬さTX)"
           },
           {
             "genre": "FW＆UT",
-            "product": "Qi10 フェアウェイウッド(9番24度)",
-            "shaft": "三菱ケミカル クロカゲ(80g台、硬さX)"
+            "product": "Qi4D フェアウェイウッド(9番24度)",
+            "shaft": "三菱ケミカル クロカゲ(重さ80g台、硬さTX)"
           },
           {
             "genre": "アイアン",
             "product": "P7TWアイアン(5番～PW)",
-            "shaft": "トゥルーテンパー プロジェクトX 6.5"
+            "shaft": "トゥルーテンパー プロジェクトX(6.5)"
           },
           {
             "genre": "ウェッジ",
-            "product": "テーラーメイド HI-TOE 4(52度)、テーラーメイド MG プロトタイプ(56度、60度)",
-            "shaft": "トゥルーテンパー ダイナミックゴールド ツアーイシュー S400"
+            "product": "テーラーメイド Hi-Toeウェッジ(52度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド(S400)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "MG(ミルドグラインド)5 ウェッジ(56度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド(S400)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(60度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド(S400)"
           },
           {
             "genre": "パター",
-            "product": "スパイダー ツアー ブラック",
+            "product": "テーラーメイド スパイダーツアーX",
             "shaft": ""
           },
           {
             "genre": "ボール",
-            "product": "TP5x pix ボール＜2024年＞",
+            "product": "TP5x ボール＜2026年＞",
             "shaft": ""
           }
         ]
@@ -5679,61 +6959,76 @@
       "slug": "wyndham-clark",
       "name": "ウィンダム・クラーク",
       "gdoId": "17847",
-      "currentGdoYear": 2024,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
         "https://news.golfdigest.co.jp/players/setting/17847/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/17847/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": false,
+      "needsUpdate": true,
       "gdo": {
-        "url": "https://news.golfdigest.co.jp/players/setting/17847/2024/1/",
-        "title": "ウィンダム・クラーク クラブセッティング 2024年 ウェルズファーゴ選手権",
+        "url": "https://news.golfdigest.co.jp/players/setting/17847/2026/1/",
+        "title": "ウィンダム・クラーク クラブセッティング 2026年 ザ・メモリアルトーナメント",
         "playerName": "ウィンダム・クラーク",
-        "year": 2024,
-        "tournament": "ウェルズファーゴ選手権",
-        "situation": "取材：2024年 ウェルズファーゴ選手権",
-        "itemCount": 8,
+        "year": 2026,
+        "tournament": "ザ・メモリアルトーナメント",
+        "situation": "取材：2026年 ザ・メモリアルトーナメント",
+        "itemCount": 11,
         "entries": [
           {
             "genre": "ドライバー",
-            "product": "TSR3 ドライバー(9度)",
-            "shaft": "プロジェクトX HZRDUS Smoke Green(硬さ6.5TX、重さ60g台)"
+            "product": "Qi4D ドライバー(10.5度)",
+            "shaft": "プロジェクトX TITAN YELLOW (重さ60g台、硬さTX)"
           },
           {
             "genre": "FW＆UT",
-            "product": "Qi10 フェアウェイウッド(3番16.5度)",
-            "shaft": "プロジェクトX HZRDUS Smoke Black RDX(硬さTX、重さ80g台)"
+            "product": "Qi4D TOUR フェアウェイウッド(3番 15度)",
+            "shaft": "プロジェクトX TITAN BLACK (重さ80g台、硬さTX)"
           },
           {
             "genre": "FW＆UT",
-            "product": "ミズノプロ FLI-HI アイアン(3番)",
-            "shaft": ""
+            "product": "G440 MAX フェアウェイウッド(5番19度、7番21度)",
+            "shaft": "プロジェクトX HZRDUS SUMOKE BLACK(重さ90g台、硬さTX)"
           },
           {
             "genre": "アイアン",
-            "product": "620 CB アイアン(4～9番)",
-            "shaft": "トゥルーテンパー ダイナミックゴールドX7"
+            "product": "T200 アイアン＜2023年＞(4、5番)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド X SEVEN"
+          },
+          {
+            "genre": "アイアン",
+            "product": "T100 アイアン＜2023年＞(6～9番)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド X SEVEN"
           },
           {
             "genre": "ウェッジ",
-            "product": "VOKEY(ボーケイ)SM10 ウェッジ(46、52、56度)",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(44度)",
+            "shaft": "トゥルーテンパー ダイナミックゴールド ツアーイシュー X SEVEN"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(50度)",
             "shaft": "ダイナミックゴールド(S400)"
           },
           {
             "genre": "ウェッジ",
-            "product": "タイトリスト ボーケイデザイン ウェッジワークス(59度)",
+            "product": "VOKEY(ボーケイ)SM10 ウェッジ(54度)",
+            "shaft": "ダイナミックゴールド(S400)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "タイトリスト ボーケイ SM11 ウェッジワークス (60度)",
             "shaft": "ダイナミックゴールド(S400)"
           },
           {
             "genre": "パター",
-            "product": "オデッセイAi-ONE クルーザー JAILBIRD DB",
+            "product": "スコッツデール TEC ALLY BLUE ONSET(アリーブルーオンセット)パター",
             "shaft": ""
           },
           {
             "genre": "ボール",
-            "product": "PRO(プロ)V1x ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
             "shaft": ""
           }
         ]
@@ -5804,6 +7099,66 @@
           {
             "genre": "ボール",
             "product": "CHROME TOUR(クロムツアー)ボール＜2024年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/yoshimoto-hikaru-seed.json",
+      "slug": "yoshimoto-hikaru",
+      "name": "吉本ひかる",
+      "gdoId": "14485",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/14485/2023/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/14485/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/14485/2023/1/",
+        "title": "吉本ひかる クラブセッティング 2023年 明治安田生命レディス",
+        "playerName": "吉本ひかる",
+        "year": 2023,
+        "tournament": "明治安田生命レディス",
+        "situation": "取材：2023年 明治安田生命レディス",
+        "itemCount": 7,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "ステルス プラス ドライバー(10.5度)",
+            "shaft": "藤倉コンポジット スピーダー569 TR弐(硬さR、45.5インチ)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ステルス フェアウェイウッド(3番15度、5番18度、7番21度)",
+            "shaft": ""
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "ステルス レスキュー(4番22度、5番25度)",
+            "shaft": ""
+          },
+          {
+            "genre": "アイアン",
+            "product": "ミズノプロ 225 アイアン(6番～PW)",
+            "shaft": ""
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "ミズノプロ S18 ウェッジ(50、58度)",
+            "shaft": ""
+          },
+          {
+            "genre": "パター",
+            "product": "O-WORKS オー・ワークス ブラック パター #1",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "ツアーB X ボール",
             "shaft": ""
           }
         ]
@@ -6494,6 +7849,71 @@
           {
             "genre": "ボール",
             "product": "TOUR(ツアー)B X ボール＜2026年＞",
+            "shaft": ""
+          }
+        ]
+      }
+    },
+    {
+      "file": "docs/yusaku-hosono-seed.json",
+      "slug": "yusaku-hosono",
+      "name": "細野勇策",
+      "gdoId": "18615",
+      "currentGdoYear": 2026,
+      "currentGdoUrls": [
+        "https://news.golfdigest.co.jp/players/setting/18615/2026/1/"
+      ],
+      "candidateUrl": "https://news.golfdigest.co.jp/players/setting/18615/2026/1/",
+      "status": 200,
+      "found": true,
+      "needsUpdate": false,
+      "gdo": {
+        "url": "https://news.golfdigest.co.jp/players/setting/18615/2026/1/",
+        "title": "細野勇策 クラブセッティング 2026年 日本プロ",
+        "playerName": "細野勇策",
+        "year": 2026,
+        "tournament": "日本プロ",
+        "situation": "取材：2026年 日本プロ",
+        "itemCount": 8,
+        "entries": [
+          {
+            "genre": "ドライバー",
+            "product": "G440 LST ドライバー(10.5度)",
+            "shaft": "Tour AD(ツアー エーディ)GC(長さ44.75インチ、重さ60g台、硬さTX)"
+          },
+          {
+            "genre": "FW＆UT",
+            "product": "G440 MAX フェアウェイウッド(4番17度、7番21度)",
+            "shaft": "Tour AD(ツアー エーディ)GC(4番：70g台、X、7番：80g台、X)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "G440 アイアン(5、6番)",
+            "shaft": "NSプロ モーダス3 ツアー120(TX)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "i230 アイアン(6～8番)",
+            "shaft": "NSプロ モーダス3 ツアー120(TX)"
+          },
+          {
+            "genre": "アイアン",
+            "product": "ブループリント T アイアン(9番、W)",
+            "shaft": "NSプロ モーダス3 ツアー120(TX)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "s159 ウェッジ(52、56、60度)",
+            "shaft": "NSプロ モーダス3 ツアー120(X)"
+          },
+          {
+            "genre": "パター",
+            "product": "2021 クッシン4 パター",
+            "shaft": ""
+          },
+          {
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
             "shaft": ""
           }
         ]
