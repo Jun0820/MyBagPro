@@ -613,6 +613,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/articles/kota-kaneko-2026-setting-update</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/articles/kotoko-uchida-2026-setting-update</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -2114,6 +2120,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/pros/konosuke-nakazato</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/pros/kota-kaneko</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

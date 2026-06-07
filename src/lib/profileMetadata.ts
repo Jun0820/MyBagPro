@@ -273,6 +273,7 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'joaquin-niemann': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'PING' },
   'in-gee-chun': { category: 'overseas_women', contractStatus: 'club_contract', contractMaker: 'PING' },
   'kaito-onishi': { category: 'japan_men', contractStatus: 'free_contract' },
+  'kota-kaneko': { category: 'japan_men', contractStatus: 'checking' },
   'sahith-theegala': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'PING' },
   'alex-smalley': { category: 'overseas_men', contractStatus: 'checking' },
   'rickie-fowler': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'コブラ' },
