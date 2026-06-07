@@ -1651,6 +1651,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.mybagpro.jp/articles/yusaku-hosono-2026-setting-update</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.mybagpro.jp/articles/yusaku-miyazato-2026-setting-update</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -2822,6 +2828,12 @@
   </url>
   <url>
     <loc>https://www.mybagpro.jp/pros/yuri-yoshida</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mybagpro.jp/pros/yusaku-hosono</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

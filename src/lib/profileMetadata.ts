@@ -86,6 +86,7 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'takanori-konishi': { category: 'japan_men', contractStatus: 'checking' },
   'katsumasa-miyamoto': { category: 'japan_men', contractStatus: 'checking' },
   'yusaku-miyazato': { category: 'japan_men', contractStatus: 'checking' },
+  'yusaku-hosono': { category: 'japan_men', contractStatus: 'club_contract', contractMaker: 'PING' },
   'shingo-katayama': { category: 'japan_men', contractStatus: 'checking' },
   'yuwa-kosaihira': { category: 'japan_men', contractStatus: 'free_contract' },
   'yuji-igarashi': { category: 'japan_men', contractStatus: 'checking' },
