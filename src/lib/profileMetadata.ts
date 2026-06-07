@@ -275,6 +275,7 @@ const metadataBySlug: Record<string, Partial<ProfileMetadata>> = {
   'kaito-onishi': { category: 'japan_men', contractStatus: 'free_contract' },
   'sahith-theegala': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'PING' },
   'alex-smalley': { category: 'overseas_men', contractStatus: 'checking' },
+  'rickie-fowler': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'コブラ' },
   'tiger-woods': { category: 'overseas_men', contractStatus: 'club_contract', contractMaker: 'テーラーメイド' },
 };
 
