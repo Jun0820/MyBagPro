@@ -77,6 +77,20 @@ const BRAND_MODEL_MAP: Record<string, string[]> = {
     'scotty cameron': ['Phantom 5', 'Phantom 5.2', 'Phantom 7', 'Phantom 7.2', 'Phantom 7.5', 'Phantom 9R', 'Newport 2', 'Squareback 2', 'Studio Style Newport 2', 'Studio Style Squareback 2'],
     fourteen: ['RM-4', 'RM-α', 'DJ-6'],
 };
+const BRAND_SHAFT_MAP: Record<string, string[]> = {
+    ping: ['PING TOUR 2.0 CHROME 65', 'PING TOUR 2.0 CHROME 75', 'PING TOUR 2.0 BLACK 65', 'PING TOUR 2.0 BLACK 75', 'ALTA J CB', 'ALTA J CB BLACK', 'ALTA J CB SLATE', 'ALTA DISTANZA', '24 VENTUS BLUE', 'TENSEI Pro Blue 1K'],
+    taylormade: ['TENSEI BLUE TM50', 'TENSEI SILVER TM55', 'SPEEDER NX BLACK 50', 'SPEEDER NX GREEN 50', 'SPEEDER NX VIOLET 50', 'SPEEDER NX GOLD 50', '24 VENTUS BLUE', '26 VENTUS TR BLUE', 'Diamana WB 53'],
+    callaway: ['VENTUS GREEN 50 for Callaway', 'TENSEI GREEN 60 for Callaway', 'LIN-Q BLUE EX 5', 'LIN-Q WHITE EX 5', 'VANQUISH 4', 'VANQUISH 5', 'ATTAS RX SUNRISE RED 5'],
+    titleist: ['TENSEI 1K BLUE 55', 'TENSEI 1K BLUE 65', 'TENSEI 1K BLUE HY 65', 'TENSEI AV BLUE 55', 'Titleist Diamana Blue 55', '24 VENTUS BLUE', '26 VENTUS TR BLUE', 'Tour AD DI-6'],
+    srixon: ['VENTUS TR BLACK', 'Diamana RB 53', 'Tour AD DI-6', 'Tour AD HY-85', 'MODUS3 TOUR 105 S', 'N.S.PRO 950GH neo S'],
+    bridgestone: ['Tour AD GC-5', 'Tour AD GC-6', 'Diamana BB 53', 'VANQUISH VV 5', 'MCI 80', 'MODUS3 TOUR 105 S'],
+    mizuno: ['Tour AD DI-6', '24 VENTUS BLUE', 'MCI 70', 'MCI 80', 'MODUS3 TOUR 105 S', 'N.S.PRO 950GH neo S'],
+    yamaha: ['Diamana YR', 'Diamana WB 53', 'Tour AD UB-5', '24 VENTUS BLUE'],
+    prgr: ['SPEEDER NX BLACK 40', 'SPEEDER NX GREEN 40', 'Diamana RB 43', 'VENTUS TR RED'],
+    xxio: ['MP1300', 'Miyazaki AX-3', 'Diamana RB 43', 'SPEEDER NX GOLD 40'],
+    onoff: ['SMOOTH KICK MP', 'LABOSPEC HASHIRI', 'LABOSPEC SHINARI', 'Diamana WB 53'],
+    cobra: ['MCA Kai\'li Blue', '24 VENTUS BLUE', 'TENSEI AV BLUE 55', 'KBS PGI'],
+};
 const CATEGORY_WEIGHT_MAP: Partial<Record<TargetCategory, string[]>> = {
     [TargetCategory.DRIVER]: ['40g', '45g', '50g', '55g', '60g', '65g', '40g台', '50g台', '60g台'],
     [TargetCategory.FAIRWAY]: ['50g', '55g', '60g', '65g', '70g', '50g台', '60g台', '70g台'],
@@ -297,6 +311,12 @@ const buildModelSuggestions = (brand: string, category: string, currentModel: st
 
 const buildWeightSuggestions = (category: string, currentWeight: string) =>
     Array.from(new Set([currentWeight, ...(CATEGORY_WEIGHT_MAP[category as TargetCategory] || []), ...SHAFT_WEIGHT_SUGGESTIONS].filter(Boolean)));
+
+const buildShaftSuggestions = (brand: string, currentShaft: string) => {
+    const key = normalizeSuggestionKey(brand);
+    const brandShafts = Object.entries(BRAND_SHAFT_MAP).find(([mapKey]) => key.includes(normalizeSuggestionKey(mapKey)))?.[1] || [];
+    return Array.from(new Set([currentShaft, ...brandShafts, ...SHAFT_SUGGESTIONS].filter(Boolean)));
+};
 
 const buildBallModelSuggestions = (brand: string, currentModel: string) => {
     const key = normalizeSuggestionKey(brand);
@@ -947,12 +967,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const renderSuggestionInputs = (club: Club, applyPatch: (patch: Partial<Club>) => void) => {
         const shaftParts = parseShaftParts(club);
         const modelSuggestionId = `mybag-model-suggestions-${club.id}`;
+        const shaftSuggestionId = `mybag-shaft-suggestions-${club.id}`;
         const shaftWeightSuggestionId = `mybag-shaft-weight-suggestions-${club.id}`;
         const modelSuggestions = buildModelSuggestions(club.brand, club.category, club.model);
+        const shaftSuggestions = buildShaftSuggestions(club.brand, shaftParts.model);
         const weightSuggestions = buildWeightSuggestions(club.category, club.shaftWeight || shaftParts.weight);
         return (
             <>
                 <datalist id={modelSuggestionId}>{modelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+                <datalist id={shaftSuggestionId}>{shaftSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
                 <datalist id={shaftWeightSuggestionId}>{weightSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
                 <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
                     <Field label="ブランド">
@@ -962,7 +985,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <input list={modelSuggestionId} className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} placeholder="G430 / Qi35" />
                     </Field>
                     <Field label="シャフト">
-                        <input list="mybag-shaft-suggestions" className={textInputClass} value={shaftParts.model} onChange={(e) => applyPatch({ shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
+                        <input list={shaftSuggestionId} className={textInputClass} value={shaftParts.model} onChange={(e) => applyPatch({ shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
                     </Field>
                     <Field label="フレックス">
                         <input list="mybag-flex-suggestions" className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
@@ -1110,6 +1133,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return slot?.group === batchTarget;
     });
     const commonModelSuggestions = buildModelSuggestions(commonEdit.brand, batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.model);
+    const commonShaftSuggestions = buildShaftSuggestions(commonEdit.brand, commonEdit.shaft);
     const commonWeightSuggestions = buildWeightSuggestions(batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.shaftWeight);
 
     return (
@@ -1121,6 +1145,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             <datalist id="mybag-ball-suggestions">{BALL_MODEL_SUGGESTIONS.map((ballName) => <option key={ballName} value={ballName} />)}</datalist>
             <datalist id="mybag-ball-brand-suggestions">{BALL_BRAND_SUGGESTIONS.map((brandName) => <option key={brandName} value={brandName} />)}</datalist>
             <datalist id="mybag-common-model-suggestions">{commonModelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+            <datalist id="mybag-common-shaft-suggestions">{commonShaftSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-common-shaft-weight-suggestions">{commonWeightSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
 
             {intakeMode !== 'default' && (
@@ -1247,7 +1272,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="mt-4 grid gap-3 md:grid-cols-5">
                             <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={commonEdit.brand} onChange={(e) => setCommonEdit((prev) => ({ ...prev, brand: e.target.value }))} /></Field>
                             <Field label="モデル名"><input list="mybag-common-model-suggestions" className={textInputClass} value={commonEdit.model} onChange={(e) => setCommonEdit((prev) => ({ ...prev, model: e.target.value }))} /></Field>
-                            <Field label="シャフト"><input list="mybag-shaft-suggestions" className={textInputClass} value={commonEdit.shaft} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaft: e.target.value }))} /></Field>
+                            <Field label="シャフト"><input list="mybag-common-shaft-suggestions" className={textInputClass} value={commonEdit.shaft} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaft: e.target.value }))} /></Field>
                             <Field label="フレックス"><input list="mybag-flex-suggestions" className={textInputClass} value={commonEdit.flex} onChange={(e) => setCommonEdit((prev) => ({ ...prev, flex: e.target.value }))} /></Field>
                             <Field label="シャフト重量"><input list="mybag-common-shaft-weight-suggestions" className={textInputClass} value={commonEdit.shaftWeight} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaftWeight: e.target.value }))} placeholder="85g" /></Field>
                         </div>
