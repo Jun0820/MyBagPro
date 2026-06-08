@@ -36,6 +36,15 @@ const EXTENDED_CLUB_COLUMNS = [
   'copied_from_club_id',
 ] as const;
 
+const CLUB_SCHEMA_CACHE_TTL_MS = 5 * 60 * 1000;
+
+type ClubSchemaProbeResult = {
+  checkedAt: number;
+  missingColumns: string[];
+};
+
+let cachedClubSchemaProbe: ClubSchemaProbeResult | null = null;
+
 const isUuid = (value: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 
@@ -48,6 +57,36 @@ const generateUuid = () => {
     const value = char === 'x' ? rand : (rand & 0x3) | 0x8;
     return value.toString(16);
   });
+};
+
+const probeExtendedClubColumns = async (adminClient: ReturnType<typeof createClient>) => {
+  const now = Date.now();
+  if (cachedClubSchemaProbe && now - cachedClubSchemaProbe.checkedAt < CLUB_SCHEMA_CACHE_TTL_MS) {
+    return cachedClubSchemaProbe;
+  }
+
+  const missingColumns: string[] = [];
+  for (const column of EXTENDED_CLUB_COLUMNS) {
+    const extendedColumnsProbe = await adminClient
+      .from('clubs')
+      .select(`id,${column}`)
+      .limit(1);
+
+    if (extendedColumnsProbe.error) {
+      if (extendedColumnsProbe.error.code === '42703') {
+        missingColumns.push(column);
+        continue;
+      }
+      throw new Error(`clubs schema probe (${column}): ${extendedColumnsProbe.error.message}`);
+    }
+  }
+
+  cachedClubSchemaProbe = {
+    checkedAt: now,
+    missingColumns,
+  };
+
+  return cachedClubSchemaProbe;
 };
 
 export default async function handler(req: any, res: any) {
@@ -124,21 +163,7 @@ export default async function handler(req: any, res: any) {
         }))
       : [];
 
-    const missingExtendedColumns: string[] = [];
-    for (const column of EXTENDED_CLUB_COLUMNS) {
-      const extendedColumnsProbe = await adminClient
-        .from('clubs')
-        .select(`id,${column}`)
-        .limit(1);
-
-      if (extendedColumnsProbe.error) {
-        if (extendedColumnsProbe.error.code === '42703') {
-          missingExtendedColumns.push(column);
-          continue;
-        }
-        throw new Error(`clubs schema probe (${column}): ${extendedColumnsProbe.error.message}`);
-      }
-    }
+    const { missingColumns: missingExtendedColumns, checkedAt: schemaCheckedAt } = await probeExtendedClubColumns(adminClient);
     const supportsExtendedClubColumns = missingExtendedColumns.length === 0;
 
     const normalizedClubs = Array.isArray(clubPayloads)
@@ -270,6 +295,7 @@ export default async function handler(req: any, res: any) {
       })),
       extendedColumnsSaved: supportsExtendedClubColumns,
       missingExtendedColumns,
+      schemaCheckedAt,
     });
   } catch (error: any) {
     return json(res, 500, {
