@@ -246,6 +246,25 @@ export default async function handler(req: any, res: any) {
         distance: club.distance,
       })),
       extendedColumnsSaved: supportsExtendedClubColumns,
+      missingExtendedColumns: supportsExtendedClubColumns
+        ? []
+        : [
+            'flex',
+            'number',
+            'carry_distance',
+            'worry',
+            'shaft_weight',
+            'sleeve_setting',
+            'length',
+            'lie_angle',
+            'bounce',
+            'grind',
+            'head_shape',
+            'main_use',
+            'miss_tendency',
+            'memo',
+            'copied_from_club_id',
+          ],
     });
   } catch (error: any) {
     return json(res, 500, {

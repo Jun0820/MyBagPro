@@ -47,6 +47,7 @@ interface DiagnosisContextType {
         dedupedCount: number;
         verifiedCount: number;
         extendedColumnsSaved?: boolean;
+        missingExtendedColumns?: string[];
         sampleClubs: Array<{
             id: string;
             category: string;
@@ -99,6 +100,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         dedupedCount: number;
         verifiedCount: number;
         extendedColumnsSaved?: boolean;
+        missingExtendedColumns?: string[];
         sampleClubs: Array<{
             id: string;
             category: string;
@@ -820,6 +822,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             dedupedCount: clubPayloads.length,
             verifiedCount: 0,
             extendedColumnsSaved: false,
+            missingExtendedColumns: [],
             sampleClubs: buildSaveDebugSample(normalizedClubs),
         });
 
@@ -868,6 +871,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 dedupedCount: Number(payload?.dedupedCount || clubPayloads.length),
                 verifiedCount: Number(payload?.verifiedCount || normalizedClubs.length),
                 extendedColumnsSaved: Boolean(payload?.extendedColumnsSaved),
+                missingExtendedColumns: Array.isArray(payload?.missingExtendedColumns)
+                    ? payload.missingExtendedColumns.filter((column: unknown): column is string => typeof column === 'string' && column.trim().length > 0)
+                    : [],
                 sampleClubs: Array.isArray(payload?.sampleClubs) ? payload.sampleClubs : buildSaveDebugSample(normalizedClubs),
             });
             setHasUnsavedChanges(false);

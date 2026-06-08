@@ -61,6 +61,7 @@ interface MyBagManagerProps {
     lastSaveTargetClubCount?: number;
     lastSavedClubCount?: number;
     extendedColumnsSaved?: boolean;
+    missingExtendedColumns?: string[];
     onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -263,6 +264,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     lastSaveTargetClubCount = 0,
     lastSavedClubCount = 0,
     extendedColumnsSaved = false,
+    missingExtendedColumns = [],
     onManualSave,
     onReloadFromCloud,
     onOpenBallDiagnosis,
@@ -937,8 +939,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             </div>
                         )}
                         {!extendedColumnsSaved && (
-                            <div className="rounded-lg bg-sky-50 px-3 py-2 text-xs font-bold text-sky-800 ring-1 ring-sky-200">
-                                詳細項目は現在 snapshot 保存中です。Supabase 列追加後にクラブ表へ正式保存されます。
+                            <div className="max-w-[32rem] rounded-lg bg-sky-50 px-3 py-2 text-xs font-bold text-sky-800 ring-1 ring-sky-200">
+                                <div>詳細項目は現在 snapshot 保存中です。Supabase 列追加後にクラブ表へ正式保存されます。</div>
+                                {missingExtendedColumns.length > 0 && (
+                                    <div className="mt-1 text-[11px] font-semibold text-sky-700">
+                                        未移行列: {missingExtendedColumns.join(', ')}
+                                    </div>
+                                )}
                             </div>
                         )}
                         <button type="button" onClick={() => saveCurrentSetting()} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 text-xs font-black text-white">

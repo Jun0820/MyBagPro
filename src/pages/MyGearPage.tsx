@@ -658,6 +658,7 @@ export const MyGearPage = () => {
                         lastSaveTargetClubCount={lastSaveTargetClubCount}
                         lastSavedClubCount={lastSavedClubCount}
                         extendedColumnsSaved={Boolean(saveDebugInfo?.extendedColumnsSaved)}
+                        missingExtendedColumns={saveDebugInfo?.missingExtendedColumns || []}
                         onManualSave={(settingOverride) => {
                             return manualSaveMyBag(settingOverride || profile.myBag);
                         }}
