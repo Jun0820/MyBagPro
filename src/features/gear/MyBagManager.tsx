@@ -22,6 +22,7 @@ const BRAND_SUGGESTIONS = ['PING', 'TaylorMade', 'Callaway', 'Titleist', 'Srixon
 const MODEL_SUGGESTIONS = ['G430', 'G425', 'G440', 'Qi10', 'Qi35', 'Qi4D', 'STEALTH', 'PARADYM', 'ELYTE', 'ZX5', 'ZX7', 'T-Series', 'Vokey SM10', 'Vokey SM11', 'RTX', 'JAWS', 'Spider', 'Phantom', 'Ai-ONE'];
 const SHAFT_SUGGESTIONS = ['VENTUS', 'TENSEI', 'Tour AD', 'Speeder NX', 'Diamana', 'The ATTAS', 'LIN-Q', 'VANQUISH', 'Dynamic Gold', 'MODUS', 'NS PRO', 'KBS', 'Project X', 'MCI', 'PING TOUR', '純正シャフト', 'その他'];
 const FLEX_SUGGESTIONS = ['L', 'A', 'R', 'SR', 'S', 'SX', 'X', 'TX', '5S', '5X', '6S', '6X', '7S', '7X', '8S', '8X', 'S200', 'S300', 'X100', 'R300', 'その他', '不明'];
+const SHAFT_WEIGHT_SUGGESTIONS = ['40g', '45g', '50g', '55g', '60g', '65g', '70g', '75g', '80g', '85g', '90g', '95g', '100g', '105g', '110g', '115g', '120g', '40g台', '50g台', '60g台', '70g台', '80g台', '90g台', '100g台', '110g台', '120g台'];
 const MISS_OPTIONS = ['左に行く', '右に行く', 'チーピン', 'スライス', '球が上がらない', '吹け上がる', '距離が合わない', 'ミスは特にない', 'その他'];
 const USE_OPTIONS = ['ティーショット', 'セカンド', '狭いホール用', '風の日用', '距離の階段用', 'ロングアイアンの代わり', 'UTの代わり'];
 const WEDGE_USE_OPTIONS = ['フルショット', '100y以内', 'アプローチ', 'バンカー', 'ラフ', 'ベアグラウンド', 'ロブショット', '転がし'];
@@ -207,6 +208,13 @@ const parseShaftParts = (club: Club) => {
 
 const buildShaft = (shaft: string, weight: string, flex: string) =>
     [shaft, weight, flex].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+
+const normalizeLoftValue = (value: string) => {
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    const withoutDegree = trimmed.replace(/°/g, '').trim();
+    return /^[0-9]+(?:\.[0-9]+)?$/.test(withoutDegree) ? `${withoutDegree}°` : trimmed;
+};
 
 const slotKeyForClub = (club: Club) => `${club.category}:${club.number || club.model || club.id}`;
 const slotKey = (slot: SlotDefinition) => `${slot.category}:${slot.number}`;
@@ -865,7 +873,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <input list="mybag-flex-suggestions" className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
                 </Field>
                 <Field label="シャフト重量">
-                    <input className={textInputClass} value={club.shaftWeight || shaftParts.weight} onChange={(e) => applyPatch({ shaftWeight: e.target.value, shaft: buildShaft(shaftParts.model, e.target.value, shaftParts.flex) })} placeholder="65g / 80g台" />
+                    <input list="mybag-shaft-weight-suggestions" className={textInputClass} value={club.shaftWeight || shaftParts.weight} onChange={(e) => applyPatch({ shaftWeight: e.target.value, shaft: buildShaft(shaftParts.model, e.target.value, shaftParts.flex) })} placeholder="65g / 80g台" />
                 </Field>
             </div>
         );
@@ -888,7 +896,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         if (club.category === TargetCategory.BALL) {
             return (
                 <div className="grid gap-3 md:grid-cols-4">
-                    <Field label="ブランド"><input className={textInputClass} value={ballDraft?.ballBrand || ''} onChange={(e) => { applyPatch({ brand: e.target.value }); applyBallPatch?.({ ballBrand: e.target.value }); }} placeholder="Titleist" /></Field>
+                    <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={ballDraft?.ballBrand || ''} onChange={(e) => { applyPatch({ brand: e.target.value }); applyBallPatch?.({ ballBrand: e.target.value }); }} placeholder="Titleist" /></Field>
                     <Field label="モデル名"><input list="mybag-ball-suggestions" className={textInputClass} value={ballDraft?.ballModel || ''} onChange={(e) => { applyPatch({ model: e.target.value }); applyBallPatch?.({ ballModel: e.target.value }); }} placeholder="Pro V1x" /></Field>
                     <Field label="カラー"><input className={textInputClass} value={ballDraft?.ballColor || ''} onChange={(e) => applyBallPatch?.({ ballColor: e.target.value })} placeholder="ホワイト" /></Field>
                     <Field label="メモ"><input className={textInputClass} value={ballDraft?.ballMemo || ''} onChange={(e) => { applyPatch({ memo: e.target.value }); applyBallPatch?.({ ballMemo: e.target.value }); }} placeholder="季節で変更など" /></Field>
@@ -920,8 +928,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             <div className="space-y-4">
                 {renderSuggestionInputs(club, applyPatch)}
                 <div className="grid gap-3 md:grid-cols-4">
-                    <Field label="番手・ロフト">
-                        <input className={textInputClass} value={club.loft || ''} onChange={(e) => applyPatch({ loft: e.target.value })} placeholder={slot?.defaultLoft || '15°'} />
+                    <Field label="ロフト角">
+                        <input className={textInputClass} value={club.loft || ''} onChange={(e) => applyPatch({ loft: normalizeLoftValue(e.target.value) })} placeholder={slot?.defaultLoft || '15°'} />
                     </Field>
                     <Field label="キャリー飛距離">
                         <input className={textInputClass} value={club.carryDistance || ''} onChange={(e) => applyPatch({ carryDistance: e.target.value })} placeholder="210" />
@@ -934,21 +942,26 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </Field>
                 </div>
 
-                <div className="grid gap-3 md:grid-cols-3">
-                    {isDriver && (
-                        <>
-                            <Field label="可変スリーブ設定"><input className={textInputClass} value={club.sleeveSetting || ''} onChange={(e) => applyPatch({ sleeveSetting: e.target.value })} placeholder="10.5°を-1°" /></Field>
-                            <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => applyPatch({ length: e.target.value })} placeholder="45.25インチ" /></Field>
-                        </>
-                    )}
-                    {isIron && <Field label="ライ角"><input className={textInputClass} value={club.lieAngle || ''} onChange={(e) => applyPatch({ lieAngle: e.target.value })} placeholder="標準 / 1°アップ" /></Field>}
-                    {isWedge && (
-                        <>
-                            <Field label="バウンス"><input className={textInputClass} value={club.bounce || ''} onChange={(e) => applyPatch({ bounce: e.target.value })} placeholder="10" /></Field>
-                            <Field label="グラインド"><input className={textInputClass} value={club.grind || ''} onChange={(e) => applyPatch({ grind: e.target.value })} placeholder="F / D / M" /></Field>
-                        </>
-                    )}
-                </div>
+                {(isDriver || isIron || isWedge) && (
+                    <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50/70 p-3">
+                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">その他調整</div>
+                        <div className="grid gap-3 md:grid-cols-3">
+                            {isDriver && (
+                                <>
+                                    <Field label="可変スリーブ設定"><input className={textInputClass} value={club.sleeveSetting || ''} onChange={(e) => applyPatch({ sleeveSetting: e.target.value })} placeholder="10.5°を-1°" /></Field>
+                                    <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => applyPatch({ length: e.target.value })} placeholder="45.25インチ" /></Field>
+                                </>
+                            )}
+                            {isIron && <Field label="ライ角"><input className={textInputClass} value={club.lieAngle || ''} onChange={(e) => applyPatch({ lieAngle: e.target.value })} placeholder="標準 / 1°アップ" /></Field>}
+                            {isWedge && (
+                                <>
+                                    <Field label="バウンス"><input className={textInputClass} value={club.bounce || ''} onChange={(e) => applyPatch({ bounce: e.target.value })} placeholder="10" /></Field>
+                                    <Field label="グラインド"><input className={textInputClass} value={club.grind || ''} onChange={(e) => applyPatch({ grind: e.target.value })} placeholder="F / D / M" /></Field>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 {(isLongClub || isWedge) && (
                     <div>
@@ -998,6 +1011,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             <datalist id="mybag-model-suggestions">{MODEL_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-shaft-suggestions">{SHAFT_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-flex-suggestions">{FLEX_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
+            <datalist id="mybag-shaft-weight-suggestions">{SHAFT_WEIGHT_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-ball-suggestions">{BALL_MODEL_SUGGESTIONS.map((ballName) => <option key={ballName} value={ballName} />)}</datalist>
 
             {intakeMode !== 'default' && (
@@ -1126,7 +1140,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <Field label="モデル名"><input list="mybag-model-suggestions" className={textInputClass} value={commonEdit.model} onChange={(e) => setCommonEdit((prev) => ({ ...prev, model: e.target.value }))} /></Field>
                             <Field label="シャフト"><input list="mybag-shaft-suggestions" className={textInputClass} value={commonEdit.shaft} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaft: e.target.value }))} /></Field>
                             <Field label="フレックス"><input list="mybag-flex-suggestions" className={textInputClass} value={commonEdit.flex} onChange={(e) => setCommonEdit((prev) => ({ ...prev, flex: e.target.value }))} /></Field>
-                            <Field label="シャフト重量"><input className={textInputClass} value={commonEdit.shaftWeight} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaftWeight: e.target.value }))} placeholder="85g" /></Field>
+                            <Field label="シャフト重量"><input list="mybag-shaft-weight-suggestions" className={textInputClass} value={commonEdit.shaftWeight} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaftWeight: e.target.value }))} placeholder="85g" /></Field>
                         </div>
                         <button type="button" onClick={applyCommonToGroup} disabled={groupedTargets.length === 0} className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-trust-navy px-5 text-sm font-black text-white disabled:opacity-50">
                             <Layers3 size={16} /> このカテゴリーに反映
