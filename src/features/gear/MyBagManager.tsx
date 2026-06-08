@@ -23,6 +23,28 @@ const MODEL_SUGGESTIONS = ['G430', 'G425', 'G440', 'Qi10', 'Qi35', 'Qi4D', 'STEA
 const SHAFT_SUGGESTIONS = ['VENTUS', 'TENSEI', 'Tour AD', 'Speeder NX', 'Diamana', 'The ATTAS', 'LIN-Q', 'VANQUISH', 'Dynamic Gold', 'MODUS', 'NS PRO', 'KBS', 'Project X', 'MCI', 'PING TOUR', '純正シャフト', 'その他'];
 const FLEX_SUGGESTIONS = ['L', 'A', 'R', 'SR', 'S', 'SX', 'X', 'TX', '5S', '5X', '6S', '6X', '7S', '7X', '8S', '8X', 'S200', 'S300', 'X100', 'R300', 'その他', '不明'];
 const SHAFT_WEIGHT_SUGGESTIONS = ['40g', '45g', '50g', '55g', '60g', '65g', '70g', '75g', '80g', '85g', '90g', '95g', '100g', '105g', '110g', '115g', '120g', '40g台', '50g台', '60g台', '70g台', '80g台', '90g台', '100g台', '110g台', '120g台'];
+const BRAND_MODEL_MAP: Record<string, string[]> = {
+    ping: ['G430 MAX', 'G430 LST', 'G430 SFT', 'G440 MAX', 'G440 LST', 'G440 SFT', 'BLUEPRINT T', 'BLUEPRINT S', 'i230', 'i530', 's159', 'PLD ANSER'],
+    taylormade: ['Qi10', 'Qi10 LS', 'Qi35', 'Qi35 LS', 'Qi35 MAX', 'Qi4D', 'P790', 'P770', 'P7CB', 'P7MB', 'MG4', 'MG5', 'Spider Tour', 'Spider Tour X', 'TP5', 'TP5x'],
+    callaway: ['ELYTE', 'ELYTE ◆◆◆', 'PARADYM', 'PARADYM Ai Smoke', 'Ai Smoke MAX', 'APEX UW', 'X FORGED', 'X FORGED STAR', 'OPUS', 'JAWS RAW', 'Ai-ONE', '2-BALL BLADE'],
+    titleist: ['GT2', 'GT3', 'TSR2', 'TSR3', 'T100', 'T150', 'T200', 'T250', 'SM10', 'SM11', 'Phantom', 'Scotty Cameron Newport 2', 'Pro V1', 'Pro V1x'],
+    srixon: ['ZXi LS', 'ZXi', 'ZX5 Mk II', 'ZX7 Mk II', 'ZXi5', 'ZXi7', 'Z-STAR XV', 'Z-STAR'],
+    bridgestone: ['B1ST', 'B2HT', '241CB', '242CB+', 'BITING SPIN', 'TOUR B X', 'TOUR B XS'],
+    mizuno: ['ST-MAX 230', 'ST-G', 'Mizuno Pro 241', 'Mizuno Pro 243', 'Mizuno Pro S-3', 'T-1', 'T-3'],
+    yamaha: ['RMX VD', 'RMX VD/M', 'inpres DRIVESTAR'],
+    pxg: ['0311 BLACK OPS', '0311 XP GEN7', 'Battle Ready II'],
+    odyssey: ['Ai-ONE #7', 'Ai-ONE MILLED', 'WHITE HOT OG', 'ROSSIE S'],
+    'scotty cameron': ['Phantom 5', 'Phantom 7', 'Newport 2', 'Squareback 2'],
+    fourteen: ['RM-4', 'RM-α', 'DJ-6'],
+};
+const CATEGORY_WEIGHT_MAP: Partial<Record<TargetCategory, string[]>> = {
+    [TargetCategory.DRIVER]: ['40g', '45g', '50g', '55g', '60g', '65g', '40g台', '50g台', '60g台'],
+    [TargetCategory.FAIRWAY]: ['50g', '55g', '60g', '65g', '70g', '50g台', '60g台', '70g台'],
+    [TargetCategory.UTILITY]: ['65g', '70g', '75g', '80g', '85g', '90g', '70g台', '80g台', '90g台'],
+    [TargetCategory.IRON]: ['80g', '85g', '90g', '95g', '100g', '105g', '110g', '120g', '80g台', '90g台', '100g台', '110g台', '120g台'],
+    [TargetCategory.WEDGE]: ['95g', '100g', '105g', '110g', '115g', '120g', '95g', '100g台', '110g台', '120g台'],
+    [TargetCategory.PUTTER]: ['33インチ', '34インチ', '35インチ'],
+};
 const MISS_OPTIONS = ['左に行く', '右に行く', 'チーピン', 'スライス', '球が上がらない', '吹け上がる', '距離が合わない', 'ミスは特にない', 'その他'];
 const USE_OPTIONS = ['ティーショット', 'セカンド', '狭いホール用', '風の日用', '距離の階段用', 'ロングアイアンの代わり', 'UTの代わり'];
 const WEDGE_USE_OPTIONS = ['フルショット', '100y以内', 'アプローチ', 'バンカー', 'ラフ', 'ベアグラウンド', 'ロブショット', '転がし'];
@@ -215,6 +237,25 @@ const normalizeLoftValue = (value: string) => {
     const withoutDegree = trimmed.replace(/°/g, '').trim();
     return /^[0-9]+(?:\.[0-9]+)?$/.test(withoutDegree) ? `${withoutDegree}°` : trimmed;
 };
+
+const normalizeSuggestionKey = (value: string) => value.toLowerCase().replace(/\s+/g, '').replace(/[・._-]/g, '');
+
+const buildModelSuggestions = (brand: string, category: string, currentModel: string) => {
+    const key = normalizeSuggestionKey(brand);
+    const brandModels = Object.entries(BRAND_MODEL_MAP).find(([mapKey]) => key.includes(normalizeSuggestionKey(mapKey)))?.[1] || [];
+    const categoryModels =
+        category === TargetCategory.PUTTER
+            ? ['Spider Tour', 'Phantom 5', 'Phantom 7', 'Ai-ONE #7', 'WHITE HOT OG', 'Newport 2', 'PLD ANSER']
+            : category === TargetCategory.WEDGE
+                ? ['Vokey SM10', 'Vokey SM11', 'OPUS', 'JAWS RAW', 'RTX', 's159', 'RM-4']
+                : category === TargetCategory.IRON
+                    ? ['P790', 'P770', 'T100', 'T150', 'ZX5 Mk II', 'ZX7 Mk II', 'i230', 'i530', '241CB', '242CB+']
+                    : [];
+    return Array.from(new Set([currentModel, ...brandModels, ...categoryModels, ...MODEL_SUGGESTIONS].filter(Boolean)));
+};
+
+const buildWeightSuggestions = (category: string, currentWeight: string) =>
+    Array.from(new Set([currentWeight, ...(CATEGORY_WEIGHT_MAP[category as TargetCategory] || []), ...SHAFT_WEIGHT_SUGGESTIONS].filter(Boolean)));
 
 const slotKeyForClub = (club: Club) => `${club.category}:${club.number || club.model || club.id}`;
 const slotKey = (slot: SlotDefinition) => `${slot.category}:${slot.number}`;
@@ -858,24 +899,32 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
     const renderSuggestionInputs = (club: Club, applyPatch: (patch: Partial<Club>) => void) => {
         const shaftParts = parseShaftParts(club);
+        const modelSuggestionId = `mybag-model-suggestions-${club.id}`;
+        const shaftWeightSuggestionId = `mybag-shaft-weight-suggestions-${club.id}`;
+        const modelSuggestions = buildModelSuggestions(club.brand, club.category, club.model);
+        const weightSuggestions = buildWeightSuggestions(club.category, club.shaftWeight || shaftParts.weight);
         return (
-            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-                <Field label="ブランド">
-                    <input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} placeholder="PING / Titleist" />
-                </Field>
-                <Field label="モデル名">
-                    <input list="mybag-model-suggestions" className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} placeholder="G430 / Qi35" />
-                </Field>
-                <Field label="シャフト">
-                    <input list="mybag-shaft-suggestions" className={textInputClass} value={shaftParts.model} onChange={(e) => applyPatch({ shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
-                </Field>
-                <Field label="フレックス">
-                    <input list="mybag-flex-suggestions" className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
-                </Field>
-                <Field label="シャフト重量">
-                    <input list="mybag-shaft-weight-suggestions" className={textInputClass} value={club.shaftWeight || shaftParts.weight} onChange={(e) => applyPatch({ shaftWeight: e.target.value, shaft: buildShaft(shaftParts.model, e.target.value, shaftParts.flex) })} placeholder="65g / 80g台" />
-                </Field>
-            </div>
+            <>
+                <datalist id={modelSuggestionId}>{modelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+                <datalist id={shaftWeightSuggestionId}>{weightSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+                <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+                    <Field label="ブランド">
+                        <input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} placeholder="PING / Titleist" />
+                    </Field>
+                    <Field label="モデル名">
+                        <input list={modelSuggestionId} className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} placeholder="G430 / Qi35" />
+                    </Field>
+                    <Field label="シャフト">
+                        <input list="mybag-shaft-suggestions" className={textInputClass} value={shaftParts.model} onChange={(e) => applyPatch({ shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
+                    </Field>
+                    <Field label="フレックス">
+                        <input list="mybag-flex-suggestions" className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
+                    </Field>
+                    <Field label="シャフト重量">
+                        <input list={shaftWeightSuggestionId} className={textInputClass} value={club.shaftWeight || shaftParts.weight} onChange={(e) => applyPatch({ shaftWeight: e.target.value, shaft: buildShaft(shaftParts.model, e.target.value, shaftParts.flex) })} placeholder="65g / 80g台" />
+                    </Field>
+                </div>
+            </>
         );
     };
 
@@ -905,22 +954,26 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         }
 
         if (isPutter) {
+            const putterModelSuggestionId = `mybag-model-suggestions-${club.id}`;
             return (
-                <div className="grid gap-3 md:grid-cols-4">
-                    <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} /></Field>
-                    <Field label="モデル名"><input list="mybag-model-suggestions" className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} /></Field>
-                    <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => applyPatch({ length: e.target.value })} placeholder="34インチ" /></Field>
-                    <Field label="メモ"><input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} /></Field>
-                    {!inferredHeadShape && (
-                        <Field label="ヘッド形状">
-                            <select className={textInputClass} value={club.headShape || ''} onChange={(e) => applyPatch({ headShape: e.target.value })}>
-                                <option value="">選択してください</option>
-                                {['ブレード', 'マレット', 'ネオマレット', 'L字', 'センターシャフト', 'その他', '不明'].map((shape) => <option key={shape} value={shape}>{shape}</option>)}
-                            </select>
-                        </Field>
-                    )}
-                    {inferredHeadShape && <div className="rounded-lg bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600">推定ヘッド形状: {inferredHeadShape}</div>}
-                </div>
+                <>
+                    <datalist id={putterModelSuggestionId}>{buildModelSuggestions(club.brand, club.category, club.model).map((item) => <option key={item} value={item} />)}</datalist>
+                    <div className="grid gap-3 md:grid-cols-4">
+                        <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} /></Field>
+                        <Field label="モデル名"><input list={putterModelSuggestionId} className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} /></Field>
+                        <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => applyPatch({ length: e.target.value })} placeholder="34インチ" /></Field>
+                        <Field label="メモ"><input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} /></Field>
+                        {!inferredHeadShape && (
+                            <Field label="ヘッド形状">
+                                <select className={textInputClass} value={club.headShape || ''} onChange={(e) => applyPatch({ headShape: e.target.value })}>
+                                    <option value="">選択してください</option>
+                                    {['ブレード', 'マレット', 'ネオマレット', 'L字', 'センターシャフト', 'その他', '不明'].map((shape) => <option key={shape} value={shape}>{shape}</option>)}
+                                </select>
+                            </Field>
+                        )}
+                        {inferredHeadShape && <div className="rounded-lg bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600">推定ヘッド形状: {inferredHeadShape}</div>}
+                    </div>
+                </>
             );
         }
 
@@ -1011,7 +1064,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             <datalist id="mybag-model-suggestions">{MODEL_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-shaft-suggestions">{SHAFT_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-flex-suggestions">{FLEX_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
-            <datalist id="mybag-shaft-weight-suggestions">{SHAFT_WEIGHT_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-ball-suggestions">{BALL_MODEL_SUGGESTIONS.map((ballName) => <option key={ballName} value={ballName} />)}</datalist>
 
             {intakeMode !== 'default' && (
