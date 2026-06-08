@@ -514,7 +514,21 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     };
 
     const duplicateClubFromCard = (sourceClub: Club) => {
-        const sourceSlot = ALL_SLOTS.find((candidate) => slotKey(candidate) === slotKeyForClub(sourceClub));
+        let nextSourceClub = sourceClub;
+        let baseSetting = latestSettingRef.current;
+
+        if (hasDirtyEditingDraft) {
+            const nextSetting = applyEditingDraftLocally();
+            if (nextSetting) {
+                baseSetting = nextSetting;
+                const refreshedSourceClub = nextSetting.clubs.find((club) => club.id === sourceClub.id);
+                if (refreshedSourceClub) {
+                    nextSourceClub = refreshedSourceClub;
+                }
+            }
+        }
+
+        const sourceSlot = ALL_SLOTS.find((candidate) => slotKey(candidate) === slotKeyForClub(nextSourceClub));
         const nextSlot = ALL_SLOTS.find((slot) =>
             slot.category !== TargetCategory.BALL &&
             slot.id !== sourceSlot?.id &&
@@ -534,30 +548,30 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const nextClub = makeClubFromSlot(nextSlot);
         const copiedClub: Club = {
             ...nextClub,
-            brand: sourceClub.brand,
-            model: sourceClub.model,
-            shaft: sourceClub.shaft,
-            flex: sourceClub.flex,
-            shaftWeight: sourceClub.shaftWeight,
-            carryDistance: sourceClub.carryDistance,
-            distance: sourceClub.distance,
-            worry: sourceClub.worry,
-            sleeveSetting: sourceClub.sleeveSetting,
-            length: sourceClub.length,
-            lieAngle: sourceClub.lieAngle,
-            bounce: sourceClub.bounce,
-            grind: sourceClub.grind,
-            headShape: sourceClub.headShape,
-            mainUse: [...(sourceClub.mainUse || [])],
-            missTendency: [...(sourceClub.missTendency || [])],
-            memo: sourceClub.memo,
-            copiedFromClubId: sourceClub.id,
-            loft: nextClub.loft || sourceClub.loft,
+            brand: nextSourceClub.brand,
+            model: nextSourceClub.model,
+            shaft: nextSourceClub.shaft,
+            flex: nextSourceClub.flex,
+            shaftWeight: nextSourceClub.shaftWeight,
+            carryDistance: nextSourceClub.carryDistance,
+            distance: nextSourceClub.distance,
+            worry: nextSourceClub.worry,
+            sleeveSetting: nextSourceClub.sleeveSetting,
+            length: nextSourceClub.length,
+            lieAngle: nextSourceClub.lieAngle,
+            bounce: nextSourceClub.bounce,
+            grind: nextSourceClub.grind,
+            headShape: nextSourceClub.headShape,
+            mainUse: [...(nextSourceClub.mainUse || [])],
+            missTendency: [...(nextSourceClub.missTendency || [])],
+            memo: nextSourceClub.memo,
+            copiedFromClubId: nextSourceClub.id,
+            loft: nextClub.loft || nextSourceClub.loft,
         };
 
         const nextSetting = {
-            ...latestSettingRef.current,
-            clubs: [...latestSettingRef.current.clubs, copiedClub],
+            ...baseSetting,
+            clubs: [...baseSetting.clubs, copiedClub],
         };
         commitSetting(nextSetting);
         setExpandedClubId(copiedClub.id);
