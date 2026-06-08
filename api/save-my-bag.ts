@@ -18,6 +18,24 @@ const toTextArray = (value: unknown) =>
         .filter(Boolean)
     : [];
 
+const EXTENDED_CLUB_COLUMNS = [
+  'flex',
+  'number',
+  'carry_distance',
+  'worry',
+  'shaft_weight',
+  'sleeve_setting',
+  'length',
+  'lie_angle',
+  'bounce',
+  'grind',
+  'head_shape',
+  'main_use',
+  'miss_tendency',
+  'memo',
+  'copied_from_club_id',
+] as const;
+
 const isUuid = (value: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 
@@ -106,17 +124,22 @@ export default async function handler(req: any, res: any) {
         }))
       : [];
 
-    let supportsExtendedClubColumns = false;
-    const extendedColumnsProbe = await adminClient
-      .from('clubs')
-      .select('id,flex')
-      .limit(1);
+    const missingExtendedColumns: string[] = [];
+    for (const column of EXTENDED_CLUB_COLUMNS) {
+      const extendedColumnsProbe = await adminClient
+        .from('clubs')
+        .select(`id,${column}`)
+        .limit(1);
 
-    if (!extendedColumnsProbe.error) {
-      supportsExtendedClubColumns = true;
-    } else if (extendedColumnsProbe.error.code !== '42703') {
-      throw new Error(`clubs schema probe: ${extendedColumnsProbe.error.message}`);
+      if (extendedColumnsProbe.error) {
+        if (extendedColumnsProbe.error.code === '42703') {
+          missingExtendedColumns.push(column);
+          continue;
+        }
+        throw new Error(`clubs schema probe (${column}): ${extendedColumnsProbe.error.message}`);
+      }
     }
+    const supportsExtendedClubColumns = missingExtendedColumns.length === 0;
 
     const normalizedClubs = Array.isArray(clubPayloads)
       ? clubPayloads.map((club: any, index: number) => {
@@ -246,25 +269,7 @@ export default async function handler(req: any, res: any) {
         distance: club.distance,
       })),
       extendedColumnsSaved: supportsExtendedClubColumns,
-      missingExtendedColumns: supportsExtendedClubColumns
-        ? []
-        : [
-            'flex',
-            'number',
-            'carry_distance',
-            'worry',
-            'shaft_weight',
-            'sleeve_setting',
-            'length',
-            'lie_angle',
-            'bounce',
-            'grind',
-            'head_shape',
-            'main_use',
-            'miss_tendency',
-            'memo',
-            'copied_from_club_id',
-          ],
+      missingExtendedColumns,
     });
   } catch (error: any) {
     return json(res, 500, {
