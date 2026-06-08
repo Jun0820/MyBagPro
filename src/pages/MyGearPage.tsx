@@ -212,6 +212,30 @@ export const MyGearPage = () => {
     const isDistanceInputTarget = (club: typeof profile.myBag.clubs[number]) =>
         club.category !== TargetCategory.PUTTER && club.category !== TargetCategory.BALL;
 
+    const getCompactClubMeta = (club: typeof profile.myBag.clubs[number]) => {
+        const parts = [
+            club.loft || '',
+            club.shaftWeight || '',
+            club.flex || '',
+        ].filter(Boolean);
+        return parts.join(' / ');
+    };
+
+    const getCompactShaftLabel = (club: typeof profile.myBag.clubs[number]) => {
+        const shaft = String(club.shaft || '').trim();
+        if (!shaft) return '';
+        return shaft.length > 30 ? `${shaft.slice(0, 30)}…` : shaft;
+    };
+
+    const getDistanceSummary = (club: typeof profile.myBag.clubs[number]) => {
+        if (!isDistanceInputTarget(club)) return '-';
+        const total = String(club.distance || '').trim();
+        const carry = String(club.carryDistance || '').trim();
+        if (total && carry) return `総${total} / C${carry}`;
+        if (clubDistanceView === 'carry') return carry ? `C${carry}` : (total ? `総${total}` : '未入力');
+        return total ? `総${total}` : (carry ? `C${carry}` : '未入力');
+    };
+
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
         navigateMyPageTab('clubs', (params) => {
             params.delete('welcome');
@@ -573,7 +597,7 @@ export const MyGearPage = () => {
                                                     key={club.id}
                                                     onClick={() => openClubEditFromDashboard(club.id)}
                                                     className={cn(
-                                                        'flex w-full items-center justify-between rounded-2xl px-4 py-2.5 text-left transition-colors',
+                                                        'flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition-colors',
                                                         isSpecialCard ? 'bg-[#f8fafc] ring-1 ring-slate-200 hover:bg-slate-100' : 'bg-slate-50 hover:bg-slate-100',
                                                     )}
                                                 >
@@ -585,23 +609,32 @@ export const MyGearPage = () => {
                                                             {club.number || club.category}
                                                         </div>
                                                         <div className="min-w-0">
-                                                            <div className="flex flex-wrap items-center gap-2">
-                                                                <div className="truncate text-sm font-black text-trust-navy">
+                                                            <div className="truncate text-sm font-black text-trust-navy">
                                                                     {club.brand || '未登録'}
-                                                                </div>
+                                                            </div>
+                                                            <div className="truncate text-[11px] font-bold text-slate-600">
+                                                                {club.model || 'モデル未登録'}
+                                                            </div>
+                                                            <div className="mt-1 truncate text-[11px] text-slate-500">
+                                                                {getCompactShaftLabel(club) || 'シャフト未登録'}
+                                                            </div>
+                                                            <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] font-bold text-slate-400">
+                                                                <span>{getCompactClubMeta(club) || '詳細未入力'}</span>
                                                                 {isDistanceTarget && !displayedDistance && (
                                                                     <span className="rounded-full bg-cyan-100 px-2 py-0.5 text-[10px] font-black text-cyan-700">飛距離を追加</span>
                                                                 )}
-                                                            </div>
-                                                            <div className="truncate text-[11px] text-slate-500">
-                                                                {club.model || 'モデル未登録'}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="ml-3 text-right">
                                                         <div className={cn('text-[15px] font-black', isSpecialCard ? 'text-slate-400' : 'text-trust-navy')}>
-                                                            {displayedDistance ? `${displayedDistance}Y` : (isSpecialCard ? '-' : '未入力')}
+                                                            {getDistanceSummary(club)}
                                                         </div>
+                                                        {isDistanceTarget && displayedDistance && (
+                                                            <div className="mt-1 text-[10px] font-bold text-slate-400">
+                                                                {clubDistanceView === 'carry' ? '表示: キャリー優先' : '表示: 総距離優先'}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </button>
                                             );
