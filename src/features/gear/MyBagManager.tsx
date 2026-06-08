@@ -3,13 +3,11 @@ import {
     AlertTriangle,
     ArrowRight,
     CheckCircle2,
-    ChevronDown,
     Copy,
     Layers3,
     Loader2,
     Save,
     Sparkles,
-    Trash2,
 } from 'lucide-react';
 import { type Club, type ClubSetting, TargetCategory } from '../../types/golf';
 import { cn } from '../../lib/utils';
@@ -63,10 +61,25 @@ interface MyBagManagerProps {
     extendedColumnsSaved?: boolean;
     missingExtendedColumns?: string[];
     onManualSave?: (settingOverride?: ClubSetting) => void;
+    onManualSaveClub?: (clubId: string, settingOverride?: ClubSetting) => Promise<{ ok: boolean; error?: string }>;
     onReloadFromCloud?: () => void;
     onOpenBallDiagnosis?: () => void;
     intakeMode?: 'default' | 'missing-clubs' | 'ball-first';
 }
+
+type ClubEditorDraft = {
+    club: Club;
+    ballBrand: string;
+    ballModel: string;
+    ballColor: string;
+    ballMemo: string;
+};
+
+type ClubEditorNotice = {
+    tone: 'success' | 'warning' | 'error';
+    message: string;
+    detail?: string;
+};
 
 const BALL_MODEL_SUGGESTIONS = Array.from(
     new Set(
@@ -237,6 +250,12 @@ const toggleArrayValue = (values: string[] | undefined, value: string) => {
     return current.includes(value) ? current.filter((item) => item !== value) : [...current, value];
 };
 
+const sameStringArray = (left?: string[], right?: string[]) => {
+    const a = left || [];
+    const b = right || [];
+    return a.length === b.length && a.every((value, index) => value === b[index]);
+};
+
 const Field = ({
     label,
     children,
@@ -266,6 +285,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     extendedColumnsSaved = false,
     missingExtendedColumns = [],
     onManualSave,
+    onManualSaveClub,
     onReloadFromCloud,
     onOpenBallDiagnosis,
     intakeMode = 'default',
@@ -285,6 +305,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         flex: '',
         shaftWeight: '',
     });
+    const [editingClubId, setEditingClubId] = useState<string | null>(null);
+    const [editingDraft, setEditingDraft] = useState<ClubEditorDraft | null>(null);
+    const [clubEditorNotice, setClubEditorNotice] = useState<ClubEditorNotice | null>(null);
+    const [isClubEditorSaving, setIsClubEditorSaving] = useState(false);
 
     useEffect(() => {
         latestSettingRef.current = setting;
@@ -307,6 +331,51 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return next;
     }, [onUpdate]);
 
+    const buildEditorDraft = useCallback((club: Club, sourceSetting: ClubSetting): ClubEditorDraft => ({
+        club: {
+            ...club,
+            mainUse: [...(club.mainUse || [])],
+            missTendency: [...(club.missTendency || [])],
+        },
+        ballBrand: sourceSetting.ballBrand || club.brand || '',
+        ballModel: sourceSetting.ball || club.model || '',
+        ballColor: sourceSetting.ballColor || '',
+        ballMemo: sourceSetting.ballMemo || club.memo || '',
+    }), []);
+
+    const isDraftDirty = useCallback((clubId: string, draft: ClubEditorDraft | null) => {
+        if (!draft) return false;
+        const sourceClub = latestSettingRef.current.clubs.find((club) => club.id === clubId);
+        if (!sourceClub) return false;
+        const sourceSetting = latestSettingRef.current;
+
+        return (
+            sourceClub.brand !== draft.club.brand ||
+            sourceClub.model !== draft.club.model ||
+            sourceClub.shaft !== draft.club.shaft ||
+            (sourceClub.flex || '') !== (draft.club.flex || '') ||
+            (sourceClub.number || '') !== (draft.club.number || '') ||
+            sourceClub.loft !== draft.club.loft ||
+            sourceClub.distance !== draft.club.distance ||
+            (sourceClub.carryDistance || '') !== (draft.club.carryDistance || '') ||
+            (sourceClub.worry || '') !== (draft.club.worry || '') ||
+            (sourceClub.shaftWeight || '') !== (draft.club.shaftWeight || '') ||
+            (sourceClub.sleeveSetting || '') !== (draft.club.sleeveSetting || '') ||
+            (sourceClub.length || '') !== (draft.club.length || '') ||
+            (sourceClub.lieAngle || '') !== (draft.club.lieAngle || '') ||
+            (sourceClub.bounce || '') !== (draft.club.bounce || '') ||
+            (sourceClub.grind || '') !== (draft.club.grind || '') ||
+            (sourceClub.headShape || '') !== (draft.club.headShape || '') ||
+            !sameStringArray(sourceClub.mainUse, draft.club.mainUse) ||
+            !sameStringArray(sourceClub.missTendency, draft.club.missTendency) ||
+            (sourceClub.memo || '') !== (draft.club.memo || '') ||
+            (sourceSetting.ballBrand || sourceClub.brand || '') !== draft.ballBrand ||
+            (sourceSetting.ball || sourceClub.model || '') !== draft.ballModel ||
+            (sourceSetting.ballColor || '') !== draft.ballColor ||
+            (sourceSetting.ballMemo || sourceClub.memo || '') !== draft.ballMemo
+        );
+    }, []);
+
     const saveCurrentSetting = useCallback((override?: ClubSetting) => {
         const next = {
             ...(override || latestSettingRef.current),
@@ -316,11 +385,96 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         onManualSave?.(next);
     }, [onManualSave]);
 
-    const updateClub = (clubId: string, patch: Partial<Club>) => {
-        commitSetting((prev) => ({
+    const openClubEditor = (clubId: string) => {
+        if (editingClubId && editingClubId !== clubId && isDraftDirty(editingClubId, editingDraft)) {
+            const shouldDiscard = window.confirm('編集中の内容を破棄して別のクラブを編集しますか？');
+            if (!shouldDiscard) return;
+        }
+
+        const sourceClub = latestSettingRef.current.clubs.find((club) => club.id === clubId);
+        if (!sourceClub) return;
+
+        setExpandedClubId(clubId);
+        setEditingClubId(clubId);
+        setEditingDraft(buildEditorDraft(sourceClub, latestSettingRef.current));
+        setClubEditorNotice(null);
+    };
+
+    const cancelClubEditor = () => {
+        setEditingClubId(null);
+        setEditingDraft(null);
+        setExpandedClubId(null);
+    };
+
+    const updateEditingDraftClub = (patch: Partial<Club>) => {
+        setEditingDraft((prev) => prev ? {
             ...prev,
-            clubs: prev.clubs.map((club) => club.id === clubId ? { ...club, ...patch } : club),
-        }));
+            club: {
+                ...prev.club,
+                ...patch,
+            },
+        } : prev);
+    };
+
+    const updateEditingDraftBall = (patch: Partial<Pick<ClubEditorDraft, 'ballBrand' | 'ballModel' | 'ballColor' | 'ballMemo'>>) => {
+        setEditingDraft((prev) => prev ? { ...prev, ...patch } : prev);
+    };
+
+    const duplicateClubFromCard = (sourceClub: Club) => {
+        const sourceSlot = ALL_SLOTS.find((candidate) => slotKey(candidate) === slotKeyForClub(sourceClub));
+        const nextSlot = ALL_SLOTS.find((slot) =>
+            slot.category !== TargetCategory.BALL &&
+            slot.id !== sourceSlot?.id &&
+            (!sourceSlot || slot.group === sourceSlot.group || slot.category === sourceSlot.category) &&
+            !selectedKeys.has(slotKey(slot)),
+        );
+
+        if (!nextSlot) {
+            setClubEditorNotice({
+                tone: 'warning',
+                message: '複製先に使える空き番手が見つかりませんでした。',
+                detail: '先に STEP 2 で番手を追加するか、STEP 3 の複製機能を使ってください。',
+            });
+            return;
+        }
+
+        const nextClub = makeClubFromSlot(nextSlot);
+        const copiedClub: Club = {
+            ...nextClub,
+            brand: sourceClub.brand,
+            model: sourceClub.model,
+            shaft: sourceClub.shaft,
+            flex: sourceClub.flex,
+            shaftWeight: sourceClub.shaftWeight,
+            carryDistance: sourceClub.carryDistance,
+            distance: sourceClub.distance,
+            worry: sourceClub.worry,
+            sleeveSetting: sourceClub.sleeveSetting,
+            length: sourceClub.length,
+            lieAngle: sourceClub.lieAngle,
+            bounce: sourceClub.bounce,
+            grind: sourceClub.grind,
+            headShape: sourceClub.headShape,
+            mainUse: [...(sourceClub.mainUse || [])],
+            missTendency: [...(sourceClub.missTendency || [])],
+            memo: sourceClub.memo,
+            copiedFromClubId: sourceClub.id,
+            loft: nextClub.loft || sourceClub.loft,
+        };
+
+        const nextSetting = {
+            ...latestSettingRef.current,
+            clubs: [...latestSettingRef.current.clubs, copiedClub],
+        };
+        commitSetting(nextSetting);
+        setExpandedClubId(copiedClub.id);
+        setEditingClubId(copiedClub.id);
+        setEditingDraft(buildEditorDraft(copiedClub, nextSetting));
+        setClubEditorNotice({
+            tone: 'success',
+            message: 'クラブを複製しました。',
+            detail: `${copiedClub.number || copiedClub.category} の内容を続けて調整できます。`,
+        });
     };
 
     const removeClub = (clubId: string) => {
@@ -329,6 +483,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             clubs: prev.clubs.filter((club) => club.id !== clubId),
         }));
         if (expandedClubId === clubId) setExpandedClubId(null);
+        if (editingClubId === clubId) {
+            setEditingClubId(null);
+            setEditingDraft(null);
+        }
     };
 
     const toggleSlot = (slot: SlotDefinition) => {
@@ -450,6 +608,71 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         ];
     }, [clubs]);
 
+    const importantFieldWarning = (club: Club) => {
+        if (club.category === TargetCategory.PUTTER || club.category === TargetCategory.BALL) return '';
+        const missing = [
+            !String(club.loft || '').trim() ? 'ロフト' : '',
+            !String(club.shaftWeight || '').trim() ? 'シャフト重量' : '',
+            !String(club.carryDistance || club.distance || '').trim() ? '飛距離' : '',
+        ].filter(Boolean);
+
+        if (missing.length === 0) return '';
+        return `診断精度を上げるには、${missing.join('・')}を入力してください。`;
+    };
+
+    const saveEditedClub = async () => {
+        if (!editingClubId || !editingDraft) return;
+
+        const previousSetting = latestSettingRef.current;
+        const nextClub = {
+            ...editingDraft.club,
+            mainUse: [...(editingDraft.club.mainUse || [])],
+            missTendency: [...(editingDraft.club.missTendency || [])],
+        };
+
+        const nextSetting: ClubSetting = {
+            ...previousSetting,
+            clubs: previousSetting.clubs.map((club) => (club.id === editingClubId ? nextClub : club)),
+            ...(nextClub.category === TargetCategory.BALL
+                ? {
+                    ballBrand: editingDraft.ballBrand,
+                    ball: editingDraft.ballModel,
+                    ballColor: editingDraft.ballColor,
+                    ballMemo: editingDraft.ballMemo,
+                  }
+                : {}),
+        };
+
+        setClubEditorNotice(null);
+        setIsClubEditorSaving(true);
+        commitSetting(nextSetting);
+
+        const saveResult = onManualSaveClub
+            ? await onManualSaveClub(editingClubId, nextSetting)
+            : { ok: true as const };
+
+        if (!saveResult.ok) {
+            commitSetting(previousSetting);
+            setClubEditorNotice({
+                tone: 'error',
+                message: '保存に失敗しました。時間をおいて再度お試しください。',
+            });
+            setIsClubEditorSaving(false);
+            return;
+        }
+
+        setEditingClubId(null);
+        setEditingDraft(null);
+        setExpandedClubId(null);
+        const warningMessage = importantFieldWarning(nextClub);
+        setClubEditorNotice({
+            tone: warningMessage ? 'warning' : 'success',
+            message: 'クラブ情報を更新しました。',
+            detail: warningMessage || undefined,
+        });
+        setIsClubEditorSaving(false);
+    };
+
     const renderStepNav = () => (
         <div className="grid gap-2 md:grid-cols-5">
             {[
@@ -475,30 +698,35 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         </div>
     );
 
-    const renderSuggestionInputs = (club: Club) => {
+    const renderSuggestionInputs = (club: Club, applyPatch: (patch: Partial<Club>) => void) => {
         const shaftParts = parseShaftParts(club);
         return (
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
                 <Field label="ブランド">
-                    <input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => updateClub(club.id, { brand: e.target.value })} placeholder="PING / Titleist" />
+                    <input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} placeholder="PING / Titleist" />
                 </Field>
                 <Field label="モデル名">
-                    <input list="mybag-model-suggestions" className={textInputClass} value={club.model} onChange={(e) => updateClub(club.id, { model: e.target.value })} placeholder="G430 / Qi35" />
+                    <input list="mybag-model-suggestions" className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} placeholder="G430 / Qi35" />
                 </Field>
                 <Field label="シャフト">
-                    <input list="mybag-shaft-suggestions" className={textInputClass} value={shaftParts.model} onChange={(e) => updateClub(club.id, { shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
+                    <input list="mybag-shaft-suggestions" className={textInputClass} value={shaftParts.model} onChange={(e) => applyPatch({ shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
                 </Field>
                 <Field label="フレックス">
-                    <input list="mybag-flex-suggestions" className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => updateClub(club.id, { flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
+                    <input list="mybag-flex-suggestions" className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
                 </Field>
                 <Field label="シャフト重量">
-                    <input className={textInputClass} value={club.shaftWeight || shaftParts.weight} onChange={(e) => updateClub(club.id, { shaftWeight: e.target.value, shaft: buildShaft(shaftParts.model, e.target.value, shaftParts.flex) })} placeholder="65g / 80g台" />
+                    <input className={textInputClass} value={club.shaftWeight || shaftParts.weight} onChange={(e) => applyPatch({ shaftWeight: e.target.value, shaft: buildShaft(shaftParts.model, e.target.value, shaftParts.flex) })} placeholder="65g / 80g台" />
                 </Field>
             </div>
         );
     };
 
-    const renderClubSpecificFields = (club: Club) => {
+    const renderClubSpecificFields = (
+        club: Club,
+        applyPatch: (patch: Partial<Club>) => void,
+        ballDraft?: Pick<ClubEditorDraft, 'ballBrand' | 'ballModel' | 'ballColor' | 'ballMemo'>,
+        applyBallPatch?: (patch: Partial<Pick<ClubEditorDraft, 'ballBrand' | 'ballModel' | 'ballColor' | 'ballMemo'>>) => void,
+    ) => {
         const slot = ALL_SLOTS.find((candidate) => slotKey(candidate) === slotKeyForClub(club));
         const isDriver = club.category === TargetCategory.DRIVER;
         const isLongClub = club.category === TargetCategory.FAIRWAY || club.category === TargetCategory.UTILITY;
@@ -510,10 +738,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         if (club.category === TargetCategory.BALL) {
             return (
                 <div className="grid gap-3 md:grid-cols-4">
-                    <Field label="ブランド"><input className={textInputClass} value={setting.ballBrand || club.brand} onChange={(e) => commitSetting((prev) => ({ ...prev, ballBrand: e.target.value, clubs: prev.clubs.map((item) => item.id === club.id ? { ...item, brand: e.target.value } : item) }))} placeholder="Titleist" /></Field>
-                    <Field label="モデル名"><input list="mybag-ball-suggestions" className={textInputClass} value={setting.ball || club.model} onChange={(e) => commitSetting((prev) => ({ ...prev, ball: e.target.value, clubs: prev.clubs.map((item) => item.id === club.id ? { ...item, model: e.target.value } : item) }))} placeholder="Pro V1x" /></Field>
-                    <Field label="カラー"><input className={textInputClass} value={setting.ballColor || ''} onChange={(e) => commitSetting((prev) => ({ ...prev, ballColor: e.target.value }))} placeholder="ホワイト" /></Field>
-                    <Field label="メモ"><input className={textInputClass} value={setting.ballMemo || club.memo || ''} onChange={(e) => commitSetting((prev) => ({ ...prev, ballMemo: e.target.value, clubs: prev.clubs.map((item) => item.id === club.id ? { ...item, memo: e.target.value } : item) }))} placeholder="季節で変更など" /></Field>
+                    <Field label="ブランド"><input className={textInputClass} value={ballDraft?.ballBrand || ''} onChange={(e) => { applyPatch({ brand: e.target.value }); applyBallPatch?.({ ballBrand: e.target.value }); }} placeholder="Titleist" /></Field>
+                    <Field label="モデル名"><input list="mybag-ball-suggestions" className={textInputClass} value={ballDraft?.ballModel || ''} onChange={(e) => { applyPatch({ model: e.target.value }); applyBallPatch?.({ ballModel: e.target.value }); }} placeholder="Pro V1x" /></Field>
+                    <Field label="カラー"><input className={textInputClass} value={ballDraft?.ballColor || ''} onChange={(e) => applyBallPatch?.({ ballColor: e.target.value })} placeholder="ホワイト" /></Field>
+                    <Field label="メモ"><input className={textInputClass} value={ballDraft?.ballMemo || ''} onChange={(e) => { applyPatch({ memo: e.target.value }); applyBallPatch?.({ ballMemo: e.target.value }); }} placeholder="季節で変更など" /></Field>
                 </div>
             );
         }
@@ -521,13 +749,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         if (isPutter) {
             return (
                 <div className="grid gap-3 md:grid-cols-4">
-                    <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => updateClub(club.id, { brand: e.target.value })} /></Field>
-                    <Field label="モデル名"><input list="mybag-model-suggestions" className={textInputClass} value={club.model} onChange={(e) => updateClub(club.id, { model: e.target.value })} /></Field>
-                    <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => updateClub(club.id, { length: e.target.value })} placeholder="34インチ" /></Field>
-                    <Field label="メモ"><input className={textInputClass} value={club.memo || ''} onChange={(e) => updateClub(club.id, { memo: e.target.value })} /></Field>
+                    <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} /></Field>
+                    <Field label="モデル名"><input list="mybag-model-suggestions" className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} /></Field>
+                    <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => applyPatch({ length: e.target.value })} placeholder="34インチ" /></Field>
+                    <Field label="メモ"><input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} /></Field>
                     {!inferredHeadShape && (
                         <Field label="ヘッド形状">
-                            <select className={textInputClass} value={club.headShape || ''} onChange={(e) => updateClub(club.id, { headShape: e.target.value })}>
+                            <select className={textInputClass} value={club.headShape || ''} onChange={(e) => applyPatch({ headShape: e.target.value })}>
                                 <option value="">選択してください</option>
                                 {['ブレード', 'マレット', 'ネオマレット', 'L字', 'センターシャフト', 'その他', '不明'].map((shape) => <option key={shape} value={shape}>{shape}</option>)}
                             </select>
@@ -540,34 +768,34 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
         return (
             <div className="space-y-4">
-                {renderSuggestionInputs(club)}
+                {renderSuggestionInputs(club, applyPatch)}
                 <div className="grid gap-3 md:grid-cols-4">
                     <Field label="番手・ロフト">
-                        <input className={textInputClass} value={club.loft || ''} onChange={(e) => updateClub(club.id, { loft: e.target.value })} placeholder={slot?.defaultLoft || '15°'} />
+                        <input className={textInputClass} value={club.loft || ''} onChange={(e) => applyPatch({ loft: e.target.value })} placeholder={slot?.defaultLoft || '15°'} />
                     </Field>
                     <Field label="キャリー飛距離">
-                        <input className={textInputClass} value={club.carryDistance || ''} onChange={(e) => updateClub(club.id, { carryDistance: e.target.value })} placeholder="210" />
+                        <input className={textInputClass} value={club.carryDistance || ''} onChange={(e) => applyPatch({ carryDistance: e.target.value })} placeholder="210" />
                     </Field>
                     <Field label="総距離">
-                        <input className={textInputClass} value={club.distance || ''} onChange={(e) => updateClub(club.id, { distance: e.target.value })} placeholder="220" />
+                        <input className={textInputClass} value={club.distance || ''} onChange={(e) => applyPatch({ distance: e.target.value })} placeholder="220" />
                     </Field>
                     <Field label="メモ">
-                        <input className={textInputClass} value={club.memo || club.worry || ''} onChange={(e) => updateClub(club.id, { memo: e.target.value, worry: e.target.value })} placeholder="候補クラブなど" />
+                        <input className={textInputClass} value={club.memo || club.worry || ''} onChange={(e) => applyPatch({ memo: e.target.value, worry: e.target.value })} placeholder="候補クラブなど" />
                     </Field>
                 </div>
 
                 <div className="grid gap-3 md:grid-cols-3">
                     {isDriver && (
                         <>
-                            <Field label="可変スリーブ設定"><input className={textInputClass} value={club.sleeveSetting || ''} onChange={(e) => updateClub(club.id, { sleeveSetting: e.target.value })} placeholder="10.5°を-1°" /></Field>
-                            <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => updateClub(club.id, { length: e.target.value })} placeholder="45.25インチ" /></Field>
+                            <Field label="可変スリーブ設定"><input className={textInputClass} value={club.sleeveSetting || ''} onChange={(e) => applyPatch({ sleeveSetting: e.target.value })} placeholder="10.5°を-1°" /></Field>
+                            <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => applyPatch({ length: e.target.value })} placeholder="45.25インチ" /></Field>
                         </>
                     )}
-                    {isIron && <Field label="ライ角"><input className={textInputClass} value={club.lieAngle || ''} onChange={(e) => updateClub(club.id, { lieAngle: e.target.value })} placeholder="標準 / 1°アップ" /></Field>}
+                    {isIron && <Field label="ライ角"><input className={textInputClass} value={club.lieAngle || ''} onChange={(e) => applyPatch({ lieAngle: e.target.value })} placeholder="標準 / 1°アップ" /></Field>}
                     {isWedge && (
                         <>
-                            <Field label="バウンス"><input className={textInputClass} value={club.bounce || ''} onChange={(e) => updateClub(club.id, { bounce: e.target.value })} placeholder="10" /></Field>
-                            <Field label="グラインド"><input className={textInputClass} value={club.grind || ''} onChange={(e) => updateClub(club.id, { grind: e.target.value })} placeholder="F / D / M" /></Field>
+                            <Field label="バウンス"><input className={textInputClass} value={club.bounce || ''} onChange={(e) => applyPatch({ bounce: e.target.value })} placeholder="10" /></Field>
+                            <Field label="グラインド"><input className={textInputClass} value={club.grind || ''} onChange={(e) => applyPatch({ grind: e.target.value })} placeholder="F / D / M" /></Field>
                         </>
                     )}
                 </div>
@@ -580,7 +808,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <button
                                     key={option}
                                     type="button"
-                                    onClick={() => updateClub(club.id, { mainUse: toggleArrayValue(club.mainUse, option) })}
+                                    onClick={() => applyPatch({ mainUse: toggleArrayValue(club.mainUse, option) })}
                                     className={cn('rounded-full px-3 py-1.5 text-xs font-black ring-1', club.mainUse?.includes(option) ? 'bg-[#176534] text-white ring-[#176534]' : 'bg-white text-slate-500 ring-slate-200')}
                                 >
                                     {option}
@@ -597,7 +825,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <button
                                 key={option}
                                 type="button"
-                                onClick={() => updateClub(club.id, { missTendency: toggleArrayValue(club.missTendency, option) })}
+                                onClick={() => applyPatch({ missTendency: toggleArrayValue(club.missTendency, option) })}
                                 className={cn('rounded-full px-3 py-1.5 text-xs font-black ring-1', club.missTendency?.includes(option) ? 'bg-amber-600 text-white ring-amber-600' : 'bg-white text-slate-500 ring-slate-200')}
                             >
                                 {option}
@@ -821,31 +1049,83 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-lg font-black text-trust-navy">番手ごとの詳細を調整</h3>
-                            <p className="mt-1 text-sm text-slate-600">ロフトが分からなくても保存できます。診断精度を上げたい番手から入力してください。</p>
+                            <p className="mt-1 text-sm text-slate-600">作成済みクラブはあとから1本ずつ編集できます。ロフトが分からなくても保存できます。</p>
                         </div>
                         <div className={cn('inline-flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-black ring-1', saveStatusMeta.tone)}>
                             {saveStatusMeta.icon}
                             {saveStatusMeta.label}
                         </div>
                     </div>
+                    {clubEditorNotice && (
+                        <div
+                            className={cn(
+                                'mb-4 rounded-lg px-4 py-3 text-sm font-bold ring-1',
+                                clubEditorNotice.tone === 'success' && 'bg-emerald-50 text-emerald-800 ring-emerald-200',
+                                clubEditorNotice.tone === 'warning' && 'bg-amber-50 text-amber-800 ring-amber-200',
+                                clubEditorNotice.tone === 'error' && 'bg-rose-50 text-rose-800 ring-rose-200',
+                            )}
+                        >
+                            <div>{clubEditorNotice.message}</div>
+                            {clubEditorNotice.detail && <div className="mt-1 text-xs font-semibold">{clubEditorNotice.detail}</div>}
+                        </div>
+                    )}
                     <div id="my-bag-export-area" className="space-y-3">
                         {clubs.map((club) => {
-                            const isExpanded = expandedClubId === club.id;
+                            const isExpanded = expandedClubId === club.id && editingClubId === club.id && Boolean(editingDraft);
+                            const isBall = club.category === TargetCategory.BALL;
+                            const editorDraft = isExpanded ? editingDraft : null;
                             return (
                                 <article key={club.id} className={cn('rounded-lg border bg-white shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
-                                    <button type="button" onClick={() => setExpandedClubId(isExpanded ? null : club.id)} className="flex min-h-[56px] w-full items-center justify-between gap-3 px-3 text-left">
+                                    <div className="flex min-h-[72px] flex-col gap-3 px-3 py-3 md:flex-row md:items-center md:justify-between">
                                         <div className="min-w-0">
-                                            <div className="text-sm font-black text-trust-navy">{club.number || club.category} <span className="font-bold text-slate-400">{club.category}</span></div>
-                                            <div className="truncate text-xs font-bold text-slate-500">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'} / {club.distance ? `${club.distance}y` : '距離未入力'}</div>
+                                            <div className="text-sm font-black text-trust-navy">{club.number || club.category}</div>
+                                            <div className="mt-1 truncate text-sm font-bold text-slate-700">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</div>
+                                            <div className="mt-1 truncate text-xs font-bold text-slate-500">
+                                                {club.shaft || '-'}
+                                            </div>
+                                            <div className="mt-1 truncate text-xs font-bold text-slate-500">
+                                                {[club.loft, club.carryDistance ? `${club.carryDistance}y carry` : '', club.distance ? `${club.distance}y total` : ''].filter(Boolean).join(' / ') || '-'}
+                                            </div>
                                         </div>
-                                        <ChevronDown className={cn('h-4 w-4 text-slate-400 transition', isExpanded && 'rotate-180')} />
-                                    </button>
-                                    {isExpanded && (
+                                        <div className="flex flex-wrap gap-2">
+                                            <button type="button" onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-black text-trust-navy">
+                                                編集
+                                            </button>
+                                            {!isBall && (
+                                                <button type="button" onClick={() => duplicateClubFromCard(club)} className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-black text-trust-navy">
+                                                    複製
+                                                </button>
+                                            )}
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    if (!window.confirm(`${club.number || club.category} を削除しますか？`)) return;
+                                                    removeClub(club.id);
+                                                }}
+                                                className="inline-flex min-h-[36px] items-center rounded-lg border border-rose-200 bg-rose-50 px-3 text-xs font-black text-rose-700"
+                                            >
+                                                削除
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {isExpanded && editorDraft && (
                                         <div className="border-t border-slate-100 p-3">
-                                            {renderClubSpecificFields(club)}
-                                            <div className="mt-4 flex justify-end gap-2">
-                                                <button type="button" onClick={() => removeClub(club.id)} className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-rose-200 bg-rose-50 px-3 text-xs font-black text-rose-700">
-                                                    <Trash2 size={14} /> 削除
+                                            {renderClubSpecificFields(editorDraft.club, updateEditingDraftClub, {
+                                                ballBrand: editorDraft.ballBrand,
+                                                ballModel: editorDraft.ballModel,
+                                                ballColor: editorDraft.ballColor,
+                                                ballMemo: editorDraft.ballMemo,
+                                            }, updateEditingDraftBall)}
+                                            <div className="mt-4 rounded-lg bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200">
+                                                未入力があっても保存できます。あとから追記しても大丈夫です。
+                                            </div>
+                                            <div className="mt-4 flex flex-wrap justify-end gap-2">
+                                                <button type="button" onClick={cancelClubEditor} className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-xs font-black text-slate-600">
+                                                    キャンセル
+                                                </button>
+                                                <button type="button" onClick={() => void saveEditedClub()} disabled={isClubEditorSaving} className="inline-flex min-h-[40px] items-center gap-2 rounded-lg bg-trust-navy px-4 text-xs font-black text-white disabled:opacity-50">
+                                                    {isClubEditorSaving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
+                                                    保存する
                                                 </button>
                                             </div>
                                         </div>

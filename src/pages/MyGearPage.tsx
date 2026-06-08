@@ -43,6 +43,7 @@ export const MyGearPage = () => {
         saveDebugInfo,
         manualSave,
         manualSaveMyBag,
+        manualSaveMyBagClub,
         syncWithSupabase,
         setShowAuth,
         restoreDiagnosisResult,
@@ -661,6 +662,9 @@ export const MyGearPage = () => {
                         missingExtendedColumns={saveDebugInfo?.missingExtendedColumns || []}
                         onManualSave={(settingOverride) => {
                             return manualSaveMyBag(settingOverride || profile.myBag);
+                        }}
+                        onManualSaveClub={(clubId, settingOverride) => {
+                            return manualSaveMyBagClub(clubId, settingOverride || profile.myBag);
                         }}
                         onReloadFromCloud={syncWithSupabase}
                         intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}

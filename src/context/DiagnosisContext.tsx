@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from 'react';
 import {
     type UserAccount, type UserProfile, type DiagnosisHistoryItem,
-    INITIAL_ACCOUNT, INITIAL_PROFILE
+    INITIAL_ACCOUNT, INITIAL_PROFILE, TargetCategory
 } from '../types/golf';
 import type { ClubSetting } from '../types/golf';
 import { generateFittingDiagnosis, type DiagnosisResult } from '../lib/gemini';
@@ -60,6 +60,7 @@ interface DiagnosisContextType {
     syncWithSupabase: () => Promise<void>;
     manualSave: (profileOverride?: UserProfile) => Promise<void>;
     manualSaveMyBag: (myBagOverride: ClubSetting) => Promise<void>;
+    manualSaveMyBagClub: (clubId: string, myBagOverride: ClubSetting) => Promise<{ ok: boolean; error?: string }>;
 }
 
 const DiagnosisContext = createContext<DiagnosisContextType | undefined>(undefined);
@@ -279,6 +280,17 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
 
     const cloneClubs = (clubs: UserProfile['myBag']['clubs']) =>
         clubs.map((club) => ({ ...club }));
+
+    const mergeRemoteSnapshotClub = (
+        currentSnapshotClubs: UserProfile['myBag']['clubs'],
+        savedClub: UserProfile['myBag']['clubs'][number],
+    ) => {
+        const nextClubs = currentSnapshotClubs.map((club) => (club.id === savedClub.id ? { ...savedClub } : { ...club }));
+        if (!nextClubs.some((club) => club.id === savedClub.id)) {
+            nextClubs.push({ ...savedClub });
+        }
+        return nextClubs;
+    };
 
     const mergeCloudClubsWithSnapshot = (
         cloudClubs: Array<Record<string, any>>,
@@ -889,6 +901,154 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const manualSaveMyBagClub = async (clubId: string, myBagOverride: ClubSetting): Promise<{ ok: boolean; error?: string }> => {
+        let requestedProfile: UserProfile = {
+            ...profileRef.current,
+            myBag: {
+                ...profileRef.current.myBag,
+                ...myBagOverride,
+                clubs: cloneClubs(myBagOverride.clubs),
+                ball: myBagOverride.ball,
+            },
+        };
+
+        profileRef.current = requestedProfile;
+        setProfileInternal(requestedProfile);
+        persistLocalSnapshot(userRef.current, requestedProfile, resultDataRef.current);
+        const activeUser = userRef.current;
+
+        if (!activeUser.isLoggedIn || !activeUser.id) {
+            markSaveStatusSaved();
+            const targetClub = requestedProfile.myBag.clubs.find((club) => club.id === clubId);
+            setSaveDebugInfo({
+                expectedCount: targetClub ? 1 : 0,
+                receivedCount: targetClub ? 1 : 0,
+                dedupedCount: targetClub ? 1 : 0,
+                verifiedCount: targetClub ? 1 : 0,
+                extendedColumnsSaved: false,
+                missingExtendedColumns: [],
+                sampleClubs: buildSaveDebugSample(targetClub ? [targetClub] : []),
+            });
+            return { ok: true };
+        }
+
+        const { normalizedClubs, profilePayload, clubPayloads } = buildRemoteSavePayload(activeUser, requestedProfile);
+        const idsDiffer = normalizedClubs.some((club, index) => club.id !== requestedProfile.myBag.clubs[index]?.id);
+        if (idsDiffer) {
+            requestedProfile = {
+                ...requestedProfile,
+                myBag: {
+                    ...requestedProfile.myBag,
+                    clubs: cloneClubs(normalizedClubs),
+                },
+            };
+            profileRef.current = requestedProfile;
+            setProfileInternal(requestedProfile);
+            persistLocalSnapshot(userRef.current, requestedProfile, resultDataRef.current);
+        }
+
+        const targetClub = normalizedClubs.find((club) => club.id === clubId) || normalizedClubs.find((_, index) => requestedProfile.myBag.clubs[index]?.id === clubId);
+        const targetClubPayload = clubPayloads.find((club) => club.id === targetClub?.id);
+        if (!targetClub || !targetClubPayload) {
+            const error = 'target club not found';
+            setSaveStatus('error');
+            setSaveErrorDetail(error);
+            return { ok: false, error };
+        }
+
+        clearSaveStatusResetTimer();
+        setSaveErrorDetail(null);
+        setSaveStatus('saving');
+        setIsManualSaveInFlight(true);
+        setLastSaveTargetClubCount(1);
+        setSaveDebugInfo({
+            expectedCount: 1,
+            receivedCount: 1,
+            dedupedCount: 1,
+            verifiedCount: 0,
+            extendedColumnsSaved: false,
+            missingExtendedColumns: [],
+            sampleClubs: buildSaveDebugSample([targetClub]),
+        });
+
+        try {
+            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+            if (sessionError) {
+                throw new Error(`session fetch: ${sessionError.message}`);
+            }
+
+            const accessToken = sessionData.session?.access_token;
+            if (!accessToken) {
+                throw new Error('session fetch: missing access token');
+            }
+
+            const response = await withTimeout(
+                fetch('/api/save-my-bag-club', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                    body: JSON.stringify({
+                        profilePayload,
+                        clubPayload: targetClubPayload,
+                    }),
+                }),
+                'my bag api club save',
+                30000,
+            );
+
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok || !payload?.ok) {
+                throw new Error(payload?.error || `my bag api club save: HTTP ${response.status}`);
+            }
+
+            const mergedRemoteClubs = mergeRemoteSnapshotClub(lastRemoteBagSnapshotRef.current.clubs, targetClub);
+            const mergedRemoteBall = targetClub.category === TargetCategory.BALL
+                ? (requestedProfile.myBag.ball || targetClub.model || '')
+                : lastRemoteBagSnapshotRef.current.ball;
+
+            lastRemoteBagSnapshotRef.current = {
+                clubs: cloneClubs(mergedRemoteClubs),
+                ball: mergedRemoteBall,
+            };
+
+            const remoteBaselineProfile: UserProfile = {
+                ...requestedProfile,
+                myBag: {
+                    ...requestedProfile.myBag,
+                    clubs: cloneClubs(mergedRemoteClubs),
+                    ball: mergedRemoteBall,
+                },
+            };
+
+            lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(activeUser, remoteBaselineProfile).signature;
+            setLastSavedClubCount(Number(payload?.verifiedCount || 1));
+            setSaveDebugInfo({
+                expectedCount: 1,
+                receivedCount: Number(payload?.receivedCount || 1),
+                dedupedCount: Number(payload?.dedupedCount || 1),
+                verifiedCount: Number(payload?.verifiedCount || 1),
+                extendedColumnsSaved: Boolean(payload?.extendedColumnsSaved),
+                missingExtendedColumns: Array.isArray(payload?.missingExtendedColumns)
+                    ? payload.missingExtendedColumns.filter((column: unknown): column is string => typeof column === 'string' && column.trim().length > 0)
+                    : [],
+                sampleClubs: Array.isArray(payload?.sampleClubs) ? payload.sampleClubs : buildSaveDebugSample([targetClub]),
+            });
+            refreshUnsavedChanges(activeUser, requestedProfile);
+            markSaveStatusSaved();
+            return { ok: true };
+        } catch (error) {
+            console.error('manual my bag club save error:', error);
+            setSaveStatus('error');
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            setSaveErrorDetail(errorMessage);
+            return { ok: false, error: errorMessage };
+        } finally {
+            setIsManualSaveInFlight(false);
+        }
+    };
+
     const updateProfile = (field: keyof UserProfile, value: any) => {
         setProfile(prev => {
             return { ...prev, [field]: value };
@@ -1049,7 +1209,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             saveDebugInfo,
             syncWithSupabase,
             manualSave,
-            manualSaveMyBag
+            manualSaveMyBag,
+            manualSaveMyBagClub
         }}>
             {children}
         </DiagnosisContext.Provider>
