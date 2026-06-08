@@ -21,6 +21,12 @@ cd /Users/tomitajunpei/Downloads/Obsidian/MyBagPro
 npm run supabase:check
 ```
 
+クラブ編集の詳細列が入っているか確認する場合:
+
+```bash
+npm run supabase:check-club-editor-columns
+```
+
 成功すると、設定状態と `setting_profiles` の一部が表示される。
 
 ## 3. 最初にやるスキーマ更新

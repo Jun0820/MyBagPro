@@ -196,6 +196,55 @@ async function checkConnection() {
   console.log(JSON.stringify(data, null, 2));
 }
 
+async function checkClubEditorColumns() {
+  const supabase = getAdminClient();
+  const requiredColumns = [
+    'flex',
+    'number',
+    'carry_distance',
+    'worry',
+    'shaft_weight',
+    'sleeve_setting',
+    'length',
+    'lie_angle',
+    'bounce',
+    'grind',
+    'head_shape',
+    'main_use',
+    'miss_tendency',
+    'memo',
+    'copied_from_club_id',
+  ];
+
+  const missing = [];
+
+  for (const column of requiredColumns) {
+    const { error } = await supabase
+      .from('clubs')
+      .select(`id,${column}`)
+      .limit(1);
+
+    if (error) {
+      if (error.code === '42703') {
+        missing.push(column);
+        continue;
+      }
+      throw error;
+    }
+  }
+
+  console.log(JSON.stringify({
+    table: 'public.clubs',
+    ready: missing.length === 0,
+    requiredColumns,
+    missingColumns: missing,
+    nextStep:
+      missing.length === 0
+        ? 'Rich club editor fields can now be persisted directly in public.clubs.'
+        : 'Run docs/supabase-add-club-editor-columns.sql in Supabase SQL Editor, then run this check again.',
+  }, null, 2));
+}
+
 async function publishProfile(slug) {
   if (!slug) throw new Error('Usage: npm run supabase:publish-profile -- <slug>');
 
@@ -728,6 +777,9 @@ async function main() {
     case 'check':
       await checkConnection();
       break;
+    case 'check-club-editor-columns':
+      await checkClubEditorColumns();
+      break;
     case 'publish-profile':
       await publishProfile(args[0]);
       break;
@@ -751,7 +803,7 @@ async function main() {
       break;
     default:
       throw new Error(
-        'Unknown command. Use one of: check, publish-profile, insert-source, upsert-article, upsert-articles, upsert-setting-profile, sync-social-overrides, sync-profile-fields'
+        'Unknown command. Use one of: check, check-club-editor-columns, publish-profile, insert-source, upsert-article, upsert-articles, upsert-setting-profile, sync-social-overrides, sync-profile-fields'
       );
   }
 }

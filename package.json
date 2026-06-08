@@ -14,6 +14,7 @@
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "content:plan-tournament-updates": "node scripts/plan-tournament-updates.mjs",
     "supabase:check": "node scripts/supabase-admin.mjs check",
+    "supabase:check-club-editor-columns": "node scripts/supabase-admin.mjs check-club-editor-columns",
     "supabase:publish-profile": "node scripts/supabase-admin.mjs publish-profile",
     "supabase:insert-source": "node scripts/supabase-admin.mjs insert-source",
     "supabase:upsert-article": "node scripts/supabase-admin.mjs upsert-article",
