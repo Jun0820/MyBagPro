@@ -177,7 +177,7 @@ export default async function handler(req: any, res: any) {
 
     const verifiedRows = (verifyResult.data || []) as any[];
     const verifiedIds = new Set(verifiedRows.map((row) => row.id));
-    const expectedById = new Map(dedupedClubs.map((club) => [club.id, club]));
+    const expectedById = new Map<string, any>(dedupedClubs.map((club) => [club.id, club as any]));
     const expected = Array.isArray(expectedIds)
       ? expectedIds.map((id) => {
           const textId = toText(id);
@@ -196,7 +196,7 @@ export default async function handler(req: any, res: any) {
 
     const mismatchedIds = verifiedRows
       .filter((row) => {
-        const expectedClub = expectedById.get(row.id);
+        const expectedClub = expectedById.get(row.id) as any;
         if (!expectedClub) return true;
         return (
           toText(row.category) !== expectedClub.category ||
