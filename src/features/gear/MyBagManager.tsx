@@ -19,8 +19,33 @@ const DEFAULT_SETTING_NAME = '現在のクラブセッティング';
 
 const PURPOSES = ['メイン', 'サブ', '競技用', '練習用', '冬用', '試打・検討中', '過去のセッティング'];
 const BRAND_SUGGESTIONS = ['PING', 'TaylorMade', 'Callaway', 'Titleist', 'Srixon', 'Dunlop', 'Mizuno', 'Yamaha', 'Bridgestone', 'PRGR', 'Cobra', 'PXG', 'ONOFF', 'Fourteen', 'Honma', 'XXIO', 'Cleveland', 'Epon', 'Miura', 'RomaRo', 'Bettinardi', 'Odyssey', 'Scotty Cameron', 'その他'];
-const MODEL_SUGGESTIONS = ['G430', 'G425', 'G440', 'Qi10', 'Qi35', 'Qi4D', 'STEALTH', 'PARADYM', 'ELYTE', 'ZX5', 'ZX7', 'T-Series', 'Vokey SM10', 'Vokey SM11', 'RTX', 'JAWS', 'Spider', 'Phantom', 'Ai-ONE'];
-const SHAFT_SUGGESTIONS = ['VENTUS', 'TENSEI', 'Tour AD', 'Speeder NX', 'Diamana', 'The ATTAS', 'LIN-Q', 'VANQUISH', 'Dynamic Gold', 'MODUS', 'NS PRO', 'KBS', 'Project X', 'MCI', 'PING TOUR', '純正シャフト', 'その他'];
+const MODEL_SUGGESTIONS = [
+    'G430', 'G430 MAX', 'G430 LST', 'G440', 'G440 MAX', 'G440 LST', 'G440 SFT',
+    'Qi10', 'Qi10 LS', 'Qi35', 'Qi35 LS', 'Qi35 MAX', 'Qi4D', 'STEALTH', 'STEALTH GLOIRE',
+    'ELYTE', 'ELYTE ◆◆◆', 'PARADYM', 'PARADYM Ai Smoke', 'Ai Smoke MAX',
+    'GT2', 'GT3', 'TSR2', 'TSR3', 'T100', 'T150', 'T200', 'T250',
+    'ZX5 Mk II', 'ZX7 Mk II', 'ZXi5', 'ZXi7', 'ZXi LS',
+    'DS-ADAPT LS', 'DS-ADAPT X', 'DS-ADAPT MAX-K',
+    'ST-MAX 230', 'JPX 925 HOT METAL', 'Mizuno Pro 241', 'Mizuno Pro 243', 'Mizuno Pro S-3',
+    '221 CB', '222 CB+', '220 MB', 'BRM2', 'B1ST', 'B2HT',
+    'XXIO 13', 'XXIO X', 'ONOFF KURO', 'ONOFF AKA', 'RMX VD', 'RMX VD/M', 'RS X', 'LS',
+    'Vokey SM10', 'Vokey SM11', 'RTX', 'RTZ', 'JAWS RAW', 'OPUS', 's159', 'T-1', 'T-3',
+    'Spider Tour', 'Spider Tour X', 'Phantom 5', 'Phantom 7', 'Ai-ONE', 'Ai-ONE MILLED', 'PLD ANSER', 'WHITE HOT OG',
+];
+const SHAFT_SUGGESTIONS = [
+    'VENTUS', 'VENTUS Blue', 'VENTUS Black', 'VENTUS Red', 'VENTUS TR Blue', 'VENTUS TR Black', 'VENTUS TR Red', 'VENTUS HB',
+    'Speeder NX', 'Speeder NX Blue', 'Speeder NX Black', 'Speeder NX Green', 'Speeder NX Violet',
+    'Tour AD', 'Tour AD DI', 'Tour AD VF', 'Tour AD CQ', 'Tour AD UB', 'Tour AD HD', 'Tour AD GC', 'Tour AD PT', 'Tour AD HYBRID',
+    'Diamana', 'Diamana BB', 'Diamana WB', 'Diamana RB', 'Diamana GT', 'Diamana TB',
+    'TENSEI', 'TENSEI Pro Blue 1K', 'TENSEI Pro White 1K', 'TENSEI Pro Orange 1K', 'TENSEI Pro Black 1K', 'TENSEI 1K Hybrid',
+    'VANQUISH', 'VANQUISH VV', 'KAI\'LI', 'MMT',
+    'LIN-Q', 'LIN-Q PowerCore Blue', 'LIN-Q PowerCore White', 'LIN-Q PowerCore Red', 'ATTAS', 'ATTAS RX Sunrise', 'Helium', 'Recoil', 'PROFORCE',
+    'Dynamic Gold', 'Dynamic Gold 95', 'Dynamic Gold 105', 'Dynamic Gold 120', 'Dynamic Gold Tour Issue', 'AMT', 'Project X', 'Project X LZ', 'Project X IO', 'Project X LS',
+    'MODUS', 'MODUS3 TOUR 105', 'MODUS3 TOUR 115', 'MODUS3 TOUR 120', 'MODUS3 TOUR 125', 'MODUS3 TOUR 130', 'MODUS3 WEDGE', 'MODUS3 HYBRID',
+    'N.S.PRO 950GH neo', 'N.S.PRO 850GH', 'N.S.PRO 750GH neo', 'Zelos 7', 'Zelos 8', 'Regio Formula',
+    'KBS TOUR', 'KBS C-TAPER', 'KBS TOUR LITE', 'KBS PGI',
+    'MCI', 'PING TOUR', 'ALTA J CB', '純正シャフト', 'その他'
+];
 const FLEX_SUGGESTIONS = ['L', 'A', 'R', 'SR', 'S', 'SX', 'X', 'TX', '5S', '5X', '6S', '6X', '7S', '7X', '8S', '8X', 'S200', 'S300', 'X100', 'R300', 'その他', '不明'];
 const SHAFT_WEIGHT_SUGGESTIONS = ['40g', '45g', '50g', '55g', '60g', '65g', '70g', '75g', '80g', '85g', '90g', '95g', '100g', '105g', '110g', '115g', '120g', '40g台', '50g台', '60g台', '70g台', '80g台', '90g台', '100g台', '110g台', '120g台'];
 const BRAND_MODEL_MAP: Record<string, string[]> = {
@@ -29,9 +54,13 @@ const BRAND_MODEL_MAP: Record<string, string[]> = {
     callaway: ['ELYTE', 'ELYTE ◆◆◆', 'PARADYM', 'PARADYM Ai Smoke', 'Ai Smoke MAX', 'APEX UW', 'X FORGED', 'X FORGED STAR', 'OPUS', 'JAWS RAW', 'Ai-ONE', '2-BALL BLADE'],
     titleist: ['GT2', 'GT3', 'TSR2', 'TSR3', 'T100', 'T150', 'T200', 'T250', 'SM10', 'SM11', 'Phantom', 'Scotty Cameron Newport 2', 'Pro V1', 'Pro V1x'],
     srixon: ['ZXi LS', 'ZXi', 'ZX5 Mk II', 'ZX7 Mk II', 'ZXi5', 'ZXi7', 'Z-STAR XV', 'Z-STAR'],
+    cobra: ['DS-ADAPT LS', 'DS-ADAPT X', 'DS-ADAPT MAX-K', 'DS-ADAPT MAX-D', 'KING TEC', 'KING TEC-X'],
     bridgestone: ['B1ST', 'B2HT', '241CB', '242CB+', 'BITING SPIN', 'TOUR B X', 'TOUR B XS'],
-    mizuno: ['ST-MAX 230', 'ST-G', 'Mizuno Pro 241', 'Mizuno Pro 243', 'Mizuno Pro S-3', 'T-1', 'T-3'],
+    mizuno: ['ST-MAX 230', 'ST-G', 'JPX 925 HOT METAL', 'Mizuno Pro 241', 'Mizuno Pro 243', 'Mizuno Pro S-3', 'T-1', 'T-3'],
     yamaha: ['RMX VD', 'RMX VD/M', 'inpres DRIVESTAR'],
+    prgr: ['RS X', 'LS', 'SUPER egg'],
+    xxio: ['XXIO 13', 'XXIO X', 'XXIO PRIME'],
+    onoff: ['ONOFF KURO', 'ONOFF AKA'],
     pxg: ['0311 BLACK OPS', '0311 XP GEN7', 'Battle Ready II'],
     odyssey: ['Ai-ONE #7', 'Ai-ONE MILLED', 'WHITE HOT OG', 'ROSSIE S'],
     'scotty cameron': ['Phantom 5', 'Phantom 7', 'Newport 2', 'Squareback 2'],
