@@ -59,7 +59,7 @@ const generateUuid = () => {
   });
 };
 
-const probeExtendedClubColumns = async (adminClient: ReturnType<typeof createClient>) => {
+const probeExtendedClubColumns = async (adminClient: any) => {
   const now = Date.now();
   if (cachedClubSchemaProbe && now - cachedClubSchemaProbe.checkedAt < CLUB_SCHEMA_CACHE_TTL_MS) {
     return cachedClubSchemaProbe;
