@@ -109,7 +109,7 @@ export default async function handler(req: any, res: any) {
     let supportsExtendedClubColumns = false;
     const extendedColumnsProbe = await adminClient
       .from('clubs')
-      .select('id,flex,number,carry_distance,shaft_weight,sleeve_setting,length,lie_angle,bounce,grind,head_shape,main_use,miss_tendency,memo,copied_from_club_id')
+      .select('id,flex')
       .limit(1);
 
     if (!extendedColumnsProbe.error) {
@@ -168,18 +168,15 @@ export default async function handler(req: any, res: any) {
 
     const verifyResult = await adminClient
       .from('clubs')
-      .select(
-        supportsExtendedClubColumns
-          ? 'id,category,brand,model,shaft,flex,number,loft,distance,carry_distance,worry,shaft_weight,sleeve_setting,length,lie_angle,bounce,grind,head_shape,main_use,miss_tendency,memo,copied_from_club_id'
-          : 'id,category,brand,model,shaft,loft,distance',
-      )
+      .select(supportsExtendedClubColumns ? '*' : 'id,category,brand,model,shaft,loft,distance')
       .eq('user_id', user.id);
 
     if (verifyResult.error) {
       throw new Error(`clubs verify: ${verifyResult.error.message}`);
     }
 
-    const verifiedIds = new Set((verifyResult.data || []).map((row) => row.id));
+    const verifiedRows = (verifyResult.data || []) as any[];
+    const verifiedIds = new Set(verifiedRows.map((row) => row.id));
     const expectedById = new Map(dedupedClubs.map((club) => [club.id, club]));
     const expected = Array.isArray(expectedIds)
       ? expectedIds.map((id) => {
@@ -189,15 +186,15 @@ export default async function handler(req: any, res: any) {
       : [];
     const missingIds = expected.filter((id) => !verifiedIds.has(id));
 
-    if ((verifyResult.data || []).length !== dedupedClubs.length) {
-      throw new Error(`clubs verify: expected ${dedupedClubs.length} rows but found ${(verifyResult.data || []).length}`);
+    if (verifiedRows.length !== dedupedClubs.length) {
+      throw new Error(`clubs verify: expected ${dedupedClubs.length} rows but found ${verifiedRows.length}`);
     }
 
     if (missingIds.length > 0) {
       throw new Error(`clubs verify: missing ${missingIds.length} ids`);
     }
 
-    const mismatchedIds = (verifyResult.data || [])
+    const mismatchedIds = verifiedRows
       .filter((row) => {
         const expectedClub = expectedById.get(row.id);
         if (!expectedClub) return true;
@@ -238,7 +235,7 @@ export default async function handler(req: any, res: any) {
       receivedCount: normalizedClubs.length,
       dedupedCount: dedupedClubs.length,
       insertedCount,
-      verifiedCount: (verifyResult.data || []).length,
+      verifiedCount: verifiedRows.length,
       expectedCount: dedupedClubs.length,
       sampleClubs: dedupedClubs.slice(-4).map((club) => ({
         id: club.id,
