@@ -36,16 +36,17 @@ const MODEL_SUGGESTIONS = [
     'Studio Style Newport 2', 'Studio Style Squareback 2', 'Ai-ONE', 'Ai-ONE #7', 'Ai-ONE MILLED', 'WHITE HOT OG', 'Square 2 Square Jailbird', 'PLD ANSER',
 ];
 const SHAFT_SUGGESTIONS = [
-    'VENTUS', 'VENTUS Blue', 'VENTUS Black', 'VENTUS Red', 'VENTUS TR Blue', 'VENTUS TR Black', 'VENTUS TR Red', 'VENTUS HB',
-    'Speeder NX', 'Speeder NX Blue', 'Speeder NX Black', 'Speeder NX Green', 'Speeder NX Violet',
-    'Tour AD', 'Tour AD DI', 'Tour AD VF', 'Tour AD CQ', 'Tour AD UB', 'Tour AD HD', 'Tour AD GC', 'Tour AD PT', 'Tour AD HYBRID',
-    'Diamana', 'Diamana BB', 'Diamana WB', 'Diamana RB', 'Diamana GT', 'Diamana TB',
-    'TENSEI', 'TENSEI Pro Blue 1K', 'TENSEI Pro White 1K', 'TENSEI Pro Orange 1K', 'TENSEI Pro Black 1K', 'TENSEI 1K Hybrid',
-    'VANQUISH', 'VANQUISH VV', 'KAI\'LI', 'MMT',
-    'LIN-Q', 'LIN-Q PowerCore Blue', 'LIN-Q PowerCore White', 'LIN-Q PowerCore Red', 'ATTAS', 'ATTAS RX Sunrise', 'Helium', 'Recoil', 'PROFORCE',
-    'Dynamic Gold', 'Dynamic Gold 95', 'Dynamic Gold 105', 'Dynamic Gold 120', 'Dynamic Gold Tour Issue', 'AMT', 'Project X', 'Project X LZ', 'Project X IO', 'Project X LS',
-    'MODUS', 'MODUS3 TOUR 105', 'MODUS3 TOUR 115', 'MODUS3 TOUR 120', 'MODUS3 TOUR 125', 'MODUS3 TOUR 130', 'MODUS3 WEDGE', 'MODUS3 HYBRID',
-    'N.S.PRO 950GH neo', 'N.S.PRO 850GH', 'N.S.PRO 750GH neo', 'Zelos 7', 'Zelos 8', 'Regio Formula',
+    'VENTUS', 'VENTUS Blue', 'VENTUS Blue 5', 'VENTUS Blue 6', 'VENTUS Black', 'VENTUS Black 6', 'VENTUS Black 7', 'VENTUS Red',
+    'VENTUS TR Blue', 'VENTUS TR Blue 5', 'VENTUS TR Blue 6', 'VENTUS TR Black', 'VENTUS TR Black 6', 'VENTUS TR Black 7', 'VENTUS TR Red', 'VENTUS HB',
+    'Speeder NX', 'Speeder NX Blue', 'Speeder NX Blue 50', 'Speeder NX Black', 'Speeder NX Black 50', 'Speeder NX Green', 'Speeder NX Green 50', 'Speeder NX Violet', 'Speeder NX Violet 50', 'Speeder NX Gold',
+    'Tour AD', 'Tour AD DI', 'Tour AD DI-5', 'Tour AD DI-6', 'Tour AD VF', 'Tour AD VF-5', 'Tour AD VF-6', 'Tour AD CQ', 'Tour AD CQ-5', 'Tour AD CQ-6', 'Tour AD UB', 'Tour AD UB-5', 'Tour AD UB-6', 'Tour AD HD', 'Tour AD GC', 'Tour AD PT', 'Tour AD HYBRID',
+    'Diamana', 'Diamana BB', 'Diamana BB 53', 'Diamana WB', 'Diamana WB 53', 'Diamana RB', 'Diamana GT', 'Diamana TB',
+    'TENSEI', 'TENSEI Pro Blue 1K', 'TENSEI Pro Blue 1K 50', 'TENSEI Pro White 1K', 'TENSEI Pro White 1K 60', 'TENSEI Pro Orange 1K', 'TENSEI Pro Black 1K', 'TENSEI 1K Hybrid',
+    'VANQUISH', 'VANQUISH VV', 'VANQUISH VV 4', 'VANQUISH VV 5', 'VANQUISH VV 6', 'KAI\'LI', 'MMT',
+    'LIN-Q', 'LIN-Q PowerCore Blue', 'LIN-Q PowerCore Blue 5', 'LIN-Q PowerCore White', 'LIN-Q PowerCore White 6', 'LIN-Q PowerCore Red', 'LIN-Q PowerCore Hybrid', 'ATTAS', 'ATTAS RX Sunrise', 'Helium', 'Recoil', 'PROFORCE',
+    'Dynamic Gold', 'Dynamic Gold 95', 'Dynamic Gold 105', 'Dynamic Gold 120', 'Dynamic Gold Tour Issue', 'AMT', 'Project X', 'Project X 6.0', 'Project X 6.5', 'Project X LZ', 'Project X IO', 'Project X LS',
+    'MODUS', 'MODUS3 TOUR 105', 'MODUS3 TOUR 105 S', 'MODUS3 TOUR 115', 'MODUS3 TOUR 120', 'MODUS3 TOUR 125', 'MODUS3 TOUR 130', 'MODUS3 WEDGE', 'MODUS3 HYBRID',
+    'N.S.PRO 950GH neo', 'N.S.PRO 850GH', 'N.S.PRO 750GH neo', 'Zelos 7', 'Zelos 8', 'Regio Formula', 'PING ULT 250D', 'PING ULT 250F', 'PING ULT 250H',
     'KBS TOUR', 'KBS C-TAPER', 'KBS TOUR LITE', 'KBS PGI',
     'MCI', 'PING TOUR', 'ALTA J CB', '純正シャフト', 'その他'
 ];
