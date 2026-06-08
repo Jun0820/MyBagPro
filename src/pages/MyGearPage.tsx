@@ -69,7 +69,9 @@ export const MyGearPage = () => {
         TargetCategory.PUTTER,
     ];
     const completedEssentials = essentialCategories.filter((category) => registeredCategories.has(category)).length;
-    const distanceEligibleClubs = profile.myBag.clubs.filter((club) => club.category !== TargetCategory.PUTTER);
+    const distanceEligibleClubs = profile.myBag.clubs.filter(
+        (club) => club.category !== TargetCategory.PUTTER && club.category !== TargetCategory.BALL,
+    );
     const clubsWithDistance = distanceEligibleClubs.filter((club) => String(club.distance || '').trim() !== '').length;
     const distanceCoveragePercent = distanceEligibleClubs.length > 0 ? Math.round((clubsWithDistance / distanceEligibleClubs.length) * 100) : 0;
     const completionPoints = [
@@ -201,6 +203,7 @@ export const MyGearPage = () => {
     };
 
     const getDisplayedClubDistance = (club: typeof profile.myBag.clubs[number]) => {
+        if (club.category === TargetCategory.PUTTER || club.category === TargetCategory.BALL) return '';
         const total = String(club.distance || '').trim();
         const carry = String(club.carryDistance || '').trim();
         return clubDistanceView === 'carry' ? (carry || total) : (total || carry);
@@ -574,7 +577,7 @@ export const MyGearPage = () => {
                                                 </div>
                                                 <div className="ml-3 text-right">
                                                     <div className="text-[15px] font-black text-trust-navy">
-                                                        {getDisplayedClubDistance(club) ? `${getDisplayedClubDistance(club)}Y` : '未入力'}
+                                                        {getDisplayedClubDistance(club) ? `${getDisplayedClubDistance(club)}Y` : (club.category === TargetCategory.PUTTER || club.category === TargetCategory.BALL ? '-' : '未入力')}
                                                     </div>
                                                 </div>
                                             </button>
