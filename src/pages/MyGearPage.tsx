@@ -40,6 +40,7 @@ export const MyGearPage = () => {
         lastCloudSavedAt,
         lastSaveTargetClubCount,
         lastSavedClubCount,
+        saveDebugInfo,
         manualSave,
         manualSaveMyBag,
         syncWithSupabase,
@@ -656,6 +657,7 @@ export const MyGearPage = () => {
                         lastCloudSavedAt={lastCloudSavedAt}
                         lastSaveTargetClubCount={lastSaveTargetClubCount}
                         lastSavedClubCount={lastSavedClubCount}
+                        extendedColumnsSaved={Boolean(saveDebugInfo?.extendedColumnsSaved)}
                         onManualSave={(settingOverride) => {
                             return manualSaveMyBag(settingOverride || profile.myBag);
                         }}

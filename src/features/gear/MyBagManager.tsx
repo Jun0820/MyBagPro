@@ -60,6 +60,7 @@ interface MyBagManagerProps {
     lastCloudSavedAt?: string | null;
     lastSaveTargetClubCount?: number;
     lastSavedClubCount?: number;
+    extendedColumnsSaved?: boolean;
     onManualSave?: (settingOverride?: ClubSetting) => void;
     onReloadFromCloud?: () => void;
     onOpenBallDiagnosis?: () => void;
@@ -261,6 +262,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     lastCloudSavedAt = null,
     lastSaveTargetClubCount = 0,
     lastSavedClubCount = 0,
+    extendedColumnsSaved = false,
     onManualSave,
     onReloadFromCloud,
     onOpenBallDiagnosis,
@@ -932,6 +934,11 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         {lastSaveTargetClubCount > 0 && lastSavedClubCount > 0 && lastSaveTargetClubCount !== lastSavedClubCount && (
                             <div className="rounded-lg bg-amber-50 px-3 py-2 text-xs font-bold text-amber-800 ring-1 ring-amber-200">
                                 保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
+                            </div>
+                        )}
+                        {!extendedColumnsSaved && (
+                            <div className="rounded-lg bg-sky-50 px-3 py-2 text-xs font-bold text-sky-800 ring-1 ring-sky-200">
+                                詳細項目は現在 snapshot 保存中です。Supabase 列追加後にクラブ表へ正式保存されます。
                             </div>
                         )}
                         <button type="button" onClick={() => saveCurrentSetting()} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 text-xs font-black text-white">

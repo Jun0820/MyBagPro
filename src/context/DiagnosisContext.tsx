@@ -46,6 +46,7 @@ interface DiagnosisContextType {
         receivedCount: number;
         dedupedCount: number;
         verifiedCount: number;
+        extendedColumnsSaved?: boolean;
         sampleClubs: Array<{
             id: string;
             category: string;
@@ -97,6 +98,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         receivedCount: number;
         dedupedCount: number;
         verifiedCount: number;
+        extendedColumnsSaved?: boolean;
         sampleClubs: Array<{
             id: string;
             category: string;
@@ -787,6 +789,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 receivedCount: requestedProfile.myBag.clubs.length,
                 dedupedCount: requestedProfile.myBag.clubs.length,
                 verifiedCount: requestedProfile.myBag.clubs.length,
+                extendedColumnsSaved: false,
                 sampleClubs: buildSaveDebugSample(requestedProfile.myBag.clubs),
             });
             return;
@@ -816,6 +819,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             receivedCount: clubPayloads.length,
             dedupedCount: clubPayloads.length,
             verifiedCount: 0,
+            extendedColumnsSaved: false,
             sampleClubs: buildSaveDebugSample(normalizedClubs),
         });
 
@@ -863,6 +867,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 receivedCount: Number(payload?.receivedCount || clubPayloads.length),
                 dedupedCount: Number(payload?.dedupedCount || clubPayloads.length),
                 verifiedCount: Number(payload?.verifiedCount || normalizedClubs.length),
+                extendedColumnsSaved: Boolean(payload?.extendedColumnsSaved),
                 sampleClubs: Array.isArray(payload?.sampleClubs) ? payload.sampleClubs : buildSaveDebugSample(normalizedClubs),
             });
             setHasUnsavedChanges(false);
