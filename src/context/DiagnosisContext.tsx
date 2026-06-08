@@ -419,6 +419,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         return { normalizedClubs, profilePayload, clubPayloads, signature };
     };
 
+    const buildClubScopedProfilePayload = (activeUser: UserAccount, activeProfile: UserProfile) => ({
+        id: activeUser.id,
+        current_ball: activeProfile.myBag.ball || activeProfile.currentBall || null,
+        sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
+            bestScore: activeProfile.bestScore,
+            averageScore: activeProfile.averageScore,
+        }, buildBagSnapshot(activeProfile.myBag, activeProfile.currentBall || '')),
+        updated_at: new Date().toISOString(),
+    });
+
     const refreshUnsavedChanges = (activeUser = userRef.current, activeProfile = profileRef.current) => {
         if (!activeUser.isLoggedIn || !activeUser.id || !isInitialSyncComplete) {
             setHasUnsavedChanges(false);
@@ -932,7 +942,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             return { ok: true };
         }
 
-        const { normalizedClubs, profilePayload, clubPayloads } = buildRemoteSavePayload(activeUser, requestedProfile);
+        const { normalizedClubs, clubPayloads } = buildRemoteSavePayload(activeUser, requestedProfile);
+        const profilePayload = buildClubScopedProfilePayload(activeUser, requestedProfile);
         const idsDiffer = normalizedClubs.some((club, index) => club.id !== requestedProfile.myBag.clubs[index]?.id);
         if (idsDiffer) {
             requestedProfile = {
