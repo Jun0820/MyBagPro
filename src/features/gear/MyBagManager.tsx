@@ -385,8 +385,31 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         onManualSave?.(next);
     }, [onManualSave]);
 
+    const discardEditingDraft = (message = '編集中の内容を破棄しますか？') => {
+        if (!hasDirtyEditingDraft) {
+            setEditingClubId(null);
+            setEditingDraft(null);
+            setExpandedClubId(null);
+            return true;
+        }
+
+        const shouldDiscard = window.confirm(message);
+        if (!shouldDiscard) return false;
+
+        setEditingClubId(null);
+        setEditingDraft(null);
+        setExpandedClubId(null);
+        return true;
+    };
+
     const openClubEditor = (clubId: string) => {
         if (isClubEditorSaving) return;
+
+        if (editingClubId === clubId) {
+            discardEditingDraft('編集中の内容を破棄して閉じますか？');
+            return;
+        }
+
         if (editingClubId && editingClubId !== clubId && isDraftDirty(editingClubId, editingDraft)) {
             const shouldDiscard = window.confirm('編集中の内容を破棄して別のクラブを編集しますか？');
             if (!shouldDiscard) return;
@@ -403,9 +426,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
     const cancelClubEditor = () => {
         if (isClubEditorSaving) return;
-        setEditingClubId(null);
-        setEditingDraft(null);
-        setExpandedClubId(null);
+        discardEditingDraft('編集中の内容を破棄してキャンセルしますか？');
     };
 
     const updateEditingDraftClub = (patch: Partial<Club>) => {
@@ -497,11 +518,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const handleReloadFromCloud = () => {
         if (isClubEditorSaving) return;
         if (hasDirtyEditingDraft) {
-            const shouldDiscard = window.confirm('編集中の内容は未保存です。破棄してクラウドから再読み込みしますか？');
-            if (!shouldDiscard) return;
-            setEditingClubId(null);
-            setEditingDraft(null);
-            setExpandedClubId(null);
+            if (!discardEditingDraft('編集中の内容は未保存です。破棄してクラウドから再読み込みしますか？')) return;
         }
         onReloadFromCloud?.();
     };
@@ -520,6 +537,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             if (editingClubId === club.id) {
                 const shouldDiscard = window.confirm('編集中の内容を破棄してこのクラブを削除しますか？');
                 if (!shouldDiscard) return;
+                setEditingClubId(null);
+                setEditingDraft(null);
+                setExpandedClubId(null);
             } else {
                 const shouldDiscard = window.confirm('別のクラブを編集中です。編集中の内容を破棄して削除を続けますか？');
                 if (!shouldDiscard) return;
@@ -1215,7 +1235,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                         </div>
                                         <div className="flex flex-wrap gap-2">
                                             <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60">
-                                                編集
+                                                {isExpanded ? '閉じる' : '編集'}
                                             </button>
                                             {!isBall && (
                                                 <button type="button" disabled={isClubEditorSaving} onClick={() => duplicateClubFromCard(club)} className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60">
