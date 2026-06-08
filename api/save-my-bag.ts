@@ -11,6 +11,12 @@ const json = (res: any, status: number, body: Record<string, unknown>) => {
 };
 
 const toText = (value: unknown) => (typeof value === 'string' ? value : value == null ? '' : String(value));
+const toTextArray = (value: unknown) =>
+  Array.isArray(value)
+    ? value
+        .map((item) => toText(item).trim())
+        .filter(Boolean)
+    : [];
 
 const isUuid = (value: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
@@ -87,7 +93,7 @@ export default async function handler(req: any, res: any) {
       return nextId;
     };
 
-    const normalizedClubs = Array.isArray(clubPayloads)
+    const baseNormalizedClubs = Array.isArray(clubPayloads)
       ? clubPayloads.map((club: any) => ({
           id: toPersistedClubId(club?.id),
           user_id: user.id,
@@ -98,6 +104,43 @@ export default async function handler(req: any, res: any) {
           loft: toText(club?.loft),
           distance: toText(club?.distance),
         }))
+      : [];
+
+    let supportsExtendedClubColumns = false;
+    const extendedColumnsProbe = await adminClient
+      .from('clubs')
+      .select('id,flex,number,carry_distance,shaft_weight,sleeve_setting,length,lie_angle,bounce,grind,head_shape,main_use,miss_tendency,memo,copied_from_club_id')
+      .limit(1);
+
+    if (!extendedColumnsProbe.error) {
+      supportsExtendedClubColumns = true;
+    } else if (extendedColumnsProbe.error.code !== '42703') {
+      throw new Error(`clubs schema probe: ${extendedColumnsProbe.error.message}`);
+    }
+
+    const normalizedClubs = Array.isArray(clubPayloads)
+      ? clubPayloads.map((club: any, index: number) => {
+          const baseClub = baseNormalizedClubs[index];
+          if (!supportsExtendedClubColumns) return baseClub;
+          return {
+            ...baseClub,
+            flex: toText(club?.flex),
+            number: toText(club?.number),
+            carry_distance: toText(club?.carryDistance),
+            worry: toText(club?.worry),
+            shaft_weight: toText(club?.shaftWeight),
+            sleeve_setting: toText(club?.sleeveSetting),
+            length: toText(club?.length),
+            lie_angle: toText(club?.lieAngle),
+            bounce: toText(club?.bounce),
+            grind: toText(club?.grind),
+            head_shape: toText(club?.headShape),
+            main_use: toTextArray(club?.mainUse),
+            miss_tendency: toTextArray(club?.missTendency),
+            memo: toText(club?.memo),
+            copied_from_club_id: isUuid(toText(club?.copiedFromClubId)) ? toText(club?.copiedFromClubId) : null,
+          };
+        })
       : [];
 
     const dedupedClubs = Array.from(
@@ -125,7 +168,11 @@ export default async function handler(req: any, res: any) {
 
     const verifyResult = await adminClient
       .from('clubs')
-      .select('id,category,brand,model,shaft,loft,distance')
+      .select(
+        supportsExtendedClubColumns
+          ? 'id,category,brand,model,shaft,flex,number,loft,distance,carry_distance,worry,shaft_weight,sleeve_setting,length,lie_angle,bounce,grind,head_shape,main_use,miss_tendency,memo,copied_from_club_id'
+          : 'id,category,brand,model,shaft,loft,distance',
+      )
       .eq('user_id', user.id);
 
     if (verifyResult.error) {
@@ -160,7 +207,24 @@ export default async function handler(req: any, res: any) {
           toText(row.model) !== expectedClub.model ||
           toText(row.shaft) !== expectedClub.shaft ||
           toText(row.loft) !== expectedClub.loft ||
-          toText(row.distance) !== expectedClub.distance
+          toText(row.distance) !== expectedClub.distance ||
+          (supportsExtendedClubColumns && (
+            toText(row.flex) !== toText(expectedClub.flex) ||
+            toText(row.number) !== toText(expectedClub.number) ||
+            toText(row.carry_distance) !== toText(expectedClub.carry_distance) ||
+            toText(row.worry) !== toText(expectedClub.worry) ||
+            toText(row.shaft_weight) !== toText(expectedClub.shaft_weight) ||
+            toText(row.sleeve_setting) !== toText(expectedClub.sleeve_setting) ||
+            toText(row.length) !== toText(expectedClub.length) ||
+            toText(row.lie_angle) !== toText(expectedClub.lie_angle) ||
+            toText(row.bounce) !== toText(expectedClub.bounce) ||
+            toText(row.grind) !== toText(expectedClub.grind) ||
+            toText(row.head_shape) !== toText(expectedClub.head_shape) ||
+            JSON.stringify(toTextArray(row.main_use)) !== JSON.stringify(toTextArray(expectedClub.main_use)) ||
+            JSON.stringify(toTextArray(row.miss_tendency)) !== JSON.stringify(toTextArray(expectedClub.miss_tendency)) ||
+            toText(row.memo) !== toText(expectedClub.memo) ||
+            toText(row.copied_from_club_id) !== toText(expectedClub.copied_from_club_id)
+          ))
         );
       })
       .map((row) => row.id);
@@ -179,11 +243,12 @@ export default async function handler(req: any, res: any) {
       sampleClubs: dedupedClubs.slice(-4).map((club) => ({
         id: club.id,
         category: club.category,
-        number: '',
+        number: toText((club as any).number),
         brand: club.brand,
         model: club.model,
         distance: club.distance,
       })),
+      extendedColumnsSaved: supportsExtendedClubColumns,
     });
   } catch (error: any) {
     return json(res, 500, {
