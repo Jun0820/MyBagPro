@@ -254,7 +254,7 @@ export const ResultPage = () => {
                     primary_move: 'starter-clubs',
                     diagnosis_category: profile.targetCategory || 'unknown',
                 });
-                navigate('/mypage?tab=clubs&focus=missing-clubs');
+                navigate('/mypage/clubs?focus=missing-clubs');
             },
         }
         : !profile.myBag.ball
@@ -269,7 +269,7 @@ export const ResultPage = () => {
                     primary_move: 'ball-first',
                     diagnosis_category: profile.targetCategory || 'unknown',
                 });
-                navigate('/mypage?tab=clubs&focus=ball-first');
+                navigate('/mypage/clubs?focus=ball-first');
             },
         }
         : compareSource

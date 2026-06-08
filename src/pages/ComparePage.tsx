@@ -81,7 +81,7 @@ export const ComparePage = () => {
             source_page: 'compare_shortlist',
             primary_move: 'starter-clubs',
           });
-          navigate('/mypage?tab=clubs&focus=missing-clubs');
+          navigate('/mypage/clubs?focus=missing-clubs');
         },
       }
     : !hasBall
@@ -95,7 +95,7 @@ export const ComparePage = () => {
             source_page: 'compare_shortlist',
             primary_move: 'ball-first',
           });
-          navigate('/mypage?tab=clubs&focus=ball-first');
+          navigate('/mypage/clubs?focus=ball-first');
         },
       }
     : shortlist.length > 0
@@ -501,7 +501,7 @@ export const ComparePage = () => {
             source_page: 'compare_page_primary_move',
             reference_profile_slug: targetSetting.slug,
           });
-          navigate(`/mybag/create?tab=clubs&focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
+          navigate(`/mybag/create?focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
         },
       }
     : missingBall
@@ -516,7 +516,7 @@ export const ComparePage = () => {
             primary_move: 'ball-first',
             reference_profile_slug: targetSetting.slug,
           });
-          navigate(`/mybag/create?tab=clubs&focus=ball-first&returnTo=${encodeURIComponent(compareReturnTarget)}`);
+          navigate(`/mybag/create?focus=ball-first&returnTo=${encodeURIComponent(compareReturnTarget)}`);
         },
       }
     : firstPriorityRow
@@ -599,7 +599,7 @@ export const ComparePage = () => {
             source_page: 'compare_page',
             reference_profile_slug: targetSetting.slug,
           });
-          navigate(`/mybag/create?tab=clubs&focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
+          navigate(`/mybag/create?focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
         },
         variant: 'secondary',
       });
@@ -802,7 +802,7 @@ export const ComparePage = () => {
                     source_page: 'compare_page_quick_actions',
                     reference_profile_slug: targetSetting.slug,
                   });
-                  navigate(`/mybag/create?tab=clubs&focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
+                  navigate(`/mybag/create?focus=missing-clubs&returnTo=${encodeURIComponent(compareReturnTarget)}`);
                 }}
                 className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black ${
                   needsBagSetup ? 'bg-trust-navy text-white' : 'border border-slate-300 bg-white text-slate-700'

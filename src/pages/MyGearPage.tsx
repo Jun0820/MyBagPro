@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { MyBagManager } from '../features/gear/MyBagManager';
 import { ProfileManager } from '../features/gear/ProfileManager';
@@ -17,7 +17,7 @@ import {
     LogOut,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { TargetCategory, type DiagnosisHistoryItem } from '../types/golf';
 import { getRecentlyViewed, type RecentlyViewedItem } from '../lib/recentlyViewed';
@@ -49,12 +49,17 @@ export const MyGearPage = () => {
         restoreDiagnosisResult,
     } = useDiagnosis();
     const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [activeTab, setActiveTab] = useState<'view' | 'clubs' | 'profile'>('view');
+    const location = useLocation();
+    const [searchParams] = useSearchParams();
     const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
     const [favoriteClubs, setFavoriteClubs] = useState<FavoriteClubItem[]>([]);
     const [clubDistanceView, setClubDistanceView] = useState<'total' | 'carry'>('total');
     const primaryShop = AFFILIATE_SHOPS[0];
+    const activeTab = useMemo<'view' | 'clubs' | 'profile'>(() => {
+        if (location.pathname === '/mypage/clubs' || location.pathname.startsWith('/mybag/create')) return 'clubs';
+        if (location.pathname === '/mypage/profile') return 'profile';
+        return 'view';
+    }, [location.pathname]);
 
     const registeredCategories = new Set(profile.myBag.clubs.map((club) => club.category));
     const essentialCategories = [
@@ -100,28 +105,21 @@ export const MyGearPage = () => {
     };
 
     useEffect(() => {
-        const tabParam = searchParams.get('tab');
-        if (tabParam === 'clubs') {
-            setActiveTab('clubs');
-            return;
-        }
-        if (tabParam === 'profile') {
-            setActiveTab('profile');
-            return;
-        }
-        if (tabParam === 'view') {
-            setActiveTab('view');
-        }
-    }, [searchParams]);
-
-    useEffect(() => {
-        const currentTab = searchParams.get('tab') || 'view';
-        if (currentTab === activeTab) return;
+        const legacyTab = searchParams.get('tab');
+        if (!legacyTab) return;
 
         const nextParams = new URLSearchParams(searchParams);
-        nextParams.set('tab', activeTab);
-        setSearchParams(nextParams, { replace: true });
-    }, [activeTab, searchParams, setSearchParams]);
+        nextParams.delete('tab');
+        const nextSearch = nextParams.toString();
+        const nextPath =
+            legacyTab === 'clubs'
+                ? '/mypage/clubs'
+                : legacyTab === 'profile'
+                    ? '/mypage/profile'
+                    : '/mypage/view';
+
+        navigate(`${nextPath}${nextSearch ? `?${nextSearch}` : ''}`, { replace: true });
+    }, [navigate, searchParams]);
 
     const sidebarMenu = [
         { key: 'view' as const, label: 'ダッシュボード', icon: Eye },
@@ -175,6 +173,33 @@ export const MyGearPage = () => {
         navigate('/');
     };
 
+    const buildMyPageUrl = (
+        tab: 'view' | 'clubs' | 'profile',
+        params?: URLSearchParams,
+    ) => {
+        const basePath =
+            tab === 'clubs' ? '/mypage/clubs' :
+            tab === 'profile' ? '/mypage/profile' :
+            '/mypage/view';
+        const query = params?.toString();
+        return query ? `${basePath}?${query}` : basePath;
+    };
+
+    const navigateMyPageTab = (
+        tab: 'view' | 'clubs' | 'profile',
+        configureParams?: (params: URLSearchParams) => void,
+        options?: { replace?: boolean },
+    ) => {
+        const params = new URLSearchParams(searchParams);
+        params.delete('tab');
+        if (tab !== 'clubs') {
+            params.delete('focus');
+            params.delete('editClub');
+        }
+        configureParams?.(params);
+        navigate(buildMyPageUrl(tab, params), { replace: options?.replace ?? false });
+    };
+
     const getDisplayedClubDistance = (club: typeof profile.myBag.clubs[number]) => {
         const total = String(club.distance || '').trim();
         const carry = String(club.carryDistance || '').trim();
@@ -182,33 +207,29 @@ export const MyGearPage = () => {
     };
 
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
-        setActiveTab('clubs');
-        const nextParams = new URLSearchParams(searchParams);
-        nextParams.set('tab', 'clubs');
-        nextParams.delete('welcome');
-        nextParams.delete('editClub');
-        if (focus) {
-            nextParams.set('focus', focus);
-        } else {
-            nextParams.delete('focus');
-        }
-        setSearchParams(nextParams, { replace: true });
+        navigateMyPageTab('clubs', (params) => {
+            params.delete('welcome');
+            params.delete('editClub');
+            if (focus) {
+                params.set('focus', focus);
+            } else {
+                params.delete('focus');
+            }
+        }, { replace: true });
     };
 
     const openClubEditFromDashboard = (clubId: string) => {
-        setActiveTab('clubs');
-        const nextParams = new URLSearchParams(searchParams);
-        nextParams.set('tab', 'clubs');
-        nextParams.set('editClub', clubId);
-        nextParams.delete('welcome');
-        setSearchParams(nextParams, { replace: true });
+        navigateMyPageTab('clubs', (params) => {
+            params.delete('welcome');
+            params.set('editClub', clubId);
+        }, { replace: true });
     };
 
     const consumeRequestedEditClub = () => {
         const nextParams = new URLSearchParams(searchParams);
         if (!nextParams.has('editClub')) return;
         nextParams.delete('editClub');
-        setSearchParams(nextParams, { replace: true });
+        navigate(buildMyPageUrl('clubs', nextParams), { replace: true });
     };
 
     const openSavedDiagnosis = (item: DiagnosisHistoryItem) => {
@@ -287,7 +308,7 @@ export const MyGearPage = () => {
                                     return (
                                         <button
                                             key={item.key}
-                                            onClick={() => setActiveTab(item.key)}
+                                            onClick={() => navigateMyPageTab(item.key)}
                                             className={cn(
                                                 'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-black transition',
                                                 selected ? 'bg-[#edf6ef] text-[#166534]' : 'text-slate-600 hover:bg-slate-50'
@@ -352,7 +373,7 @@ export const MyGearPage = () => {
                                             return (
                                                 <button
                                                     key={item.key}
-                                                    onClick={() => setActiveTab(item.key)}
+                                                    onClick={() => navigateMyPageTab(item.key)}
                                                     className={cn(
                                                         'flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl px-3 py-2 text-[11px] font-black transition',
                                                         activeTab === item.key ? 'bg-white text-[#166534] shadow-sm' : 'text-slate-500'
@@ -420,7 +441,7 @@ export const MyGearPage = () => {
                                     </div>
                                     <div className="flex flex-wrap gap-2">
                                         <button
-                                            onClick={() => setActiveTab('profile')}
+                                            onClick={() => navigateMyPageTab('profile')}
                                             className="inline-flex min-h-[42px] items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100"
                                         >
                                             <Edit3 size={14} />
@@ -484,7 +505,7 @@ export const MyGearPage = () => {
                                             ))}
                                         </div>
                                         <div className="mt-4 grid gap-2 sm:grid-cols-3">
-                                            <button onClick={() => setActiveTab('clubs')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#176534] px-3 py-3 text-xs font-black text-white">クラブ編集</button>
+                                            <button onClick={() => navigateMyPageTab('clubs')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#176534] px-3 py-3 text-xs font-black text-white">クラブ編集</button>
                                             <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-slate-50 px-3 py-3 text-xs font-black text-trust-navy ring-1 ring-slate-200/80">診断する</button>
                                         </div>
                                     </div>
@@ -507,7 +528,7 @@ export const MyGearPage = () => {
                                         <div className="mt-1 text-xl font-black tracking-tight text-trust-navy">マイクラブ</div>
                                     </div>
                                     <button
-                                        onClick={() => setActiveTab('clubs')}
+                                        onClick={() => navigateMyPageTab('clubs')}
                                         className="inline-flex min-h-[42px] items-center justify-center rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100"
                                     >
                                         編集する
@@ -559,7 +580,7 @@ export const MyGearPage = () => {
                                             </button>
                                         ))
                                     ) : (
-                                        <button onClick={() => setActiveTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-6 text-left ring-1 ring-[#c8d8cc]">
+                                        <button onClick={() => navigateMyPageTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-6 text-left ring-1 ring-[#c8d8cc]">
                                             <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
                                             <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
                                         </button>
@@ -732,7 +753,7 @@ export const MyGearPage = () => {
                         return (
                             <button
                                 key={item.key}
-                                onClick={() => setActiveTab(item.key)}
+                                onClick={() => navigateMyPageTab(item.key)}
                                 className={cn(
                                     'flex flex-col items-center gap-1 px-4 py-3 text-xs font-black transition',
                                     isActive

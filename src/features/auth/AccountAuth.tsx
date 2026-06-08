@@ -84,7 +84,7 @@ export const AccountAuth: React.FC<AccountAuthProps> = ({
         const redirectPath =
             nextDestination === 'diagnosis'
                 ? '/diagnosis?welcome=1'
-                : '/mypage?welcome=1&tab=clubs&focus=missing-clubs';
+                : '/mypage/clubs?welcome=1&focus=missing-clubs';
         return `${AUTH_REDIRECT_ORIGIN}${redirectPath}`;
     };
 

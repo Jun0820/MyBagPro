@@ -519,14 +519,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 return;
               }
               if (authNext === 'mypage') {
-                navigate('/mypage?welcome=1&tab=clubs&focus=missing-clubs');
+                navigate('/mypage/clubs?welcome=1&focus=missing-clubs');
                 return;
               }
               const destination =
                 clubCount === 0
-                  ? '/mypage?welcome=1&tab=clubs&focus=missing-clubs&next=starter-clubs'
+                  ? '/mypage/clubs?welcome=1&focus=missing-clubs&next=starter-clubs'
                   : !hasBall
-                  ? '/mypage?welcome=1&tab=clubs&focus=ball-first&next=ball'
+                  ? '/mypage/clubs?welcome=1&focus=ball-first&next=ball'
                   : '/mypage?welcome=1&next=diagnosis';
               navigate(destination);
             }}
@@ -632,6 +632,9 @@ function App() {
               <Route path="/result/:club" element={<ResultPage />} />
               <Route path="/result/:club/:mode" element={<ResultPage />} />
               <Route path="/mypage" element={<MyGearPage />} />
+              <Route path="/mypage/view" element={<MyGearPage />} />
+              <Route path="/mypage/clubs" element={<MyGearPage />} />
+              <Route path="/mypage/profile" element={<MyGearPage />} />
               <Route path="/mybag/create" element={<MyGearPage />} />
               <Route path="/bag" element={<SharedBag />} />
               <Route path="/sitemap" element={<Sitemap />} />
