@@ -886,7 +886,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     };
 
     const saveStatusMeta = (() => {
-        if (isManualSaveInFlight || saveStatus === 'saving') return { label: '保存中', tone: 'border-amber-200 bg-amber-50 text-amber-800', icon: <Loader2 size={14} className="animate-spin" /> };
+        if (isManualSaveInFlight) return { label: '保存中', tone: 'border-amber-200 bg-amber-50 text-amber-800', icon: <Loader2 size={14} className="animate-spin" /> };
         if (saveStatus === 'error') return { label: saveErrorDetail || '保存エラー。もう一度保存してください。', tone: 'border-rose-200 bg-rose-50 text-rose-800', icon: <AlertTriangle size={14} /> };
         if (hasUnsavedChanges) return { label: `未保存の変更があります${lastCloudSavedAt ? ` / 前回 ${new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}` : ''}`, tone: 'border-cyan-200 bg-cyan-50 text-cyan-800', icon: <Save size={14} /> };
         if (saveStatus === 'saved') return { label: '保存済み', tone: 'border-emerald-200 bg-emerald-50 text-emerald-800', icon: <CheckCircle2 size={14} /> };
