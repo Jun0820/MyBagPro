@@ -420,6 +420,99 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         setEditingDraft((prev) => prev ? { ...prev, ...patch } : prev);
     };
 
+    const buildSettingFromEditingDraft = useCallback((
+        sourceSetting: ClubSetting,
+        clubId = editingClubId,
+        draft = editingDraft,
+    ): ClubSetting | null => {
+        if (!clubId || !draft) return null;
+
+        const nextClub = {
+            ...draft.club,
+            mainUse: [...(draft.club.mainUse || [])],
+            missTendency: [...(draft.club.missTendency || [])],
+        };
+
+        return {
+            ...sourceSetting,
+            clubs: sourceSetting.clubs.map((club) => (club.id === clubId ? nextClub : club)),
+            ...(nextClub.category === TargetCategory.BALL
+                ? {
+                    ballBrand: draft.ballBrand,
+                    ball: draft.ballModel,
+                    ballColor: draft.ballColor,
+                    ballMemo: draft.ballMemo,
+                  }
+                : {}),
+        };
+    }, [editingClubId, editingDraft]);
+
+    const applyEditingDraftLocally = useCallback(() => {
+        const nextSetting = buildSettingFromEditingDraft(latestSettingRef.current);
+        if (!nextSetting) return null;
+        commitSetting(nextSetting);
+        setEditingClubId(null);
+        setEditingDraft(null);
+        setExpandedClubId(null);
+        return nextSetting;
+    }, [buildSettingFromEditingDraft, commitSetting]);
+
+    const hasDirtyEditingDraft = Boolean(editingClubId && isDraftDirty(editingClubId, editingDraft));
+
+    const navigateToStep = (nextStep: Step) => {
+        if (hasDirtyEditingDraft) {
+            applyEditingDraftLocally();
+        }
+        setStep(nextStep);
+    };
+
+    const handleSaveCurrentSetting = () => {
+        const nextSetting = hasDirtyEditingDraft ? applyEditingDraftLocally() : latestSettingRef.current;
+        saveCurrentSetting(nextSetting || latestSettingRef.current);
+        if (hasDirtyEditingDraft) {
+            setClubEditorNotice({
+                tone: 'success',
+                message: '編集中の内容を反映して保存しました。',
+            });
+        }
+    };
+
+    const handleReloadFromCloud = () => {
+        if (hasDirtyEditingDraft) {
+            const shouldDiscard = window.confirm('編集中の内容は未保存です。破棄してクラウドから再読み込みしますか？');
+            if (!shouldDiscard) return;
+            setEditingClubId(null);
+            setEditingDraft(null);
+            setExpandedClubId(null);
+        }
+        onReloadFromCloud?.();
+    };
+
+    const handleOpenBallDiagnosis = () => {
+        if (hasDirtyEditingDraft) {
+            applyEditingDraftLocally();
+        }
+        onOpenBallDiagnosis?.();
+    };
+
+    const handleRemoveClub = (club: Club) => {
+        if (hasDirtyEditingDraft) {
+            if (editingClubId === club.id) {
+                const shouldDiscard = window.confirm('編集中の内容を破棄してこのクラブを削除しますか？');
+                if (!shouldDiscard) return;
+            } else {
+                const shouldDiscard = window.confirm('別のクラブを編集中です。編集中の内容を破棄して削除を続けますか？');
+                if (!shouldDiscard) return;
+                setEditingClubId(null);
+                setEditingDraft(null);
+                setExpandedClubId(null);
+            }
+        }
+
+        if (!window.confirm(`${club.number || club.category} を削除しますか？`)) return;
+        removeClub(club.id);
+    };
+
     const duplicateClubFromCard = (sourceClub: Club) => {
         const sourceSlot = ALL_SLOTS.find((candidate) => slotKey(candidate) === slotKeyForClub(sourceClub));
         const nextSlot = ALL_SLOTS.find((slot) =>
@@ -624,24 +717,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         if (!editingClubId || !editingDraft) return;
 
         const previousSetting = latestSettingRef.current;
-        const nextClub = {
-            ...editingDraft.club,
-            mainUse: [...(editingDraft.club.mainUse || [])],
-            missTendency: [...(editingDraft.club.missTendency || [])],
-        };
-
-        const nextSetting: ClubSetting = {
-            ...previousSetting,
-            clubs: previousSetting.clubs.map((club) => (club.id === editingClubId ? nextClub : club)),
-            ...(nextClub.category === TargetCategory.BALL
-                ? {
-                    ballBrand: editingDraft.ballBrand,
-                    ball: editingDraft.ballModel,
-                    ballColor: editingDraft.ballColor,
-                    ballMemo: editingDraft.ballMemo,
-                  }
-                : {}),
-        };
+        const nextSetting = buildSettingFromEditingDraft(previousSetting, editingClubId, editingDraft);
+        if (!nextSetting) return;
+        const nextClub = nextSetting.clubs.find((club) => club.id === editingClubId) || editingDraft.club;
 
         setClubEditorNotice(null);
         setIsClubEditorSaving(true);
@@ -685,7 +763,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <button
                     key={stepNumber}
                     type="button"
-                    onClick={() => setStep(stepNumber as Step)}
+                    onClick={() => navigateToStep(stepNumber as Step)}
                     className={cn(
                         'min-h-[44px] rounded-lg px-3 py-2 text-left text-xs font-black transition ring-1',
                         step === stepNumber ? 'bg-[#176534] text-white ring-[#176534]' : 'bg-white text-slate-500 ring-slate-200 hover:bg-slate-50',
@@ -907,7 +985,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         </Field>
                     </div>
                     <div className="mt-4 flex justify-end">
-                        <button type="button" onClick={() => setStep(2)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
+                        <button type="button" onClick={() => navigateToStep(2)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
                             番手を選ぶ <ArrowRight size={16} />
                         </button>
                     </div>
@@ -949,7 +1027,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         ))}
                     </div>
                     <div className="mt-5 flex justify-end">
-                        <button type="button" onClick={() => setStep(3)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
+                        <button type="button" onClick={() => navigateToStep(3)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
                             一括登録へ <ArrowRight size={16} />
                         </button>
                     </div>
@@ -1036,7 +1114,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             </div>
                         </div>
                         <div className="mt-4 flex justify-end">
-                            <button type="button" onClick={() => setStep(4)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
+                            <button type="button" onClick={() => navigateToStep(4)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
                                 詳細調整へ <ArrowRight size={16} />
                             </button>
                         </div>
@@ -1099,8 +1177,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             <button
                                                 type="button"
                                                 onClick={() => {
-                                                    if (!window.confirm(`${club.number || club.category} を削除しますか？`)) return;
-                                                    removeClub(club.id);
+                                                    handleRemoveClub(club);
                                                 }}
                                                 className="inline-flex min-h-[36px] items-center rounded-lg border border-rose-200 bg-rose-50 px-3 text-xs font-black text-rose-700"
                                             >
@@ -1140,7 +1217,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         )}
                     </div>
                     <div className="mt-5 flex justify-end">
-                        <button type="button" onClick={() => setStep(5)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
+                        <button type="button" onClick={() => navigateToStep(5)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
                             確認へ <ArrowRight size={16} />
                         </button>
                     </div>
@@ -1157,11 +1234,11 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <p className="mt-1 text-sm font-bold text-slate-500">用途: {purpose}</p>
                             </div>
                             <div className="flex flex-col gap-2 sm:flex-row">
-                                <button type="button" onClick={() => saveCurrentSetting()} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-5 text-sm font-black text-white">
+                                <button type="button" onClick={handleSaveCurrentSetting} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-5 text-sm font-black text-white">
                                     {isManualSaveInFlight ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                                     保存する
                                 </button>
-                                <button type="button" onClick={() => onOpenBallDiagnosis?.()} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
+                                <button type="button" onClick={handleOpenBallDiagnosis} className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
                                     診断へ <ArrowRight size={16} />
                                 </button>
                             </div>
@@ -1209,7 +1286,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
                     <div className="flex flex-col gap-2 sm:flex-row">
                         {(hasUnsavedChanges || saveStatus === 'error') && (
-                            <button type="button" onClick={() => onReloadFromCloud?.()} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-xs font-black text-slate-600">
+                            <button type="button" onClick={handleReloadFromCloud} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-xs font-black text-slate-600">
                                 <Loader2 size={14} /> クラウドから再読み込み
                             </button>
                         )}
@@ -1228,7 +1305,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 )}
                             </div>
                         )}
-                        <button type="button" onClick={() => saveCurrentSetting()} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 text-xs font-black text-white">
+                        <button type="button" onClick={handleSaveCurrentSetting} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 text-xs font-black text-white">
                             <Save size={14} /> 変更を保存
                         </button>
                     </div>
