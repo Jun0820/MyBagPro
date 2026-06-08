@@ -245,8 +245,8 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         });
     };
 
-    const buildBagSnapshot = (clubs: UserProfile['myBag']['clubs'], ball?: string) => ({
-        clubs: normalizeClubIds(clubs).map((club) => ({
+    const buildBagSnapshot = (myBag: UserProfile['myBag'], fallbackBall?: string) => ({
+        clubs: normalizeClubIds(myBag.clubs).map((club) => ({
             ...club,
             flex: club.flex || '',
             number: club.number || '',
@@ -264,7 +264,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             memo: club.memo || '',
             copiedFromClubId: club.copiedFromClubId || '',
         })),
-        ...(ball ? { ball } : {}),
+        ...((myBag.ball || fallbackBall) ? { ball: myBag.ball || fallbackBall } : {}),
+        ...(myBag.name ? { name: myBag.name } : {}),
+        ...(myBag.purpose ? { purpose: myBag.purpose } : {}),
+        ...(myBag.ballBrand ? { ballBrand: myBag.ballBrand } : {}),
+        ...(myBag.ballColor ? { ballColor: myBag.ballColor } : {}),
+        ...(myBag.ballMemo ? { ballMemo: myBag.ballMemo } : {}),
         updatedAt: new Date().toISOString(),
     });
 
@@ -317,7 +322,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             sns_links: buildStoredSocialLinks(activeProfile.snsLinks, {
                 bestScore: activeProfile.bestScore,
                 averageScore: activeProfile.averageScore,
-            }, buildBagSnapshot(activeProfile.myBag.clubs, activeProfile.myBag.ball || activeProfile.currentBall || '')),
+            }, buildBagSnapshot(activeProfile.myBag, activeProfile.currentBall || '')),
             age: activeProfile.age || null,
             gender: activeProfile.gender || null,
             birthdate: activeProfile.birthdate || null,
@@ -335,8 +340,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
     const buildRemoteSavePayload = (activeUser: UserAccount, activeProfile: UserProfile) => {
         const normalizedClubs = normalizeClubIds(activeProfile.myBag.clubs);
         const bagSnapshot = buildBagSnapshot(
-            normalizedClubs,
-            activeProfile.myBag.ball || activeProfile.currentBall || '',
+            {
+                ...activeProfile.myBag,
+                clubs: normalizedClubs,
+            },
+            activeProfile.currentBall || '',
         );
 
         const profilePayload = {
@@ -671,6 +679,12 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     ...profileRef.current,
                     myBag: {
                         ...profileRef.current.myBag,
+                        name: normalizedSocials.bagSnapshot?.name || profileRef.current.myBag.name,
+                        purpose: normalizedSocials.bagSnapshot?.purpose || profileRef.current.myBag.purpose,
+                        ballBrand: normalizedSocials.bagSnapshot?.ballBrand || profileRef.current.myBag.ballBrand,
+                        ballColor: normalizedSocials.bagSnapshot?.ballColor || profileRef.current.myBag.ballColor,
+                        ballMemo: normalizedSocials.bagSnapshot?.ballMemo || profileRef.current.myBag.ballMemo,
+                        ball: normalizedSocials.bagSnapshot?.ball || ensuredProfileData.current_ball || profileRef.current.myBag.ball,
                         clubs: mergedCloudClubs,
                     }
                 };

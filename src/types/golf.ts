@@ -209,6 +209,11 @@ export interface UserSocialLinks {
     bagSnapshot?: {
         clubs: Club[];
         ball?: string;
+        name?: string;
+        purpose?: string;
+        ballBrand?: string;
+        ballColor?: string;
+        ballMemo?: string;
         updatedAt?: string;
     };
 }

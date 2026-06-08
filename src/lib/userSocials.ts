@@ -55,6 +55,17 @@ const normalizeBagSnapshotClub = (value: unknown, fallbackIndex: number): Club |
     distance: typeof record.distance === 'string' ? record.distance.trim() : '',
     carryDistance: typeof record.carryDistance === 'string' ? record.carryDistance.trim() : '',
     worry: typeof record.worry === 'string' ? record.worry.trim() : '',
+    shaftWeight: typeof record.shaftWeight === 'string' ? record.shaftWeight.trim() : '',
+    sleeveSetting: typeof record.sleeveSetting === 'string' ? record.sleeveSetting.trim() : '',
+    length: typeof record.length === 'string' ? record.length.trim() : '',
+    lieAngle: typeof record.lieAngle === 'string' ? record.lieAngle.trim() : '',
+    bounce: typeof record.bounce === 'string' ? record.bounce.trim() : '',
+    grind: typeof record.grind === 'string' ? record.grind.trim() : '',
+    headShape: typeof record.headShape === 'string' ? record.headShape.trim() : '',
+    mainUse: Array.isArray(record.mainUse) ? record.mainUse.filter((item): item is string => typeof item === 'string' && item.trim().length > 0) : [],
+    missTendency: Array.isArray(record.missTendency) ? record.missTendency.filter((item): item is string => typeof item === 'string' && item.trim().length > 0) : [],
+    memo: typeof record.memo === 'string' ? record.memo.trim() : '',
+    copiedFromClubId: typeof record.copiedFromClubId === 'string' ? record.copiedFromClubId.trim() : '',
   };
 };
 
@@ -83,6 +94,11 @@ export const normalizeUserSocialLinks = (value: unknown): UserSocialLinks => {
         .filter((entry): entry is Club => Boolean(entry))
     : [];
   const bagSnapshotBall = typeof bagSnapshotSource.ball === 'string' ? bagSnapshotSource.ball.trim() : '';
+  const bagSnapshotName = typeof bagSnapshotSource.name === 'string' ? bagSnapshotSource.name.trim() : '';
+  const bagSnapshotPurpose = typeof bagSnapshotSource.purpose === 'string' ? bagSnapshotSource.purpose.trim() : '';
+  const bagSnapshotBallBrand = typeof bagSnapshotSource.ballBrand === 'string' ? bagSnapshotSource.ballBrand.trim() : '';
+  const bagSnapshotBallColor = typeof bagSnapshotSource.ballColor === 'string' ? bagSnapshotSource.ballColor.trim() : '';
+  const bagSnapshotBallMemo = typeof bagSnapshotSource.ballMemo === 'string' ? bagSnapshotSource.ballMemo.trim() : '';
   const bagSnapshotUpdatedAt =
     typeof bagSnapshotSource.updatedAt === 'string' ? bagSnapshotSource.updatedAt.trim() : '';
 
@@ -101,10 +117,15 @@ export const normalizeUserSocialLinks = (value: unknown): UserSocialLinks => {
           }
         : undefined,
     bagSnapshot:
-      bagSnapshotClubs.length > 0 || bagSnapshotBall || bagSnapshotUpdatedAt
+      bagSnapshotClubs.length > 0 || bagSnapshotBall || bagSnapshotName || bagSnapshotPurpose || bagSnapshotBallBrand || bagSnapshotBallColor || bagSnapshotBallMemo || bagSnapshotUpdatedAt
         ? {
             clubs: bagSnapshotClubs,
             ...(bagSnapshotBall ? { ball: bagSnapshotBall } : {}),
+            ...(bagSnapshotName ? { name: bagSnapshotName } : {}),
+            ...(bagSnapshotPurpose ? { purpose: bagSnapshotPurpose } : {}),
+            ...(bagSnapshotBallBrand ? { ballBrand: bagSnapshotBallBrand } : {}),
+            ...(bagSnapshotBallColor ? { ballColor: bagSnapshotBallColor } : {}),
+            ...(bagSnapshotBallMemo ? { ballMemo: bagSnapshotBallMemo } : {}),
             ...(bagSnapshotUpdatedAt ? { updatedAt: bagSnapshotUpdatedAt } : {}),
           }
         : undefined,
@@ -139,6 +160,11 @@ export const buildStoredSocialLinks = (
           bagSnapshot: {
             clubs: bagSnapshot.clubs,
             ...(bagSnapshot.ball ? { ball: bagSnapshot.ball } : {}),
+            ...(bagSnapshot.name ? { name: bagSnapshot.name } : {}),
+            ...(bagSnapshot.purpose ? { purpose: bagSnapshot.purpose } : {}),
+            ...(bagSnapshot.ballBrand ? { ballBrand: bagSnapshot.ballBrand } : {}),
+            ...(bagSnapshot.ballColor ? { ballColor: bagSnapshot.ballColor } : {}),
+            ...(bagSnapshot.ballMemo ? { ballMemo: bagSnapshot.ballMemo } : {}),
             ...(bagSnapshot.updatedAt ? { updatedAt: bagSnapshot.updatedAt } : {}),
           },
         }

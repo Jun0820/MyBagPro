@@ -83,6 +83,11 @@ export const SharedBag = () => {
             averageScore: sns.profileStats?.averageScore,
             coverPhoto: profile.cover_photo || undefined,
             setting: {
+              name: sns.bagSnapshot?.name,
+              purpose: sns.bagSnapshot?.purpose,
+              ballBrand: sns.bagSnapshot?.ballBrand,
+              ballColor: sns.bagSnapshot?.ballColor,
+              ballMemo: sns.bagSnapshot?.ballMemo,
               clubs: (clubs && clubs.length > 0)
                 ? clubs.map((club) => {
                     const snapshot = snapshotClubs.find((item) => item.id === club.id);
@@ -112,7 +117,7 @@ export const SharedBag = () => {
                     };
                   })
                 : snapshotClubs,
-              ball: profile.current_ball || '',
+              ball: sns.bagSnapshot?.ball || profile.current_ball || '',
             },
           });
         } catch (currentError) {
