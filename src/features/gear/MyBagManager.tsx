@@ -106,6 +106,7 @@ type ClubEditorNotice = {
     detail?: string;
 };
 
+const BALL_BRAND_SUGGESTIONS = Array.from(new Set(BALL_MASTER_DATA.map((brand) => brand.name))).sort((a, b) => a.localeCompare(b));
 const BALL_MODEL_SUGGESTIONS = Array.from(
     new Set(
         BALL_MASTER_DATA.flatMap((brand) =>
@@ -256,6 +257,12 @@ const buildModelSuggestions = (brand: string, category: string, currentModel: st
 
 const buildWeightSuggestions = (category: string, currentWeight: string) =>
     Array.from(new Set([currentWeight, ...(CATEGORY_WEIGHT_MAP[category as TargetCategory] || []), ...SHAFT_WEIGHT_SUGGESTIONS].filter(Boolean)));
+
+const buildBallModelSuggestions = (brand: string, currentModel: string) => {
+    const key = normalizeSuggestionKey(brand);
+    const brandModels = BALL_MASTER_DATA.find((item) => normalizeSuggestionKey(item.name) === key)?.models.map((model) => model.name) || [];
+    return Array.from(new Set([currentModel, ...brandModels, ...BALL_MODEL_SUGGESTIONS].filter(Boolean)));
+};
 
 const slotKeyForClub = (club: Club) => `${club.category}:${club.number || club.model || club.id}`;
 const slotKey = (slot: SlotDefinition) => `${slot.category}:${slot.number}`;
@@ -943,13 +950,18 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const inferredHeadShape = isPutter ? inferPutterHeadShape(club.model) : '';
 
         if (club.category === TargetCategory.BALL) {
+            const ballModelSuggestionId = `mybag-ball-suggestions-${club.id}`;
+            const ballModelSuggestions = buildBallModelSuggestions(ballDraft?.ballBrand || '', ballDraft?.ballModel || '');
             return (
-                <div className="grid gap-3 md:grid-cols-4">
-                    <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={ballDraft?.ballBrand || ''} onChange={(e) => { applyPatch({ brand: e.target.value }); applyBallPatch?.({ ballBrand: e.target.value }); }} placeholder="Titleist" /></Field>
-                    <Field label="モデル名"><input list="mybag-ball-suggestions" className={textInputClass} value={ballDraft?.ballModel || ''} onChange={(e) => { applyPatch({ model: e.target.value }); applyBallPatch?.({ ballModel: e.target.value }); }} placeholder="Pro V1x" /></Field>
-                    <Field label="カラー"><input className={textInputClass} value={ballDraft?.ballColor || ''} onChange={(e) => applyBallPatch?.({ ballColor: e.target.value })} placeholder="ホワイト" /></Field>
-                    <Field label="メモ"><input className={textInputClass} value={ballDraft?.ballMemo || ''} onChange={(e) => { applyPatch({ memo: e.target.value }); applyBallPatch?.({ ballMemo: e.target.value }); }} placeholder="季節で変更など" /></Field>
-                </div>
+                <>
+                    <datalist id={ballModelSuggestionId}>{ballModelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+                    <div className="grid gap-3 md:grid-cols-4">
+                        <Field label="ブランド"><input list="mybag-ball-brand-suggestions" className={textInputClass} value={ballDraft?.ballBrand || ''} onChange={(e) => { applyPatch({ brand: e.target.value }); applyBallPatch?.({ ballBrand: e.target.value }); }} placeholder="Titleist" /></Field>
+                        <Field label="モデル名"><input list={ballModelSuggestionId} className={textInputClass} value={ballDraft?.ballModel || ''} onChange={(e) => { applyPatch({ model: e.target.value }); applyBallPatch?.({ ballModel: e.target.value }); }} placeholder="Pro V1x" /></Field>
+                        <Field label="カラー"><input className={textInputClass} value={ballDraft?.ballColor || ''} onChange={(e) => applyBallPatch?.({ ballColor: e.target.value })} placeholder="ホワイト" /></Field>
+                        <Field label="メモ"><input className={textInputClass} value={ballDraft?.ballMemo || ''} onChange={(e) => { applyPatch({ memo: e.target.value }); applyBallPatch?.({ ballMemo: e.target.value }); }} placeholder="季節で変更など" /></Field>
+                    </div>
+                </>
             );
         }
 
@@ -1057,6 +1069,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const slot = ALL_SLOTS.find((candidate) => slotKey(candidate) === slotKeyForClub(club));
         return slot?.group === batchTarget;
     });
+    const commonModelSuggestions = buildModelSuggestions(commonEdit.brand, batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.model);
+    const commonWeightSuggestions = buildWeightSuggestions(batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.shaftWeight);
 
     return (
         <div className="animate-fadeIn space-y-4">
@@ -1065,6 +1079,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             <datalist id="mybag-shaft-suggestions">{SHAFT_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-flex-suggestions">{FLEX_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-ball-suggestions">{BALL_MODEL_SUGGESTIONS.map((ballName) => <option key={ballName} value={ballName} />)}</datalist>
+            <datalist id="mybag-ball-brand-suggestions">{BALL_BRAND_SUGGESTIONS.map((brandName) => <option key={brandName} value={brandName} />)}</datalist>
+            <datalist id="mybag-common-model-suggestions">{commonModelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+            <datalist id="mybag-common-shaft-weight-suggestions">{commonWeightSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
 
             {intakeMode !== 'default' && (
                 <div className="rounded-lg border border-cyan-200 bg-cyan-50 p-4 text-sm font-bold text-cyan-800">
@@ -1189,10 +1206,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         </div>
                         <div className="mt-4 grid gap-3 md:grid-cols-5">
                             <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={commonEdit.brand} onChange={(e) => setCommonEdit((prev) => ({ ...prev, brand: e.target.value }))} /></Field>
-                            <Field label="モデル名"><input list="mybag-model-suggestions" className={textInputClass} value={commonEdit.model} onChange={(e) => setCommonEdit((prev) => ({ ...prev, model: e.target.value }))} /></Field>
+                            <Field label="モデル名"><input list="mybag-common-model-suggestions" className={textInputClass} value={commonEdit.model} onChange={(e) => setCommonEdit((prev) => ({ ...prev, model: e.target.value }))} /></Field>
                             <Field label="シャフト"><input list="mybag-shaft-suggestions" className={textInputClass} value={commonEdit.shaft} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaft: e.target.value }))} /></Field>
                             <Field label="フレックス"><input list="mybag-flex-suggestions" className={textInputClass} value={commonEdit.flex} onChange={(e) => setCommonEdit((prev) => ({ ...prev, flex: e.target.value }))} /></Field>
-                            <Field label="シャフト重量"><input list="mybag-shaft-weight-suggestions" className={textInputClass} value={commonEdit.shaftWeight} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaftWeight: e.target.value }))} placeholder="85g" /></Field>
+                            <Field label="シャフト重量"><input list="mybag-common-shaft-weight-suggestions" className={textInputClass} value={commonEdit.shaftWeight} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaftWeight: e.target.value }))} placeholder="85g" /></Field>
                         </div>
                         <button type="button" onClick={applyCommonToGroup} disabled={groupedTargets.length === 0} className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-trust-navy px-5 text-sm font-black text-white disabled:opacity-50">
                             <Layers3 size={16} /> このカテゴリーに反映
