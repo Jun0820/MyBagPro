@@ -28,9 +28,10 @@ const MODEL_SUGGESTIONS = [
     'DS-ADAPT LS', 'DS-ADAPT X', 'DS-ADAPT MAX-K',
     'ST-MAX 230', 'JPX 925 HOT METAL', 'Mizuno Pro 241', 'Mizuno Pro 243', 'Mizuno Pro S-3',
     '221 CB', '222 CB+', '220 MB', 'BRM2', 'B1ST', 'B2HT',
-    'XXIO 13', 'XXIO X', 'ONOFF KURO', 'ONOFF AKA', 'RMX VD', 'RMX VD/M', 'RS X', 'LS',
+    'XXIO 13', 'XXIO X', 'XXIO PRIME', 'ONOFF KURO', 'ONOFF AKA', 'RMX VD', 'RMX VD/M', 'RS X', 'LS', 'SUPER egg',
     'Vokey SM10', 'Vokey SM11', 'RTX', 'RTZ', 'JAWS RAW', 'OPUS', 's159', 'T-1', 'T-3',
-    'Spider Tour', 'Spider Tour X', 'Phantom 5', 'Phantom 7', 'Ai-ONE', 'Ai-ONE MILLED', 'PLD ANSER', 'WHITE HOT OG',
+    'Spider Tour', 'Spider Tour X', 'Spider Tour Z', 'Phantom 5', 'Phantom 5.2', 'Phantom 7', 'Phantom 7.2', 'Phantom 7.5', 'Phantom 9R',
+    'Studio Style Newport 2', 'Studio Style Squareback 2', 'Ai-ONE', 'Ai-ONE #7', 'Ai-ONE MILLED', 'WHITE HOT OG', 'Square 2 Square Jailbird', 'PLD ANSER',
 ];
 const SHAFT_SUGGESTIONS = [
     'VENTUS', 'VENTUS Blue', 'VENTUS Black', 'VENTUS Red', 'VENTUS TR Blue', 'VENTUS TR Black', 'VENTUS TR Red', 'VENTUS HB',
@@ -62,8 +63,8 @@ const BRAND_MODEL_MAP: Record<string, string[]> = {
     xxio: ['XXIO 13', 'XXIO X', 'XXIO PRIME'],
     onoff: ['ONOFF KURO', 'ONOFF AKA'],
     pxg: ['0311 BLACK OPS', '0311 XP GEN7', 'Battle Ready II'],
-    odyssey: ['Ai-ONE #7', 'Ai-ONE MILLED', 'WHITE HOT OG', 'ROSSIE S'],
-    'scotty cameron': ['Phantom 5', 'Phantom 7', 'Newport 2', 'Squareback 2'],
+    odyssey: ['Ai-ONE #7', 'Ai-ONE MILLED', 'WHITE HOT OG', 'ROSSIE S', 'Square 2 Square Jailbird', 'Square 2 Square Double Wide'],
+    'scotty cameron': ['Phantom 5', 'Phantom 5.2', 'Phantom 7', 'Phantom 7.2', 'Phantom 7.5', 'Phantom 9R', 'Newport 2', 'Squareback 2', 'Studio Style Newport 2', 'Studio Style Squareback 2'],
     fourteen: ['RM-4', 'RM-α', 'DJ-6'],
 };
 const CATEGORY_WEIGHT_MAP: Partial<Record<TargetCategory, string[]>> = {
