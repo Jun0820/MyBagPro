@@ -127,6 +127,13 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             distance: club.distance || '',
         }));
 
+    const sameStringArray = (left?: string[], right?: string[]) => {
+        const normalizedLeft = Array.isArray(left) ? left : [];
+        const normalizedRight = Array.isArray(right) ? right : [];
+        if (normalizedLeft.length !== normalizedRight.length) return false;
+        return normalizedLeft.every((value, index) => value === normalizedRight[index]);
+    };
+
     useEffect(() => {
         userRef.current = user;
     }, [user]);
@@ -278,23 +285,23 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 brand: club.brand || '',
                 model: club.model || '',
                 shaft: club.shaft || '',
-                flex: snapshot?.flex || '',
-                number: snapshot?.number || '',
+                flex: snapshot?.flex || club.flex || '',
+                number: snapshot?.number || club.number || '',
                 loft: club.loft || '',
                 distance: club.distance || '',
-                carryDistance: snapshot?.carryDistance || '',
-                worry: snapshot?.worry || '',
-                shaftWeight: snapshot?.shaftWeight || '',
-                sleeveSetting: snapshot?.sleeveSetting || '',
-                length: snapshot?.length || '',
-                lieAngle: snapshot?.lieAngle || '',
-                bounce: snapshot?.bounce || '',
-                grind: snapshot?.grind || '',
-                headShape: snapshot?.headShape || '',
-                mainUse: snapshot?.mainUse || [],
-                missTendency: snapshot?.missTendency || [],
-                memo: snapshot?.memo || '',
-                copiedFromClubId: snapshot?.copiedFromClubId || '',
+                carryDistance: snapshot?.carryDistance || club.carry_distance || club.carryDistance || '',
+                worry: snapshot?.worry || club.worry || '',
+                shaftWeight: snapshot?.shaftWeight || club.shaft_weight || club.shaftWeight || '',
+                sleeveSetting: snapshot?.sleeveSetting || club.sleeve_setting || club.sleeveSetting || '',
+                length: snapshot?.length || club.length || '',
+                lieAngle: snapshot?.lieAngle || club.lie_angle || club.lieAngle || '',
+                bounce: snapshot?.bounce || club.bounce || '',
+                grind: snapshot?.grind || club.grind || '',
+                headShape: snapshot?.headShape || club.head_shape || club.headShape || '',
+                mainUse: snapshot?.mainUse || club.main_use || club.mainUse || [],
+                missTendency: snapshot?.missTendency || club.miss_tendency || club.missTendency || [],
+                memo: snapshot?.memo || club.memo || '',
+                copiedFromClubId: snapshot?.copiedFromClubId || club.copied_from_club_id || club.copiedFromClubId || '',
             };
         });
     };
@@ -357,8 +364,23 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             brand: club.brand,
             model: club.model,
             shaft: club.shaft,
+            flex: club.flex || '',
+            number: club.number || '',
             loft: club.loft,
             distance: club.distance,
+            carryDistance: club.carryDistance || '',
+            worry: club.worry || '',
+            shaftWeight: club.shaftWeight || '',
+            sleeveSetting: club.sleeveSetting || '',
+            length: club.length || '',
+            lieAngle: club.lieAngle || '',
+            bounce: club.bounce || '',
+            grind: club.grind || '',
+            headShape: club.headShape || '',
+            mainUse: club.mainUse || [],
+            missTendency: club.missTendency || [],
+            memo: club.memo || '',
+            copiedFromClubId: club.copiedFromClubId || '',
         }));
 
         const signature = JSON.stringify({
@@ -405,7 +427,18 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 previous.loft !== club.loft ||
                 previous.distance !== club.distance ||
                 (previous.carryDistance || '') !== (club.carryDistance || '') ||
-                (previous.worry || '') !== (club.worry || '');
+                (previous.worry || '') !== (club.worry || '') ||
+                (previous.shaftWeight || '') !== (club.shaftWeight || '') ||
+                (previous.sleeveSetting || '') !== (club.sleeveSetting || '') ||
+                (previous.length || '') !== (club.length || '') ||
+                (previous.lieAngle || '') !== (club.lieAngle || '') ||
+                (previous.bounce || '') !== (club.bounce || '') ||
+                (previous.grind || '') !== (club.grind || '') ||
+                (previous.headShape || '') !== (club.headShape || '') ||
+                !sameStringArray(previous.mainUse, club.mainUse) ||
+                !sameStringArray(previous.missTendency, club.missTendency) ||
+                (previous.memo || '') !== (club.memo || '') ||
+                (previous.copiedFromClubId || '') !== (club.copiedFromClubId || '');
 
             if (changed) {
                 changeCount += 1;
