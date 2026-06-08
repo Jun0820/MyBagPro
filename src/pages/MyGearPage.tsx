@@ -589,12 +589,6 @@ export const MyGearPage = () => {
                                                                 <div className="truncate text-sm font-black text-trust-navy">
                                                                     {club.brand || '未登録'}
                                                                 </div>
-                                                                {club.category === TargetCategory.PUTTER && (
-                                                                    <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-black text-slate-600">距離入力不要</span>
-                                                                )}
-                                                                {club.category === TargetCategory.BALL && (
-                                                                    <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-black text-orange-700">別枠データ</span>
-                                                                )}
                                                                 {isDistanceTarget && !displayedDistance && (
                                                                     <span className="rounded-full bg-cyan-100 px-2 py-0.5 text-[10px] font-black text-cyan-700">飛距離を追加</span>
                                                                 )}
