@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-07T06:27:30.640Z",
+  "generatedAt": "2026-06-08T03:51:06.135Z",
   "checkedCount": 129,
-  "needsUpdateCount": 4,
-  "found2026Count": 65,
+  "needsUpdateCount": 2,
+  "found2026Count": 66,
   "checks": [
     {
       "file": "docs/adam-scott-seed.json",
@@ -1061,12 +1061,12 @@
       "gdoId": "19030",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/19030/2025/2/"
+        "https://news.golfdigest.co.jp/players/setting/19030/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/19030/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/19030/2026/1/",
         "title": "入谷響 クラブセッティング 2026年 ブリヂストンレディス",
@@ -1336,45 +1336,50 @@
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/93/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": false,
+      "needsUpdate": true,
       "gdo": {
-        "url": "https://news.golfdigest.co.jp/players/setting/93/2024/2/",
-        "title": "岩田寛 クラブセッティング 2024年 カシオワールド",
+        "url": "https://news.golfdigest.co.jp/players/setting/93/2026/1/",
+        "title": "岩田寛 クラブセッティング 2026年 日本ツアー選手権",
         "playerName": "岩田寛",
-        "year": 2024,
-        "tournament": "カシオワールド",
-        "situation": "取材：2024年 カシオワールド",
-        "itemCount": 8,
+        "year": 2026,
+        "tournament": "日本ツアー選手権",
+        "situation": "取材：2026年 日本ツアー選手権",
+        "itemCount": 9,
         "entries": [
           {
             "genre": "ドライバー",
-            "product": "パラダイム Ai スモーク ◆◆◆(トリプルダイヤモンド) ドライバー(9度)",
-            "shaft": "Tour AD(ツアー エーディ)PT(硬さ7X、長さ45インチ)"
+            "product": "GTS3 ドライバー(ロフト角9度)",
+            "shaft": "Tour AD(ツアー エーディ)PT(重さ70g台、硬さX)"
           },
           {
             "genre": "FW＆UT",
             "product": "Qi10 フェアウェイウッド(3番15度、5番18度)",
-            "shaft": "Tour AD(ツアー エーディ)PT(硬さ8X)"
-          },
-          {
-            "genre": "FW＆UT",
-            "product": "スリクソン ZX マインファーム(3番20度)",
-            "shaft": ""
+            "shaft": "Tour AD(ツアー エーディ)PT(80g台、X)"
           },
           {
             "genre": "アイアン",
-            "product": "タイトリスト 620フォージド(4番～9番)",
-            "shaft": ""
+            "product": "T250 アイアン＜2025年＞(4番)",
+            "shaft": "NSプロ モーダス3 ツアー130(X)"
           },
           {
             "genre": "アイアン",
-            "product": "ヨネックス イーゾーンMB310(PW)",
-            "shaft": ""
+            "product": "ミズノプロ S-1 アイアン(4番～9番)",
+            "shaft": "NSプロ モーダス3 ツアー130(X)"
           },
           {
             "genre": "ウェッジ",
-            "product": "VOKEY(ボーケイ)SM10 ウェッジ(52度、58度)",
-            "shaft": ""
+            "product": "VOKEY(ボーケイ)SM10 ウェッジ(46度)",
+            "shaft": "NSプロ モーダス3 ツアー130(X)"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)SM11 ウェッジ(52度)",
+            "shaft": "NSプロ モーダス3プロトタイプ"
+          },
+          {
+            "genre": "ウェッジ",
+            "product": "VOKEY(ボーケイ)プロトタイプ(58度)",
+            "shaft": "ダイナミックゴールド ツアーイシュー"
           },
           {
             "genre": "パター",
@@ -1382,8 +1387,8 @@
             "shaft": ""
           },
           {
-            "genre": "パター",
-            "product": "PRO(プロ)V1x ボールPRO(プロ)V1x ボール",
+            "genre": "ボール",
+            "product": "PRO(プロ)V1x ボール＜2025年＞",
             "shaft": ""
           }
         ]
@@ -1834,14 +1839,14 @@
       "slug": "justin-thomas",
       "name": "ジャスティン・トーマス",
       "gdoId": "11392",
-      "currentGdoYear": 2025,
+      "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/11392/2025/1/"
+        "https://news.golfdigest.co.jp/players/setting/11392/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/11392/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/11392/2026/1/",
         "title": "ジャスティン・トーマス クラブセッティング 2026年 ザ・メモリアルトーナメント ※練習日のために15本",
@@ -6571,12 +6576,12 @@
       "gdoId": "6264",
       "currentGdoYear": 2026,
       "currentGdoUrls": [
-        "https://news.golfdigest.co.jp/players/setting/6264/"
+        "https://news.golfdigest.co.jp/players/setting/6264/2026/1/"
       ],
       "candidateUrl": "https://news.golfdigest.co.jp/players/setting/6264/2026/1/",
       "status": 200,
       "found": true,
-      "needsUpdate": true,
+      "needsUpdate": false,
       "gdo": {
         "url": "https://news.golfdigest.co.jp/players/setting/6264/2026/1/",
         "title": "トミー・フリートウッド クラブセッティング 2026年 ザ・メモリアルトーナメント",
