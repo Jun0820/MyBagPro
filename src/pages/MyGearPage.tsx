@@ -209,6 +209,9 @@ export const MyGearPage = () => {
         return clubDistanceView === 'carry' ? (carry || total) : (total || carry);
     };
 
+    const isDistanceInputTarget = (club: typeof profile.myBag.clubs[number]) =>
+        club.category !== TargetCategory.PUTTER && club.category !== TargetCategory.BALL;
+
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
         navigateMyPageTab('clubs', (params) => {
             params.delete('welcome');
@@ -560,32 +563,55 @@ export const MyGearPage = () => {
                                 </div>
                                 <div className="mt-4 space-y-2">
                                     {compactMyClubs.length > 0 ? (
-                                        compactMyClubs.map((club) => (
-                                            <button
-                                                key={club.id}
-                                                onClick={() => openClubEditFromDashboard(club.id)}
-                                                className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-2.5 text-left transition-colors hover:bg-slate-100"
-                                            >
-                                                <div className="flex items-center gap-3">
-                                                    <div className="min-w-[48px] rounded-xl bg-white px-3 py-1.5 text-center text-[10px] font-black uppercase tracking-[0.14em] text-slate-500">
-                                                        {club.number || club.category}
-                                                    </div>
-                                                    <div className="min-w-0">
-                                                        <div className="truncate text-sm font-black text-trust-navy">
-                                                            {club.brand || '未登録'}
+                                        compactMyClubs.map((club) => {
+                                            const isDistanceTarget = isDistanceInputTarget(club);
+                                            const displayedDistance = getDisplayedClubDistance(club);
+                                            const isSpecialCard = !isDistanceTarget;
+
+                                            return (
+                                                <button
+                                                    key={club.id}
+                                                    onClick={() => openClubEditFromDashboard(club.id)}
+                                                    className={cn(
+                                                        'flex w-full items-center justify-between rounded-2xl px-4 py-2.5 text-left transition-colors',
+                                                        isSpecialCard ? 'bg-[#f8fafc] ring-1 ring-slate-200 hover:bg-slate-100' : 'bg-slate-50 hover:bg-slate-100',
+                                                    )}
+                                                >
+                                                    <div className="flex min-w-0 items-center gap-3">
+                                                        <div className={cn(
+                                                            'min-w-[48px] rounded-xl px-3 py-1.5 text-center text-[10px] font-black uppercase tracking-[0.14em]',
+                                                            isSpecialCard ? 'bg-white text-slate-400 ring-1 ring-slate-200' : 'bg-white text-slate-500',
+                                                        )}>
+                                                            {club.number || club.category}
                                                         </div>
-                                                        <div className="truncate text-[11px] text-slate-500">
-                                                            {club.model || 'モデル未登録'}
+                                                        <div className="min-w-0">
+                                                            <div className="flex flex-wrap items-center gap-2">
+                                                                <div className="truncate text-sm font-black text-trust-navy">
+                                                                    {club.brand || '未登録'}
+                                                                </div>
+                                                                {club.category === TargetCategory.PUTTER && (
+                                                                    <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-black text-slate-600">距離入力不要</span>
+                                                                )}
+                                                                {club.category === TargetCategory.BALL && (
+                                                                    <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-black text-orange-700">別枠データ</span>
+                                                                )}
+                                                                {isDistanceTarget && !displayedDistance && (
+                                                                    <span className="rounded-full bg-cyan-100 px-2 py-0.5 text-[10px] font-black text-cyan-700">飛距離を追加</span>
+                                                                )}
+                                                            </div>
+                                                            <div className="truncate text-[11px] text-slate-500">
+                                                                {club.model || 'モデル未登録'}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="ml-3 text-right">
-                                                    <div className="text-[15px] font-black text-trust-navy">
-                                                        {getDisplayedClubDistance(club) ? `${getDisplayedClubDistance(club)}Y` : (club.category === TargetCategory.PUTTER || club.category === TargetCategory.BALL ? '-' : '未入力')}
+                                                    <div className="ml-3 text-right">
+                                                        <div className={cn('text-[15px] font-black', isSpecialCard ? 'text-slate-400' : 'text-trust-navy')}>
+                                                            {displayedDistance ? `${displayedDistance}Y` : (isSpecialCard ? '-' : '未入力')}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </button>
-                                        ))
+                                                </button>
+                                            );
+                                        })
                                     ) : (
                                         <button onClick={() => navigateMyPageTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-6 text-left ring-1 ring-[#c8d8cc]">
                                             <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
