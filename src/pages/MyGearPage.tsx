@@ -186,11 +186,28 @@ export const MyGearPage = () => {
         const nextParams = new URLSearchParams(searchParams);
         nextParams.set('tab', 'clubs');
         nextParams.delete('welcome');
+        nextParams.delete('editClub');
         if (focus) {
             nextParams.set('focus', focus);
         } else {
             nextParams.delete('focus');
         }
+        setSearchParams(nextParams, { replace: true });
+    };
+
+    const openClubEditFromDashboard = (clubId: string) => {
+        setActiveTab('clubs');
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.set('tab', 'clubs');
+        nextParams.set('editClub', clubId);
+        nextParams.delete('welcome');
+        setSearchParams(nextParams, { replace: true });
+    };
+
+    const consumeRequestedEditClub = () => {
+        const nextParams = new URLSearchParams(searchParams);
+        if (!nextParams.has('editClub')) return;
+        nextParams.delete('editClub');
         setSearchParams(nextParams, { replace: true });
     };
 
@@ -518,7 +535,7 @@ export const MyGearPage = () => {
                                         compactMyClubs.map((club) => (
                                             <button
                                                 key={club.id}
-                                                onClick={() => setActiveTab('clubs')}
+                                                onClick={() => openClubEditFromDashboard(club.id)}
                                                 className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-2.5 text-left transition-colors hover:bg-slate-100"
                                             >
                                                 <div className="flex items-center gap-3">
@@ -668,6 +685,8 @@ export const MyGearPage = () => {
                         }}
                         onReloadFromCloud={syncWithSupabase}
                         intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
+                        requestedEditClubId={searchParams.get('editClub')}
+                        onConsumeRequestedEditClubId={consumeRequestedEditClub}
                     />
                 )}
 

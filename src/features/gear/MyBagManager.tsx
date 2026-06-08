@@ -65,6 +65,8 @@ interface MyBagManagerProps {
     onReloadFromCloud?: () => void;
     onOpenBallDiagnosis?: () => void;
     intakeMode?: 'default' | 'missing-clubs' | 'ball-first';
+    requestedEditClubId?: string | null;
+    onConsumeRequestedEditClubId?: () => void;
 }
 
 type ClubEditorDraft = {
@@ -289,6 +291,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     onReloadFromCloud,
     onOpenBallDiagnosis,
     intakeMode = 'default',
+    requestedEditClubId = null,
+    onConsumeRequestedEditClubId,
 }) => {
     const latestSettingRef = useRef(setting);
     const [step, setStep] = useState<Step>(1);
@@ -481,6 +485,18 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     }, [buildSettingFromEditingDraft, commitSetting]);
 
     const hasDirtyEditingDraft = Boolean(editingClubId && isDraftDirty(editingClubId, editingDraft));
+
+    useEffect(() => {
+        if (!requestedEditClubId) return;
+        if (!setting.clubs.some((club) => club.id === requestedEditClubId)) {
+            onConsumeRequestedEditClubId?.();
+            return;
+        }
+
+        setStep(4);
+        openClubEditor(requestedEditClubId);
+        onConsumeRequestedEditClubId?.();
+    }, [requestedEditClubId, setting.clubs, onConsumeRequestedEditClubId]);
 
     useEffect(() => {
         const shouldWarn = hasDirtyEditingDraft || hasUnsavedChanges || isClubEditorSaving || isManualSaveInFlight;
