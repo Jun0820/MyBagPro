@@ -128,7 +128,13 @@ export const MyGearPage = () => {
         { key: 'clubs' as const, label: 'マイクラブ', icon: Edit3 },
         { key: 'profile' as const, label: 'プロフィール編集', icon: User },
     ];
-    const profileBadge = user.isLoggedIn ? 'クラウド保存中' : 'ベーシックプラン';
+    const profileBadge = !user.isLoggedIn
+        ? 'ベーシックプラン'
+        : isManualSaveInFlight || saveStatus === 'saving'
+            ? 'クラウド保存中'
+            : hasUnsavedChanges
+                ? '未保存あり'
+                : 'クラウド保存済み';
     const profileInitial = (profile.name || 'M').trim().charAt(0).toUpperCase();
     const compactMyClubs = profile.myBag.clubs;
     const dashboardScore = Math.max(

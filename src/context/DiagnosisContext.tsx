@@ -777,6 +777,16 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         refreshUnsavedChanges();
     }, [profile, user.id, user.isLoggedIn, isInitialSyncComplete]);
 
+    useEffect(() => {
+        if (saveStatus !== 'saving' || isManualSaveInFlight) return;
+
+        const timeoutId = window.setTimeout(() => {
+            setSaveStatus((current) => (current === 'saving' ? 'idle' : current));
+        }, 15000);
+
+        return () => window.clearTimeout(timeoutId);
+    }, [saveStatus, isManualSaveInFlight]);
+
     // Manual Save Trigger (Immediate)
     const manualSave = async (profileOverride?: UserProfile) => {
         const requestedProfile = profileOverride || profileRef.current;
