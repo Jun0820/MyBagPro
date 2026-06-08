@@ -154,7 +154,7 @@ export const MyGearPage = () => {
         {
             label: '飛距離入力',
             value: Math.max(8, Math.round(distanceCoveragePercent)),
-            helper: distanceCoveragePercent > 0 ? `${distanceCoveragePercent}%` : '未入力',
+            helper: distanceEligibleClubs.length > 0 ? `${clubsWithDistance}/${distanceEligibleClubs.length}本` : '対象なし',
             tone: 'bg-[#1f6aa5]',
         },
         {
@@ -342,7 +342,7 @@ export const MyGearPage = () => {
                         <div className="rounded-lg bg-[#163c29] p-4 text-white shadow-sm">
                             <div className="text-sm font-black">登録クラブから診断へ</div>
                             <p className="mt-1 text-xs leading-5 text-white/75">
-                                保存した番手と飛距離を診断に使えます。
+                                保存した番手と飛距離を診断に使えます。パターとボールは別情報として扱います。
                             </p>
                             <button
                                 onClick={() => navigate('/diagnosis')}
@@ -484,11 +484,15 @@ export const MyGearPage = () => {
                                                 <div className="rounded-lg bg-white/80 p-3">
                                                     <div className="text-[10px] uppercase text-slate-400">飛距離入力</div>
                                                     <div className="mt-1 text-lg font-black text-[#151719]">{distanceCoveragePercent}<span className="ml-1 text-xs text-slate-400">%</span></div>
+                                                    <div className="mt-1 text-[10px] font-bold text-slate-400">パター・ボールは除外</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <p className="mt-3 text-xs leading-relaxed text-slate-500">
                                             ゴルフの実力ではなく、<span className="font-black text-trust-navy">診断に使える情報がどれだけそろっているか</span> を見ています。
+                                        </p>
+                                        <p className="mt-2 text-[11px] leading-relaxed text-slate-400">
+                                            飛距離入力率は、ドライバー・FW・UT・アイアン・ウェッジを対象に計算しています。
                                         </p>
                                     </div>
 
