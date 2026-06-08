@@ -169,11 +169,27 @@ export interface Club {
     distance: string; // total distance
     carryDistance?: string;
     worry?: string; // [NEW] 個別の悩みメモ
+    shaftWeight?: string;
+    sleeveSetting?: string;
+    length?: string;
+    lieAngle?: string;
+    bounce?: string;
+    grind?: string;
+    headShape?: string;
+    mainUse?: string[];
+    missTendency?: string[];
+    memo?: string;
+    copiedFromClubId?: string;
 }
 
 export interface ClubSetting {
     clubs: Club[];
     ball: string;
+    name?: string;
+    purpose?: string;
+    ballBrand?: string;
+    ballColor?: string;
+    ballMemo?: string;
 }
 
 export interface UserCustomLink {
