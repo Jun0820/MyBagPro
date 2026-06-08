@@ -91,6 +91,24 @@ const BRAND_SHAFT_MAP: Record<string, string[]> = {
     onoff: ['SMOOTH KICK MP', 'LABOSPEC HASHIRI', 'LABOSPEC SHINARI', 'Diamana WB 53'],
     cobra: ['MCA Kai\'li Blue', '24 VENTUS BLUE', 'TENSEI AV BLUE 55', 'KBS PGI'],
 };
+const MODEL_SHAFT_MAP: Record<string, string[]> = {
+    'g440': ['PING TOUR 2.0 CHROME 65', 'PING TOUR 2.0 BLACK 65', 'ALTA J CB', 'ALTA DISTANZA', '24 VENTUS BLUE'],
+    'g430': ['PING TOUR 2.0 CHROME 65', 'PING TOUR 2.0 BLACK 65', 'ALTA J CB', '24 VENTUS BLUE'],
+    'gt2': ['TENSEI 1K BLUE 55', 'TENSEI 1K BLUE 65', 'Titleist Diamana Blue 55', 'TENSEI AV BLUE 55'],
+    'gt3': ['TENSEI 1K BLUE 65', '24 VENTUS BLUE', '26 VENTUS TR BLUE', 'Titleist Diamana Blue 55'],
+    'tsr2': ['TENSEI AV BLUE 55', 'Titleist Diamana Blue 55', '24 VENTUS BLUE'],
+    'tsr3': ['TENSEI AV BLUE 55', '24 VENTUS BLUE', '26 VENTUS TR BLUE'],
+    'elyte': ['VENTUS GREEN 50 for Callaway', 'TENSEI GREEN 60 for Callaway', 'LIN-Q BLUE EX 5', 'VANQUISH 4'],
+    'paradym': ['VENTUS GREEN 50 for Callaway', 'TENSEI GREEN 60 for Callaway', 'LIN-Q BLUE EX 5'],
+    'qi35': ['TENSEI BLUE TM50', 'SPEEDER NX GOLD 50', '24 VENTUS BLUE', 'Diamana WB 53'],
+    'qi10': ['TENSEI BLUE TM50', 'SPEEDER NX BLACK 50', '24 VENTUS BLUE'],
+    'q i4d': ['SPEEDER NX GOLD 50', '24 VENTUS BLUE', 'Diamana WB 53'],
+    'zxi': ['Diamana RB 53', 'VENTUS TR BLACK', 'Tour AD DI-6', 'N.S.PRO 950GH neo S'],
+    'zx5mk ii': ['N.S.PRO 950GH neo S', 'MODUS3 TOUR 105 S', 'MCI 80'],
+    'zx7mk ii': ['MODUS3 TOUR 105 S', 'MODUS3 TOUR 120 S', 'Dynamic Gold 105'],
+    'p790': ['MCI 70', 'MCI 80', 'N.S.PRO 950GH neo S', 'MODUS3 TOUR 105 S'],
+    'p770': ['MCI 80', 'MODUS3 TOUR 105 S', 'Dynamic Gold 105'],
+};
 const CATEGORY_WEIGHT_MAP: Partial<Record<TargetCategory, string[]>> = {
     [TargetCategory.DRIVER]: ['40g', '45g', '50g', '55g', '60g', '65g', '40g台', '50g台', '60g台'],
     [TargetCategory.FAIRWAY]: ['50g', '55g', '60g', '65g', '70g', '50g台', '60g台', '70g台'],
@@ -312,10 +330,26 @@ const buildModelSuggestions = (brand: string, category: string, currentModel: st
 const buildWeightSuggestions = (category: string, currentWeight: string) =>
     Array.from(new Set([currentWeight, ...(CATEGORY_WEIGHT_MAP[category as TargetCategory] || []), ...SHAFT_WEIGHT_SUGGESTIONS].filter(Boolean)));
 
-const buildShaftSuggestions = (brand: string, currentShaft: string) => {
-    const key = normalizeSuggestionKey(brand);
-    const brandShafts = Object.entries(BRAND_SHAFT_MAP).find(([mapKey]) => key.includes(normalizeSuggestionKey(mapKey)))?.[1] || [];
-    return Array.from(new Set([currentShaft, ...brandShafts, ...SHAFT_SUGGESTIONS].filter(Boolean)));
+const buildModelAwareShaftSuggestions = (brand: string, model: string, currentShaft: string) => {
+    const brandKey = normalizeSuggestionKey(brand);
+    const modelKey = normalizeSuggestionKey(model);
+    const brandShafts = Object.entries(BRAND_SHAFT_MAP).find(([mapKey]) => brandKey.includes(normalizeSuggestionKey(mapKey)))?.[1] || [];
+    const modelShafts = Object.entries(MODEL_SHAFT_MAP).find(([mapKey]) => modelKey.includes(normalizeSuggestionKey(mapKey)))?.[1] || [];
+    return Array.from(new Set([currentShaft, ...modelShafts, ...brandShafts, ...SHAFT_SUGGESTIONS].filter(Boolean)));
+};
+
+const buildFlexSuggestions = (shaft: string, currentFlex: string) => {
+    const shaftKey = normalizeSuggestionKey(shaft);
+    const steelFlexes = ['R300', 'S200', 'S300', 'X100', '6.0', '6.5'];
+    const graphiteFlexes = ['L', 'A', 'R', 'SR', 'S', 'SX', 'X', 'TX', '4R', '4S', '5R', '5S', '5X', '6S', '6X', '7S', '7X'];
+    const hybridFlexes = ['R', 'S', 'X', '5S', '5X', '6S', '6X', '7S', '7X'];
+    const pool =
+        /dynamicgold|modus|nspro|projectx|kbsc|kbspgi|kbstour|zelos/.test(shaftKey)
+            ? steelFlexes
+            : /hybrid|hb|hy-|mci|mmt|recoil|pgi/.test(shaftKey)
+                ? hybridFlexes
+                : graphiteFlexes;
+    return Array.from(new Set([currentFlex, ...pool, ...FLEX_SUGGESTIONS].filter(Boolean)));
 };
 
 const buildBallModelSuggestions = (brand: string, currentModel: string) => {
@@ -970,12 +1004,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         const shaftSuggestionId = `mybag-shaft-suggestions-${club.id}`;
         const shaftWeightSuggestionId = `mybag-shaft-weight-suggestions-${club.id}`;
         const modelSuggestions = buildModelSuggestions(club.brand, club.category, club.model);
-        const shaftSuggestions = buildShaftSuggestions(club.brand, shaftParts.model);
+        const flexSuggestionId = `mybag-flex-suggestions-${club.id}`;
+        const shaftSuggestions = buildModelAwareShaftSuggestions(club.brand, club.model, shaftParts.model);
+        const flexSuggestions = buildFlexSuggestions(shaftParts.model, club.flex || shaftParts.flex);
         const weightSuggestions = buildWeightSuggestions(club.category, club.shaftWeight || shaftParts.weight);
         return (
             <>
                 <datalist id={modelSuggestionId}>{modelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
                 <datalist id={shaftSuggestionId}>{shaftSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+                <datalist id={flexSuggestionId}>{flexSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
                 <datalist id={shaftWeightSuggestionId}>{weightSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
                 <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
                     <Field label="ブランド">
@@ -988,7 +1025,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <input list={shaftSuggestionId} className={textInputClass} value={shaftParts.model} onChange={(e) => applyPatch({ shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
                     </Field>
                     <Field label="フレックス">
-                        <input list="mybag-flex-suggestions" className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
+                        <input list={flexSuggestionId} className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
                     </Field>
                     <Field label="シャフト重量">
                         <input list={shaftWeightSuggestionId} className={textInputClass} value={club.shaftWeight || shaftParts.weight} onChange={(e) => applyPatch({ shaftWeight: e.target.value, shaft: buildShaft(shaftParts.model, e.target.value, shaftParts.flex) })} placeholder="65g / 80g台" />
@@ -1133,7 +1170,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return slot?.group === batchTarget;
     });
     const commonModelSuggestions = buildModelSuggestions(commonEdit.brand, batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.model);
-    const commonShaftSuggestions = buildShaftSuggestions(commonEdit.brand, commonEdit.shaft);
+    const commonShaftSuggestions = buildModelAwareShaftSuggestions(commonEdit.brand, commonEdit.model, commonEdit.shaft);
+    const commonFlexSuggestions = buildFlexSuggestions(commonEdit.shaft, commonEdit.flex);
     const commonWeightSuggestions = buildWeightSuggestions(batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.shaftWeight);
 
     return (
@@ -1146,6 +1184,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             <datalist id="mybag-ball-brand-suggestions">{BALL_BRAND_SUGGESTIONS.map((brandName) => <option key={brandName} value={brandName} />)}</datalist>
             <datalist id="mybag-common-model-suggestions">{commonModelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-common-shaft-suggestions">{commonShaftSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
+            <datalist id="mybag-common-flex-suggestions">{commonFlexSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-common-shaft-weight-suggestions">{commonWeightSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
 
             {intakeMode !== 'default' && (
@@ -1273,7 +1312,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={commonEdit.brand} onChange={(e) => setCommonEdit((prev) => ({ ...prev, brand: e.target.value }))} /></Field>
                             <Field label="モデル名"><input list="mybag-common-model-suggestions" className={textInputClass} value={commonEdit.model} onChange={(e) => setCommonEdit((prev) => ({ ...prev, model: e.target.value }))} /></Field>
                             <Field label="シャフト"><input list="mybag-common-shaft-suggestions" className={textInputClass} value={commonEdit.shaft} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaft: e.target.value }))} /></Field>
-                            <Field label="フレックス"><input list="mybag-flex-suggestions" className={textInputClass} value={commonEdit.flex} onChange={(e) => setCommonEdit((prev) => ({ ...prev, flex: e.target.value }))} /></Field>
+                            <Field label="フレックス"><input list="mybag-common-flex-suggestions" className={textInputClass} value={commonEdit.flex} onChange={(e) => setCommonEdit((prev) => ({ ...prev, flex: e.target.value }))} /></Field>
                             <Field label="シャフト重量"><input list="mybag-common-shaft-weight-suggestions" className={textInputClass} value={commonEdit.shaftWeight} onChange={(e) => setCommonEdit((prev) => ({ ...prev, shaftWeight: e.target.value }))} placeholder="85g" /></Field>
                         </div>
                         <button type="button" onClick={applyCommonToGroup} disabled={groupedTargets.length === 0} className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-trust-navy px-5 text-sm font-black text-white disabled:opacity-50">
