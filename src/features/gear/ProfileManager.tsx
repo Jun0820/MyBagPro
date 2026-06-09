@@ -38,6 +38,7 @@ interface ProfileManagerProps {
     averageScore?: number;
     onUpdateAverageScore: (score: number | undefined) => void;
     saveStatus: 'idle' | 'saving' | 'saved' | 'error';
+    isManualSaveInFlight?: boolean;
     onManualSave?: () => void;
     onLogout?: () => void;
 }
@@ -48,7 +49,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
     headSpeed, onUpdateHeadSpeed, isPublic, onUpdateIsPublic,
     birthdate, onUpdateBirthdate, golfHistory, onUpdateGolfHistory,
     bestScore, onUpdateBestScore, averageScore, onUpdateAverageScore,
-    saveStatus, onManualSave, onLogout
+    saveStatus, isManualSaveInFlight = false, onManualSave, onLogout
 }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -367,7 +368,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                                 onClick={() => onManualSave?.()} 
                                 className="w-full md:w-auto px-8 py-3 bg-trust-navy text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all shadow-lg active:scale-95"
                             >
-                                {saveStatus === 'saving' ? (
+                                {isManualSaveInFlight ? (
                                     <>
                                         <Loader2 size={18} className="animate-spin" />
                                         <span>保存中...</span>

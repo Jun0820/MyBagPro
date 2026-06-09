@@ -120,6 +120,7 @@ const CATEGORY_WEIGHT_MAP: Partial<Record<TargetCategory, string[]>> = {
 const MISS_OPTIONS = ['左に行く', '右に行く', 'チーピン', 'スライス', '球が上がらない', '吹け上がる', '距離が合わない', 'ミスは特にない', 'その他'];
 const USE_OPTIONS = ['ティーショット', 'セカンド', '狭いホール用', '風の日用', '距離の階段用', 'ロングアイアンの代わり', 'UTの代わり'];
 const WEDGE_USE_OPTIONS = ['フルショット', '100y以内', 'アプローチ', 'バンカー', 'ラフ', 'ベアグラウンド', 'ロブショット', '転がし'];
+const OTHER_MISS_OPTION = 'その他';
 
 type Step = 1 | 2 | 3 | 4 | 5;
 
@@ -1103,7 +1104,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <input className={textInputClass} value={club.distance || ''} onChange={(e) => applyPatch({ distance: e.target.value })} placeholder="220" />
                     </Field>
                     <Field label="メモ">
-                        <input className={textInputClass} value={club.memo || club.worry || ''} onChange={(e) => applyPatch({ memo: e.target.value, worry: e.target.value })} placeholder="候補クラブなど" />
+                        <input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} placeholder="候補クラブなど" />
                     </Field>
                 </div>
 
@@ -1160,6 +1161,18 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             </button>
                         ))}
                     </div>
+                    {club.missTendency?.includes(OTHER_MISS_OPTION) && (
+                        <div className="mt-3">
+                            <Field label="その他の内容">
+                                <textarea
+                                    className={cn(textInputClass, 'min-h-[92px] resize-y py-3')}
+                                    value={club.worry || ''}
+                                    onChange={(e) => applyPatch({ worry: e.target.value })}
+                                    placeholder="例: 左のミスを嫌って振れない、トップしやすい、雨の日に当たり負ける"
+                                />
+                            </Field>
+                        </div>
+                    )}
                 </div>
             </div>
         );

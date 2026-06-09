@@ -130,7 +130,7 @@ export const MyGearPage = () => {
     ];
     const profileBadge = !user.isLoggedIn
         ? 'ベーシックプラン'
-        : isManualSaveInFlight || saveStatus === 'saving'
+        : isManualSaveInFlight
             ? 'クラウド保存中'
             : hasUnsavedChanges
                 ? '未保存あり'
@@ -802,6 +802,7 @@ export const MyGearPage = () => {
                         averageScore={profile.averageScore}
                         onUpdateAverageScore={(s: number | undefined) => updateProfile('averageScore', s)}
                         saveStatus={saveStatus}
+                        isManualSaveInFlight={isManualSaveInFlight}
                         onManualSave={manualSave}
                         onLogout={handleLogout}
                     />
