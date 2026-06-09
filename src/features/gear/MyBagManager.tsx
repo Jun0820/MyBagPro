@@ -422,7 +422,7 @@ const Field = ({
     </label>
 );
 
-const textInputClass = 'h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-bold text-trust-navy outline-none transition focus:border-[#176534] focus:ring-2 focus:ring-[#176534]/10 md:rounded-lg';
+const textInputClass = 'h-9 w-full rounded-lg border border-slate-200 bg-white px-2.5 text-[13px] font-bold text-trust-navy outline-none transition focus:border-[#176534] focus:ring-2 focus:ring-[#176534]/10 md:h-10 md:rounded-lg md:px-3 md:text-sm';
 
 export const MyBagManager: React.FC<MyBagManagerProps> = ({
     setting,
@@ -435,8 +435,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     lastCloudSavedAt = null,
     lastSaveTargetClubCount = 0,
     lastSavedClubCount = 0,
-    extendedColumnsSaved = false,
-    missingExtendedColumns = [],
     onManualSave,
     onManualSaveClub,
     onReloadFromCloud,
@@ -1188,7 +1186,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const commonWeightSuggestions = buildWeightSuggestions(batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.shaftWeight);
 
     return (
-        <div className="animate-fadeIn space-y-3 pb-24 md:space-y-4 md:pb-0">
+        <div className="animate-fadeIn space-y-2.5 pb-24 md:space-y-4 md:pb-0">
             <datalist id="mybag-brand-suggestions">{BRAND_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-model-suggestions">{MODEL_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
             <datalist id="mybag-shaft-suggestions">{SHAFT_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
@@ -1207,7 +1205,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             )}
 
             <div className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                     <div>
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#176534]">MY CLUB SETTING FLOW</div>
                         <h2 className="mt-1.5 text-xl font-black tracking-tight text-trust-navy md:mt-2 md:text-2xl">クラブセッティング登録</h2>
@@ -1215,7 +1213,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             まず番手を選び、同じシリーズをまとめて入力し、最後に番手別の距離や悩みを調整します。未入力があっても保存できます。
                         </p>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 text-center">
+                    <div className="grid grid-cols-3 gap-1.5 text-center md:gap-2">
                         <div className="rounded-xl bg-slate-50 px-2.5 py-2 ring-1 ring-slate-200 md:rounded-lg md:px-3">
                             <div className="text-[10px] font-black text-slate-400">登録</div>
                             <div className="text-xl font-black text-trust-navy">{selectedClubCount}</div>
@@ -1265,19 +1263,19 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             )}
 
             {step === 2 && (
-                <section className="space-y-4 px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                    <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <section className="space-y-3 px-0 py-0 md:space-y-4 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
+                    <div className="mb-3 flex flex-col gap-2 md:mb-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-lg font-black text-trust-navy">持っているクラブの番手を選択</h3>
                             <p className="mt-1 text-sm text-slate-600">詳細入力はあとで大丈夫です。まずバッグに入っている番手だけ選んでください。</p>
                         </div>
                         <ShareImageExporter targetId="my-bag-export-area" fileName="my-bag-pro-setting.png" buttonText="画像で保存" className="text-xs" />
                     </div>
-                    <div className="space-y-5">
+                    <div className="space-y-4 md:space-y-5">
                         {SLOT_GROUPS.map((group) => (
                             <div key={group.title}>
                                 <div className="mb-2 text-xs font-black uppercase tracking-[0.18em] text-slate-500">{group.title}</div>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-1.5 md:gap-2">
                                     {group.slots.map((slot) => {
                                         const isSelected = selectedKeys.has(slotKey(slot)) || (slot.category === TargetCategory.BALL && Boolean(ballClub));
                                         return (
@@ -1307,7 +1305,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             )}
 
             {step === 3 && (
-                <section className="space-y-4">
+                <section className="space-y-3 md:space-y-4">
                     <div className="rounded-xl border border-slate-200 bg-white p-3 md:rounded-lg md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
                         <h3 className="text-lg font-black text-trust-navy">カテゴリーごとに一括登録</h3>
                         <p className="mt-1 text-sm text-slate-600">同じシリーズ・同じシャフトの番手に、共通項目をまとめて入れます。</p>
@@ -1396,7 +1394,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
             {step === 4 && (
                 <section className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                    <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                    <div className="mb-3 flex flex-col gap-2 md:mb-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-lg font-black text-trust-navy">番手ごとの詳細を調整</h3>
                             <p className="mt-1 text-sm text-slate-600">作成済みクラブはあとから1本ずつ編集できます。ロフトが分からなくても保存できます。</p>
@@ -1409,7 +1407,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     {clubEditorNotice && (
                         <div
                             className={cn(
-                                'mb-4 rounded-lg px-4 py-3 text-sm font-bold ring-1',
+                                'mb-3 rounded-lg px-3 py-2.5 text-sm font-bold ring-1 md:mb-4 md:px-4 md:py-3',
                                 clubEditorNotice.tone === 'success' && 'bg-emerald-50 text-emerald-800 ring-emerald-200',
                                 clubEditorNotice.tone === 'warning' && 'bg-amber-50 text-amber-800 ring-amber-200',
                                 clubEditorNotice.tone === 'error' && 'bg-rose-50 text-rose-800 ring-rose-200',
@@ -1482,7 +1480,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                 ballColor: editorDraft.ballColor,
                                                 ballMemo: editorDraft.ballMemo,
                                             }, updateEditingDraftBall)}
-                                            <div className="mt-3 rounded-xl bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 md:mt-4 md:rounded-lg">
+                                            <div className="mt-2.5 rounded-xl bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 md:mt-4 md:rounded-lg">
                                                 未入力があっても保存できます。あとから追記しても大丈夫です。
                                             </div>
                                             <div className="mt-3 flex flex-wrap justify-end gap-2 md:mt-4">
@@ -1582,16 +1580,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         {lastSaveTargetClubCount > 0 && lastSavedClubCount > 0 && lastSaveTargetClubCount !== lastSavedClubCount && (
                             <div className="rounded-lg bg-amber-50 px-3 py-2 text-xs font-bold text-amber-800 ring-1 ring-amber-200">
                                 保存対象 {lastSaveTargetClubCount}本 / クラウド確認 {lastSavedClubCount}本
-                            </div>
-                        )}
-                        {!extendedColumnsSaved && (
-                            <div className="max-w-[32rem] rounded-lg bg-sky-50 px-3 py-2 text-xs font-bold text-sky-800 ring-1 ring-sky-200">
-                                <div>詳細項目は現在 snapshot 保存中です。Supabase 列追加後にクラブ表へ正式保存されます。</div>
-                                {missingExtendedColumns.length > 0 && (
-                                    <div className="mt-1 text-[11px] font-semibold text-sky-700">
-                                        未移行列: {missingExtendedColumns.join(', ')}
-                                    </div>
-                                )}
                             </div>
                         )}
                         <button type="button" disabled={isClubEditorSaving} onClick={handleSaveCurrentSetting} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 text-xs font-black text-white disabled:cursor-not-allowed disabled:opacity-60">
