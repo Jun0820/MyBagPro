@@ -11,14 +11,14 @@
     "season_year": 2026,
     "best_score": 64,
     "ball_name": "TaylorMade TP5x",
-    "feature_1": "2026年5月確認",
+    "feature_1": "2026年6月確認",
     "feature_2": "テーラーメイド中心",
     "feature_3": "公式carry yardageあり",
-    "summary": "ネリー・コルダの2026年クラブセッティングを、2026年5月のTaylorMade公式優勝WITBと直近詳細WITBをもとに整理したページです。Qi4Dドライバー、Stealth 2の3W・7W、P770/P7CB、MG4/MG5系ウェッジ、TP5xの流れを確認できます。",
+    "summary": "ネリー・コルダの2026年クラブセッティングを、2026年6月のTaylorMade公式メジャー優勝WITBと直近詳細WITBをもとに整理したページです。Qi4Dドライバー、Stealth 2の3W・7W、P770/P7CB、MG5系ウェッジ、TP5x、NK Protoパターの流れを確認できます。",
     "latest_source_policy": "2026_season",
     "is_featured": true,
     "is_published": true,
-    "verified_at": "2026-05-15T00:00:00.000Z",
+    "verified_at": "2026-06-09T00:00:00.000Z",
     "kana_name": "ネリー・コルダ"
   },
   "bagItems": [
@@ -30,7 +30,7 @@
       "shaft_brand": "Graphite Design",
       "shaft_model": "Tour AD FI",
       "shaft_flex": "S",
-      "source_note": "TaylorMade公式の2026年5月3日優勝WITBとGolfWRX 2026 AprilでQi4D 10.5°、Graphite Design Tour AD FI 6-Sを確認。TaylorMade公式では44 3/4インチも確認。",
+      "source_note": "TaylorMade公式の2026年6月7日メジャー優勝WITBとGolfWRX 2026 AprilでQi4D 10.5°、Graphite Design Tour AD FI 6-Sを確認。TaylorMade公式では44 3/4インチ、フロント3/3・バック5/3のウェイト配置も確認。",
       "is_featured_item": true,
       "shaft_weight": "60g台"
     },
@@ -161,14 +161,14 @@
       "category": "Wedge",
       "slot_order": 11,
       "brand": "TaylorMade",
-      "model_name": "Milled Grind 4 Wedge",
+      "model_name": "Milled Grind 5 Wedge",
       "spec_label": "AW",
       "loft_label": "50°",
       "shaft_brand": "AeroTech",
       "shaft_model": "SteelFiber i95",
       "shaft_flex": "cw",
       "carry_distance": 115,
-      "source_note": "TaylorMade公式の2026年5月3日優勝WITBでMG4 50° SBを確認。公式stock carry yardageでは50°は115yd。",
+      "source_note": "TaylorMade公式の2026年6月7日メジャー優勝WITBでMG5 50° SBを確認。公式stock carry yardageでは50°は115yd。",
       "is_featured_item": false
     },
     {
@@ -204,17 +204,24 @@
       "slot_order": 14,
       "brand": "TaylorMade",
       "model_name": "TP Reserve B31 NK Proto",
-      "source_note": "直近詳細WITBで確認。TaylorMade公式の2026年5月3日優勝WITBではパター詳細は明記なし。",
+      "source_note": "TaylorMade公式の2026年6月7日メジャー優勝WITBと直近詳細WITBでTaylorMade NK Protoパターを確認。",
       "is_featured_item": false
     }
   ],
   "sources": [
     {
       "source_type": "official",
+      "source_url": "https://www.taylormadegolf.jp/clubhouse/1521836-nelly-2ndmajor-win.html?lang=ja_JP",
+      "source_title": "「Qi4D」ドライバーなどを使用したネリー・コルダが今季2勝目となるメジャー2勝目を達成！ | TaylorMade Golf",
+      "checked_at": "2026-06-09T00:00:00.000Z",
+      "notes": "2026年6月7日公開のTaylorMade公式メジャー優勝WITB。Qi4D 10.5° Driver、Stealth 2 15° 3W、Stealth 2 21° 7W、P770 5I、P7CB 6-PW、MG5 50° SB、MG5 Proto 54° HB、TP5x、TaylorMade NK Protoパターを確認。ドライバーは44 3/4インチ、フロント3/3・バック5/3のウェイト配置も確認。"
+    },
+    {
+      "source_type": "official",
       "source_url": "https://www.taylormadegolf.jp/clubhouse/1428296-nelly-korda-witb.html",
       "source_title": "「Qi4D」ドライバーと「TP5x」ボールを使用したネリー・コルダが2週連続優勝を達成！ | TaylorMade Golf",
       "checked_at": "2026-05-15T00:00:00.000Z",
-      "notes": "2026年5月3日公開のTaylorMade公式優勝WITB。Qi4D 10.5° Driver、Stealth 2 15° 3W、Stealth 2 21° 7W、P770 5I、P7CB 6-PW、MG4 50° SB、MG5 Proto 54° HB、TP5xを確認。"
+      "notes": "2026年5月3日公開のTaylorMade公式優勝WITB。Qi4D 10.5° Driver、Stealth 2 15° 3W、Stealth 2 21° 7W、P770 5I、P7CB 6-PW、50°/54°ウェッジ、TP5xを確認。"
     },
     {
       "source_type": "official",
@@ -254,12 +261,12 @@
   ],
   "article": {
     "slug": "nelly-korda-2026-setting-update",
-    "title": "ネリー・コルダの2026年クラブセッティングを更新しました｜5月公式優勝WITBを反映",
-    "excerpt": "ネリー・コルダの2026年クラブセッティングに、TaylorMade公式の2026年5月優勝WITBとGolfWRX 2026年4月WITBを反映しました。Qi4D、P7CB、TP5xまで確認できます。",
-    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年5月3日優勝WITBとGolfWRXの2026年4月WITBを反映しました。公式記事ではQi4D 10.5°ドライバー、Stealth 2の3W・7W、P770 5I、P7CB 6-PW、MG4 50° SB、MG5 Proto 54° HB、TP5xが確認できます。GolfWRX 2026年4月WITBでは、PING G425 Hybrid、Titleist Vokey SM11 58°、TaylorMade NK Protoパターまで含む詳細構成も確認できるため、MyBagPro上では公式確認と詳細WITBの役割を分けて整理しています。",
+    "title": "ネリー・コルダの2026年クラブセッティングを更新しました｜6月メジャー優勝WITBを反映",
+    "excerpt": "ネリー・コルダの2026年クラブセッティングに、TaylorMade公式の2026年6月メジャー優勝WITBを反映しました。Qi4D、P770/P7CB、MG5、TP5x、NK Protoパターまで確認できます。",
+    "body": "ネリー・コルダのクラブセッティングについて、TaylorMade公式の2026年6月7日公開メジャー優勝WITBを反映しました。今回の公式記事ではQi4D 10.5°ドライバー、Stealth 2の3W・7W、P770 5I、P7CB 6-PW、MG5 50° SB、MG5 Proto 54° HB、TP5x、TaylorMade NK Protoパターまで確認できます。GolfWRX 2026年4月WITBで確認できていたPING G425 Hybrid、Titleist Vokey SM11 58°と合わせて、MyBagPro上では2026年6月確認版として整理しました。",
     "article_type": "update",
     "season_year": 2026,
     "published": true,
-    "published_at": "2026-05-15T00:00:00.000Z"
+    "published_at": "2026-06-09T00:00:00.000Z"
   }
 }
