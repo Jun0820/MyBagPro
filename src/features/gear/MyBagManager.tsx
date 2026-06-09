@@ -1205,15 +1205,35 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             )}
 
             <div className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                    <div>
+                <div className="flex flex-col gap-2.5 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="hidden md:block">
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#176534]">MY CLUB SETTING FLOW</div>
                         <h2 className="mt-1.5 text-xl font-black tracking-tight text-trust-navy md:mt-2 md:text-2xl">クラブセッティング登録</h2>
                         <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-slate-600 md:mt-2">
                             まず番手を選び、同じシリーズをまとめて入力し、最後に番手別の距離や悩みを調整します。未入力があっても保存できます。
                         </p>
                     </div>
-                    <div className="grid grid-cols-3 gap-1.5 text-center md:gap-2">
+                    <div className="md:hidden">
+                        <div className="flex items-center justify-between gap-2">
+                            <div className="min-w-0">
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#176534]">MY CLUB</div>
+                                <h2 className="mt-0.5 text-lg font-black tracking-tight text-trust-navy">マイクラブ</h2>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => navigateToStep(2)}
+                                className="inline-flex min-h-[36px] shrink-0 items-center rounded-lg bg-[#176534] px-3 text-[11px] font-black text-white"
+                            >
+                                追加
+                            </button>
+                        </div>
+                        <div className="mt-2 flex items-center gap-3 text-[11px] font-bold text-slate-500">
+                            <span>登録済み {selectedClubCount}本</span>
+                            <span>クラブ {nonBallClubs.length}本</span>
+                            <span className="truncate">{purpose}</span>
+                        </div>
+                    </div>
+                    <div className="hidden grid-cols-3 gap-1.5 text-center md:grid md:gap-2">
                         <div className="rounded-xl bg-slate-50 px-2.5 py-2 ring-1 ring-slate-200 md:rounded-lg md:px-3">
                             <div className="text-[10px] font-black text-slate-400">登録</div>
                             <div className="text-xl font-black text-trust-navy">{selectedClubCount}</div>
@@ -1264,10 +1284,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
             {step === 2 && (
                 <section className="space-y-3 px-0 py-0 md:space-y-4 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                    <div className="mb-3 flex flex-col gap-2 md:mb-4 md:flex-row md:items-center md:justify-between">
+                    <div className="mb-2 flex flex-col gap-1.5 md:mb-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-lg font-black text-trust-navy">持っているクラブの番手を選択</h3>
-                            <p className="mt-1 text-sm text-slate-600">詳細入力はあとで大丈夫です。まずバッグに入っている番手だけ選んでください。</p>
+                            <p className="mt-1 hidden text-sm text-slate-600 md:block">詳細入力はあとで大丈夫です。まずバッグに入っている番手だけ選んでください。</p>
                         </div>
                         <ShareImageExporter targetId="my-bag-export-area" fileName="my-bag-pro-setting.png" buttonText="画像で保存" className="text-xs" />
                     </div>
@@ -1308,7 +1328,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <section className="space-y-3 md:space-y-4">
                     <div className="rounded-xl border border-slate-200 bg-white p-3 md:rounded-lg md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
                         <h3 className="text-lg font-black text-trust-navy">カテゴリーごとに一括登録</h3>
-                        <p className="mt-1 text-sm text-slate-600">同じシリーズ・同じシャフトの番手に、共通項目をまとめて入れます。</p>
+                        <p className="mt-1 hidden text-sm text-slate-600 md:block">同じシリーズ・同じシャフトの番手に、共通項目をまとめて入れます。</p>
                         <div className="mt-3 grid gap-2 lg:mt-4 lg:grid-cols-[220px_1fr] lg:gap-3">
                             <Field label="対象カテゴリー">
                                 <select className={textInputClass} value={batchTarget} onChange={(e) => setBatchTarget(e.target.value)}>
@@ -1394,10 +1414,10 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
             {step === 4 && (
                 <section className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                    <div className="mb-3 flex flex-col gap-2 md:mb-4 md:flex-row md:items-center md:justify-between">
+                    <div className="mb-2 flex flex-col gap-1.5 md:mb-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-lg font-black text-trust-navy">番手ごとの詳細を調整</h3>
-                            <p className="mt-1 text-sm text-slate-600">作成済みクラブはあとから1本ずつ編集できます。ロフトが分からなくても保存できます。</p>
+                            <p className="mt-1 hidden text-sm text-slate-600 md:block">作成済みクラブはあとから1本ずつ編集できます。ロフトが分からなくても保存できます。</p>
                         </div>
                         <div className={cn('inline-flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-black ring-1', saveStatusMeta.tone)}>
                             {saveStatusMeta.icon}
@@ -1425,9 +1445,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             const isEditingThisClub = editingClubId === club.id;
                             const isDirtyThisClub = isEditingThisClub && hasDirtyEditingDraft;
                             return (
-                                <article key={club.id} className={cn('border-b border-slate-200 py-2 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
-                                    <div className="flex min-h-[64px] flex-col gap-2 px-0 py-2 md:min-h-[72px] md:flex-row md:items-center md:justify-between md:px-3 md:py-3">
-                                        <div className="min-w-0">
+                                <article key={club.id} className={cn('border-b border-slate-200 py-1.5 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
+                                    <div className="flex min-h-[56px] flex-col gap-1.5 px-0 py-1.5 md:min-h-[72px] md:flex-row md:items-center md:justify-between md:px-3 md:py-3">
+                                        <div className="min-w-0 flex-1">
                                             <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
                                                 <span>{club.number || club.category}</span>
                                                 {isEditingThisClub && (
@@ -1439,12 +1459,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className="mt-1 truncate text-sm font-bold text-slate-700">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</div>
-                                            <div className="mt-1 grid grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-xs font-bold text-slate-500 md:block md:truncate">
+                                            <div className="mt-0.5 truncate text-sm font-bold text-slate-700">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</div>
+                                            <div className="mt-0.5 grid grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:block md:truncate md:text-xs">
                                                 <span className="truncate">{club.shaft || '-'}</span>
-                                                <span className="justify-self-end md:hidden">{club.flex || club.shaftWeight || '-'}</span>
+                                                <span className="justify-self-end md:hidden">{[club.flex, club.shaftWeight].filter(Boolean).join(' / ') || '-'}</span>
                                                 <span className="col-span-2 truncate md:hidden">
-                                                    {[club.loft, club.carryDistance ? `C${club.carryDistance}` : '', club.distance ? `T${club.distance}` : ''].filter(Boolean).join(' / ') || '-'}
+                                                    {[club.loft, club.carryDistance ? `C${club.carryDistance}` : '', club.distance ? `T${club.distance}` : '', club.mainUse || ''].filter(Boolean).join(' / ') || '-'}
                                                 </span>
                                             </div>
                                             <div className="mt-1 hidden truncate text-xs font-bold text-slate-500 md:block">
@@ -1460,30 +1480,31 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                     複製
                                                 </button>
                                             )}
-                                            <button
-                                                type="button"
-                                                disabled={isClubEditorSaving}
-                                                onClick={() => {
-                                                    handleRemoveClub(club);
-                                                }}
-                                                className="inline-flex min-h-[34px] items-center rounded-xl border border-rose-200 bg-rose-50 px-2.5 text-[11px] font-black text-rose-700 disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs"
-                                            >
-                                                削除
-                                            </button>
                                         </div>
                                     </div>
                                     {isExpanded && editorDraft && (
-                                        <div className="border-t border-slate-100 pt-3 md:p-3">
+                                        <div className="border-t border-slate-100 pt-2.5 md:p-3">
                                             {renderClubSpecificFields(editorDraft.club, updateEditingDraftClub, {
                                                 ballBrand: editorDraft.ballBrand,
                                                 ballModel: editorDraft.ballModel,
                                                 ballColor: editorDraft.ballColor,
                                                 ballMemo: editorDraft.ballMemo,
                                             }, updateEditingDraftBall)}
-                                            <div className="mt-2.5 rounded-xl bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 md:mt-4 md:rounded-lg">
+                                            <div className="mt-2 rounded-xl bg-slate-50 px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 md:mt-4 md:rounded-lg">
                                                 未入力があっても保存できます。あとから追記しても大丈夫です。
                                             </div>
-                                            <div className="mt-3 flex flex-wrap justify-end gap-2 md:mt-4">
+                                            <div className="mt-3 flex flex-wrap items-center justify-between gap-2 md:mt-4">
+                                                <button
+                                                    type="button"
+                                                    disabled={isClubEditorSaving}
+                                                    onClick={() => {
+                                                        handleRemoveClub(club);
+                                                    }}
+                                                    className="inline-flex min-h-[40px] items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-4 text-xs font-black text-rose-700 disabled:cursor-not-allowed disabled:opacity-60 md:rounded-lg"
+                                                >
+                                                    削除
+                                                </button>
+                                                <div className="flex flex-wrap justify-end gap-2">
                                                 <button type="button" disabled={isClubEditorSaving} onClick={cancelClubEditor} className="inline-flex min-h-[40px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-black text-slate-600 disabled:cursor-not-allowed disabled:opacity-60 md:rounded-lg">
                                                     キャンセル
                                                 </button>
@@ -1491,6 +1512,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                     {isClubEditorSaving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
                                                     保存する
                                                 </button>
+                                                </div>
                                             </div>
                                         </div>
                                     )}
