@@ -460,25 +460,25 @@ export const MyGearPage = () => {
                 )}
 
                 {activeTab === 'view' && (
-                    <div className="space-y-3 pb-6 md:space-y-5 md:pb-8">
+                    <div className="space-y-2.5 pb-5 md:space-y-5 md:pb-8">
                         <section className="grid gap-3 md:gap-5 xl:grid-cols-[1.15fr_0.85fr]">
-                            <div className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-200 md:p-5">
-                                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eaede7] text-2xl font-black text-[#176534]">
+                            <div className="rounded-lg bg-white p-2.5 shadow-sm ring-1 ring-slate-200 md:p-5">
+                                <div className="flex flex-col gap-2.5 sm:flex-row sm:items-start sm:justify-between">
+                                    <div className="flex items-center gap-2.5">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#eaede7] text-xl font-black text-[#176534] md:h-16 md:w-16 md:text-2xl">
                                             {profileInitial}
                                         </div>
                                         <div>
                                             <div className="text-lg font-black tracking-tight text-[#151719] md:text-xl">{profile.name || 'My Golfer'}</div>
-                                            <div className="mt-2 inline-flex rounded-full bg-[#eef4ef] px-3 py-1 text-[10px] font-black text-[#176534]">
+                                            <div className="mt-1 inline-flex rounded-full bg-[#eef4ef] px-2.5 py-1 text-[9px] font-black text-[#176534] md:mt-2 md:px-3 md:text-[10px]">
                                                 {profileBadge}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5">
                                         <button
                                             onClick={() => navigateMyPageTab('profile')}
-                                            className="inline-flex min-h-[38px] items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-[11px] font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:rounded-xl md:text-xs"
+                                            className="inline-flex min-h-[34px] items-center gap-1.5 rounded-lg bg-slate-50 px-2.5 py-1.5 text-[10px] font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:gap-2 md:px-3 md:py-2 md:text-xs"
                                         >
                                             <Edit3 size={14} />
                                             編集
@@ -486,7 +486,7 @@ export const MyGearPage = () => {
                                         {user.isLoggedIn && (
                                             <button
                                                 onClick={() => void handleLogout()}
-                                                className="inline-flex min-h-[38px] items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-[11px] font-black text-slate-600 ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:rounded-xl md:text-xs"
+                                                className="inline-flex min-h-[34px] items-center gap-1.5 rounded-lg bg-slate-50 px-2.5 py-1.5 text-[10px] font-black text-slate-600 ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:gap-2 md:px-3 md:py-2 md:text-xs"
                                             >
                                                 <LogOut size={14} />
                                                 ログアウト
@@ -495,29 +495,28 @@ export const MyGearPage = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-3 grid gap-3 md:mt-5 md:gap-4 md:grid-cols-[220px_1fr]">
-                                    <div className="rounded-lg bg-[#f7faf7] p-3 md:p-4">
+                                <div className="mt-2.5 grid gap-2.5 md:mt-5 md:gap-4 md:grid-cols-[220px_1fr]">
+                                    <div className="rounded-lg bg-[#f7faf7] p-2.5 md:p-4">
                                         <div className="text-sm font-black text-[#151719]">診断準備度</div>
-                                        <div className="mt-3 flex items-center gap-3 md:mt-4 md:gap-4 md:flex-col md:items-start">
-                                            <div className="relative flex h-24 w-24 items-center justify-center rounded-full border-[7px] border-[#176534]/15">
+                                        <div className="mt-2.5 flex items-center gap-2.5 md:mt-4 md:gap-4 md:flex-col md:items-start">
+                                            <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-[6px] border-[#176534]/15 md:h-24 md:w-24 md:border-[7px]">
                                                 <div
-                                                    className="absolute inset-0 rounded-full border-[7px] border-transparent border-t-[#176534] border-r-[#176534] rotate-45"
+                                                    className="absolute inset-0 rounded-full border-[6px] border-transparent border-t-[#176534] border-r-[#176534] rotate-45 md:border-[7px]"
                                                     style={{ clipPath: `inset(0 ${100 - dashboardScore}% 0 0)` }}
                                                 />
                                                 <div className="text-center">
-                                                    <div className="text-3xl font-black text-[#151719]">{dashboardScore}</div>
+                                                    <div className="text-2xl font-black text-[#151719] md:text-3xl">{dashboardScore}</div>
                                                     <div className="text-[10px] font-black text-slate-400">/100</div>
                                                 </div>
                                             </div>
-                                            <div className="grid flex-1 grid-cols-2 gap-2 text-sm font-bold text-slate-600 md:w-full">
-                                                <div className="rounded-lg bg-white/80 p-2.5 md:p-3">
+                                            <div className="grid flex-1 grid-cols-2 gap-1.5 text-sm font-bold text-slate-600 md:w-full md:gap-2">
+                                                <div className="rounded-lg bg-white/80 p-2 md:p-3">
                                                     <div className="text-[10px] uppercase text-slate-400">登録クラブ</div>
-                                                    <div className="mt-1 text-lg font-black text-[#151719]">{compactMyClubs.length}<span className="ml-1 text-xs text-slate-400">/14</span></div>
+                                                    <div className="mt-0.5 text-base font-black text-[#151719] md:mt-1 md:text-lg">{compactMyClubs.length}<span className="ml-1 text-xs text-slate-400">/14</span></div>
                                                 </div>
-                                                <div className="rounded-lg bg-white/80 p-2.5 md:p-3">
+                                                <div className="rounded-lg bg-white/80 p-2 md:p-3">
                                                     <div className="text-[10px] uppercase text-slate-400">飛距離入力</div>
-                                                    <div className="mt-1 text-lg font-black text-[#151719]">{distanceCoveragePercent}<span className="ml-1 text-xs text-slate-400">%</span></div>
-                                                    <div className="mt-1 text-[10px] font-bold text-slate-400">パター・ボールは除外</div>
+                                                    <div className="mt-0.5 text-base font-black text-[#151719] md:mt-1 md:text-lg">{distanceCoveragePercent}<span className="ml-1 text-xs text-slate-400">%</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -529,9 +528,9 @@ export const MyGearPage = () => {
                                         </p>
                                     </div>
 
-                                    <div className="rounded-lg bg-[#fbfcfb] p-3 md:p-4">
+                                    <div className="rounded-lg bg-[#fbfcfb] p-2.5 md:p-4">
                                         <div className="text-sm font-black text-[#151719]">いま診断に使えるデータ</div>
-                                        <div className="mt-3 space-y-2.5 md:mt-4 md:space-y-3">
+                                        <div className="mt-2.5 space-y-2 md:mt-4 md:space-y-3">
                                             {scoreBars.map((item) => (
                                                 <div key={item.label}>
                                                     <div className="flex items-center justify-between text-xs font-bold text-slate-500">
@@ -544,14 +543,14 @@ export const MyGearPage = () => {
                                                 </div>
                                             ))}
                                         </div>
-                                        <div className="mt-3 grid gap-2 sm:grid-cols-2 md:mt-4 md:grid-cols-3">
-                                            <button onClick={() => navigateMyPageTab('clubs')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#176534] px-3 py-3 text-xs font-black text-white">クラブ編集</button>
-                                            <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-slate-50 px-3 py-3 text-xs font-black text-trust-navy ring-1 ring-slate-200/80">診断する</button>
+                                        <div className="mt-2.5 grid gap-2 sm:grid-cols-2 md:mt-4 md:grid-cols-3">
+                                            <button onClick={() => navigateMyPageTab('clubs')} className="inline-flex min-h-[38px] items-center justify-center rounded-lg bg-[#176534] px-3 py-2 text-[11px] font-black text-white md:min-h-[44px] md:rounded-xl md:py-3 md:text-xs">クラブ編集</button>
+                                            <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[38px] items-center justify-center rounded-lg bg-slate-50 px-3 py-2 text-[11px] font-black text-trust-navy ring-1 ring-slate-200/80 md:min-h-[44px] md:rounded-xl md:py-3 md:text-xs">診断する</button>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="mt-3 rounded-lg bg-slate-50 px-3 py-2 md:mt-4 md:px-4 md:py-2.5">
+                                <div className="mt-2.5 rounded-lg bg-slate-50 px-3 py-1.5 md:mt-4 md:px-4 md:py-2.5">
                                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold text-slate-500">
                                         <span>{hasUnsavedChanges ? `未保存 ${pendingBagChangeCount}件` : 'クラウド保存済み'}</span>
                                         <span>{lastSavedClubCount > 0 ? `保存済み ${lastSavedClubCount}本` : `登録 ${profile.myBag.clubs.length}本`}</span>
@@ -561,7 +560,7 @@ export const MyGearPage = () => {
                                 </div>
                             </div>
 
-                            <section className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-200 md:p-5">
+                            <section className="rounded-lg bg-white p-2.5 shadow-sm ring-1 ring-slate-200 md:p-5">
                                 <div className="flex items-center justify-between gap-3">
                                     <div>
                                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs</div>
@@ -574,7 +573,7 @@ export const MyGearPage = () => {
                                         編集する
                                     </button>
                                 </div>
-                                <div className="mt-2.5 flex items-center justify-between gap-3 md:mt-3">
+                                <div className="mt-2 flex items-center justify-between gap-3 md:mt-3">
                                     <div className="text-xs font-black text-slate-400">{Math.min(compactMyClubs.length, 14)}/14本</div>
                                     <div className="inline-flex rounded-full bg-slate-50 p-1 text-[11px] font-black ring-1 ring-slate-200/80">
                                         <button
@@ -591,7 +590,7 @@ export const MyGearPage = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="mt-3 space-y-1.5 md:mt-4 md:space-y-2">
+                                <div className="mt-2.5 space-y-1 md:mt-4 md:space-y-2">
                                     {compactMyClubs.length > 0 ? (
                                         compactMyClubs.map((club) => {
                                             const isDistanceTarget = isDistanceInputTarget(club);
@@ -603,11 +602,11 @@ export const MyGearPage = () => {
                                                     key={club.id}
                                                     onClick={() => openClubEditFromDashboard(club.id)}
                                                     className={cn(
-                                                        'flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left transition-colors md:rounded-2xl md:px-4 md:py-3',
+                                                        'flex w-full items-center justify-between rounded-xl px-2.5 py-2 text-left transition-colors md:rounded-2xl md:px-4 md:py-3',
                                                         isSpecialCard ? 'bg-[#f8fafc] ring-1 ring-slate-200 hover:bg-slate-100' : 'bg-slate-50 hover:bg-slate-100',
                                                     )}
                                                 >
-                                                    <div className="flex min-w-0 items-center gap-3">
+                                                    <div className="flex min-w-0 items-center gap-2.5">
                                                         <div className={cn(
                                                             'min-w-[44px] rounded-lg px-2.5 py-1 text-center text-[10px] font-black uppercase tracking-[0.14em] md:min-w-[48px] md:rounded-xl md:px-3 md:py-1.5',
                                                             isSpecialCard ? 'bg-white text-slate-400 ring-1 ring-slate-200' : 'bg-white text-slate-500',
@@ -616,23 +615,19 @@ export const MyGearPage = () => {
                                                         </div>
                                                         <div className="min-w-0">
                                                             <div className="truncate text-sm font-black text-trust-navy">
-                                                                    {club.brand || '未登録'}
+                                                                {[club.brand, club.model].filter(Boolean).join(' ') || '未登録'}
                                                             </div>
-                                                            <div className="truncate text-[11px] font-bold text-slate-600">
-                                                                {club.model || 'モデル未登録'}
-                                                            </div>
-                                                            <div className="mt-1 truncate text-[11px] text-slate-500">
-                                                                {getCompactShaftLabel(club) || 'シャフト未登録'}
+                                                            <div className="mt-0.5 truncate text-[10px] font-bold text-slate-500">
+                                                                {[getCompactShaftLabel(club), getCompactClubMeta(club)].filter(Boolean).join(' / ') || '詳細未入力'}
                                                             </div>
                                                             <div className="mt-0.5 flex flex-wrap items-center gap-1.5 text-[10px] font-bold text-slate-400">
-                                                                <span>{getCompactClubMeta(club) || '詳細未入力'}</span>
                                                                 {isDistanceTarget && !displayedDistance && (
                                                                     <span className="rounded-full bg-cyan-100 px-2 py-0.5 text-[10px] font-black text-cyan-700">飛距離を追加</span>
                                                                 )}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="ml-3 text-right">
+                                                    <div className="ml-2 text-right">
                                                         <div className={cn('text-sm font-black md:text-[15px]', isSpecialCard ? 'text-slate-400' : 'text-trust-navy')}>
                                                             {getDistanceSummary(club)}
                                                         </div>
