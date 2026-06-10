@@ -1445,9 +1445,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             const isEditingThisClub = editingClubId === club.id;
                             const isDirtyThisClub = isEditingThisClub && hasDirtyEditingDraft;
                             return (
-                                <article key={club.id} className={cn('border-b border-slate-200 py-1.5 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
-                                    <div className="flex min-h-[56px] flex-col gap-1.5 px-0 py-1.5 md:min-h-[72px] md:flex-row md:items-center md:justify-between md:px-3 md:py-3">
-                                        <div className="min-w-0 flex-1">
+                                <article key={club.id} className={cn('border-b border-slate-200 py-1 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
+                                    <div className="grid min-h-[56px] grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 px-0 py-1.5 md:min-h-[72px] md:flex md:items-center md:justify-between md:px-3 md:py-3">
+                                        <div className="min-w-0">
                                             <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
                                                 <span>{club.number || club.category}</span>
                                                 {isEditingThisClub && (
@@ -1463,15 +1463,19 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             <div className="mt-0.5 grid grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:block md:truncate md:text-xs">
                                                 <span className="truncate">{club.shaft || '-'}</span>
                                                 <span className="justify-self-end md:hidden">{[club.flex, club.shaftWeight].filter(Boolean).join(' / ') || '-'}</span>
-                                                <span className="col-span-2 truncate md:hidden">
-                                                    {[club.loft, club.carryDistance ? `C${club.carryDistance}` : '', club.distance ? `T${club.distance}` : '', club.mainUse || ''].filter(Boolean).join(' / ') || '-'}
-                                                </span>
+                                            </div>
+                                            <div className="mt-0.5 truncate pr-2 text-[11px] font-bold text-slate-500 md:mt-1 md:block md:pr-0 md:text-xs">
+                                                {[club.loft, club.mainUse || ''].filter(Boolean).join(' / ') || '-'}
                                             </div>
                                             <div className="mt-1 hidden truncate text-xs font-bold text-slate-500 md:block">
                                                 {[club.loft, club.carryDistance ? `${club.carryDistance}y carry` : '', club.distance ? `${club.distance}y total` : ''].filter(Boolean).join(' / ') || '-'}
                                             </div>
                                         </div>
-                                        <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        <div className="row-span-3 flex flex-col items-end gap-1.5 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2">
+                                            <div className="text-right text-[11px] font-black leading-tight text-trust-navy md:hidden">
+                                                <div>{club.carryDistance ? `C${club.carryDistance}` : '-'}</div>
+                                                <div className="text-slate-500">{club.distance ? `T${club.distance}` : '-'}</div>
+                                            </div>
                                             <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[34px] items-center rounded-xl border border-slate-200 bg-white px-2.5 text-[11px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
                                                 {isExpanded ? '閉じる' : '編集'}
                                             </button>
