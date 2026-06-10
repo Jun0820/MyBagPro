@@ -417,12 +417,12 @@ const Field = ({
     children: React.ReactNode;
 }) => (
     <label className="block">
-        <span className="mb-0.5 block text-[9px] font-black uppercase tracking-[0.16em] text-slate-400 md:mb-1 md:text-[10px] md:tracking-[0.18em]">{label}</span>
+        <span className="mb-0.5 block text-[9px] font-black uppercase tracking-[0.14em] text-slate-400 md:mb-1 md:text-[10px] md:tracking-[0.18em]">{label}</span>
         {children}
     </label>
 );
 
-const textInputClass = 'h-9 w-full rounded-lg border border-slate-200 bg-white px-2.5 text-[13px] font-bold text-trust-navy outline-none transition focus:border-[#176534] focus:ring-2 focus:ring-[#176534]/10 md:h-10 md:rounded-lg md:px-3 md:text-sm';
+const textInputClass = 'h-8 w-full rounded-lg border border-slate-200 bg-white px-2 text-[12px] font-bold text-trust-navy outline-none transition focus:border-[#176534] focus:ring-2 focus:ring-[#176534]/10 md:h-10 md:rounded-lg md:px-3 md:text-sm';
 
 export const MyBagManager: React.FC<MyBagManagerProps> = ({
     setting,
@@ -1013,16 +1013,18 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <datalist id={shaftSuggestionId}>{shaftSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
                 <datalist id={flexSuggestionId}>{flexSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
                 <datalist id={shaftWeightSuggestionId}>{weightSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
-                <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+                <div className="grid grid-cols-2 gap-2 md:grid-cols-2 xl:grid-cols-5 xl:gap-3">
                     <Field label="ブランド">
                         <input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} placeholder="PING / Titleist" />
                     </Field>
                     <Field label="モデル名">
                         <input list={modelSuggestionId} className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} placeholder="G430 / Qi35" />
                     </Field>
+                    <div className="col-span-2 xl:col-span-1">
                     <Field label="シャフト">
                         <input list={shaftSuggestionId} className={textInputClass} value={shaftParts.model} onChange={(e) => applyPatch({ shaft: buildShaft(e.target.value, shaftParts.weight, shaftParts.flex) })} placeholder="VENTUS / MODUS" />
                     </Field>
+                    </div>
                     <Field label="フレックス">
                         <input list={flexSuggestionId} className={textInputClass} value={club.flex || shaftParts.flex} onChange={(e) => applyPatch({ flex: e.target.value, shaft: buildShaft(shaftParts.model, shaftParts.weight, e.target.value) })} placeholder="S / X / S200" />
                     </Field>
@@ -1054,11 +1056,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             return (
                 <>
                     <datalist id={ballModelSuggestionId}>{ballModelSuggestions.map((item) => <option key={item} value={item} />)}</datalist>
-                    <div className="grid gap-3 md:grid-cols-4">
+                    <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
                         <Field label="ブランド"><input list="mybag-ball-brand-suggestions" className={textInputClass} value={ballDraft?.ballBrand || ''} onChange={(e) => { applyPatch({ brand: e.target.value }); applyBallPatch?.({ ballBrand: e.target.value }); }} placeholder="Titleist" /></Field>
                         <Field label="モデル名"><input list={ballModelSuggestionId} className={textInputClass} value={ballDraft?.ballModel || ''} onChange={(e) => { applyPatch({ model: e.target.value }); applyBallPatch?.({ ballModel: e.target.value }); }} placeholder="Pro V1x" /></Field>
                         <Field label="カラー"><input className={textInputClass} value={ballDraft?.ballColor || ''} onChange={(e) => applyBallPatch?.({ ballColor: e.target.value })} placeholder="ホワイト" /></Field>
-                        <Field label="メモ"><input className={textInputClass} value={ballDraft?.ballMemo || ''} onChange={(e) => { applyPatch({ memo: e.target.value }); applyBallPatch?.({ ballMemo: e.target.value }); }} placeholder="季節で変更など" /></Field>
+                        <div className="col-span-2 md:col-span-1">
+                            <Field label="メモ"><input className={textInputClass} value={ballDraft?.ballMemo || ''} onChange={(e) => { applyPatch({ memo: e.target.value }); applyBallPatch?.({ ballMemo: e.target.value }); }} placeholder="季節で変更など" /></Field>
+                        </div>
                     </div>
                 </>
             );
@@ -1069,11 +1073,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             return (
                 <>
                     <datalist id={putterModelSuggestionId}>{buildModelSuggestions(club.brand, club.category, club.model).map((item) => <option key={item} value={item} />)}</datalist>
-                    <div className="grid gap-3 md:grid-cols-4">
+                    <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
                         <Field label="ブランド"><input list="mybag-brand-suggestions" className={textInputClass} value={club.brand} onChange={(e) => applyPatch({ brand: e.target.value })} /></Field>
                         <Field label="モデル名"><input list={putterModelSuggestionId} className={textInputClass} value={club.model} onChange={(e) => applyPatch({ model: e.target.value })} /></Field>
                         <Field label="長さ"><input className={textInputClass} value={club.length || ''} onChange={(e) => applyPatch({ length: e.target.value })} placeholder="34インチ" /></Field>
-                        <Field label="メモ"><input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} /></Field>
+                        <div className="col-span-2 md:col-span-1">
+                            <Field label="メモ"><input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} /></Field>
+                        </div>
                         {!inferredHeadShape && (
                             <Field label="ヘッド形状">
                                 <select className={textInputClass} value={club.headShape || ''} onChange={(e) => applyPatch({ headShape: e.target.value })}>
@@ -1089,7 +1095,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         }
 
         return (
-            <div className="space-y-4">
+            <div className="space-y-2.5 md:space-y-4">
                 {renderSuggestionInputs(club, applyPatch)}
                 <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
                     <Field label="ロフト角">
@@ -1101,13 +1107,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <Field label="総距離">
                         <input className={textInputClass} value={club.distance || ''} onChange={(e) => applyPatch({ distance: e.target.value })} placeholder="220" />
                     </Field>
-                    <Field label="メモ">
-                        <input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} placeholder="候補クラブなど" />
-                    </Field>
+                    <div className="col-span-2 md:col-span-1">
+                        <Field label="メモ">
+                            <input className={textInputClass} value={club.memo || ''} onChange={(e) => applyPatch({ memo: e.target.value })} placeholder="候補クラブなど" />
+                        </Field>
+                    </div>
                 </div>
 
                 {(isDriver || isIron || isWedge) && (
-                    <div className="space-y-2 rounded-xl border border-slate-200 bg-slate-50/70 p-3 md:space-y-3">
+                    <div className="space-y-1.5 rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 md:space-y-3 md:p-3">
                         <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">その他調整</div>
                         <div className="grid gap-2 md:grid-cols-3 md:gap-3">
                             {isDriver && (
@@ -1130,13 +1138,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 {(isLongClub || isWedge) && (
                     <div>
                         <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">{isWedge ? 'よく使う用途' : '主な用途'}</div>
-                        <div className="flex flex-wrap gap-1.5 md:gap-2">
+                        <div className="flex flex-wrap gap-1 md:gap-2">
                             {(isWedge ? WEDGE_USE_OPTIONS : USE_OPTIONS).map((option) => (
                                 <button
                                     key={option}
                                     type="button"
                                     onClick={() => applyPatch({ mainUse: toggleArrayValue(club.mainUse, option) })}
-                                    className={cn('rounded-full px-3 py-1.5 text-xs font-black ring-1', club.mainUse?.includes(option) ? 'bg-[#176534] text-white ring-[#176534]' : 'bg-white text-slate-500 ring-slate-200')}
+                                    className={cn('rounded-full px-2 py-1 text-[10px] font-black ring-1 md:px-3 md:py-1.5 md:text-xs', club.mainUse?.includes(option) ? 'bg-[#176534] text-white ring-[#176534]' : 'bg-white text-slate-500 ring-slate-200')}
                                 >
                                     {option}
                                 </button>
@@ -1146,24 +1154,24 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 )}
 
                 <div>
-                    <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">主なミス・悩み</div>
-                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                    <div className="mb-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">主なミス・悩み</div>
+                    <div className="flex flex-wrap gap-1 md:gap-2">
                         {MISS_OPTIONS.map((option) => (
                             <button
                                 key={option}
                                 type="button"
                                 onClick={() => applyPatch({ missTendency: toggleArrayValue(club.missTendency, option) })}
-                                className={cn('rounded-full px-3 py-1.5 text-xs font-black ring-1', club.missTendency?.includes(option) ? 'bg-amber-600 text-white ring-amber-600' : 'bg-white text-slate-500 ring-slate-200')}
+                                className={cn('rounded-full px-2 py-1 text-[10px] font-black ring-1 md:px-3 md:py-1.5 md:text-xs', club.missTendency?.includes(option) ? 'bg-amber-600 text-white ring-amber-600' : 'bg-white text-slate-500 ring-slate-200')}
                             >
                                 {option}
                             </button>
                         ))}
                     </div>
                     {club.missTendency?.includes(OTHER_MISS_OPTION) && (
-                        <div className="mt-2.5">
+                        <div className="mt-2">
                             <Field label="その他の内容">
                                 <textarea
-                                    className={cn(textInputClass, 'min-h-[92px] resize-y py-3')}
+                                    className={cn(textInputClass, 'min-h-[72px] resize-y py-2')}
                                     value={club.worry || ''}
                                     onChange={(e) => applyPatch({ worry: e.target.value })}
                                     placeholder="例: 左のミスを嫌って振れない、トップしやすい、雨の日に当たり負ける"
