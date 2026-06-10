@@ -1446,41 +1446,47 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             const isDirtyThisClub = isEditingThisClub && hasDirtyEditingDraft;
                             return (
                                 <article key={club.id} className={cn('border-b border-slate-200 py-1 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
-                                    <div className="grid min-h-[56px] grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 px-0 py-1.5 md:min-h-[72px] md:flex md:items-center md:justify-between md:px-3 md:py-3">
+                                    <div className="grid min-h-[48px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-0.5 px-0 py-1 md:min-h-[72px] md:flex md:items-center md:justify-between md:px-3 md:py-3">
                                         <div className="min-w-0">
                                             <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
-                                                <span>{club.number || club.category}</span>
+                                                <span className="shrink-0">{club.number || club.category}</span>
+                                                <span className="truncate md:hidden">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</span>
                                                 {isEditingThisClub && (
                                                     <span className={cn(
-                                                        'inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-black',
+                                                        'inline-flex shrink-0 items-center rounded-full px-1.5 py-0.5 text-[9px] font-black',
                                                         isDirtyThisClub ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-600',
                                                     )}>
                                                         {isDirtyThisClub ? '編集中' : '展開中'}
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className="mt-0.5 truncate text-sm font-bold text-slate-700">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</div>
-                                            <div className="mt-0.5 grid grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:block md:truncate md:text-xs">
+                                            <div className="mt-0.5 hidden truncate text-sm font-bold text-slate-700 md:block">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</div>
+                                            <div className="mt-0.5 hidden grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:grid md:block md:truncate md:text-xs">
                                                 <span className="truncate">{club.shaft || '-'}</span>
                                                 <span className="justify-self-end md:hidden">{[club.flex, club.shaftWeight].filter(Boolean).join(' / ') || '-'}</span>
                                             </div>
-                                            <div className="mt-0.5 truncate pr-2 text-[11px] font-bold text-slate-500 md:mt-1 md:block md:pr-0 md:text-xs">
+                                            <div className="mt-0.5 truncate pr-2 text-[11px] font-bold text-slate-500 md:hidden">
+                                                {[
+                                                    club.shaft || '-',
+                                                    [club.shaftWeight, club.flex].filter(Boolean).join(' ') || '',
+                                                    club.loft || '',
+                                                    club.carryDistance ? `C${club.carryDistance}` : '',
+                                                    club.distance ? `T${club.distance}` : '',
+                                                ].filter(Boolean).join(' / ')}
+                                            </div>
+                                            <div className="mt-0.5 hidden truncate pr-2 text-[11px] font-bold text-slate-500 md:mt-1 md:block md:pr-0 md:text-xs">
                                                 {[club.loft, club.mainUse || ''].filter(Boolean).join(' / ') || '-'}
                                             </div>
                                             <div className="mt-1 hidden truncate text-xs font-bold text-slate-500 md:block">
                                                 {[club.loft, club.carryDistance ? `${club.carryDistance}y carry` : '', club.distance ? `${club.distance}y total` : ''].filter(Boolean).join(' / ') || '-'}
                                             </div>
                                         </div>
-                                        <div className="row-span-3 flex flex-col items-end gap-1.5 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2">
-                                            <div className="text-right text-[11px] font-black leading-tight text-trust-navy md:hidden">
-                                                <div>{club.carryDistance ? `C${club.carryDistance}` : '-'}</div>
-                                                <div className="text-slate-500">{club.distance ? `T${club.distance}` : '-'}</div>
-                                            </div>
-                                            <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[34px] items-center rounded-xl border border-slate-200 bg-white px-2.5 text-[11px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
+                                        <div className="row-span-2 flex flex-wrap items-center justify-end gap-1 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2">
+                                            <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
                                                 {isExpanded ? '閉じる' : '編集'}
                                             </button>
                                             {!isBall && (
-                                                <button type="button" disabled={isClubEditorSaving} onClick={() => duplicateClubFromCard(club)} className="inline-flex min-h-[34px] items-center rounded-xl border border-slate-200 bg-white px-2.5 text-[11px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
+                                                <button type="button" disabled={isClubEditorSaving} onClick={() => duplicateClubFromCard(club)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
                                                     複製
                                                 </button>
                                             )}
