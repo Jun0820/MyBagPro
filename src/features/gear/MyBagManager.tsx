@@ -445,12 +445,16 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 }) => {
     const latestSettingRef = useRef(setting);
     const [step, setStep] = useState<Step>(1);
+    const [showFlowEditor, setShowFlowEditor] = useState(
+        () => intakeMode !== 'default' || Boolean(requestedEditClubId) || setting.clubs.length === 0,
+    );
     const [expandedClubId, setExpandedClubId] = useState<string | null>(null);
     const [batchTarget, setBatchTarget] = useState(BATCH_GROUPS[0]);
     const [batchEditIds, setBatchEditIds] = useState<string[]>([]);
     const [copySourceId, setCopySourceId] = useState('');
     const [copyTargetSlotId, setCopyTargetSlotId] = useState('');
     const [copyFields, setCopyFields] = useState(['brand', 'model', 'shaft', 'flex', 'shaftWeight', 'memo']);
+    const [clubListDistanceView, setClubListDistanceView] = useState<'total' | 'carry'>('total');
     const [commonEdit, setCommonEdit] = useState<CommonEditState>({
         brand: '',
         model: '',
@@ -555,8 +559,23 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return true;
     };
 
+    const enterFlowEditor = (nextStep: Step = 4) => {
+        if (isClubEditorSaving) return;
+        setShowFlowEditor(true);
+        setStep(nextStep);
+    };
+
+    const closeFlowEditor = () => {
+        if (isClubEditorSaving) return;
+        if (!discardEditingDraft('編集中の内容を破棄して一覧に戻りますか？')) return;
+        setStep(4);
+        setShowFlowEditor(false);
+    };
+
     const openClubEditor = (clubId: string) => {
         if (isClubEditorSaving) return;
+        setShowFlowEditor(true);
+        setStep(4);
 
         if (editingClubId === clubId) {
             discardEditingDraft('編集中の内容を破棄して閉じますか？');
@@ -642,10 +661,17 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             return;
         }
 
+        setShowFlowEditor(true);
         setStep(4);
         openClubEditor(requestedEditClubId);
         onConsumeRequestedEditClubId?.();
     }, [requestedEditClubId, setting.clubs, onConsumeRequestedEditClubId]);
+
+    useEffect(() => {
+        if (intakeMode !== 'default' || setting.clubs.length === 0) {
+            setShowFlowEditor(true);
+        }
+    }, [intakeMode, setting.clubs.length]);
 
     useEffect(() => {
         const shouldWarn = hasDirtyEditingDraft || hasUnsavedChanges || isClubEditorSaving || isManualSaveInFlight;
@@ -1193,6 +1219,131 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const commonFlexSuggestions = buildFlexSuggestions(commonEdit.shaft, commonEdit.flex);
     const commonWeightSuggestions = buildWeightSuggestions(batchTarget === 'ウェッジ' ? TargetCategory.WEDGE : batchTarget === 'アイアン' ? TargetCategory.IRON : batchTarget === 'フェアウェイウッド' ? TargetCategory.FAIRWAY : TargetCategory.UTILITY, commonEdit.shaftWeight);
 
+    if (!showFlowEditor && clubs.length > 0) {
+        return (
+            <div className="animate-fadeIn space-y-2.5 pb-24 md:space-y-4 md:pb-0">
+                {clubEditorNotice && (
+                    <div
+                        className={cn(
+                            'rounded-lg px-3 py-2.5 text-sm font-bold ring-1 md:px-4 md:py-3',
+                            clubEditorNotice.tone === 'success' && 'bg-emerald-50 text-emerald-800 ring-emerald-200',
+                            clubEditorNotice.tone === 'warning' && 'bg-amber-50 text-amber-800 ring-amber-200',
+                            clubEditorNotice.tone === 'error' && 'bg-rose-50 text-rose-800 ring-rose-200',
+                        )}
+                    >
+                        <div>{clubEditorNotice.message}</div>
+                        {clubEditorNotice.detail && <div className="mt-1 text-xs font-semibold">{clubEditorNotice.detail}</div>}
+                    </div>
+                )}
+
+                <section className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
+                    <div className="mb-2 flex items-center justify-between gap-2 md:mb-4">
+                        <div className="min-w-0">
+                            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-[#176534]">MY CLUBS</div>
+                            <h2 className="mt-0.5 text-lg font-black tracking-tight text-trust-navy md:mt-1 md:text-2xl">マイクラブ</h2>
+                            <div className="mt-1 flex items-center gap-3 text-[11px] font-bold text-slate-500 md:text-sm">
+                                <span>{selectedClubCount}本登録</span>
+                                <span>クラブ {nonBallClubs.length}本</span>
+                                <span className="truncate">{purpose}</span>
+                            </div>
+                        </div>
+                        <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
+                            <div className="inline-flex rounded-lg bg-slate-50 p-0.5 text-[10px] font-black ring-1 ring-slate-200 md:text-xs">
+                                <button
+                                    type="button"
+                                    onClick={() => setClubListDistanceView('total')}
+                                    className={cn('rounded-md px-2 py-1 transition', clubListDistanceView === 'total' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
+                                >
+                                    総距離
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setClubListDistanceView('carry')}
+                                    className={cn('rounded-md px-2 py-1 transition', clubListDistanceView === 'carry' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
+                                >
+                                    キャリー
+                                </button>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => enterFlowEditor(2)}
+                                className="inline-flex min-h-[34px] items-center rounded-lg bg-[#176534] px-3 text-[11px] font-black text-white md:min-h-[40px] md:px-4 md:text-xs"
+                            >
+                                追加
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => enterFlowEditor(4)}
+                                className="inline-flex min-h-[34px] items-center rounded-lg border border-slate-200 bg-white px-3 text-[11px] font-black text-trust-navy md:min-h-[40px] md:px-4 md:text-xs"
+                            >
+                                編集
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="space-y-0 md:space-y-2">
+                        {clubs.map((club) => {
+                            const isBall = club.category === TargetCategory.BALL;
+                            const title = [club.brand, club.model].filter(Boolean).join(' ') || '未入力';
+                            const distanceText = isBall || club.category === TargetCategory.PUTTER
+                                ? '-'
+                                : clubListDistanceView === 'carry'
+                                    ? String(club.carryDistance || '').trim() || '-'
+                                    : String(club.distance || '').trim() || '-';
+                            const meta = [
+                                club.shaft || '',
+                                [club.shaftWeight, club.flex].filter(Boolean).join(' '),
+                                club.loft || '',
+                            ].filter(Boolean).join(' / ');
+
+                            return (
+                                <article key={club.id} className={cn('grid min-h-[48px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-slate-200 py-1.5 last:border-b-0 md:min-h-[64px] md:rounded-lg md:border md:bg-white md:px-3 md:py-2 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
+                                    <div className="min-w-0">
+                                        <div className="flex items-center gap-2 text-sm font-black text-trust-navy md:text-base">
+                                            <span className="shrink-0">{club.number || club.category}</span>
+                                            <span className="truncate">{title}</span>
+                                        </div>
+                                        <div className="mt-0.5 truncate text-[11px] font-bold text-slate-500 md:text-xs">{meta || '-'}</div>
+                                    </div>
+                                    <div className="flex items-center gap-1.5">
+                                        <div className="min-w-[34px] text-right text-[11px] font-black text-slate-600 md:min-w-[46px] md:text-xs">{distanceText}</div>
+                                        <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:px-3 md:text-xs">
+                                            編集
+                                        </button>
+                                        {!isBall && (
+                                            <button type="button" disabled={isClubEditorSaving} onClick={() => duplicateClubFromCard(club)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:px-3 md:text-xs">
+                                                複製
+                                            </button>
+                                        )}
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </section>
+
+                <div className="sticky bottom-[68px] z-20 -mx-4 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur md:static md:mx-0 md:rounded-lg md:border md:bg-white md:p-4 md:shadow-sm md:ring-1 md:ring-slate-200 md:backdrop-blur-0">
+                    <div className="flex flex-col gap-2.5 md:flex-row md:items-center md:justify-between">
+                        <div className={cn('inline-flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-black ring-1', saveStatusMeta.tone)}>
+                            {saveStatusMeta.icon}
+                            {saveStatusMeta.label}
+                        </div>
+                        <div className="flex flex-col gap-2 sm:flex-row">
+                            {(hasUnsavedChanges || saveStatus === 'error') && (
+                                <button type="button" disabled={isClubEditorSaving} onClick={handleReloadFromCloud} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-xs font-black text-slate-600 disabled:cursor-not-allowed disabled:opacity-60">
+                                    <Loader2 size={14} /> クラウドから再読み込み
+                                </button>
+                            )}
+                            <button type="button" disabled={isClubEditorSaving} onClick={handleSaveCurrentSetting} className="inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg bg-trust-navy px-4 text-xs font-black text-white disabled:cursor-not-allowed disabled:opacity-60">
+                                <Save size={14} /> 変更を保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="animate-fadeIn space-y-2.5 pb-24 md:space-y-4 md:pb-0">
             <datalist id="mybag-brand-suggestions">{BRAND_SUGGESTIONS.map((item) => <option key={item} value={item} />)}</datalist>
@@ -1220,6 +1371,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-slate-600 md:mt-2">
                             まず番手を選び、同じシリーズをまとめて入力し、最後に番手別の距離や悩みを調整します。未入力があっても保存できます。
                         </p>
+                        {clubs.length > 0 && (
+                            <button
+                                type="button"
+                                onClick={closeFlowEditor}
+                                className="mt-3 inline-flex min-h-[36px] items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-black text-trust-navy"
+                            >
+                                一覧へ戻る
+                            </button>
+                        )}
                     </div>
                     <div className="md:hidden">
                         <div className="flex items-center justify-between gap-2">
@@ -1227,13 +1387,24 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#176534]">MY CLUB</div>
                                 <h2 className="mt-0.5 text-lg font-black tracking-tight text-trust-navy">マイクラブ</h2>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => navigateToStep(2)}
-                                className="inline-flex min-h-[36px] shrink-0 items-center rounded-lg bg-[#176534] px-3 text-[11px] font-black text-white"
-                            >
-                                追加
-                            </button>
+                            <div className="flex shrink-0 items-center gap-1.5">
+                                {clubs.length > 0 && (
+                                    <button
+                                        type="button"
+                                        onClick={closeFlowEditor}
+                                        className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-200 bg-white px-3 text-[11px] font-black text-trust-navy"
+                                    >
+                                        一覧
+                                    </button>
+                                )}
+                                <button
+                                    type="button"
+                                    onClick={() => navigateToStep(2)}
+                                    className="inline-flex min-h-[36px] items-center rounded-lg bg-[#176534] px-3 text-[11px] font-black text-white"
+                                >
+                                    追加
+                                </button>
+                            </div>
                         </div>
                         <div className="mt-2 flex items-center gap-3 text-[11px] font-bold text-slate-500">
                             <span>登録済み {selectedClubCount}本</span>

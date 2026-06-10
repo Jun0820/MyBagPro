@@ -9,21 +9,15 @@ import {
     Eye,
     Loader2,
     CheckCircle2,
-    ArrowRight,
     LogIn,
     History,
     Trophy,
-    ShoppingCart,
     LogOut,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { supabase } from '../lib/supabase';
-import { TargetCategory, type DiagnosisHistoryItem } from '../types/golf';
-import { getRecentlyViewed, type RecentlyViewedItem } from '../lib/recentlyViewed';
-import { getFavoriteClubs, type FavoriteClubItem } from '../lib/favoriteClubs';
-import { AFFILIATE_SHOPS, getAffiliateUrl } from '../utils/affiliate';
-import { trackEvent } from '../lib/analytics';
+import { TargetCategory } from '../types/golf';
 
 export const MyGearPage = () => {
     const {
@@ -46,15 +40,10 @@ export const MyGearPage = () => {
         manualSaveMyBagClub,
         syncWithSupabase,
         setShowAuth,
-        restoreDiagnosisResult,
     } = useDiagnosis();
     const navigate = useNavigate();
     const location = useLocation();
     const [searchParams] = useSearchParams();
-    const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedItem[]>([]);
-    const [favoriteClubs, setFavoriteClubs] = useState<FavoriteClubItem[]>([]);
-    const [clubDistanceView, setClubDistanceView] = useState<'total' | 'carry'>('total');
-    const primaryShop = AFFILIATE_SHOPS[0];
     const activeTab = useMemo<'view' | 'clubs' | 'profile'>(() => {
         if (location.pathname === '/mypage/clubs' || location.pathname.startsWith('/mybag/create')) return 'clubs';
         if (location.pathname === '/mypage/profile') return 'profile';
@@ -82,13 +71,6 @@ export const MyGearPage = () => {
         profile.myBag.clubs.length >= 8 ? 1 : 0,
     ].reduce((sum, current) => sum + current, 0);
     const completionPercent = Math.round((completionPoints / 5) * 100);
-    const recentHistory = (user.history || []).slice(0, 3);
-
-    useEffect(() => {
-        setRecentlyViewed(getRecentlyViewed());
-        setFavoriteClubs(getFavoriteClubs());
-    }, []);
-
     useEffect(() => {
         const handleBeforeUnload = () => {
             void manualSave();
@@ -170,7 +152,7 @@ export const MyGearPage = () => {
             tone: 'bg-[#e2772f]',
         },
         {
-            label: '基本プロフィール',
+            label: 'プロフィール情報',
             value: profile.headSpeed > 0 && profile.averageScore ? 100 : profile.headSpeed > 0 || profile.averageScore ? 60 : 18,
             helper: profile.headSpeed > 0 || profile.averageScore ? '入力あり' : '未入力',
             tone: 'bg-[#7e49b6]',
@@ -208,39 +190,6 @@ export const MyGearPage = () => {
         navigate(buildMyPageUrl(tab, params), { replace: options?.replace ?? false });
     };
 
-    const getDisplayedClubDistance = (club: typeof profile.myBag.clubs[number]) => {
-        if (club.category === TargetCategory.PUTTER || club.category === TargetCategory.BALL) return '';
-        const total = String(club.distance || '').trim();
-        const carry = String(club.carryDistance || '').trim();
-        return clubDistanceView === 'carry' ? (carry || total) : (total || carry);
-    };
-
-    const isDistanceInputTarget = (club: typeof profile.myBag.clubs[number]) =>
-        club.category !== TargetCategory.PUTTER && club.category !== TargetCategory.BALL;
-
-    const getCompactClubMeta = (club: typeof profile.myBag.clubs[number]) => {
-        const parts = [
-            club.loft || '',
-            club.shaftWeight || '',
-            club.flex || '',
-        ].filter(Boolean);
-        return parts.join(' / ');
-    };
-
-    const getCompactShaftLabel = (club: typeof profile.myBag.clubs[number]) => {
-        const shaft = String(club.shaft || '').trim();
-        if (!shaft) return '';
-        return shaft.length > 30 ? `${shaft.slice(0, 30)}…` : shaft;
-    };
-
-    const getDistanceSummary = (club: typeof profile.myBag.clubs[number]) => {
-        if (!isDistanceInputTarget(club)) return '-';
-        const total = String(club.distance || '').trim();
-        const carry = String(club.carryDistance || '').trim();
-        if (clubDistanceView === 'carry') return carry ? `C${carry}` : '-';
-        return total ? `総${total}` : '-';
-    };
-
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
         navigateMyPageTab('clubs', (params) => {
             params.delete('welcome');
@@ -253,38 +202,11 @@ export const MyGearPage = () => {
         }, { replace: true });
     };
 
-    const openClubEditFromDashboard = (clubId: string) => {
-        navigateMyPageTab('clubs', (params) => {
-            params.delete('welcome');
-            params.set('editClub', clubId);
-        }, { replace: true });
-    };
-
     const consumeRequestedEditClub = () => {
         const nextParams = new URLSearchParams(searchParams);
         if (!nextParams.has('editClub')) return;
         nextParams.delete('editClub');
         navigate(buildMyPageUrl('clubs', nextParams), { replace: true });
-    };
-
-    const openSavedDiagnosis = (item: DiagnosisHistoryItem) => {
-        restoreDiagnosisResult(item);
-        navigate('/result');
-    };
-
-    const openRecentlyViewed = (item: RecentlyViewedItem) => {
-        navigate(item.href);
-    };
-
-    const openFavoriteBuy = (item: FavoriteClubItem) => {
-        trackEvent('click_affiliate_shop', {
-            source_page: 'my_page_favorites',
-            shop_id: primaryShop.id,
-            shop_name: primaryShop.name,
-            brand: item.brand,
-            model_name: item.modelName,
-        });
-        window.open(getAffiliateUrl(item.brand, item.modelName, primaryShop.id), '_blank', 'noopener,noreferrer');
     };
 
     return (
@@ -459,279 +381,59 @@ export const MyGearPage = () => {
                 )}
 
                 {activeTab === 'view' && (
-                    <div className="space-y-2.5 pb-5 md:space-y-5 md:pb-8">
-                        <section className="grid gap-3 md:gap-5 xl:grid-cols-[1.15fr_0.85fr]">
-                            <div className="rounded-lg bg-white p-2.5 shadow-sm ring-1 ring-slate-200 md:p-5">
-                                <div className="flex flex-col gap-2.5 sm:flex-row sm:items-start sm:justify-between">
-                                    <div className="flex items-center gap-2.5">
-                                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#eaede7] text-xl font-black text-[#176534] md:h-16 md:w-16 md:text-2xl">
-                                            {profileInitial}
-                                        </div>
-                                        <div>
-                                            <div className="text-lg font-black tracking-tight text-[#151719] md:text-xl">{profile.name || 'My Golfer'}</div>
-                                            <div className="mt-1 inline-flex rounded-full bg-[#eef4ef] px-2.5 py-1 text-[9px] font-black text-[#176534] md:mt-2 md:px-3 md:text-[10px]">
-                                                {profileBadge}
-                                            </div>
-                                        </div>
+                    <div className="space-y-2.5 pb-5 md:space-y-4 md:pb-8">
+                        <section className="rounded-lg bg-white p-2.5 shadow-sm ring-1 ring-slate-200 md:p-5">
+                            <div className="flex items-center justify-between gap-3">
+                                <div className="flex items-center gap-2.5">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#eaede7] text-xl font-black text-[#176534] md:h-16 md:w-16 md:text-2xl">
+                                        {profileInitial}
                                     </div>
-                                    <div className="flex flex-wrap gap-1.5">
-                                        <button
-                                            onClick={() => navigateMyPageTab('profile')}
-                                            className="inline-flex min-h-[34px] items-center gap-1.5 rounded-lg bg-slate-50 px-2.5 py-1.5 text-[10px] font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:gap-2 md:px-3 md:py-2 md:text-xs"
-                                        >
-                                            <Edit3 size={14} />
-                                            編集
-                                        </button>
-                                        {user.isLoggedIn && (
-                                            <button
-                                                onClick={() => void handleLogout()}
-                                                className="inline-flex min-h-[34px] items-center gap-1.5 rounded-lg bg-slate-50 px-2.5 py-1.5 text-[10px] font-black text-slate-600 ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:gap-2 md:px-3 md:py-2 md:text-xs"
-                                            >
-                                                <LogOut size={14} />
-                                                ログアウト
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className="mt-2.5 grid gap-2.5 md:mt-5 md:gap-4 md:grid-cols-[220px_1fr]">
-                                    <div className="rounded-lg bg-[#f7faf7] p-2.5 md:p-4">
-                                        <div className="text-sm font-black text-[#151719]">診断準備度</div>
-                                        <div className="mt-2.5 flex items-center gap-2.5 md:mt-4 md:gap-4 md:flex-col md:items-start">
-                                            <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-[6px] border-[#176534]/15 md:h-24 md:w-24 md:border-[7px]">
-                                                <div
-                                                    className="absolute inset-0 rounded-full border-[6px] border-transparent border-t-[#176534] border-r-[#176534] rotate-45 md:border-[7px]"
-                                                    style={{ clipPath: `inset(0 ${100 - dashboardScore}% 0 0)` }}
-                                                />
-                                                <div className="text-center">
-                                                    <div className="text-2xl font-black text-[#151719] md:text-3xl">{dashboardScore}</div>
-                                                    <div className="text-[10px] font-black text-slate-400">/100</div>
-                                                </div>
-                                            </div>
-                                            <div className="grid flex-1 grid-cols-2 gap-1.5 text-sm font-bold text-slate-600 md:w-full md:gap-2">
-                                                <div className="rounded-lg bg-white/80 p-2 md:p-3">
-                                                    <div className="text-[10px] uppercase text-slate-400">登録クラブ</div>
-                                                    <div className="mt-0.5 text-base font-black text-[#151719] md:mt-1 md:text-lg">{compactMyClubs.length}<span className="ml-1 text-xs text-slate-400">/14</span></div>
-                                                </div>
-                                                <div className="rounded-lg bg-white/80 p-2 md:p-3">
-                                                    <div className="text-[10px] uppercase text-slate-400">飛距離入力</div>
-                                                    <div className="mt-0.5 text-base font-black text-[#151719] md:mt-1 md:text-lg">{distanceCoveragePercent}<span className="ml-1 text-xs text-slate-400">%</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p className="mt-2 hidden text-xs leading-relaxed text-slate-500 md:block">
-                                            ゴルフの実力ではなく、<span className="font-black text-trust-navy">診断に使える情報がどれだけそろっているか</span> を見ています。
-                                        </p>
-                                        <p className="mt-1.5 text-[10px] leading-relaxed text-slate-400 md:mt-2 md:text-[11px]">
-                                            飛距離入力率は、ドライバー・FW・UT・アイアン・ウェッジを対象に計算しています。
-                                        </p>
-                                    </div>
-
-                                    <div className="rounded-lg bg-[#fbfcfb] p-2.5 md:p-4">
-                                        <div className="text-sm font-black text-[#151719]">いま診断に使えるデータ</div>
-                                        <div className="mt-2.5 space-y-2 md:mt-4 md:space-y-3">
-                                            {scoreBars.map((item) => (
-                                                <div key={item.label}>
-                                                    <div className="flex items-center justify-between text-xs font-bold text-slate-500">
-                                                        <span>{item.label}</span>
-                                                        <span>{item.helper}</span>
-                                                    </div>
-                                                    <div className="mt-1 h-2 rounded-full bg-slate-100">
-                                                        <div className={`h-full rounded-full ${item.tone}`} style={{ width: `${item.value}%` }} />
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className="mt-2.5 grid gap-2 sm:grid-cols-2 md:mt-4 md:grid-cols-3">
-                                            <button onClick={() => navigateMyPageTab('clubs')} className="inline-flex min-h-[38px] items-center justify-center rounded-lg bg-[#176534] px-3 py-2 text-[11px] font-black text-white md:min-h-[44px] md:rounded-xl md:py-3 md:text-xs">クラブ編集</button>
-                                            <button onClick={() => navigate('/diagnosis')} className="inline-flex min-h-[38px] items-center justify-center rounded-lg bg-slate-50 px-3 py-2 text-[11px] font-black text-trust-navy ring-1 ring-slate-200/80 md:min-h-[44px] md:rounded-xl md:py-3 md:text-xs">診断する</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="mt-2.5 rounded-lg bg-slate-50 px-3 py-1.5 md:mt-4 md:px-4 md:py-2.5">
-                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold text-slate-500">
-                                        <span>{hasUnsavedChanges ? `未保存 ${pendingBagChangeCount}件` : 'クラウド保存済み'}</span>
-                                        <span>{lastSavedClubCount > 0 ? `保存済み ${lastSavedClubCount}本` : `登録 ${profile.myBag.clubs.length}本`}</span>
-                                        {lastCloudSavedAt && <span>前回保存 {new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}</span>}
-                                    </div>
-                                    {saveStatus === 'error' && saveErrorDetail && <div className="mt-2 text-xs font-bold text-rose-600">{saveErrorDetail}</div>}
-                                </div>
-                            </div>
-
-                            <section className="rounded-lg bg-white p-2.5 shadow-sm ring-1 ring-slate-200 md:p-5">
-                                <div className="flex items-center justify-between gap-3">
                                     <div>
-                                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-golf-700">My Clubs</div>
-                                        <div className="mt-0.5 text-lg font-black tracking-tight text-trust-navy md:mt-1 md:text-xl">マイクラブ</div>
-                                    </div>
-                                    <button
-                                        onClick={() => navigateMyPageTab('clubs')}
-                                        className="inline-flex min-h-[36px] items-center justify-center rounded-lg bg-slate-50 px-3 py-2 text-[11px] font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:rounded-xl md:text-xs"
-                                    >
-                                        編集する
-                                    </button>
-                                </div>
-                                <div className="mt-2 flex items-center justify-between gap-3 md:mt-3">
-                                    <div className="text-xs font-black text-slate-400">{Math.min(compactMyClubs.length, 14)}/14本</div>
-                                    <div className="inline-flex rounded-full bg-slate-50 p-1 text-[11px] font-black ring-1 ring-slate-200/80">
-                                        <button
-                                            onClick={() => setClubDistanceView('total')}
-                                            className={cn('rounded-full px-3 py-1 transition', clubDistanceView === 'total' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
-                                        >
-                                            総距離
-                                        </button>
-                                        <button
-                                            onClick={() => setClubDistanceView('carry')}
-                                            className={cn('rounded-full px-3 py-1 transition', clubDistanceView === 'carry' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
-                                        >
-                                            キャリー
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="mt-2.5 space-y-1 md:mt-4 md:space-y-2">
-                                    {compactMyClubs.length > 0 ? (
-                                        compactMyClubs.map((club) => {
-                                            const isDistanceTarget = isDistanceInputTarget(club);
-                                            const displayedDistance = getDisplayedClubDistance(club);
-                                            const isSpecialCard = !isDistanceTarget;
-
-                                            return (
-                                                <button
-                                                    key={club.id}
-                                                    onClick={() => openClubEditFromDashboard(club.id)}
-                                                    className={cn(
-                                                        'flex w-full items-center justify-between rounded-xl px-2.5 py-2 text-left transition-colors md:rounded-2xl md:px-4 md:py-3',
-                                                        isSpecialCard ? 'bg-[#f8fafc] ring-1 ring-slate-200 hover:bg-slate-100' : 'bg-slate-50 hover:bg-slate-100',
-                                                    )}
-                                                >
-                                                    <div className="flex min-w-0 items-center gap-2.5">
-                                                        <div className={cn(
-                                                            'min-w-[44px] rounded-lg px-2.5 py-1 text-center text-[10px] font-black uppercase tracking-[0.14em] md:min-w-[48px] md:rounded-xl md:px-3 md:py-1.5',
-                                                            isSpecialCard ? 'bg-white text-slate-400 ring-1 ring-slate-200' : 'bg-white text-slate-500',
-                                                        )}>
-                                                            {club.number || club.category}
-                                                        </div>
-                                                        <div className="min-w-0">
-                                                            <div className="truncate text-sm font-black text-trust-navy">
-                                                                {[club.brand, club.model].filter(Boolean).join(' ') || '未登録'}
-                                                            </div>
-                                                            <div className="mt-0.5 truncate text-[10px] font-bold text-slate-500">
-                                                                {[getCompactShaftLabel(club), getCompactClubMeta(club)].filter(Boolean).join(' / ') || '詳細未入力'}
-                                                            </div>
-                                                            <div className="mt-0.5 flex flex-wrap items-center gap-1.5 text-[10px] font-bold text-slate-400">
-                                                                {isDistanceTarget && !displayedDistance && (
-                                                                    <span className="rounded-full bg-cyan-100 px-2 py-0.5 text-[10px] font-black text-cyan-700">飛距離を追加</span>
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="ml-2 text-right">
-                                                        <div className={cn('text-sm font-black md:text-[15px]', isSpecialCard ? 'text-slate-400' : 'text-trust-navy')}>
-                                                            {getDistanceSummary(club)}
-                                                        </div>
-                                                        {isDistanceTarget && displayedDistance && (
-                                                            <div className="mt-0.5 hidden text-[10px] font-bold text-slate-400 md:block">
-                                                                {clubDistanceView === 'carry' ? '表示: キャリー優先' : '表示: 総距離優先'}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </button>
-                                            );
-                                        })
-                                    ) : (
-                                        <button onClick={() => navigateMyPageTab('clubs')} className="w-full rounded-2xl bg-[#f8fbf8] px-4 py-6 text-left ring-1 ring-[#c8d8cc]">
-                                            <div className="text-sm font-black text-trust-navy">クラブを登録してはじめましょう</div>
-                                            <div className="mt-1 text-xs text-slate-500">ドライバーや7Iから1本ずつで十分です。</div>
-                                        </button>
-                                    )}
-                                </div>
-                            </section>
-                        </section>
-
-                        <section className="grid gap-3 md:gap-5 xl:grid-cols-[1.05fr_0.95fr]">
-                            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-200 md:rounded-[28px] md:p-5">
-                                <div className="flex items-center justify-between">
-                                    <div className="text-lg font-black tracking-tight text-trust-navy md:text-xl">最近の診断結果</div>
-                                    <div className="text-xs font-black text-slate-400">{recentHistory.length}件</div>
-                                </div>
-                                <div className="mt-3 space-y-2 md:mt-4 md:space-y-2.5">
-                                    {recentHistory.length > 0 ? recentHistory.slice(0, 4).map((item) => (
-                                        <button
-                                            key={item.id}
-                                            onClick={() => openSavedDiagnosis(item)}
-                                            className="flex w-full items-center justify-between rounded-xl bg-slate-50 px-3 py-2.5 text-left transition-colors hover:bg-slate-100 md:rounded-2xl md:px-4"
-                                        >
-                                            <div className="min-w-0">
-                                                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
-                                                    {item.category === TargetCategory.TOTAL_SETTING ? '総合診断' : `${item.category} 診断`}
-                                                </div>
-                                                <div className="mt-1 truncate text-sm font-black text-trust-navy">
-                                                    {item.result?.rankings?.[0]?.modelName || item.result?.recommendedBall?.name || '診断結果'}
-                                                </div>
-                                            </div>
-                                            <div className="ml-3 text-right">
-                                                <div className="text-sm font-black text-trust-navy">{Math.round(item.result?.rankings?.[0]?.matchPercentage || 72)}</div>
-                                                <div className="text-[10px] font-bold text-slate-400">/100</div>
-                                            </div>
-                                        </button>
-                                    )) : (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
-                                            まだ診断結果はありません。まずは1回診断するとここに残せます。
+                                        <div className="text-lg font-black tracking-tight text-[#151719] md:text-xl">{profile.name || 'My Golfer'}</div>
+                                        <div className="mt-1 inline-flex rounded-full bg-[#eef4ef] px-2.5 py-1 text-[9px] font-black text-[#176534] md:mt-2 md:px-3 md:text-[10px]">
+                                            {profileBadge}
                                         </div>
-                                    )}
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => navigateMyPageTab('profile')}
+                                    className="inline-flex min-h-[34px] items-center gap-1.5 rounded-lg bg-slate-50 px-2.5 py-1.5 text-[10px] font-black text-[#176534] ring-1 ring-slate-200/80 transition hover:bg-slate-100 md:min-h-[42px] md:gap-2 md:px-3 md:py-2 md:text-xs"
+                                >
+                                    <Edit3 size={14} />
+                                    編集
+                                </button>
+                            </div>
+
+                            <div className="mt-2.5 rounded-lg bg-[#f7faf7] p-2.5 md:mt-4 md:p-4">
+                                <div className="flex items-center justify-between">
+                                    <div className="text-sm font-black text-[#151719]">進行状況</div>
+                                    <div className="text-xs font-black text-slate-400">{dashboardScore}/100</div>
+                                </div>
+                                <div className="mt-2.5 grid grid-cols-2 gap-2 md:mt-4 md:gap-3">
+                                    {scoreBars.map((item) => (
+                                        <div key={item.label} className="rounded-lg bg-white/80 p-2 md:p-3">
+                                            <div className="text-[10px] uppercase text-slate-400">{item.label}</div>
+                                            <div className="mt-0.5 text-base font-black text-[#151719] md:mt-1 md:text-lg">{item.helper}</div>
+                                            <div className="mt-1 h-1.5 rounded-full bg-slate-100">
+                                                <div className={`h-full rounded-full ${item.tone}`} style={{ width: `${item.value}%` }} />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="mt-2.5 grid grid-cols-2 gap-2 md:mt-4 md:grid-cols-3">
+                                    <button onClick={() => navigateMyPageTab('clubs')} className="inline-flex min-h-[38px] items-center justify-center rounded-lg bg-[#176534] px-3 py-2 text-[11px] font-black text-white md:min-h-[44px] md:rounded-xl md:py-3 md:text-xs">マイクラブ</button>
+                                    <button onClick={() => navigateMyPageTab('profile')} className="inline-flex min-h-[38px] items-center justify-center rounded-lg bg-slate-50 px-3 py-2 text-[11px] font-black text-trust-navy ring-1 ring-slate-200/80 md:min-h-[44px] md:rounded-xl md:py-3 md:text-xs">プロフィール</button>
+                                    <button onClick={() => navigate('/diagnosis')} className="col-span-2 inline-flex min-h-[38px] items-center justify-center rounded-lg bg-slate-50 px-3 py-2 text-[11px] font-black text-trust-navy ring-1 ring-slate-200/80 md:col-span-1 md:min-h-[44px] md:rounded-xl md:py-3 md:text-xs">診断する</button>
                                 </div>
                             </div>
 
-                            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-200 md:rounded-[28px] md:p-5">
-                                <div className="text-lg font-black tracking-tight text-trust-navy md:text-xl">見返したいもの</div>
-                                <div className="mt-3 space-y-3 md:mt-4 md:space-y-4">
-                                    {favoriteClubs.length > 0 && (
-                                        <div>
-                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">お気に入り登録</div>
-                                            <div className="space-y-2">
-                                                {favoriteClubs.slice(0, 3).map((item) => (
-                                                    <button
-                                                        key={item.id}
-                                                        onClick={() => openFavoriteBuy(item)}
-                                                        className="flex w-full items-center justify-between rounded-xl bg-slate-50 px-3 py-2.5 text-left transition-colors hover:bg-slate-100 md:rounded-2xl md:px-4"
-                                                    >
-                                                        <div className="min-w-0">
-                                                            <div className="truncate text-sm font-black text-trust-navy">{item.brand} {item.modelName}</div>
-                                                            <div className="mt-1 text-[11px] text-slate-500">{item.category}</div>
-                                                        </div>
-                                                        <ShoppingCart size={14} className="text-slate-400" />
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                    {recentlyViewed.length > 0 && (
-                                        <div>
-                                            <div className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">最近見たページ</div>
-                                            <div className="space-y-2">
-                                                {recentlyViewed.slice(0, 3).map((item) => (
-                                                    <button
-                                                        key={item.id}
-                                                        onClick={() => openRecentlyViewed(item)}
-                                                        className="flex w-full items-center justify-between rounded-xl bg-slate-50 px-3 py-2.5 text-left ring-1 ring-slate-200/70 transition-colors hover:bg-slate-100 md:rounded-2xl md:px-4"
-                                                    >
-                                                        <div className="min-w-0">
-                                                            <div className="truncate text-sm font-black text-trust-navy">{item.title}</div>
-                                                            {item.subtitle && <div className="mt-1 text-[11px] text-slate-500">{item.subtitle}</div>}
-                                                        </div>
-                                                        <ArrowRight size={14} className="text-slate-400" />
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                    {favoriteClubs.length === 0 && recentlyViewed.length === 0 && recentHistory.length === 0 && (
-                                        <div className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500 ring-1 ring-slate-200/70">
-                                            診断結果を残したり、お気に入り登録するとここからすぐ見直せます。
-                                        </div>
-                                    )}
+                            <div className="mt-2.5 rounded-lg bg-slate-50 px-3 py-1.5 md:mt-4 md:px-4 md:py-2.5">
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold text-slate-500">
+                                    <span>{hasUnsavedChanges ? `未保存 ${pendingBagChangeCount}件` : 'クラウド保存済み'}</span>
+                                    <span>{lastSavedClubCount > 0 ? `保存済み ${lastSavedClubCount}本` : `登録 ${profile.myBag.clubs.length}本`}</span>
+                                    {lastCloudSavedAt && <span>前回保存 {new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}</span>}
                                 </div>
+                                {saveStatus === 'error' && saveErrorDetail && <div className="mt-2 text-xs font-bold text-rose-600">{saveErrorDetail}</div>}
                             </div>
                         </section>
                     </div>
