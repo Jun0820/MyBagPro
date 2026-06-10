@@ -2,360 +2,255 @@ import {
   ArrowRight,
   BarChart3,
   CheckCircle2,
-  CircleGauge,
-  ShieldCheck,
+  ClipboardList,
+  Search,
   Sparkles,
   Trophy,
-  UserRoundSearch,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { useDiagnosis } from '../context/DiagnosisContext';
 
-const heroImage =
-  '/articles/golf-clubs-grass-pexels-20808740.jpg';
+const heroImage = '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
-const contentCards = [
+const primaryMoves = [
   {
-    tag: 'NEW',
-    title: '最新プロセッティング',
-    subtitle: '人気プロの最新14本を俯瞰して比較',
-    image: '/article-visuals/golf-bag-course.jpg',
+    title: '自分のクラブを登録',
+    text: '番手、モデル、シャフト、飛距離を入れてバッグを見える化します。',
+    href: '/mypage/clubs',
+    icon: ClipboardList,
+  },
+  {
+    title: 'プロの14本を見る',
+    text: '日本女子、男子、海外プロのクラブセッティングを確認できます。',
     href: '/pros',
-    label: 'プロのセッティング',
+    icon: Search,
   },
   {
-    tag: 'ランキング',
-    title: '人気ドライバーを確認',
-    subtitle: 'モデル別の特徴から次の候補を探す',
-    image: '/article-visuals/driver-tee.jpg',
-    href: '/clubs/drivers',
-    label: 'ドライバー一覧',
-  },
-  {
-    tag: 'ガイド',
-    title: '5番アイアンが苦手なら',
-    subtitle: 'UT・7Wで距離を作る考え方を整理',
-    image: '/article-visuals/iron-ball.jpg',
-    href: '/articles/five-iron-hard-ut-7w-womens-pro-setting-2026',
-    label: '記事・コラム',
-  },
-  {
-    tag: 'お悩み解決',
-    title: 'ドライバーのスライス改善ガイド',
-    subtitle: 'クラブ選びで見直すべきポイントを整理',
-    image: '/article-visuals/balls-clubs.jpg',
-    href: '/articles/driver-slice-club-choice-2026',
-    label: 'お悩み解決',
-  },
-];
-
-const featureCards = [
-  {
-    icon: CircleGauge,
-    title: 'スコア・ショット分析',
-    description: 'あなたの傾向や課題をデータで可視化します。',
-  },
-  {
+    title: '診断で見直す',
+    text: 'ミス傾向と距離の階段から、優先して直すクラブを整理します。',
+    href: '/diagnosis',
     icon: Sparkles,
-    title: '最適なクラブ提案',
-    description: '数千通りのデータから最適な組み合わせを整理します。',
+  },
+];
+
+const featuredLinks = [
+  {
+    label: '最新更新',
+    title: 'プロのクラブセッティング一覧',
+    text: '掲載版、更新日、使用クラブをまとめて確認',
+    href: '/pros',
+    image: '/article-visuals/golf-bag-course.jpg',
   },
   {
-    icon: ShieldCheck,
-    title: 'プロとの比較',
-    description: 'プロの平均データと比べて現在地を把握できます。',
+    label: '悩み解決',
+    title: '5番アイアンが苦手なら',
+    text: 'UT・7Wで距離を作る考え方',
+    href: '/articles/five-iron-hard-ut-7w-womens-pro-setting-2026',
+    image: '/article-visuals/iron-ball.jpg',
   },
   {
-    icon: Trophy,
-    title: '改善ポイント提示',
-    description: '次に効く見直しポイントを具体的に返します。',
+    label: 'クラブ選び',
+    title: 'ドライバー一覧',
+    text: '気になるモデルを診断や購入検討へ',
+    href: '/clubs/drivers',
+    image: '/article-visuals/driver-tee.jpg',
   },
 ];
 
-const trustStats = [
-  { icon: BarChart3, label: 'AI診断', value: '課題を整理' },
-  { icon: UserRoundSearch, label: 'プロ比較', value: '14本を確認' },
-  { icon: Trophy, label: 'マイバッグ', value: '保存して見直す' },
+const valueRows = [
+  ['プロの真似で終わらない', '同じクラブを買う前に、番手構成と役割を読み解きます。'],
+  ['自分のバッグに落とし込む', 'キャリー、総距離、シャフト重量、ミス傾向を一緒に見ます。'],
+  ['購入前の迷いを減らす', '診断、比較、詳細、購入先確認まで一つの流れで進めます。'],
 ];
 
-const supportStats = [
-  { title: '1. 自分のクラブを登録', value: 'MyBag', note: 'ドライバーからパターまで、いまの14本を整理します。' },
-  { title: '2. AI診断を受ける', value: 'Diagnosis', note: 'ミス傾向や距離の階段から、見直す順番を出します。' },
-  { title: '3. プロの14本と比べる', value: 'Compare', note: '同じクラブを真似るのではなく、構成の考え方を参考にします。' },
-];
-
-const handleChartPoints = [
-  'あなたのスコア傾向',
-  'ショットの傾向',
-  'おすすめの改善ポイント',
+const statItems = [
+  { label: 'プロセッティング', value: '掲載中', icon: Trophy },
+  { label: 'My Clubs', value: '保存対応', icon: ClipboardList },
+  { label: 'AI診断', value: '無料', icon: BarChart3 },
 ];
 
 export const Home = () => {
   const navigate = useNavigate();
   const { user } = useDiagnosis();
 
-  const handleDiagnosisStart = (source: 'hero' | 'sample' | 'footer') => {
+  const goToDiagnosis = (source: 'hero' | 'bottom') => {
     trackEvent('start_ai_diagnosis', {
       source_page: `home_${source}`,
       destination: user.isLoggedIn ? 'diagnosis' : 'create_mypage_then_diagnosis',
     });
-    navigate(user.isLoggedIn ? '/diagnosis' : '/mypage?auth=register&next=diagnosis');
+    navigate(user.isLoggedIn ? '/diagnosis' : '/mypage/view?auth=register&next=diagnosis');
+  };
+
+  const goToMyClubs = () => {
+    trackEvent(user.isLoggedIn ? 'open_mybag_from_home' : 'open_register', {
+      source_surface: 'home_primary',
+      next_destination: 'mypage_clubs',
+    });
+    navigate(user.isLoggedIn ? '/mypage/clubs' : '/mypage/view?auth=register&next=mypage');
   };
 
   return (
-    <div className="space-y-7 pb-8 md:space-y-10 md:pb-12">
-      <section className="overflow-hidden rounded-[20px] bg-white shadow-[0_28px_70px_-48px_rgba(15,15,16,0.35)] ring-1 ring-[#e3ece4] md:rounded-[32px]">
-        <div className="grid gap-0 md:grid-cols-1 xl:grid-cols-[1.05fr_0.95fr]">
-          <div className="px-4 py-5 md:px-10 md:py-10 xl:py-12">
-            <div className="text-xs font-bold text-[#c18e2f] md:text-sm">データでわかる、あなたのゴルフ</div>
-            <h1 className="mt-3 max-w-[12ch] text-[clamp(1.8rem,4.5vw,5rem)] font-black leading-[1.05] tracking-tight text-[#121416] md:mt-4">
-              そのクラブ、本当にあなたに合っていますか？
-            </h1>
-            <p className="mt-3 max-w-2xl text-xs leading-6 text-slate-600 md:mt-4 md:text-lg md:leading-8">
-              プロのセッティングデータと独自の分析ロジックで、
-              <br className="hidden md:block" />
-              あなたに最適なクラブ選びをサポートします。
-            </p>
-
-            <div className="mt-4 flex flex-col gap-2 sm:gap-3 md:mt-5">
-              <button
-                onClick={() => handleDiagnosisStart('hero')}
-                className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-14 md:rounded-2xl md:px-6 md:text-base"
-              >
-                {user.isLoggedIn ? '無料でクラブ診断をはじめる' : '無料登録して診断をはじめる'}
-              </button>
-              <button
-                onClick={() => {
-                  trackEvent(user.isLoggedIn ? 'open_mybag_from_home' : 'open_register', {
-                    source_surface: 'home_hero_secondary',
-                    next_destination: 'mypage',
-                  });
-                  navigate(user.isLoggedIn ? '/mypage/clubs' : '/mypage/view?auth=register&next=mypage');
-                }}
-                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#b8cfbd] bg-white px-4 text-sm font-black text-[#176534] transition hover:bg-[#f6fbf7] md:min-h-14 md:rounded-2xl md:px-6 md:text-base"
-              >
-                {user.isLoggedIn ? '自分のセッティングを分析する' : '先にクラブを登録する'}
-              </button>
+    <div className="pb-8 md:pb-12">
+      <section className="-mx-3 -mt-3 overflow-hidden bg-[#0f1914] text-white md:-mx-6 md:-mt-7">
+        <div className="relative min-h-[520px] md:min-h-[600px]">
+          <img src={heroImage} alt="ゴルフバッグとクラブ" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,18,14,0.92),rgba(10,18,14,0.72)_42%,rgba(10,18,14,0.18)_100%)]" />
+          <div className="relative mx-auto flex min-h-[520px] max-w-[1380px] flex-col justify-end px-4 pb-6 pt-16 md:min-h-[600px] md:px-8 md:pb-10">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-[#d8c58b] ring-1 ring-white/14">
+                MyBagPro
+              </div>
+              <h1 className="mt-4 text-[2.2rem] font-black leading-[1.02] tracking-tight md:mt-5 md:text-[4.8rem]">
+                プロの14本から、
+                <br />
+                自分のクラブ選びへ。
+              </h1>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/82 md:mt-5 md:text-lg md:leading-8">
+                MyBagProは、プロや人気ゴルファーのクラブセッティングを見て、自分のバッグ登録、AI診断、購入検討までつなげるゴルフクラブ分析サイトです。
+              </p>
+              <div className="mt-5 grid gap-2 sm:max-w-xl sm:grid-cols-2 md:mt-7">
+                <button
+                  onClick={goToMyClubs}
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-[56px] md:text-base"
+                >
+                  {user.isLoggedIn ? 'マイクラブを開く' : '無料登録してクラブを登録'}
+                </button>
+                <button
+                  onClick={() => goToDiagnosis('hero')}
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-white px-4 text-sm font-black text-[#102318] transition hover:bg-[#f3f6f3] md:min-h-[56px] md:text-base"
+                >
+                  AI診断を始める
+                </button>
+              </div>
             </div>
 
-            <div className="mt-4 grid gap-2 sm:grid-cols-2 md:gap-3 md:grid-cols-3">
-              {trustStats.map((stat) => {
-                const Icon = stat.icon;
+            <div className="mt-6 grid gap-2 sm:grid-cols-3 md:mt-9 md:max-w-3xl">
+              {statItems.map((item) => {
+                const Icon = item.icon;
                 return (
-                  <div key={stat.label} className="rounded-lg bg-[#fbfcfb] px-3 py-3 shadow-sm ring-1 ring-[#e6ece6] md:rounded-[22px] md:px-4 md:py-4">
-                    <div className="flex items-center gap-2 md:gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f2f8f3] text-[#176534] md:h-11 md:w-11 md:rounded-2xl">
-                        <Icon size={18} className="md:hidden" />
-                        <Icon size={20} className="hidden md:block" />
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-slate-500 md:text-xs">{stat.label}</div>
-                        <div className="mt-0.5 text-base font-black text-[#151719] md:mt-1 md:text-xl">{stat.value}</div>
-                      </div>
+                  <div key={item.label} className="flex items-center gap-3 border-t border-white/18 py-3">
+                    <Icon size={18} className="text-[#d8c58b]" />
+                    <div>
+                      <div className="text-[10px] font-bold text-white/58">{item.label}</div>
+                      <div className="text-sm font-black text-white">{item.value}</div>
                     </div>
                   </div>
                 );
               })}
             </div>
           </div>
-
-          <div className="relative min-h-[280px] overflow-hidden md:min-h-[320px] xl:min-h-full">
-            <img src={heroImage} alt="ゴルフバッグとクラブ" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.8)_40%,rgba(255,255,255,0.98)_100%)] md:bg-[linear-gradient(270deg,rgba(255,255,255,0.08),rgba(255,255,255,0.88)_52%,rgba(255,255,255,0.98)_92%)] xl:bg-[linear-gradient(270deg,rgba(255,255,255,0.08),rgba(255,255,255,0.62)_18%,rgba(255,255,255,0)_42%)]" />
-          </div>
-        </div>
-
-        <div className="border-t border-[#eef2ee] bg-white px-3 py-3 md:px-8 md:py-5">
-          <div className="grid gap-2 md:gap-3 md:grid-cols-4">
-            {featureCards.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <div key={feature.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 md:rounded-[22px] md:px-4 md:py-4">
-                  <div className="flex items-start gap-2 md:gap-3">
-                    <div className="mt-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#edf5ef] text-[#176534] md:h-11 md:w-11 md:rounded-2xl">
-                      <Icon size={18} className="md:hidden" />
-                      <Icon size={20} className="hidden md:block" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-black text-[#151719] md:text-sm">{feature.title}</div>
-                      <div className="mt-1 text-xs leading-5 text-slate-600 md:text-sm md:leading-6">{feature.description}</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
 
-      <section className="grid gap-4 md:gap-5 xl:grid-cols-[1.65fr_0.75fr]">
-        <div>
-          <div className="mb-3 flex items-center justify-between px-1 md:mb-3 md:px-0">
-            <div>
-              <h2 className="text-lg font-black tracking-tight text-[#151719] md:text-[1.75rem] xl:text-[2rem]">おすすめコンテンツ</h2>
+      <section className="mx-auto max-w-[1380px] px-0 pt-5 md:pt-8">
+        <div className="grid gap-2 md:grid-cols-3 md:gap-3">
+          {primaryMoves.map((move) => {
+            const Icon = move.icon;
+            const action = move.href === '/diagnosis' ? () => goToDiagnosis('bottom') : move.href === '/mypage/clubs' ? goToMyClubs : () => navigate(move.href);
+            return (
+              <button
+                key={move.title}
+                onClick={action}
+                className="group grid min-h-[86px] grid-cols-[40px_minmax(0,1fr)_24px] items-center gap-3 border-b border-slate-200 bg-white px-1 py-3 text-left transition hover:bg-[#f7fbf8] md:min-h-[132px] md:rounded-lg md:border md:px-4 md:py-4 md:shadow-sm md:ring-1 md:ring-slate-100"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#eef6ef] text-[#176534]">
+                  <Icon size={19} />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-base font-black text-[#111827] md:text-lg">{move.title}</div>
+                  <div className="mt-1 text-xs leading-5 text-slate-600 md:text-sm md:leading-6">{move.text}</div>
+                </div>
+                <ArrowRight size={17} className="text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-[#176534]" />
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-7 grid max-w-[1380px] gap-6 md:mt-10 xl:grid-cols-[0.95fr_1.45fr]">
+        <div className="md:pt-1">
+          <div className="text-[11px] font-black uppercase tracking-[0.18em] text-[#176534]">Why MyBagPro</div>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-[#111827] md:text-4xl">クラブ一覧ではなく、選び方まで残す。</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-600 md:text-base md:leading-8">
+            プロの使用クラブは参考になります。ただし、そのまま真似るだけではヘッドスピード、球筋、距離の階段が合わないこともあります。
+            MyBagProでは、プロの14本を自分のバッグに置き換えて考えられるように設計しています。
+          </p>
+          <button
+            onClick={() => navigate('/pros')}
+            className="mt-5 inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#111827] px-5 text-sm font-black text-white transition hover:bg-[#1f2937]"
+          >
+            プロ一覧を見る
+            <ArrowRight size={16} />
+          </button>
+        </div>
+
+        <div className="space-y-0 border-y border-slate-200 md:rounded-lg md:border md:bg-white md:shadow-sm">
+          {valueRows.map(([title, text]) => (
+            <div key={title} className="grid gap-1 border-b border-slate-200 px-1 py-4 last:border-b-0 md:grid-cols-[190px_minmax(0,1fr)] md:px-5 md:py-5">
+              <div className="text-sm font-black text-[#111827] md:text-base">{title}</div>
+              <div className="text-sm leading-6 text-slate-600">{text}</div>
             </div>
-            <button onClick={() => navigate('/articles')} className="hidden items-center gap-2 text-sm font-black text-[#176534] md:inline-flex">
-              すべて見る
-              <ArrowRight size={14} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-7 max-w-[1380px] md:mt-10">
+        <div className="mb-3 flex items-end justify-between gap-4">
+          <div>
+            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-[#176534]">Start Here</div>
+            <h2 className="mt-1 text-2xl font-black tracking-tight text-[#111827] md:text-3xl">今すぐ見られるコンテンツ</h2>
+          </div>
+          <button onClick={() => navigate('/articles')} className="hidden text-sm font-black text-[#176534] md:inline-flex">
+            記事一覧へ
+          </button>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-3">
+          {featuredLinks.map((item) => (
+            <button
+              key={item.title}
+              onClick={() => navigate(item.href)}
+              className="group overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <div className="relative aspect-[16/9] overflow-hidden">
+                <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+                <div className="absolute left-3 top-3 rounded-full bg-[#176534] px-2.5 py-1 text-[10px] font-black text-white">
+                  {item.label}
+                </div>
+              </div>
+              <div className="p-3 md:p-4">
+                <div className="text-base font-black text-[#111827] md:text-lg">{item.title}</div>
+                <div className="mt-1 text-sm leading-6 text-slate-600">{item.text}</div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-7 max-w-[1380px] overflow-hidden rounded-lg bg-[#102318] px-4 py-5 text-white md:mt-10 md:px-7 md:py-7">
+        <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <div className="text-xl font-black tracking-tight md:text-3xl">まずは1本だけでも登録できます。</div>
+            <div className="mt-2 text-sm leading-7 text-white/74">
+              ドライバー、7I、ウェッジ、ボールからでも大丈夫です。登録した情報は診断とマイクラブに反映されます。
+            </div>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 md:min-w-[360px]">
+            <button
+              onClick={goToMyClubs}
+              className="inline-flex min-h-[46px] items-center justify-center rounded-lg bg-[#d8c58b] px-5 text-sm font-black text-[#102318]"
+            >
+              クラブを登録
+            </button>
+            <button
+              onClick={() => navigate('/pros')}
+              className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-lg bg-white/10 px-5 text-sm font-black text-white ring-1 ring-white/16"
+            >
+              <CheckCircle2 size={16} />
+              プロを見る
             </button>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {contentCards.map((card) => (
-              <button
-                key={card.title}
-                onClick={() => navigate(card.href)}
-                className="overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-[#e3ebe4] transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <div className="relative h-28 overflow-hidden">
-                  <img src={card.image} alt={card.title} className="h-full w-full object-cover" />
-                  <div className="absolute left-2 top-2 rounded-full bg-[#2563eb] px-2 py-0.5 text-[8px] font-black text-white md:left-3 md:top-3 md:px-2.5 md:py-1 md:text-[10px]">
-                    {card.tag}
-                  </div>
-                </div>
-                <div className="px-3 py-3">
-                  <div className="text-sm font-black leading-6 text-[#151719] md:text-base md:leading-6">{card.title}</div>
-                  <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{card.subtitle}</div>
-                  <div className="mt-2 inline-flex rounded-full bg-[#f1f6f2] px-2 py-0.5 text-[10px] font-black text-[#176534] md:mt-3 md:px-3 md:py-1 md:text-xs">
-                    {card.label}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-          <button onClick={() => navigate('/articles')} className="md:hidden mt-3 w-full text-center text-sm font-bold text-[#176534]">
-            すべて見る →
-          </button>
-        </div>
-
-        <aside className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e3ebe4] md:rounded-[28px] md:ring-0 md:bg-[#15542f] md:p-5 md:text-white md:shadow-[0_24px_60px_-42px_rgba(21,84,47,0.8)] xl:p-6">
-          <div className="text-lg font-black md:text-2xl">無料クラブ診断</div>
-          <p className="mt-2 text-xs leading-6 text-slate-600 md:mt-3 md:text-sm md:leading-7 md:text-white/80">
-            登録後に診断を始めると、結果を保存してあとから見返せます。
-          </p>
-          <div className="mt-3 space-y-2 text-xs font-bold text-slate-700 md:mt-5 md:space-y-3 md:text-sm md:font-bold md:text-white/90">
-            <div className="flex items-start gap-2"><CheckCircle2 size={14} className="mt-0.5 shrink-0 md:size-4 md:mt-1" /> スイングタイプやミス傾向を分析</div>
-            <div className="flex items-start gap-2"><CheckCircle2 size={14} className="mt-0.5 shrink-0 md:size-4 md:mt-1" /> 最適なクラブ候補を提案</div>
-            <div className="flex items-start gap-2"><CheckCircle2 size={14} className="mt-0.5 shrink-0 md:size-4 md:mt-1" /> 診断結果は保存して比較可能</div>
-          </div>
-          <button
-            onClick={() => handleDiagnosisStart('sample')}
-            className="mt-4 inline-flex min-h-10 w-full items-center justify-center rounded-lg bg-[#176534] px-4 text-xs font-black text-white transition hover:bg-[#13542b] md:mt-6 md:min-h-14 md:rounded-2xl md:bg-white md:px-5 md:text-base md:font-black md:text-[#15542f] md:hover:bg-[#f3f6f3]"
-          >
-            診断をはじめる
-          </button>
-
-          <div className="mt-4 rounded-lg bg-[#fbfcfb] p-3 ring-1 ring-[#eef3ef] md:mt-5 md:rounded-[24px] md:bg-white/10 md:ring-1 md:ring-white/10 md:p-4">
-            <div className="text-xs font-black text-slate-700 md:text-base md:text-white">診断サンプル</div>
-            <div className="mt-3 flex items-center gap-3 md:gap-5">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full border-8 border-[#e0e0e0] bg-white text-2xl font-black text-[#176534] md:h-24 md:w-24 md:border-[10px] md:border-white/35 md:text-3xl md:text-white">
-                72
-              </div>
-              <div className="flex-1 space-y-1.5 text-xs font-bold md:space-y-2.5 md:text-sm">
-                {[
-                  ['飛距離感', 70, 'bg-[#1f7a45]'],
-                  ['方向性', 75, 'bg-[#1e3a8a]'],
-                  ['安定性', 72, 'bg-[#d0a73f]'],
-                  ['操作性', 68, 'bg-[#c0392b]'],
-                ].map(([label, value, color]) => (
-                  <div key={label as string}>
-                    <div className="mb-0.5 flex items-center justify-between text-slate-700 md:mb-1 md:text-white/90">
-                      <span>{label}</span>
-                      <span>{value}</span>
-                    </div>
-                    <div className="h-1.5 rounded-full bg-[#e0e0e0] md:h-2 md:bg-white/15">
-                      <div className={`h-full rounded-full ${color}`} style={{ width: `${value}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <section className="grid gap-4 md:gap-6 xl:grid-cols-[1.25fr_0.95fr]">
-        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-5">
-          <div className="text-xs font-bold text-slate-500 md:text-sm">データが導く、最適なクラブ選び</div>
-          <h2 className="mt-2 text-xl font-black tracking-tight text-[#151719] md:text-[2rem]">プロのデータとあなたのデータを並べる</h2>
-          <p className="mt-2 text-xs leading-6 text-slate-600 md:text-sm md:leading-7">
-            プロのデータとあなたのデータを比較して、最適なセッティングを見つけましょう。
-          </p>
-
-          <div className="mt-4 grid gap-2 md:mt-4.5 md:gap-3 md:grid-cols-3">
-            {handleChartPoints.map((label, index) => (
-              <div key={label} className="rounded-lg bg-[#fbfcfb] px-3 py-3 md:rounded-[24px] md:px-3.5 md:py-3">
-                <div className="text-xs font-black text-[#151719] md:text-sm">{label}</div>
-                <div className="mt-2 h-24 rounded-lg bg-white p-2 ring-1 ring-[#eef2ef] md:mt-2.5 md:h-36 md:rounded-[20px] md:p-3">
-                  {index === 0 && (
-                    <div className="flex h-full items-end gap-1 md:gap-2">
-                      {[84, 72, 91, 77, 88, 70, 95, 74, 86].map((point, idx) => (
-                        <div key={idx} className="flex-1">
-                          <div className="rounded-t-sm bg-[#176534] md:rounded-t-xl" style={{ height: `${(point / 100) * 86}px`, minHeight: `${(point / 100) * 86}px` }} />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {index === 1 && (
-                    <div className="flex h-full items-center justify-center">
-                      <div className="relative h-24 w-24 rounded-full border border-[#dfe7df] md:h-32 md:w-32">
-                        <div className="absolute inset-[18%] rotate-12 border border-[#166534]" />
-                        <div className="absolute inset-[28%] rotate-45 border border-[#166534]/70" />
-                        <div className="absolute inset-[38%] rotate-[76deg] border border-[#166534]/50" />
-                      </div>
-                    </div>
-                  )}
-                  {index === 2 && (
-                    <div className="space-y-2 md:space-y-4">
-                      {[
-                        'ドライバーの方向性が課題',
-                        'アイアンのスピン量を最適化',
-                        'アプローチの安定性を向上',
-                      ].map((item, idx) => (
-                        <div key={item} className="flex items-start gap-2 md:gap-3">
-                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#edf5ef] text-[8px] font-black text-[#176534] md:h-7 md:w-7 md:text-xs">
-                            {String(idx + 1).padStart(2, '0')}
-                          </div>
-                          <div className="text-xs font-bold text-slate-700 md:text-sm">{item}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-[#e4ece5] md:rounded-[28px] md:p-5 xl:self-end">
-          <div className="text-xs font-bold text-slate-500 md:text-sm">MyBagProの使い方</div>
-          <div className="mt-3 space-y-2 md:mt-4.5 md:space-y-3">
-            {supportStats.map((stat) => (
-              <div key={stat.title} className="rounded-lg bg-[#fbfcfb] px-3 py-3 ring-1 ring-[#f0f3f0] md:rounded-[22px] md:px-4 md:py-3.5">
-                <div className="text-xs font-black text-slate-500 md:text-sm">{stat.title}</div>
-                <div className="mt-1 text-xl font-black tracking-tight text-[#151719] md:mt-2 md:text-[1.6rem]">{stat.value}</div>
-                <div className="mt-1 text-xs leading-5 text-slate-600 md:mt-2 md:text-sm md:leading-6">{stat.note}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="overflow-hidden rounded-lg bg-[linear-gradient(90deg,rgba(17,19,21,0.88),rgba(21,84,47,0.92))] px-4 py-5 text-white shadow-[0_24px_60px_-42px_rgba(15,15,16,0.7)] md:rounded-[28px] md:px-10 md:py-7">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <div className="text-lg font-black tracking-tight md:text-[2rem]">データで、あなたのゴルフはもっと良くなる。</div>
-            <div className="mt-1.5 text-xs leading-6 text-white/80 md:mt-2 md:text-sm md:leading-7">
-              まずは無料診断で、最適なクラブ選びの第一歩を踏み出しましょう。
-            </div>
-          </div>
-          <button
-            onClick={() => handleDiagnosisStart('footer')}
-            className="mt-3 inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-[#c8a96a] px-4 text-xs font-black text-[#111315] transition hover:bg-[#d5b57b] md:mt-0 md:min-h-14 md:rounded-2xl md:px-7 md:text-base md:font-black"
-          >
-            無料でクラブ診断をはじめる
-            <ArrowRight size={16} className="md:size-[18px]" />
-          </button>
         </div>
       </section>
     </div>
