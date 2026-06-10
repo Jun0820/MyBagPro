@@ -237,9 +237,8 @@ export const MyGearPage = () => {
         if (!isDistanceInputTarget(club)) return '-';
         const total = String(club.distance || '').trim();
         const carry = String(club.carryDistance || '').trim();
-        if (total && carry) return `総${total} / C${carry}`;
-        if (clubDistanceView === 'carry') return carry ? `C${carry}` : (total ? `総${total}` : '未入力');
-        return total ? `総${total}` : (carry ? `C${carry}` : '未入力');
+        if (clubDistanceView === 'carry') return carry ? `C${carry}` : '-';
+        return total ? `総${total}` : '-';
     };
 
     const openBagTabWithFocus = (focus?: 'missing-clubs' | 'ball-first') => {
