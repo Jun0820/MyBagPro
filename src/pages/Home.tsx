@@ -7,6 +7,7 @@ import {
   Sparkles,
   Trophy,
 } from 'lucide-react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { useDiagnosis } from '../context/DiagnosisContext';
@@ -79,9 +80,12 @@ const shortcutLinks = [
   { label: 'ドライバー一覧', href: '/clubs/drivers' },
 ];
 
+const searchExamples = ['松山英樹', '山下美夢有', '竹田麗央', 'PING', '7W'];
+
 export const Home = () => {
   const navigate = useNavigate();
   const { user } = useDiagnosis();
+  const [heroSearch, setHeroSearch] = useState('');
 
   const goToDiagnosis = (source: 'hero' | 'bottom') => {
     trackEvent('start_ai_diagnosis', {
@@ -97,6 +101,20 @@ export const Home = () => {
       next_destination: 'mypage_clubs',
     });
     navigate(user.isLoggedIn ? '/mypage/clubs' : '/mypage/view?auth=register&next=mypage');
+  };
+
+  const submitHeroSearch = (query = heroSearch) => {
+    const normalized = query.trim();
+    if (!normalized) {
+      navigate('/pros');
+      return;
+    }
+
+    trackEvent('search_from_home', {
+      query: normalized,
+      destination: 'pros',
+    });
+    navigate(`/pros?search=${encodeURIComponent(normalized)}`);
   };
 
   return (
@@ -118,6 +136,43 @@ export const Home = () => {
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/82 md:mt-5 md:text-lg md:leading-8">
                 MyBagProは、プロや人気ゴルファーのクラブセッティングを見て、自分のバッグ登録、AI診断、購入検討までつなげるゴルフクラブ分析サイトです。
               </p>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  submitHeroSearch();
+                }}
+                className="mt-5 max-w-2xl rounded-xl bg-white/96 p-1.5 text-[#102318] shadow-[0_18px_48px_-34px_rgba(0,0,0,0.8)] ring-1 ring-white/20 md:mt-6 md:rounded-2xl"
+              >
+                <div className="grid grid-cols-[1fr_auto] gap-1.5">
+                  <label className="flex min-h-[46px] items-center gap-2 px-2 md:min-h-[54px] md:px-3">
+                    <Search size={18} className="shrink-0 text-slate-400" />
+                    <input
+                      value={heroSearch}
+                      onChange={(event) => setHeroSearch(event.target.value)}
+                      placeholder="選手名・メーカー名で検索"
+                      className="min-w-0 flex-1 bg-transparent text-sm font-bold text-[#102318] outline-none placeholder:text-slate-400 md:text-base"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    className="inline-flex min-h-[46px] items-center justify-center rounded-lg bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-[54px] md:rounded-xl md:px-5"
+                  >
+                    検索
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-1.5 px-2 pb-1 pt-1 md:px-3">
+                  {searchExamples.map((query) => (
+                    <button
+                      key={query}
+                      type="button"
+                      onClick={() => submitHeroSearch(query)}
+                      className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-600 transition hover:bg-[#eef6ef] hover:text-[#176534] md:text-[11px]"
+                    >
+                      {query}
+                    </button>
+                  ))}
+                </div>
+              </form>
               <div className="mt-5 grid gap-2 sm:max-w-xl sm:grid-cols-2 md:mt-7">
                 <button
                   onClick={goToMyClubs}
