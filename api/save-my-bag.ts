@@ -139,7 +139,7 @@ export default async function handler(req: any, res: any) {
     const dedupedBaseClubs = Array.from(
       new Map(baseNormalizedClubs.filter((club) => club.id).map((club) => [club.id, club])).values(),
     );
-    let persistedClubs = dedupedClubs;
+    let persistedClubs: any[] = dedupedClubs;
     let supportsExtendedClubColumns = true;
 
     const profileResult = await adminClient.from('profiles').upsert(sanitizedProfilePayload);
