@@ -436,7 +436,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     lastSaveTargetClubCount = 0,
     lastSavedClubCount = 0,
     onManualSave,
-    onManualSaveClub,
     onReloadFromCloud,
     onOpenBallDiagnosis,
     intakeMode = 'default',
@@ -465,7 +464,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const [editingClubId, setEditingClubId] = useState<string | null>(null);
     const [editingDraft, setEditingDraft] = useState<ClubEditorDraft | null>(null);
     const [clubEditorNotice, setClubEditorNotice] = useState<ClubEditorNotice | null>(null);
-    const [isClubEditorSaving, setIsClubEditorSaving] = useState(false);
+    const isClubEditorSaving = isManualSaveInFlight;
 
     useEffect(() => {
         latestSettingRef.current = setting;
@@ -959,42 +958,24 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         return `診断精度を上げるには、${missing.join('・')}を入力してください。`;
     };
 
-    const saveEditedClub = async () => {
+    const saveEditedClub = () => {
         if (!editingClubId || !editingDraft) return;
 
-        const previousSetting = latestSettingRef.current;
-        const nextSetting = buildSettingFromEditingDraft(previousSetting, editingClubId, editingDraft);
+        const nextSetting = buildSettingFromEditingDraft(latestSettingRef.current, editingClubId, editingDraft);
         if (!nextSetting) return;
         const nextClub = nextSetting.clubs.find((club) => club.id === editingClubId) || editingDraft.club;
 
         setClubEditorNotice(null);
-        setIsClubEditorSaving(true);
         commitSetting(nextSetting);
-
-        const saveResult = onManualSaveClub
-            ? await onManualSaveClub(editingClubId, nextSetting)
-            : { ok: true as const };
-
-        if (!saveResult.ok) {
-            commitSetting(previousSetting);
-            setClubEditorNotice({
-                tone: 'error',
-                message: '保存に失敗しました。時間をおいて再度お試しください。',
-            });
-            setIsClubEditorSaving(false);
-            return;
-        }
-
         setEditingClubId(null);
         setEditingDraft(null);
         setExpandedClubId(null);
         const warningMessage = importantFieldWarning(nextClub);
         setClubEditorNotice({
             tone: warningMessage ? 'warning' : 'success',
-            message: 'クラブ情報を更新しました。',
-            detail: warningMessage || undefined,
+            message: 'クラブ情報を一覧に反映しました。',
+            detail: warningMessage || '最後に「変更を保存」で保存できます。',
         });
-        setIsClubEditorSaving(false);
     };
 
     const renderStepNav = () => (
@@ -1697,9 +1678,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                 <button type="button" disabled={isClubEditorSaving} onClick={cancelClubEditor} className="inline-flex min-h-[40px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-black text-slate-600 disabled:cursor-not-allowed disabled:opacity-60 md:rounded-lg">
                                                     キャンセル
                                                 </button>
-                                                <button type="button" onClick={() => void saveEditedClub()} disabled={isClubEditorSaving} className="inline-flex min-h-[40px] items-center gap-2 rounded-xl bg-trust-navy px-4 text-xs font-black text-white disabled:opacity-50 md:rounded-lg">
-                                                    {isClubEditorSaving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
-                                                    保存する
+                                                <button type="button" onClick={saveEditedClub} disabled={isClubEditorSaving} className="inline-flex min-h-[40px] items-center gap-2 rounded-xl bg-trust-navy px-4 text-xs font-black text-white disabled:opacity-50 md:rounded-lg">
+                                                    <Save size={14} />
+                                                    一覧に反映
                                                 </button>
                                                 </div>
                                             </div>

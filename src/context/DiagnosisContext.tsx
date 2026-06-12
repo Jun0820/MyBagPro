@@ -883,7 +883,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     }),
                 }),
                 'my bag api save',
-                30000,
+                15000,
             );
 
             const payload = await response.json().catch(() => ({}));
@@ -1016,7 +1016,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                     }),
                 }),
                 'my bag api club save',
-                30000,
+                12000,
             );
 
             const payload = await response.json().catch(() => ({}));

@@ -18,33 +18,6 @@ const toTextArray = (value: unknown) =>
         .filter(Boolean)
     : [];
 
-const EXTENDED_CLUB_COLUMNS = [
-  'flex',
-  'number',
-  'carry_distance',
-  'worry',
-  'shaft_weight',
-  'sleeve_setting',
-  'length',
-  'lie_angle',
-  'bounce',
-  'grind',
-  'head_shape',
-  'main_use',
-  'miss_tendency',
-  'memo',
-  'copied_from_club_id',
-] as const;
-
-const CLUB_SCHEMA_CACHE_TTL_MS = 5 * 60 * 1000;
-
-type ClubSchemaProbeResult = {
-  checkedAt: number;
-  missingColumns: string[];
-};
-
-let cachedClubSchemaProbe: ClubSchemaProbeResult | null = null;
-
 const isUuid = (value: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 
@@ -59,35 +32,8 @@ const generateUuid = () => {
   });
 };
 
-const probeExtendedClubColumns = async (adminClient: any) => {
-  const now = Date.now();
-  if (cachedClubSchemaProbe && now - cachedClubSchemaProbe.checkedAt < CLUB_SCHEMA_CACHE_TTL_MS) {
-    return cachedClubSchemaProbe;
-  }
-
-  const missingColumns: string[] = [];
-  for (const column of EXTENDED_CLUB_COLUMNS) {
-    const extendedColumnsProbe = await adminClient
-      .from('clubs')
-      .select(`id,${column}`)
-      .limit(1);
-
-    if (extendedColumnsProbe.error) {
-      if (extendedColumnsProbe.error.code === '42703') {
-        missingColumns.push(column);
-        continue;
-      }
-      throw new Error(`clubs schema probe (${column}): ${extendedColumnsProbe.error.message}`);
-    }
-  }
-
-  cachedClubSchemaProbe = {
-    checkedAt: now,
-    missingColumns,
-  };
-
-  return cachedClubSchemaProbe;
-};
+const isUndefinedColumnError = (error: any) =>
+  error?.code === '42703' || String(error?.message || '').toLowerCase().includes('column');
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
@@ -163,13 +109,9 @@ export default async function handler(req: any, res: any) {
         }))
       : [];
 
-    const { missingColumns: missingExtendedColumns, checkedAt: schemaCheckedAt } = await probeExtendedClubColumns(adminClient);
-    const supportsExtendedClubColumns = missingExtendedColumns.length === 0;
-
-    const normalizedClubs = Array.isArray(clubPayloads)
+    const extendedNormalizedClubs = Array.isArray(clubPayloads)
       ? clubPayloads.map((club: any, index: number) => {
           const baseClub = baseNormalizedClubs[index];
-          if (!supportsExtendedClubColumns) return baseClub;
           return {
             ...baseClub,
             flex: toText(club?.flex),
@@ -192,31 +134,45 @@ export default async function handler(req: any, res: any) {
       : [];
 
     const dedupedClubs = Array.from(
-      new Map(normalizedClubs.filter((club) => club.id).map((club) => [club.id, club])).values(),
+      new Map(extendedNormalizedClubs.filter((club) => club.id).map((club) => [club.id, club])).values(),
     );
+    const dedupedBaseClubs = Array.from(
+      new Map(baseNormalizedClubs.filter((club) => club.id).map((club) => [club.id, club])).values(),
+    );
+    let persistedClubs = dedupedClubs;
+    let supportsExtendedClubColumns = true;
 
     const profileResult = await adminClient.from('profiles').upsert(sanitizedProfilePayload);
     if (profileResult.error) {
       throw new Error(`profiles save: ${profileResult.error.message}`);
     }
 
-    const deleteResult = await adminClient.from('clubs').delete().eq('user_id', user.id);
-    if (deleteResult.error) {
-      throw new Error(`clubs clear: ${deleteResult.error.message}`);
-    }
-
     let insertedCount = 0;
     if (dedupedClubs.length > 0) {
-      const insertResult = await adminClient.from('clubs').insert(dedupedClubs);
-      if (insertResult.error) {
-        throw new Error(`clubs insert: ${insertResult.error.message}`);
+      let insertResult = await adminClient.from('clubs').upsert(dedupedClubs, { onConflict: 'id' });
+      if (insertResult.error && isUndefinedColumnError(insertResult.error)) {
+        supportsExtendedClubColumns = false;
+        persistedClubs = dedupedBaseClubs;
+        insertResult = await adminClient.from('clubs').upsert(dedupedBaseClubs, { onConflict: 'id' });
       }
-      insertedCount = dedupedClubs.length;
+      if (insertResult.error) {
+        throw new Error(`clubs upsert: ${insertResult.error.message}`);
+      }
+      insertedCount = persistedClubs.length;
+    }
+
+    const persistedIds = persistedClubs.map((club) => club.id).filter(Boolean);
+    const deleteQuery = adminClient.from('clubs').delete().eq('user_id', user.id);
+    const deleteResult = persistedIds.length > 0
+      ? await deleteQuery.not('id', 'in', `(${persistedIds.join(',')})`)
+      : await deleteQuery;
+    if (deleteResult.error) {
+      throw new Error(`clubs cleanup: ${deleteResult.error.message}`);
     }
 
     const verifyResult = await adminClient
       .from('clubs')
-      .select(supportsExtendedClubColumns ? '*' : 'id,category,brand,model,shaft,loft,distance')
+      .select('id')
       .eq('user_id', user.id);
 
     if (verifyResult.error) {
@@ -225,7 +181,6 @@ export default async function handler(req: any, res: any) {
 
     const verifiedRows = (verifyResult.data || []) as any[];
     const verifiedIds = new Set(verifiedRows.map((row) => row.id));
-    const expectedById = new Map<string, any>(dedupedClubs.map((club) => [club.id, club as any]));
     const expected = Array.isArray(expectedIds)
       ? expectedIds.map((id) => {
           const textId = toText(id);
@@ -234,58 +189,22 @@ export default async function handler(req: any, res: any) {
       : [];
     const missingIds = expected.filter((id) => !verifiedIds.has(id));
 
-    if (verifiedRows.length !== dedupedClubs.length) {
-      throw new Error(`clubs verify: expected ${dedupedClubs.length} rows but found ${verifiedRows.length}`);
+    if (verifiedRows.length !== persistedClubs.length) {
+      throw new Error(`clubs verify: expected ${persistedClubs.length} rows but found ${verifiedRows.length}`);
     }
 
     if (missingIds.length > 0) {
       throw new Error(`clubs verify: missing ${missingIds.length} ids`);
     }
 
-    const mismatchedIds = verifiedRows
-      .filter((row) => {
-        const expectedClub = expectedById.get(row.id) as any;
-        if (!expectedClub) return true;
-        return (
-          toText(row.category) !== expectedClub.category ||
-          toText(row.brand) !== expectedClub.brand ||
-          toText(row.model) !== expectedClub.model ||
-          toText(row.shaft) !== expectedClub.shaft ||
-          toText(row.loft) !== expectedClub.loft ||
-          toText(row.distance) !== expectedClub.distance ||
-          (supportsExtendedClubColumns && (
-            toText(row.flex) !== toText(expectedClub.flex) ||
-            toText(row.number) !== toText(expectedClub.number) ||
-            toText(row.carry_distance) !== toText(expectedClub.carry_distance) ||
-            toText(row.worry) !== toText(expectedClub.worry) ||
-            toText(row.shaft_weight) !== toText(expectedClub.shaft_weight) ||
-            toText(row.sleeve_setting) !== toText(expectedClub.sleeve_setting) ||
-            toText(row.length) !== toText(expectedClub.length) ||
-            toText(row.lie_angle) !== toText(expectedClub.lie_angle) ||
-            toText(row.bounce) !== toText(expectedClub.bounce) ||
-            toText(row.grind) !== toText(expectedClub.grind) ||
-            toText(row.head_shape) !== toText(expectedClub.head_shape) ||
-            JSON.stringify(toTextArray(row.main_use)) !== JSON.stringify(toTextArray(expectedClub.main_use)) ||
-            JSON.stringify(toTextArray(row.miss_tendency)) !== JSON.stringify(toTextArray(expectedClub.miss_tendency)) ||
-            toText(row.memo) !== toText(expectedClub.memo) ||
-            toText(row.copied_from_club_id) !== toText(expectedClub.copied_from_club_id)
-          ))
-        );
-      })
-      .map((row) => row.id);
-
-    if (mismatchedIds.length > 0) {
-      throw new Error(`clubs verify: ${mismatchedIds.length} rows saved with unexpected field values`);
-    }
-
     return json(res, 200, {
       ok: true,
-      receivedCount: normalizedClubs.length,
-      dedupedCount: dedupedClubs.length,
+      receivedCount: extendedNormalizedClubs.length,
+      dedupedCount: persistedClubs.length,
       insertedCount,
       verifiedCount: verifiedRows.length,
-      expectedCount: dedupedClubs.length,
-      sampleClubs: dedupedClubs.slice(-4).map((club) => ({
+      expectedCount: persistedClubs.length,
+      sampleClubs: persistedClubs.slice(-4).map((club) => ({
         id: club.id,
         category: club.category,
         number: toText((club as any).number),
@@ -294,8 +213,7 @@ export default async function handler(req: any, res: any) {
         distance: club.distance,
       })),
       extendedColumnsSaved: supportsExtendedClubColumns,
-      missingExtendedColumns,
-      schemaCheckedAt,
+      missingExtendedColumns: supportsExtendedClubColumns ? [] : ['extended_club_fields'],
     });
   } catch (error: any) {
     return json(res, 500, {

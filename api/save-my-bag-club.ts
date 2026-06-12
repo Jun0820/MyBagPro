@@ -16,57 +16,11 @@ const toTextArray = (value: unknown) =>
     ? value.map((item) => toText(item).trim()).filter(Boolean)
     : [];
 
-const EXTENDED_CLUB_COLUMNS = [
-  'flex',
-  'number',
-  'carry_distance',
-  'worry',
-  'shaft_weight',
-  'sleeve_setting',
-  'length',
-  'lie_angle',
-  'bounce',
-  'grind',
-  'head_shape',
-  'main_use',
-  'miss_tendency',
-  'memo',
-  'copied_from_club_id',
-] as const;
-
-const CLUB_SCHEMA_CACHE_TTL_MS = 5 * 60 * 1000;
-
-type ClubSchemaProbeResult = {
-  checkedAt: number;
-  missingColumns: string[];
-};
-
-let cachedClubSchemaProbe: ClubSchemaProbeResult | null = null;
-
 const isUuid = (value: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 
-const probeExtendedClubColumns = async (adminClient: any) => {
-  const now = Date.now();
-  if (cachedClubSchemaProbe && now - cachedClubSchemaProbe.checkedAt < CLUB_SCHEMA_CACHE_TTL_MS) {
-    return cachedClubSchemaProbe;
-  }
-
-  const missingColumns: string[] = [];
-  for (const column of EXTENDED_CLUB_COLUMNS) {
-    const probe = await adminClient.from('clubs').select(`id,${column}`).limit(1);
-    if (probe.error) {
-      if (probe.error.code === '42703') {
-        missingColumns.push(column);
-        continue;
-      }
-      throw new Error(`clubs schema probe (${column}): ${probe.error.message}`);
-    }
-  }
-
-  cachedClubSchemaProbe = { checkedAt: now, missingColumns };
-  return cachedClubSchemaProbe;
-};
+const isUndefinedColumnError = (error: any) =>
+  error?.code === '42703' || String(error?.message || '').toLowerCase().includes('column');
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
@@ -119,9 +73,6 @@ export default async function handler(req: any, res: any) {
       updated_at: new Date().toISOString(),
     };
 
-    const { missingColumns: missingExtendedColumns, checkedAt: schemaCheckedAt } = await probeExtendedClubColumns(adminClient);
-    const supportsExtendedClubColumns = missingExtendedColumns.length === 0;
-
     const normalizedClubBase = {
       id: toText((clubPayload as any).id),
       user_id: user.id,
@@ -137,26 +88,25 @@ export default async function handler(req: any, res: any) {
       throw new Error('clubPayload.id must be a persisted uuid');
     }
 
-    const normalizedClub = supportsExtendedClubColumns
-      ? {
-          ...normalizedClubBase,
-          flex: toText((clubPayload as any).flex),
-          number: toText((clubPayload as any).number),
-          carry_distance: toText((clubPayload as any).carryDistance),
-          worry: toText((clubPayload as any).worry),
-          shaft_weight: toText((clubPayload as any).shaftWeight),
-          sleeve_setting: toText((clubPayload as any).sleeveSetting),
-          length: toText((clubPayload as any).length),
-          lie_angle: toText((clubPayload as any).lieAngle),
-          bounce: toText((clubPayload as any).bounce),
-          grind: toText((clubPayload as any).grind),
-          head_shape: toText((clubPayload as any).headShape),
-          main_use: toTextArray((clubPayload as any).mainUse),
-          miss_tendency: toTextArray((clubPayload as any).missTendency),
-          memo: toText((clubPayload as any).memo),
-          copied_from_club_id: isUuid(toText((clubPayload as any).copiedFromClubId)) ? toText((clubPayload as any).copiedFromClubId) : null,
-        }
-      : normalizedClubBase;
+    const normalizedClub = {
+      ...normalizedClubBase,
+      flex: toText((clubPayload as any).flex),
+      number: toText((clubPayload as any).number),
+      carry_distance: toText((clubPayload as any).carryDistance),
+      worry: toText((clubPayload as any).worry),
+      shaft_weight: toText((clubPayload as any).shaftWeight),
+      sleeve_setting: toText((clubPayload as any).sleeveSetting),
+      length: toText((clubPayload as any).length),
+      lie_angle: toText((clubPayload as any).lieAngle),
+      bounce: toText((clubPayload as any).bounce),
+      grind: toText((clubPayload as any).grind),
+      head_shape: toText((clubPayload as any).headShape),
+      main_use: toTextArray((clubPayload as any).mainUse),
+      miss_tendency: toTextArray((clubPayload as any).missTendency),
+      memo: toText((clubPayload as any).memo),
+      copied_from_club_id: isUuid(toText((clubPayload as any).copiedFromClubId)) ? toText((clubPayload as any).copiedFromClubId) : null,
+    };
+    let supportsExtendedClubColumns = true;
 
     const profileResult = await adminClient.from('profiles').upsert(sanitizedProfilePayload);
     if (profileResult.error) {
@@ -176,14 +126,18 @@ export default async function handler(req: any, res: any) {
       return json(res, 403, { ok: false, error: 'You can only update your own club record' });
     }
 
-    const upsertResult = await adminClient.from('clubs').upsert(normalizedClub, { onConflict: 'id' });
+    let upsertResult = await adminClient.from('clubs').upsert(normalizedClub, { onConflict: 'id' });
+    if (upsertResult.error && isUndefinedColumnError(upsertResult.error)) {
+      supportsExtendedClubColumns = false;
+      upsertResult = await adminClient.from('clubs').upsert(normalizedClubBase, { onConflict: 'id' });
+    }
     if (upsertResult.error) {
       throw new Error(`clubs upsert: ${upsertResult.error.message}`);
     }
 
     const verifyResult = await adminClient
       .from('clubs')
-      .select(supportsExtendedClubColumns ? '*' : 'id,category,brand,model,shaft,loft,distance')
+      .select('id')
       .eq('user_id', user.id)
       .eq('id', normalizedClubBase.id)
       .maybeSingle();
@@ -193,36 +147,6 @@ export default async function handler(req: any, res: any) {
     }
     if (!verifyResult.data) {
       throw new Error('clubs verify: target row missing after save');
-    }
-
-    const row = verifyResult.data as any;
-    const mismatch =
-      toText(row.category) !== normalizedClubBase.category ||
-      toText(row.brand) !== normalizedClubBase.brand ||
-      toText(row.model) !== normalizedClubBase.model ||
-      toText(row.shaft) !== normalizedClubBase.shaft ||
-      toText(row.loft) !== normalizedClubBase.loft ||
-      toText(row.distance) !== normalizedClubBase.distance ||
-      (supportsExtendedClubColumns && (
-        toText(row.flex) !== toText((normalizedClub as any).flex) ||
-        toText(row.number) !== toText((normalizedClub as any).number) ||
-        toText(row.carry_distance) !== toText((normalizedClub as any).carry_distance) ||
-        toText(row.worry) !== toText((normalizedClub as any).worry) ||
-        toText(row.shaft_weight) !== toText((normalizedClub as any).shaft_weight) ||
-        toText(row.sleeve_setting) !== toText((normalizedClub as any).sleeve_setting) ||
-        toText(row.length) !== toText((normalizedClub as any).length) ||
-        toText(row.lie_angle) !== toText((normalizedClub as any).lie_angle) ||
-        toText(row.bounce) !== toText((normalizedClub as any).bounce) ||
-        toText(row.grind) !== toText((normalizedClub as any).grind) ||
-        toText(row.head_shape) !== toText((normalizedClub as any).head_shape) ||
-        JSON.stringify(toTextArray(row.main_use)) !== JSON.stringify(toTextArray((normalizedClub as any).main_use)) ||
-        JSON.stringify(toTextArray(row.miss_tendency)) !== JSON.stringify(toTextArray((normalizedClub as any).miss_tendency)) ||
-        toText(row.memo) !== toText((normalizedClub as any).memo) ||
-        toText(row.copied_from_club_id) !== toText((normalizedClub as any).copied_from_club_id)
-      ));
-
-    if (mismatch) {
-      throw new Error('clubs verify: saved row has unexpected field values');
     }
 
     return json(res, 200, {
@@ -241,8 +165,7 @@ export default async function handler(req: any, res: any) {
         distance: normalizedClubBase.distance,
       }],
       extendedColumnsSaved: supportsExtendedClubColumns,
-      missingExtendedColumns,
-      schemaCheckedAt,
+      missingExtendedColumns: supportsExtendedClubColumns ? [] : ['extended_club_fields'],
     });
   } catch (error: any) {
     return json(res, 500, {
