@@ -80,7 +80,7 @@ const shortcutLinks = [
   { label: 'ドライバー一覧', href: '/clubs/drivers' },
 ];
 
-const searchExamples = ['松山英樹', '山下美夢有', '竹田麗央', 'PING', '7W'];
+const searchExamples = ['松山英樹', '山下美夢有', 'ピン', '7W', 'ユーティリティ'];
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -149,7 +149,7 @@ export const Home = () => {
                     <input
                       value={heroSearch}
                       onChange={(event) => setHeroSearch(event.target.value)}
-                      placeholder="選手名・メーカー名で検索"
+                      placeholder="選手名・メーカー・番手・クラブ名で検索"
                       className="min-w-0 flex-1 bg-transparent text-sm font-bold text-[#102318] outline-none placeholder:text-slate-400 md:text-base"
                     />
                   </label>

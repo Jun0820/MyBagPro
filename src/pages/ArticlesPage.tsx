@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, CalendarDays, Newspaper } from 'lucide-react';
+import { ArrowRight, CalendarDays, Newspaper, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { defaultArticleVisual, getArticleVisual, isGenericArticleImage } from '../lib/articleVisuals';
+import { matchesSearchText } from '../lib/searchNormalizer';
 import { getTournamentSpotlightByArticleSlug } from '../lib/tournamentSpotlights';
 
 type ArticleFilter = 'all' | PublicArticle['articleType'];
@@ -51,6 +52,7 @@ export const ArticlesPage = () => {
   const [articles, setArticles] = useState<PublicArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState<ArticleFilter>('all');
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     let isMounted = true;
@@ -68,10 +70,13 @@ export const ArticlesPage = () => {
     };
   }, []);
 
-  const filteredArticles =
-    activeFilter === 'all'
-      ? articles
-      : articles.filter((article) => article.articleType === activeFilter);
+  const filteredArticles = articles.filter((article) => {
+    if (activeFilter !== 'all' && article.articleType !== activeFilter) return false;
+    return matchesSearchText(
+      [article.title, article.excerpt, article.body, article.relatedProfileName, article.seasonYear],
+      searchText
+    );
+  });
 
   const updateCount = articles.filter((article) => article.articleType === 'update').length;
   const columnCount = articles.filter((article) => article.articleType === 'column').length;
@@ -107,6 +112,28 @@ export const ArticlesPage = () => {
       </section>
 
       <section className="mt-5 grid gap-3.5 md:mt-7 md:gap-4">
+        <div className="rounded-lg bg-white p-2 shadow-sm ring-1 ring-slate-200">
+          <label className="flex min-h-[44px] items-center gap-2 rounded-md bg-slate-50 px-3">
+            <Search size={17} className="shrink-0 text-slate-400" />
+            <input
+              value={searchText}
+              onChange={(event) => setSearchText(event.target.value)}
+              placeholder="記事名・選手名・メーカー・番手で検索"
+              className="min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400"
+            />
+          </label>
+          <div className="mt-2 flex flex-wrap gap-1.5 px-1 pb-1">
+            {['7W', 'ピン', 'ユーティリティ', 'ドライバー', '女子プロ'].map((query) => (
+              <button
+                key={query}
+                onClick={() => setSearchText(query)}
+                className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-black text-slate-600 transition hover:bg-golf-50 hover:text-golf-700"
+              >
+                {query}
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="flex flex-wrap gap-3">
           {(['all', 'update', 'column', 'news'] as ArticleFilter[]).map((filter) => (
             <button

@@ -5,6 +5,7 @@ import { trackEvent } from '../lib/analytics';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from '../lib/contentProfiles';
 import { profileCategories, type ProfileCategory } from '../lib/profileMetadata';
 import { getProfileVisuals } from '../lib/profileVisuals';
+import { matchesSearchText } from '../lib/searchNormalizer';
 
 const kanaGroups = [
   { id: 'all', label: 'すべて' },
@@ -31,6 +32,8 @@ const headSpeedGroups = [
   { id: '52to54', label: '52-54.9m/s', min: 52, max: 55 },
   { id: 'gte55', label: '55m/s以上', min: 55 },
 ] as const;
+
+const searchSuggestions = ['ピン', 'PING', '7W', 'ユーティリティ', 'Pro V1x', 'ドライバー'];
 
 const toHiragana = (value: string) =>
   value.replace(/[\u30a1-\u30f6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60));
@@ -87,7 +90,7 @@ export const ProsSettingsPage = () => {
   }, [searchParams]);
 
   const filteredProfiles = useMemo(() => {
-    const query = searchText.trim().toLowerCase();
+    const query = searchText.trim();
     return profiles
       .filter((profile) => {
         if (activeCategory !== 'all' && profile.category !== activeCategory) {
@@ -106,11 +109,39 @@ export const ProsSettingsPage = () => {
         }
         if (!query) return true;
 
-        const haystack = [profile.name, profile.kanaName || '', profile.categoryLabel, profile.contractDisplay]
-          .join(' ')
-          .toLowerCase();
-
-        return haystack.includes(query);
+        return matchesSearchText(
+          [
+            profile.name,
+            profile.kanaName,
+            profile.categoryLabel,
+            profile.contractDisplay,
+            profile.contractMaker,
+            profile.ball,
+            profile.tagline,
+            profile.summary,
+            profile.headSpeed,
+            profile.seasonYear,
+            profile.latestSourcePolicy,
+            profile.verifiedAt,
+            ...profile.strengths,
+            ...profile.sources.flatMap((source) => [source.title, source.notes, source.checkedAt]),
+            ...profile.clubs.flatMap((club) => [
+              club.category,
+              club.brand,
+              club.model,
+              club.loft,
+              club.specLabel,
+              club.shaftBrand,
+              club.shaftModel,
+              club.shaftWeight,
+              club.shaftFlex,
+              club.carryDistance,
+              club.totalDistance,
+              club.sourceNote,
+            ]),
+          ],
+          query
+        );
       })
       .sort((a, b) => (a.kanaName || a.name).localeCompare(b.kanaName || b.name, 'ja'));
   }, [activeCategory, activeHeadSpeed, activeKana, profiles, searchText]);
@@ -138,7 +169,7 @@ export const ProsSettingsPage = () => {
                 プロのクラブセッティング一覧
               </h1>
               <p className="mt-1.5 text-sm font-bold text-slate-500">
-                名前、カテゴリ、ヘッドスピードで素早く絞り込めます。
+                選手名、メーカー、番手、クラブ名、ボール名で素早く絞り込めます。
               </p>
             </div>
             <div className="inline-flex self-start rounded-full bg-slate-100/90 px-3 py-1.5 text-sm font-black text-trust-navy">
@@ -158,7 +189,7 @@ export const ProsSettingsPage = () => {
                       applyFilters({ search: searchText.trim(), category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
                     }
                   }}
-                  placeholder="選手名を入力"
+                  placeholder="選手名・メーカー・番手・クラブ名で検索"
                   className="w-full bg-transparent text-sm font-bold text-slate-800 outline-none placeholder:text-slate-400"
                 />
               </div>
@@ -179,6 +210,20 @@ export const ProsSettingsPage = () => {
                   クリア
                 </button>
               </div>
+            </div>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {searchSuggestions.map((suggestion) => (
+                <button
+                  key={suggestion}
+                  onClick={() => {
+                    setSearchText(suggestion);
+                    applyFilters({ search: suggestion, category: activeCategory, kana: activeKana, headSpeed: activeHeadSpeed });
+                  }}
+                  className="rounded-full bg-white px-2.5 py-1 text-[11px] font-black text-slate-600 ring-1 ring-slate-100 transition hover:bg-golf-50 hover:text-golf-700"
+                >
+                  {suggestion}
+                </button>
+              ))}
             </div>
             <div className="mt-3.5 space-y-2.5">
               <div>
