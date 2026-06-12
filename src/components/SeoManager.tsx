@@ -7,9 +7,9 @@ const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as 
 
 const routeSeoMap: Record<string, { title: string; description: string; noindex?: boolean; keywords?: string[]; image?: string }> = {
   '/': {
-    title: 'プロのクラブセッティング検索サイト',
-    description: '石川遼、中島啓太、松山英樹など有名プロのクラブセッティングを検索できる My Bag Pro。ドライバー、アイアン、パター、使用ボールまで確認済みデータを掲載します。',
-    keywords: ['クラブセッティング', 'プロ 使用クラブ', 'ゴルフ WITB', 'ゴルフクラブ 診断', 'MyBagPro'],
+    title: 'プロの14本から自分のクラブ選びへ',
+    description: 'MyBagProは、プロのクラブセッティング確認、自分のバッグ登録、AI診断、購入検討までつなげるゴルフクラブ分析サイトです。',
+    keywords: ['クラブセッティング', 'プロ 使用クラブ', 'ゴルフ WITB', 'ゴルフクラブ 診断', 'MyBagPro', '女子プロ クラブセッティング'],
     image: '/article-visuals/golf-bag-course.jpg',
   },
   '/pros': {

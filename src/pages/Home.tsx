@@ -38,7 +38,7 @@ const featuredLinks = [
   {
     label: '最新更新',
     title: 'プロのクラブセッティング一覧',
-    text: '掲載版、更新日、使用クラブをまとめて確認',
+    text: '使用確認時期、更新日、使用クラブをまとめて確認',
     href: '/pros',
     image: '/article-visuals/golf-bag-course.jpg',
   },
@@ -68,6 +68,15 @@ const statItems = [
   { label: 'プロセッティング', value: '掲載中', icon: Trophy },
   { label: 'My Clubs', value: '保存対応', icon: ClipboardList },
   { label: 'AI診断', value: '無料', icon: BarChart3 },
+];
+
+const shortcutLinks = [
+  { label: '日本女子プロ', href: '/pros?category=japan_women' },
+  { label: '日本男子プロ', href: '/pros?category=japan_men' },
+  { label: '海外男子', href: '/pros?category=overseas_men' },
+  { label: '海外女子', href: '/pros?category=overseas_women' },
+  { label: '記事・コラム', href: '/articles' },
+  { label: 'ドライバー一覧', href: '/clubs/drivers' },
 ];
 
 export const Home = () => {
@@ -165,6 +174,17 @@ export const Home = () => {
               </button>
             );
           })}
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2 border-b border-slate-200 pb-4 md:mt-5 md:border-b-0 md:pb-0">
+          {shortcutLinks.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => navigate(item.href)}
+              className="inline-flex min-h-[34px] items-center rounded-full bg-white px-3 text-xs font-black text-slate-700 ring-1 ring-slate-200 transition hover:bg-[#eef6ef] hover:text-[#176534] hover:ring-[#b8d8c0] md:min-h-[38px] md:px-4 md:text-sm"
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
       </section>
 
