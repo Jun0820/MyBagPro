@@ -566,7 +566,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
     const closeFlowEditor = () => {
         if (isClubEditorSaving) return;
-        if (!discardEditingDraft('編集中の内容を破棄して一覧に戻りますか？')) return;
+        if (hasDirtyEditingDraft) {
+            applyEditingDraftLocally();
+        } else {
+            setEditingClubId(null);
+            setEditingDraft(null);
+            setExpandedClubId(null);
+        }
         setStep(4);
         setShowFlowEditor(false);
     };
@@ -577,13 +583,25 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         setStep(4);
 
         if (editingClubId === clubId) {
-            discardEditingDraft('編集中の内容を破棄して閉じますか？');
+            if (hasDirtyEditingDraft) {
+                const nextSetting = applyEditingDraftLocally();
+                if (nextSetting) {
+                    setClubEditorNotice({
+                        tone: 'success',
+                        message: '入力内容を一覧に反映しました。',
+                        detail: 'ほかのクラブも続けて編集できます。最後に「変更を保存」でまとめて保存してください。',
+                    });
+                }
+            } else {
+                setEditingClubId(null);
+                setEditingDraft(null);
+                setExpandedClubId(null);
+            }
             return;
         }
 
         if (editingClubId && editingClubId !== clubId && isDraftDirty(editingClubId, editingDraft)) {
-            const shouldDiscard = window.confirm('編集中の内容を破棄して別のクラブを編集しますか？');
-            if (!shouldDiscard) return;
+            applyEditingDraftLocally();
         }
 
         const sourceClub = latestSettingRef.current.clubs.find((club) => club.id === clubId);
@@ -592,7 +610,15 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         setExpandedClubId(clubId);
         setEditingClubId(clubId);
         setEditingDraft(buildEditorDraft(sourceClub, latestSettingRef.current));
-        setClubEditorNotice(null);
+        setClubEditorNotice(
+            editingClubId && editingClubId !== clubId
+                ? {
+                    tone: 'success',
+                    message: '前のクラブの入力内容を一覧に反映しました。',
+                    detail: '最後に「変更を保存」でまとめて保存できます。',
+                }
+                : null,
+        );
     };
 
     const cancelClubEditor = () => {
@@ -974,7 +1000,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         setClubEditorNotice({
             tone: warningMessage ? 'warning' : 'success',
             message: 'クラブ情報を一覧に反映しました。',
-            detail: warningMessage || '最後に「変更を保存」で保存できます。',
+            detail: warningMessage || 'ほかのクラブも続けて編集できます。最後に「変更を保存」でまとめて保存してください。',
         });
     };
 
@@ -1680,7 +1706,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                 </button>
                                                 <button type="button" onClick={saveEditedClub} disabled={isClubEditorSaving} className="inline-flex min-h-[40px] items-center gap-2 rounded-xl bg-trust-navy px-4 text-xs font-black text-white disabled:opacity-50 md:rounded-lg">
                                                     <Save size={14} />
-                                                    一覧に反映
+                                                    反映して閉じる
                                                 </button>
                                                 </div>
                                             </div>
