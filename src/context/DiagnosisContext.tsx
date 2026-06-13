@@ -3,7 +3,7 @@ import {
     type UserAccount, type UserProfile, type DiagnosisHistoryItem,
     INITIAL_ACCOUNT, INITIAL_PROFILE, TargetCategory
 } from '../types/golf';
-import type { ClubSetting } from '../types/golf';
+import type { Club, ClubSetting } from '../types/golf';
 import { generateFittingDiagnosis, type DiagnosisResult } from '../lib/gemini';
 import { convertProfileToCustomerData, sendToGoogleSheets } from '../lib/googleSheets';
 import { supabase } from '../lib/supabase';
@@ -219,6 +219,30 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const fetchWithTimeout = async (input: RequestInfo | URL, init: RequestInit, label: string, timeoutMs = 12000) => {
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
+        try {
+            return await fetch(input, {
+                ...init,
+                signal: controller.signal,
+            });
+        } catch (error) {
+            if (error instanceof DOMException && error.name === 'AbortError') {
+                throw new Error(`${label}: request timed out after ${Math.round(timeoutMs / 1000)}s`);
+            }
+            throw error;
+        } finally {
+            window.clearTimeout(timeoutId);
+        }
+    };
+
+    const isUndefinedColumnSaveError = (error: unknown) => {
+        const anyError = error as { code?: string; message?: string } | null;
+        const message = String(anyError?.message || error || '').toLowerCase();
+        return anyError?.code === '42703' || message.includes('column');
+    };
+
     const isUuid = (value: string) =>
         /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 
@@ -428,6 +452,197 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         }, buildBagSnapshot(activeProfile.myBag, activeProfile.currentBall || '')),
         updated_at: new Date().toISOString(),
     });
+
+    const toDirectBaseClubRow = (club: Record<string, any>, activeUser: UserAccount) => ({
+        id: club.id,
+        user_id: activeUser.id,
+        category: club.category || '',
+        brand: club.brand || '',
+        model: club.model || '',
+        shaft: club.shaft || '',
+        loft: club.loft || '',
+        distance: club.distance || '',
+    });
+
+    const toDirectExtendedClubRow = (club: Record<string, any>, activeUser: UserAccount) => ({
+        ...toDirectBaseClubRow(club, activeUser),
+        flex: club.flex || '',
+        number: club.number || '',
+        carry_distance: club.carryDistance || '',
+        worry: club.worry || '',
+        shaft_weight: club.shaftWeight || '',
+        sleeve_setting: club.sleeveSetting || '',
+        length: club.length || '',
+        lie_angle: club.lieAngle || '',
+        bounce: club.bounce || '',
+        grind: club.grind || '',
+        head_shape: club.headShape || '',
+        main_use: Array.isArray(club.mainUse) ? club.mainUse : [],
+        miss_tendency: Array.isArray(club.missTendency) ? club.missTendency : [],
+        memo: club.memo || '',
+        copied_from_club_id: isUuid(club.copiedFromClubId || '') ? club.copiedFromClubId : null,
+    });
+
+    const buildSaveSuccessPayload = (
+        payload: Record<string, any>,
+        normalizedClubs: Club[],
+        clubPayloads: Array<Record<string, any>>,
+    ) => ({
+        expectedCount: Number(payload?.expectedCount || normalizedClubs.length),
+        receivedCount: Number(payload?.receivedCount || clubPayloads.length),
+        dedupedCount: Number(payload?.dedupedCount || clubPayloads.length),
+        verifiedCount: Number(payload?.verifiedCount || normalizedClubs.length),
+        extendedColumnsSaved: Boolean(payload?.extendedColumnsSaved),
+        missingExtendedColumns: Array.isArray(payload?.missingExtendedColumns)
+            ? payload.missingExtendedColumns.filter((column: unknown): column is string => typeof column === 'string' && column.trim().length > 0)
+            : [],
+        sampleClubs: Array.isArray(payload?.sampleClubs) ? payload.sampleClubs : buildSaveDebugSample(normalizedClubs),
+    });
+
+    const applyMyBagSaveSuccess = (
+        requestedProfile: UserProfile,
+        normalizedClubs: Club[],
+        clubPayloads: Array<Record<string, any>>,
+        signature: string,
+        payload: Record<string, any>,
+    ) => {
+        lastRemoteSaveSignatureRef.current = signature;
+        lastRemoteBagSnapshotRef.current = {
+            clubs: cloneClubs(normalizedClubs),
+            ball: requestedProfile.myBag.ball || '',
+        };
+        const debugPayload = buildSaveSuccessPayload(payload, normalizedClubs, clubPayloads);
+        setLastSavedClubCount(debugPayload.verifiedCount);
+        setSaveDebugInfo(debugPayload);
+        setHasUnsavedChanges(false);
+        setPendingBagChangeCount(0);
+        setPendingBagChangeIds([]);
+        markSaveStatusSaved();
+    };
+
+    const saveMyBagDirectly = async (
+        activeUser: UserAccount,
+        profilePayload: Record<string, any>,
+        clubPayloads: Array<Record<string, any>>,
+    ) => {
+        const profileResult = await withTimeout(
+            supabase.from('profiles').upsert({
+                ...profilePayload,
+                id: activeUser.id,
+                updated_at: new Date().toISOString(),
+            }, { onConflict: 'id' }),
+            'profiles direct save',
+            10000,
+        );
+        assertSupabaseOk(profileResult, 'profiles direct save');
+
+        const dedupedPayloads = Array.from(
+            new Map(clubPayloads.filter((club) => club.id).map((club) => [club.id, club])).values(),
+        );
+        let persistedRows: Array<Record<string, any>> = dedupedPayloads.map((club) => toDirectExtendedClubRow(club, activeUser));
+        let extendedColumnsSaved = true;
+
+        if (persistedRows.length > 0) {
+            let upsertResult = await withTimeout(
+                supabase.from('clubs').upsert(persistedRows, { onConflict: 'id' }),
+                'clubs direct save',
+                10000,
+            );
+
+            if (upsertResult.error && isUndefinedColumnSaveError(upsertResult.error)) {
+                extendedColumnsSaved = false;
+                persistedRows = dedupedPayloads.map((club) => toDirectBaseClubRow(club, activeUser));
+                upsertResult = await withTimeout(
+                    supabase.from('clubs').upsert(persistedRows, { onConflict: 'id' }),
+                    'clubs direct base save',
+                    10000,
+                );
+            }
+
+            assertSupabaseOk(upsertResult, 'clubs direct save');
+        }
+
+        const persistedIds = persistedRows.map((club) => club.id).filter(Boolean);
+        const deleteQuery = supabase.from('clubs').delete().eq('user_id', activeUser.id);
+        const deleteResult = await withTimeout(
+            persistedIds.length > 0
+                ? deleteQuery.not('id', 'in', `(${persistedIds.join(',')})`)
+                : deleteQuery,
+            'clubs direct cleanup',
+            10000,
+        );
+        assertSupabaseOk(deleteResult, 'clubs direct cleanup');
+
+        const verifyResult = await withTimeout(
+            supabase.from('clubs').select('id').eq('user_id', activeUser.id),
+            'clubs direct verify',
+            10000,
+        );
+        assertSupabaseOk(verifyResult, 'clubs direct verify');
+
+        return {
+            ok: true,
+            expectedCount: clubPayloads.length,
+            receivedCount: clubPayloads.length,
+            dedupedCount: dedupedPayloads.length,
+            verifiedCount: Array.isArray(verifyResult.data) ? verifyResult.data.length : persistedRows.length,
+            extendedColumnsSaved,
+            missingExtendedColumns: extendedColumnsSaved ? [] : ['詳細項目'],
+            sampleClubs: buildSaveDebugSample(profileRef.current.myBag.clubs),
+        };
+    };
+
+    const saveMyBagClubDirectly = async (
+        activeUser: UserAccount,
+        profilePayload: Record<string, any>,
+        clubPayload: Record<string, any>,
+    ) => {
+        const profileResult = await withTimeout(
+            supabase.from('profiles').upsert({
+                ...profilePayload,
+                id: activeUser.id,
+                updated_at: new Date().toISOString(),
+            }, { onConflict: 'id' }),
+            'profiles direct club save',
+            10000,
+        );
+        assertSupabaseOk(profileResult, 'profiles direct club save');
+
+        let row: Record<string, any> = toDirectExtendedClubRow(clubPayload, activeUser);
+        let extendedColumnsSaved = true;
+        let upsertResult = await withTimeout(
+            supabase.from('clubs').upsert(row, { onConflict: 'id' }),
+            'club direct save',
+            10000,
+        );
+
+        if (upsertResult.error && isUndefinedColumnSaveError(upsertResult.error)) {
+            extendedColumnsSaved = false;
+            row = toDirectBaseClubRow(clubPayload, activeUser);
+            upsertResult = await withTimeout(
+                supabase.from('clubs').upsert(row, { onConflict: 'id' }),
+                'club direct base save',
+                10000,
+            );
+        }
+
+        assertSupabaseOk(upsertResult, 'club direct save');
+
+        const verifyResult = await withTimeout(
+            supabase.from('clubs').select('id').eq('user_id', activeUser.id).eq('id', row.id).maybeSingle(),
+            'club direct verify',
+            10000,
+        );
+        assertSupabaseOk(verifyResult, 'club direct verify');
+
+        return {
+            ok: true,
+            receivedCount: 1,
+            verifiedCount: verifyResult.data ? 1 : 0,
+            extendedColumnsSaved,
+            missingExtendedColumns: extendedColumnsSaved ? [] : ['詳細項目'],
+        };
+    };
 
     const refreshUnsavedChanges = (activeUser = userRef.current, activeProfile = profileRef.current) => {
         if (!activeUser.isLoggedIn || !activeUser.id || !isInitialSyncComplete) {
@@ -885,8 +1100,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 throw new Error('session fetch: missing access token');
             }
 
-            const response = await withTimeout(
-                fetch('/api/save-my-bag', {
+            const response = await fetchWithTimeout(
+                '/api/save-my-bag',
+                {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -897,7 +1113,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         clubPayloads,
                         expectedIds: normalizedClubs.map((club) => club.id),
                     }),
-                }),
+                },
                 'my bag api save',
                 15000,
             );
@@ -907,31 +1123,17 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 throw new Error(payload?.error || `my bag api save: HTTP ${response.status}`);
             }
 
-            lastRemoteSaveSignatureRef.current = signature;
-            lastRemoteBagSnapshotRef.current = {
-                clubs: cloneClubs(normalizedClubs),
-                ball: requestedProfile.myBag.ball || '',
-            };
-            setLastSavedClubCount(Number(payload?.verifiedCount || normalizedClubs.length));
-            setSaveDebugInfo({
-                expectedCount: Number(payload?.expectedCount || normalizedClubs.length),
-                receivedCount: Number(payload?.receivedCount || clubPayloads.length),
-                dedupedCount: Number(payload?.dedupedCount || clubPayloads.length),
-                verifiedCount: Number(payload?.verifiedCount || normalizedClubs.length),
-                extendedColumnsSaved: Boolean(payload?.extendedColumnsSaved),
-                missingExtendedColumns: Array.isArray(payload?.missingExtendedColumns)
-                    ? payload.missingExtendedColumns.filter((column: unknown): column is string => typeof column === 'string' && column.trim().length > 0)
-                    : [],
-                sampleClubs: Array.isArray(payload?.sampleClubs) ? payload.sampleClubs : buildSaveDebugSample(normalizedClubs),
-            });
-            setHasUnsavedChanges(false);
-            setPendingBagChangeCount(0);
-            setPendingBagChangeIds([]);
-            markSaveStatusSaved();
+            applyMyBagSaveSuccess(requestedProfile, normalizedClubs, clubPayloads, signature, payload);
         } catch (error) {
-            console.error('manual my bag save error:', error);
-            setSaveStatus('error');
-            setSaveErrorDetail(error instanceof Error ? error.message : String(error));
+            console.warn('manual my bag api save failed; trying direct save fallback:', error);
+            try {
+                const fallbackPayload = await saveMyBagDirectly(activeUser, profilePayload, clubPayloads);
+                applyMyBagSaveSuccess(requestedProfile, normalizedClubs, clubPayloads, signature, fallbackPayload);
+            } catch (fallbackError) {
+                console.error('manual my bag save error:', { apiError: error, fallbackError });
+                setSaveStatus('error');
+                setSaveErrorDetail('保存に失敗しました。入力内容はこの端末に残っています。通信環境を確認してもう一度保存してください。');
+            }
         } finally {
             setIsManualSaveInFlight(false);
         }
@@ -1023,8 +1225,9 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 throw new Error('session fetch: missing access token');
             }
 
-            const response = await withTimeout(
-                fetch('/api/save-my-bag-club', {
+            const response = await fetchWithTimeout(
+                '/api/save-my-bag-club',
+                {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1034,7 +1237,7 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         profilePayload,
                         clubPayload: targetClubPayload,
                     }),
-                }),
+                },
                 'my bag api club save',
                 12000,
             );
@@ -1080,11 +1283,51 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             markSaveStatusSaved();
             return { ok: true };
         } catch (error) {
-            console.error('manual my bag club save error:', error);
-            setSaveStatus('error');
-            const errorMessage = error instanceof Error ? error.message : String(error);
-            setSaveErrorDetail(errorMessage);
-            return { ok: false, error: errorMessage };
+            console.warn('manual my bag club api save failed; trying direct save fallback:', error);
+            try {
+                const fallbackPayload = await saveMyBagClubDirectly(activeUser, profilePayload, targetClubPayload);
+                const mergedRemoteClubs = mergeRemoteSnapshotClub(lastRemoteBagSnapshotRef.current.clubs, targetClub);
+                const mergedRemoteBall = targetClub.category === TargetCategory.BALL
+                    ? (requestedProfile.myBag.ball || targetClub.model || '')
+                    : lastRemoteBagSnapshotRef.current.ball;
+
+                lastRemoteBagSnapshotRef.current = {
+                    clubs: cloneClubs(mergedRemoteClubs),
+                    ball: mergedRemoteBall,
+                };
+
+                const remoteBaselineProfile: UserProfile = {
+                    ...requestedProfile,
+                    myBag: {
+                        ...requestedProfile.myBag,
+                        clubs: cloneClubs(mergedRemoteClubs),
+                        ball: mergedRemoteBall,
+                    },
+                };
+
+                lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(activeUser, remoteBaselineProfile).signature;
+                setLastSavedClubCount(Number(fallbackPayload?.verifiedCount || 1));
+                setSaveDebugInfo({
+                    expectedCount: 1,
+                    receivedCount: Number(fallbackPayload?.receivedCount || 1),
+                    dedupedCount: 1,
+                    verifiedCount: Number(fallbackPayload?.verifiedCount || 1),
+                    extendedColumnsSaved: Boolean(fallbackPayload?.extendedColumnsSaved),
+                    missingExtendedColumns: Array.isArray(fallbackPayload?.missingExtendedColumns)
+                        ? fallbackPayload.missingExtendedColumns.filter((column: unknown): column is string => typeof column === 'string' && column.trim().length > 0)
+                        : [],
+                    sampleClubs: buildSaveDebugSample([targetClub]),
+                });
+                refreshUnsavedChanges(activeUser, requestedProfile);
+                markSaveStatusSaved();
+                return { ok: true };
+            } catch (fallbackError) {
+                console.error('manual my bag club save error:', { apiError: error, fallbackError });
+                setSaveStatus('error');
+                const errorMessage = '保存に失敗しました。入力内容はこの端末に残っています。通信環境を確認してもう一度保存してください。';
+                setSaveErrorDetail(errorMessage);
+                return { ok: false, error: errorMessage };
+            }
         } finally {
             setIsManualSaveInFlight(false);
         }
