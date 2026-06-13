@@ -787,6 +787,18 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         return () => window.clearTimeout(timeoutId);
     }, [saveStatus, isManualSaveInFlight]);
 
+    useEffect(() => {
+        if (!isManualSaveInFlight) return;
+
+        const timeoutId = window.setTimeout(() => {
+            setIsManualSaveInFlight(false);
+            setSaveStatus((current) => (current === 'saving' ? 'error' : current));
+            setSaveErrorDetail('保存に時間がかかっています。入力内容はこの端末に残っています。少し時間をおいて再度保存してください。');
+        }, 20000);
+
+        return () => window.clearTimeout(timeoutId);
+    }, [isManualSaveInFlight]);
+
     // Manual Save Trigger (Immediate)
     const manualSave = async (profileOverride?: UserProfile) => {
         const requestedProfile = profileOverride || profileRef.current;
@@ -859,7 +871,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         });
 
         try {
-            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+            const { data: sessionData, error: sessionError } = await withTimeout(
+                supabase.auth.getSession(),
+                'session fetch',
+                6000,
+            );
             if (sessionError) {
                 throw new Error(`session fetch: ${sessionError.message}`);
             }
@@ -993,7 +1009,11 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
         });
 
         try {
-            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+            const { data: sessionData, error: sessionError } = await withTimeout(
+                supabase.auth.getSession(),
+                'session fetch',
+                6000,
+            );
             if (sessionError) {
                 throw new Error(`session fetch: ${sessionError.message}`);
             }
