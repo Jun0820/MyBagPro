@@ -158,7 +158,6 @@ export const MyGearPage = () => {
             tone: 'bg-[#7e49b6]',
         },
     ];
-
     const handleClose = () => {
         navigate('/');
     };
@@ -201,6 +200,54 @@ export const MyGearPage = () => {
             }
         }, { replace: true });
     };
+
+    const pageInfo = {
+        view: {
+            title: 'ダッシュボード',
+            description: '保存状況と入力の進み具合を確認できます。',
+            primaryLabel: 'マイクラブを開く',
+            onPrimary: () => navigateMyPageTab('clubs'),
+        },
+        clubs: {
+            title: 'マイクラブ',
+            description: 'クラブをまとめて編集し、最後に一括保存できます。',
+            primaryLabel: '変更を保存',
+            onPrimary: () => manualSaveMyBag(profile.myBag),
+        },
+        profile: {
+            title: 'プロフィール',
+            description: '診断と公開ページに使う基本情報を整えます。',
+            primaryLabel: 'プロフィールを保存',
+            onPrimary: () => manualSave(),
+        },
+    }[activeTab];
+
+    const nextActions = [
+        {
+            label: 'クラブ登録',
+            helper: profile.myBag.clubs.length >= 8 ? `${profile.myBag.clubs.length}本登録済み` : '代表番手から登録しましょう',
+            done: profile.myBag.clubs.length >= 8,
+            action: () => navigateMyPageTab('clubs'),
+        },
+        {
+            label: '飛距離入力',
+            helper: distanceEligibleClubs.length > 0 ? `${clubsWithDistance}/${distanceEligibleClubs.length}本入力` : 'クラブ登録後に入力できます',
+            done: distanceEligibleClubs.length > 0 && clubsWithDistance === distanceEligibleClubs.length,
+            action: () => navigateMyPageTab('clubs'),
+        },
+        {
+            label: '使用ボール',
+            helper: profile.myBag.ball || 'ボールを登録しましょう',
+            done: Boolean(profile.myBag.ball),
+            action: () => openBagTabWithFocus('ball-first'),
+        },
+        {
+            label: 'プロフィール情報',
+            helper: profile.headSpeed > 0 && profile.averageScore ? '診断に使える状態です' : 'HS・平均スコアを入れましょう',
+            done: profile.headSpeed > 0 && Boolean(profile.averageScore),
+            action: () => navigateMyPageTab('profile'),
+        },
+    ];
 
     const consumeRequestedEditClub = () => {
         const nextParams = new URLSearchParams(searchParams);
@@ -311,8 +358,8 @@ export const MyGearPage = () => {
                         <section className="mb-3 border-b border-[#dfe7df] pb-3 md:mb-4 md:pb-4">
                             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                                 <div>
-                                    <div className="hidden text-sm font-bold text-slate-500 md:block">あなたのゴルフデータと診断結果を確認できます。</div>
-                                    <h1 className="mt-0.5 text-2xl font-black tracking-tight text-[#151719] md:mt-1 md:text-5xl">マイページ</h1>
+                                    <div className="hidden text-sm font-bold text-slate-500 md:block">{pageInfo.description}</div>
+                                    <h1 className="mt-0.5 text-2xl font-black tracking-tight text-[#151719] md:mt-1 md:text-5xl">{pageInfo.title}</h1>
                                 </div>
                                 <div className="flex flex-col gap-2 lg:min-w-[360px]">
                                     {user.isLoggedIn && (
@@ -324,7 +371,7 @@ export const MyGearPage = () => {
                                             ログアウト
                                         </button>
                                     )}
-                                    <div className="grid grid-cols-2 gap-1.5 rounded-xl bg-slate-50 p-1 ring-1 ring-slate-200/70 lg:hidden">
+                                    <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-slate-50 p-1 ring-1 ring-slate-200/70 lg:hidden">
                                         {sidebarMenu.map((item) => {
                                             const Icon = item.icon;
                                             return (
@@ -342,6 +389,14 @@ export const MyGearPage = () => {
                                             );
                                         })}
                                     </div>
+                                    <button
+                                        type="button"
+                                        onClick={pageInfo.onPrimary}
+                                        disabled={isManualSaveInFlight}
+                                        className="inline-flex min-h-[40px] items-center justify-center rounded-xl bg-[#176534] px-4 text-xs font-black text-white shadow-sm transition hover:bg-[#12512a] disabled:cursor-not-allowed disabled:opacity-60 lg:hidden"
+                                    >
+                                        {isManualSaveInFlight ? '保存中...' : pageInfo.primaryLabel}
+                                    </button>
                                 </div>
                             </div>
                         </section>
@@ -418,6 +473,26 @@ export const MyGearPage = () => {
                                                 <div className={`h-full rounded-full ${item.tone}`} style={{ width: `${item.value}%` }} />
                                             </div>
                                         </div>
+                                    ))}
+                                </div>
+                                <div className="mt-2.5 grid gap-1.5 md:mt-4 md:grid-cols-4 md:gap-2">
+                                    {nextActions.map((item) => (
+                                        <button
+                                            key={item.label}
+                                            type="button"
+                                            onClick={item.action}
+                                            className={cn(
+                                                'flex min-h-[52px] items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-left ring-1 transition md:min-h-[64px] md:flex-col md:items-start md:justify-center md:px-3',
+                                                item.done ? 'bg-white text-slate-600 ring-slate-200' : 'bg-[#fffaf0] text-[#7a4b13] ring-amber-200',
+                                            )}
+                                        >
+                                            <span className="min-w-0">
+                                                <span className="block text-[10px] font-black text-slate-400">{item.done ? '完了' : '次におすすめ'}</span>
+                                                <span className="mt-0.5 block text-xs font-black md:text-sm">{item.label}</span>
+                                                <span className="mt-0.5 block truncate text-[10px] font-bold opacity-75">{item.helper}</span>
+                                            </span>
+                                            {item.done && <CheckCircle2 size={16} className="shrink-0 text-emerald-500" />}
+                                        </button>
                                     ))}
                                 </div>
                                 <div className="mt-2.5 grid grid-cols-2 gap-2 md:mt-4 md:grid-cols-3">

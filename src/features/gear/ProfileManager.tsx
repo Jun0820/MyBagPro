@@ -87,10 +87,10 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
     };
 
     return (
-        <div className="space-y-4 animate-fadeIn pb-8">
+        <div className="space-y-3 animate-fadeIn pb-24 md:space-y-4 md:pb-8">
             {/* Header / Avatar Section */}
-            <div className="bg-white rounded-[32px] overflow-hidden shadow-xl border border-slate-100">
-                <div className="relative h-48 md:h-56 bg-trust-navy overflow-hidden">
+            <div className="overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm">
+                <div className="relative h-24 overflow-hidden bg-trust-navy md:h-48">
                     {coverPhoto ? (
                          <img src={coverPhoto} className="w-full h-full object-cover opacity-40 blur-[1px]" alt="Cover" />
                     ) : (
@@ -100,25 +100,25 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                     <div className="absolute inset-0 flex items-center justify-center gap-4">
                         <button 
                             onClick={() => fileInputRef.current?.click()}
-                            className="bg-white/10 backdrop-blur-md border border-white/30 rounded-full px-6 py-2.5 text-white hover:bg-white/20 transition-all active:scale-95 group flex items-center gap-2"
+                            className="group flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 md:px-6 md:py-2.5"
                         >
-                            <Image size={20} className="group-hover:scale-110 transition-transform" />
-                            <span className="text-sm font-bold">写真をアップロード</span>
+                            <Image size={18} className="transition-transform group-hover:scale-110 md:size-5" />
+                            <span className="text-xs font-bold md:text-sm">写真を変更</span>
                         </button>
                         <input type="file" ref={fileInputRef} onChange={handlePhotoUpload} className="hidden" accept="image/*" />
                     </div>
                 </div>
 
                 {/* Template Selector */}
-                <div className="px-6 md:px-10 py-4 bg-slate-50 border-b border-slate-100">
-                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">見せ方を選ぶ</div>
-                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                <div className="border-b border-slate-100 bg-slate-50 px-3 py-3 md:px-10 md:py-4">
+                    <div className="mb-2 text-[10px] font-black uppercase tracking-widest text-slate-400 md:mb-3">見せ方を選ぶ</div>
+                    <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1 md:gap-3 md:pb-2">
                         {BACKGROUND_TEMPLATES.map(tmpl => (
                             <button
                                 key={tmpl.id}
                                 onClick={() => onUpdateCoverPhoto(tmpl.url)}
                                 className={cn(
-                                    "relative min-w-[100px] h-14 rounded-xl overflow-hidden border-2 transition-all flex-shrink-0",
+                                    "relative h-11 min-w-[76px] flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all md:h-14 md:min-w-[100px] md:rounded-xl",
                                     coverPhoto === tmpl.url ? "border-golf-500 ring-2 ring-golf-500/20 scale-95" : "border-transparent hover:border-slate-300"
                                 )}
                             >
@@ -131,30 +131,30 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                     </div>
                 </div>
 
-                <div className="px-6 md:px-10 pb-10 -mt-10 relative z-10">
-                    <div className="flex flex-col md:flex-row gap-6 md:items-end">
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-[24px] bg-white shadow-2xl border-4 border-white flex items-center justify-center overflow-hidden">
+                <div className="relative z-10 -mt-8 px-3 pb-5 md:-mt-10 md:px-10 md:pb-8">
+                    <div className="flex gap-3 md:gap-6 md:items-end">
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border-4 border-white bg-white shadow-lg md:h-28 md:w-28 md:rounded-2xl">
                             {coverPhoto ? (
                                 <img src={coverPhoto} className="w-full h-full object-cover" alt="Profile" />
                             ) : (
-                                <User size={48} className="text-slate-200" />
+                                <User size={36} className="text-slate-200 md:size-12" />
                             )}
                         </div>
-                        <div className="flex-1 space-y-4">
+                        <div className="min-w-0 flex-1 space-y-2 md:space-y-4">
                             <div>
-                                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">プロフィール名</label>
+                                <label className="mb-1 ml-1 block text-[10px] font-black uppercase tracking-widest text-slate-400 md:mb-1.5">プロフィール名</label>
                                 <input 
                                     type="text" 
                                     value={userName} 
                                     onChange={e => onUpdateUserName(e.target.value)}
                                     placeholder="名前を設定..." 
-                                    className="w-full max-w-md bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3 text-xl font-bold text-trust-navy outline-none focus:border-golf-500 transition-all"
+                                    className="w-full max-w-md rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-base font-bold text-trust-navy outline-none transition-all focus:border-golf-500 md:rounded-2xl md:px-5 md:py-3 md:text-xl"
                                 />
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-6">
                         {/* Left Side: Basic Info */}
                         <div className="space-y-4">
                             <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-2">プロフィールの基本</h4>
@@ -360,13 +360,19 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
                 </div>
 
                 {/* Account Settings */}
-                <div className="bg-white rounded-[32px] shadow-xl border border-slate-100 p-8">
-                    <h4 className="font-black text-xs text-trust-navy uppercase tracking-[0.2em] border-b border-slate-100 pb-3 mb-6">アカウント設定</h4>
-                    <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                <div className="sticky bottom-[68px] z-20 rounded-lg border border-slate-100 bg-white/95 p-3 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur md:static md:p-5 md:shadow-sm md:backdrop-blur-0">
+                    <div className="mb-3 flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                        <h4 className="text-xs font-black uppercase tracking-[0.2em] text-trust-navy">保存</h4>
+                        <div className="text-[10px] font-bold text-slate-400">
+                            {saveStatus === 'saved' ? '保存完了' : saveStatus === 'error' ? '保存エラー' : isManualSaveInFlight ? '保存中' : '未保存の変更があれば保存してください'}
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
+                        <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row">
                             <button 
                                 onClick={() => onManualSave?.()} 
-                                className="w-full md:w-auto px-8 py-3 bg-trust-navy text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all shadow-lg active:scale-95"
+                                disabled={isManualSaveInFlight}
+                                className="flex min-h-[42px] w-full items-center justify-center gap-2 rounded-lg bg-trust-navy px-6 text-sm font-bold text-white shadow-sm transition-all hover:bg-slate-800 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
                             >
                                 {isManualSaveInFlight ? (
                                     <>
@@ -388,7 +394,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({
 
                             <button 
                                 onClick={() => onLogout?.()}
-                                className="w-full md:w-auto px-8 py-3 bg-red-50 text-red-600 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-red-100 transition-all active:scale-95 border border-red-100"
+                                className="flex min-h-[42px] w-full items-center justify-center gap-2 rounded-lg border border-red-100 bg-red-50 px-6 text-sm font-bold text-red-600 transition-all hover:bg-red-100 active:scale-95 md:w-auto"
                             >
                                 <span>ログアウト</span>
                             </button>
