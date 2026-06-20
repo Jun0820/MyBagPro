@@ -6,6 +6,7 @@ import {
     Copy,
     Layers3,
     Loader2,
+    MoreHorizontal,
     Save,
     Sparkles,
 } from 'lucide-react';
@@ -423,21 +424,21 @@ const displayShaftText = (club: Club) => {
     return Array.from(new Set(values)).join(' ');
 };
 
+const formatDistanceLabel = (value: string) => {
+    const trimmed = String(value || '').trim();
+    if (!trimmed || trimmed === '-') return '-';
+    return /y|yd|yard|ヤード/i.test(trimmed) ? trimmed : `${trimmed}y`;
+};
+
 const distanceBadgeText = (club: Club, view: 'total' | 'carry') => {
     if (club.category === TargetCategory.PUTTER || club.category === TargetCategory.BALL) {
-        return { label: '-', value: '-', sub: '' };
+        return '-';
     }
     const total = String(club.distance || '').trim();
     const carry = String(club.carryDistance || '').trim();
     const active = view === 'carry' ? carry : total;
     const fallback = view === 'carry' ? total : carry;
-    return {
-        label: view === 'carry' ? 'CARRY' : 'TOTAL',
-        value: active || fallback || '-',
-        sub: view === 'carry'
-            ? (total ? `T ${total}` : '')
-            : (carry ? `C ${carry}` : ''),
-    };
+    return formatDistanceLabel(active || fallback || '-');
 };
 
 const inferPutterHeadShape = (model: string) => {
@@ -1342,7 +1343,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
                     <div className="space-y-0 md:space-y-2">
                         {clubs.map((club) => {
-                            const isBall = club.category === TargetCategory.BALL;
                             const title = [club.brand, club.model].filter(Boolean).join(' ') || '未入力';
                             const distanceDisplay = distanceBadgeText(club, clubListDistanceView);
                             const meta = [
@@ -1351,28 +1351,19 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             ].filter(Boolean).join(' / ');
 
                             return (
-                                <article key={club.id} className={cn('grid min-h-[52px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-slate-200 py-1.5 last:border-b-0 md:min-h-[64px] md:rounded-lg md:border md:bg-white md:px-3 md:py-2 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
+                                <article key={club.id} className={cn('grid min-h-[58px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-slate-200 py-2 last:border-b-0 md:min-h-[66px] md:rounded-lg md:border md:bg-white md:px-3 md:py-2 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
                                     <div className="min-w-0">
                                         <div className="flex items-center gap-2 text-sm font-black text-trust-navy md:text-base">
-                                            <span className="inline-flex min-w-[38px] shrink-0 items-center justify-center rounded-md bg-trust-navy px-2 py-1 text-[11px] font-black leading-none text-white md:min-w-[44px] md:text-xs">{club.number || club.category}</span>
+                                            <span className="inline-flex min-w-[42px] shrink-0 items-center justify-center rounded-lg bg-[#176534] px-2 py-2 text-sm font-black leading-none text-white shadow-sm md:min-w-[48px] md:text-base">{club.number || club.category}</span>
                                             <span className="truncate">{title}</span>
                                         </div>
                                         <div className="mt-0.5 truncate text-[11px] font-bold text-slate-500 md:text-xs">{meta || '-'}</div>
                                     </div>
-                                    <div className="flex items-center gap-1.5">
-                                        <div className="min-w-[58px] rounded-lg bg-slate-50 px-2 py-1 text-right ring-1 ring-slate-200 md:min-w-[70px]">
-                                            <div className="text-[8px] font-black leading-none tracking-[0.08em] text-slate-400">{distanceDisplay.label}</div>
-                                            <div className="mt-0.5 text-sm font-black leading-none text-trust-navy md:text-base">{distanceDisplay.value}</div>
-                                            {distanceDisplay.sub && <div className="mt-0.5 text-[9px] font-bold leading-none text-slate-400">{distanceDisplay.sub}</div>}
-                                        </div>
-                                        <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:px-3 md:text-xs">
-                                            編集
+                                    <div className="flex items-center gap-2">
+                                        <div className="min-w-[62px] text-right text-2xl font-black leading-none text-[#176534] md:min-w-[78px] md:text-3xl">{distanceDisplay}</div>
+                                        <button type="button" aria-label={`${club.number || club.category}を編集`} disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-50 hover:text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:h-9 md:w-9">
+                                            <MoreHorizontal size={20} />
                                         </button>
-                                        {!isBall && (
-                                            <button type="button" disabled={isClubEditorSaving} onClick={() => duplicateClubFromCard(club)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:px-3 md:text-xs">
-                                                複製
-                                            </button>
-                                        )}
                                     </div>
                                 </article>
                             );
@@ -1735,11 +1726,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             </div>
                                         </div>
                                         <div className="row-span-2 flex flex-wrap items-center justify-end gap-1 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2">
-                                            <div className="mr-0.5 min-w-[58px] rounded-lg bg-slate-50 px-2 py-1 text-right ring-1 ring-slate-200 md:min-w-[70px]">
-                                                <div className="text-[8px] font-black leading-none tracking-[0.08em] text-slate-400">{distanceDisplay.label}</div>
-                                                <div className="mt-0.5 text-sm font-black leading-none text-trust-navy md:text-base">{distanceDisplay.value}</div>
-                                                {distanceDisplay.sub && <div className="mt-0.5 text-[9px] font-bold leading-none text-slate-400">{distanceDisplay.sub}</div>}
-                                            </div>
+                                            <div className="mr-0.5 min-w-[62px] text-right text-2xl font-black leading-none text-[#176534] md:min-w-[78px] md:text-3xl">{distanceDisplay}</div>
                                             <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
                                                 {isExpanded ? '閉じる' : '編集'}
                                             </button>
