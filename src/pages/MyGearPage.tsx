@@ -13,6 +13,9 @@ import {
     History,
     Trophy,
     LogOut,
+    Plus,
+    Save,
+    ChevronRight,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useEffect, useMemo } from 'react';
@@ -119,6 +122,25 @@ export const MyGearPage = () => {
                 : 'クラウド保存済み';
     const profileInitial = (profile.name || 'M').trim().charAt(0).toUpperCase();
     const compactMyClubs = profile.myBag.clubs;
+    const driverClub = profile.myBag.clubs.find((club) => club.category === TargetCategory.DRIVER || club.number === '1W');
+    const driverDistance = String(driverClub?.distance || driverClub?.carryDistance || '').trim();
+    const driverDistanceLabel = driverDistance ? (/y|yd|yard|ヤード/i.test(driverDistance) ? driverDistance : `${driverDistance}y`) : '-';
+    const missingMyBagItems = [
+        {
+            key: 'putter',
+            title: 'パターを登録する',
+            helper: 'パターの情報を登録してパッティング精度を向上させましょう',
+            done: registeredCategories.has(TargetCategory.PUTTER),
+            action: () => openBagTabWithFocus('missing-clubs'),
+        },
+        {
+            key: 'ball',
+            title: 'ボールを登録する',
+            helper: '使用しているボールを登録しましょう',
+            done: registeredCategories.has(TargetCategory.BALL) || Boolean(profile.myBag.ball),
+            action: () => openBagTabWithFocus('ball-first'),
+        },
+    ];
     const dashboardScore = Math.max(
         18,
         Math.min(
@@ -259,7 +281,7 @@ export const MyGearPage = () => {
     return (
         <div className="min-h-screen pb-20 md:pb-0">
             <main className="mx-auto max-w-[1380px] px-3 py-3 md:px-6 md:py-7">
-                <div className="mb-3 flex items-center gap-2 md:mb-5 md:gap-3">
+                <div className={cn('mb-3 flex items-center gap-2 md:mb-5 md:gap-3', activeTab === 'clubs' && 'lg:hidden')}>
                     <button
                         onClick={handleClose}
                         className="inline-flex h-9 items-center gap-2 rounded-xl bg-slate-50 px-3 text-[11px] font-black text-slate-500 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30 md:h-10 md:px-4 md:text-xs"
@@ -358,11 +380,42 @@ export const MyGearPage = () => {
                         <section className="mb-3 border-b border-[#dfe7df] pb-3 md:mb-4 md:pb-4">
                             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                                 <div>
-                                    <div className="hidden text-sm font-bold text-slate-500 md:block">{pageInfo.description}</div>
-                                    <h1 className="mt-0.5 text-2xl font-black tracking-tight text-[#151719] md:mt-1 md:text-5xl">{pageInfo.title}</h1>
+                                    {activeTab === 'clubs' && (
+                                        <div className="mb-2 hidden items-center gap-2 text-xs font-black text-slate-500 lg:flex">
+                                            <button type="button" onClick={() => navigate('/')} className="transition hover:text-[#176534]">ホーム</button>
+                                            <ChevronRight size={13} />
+                                            <span className="text-[#176534]">マイクラブ</span>
+                                        </div>
+                                    )}
+                                    <div className={cn('hidden text-sm font-bold text-slate-500 md:block', activeTab === 'clubs' && 'lg:hidden')}>{pageInfo.description}</div>
+                                    <h1 className={cn('mt-0.5 text-2xl font-black tracking-tight text-[#151719] md:mt-1 md:text-5xl', activeTab === 'clubs' && 'lg:text-4xl')}>{pageInfo.title}</h1>
+                                    {activeTab === 'clubs' && (
+                                        <div className="mt-1 hidden text-xl font-black text-slate-500 lg:block">{profile.myBag.clubs.length}本登録済み</div>
+                                    )}
                                 </div>
                                 <div className="flex flex-col gap-2 lg:min-w-[360px]">
-                                    {user.isLoggedIn && (
+                                    {activeTab === 'clubs' && (
+                                        <div className="hidden items-center justify-end gap-3 lg:flex">
+                                            <button
+                                                type="button"
+                                                onClick={() => openBagTabWithFocus('missing-clubs')}
+                                                className="inline-flex min-h-[52px] min-w-[190px] items-center justify-center gap-2 rounded-lg border border-[#176534]/50 bg-white px-5 text-sm font-black text-[#176534] transition hover:bg-[#f2f8f4]"
+                                            >
+                                                <Plus size={18} />
+                                                クラブを追加
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => manualSaveMyBag(profile.myBag)}
+                                                disabled={isManualSaveInFlight}
+                                                className="inline-flex min-h-[52px] min-w-[190px] items-center justify-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white shadow-sm transition hover:bg-[#12512a] disabled:cursor-not-allowed disabled:opacity-60"
+                                            >
+                                                {isManualSaveInFlight ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
+                                                {isManualSaveInFlight ? '保存中...' : '保存する'}
+                                            </button>
+                                        </div>
+                                    )}
+                                    {user.isLoggedIn && activeTab !== 'clubs' && (
                                         <button
                                             onClick={handleLogout}
                                             className="inline-flex min-h-[40px] items-center justify-center gap-2 self-start rounded-xl bg-slate-50 px-3 text-xs font-black text-slate-600 ring-1 ring-slate-200/80 transition hover:text-[#166534] hover:ring-[#166534]/30 lg:min-h-[46px] lg:self-end lg:rounded-2xl lg:px-4 lg:text-sm"
@@ -515,37 +568,98 @@ export const MyGearPage = () => {
                 )}
 
                 {activeTab === 'clubs' && (
-                    <MyBagManager
-                        setting={profile.myBag}
-                        onUpdate={(next) =>
-                            setProfile((prev) => ({
-                                ...prev,
-                                myBag: typeof next === 'function' ? next(prev.myBag) : next,
-                            }))
-                        }
-                        onOpenBallDiagnosis={() => navigate('/ball-diagnosis')}
-                        saveStatus={saveStatus}
-                        isManualSaveInFlight={isManualSaveInFlight}
-                        saveErrorDetail={saveErrorDetail}
-                        hasUnsavedChanges={hasUnsavedChanges}
-                        pendingBagChangeCount={pendingBagChangeCount}
-                        pendingBagChangeIds={pendingBagChangeIds}
-                        lastCloudSavedAt={lastCloudSavedAt}
-                        lastSaveTargetClubCount={lastSaveTargetClubCount}
-                        lastSavedClubCount={lastSavedClubCount}
-                        extendedColumnsSaved={Boolean(saveDebugInfo?.extendedColumnsSaved)}
-                        missingExtendedColumns={saveDebugInfo?.missingExtendedColumns || []}
-                        onManualSave={(settingOverride) => {
-                            return manualSaveMyBag(settingOverride || profile.myBag);
-                        }}
-                        onManualSaveClub={(clubId, settingOverride) => {
-                            return manualSaveMyBagClub(clubId, settingOverride || profile.myBag);
-                        }}
-                        onReloadFromCloud={syncWithSupabase}
-                        intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
-                        requestedEditClubId={searchParams.get('editClub')}
-                        onConsumeRequestedEditClubId={consumeRequestedEditClub}
-                    />
+                    <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
+                        <MyBagManager
+                            setting={profile.myBag}
+                            onUpdate={(next) =>
+                                setProfile((prev) => ({
+                                    ...prev,
+                                    myBag: typeof next === 'function' ? next(prev.myBag) : next,
+                                }))
+                            }
+                            onOpenBallDiagnosis={() => navigate('/ball-diagnosis')}
+                            saveStatus={saveStatus}
+                            isManualSaveInFlight={isManualSaveInFlight}
+                            saveErrorDetail={saveErrorDetail}
+                            hasUnsavedChanges={hasUnsavedChanges}
+                            pendingBagChangeCount={pendingBagChangeCount}
+                            pendingBagChangeIds={pendingBagChangeIds}
+                            lastCloudSavedAt={lastCloudSavedAt}
+                            lastSaveTargetClubCount={lastSaveTargetClubCount}
+                            lastSavedClubCount={lastSavedClubCount}
+                            extendedColumnsSaved={Boolean(saveDebugInfo?.extendedColumnsSaved)}
+                            missingExtendedColumns={saveDebugInfo?.missingExtendedColumns || []}
+                            onManualSave={(settingOverride) => {
+                                return manualSaveMyBag(settingOverride || profile.myBag);
+                            }}
+                            onManualSaveClub={(clubId, settingOverride) => {
+                                return manualSaveMyBagClub(clubId, settingOverride || profile.myBag);
+                            }}
+                            onReloadFromCloud={syncWithSupabase}
+                            intakeMode={(searchParams.get('focus') as 'missing-clubs' | 'ball-first' | null) || 'default'}
+                            requestedEditClubId={searchParams.get('editClub')}
+                            onConsumeRequestedEditClubId={consumeRequestedEditClub}
+                            desktopLayout="table"
+                        />
+
+                        <aside className="hidden space-y-5 xl:block">
+                            <section className="rounded-lg bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                                <h2 className="text-lg font-black tracking-tight text-trust-navy">マイクラブのサマリー</h2>
+                                <div className="mt-7 flex justify-center">
+                                    <div className="flex h-28 w-28 items-center justify-center rounded-full bg-[#eef5ef] text-5xl font-black text-[#176534]">
+                                        ♜
+                                    </div>
+                                </div>
+                                <div className="mt-7">
+                                    <div className="text-sm font-black text-slate-500">登録クラブ数</div>
+                                    <div className="mt-2 flex items-center gap-3">
+                                        <span className="text-4xl font-black leading-none text-[#176534]">{profile.myBag.clubs.length}</span>
+                                        <span className="text-xl font-black text-[#176534]">本</span>
+                                        <span className="rounded-full bg-[#eef6ef] px-3 py-1 text-xs font-black text-[#176534] ring-1 ring-[#d6ead9]">完了</span>
+                                    </div>
+                                </div>
+                                <div className="mt-7 grid grid-cols-2 gap-4 border-t border-slate-200 pt-6">
+                                    <div>
+                                        <div className="text-xs font-black text-slate-500">ヘッドスピード</div>
+                                        <div className="mt-2 text-2xl font-black text-trust-navy">{profile.headSpeed > 0 ? `${profile.headSpeed}` : '-'}</div>
+                                        {profile.headSpeed > 0 && <div className="text-xs font-bold text-slate-500">m/s</div>}
+                                    </div>
+                                    <div className="border-l border-slate-200 pl-4">
+                                        <div className="text-xs font-black text-slate-500">ドライバー飛距離</div>
+                                        <div className="mt-2 text-2xl font-black text-trust-navy">{driverDistanceLabel}</div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section className="rounded-lg bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                                <h2 className="text-lg font-black tracking-tight text-trust-navy">未登録のアイテム</h2>
+                                <div className="mt-4 space-y-3">
+                                    {missingMyBagItems.filter((item) => !item.done).map((item) => (
+                                        <button
+                                            key={item.key}
+                                            type="button"
+                                            onClick={item.action}
+                                            className="group flex w-full items-center gap-4 rounded-lg bg-[#f8fbf8] p-4 text-left ring-1 ring-slate-200 transition hover:bg-[#eef6ef] hover:ring-[#176534]/30"
+                                        >
+                                            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-2xl font-black text-[#176534] ring-1 ring-[#dfeadf]">
+                                                {item.key === 'putter' ? '⌞' : '●'}
+                                            </span>
+                                            <span className="min-w-0 flex-1">
+                                                <span className="block text-base font-black text-trust-navy">{item.title}</span>
+                                                <span className="mt-1 block text-sm font-bold leading-relaxed text-slate-500">{item.helper}</span>
+                                            </span>
+                                            <ChevronRight size={20} className="text-[#176534] transition group-hover:translate-x-0.5" />
+                                        </button>
+                                    ))}
+                                    {missingMyBagItems.every((item) => item.done) && (
+                                        <div className="rounded-lg bg-[#eef6ef] p-4 text-sm font-black text-[#176534] ring-1 ring-[#d6ead9]">
+                                            パターとボールも登録済みです。
+                                        </div>
+                                    )}
+                                </div>
+                            </section>
+                        </aside>
+                    </div>
                 )}
 
                 {activeTab === 'profile' && (

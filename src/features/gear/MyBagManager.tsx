@@ -164,6 +164,7 @@ interface MyBagManagerProps {
     intakeMode?: 'default' | 'missing-clubs' | 'ball-first';
     requestedEditClubId?: string | null;
     onConsumeRequestedEditClubId?: () => void;
+    desktopLayout?: 'default' | 'table';
 }
 
 type ClubEditorDraft = {
@@ -494,6 +495,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     intakeMode = 'default',
     requestedEditClubId = null,
     onConsumeRequestedEditClubId,
+    desktopLayout = 'default',
 }) => {
     const latestSettingRef = useRef(setting);
     const [step, setStep] = useState<Step>(1);
@@ -531,6 +533,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const nonBallClubs = setting.clubs.filter((club) => club.category !== TargetCategory.BALL);
     const ballClub = setting.clubs.find((club) => club.category === TargetCategory.BALL);
     const warningOverLimit = nonBallClubs.length > ROUND_LIMIT;
+    const useDesktopTable = desktopLayout === 'table';
 
     const commitSetting = useCallback((updater: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => {
         const base = latestSettingRef.current;
@@ -1281,7 +1284,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
     if (!showFlowEditor && clubs.length > 0) {
         return (
-            <div className="animate-fadeIn space-y-2.5 pb-24 md:space-y-4 md:pb-0">
+            <div className={cn('animate-fadeIn space-y-2.5 pb-24 md:space-y-4 md:pb-0', useDesktopTable && 'xl:space-y-0')}>
                 {clubEditorNotice && (
                     <div
                         className={cn(
@@ -1296,9 +1299,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
                 )}
 
-                <section className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                    <div className="mb-2 flex items-center justify-between gap-2 md:mb-4">
-                        <div className="min-w-0">
+                <section className={cn('px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200', useDesktopTable && 'md:p-4 xl:p-0 xl:shadow-none')}>
+                    <div className={cn('mb-2 flex items-center justify-between gap-2 md:mb-4', useDesktopTable && 'xl:mb-5')}>
+                        <div className={cn('min-w-0', useDesktopTable && 'xl:hidden')}>
                             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-[#176534]">MY CLUBS</div>
                             <h2 className="mt-0.5 text-lg font-black tracking-tight text-trust-navy md:mt-1 md:text-2xl">マイクラブ</h2>
                             <div className="mt-1 flex items-center gap-3 text-[11px] font-bold text-slate-500 md:text-sm">
@@ -1307,7 +1310,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 <span className="truncate">{purpose}</span>
                             </div>
                         </div>
-                        <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
+                        <div className={cn('flex shrink-0 items-center gap-1.5 md:gap-2', useDesktopTable && 'xl:w-full xl:justify-center')}>
                             <div className="inline-flex rounded-lg bg-slate-50 p-0.5 text-[10px] font-black ring-1 ring-slate-200 md:text-xs">
                                 <button
                                     type="button"
@@ -1327,21 +1330,30 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <button
                                 type="button"
                                 onClick={() => enterFlowEditor(2)}
-                                className="inline-flex min-h-[34px] items-center rounded-lg bg-[#176534] px-3 text-[11px] font-black text-white md:min-h-[40px] md:px-4 md:text-xs"
+                                className={cn('inline-flex min-h-[34px] items-center rounded-lg bg-[#176534] px-3 text-[11px] font-black text-white md:min-h-[40px] md:px-4 md:text-xs', useDesktopTable && 'xl:hidden')}
                             >
                                 追加
                             </button>
                             <button
                                 type="button"
                                 onClick={() => enterFlowEditor(4)}
-                                className="inline-flex min-h-[34px] items-center rounded-lg border border-slate-200 bg-white px-3 text-[11px] font-black text-trust-navy md:min-h-[40px] md:px-4 md:text-xs"
+                                className={cn('inline-flex min-h-[34px] items-center rounded-lg border border-slate-200 bg-white px-3 text-[11px] font-black text-trust-navy md:min-h-[40px] md:px-4 md:text-xs', useDesktopTable && 'xl:hidden')}
                             >
                                 編集
                             </button>
                         </div>
                     </div>
 
-                    <div className="space-y-0 md:space-y-2">
+                    {useDesktopTable && (
+                        <div className="hidden border-b border-slate-200 px-4 py-3 text-xs font-black text-slate-500 xl:grid xl:grid-cols-[260px_minmax(0,1fr)_120px_40px] xl:items-center xl:gap-4">
+                            <div>クラブ</div>
+                            <div>モデル / シャフト / フレックス</div>
+                            <div className="text-right">{clubListDistanceView === 'carry' ? 'キャリー' : '総距離'}</div>
+                            <div />
+                        </div>
+                    )}
+
+                    <div className={cn('space-y-0 md:space-y-2', useDesktopTable && 'xl:space-y-0')}>
                         {clubs.map((club) => {
                             const title = [club.brand, club.model].filter(Boolean).join(' ') || '未入力';
                             const distanceDisplay = distanceBadgeText(club, clubListDistanceView);
@@ -1351,16 +1363,21 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             ].filter(Boolean).join(' / ');
 
                             return (
-                                <article key={club.id} className={cn('grid min-h-[58px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-slate-200 py-2 last:border-b-0 md:min-h-[66px] md:rounded-lg md:border md:bg-white md:px-3 md:py-2 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
+                                <article key={club.id} className={cn('grid min-h-[58px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-slate-200 py-2 last:border-b-0 md:min-h-[66px] md:rounded-lg md:border md:bg-white md:px-3 md:py-2 md:shadow-sm', useDesktopTable && 'xl:min-h-[62px] xl:grid-cols-[260px_minmax(0,1fr)_120px_40px] xl:gap-4 xl:rounded-none xl:border-x-0 xl:border-t-0 xl:bg-transparent xl:px-4 xl:shadow-none xl:last:border-b-0', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
                                     <div className="min-w-0">
                                         <div className="flex items-center gap-2 text-sm font-black text-trust-navy md:text-base">
                                             <span className="inline-flex min-w-[42px] shrink-0 items-center justify-center rounded-lg bg-[#176534] px-2 py-2 text-sm font-black leading-none text-white shadow-sm md:min-w-[48px] md:text-base">{club.number || club.category}</span>
                                             <span className="truncate">{title}</span>
                                         </div>
-                                        <div className="mt-0.5 truncate text-[11px] font-bold text-slate-500 md:text-xs">{meta || '-'}</div>
+                                        <div className={cn('mt-0.5 truncate text-[11px] font-bold text-slate-500 md:text-xs', useDesktopTable && 'xl:hidden')}>{meta || '-'}</div>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="min-w-[62px] text-right text-2xl font-black leading-none text-[#176534] md:min-w-[78px] md:text-3xl">{distanceDisplay}</div>
+                                    {useDesktopTable && (
+                                        <div className="hidden min-w-0 truncate text-sm font-bold text-slate-500 xl:block">
+                                            {meta || '-'}
+                                        </div>
+                                    )}
+                                    <div className="flex items-center gap-2 xl:contents">
+                                        <div className={cn('min-w-[62px] text-right text-2xl font-black leading-none text-[#176534] md:min-w-[78px] md:text-3xl', useDesktopTable && 'xl:min-w-0 xl:text-right xl:text-2xl')}>{distanceDisplay}</div>
                                         <button type="button" aria-label={`${club.number || club.category}を編集`} disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-50 hover:text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:h-9 md:w-9">
                                             <MoreHorizontal size={20} />
                                         </button>
@@ -1371,7 +1388,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     </div>
                 </section>
 
-                <div className="sticky bottom-[68px] z-20 -mx-4 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur md:static md:mx-0 md:rounded-lg md:border md:bg-white md:p-4 md:shadow-sm md:ring-1 md:ring-slate-200 md:backdrop-blur-0">
+                <div className={cn('sticky bottom-[68px] z-20 -mx-4 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur md:static md:mx-0 md:rounded-lg md:border md:bg-white md:p-4 md:shadow-sm md:ring-1 md:ring-slate-200 md:backdrop-blur-0', useDesktopTable && 'xl:hidden')}>
                     <div className="flex flex-col gap-2.5 md:flex-row md:items-center md:justify-between">
                         <div className={cn('inline-flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-black ring-1', saveStatusMeta.tone)}>
                             {saveStatusMeta.icon}
