@@ -425,6 +425,21 @@ const displayShaftText = (club: Club) => {
     return Array.from(new Set(values)).join(' ');
 };
 
+const displayShaftModelText = (club: Club) => {
+    if (club.category === TargetCategory.BALL) return '';
+    const parts = parseShaftParts(club);
+    return String(parts.model || club.shaft || '').trim();
+};
+
+const displayShaftSpecText = (club: Club) => {
+    if (club.category === TargetCategory.BALL) return '';
+    const parts = parseShaftParts(club);
+    const values = [parts.weight, parts.flex, club.loft]
+        .map((value) => String(value || '').trim())
+        .filter(Boolean);
+    return Array.from(new Set(values)).join(' / ');
+};
+
 const formatDistanceLabel = (value: string) => {
     const trimmed = String(value || '').trim();
     if (!trimmed || trimmed === '-') return '-';
@@ -1348,7 +1363,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     {useDesktopTable && (
                         <div className="hidden border-b border-slate-200 px-4 py-3 text-xs font-black text-slate-500 xl:grid xl:grid-cols-[260px_minmax(0,1fr)_120px_40px] xl:items-center xl:gap-4">
                             <div>クラブ</div>
-                            <div>モデル / シャフト / フレックス</div>
+                            <div>シャフト / 重量 / フレックス / ロフト</div>
                             <div className="text-right">{clubListDistanceView === 'carry' ? 'キャリー' : '総距離'}</div>
                             <div />
                         </div>
@@ -1357,7 +1372,11 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     <div className={cn('space-y-0 md:space-y-2', useDesktopTable && 'xl:space-y-0')}>
                         {clubs.map((club) => {
                             const title = [club.brand, club.model].filter(Boolean).join(' ') || '未入力';
+                            const clubBrand = String(club.brand || '').trim() || '-';
+                            const clubModel = String(club.model || '').trim() || '未入力';
                             const distanceDisplay = distanceBadgeText(club, clubListDistanceView);
+                            const shaftModel = displayShaftModelText(club);
+                            const shaftSpec = displayShaftSpecText(club);
                             const meta = [
                                 displayShaftText(club),
                                 club.loft || '',
@@ -1368,13 +1387,20 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                     <div className="min-w-0">
                                         <div className="flex items-center gap-2 text-sm font-black text-trust-navy md:text-base">
                                             <span className="inline-flex min-w-[42px] shrink-0 items-center justify-center rounded-lg bg-[#176534] px-2 py-2 text-sm font-black leading-none text-white shadow-sm md:min-w-[48px] md:text-base">{club.number || club.category}</span>
-                                            <span className="truncate">{title}</span>
+                                            <span className="truncate xl:hidden">{title}</span>
+                                            {useDesktopTable && (
+                                                <span className="hidden min-w-0 xl:block">
+                                                    <span className="block truncate text-[11px] font-black uppercase tracking-[0.12em] text-slate-400">{clubBrand}</span>
+                                                    <span className="mt-0.5 block truncate text-base font-black text-trust-navy">{clubModel}</span>
+                                                </span>
+                                            )}
                                         </div>
                                         <div className={cn('mt-0.5 truncate text-[11px] font-bold text-slate-500 md:text-xs', useDesktopTable && 'xl:hidden')}>{meta || '-'}</div>
                                     </div>
                                     {useDesktopTable && (
-                                        <div className="hidden min-w-0 truncate text-sm font-bold text-slate-500 xl:block">
-                                            {meta || '-'}
+                                        <div className="hidden min-w-0 xl:block">
+                                            <div className="truncate text-base font-black text-slate-600">{shaftModel || '-'}</div>
+                                            <div className="mt-0.5 truncate text-sm font-bold text-slate-500">{shaftSpec || '-'}</div>
                                         </div>
                                     )}
                                     <div className="flex items-center gap-2 xl:contents">
@@ -1704,7 +1730,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     {useDesktopTable && (
                         <div className="hidden border-b border-slate-200 px-4 py-3 text-xs font-black text-slate-500 xl:grid xl:grid-cols-[260px_minmax(0,1fr)_120px_110px] xl:items-center xl:gap-4">
                             <div>クラブ</div>
-                            <div>モデル / シャフト / フレックス</div>
+                            <div>シャフト / 重量 / フレックス / ロフト</div>
                             <div className="text-right">{clubListDistanceView === 'carry' ? 'キャリー' : '総距離'}</div>
                             <div className="text-right">操作</div>
                         </div>
@@ -1726,12 +1752,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                 }
                                 : draftClub;
                             const title = [displayClub.brand, displayClub.model].filter(Boolean).join(' ') || '未入力';
+                            const clubBrand = String(displayClub.brand || '').trim() || '-';
+                            const clubModel = String(displayClub.model || '').trim() || '未入力';
                             const distanceDisplay = distanceBadgeText(displayClub, clubListDistanceView);
                             const shaftDisplay = displayShaftText(displayClub);
-                            const meta = [
-                                shaftDisplay || '',
-                                displayClub.loft || '',
-                            ].filter(Boolean).join(' / ');
+                            const shaftModel = displayShaftModelText(displayClub);
+                            const shaftSpec = displayShaftSpecText(displayClub);
                             const detailMeta = [
                                 displayClub.loft || '',
                                 displayClub.carryDistance ? `${displayClub.carryDistance}y carry` : '',
@@ -1744,6 +1770,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
                                                 <span className="inline-flex min-w-[38px] shrink-0 items-center justify-center rounded-md bg-trust-navy px-2 py-1 text-[11px] font-black leading-none text-white md:min-w-[44px] md:text-xs">{club.number || club.category}</span>
                                                 <span className="truncate md:hidden">{title}</span>
+                                                {useDesktopTable && (
+                                                    <span className="hidden min-w-0 xl:block">
+                                                        <span className="block truncate text-[11px] font-black uppercase tracking-[0.12em] text-slate-400">{clubBrand}</span>
+                                                        <span className="mt-0.5 block truncate text-base font-black text-trust-navy">{clubModel}</span>
+                                                    </span>
+                                                )}
                                                 {isEditingThisClub && (
                                                     <span className={cn(
                                                         'inline-flex shrink-0 items-center rounded-full px-1.5 py-0.5 text-[9px] font-black',
@@ -1753,7 +1785,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className="mt-0.5 hidden truncate text-sm font-bold text-slate-700 md:block xl:mt-0">{title}</div>
+                                            <div className={cn('mt-0.5 hidden truncate text-sm font-bold text-slate-700 md:block xl:mt-0', useDesktopTable && 'xl:hidden')}>{title}</div>
                                             <div className={cn('mt-0.5 hidden grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:grid md:block md:truncate md:text-xs', useDesktopTable && 'xl:hidden')}>
                                                 <span className="truncate">{shaftDisplay || '-'}</span>
                                             </div>
@@ -1771,8 +1803,9 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             </div>
                                         </div>
                                         {useDesktopTable && (
-                                            <div className="hidden min-w-0 truncate text-sm font-bold text-slate-500 xl:block">
-                                                {meta || '-'}
+                                            <div className="hidden min-w-0 xl:block">
+                                                <div className="truncate text-base font-black text-slate-600">{shaftModel || '-'}</div>
+                                                <div className="mt-0.5 truncate text-sm font-bold text-slate-500">{shaftSpec || '-'}</div>
                                             </div>
                                         )}
                                         <div className={cn('row-span-2 flex flex-wrap items-center justify-end gap-1 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2', useDesktopTable && 'xl:contents')}>
