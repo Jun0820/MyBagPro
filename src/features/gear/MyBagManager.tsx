@@ -534,6 +534,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     const ballClub = setting.clubs.find((club) => club.category === TargetCategory.BALL);
     const warningOverLimit = nonBallClubs.length > ROUND_LIMIT;
     const useDesktopTable = desktopLayout === 'table';
+    void saveErrorDetail;
 
     const commitSetting = useCallback((updater: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => {
         const base = latestSettingRef.current;
@@ -993,7 +994,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
 
     const saveStatusMeta = (() => {
         if (isManualSaveInFlight) return { label: '保存中', tone: 'border-amber-200 bg-amber-50 text-amber-800', icon: <Loader2 size={14} className="animate-spin" /> };
-        if (saveStatus === 'error') return { label: saveErrorDetail || '保存エラー。もう一度保存してください。', tone: 'border-rose-200 bg-rose-50 text-rose-800', icon: <AlertTriangle size={14} /> };
+        if (saveStatus === 'error') return { label: '保存に失敗しました。通信状況を確認して再度保存してください。', tone: 'border-rose-200 bg-rose-50 text-rose-800', icon: <AlertTriangle size={14} /> };
         if (hasUnsavedChanges) return { label: `未保存の変更があります${lastCloudSavedAt ? ` / 前回 ${new Date(lastCloudSavedAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}` : ''}`, tone: 'border-cyan-200 bg-cyan-50 text-cyan-800', icon: <Save size={14} /> };
         if (saveStatus === 'saved') return { label: '保存済み', tone: 'border-emerald-200 bg-emerald-50 text-emerald-800', icon: <CheckCircle2 size={14} /> };
         return { label: '入力途中でも保存できます', tone: 'border-slate-200 bg-slate-50 text-slate-700', icon: <Save size={14} /> };
@@ -1429,7 +1430,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 </div>
             )}
 
-            <div className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
+            <div className={cn('px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200', useDesktopTable && step === 4 && 'xl:hidden')}>
                 <div className="flex flex-col gap-2.5 lg:flex-row lg:items-start lg:justify-between">
                     <div className="hidden md:block">
                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#176534]">MY CLUB SETTING FLOW</div>
@@ -1658,13 +1659,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
             )}
 
             {step === 4 && (
-                <section className="px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                    <div className="mb-2 flex flex-col gap-1.5 md:mb-4 md:flex-row md:items-center md:justify-between">
-                        <div>
+                <section className={cn('px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200', useDesktopTable && 'md:p-4 xl:p-0 xl:shadow-none')}>
+                    <div className={cn('mb-2 flex flex-col gap-1.5 md:mb-4 md:flex-row md:items-center md:justify-between', useDesktopTable && 'xl:mb-5')}>
+                        <div className={cn(useDesktopTable && 'xl:hidden')}>
                             <h3 className="text-lg font-black text-trust-navy">番手ごとの詳細を調整</h3>
                             <p className="mt-1 hidden text-sm text-slate-600 md:block">作成済みクラブはあとから1本ずつ編集できます。ロフトが分からなくても保存できます。</p>
                         </div>
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className={cn('flex flex-wrap items-center gap-2', useDesktopTable && 'xl:w-full xl:justify-center')}>
                             <div className="inline-flex rounded-lg bg-slate-50 p-0.5 text-[10px] font-black ring-1 ring-slate-200 md:text-xs">
                                 <button
                                     type="button"
@@ -1700,22 +1701,49 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             {clubEditorNotice.detail && <div className="mt-1 text-xs font-semibold">{clubEditorNotice.detail}</div>}
                         </div>
                     )}
-                    <div id="my-bag-export-area" className="space-y-0 md:space-y-3">
+                    {useDesktopTable && (
+                        <div className="hidden border-b border-slate-200 px-4 py-3 text-xs font-black text-slate-500 xl:grid xl:grid-cols-[260px_minmax(0,1fr)_120px_110px] xl:items-center xl:gap-4">
+                            <div>クラブ</div>
+                            <div>モデル / シャフト / フレックス</div>
+                            <div className="text-right">{clubListDistanceView === 'carry' ? 'キャリー' : '総距離'}</div>
+                            <div className="text-right">操作</div>
+                        </div>
+                    )}
+                    <div id="my-bag-export-area" className={cn('space-y-0 md:space-y-3', useDesktopTable && 'xl:space-y-0')}>
                         {clubs.map((club) => {
                             const isExpanded = expandedClubId === club.id && editingClubId === club.id && Boolean(editingDraft);
                             const isBall = club.category === TargetCategory.BALL;
                             const editorDraft = isExpanded ? editingDraft : null;
                             const isEditingThisClub = editingClubId === club.id;
                             const isDirtyThisClub = isEditingThisClub && hasDirtyEditingDraft;
-                            const distanceDisplay = distanceBadgeText(club, clubListDistanceView);
-                            const shaftDisplay = displayShaftText(club);
+                            const draftClub = editorDraft?.club || club;
+                            const displayClub = isBall
+                                ? {
+                                    ...draftClub,
+                                    brand: editorDraft?.ballBrand || setting.ballBrand || draftClub.brand,
+                                    model: editorDraft?.ballModel || setting.ball || draftClub.model,
+                                    memo: editorDraft?.ballMemo || setting.ballMemo || draftClub.memo,
+                                }
+                                : draftClub;
+                            const title = [displayClub.brand, displayClub.model].filter(Boolean).join(' ') || '未入力';
+                            const distanceDisplay = distanceBadgeText(displayClub, clubListDistanceView);
+                            const shaftDisplay = displayShaftText(displayClub);
+                            const meta = [
+                                shaftDisplay || '',
+                                displayClub.loft || '',
+                            ].filter(Boolean).join(' / ');
+                            const detailMeta = [
+                                displayClub.loft || '',
+                                displayClub.carryDistance ? `${displayClub.carryDistance}y carry` : '',
+                                displayClub.distance ? `${displayClub.distance}y total` : '',
+                            ].filter(Boolean).join(' / ');
                             return (
-                                <article key={club.id} className={cn('border-b border-slate-200 py-1 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
-                                    <div className="grid min-h-[48px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-0.5 px-0 py-1 md:min-h-[72px] md:flex md:items-center md:justify-between md:px-3 md:py-3">
+                                <article key={club.id} className={cn('border-b border-slate-200 py-1 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', useDesktopTable && 'xl:rounded-none xl:border-x-0 xl:border-t-0 xl:bg-transparent xl:shadow-none xl:last:border-b-0', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
+                                    <div className={cn('grid min-h-[48px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-0.5 px-0 py-1 md:min-h-[72px] md:flex md:items-center md:justify-between md:px-3 md:py-3', useDesktopTable && 'xl:min-h-[62px] xl:grid xl:grid-cols-[260px_minmax(0,1fr)_120px_110px] xl:gap-4 xl:px-4 xl:py-2.5')}>
                                         <div className="min-w-0">
                                             <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
                                                 <span className="inline-flex min-w-[38px] shrink-0 items-center justify-center rounded-md bg-trust-navy px-2 py-1 text-[11px] font-black leading-none text-white md:min-w-[44px] md:text-xs">{club.number || club.category}</span>
-                                                <span className="truncate md:hidden">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</span>
+                                                <span className="truncate md:hidden">{title}</span>
                                                 {isEditingThisClub && (
                                                     <span className={cn(
                                                         'inline-flex shrink-0 items-center rounded-full px-1.5 py-0.5 text-[9px] font-black',
@@ -1725,25 +1753,31 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className="mt-0.5 hidden truncate text-sm font-bold text-slate-700 md:block">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</div>
-                                            <div className="mt-0.5 hidden grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:grid md:block md:truncate md:text-xs">
+                                            <div className="mt-0.5 hidden truncate text-sm font-bold text-slate-700 md:block xl:mt-0">{title}</div>
+                                            <div className={cn('mt-0.5 hidden grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:grid md:block md:truncate md:text-xs', useDesktopTable && 'xl:hidden')}>
                                                 <span className="truncate">{shaftDisplay || '-'}</span>
                                             </div>
                                             <div className="mt-0.5 truncate pr-2 text-[11px] font-bold text-slate-500 md:hidden">
                                                 {[
                                                     shaftDisplay || '-',
-                                                    club.loft || '',
+                                                    displayClub.loft || '',
                                                 ].filter(Boolean).join(' / ')}
                                             </div>
-                                            <div className="mt-0.5 hidden truncate pr-2 text-[11px] font-bold text-slate-500 md:mt-1 md:block md:pr-0 md:text-xs">
-                                                {[club.loft, club.mainUse || ''].filter(Boolean).join(' / ') || '-'}
+                                            <div className={cn('mt-0.5 hidden truncate pr-2 text-[11px] font-bold text-slate-500 md:mt-1 md:block md:pr-0 md:text-xs', useDesktopTable && 'xl:hidden')}>
+                                                {[displayClub.loft, displayClub.mainUse || ''].filter(Boolean).join(' / ') || '-'}
                                             </div>
-                                            <div className="mt-1 hidden truncate text-xs font-bold text-slate-500 md:block">
-                                                {[club.loft, club.carryDistance ? `${club.carryDistance}y carry` : '', club.distance ? `${club.distance}y total` : ''].filter(Boolean).join(' / ') || '-'}
+                                            <div className={cn('mt-1 hidden truncate text-xs font-bold text-slate-500 md:block', useDesktopTable && 'xl:hidden')}>
+                                                {detailMeta || '-'}
                                             </div>
                                         </div>
-                                        <div className="row-span-2 flex flex-wrap items-center justify-end gap-1 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2">
-                                            <div className="mr-0.5 min-w-[62px] text-right text-2xl font-black leading-none text-[#176534] md:min-w-[78px] md:text-3xl">{distanceDisplay}</div>
+                                        {useDesktopTable && (
+                                            <div className="hidden min-w-0 truncate text-sm font-bold text-slate-500 xl:block">
+                                                {meta || '-'}
+                                            </div>
+                                        )}
+                                        <div className={cn('row-span-2 flex flex-wrap items-center justify-end gap-1 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2', useDesktopTable && 'xl:contents')}>
+                                            <div className={cn('mr-0.5 min-w-[62px] text-right text-2xl font-black leading-none text-[#176534] md:min-w-[78px] md:text-3xl', useDesktopTable && 'xl:mr-0 xl:min-w-0 xl:text-2xl')}>{distanceDisplay}</div>
+                                            <div className="flex flex-wrap justify-end gap-1 md:gap-2">
                                             <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
                                                 {isExpanded ? '閉じる' : '編集'}
                                             </button>
@@ -1752,6 +1786,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                                     複製
                                                 </button>
                                             )}
+                                            </div>
                                         </div>
                                     </div>
                                     {isExpanded && editorDraft && (
