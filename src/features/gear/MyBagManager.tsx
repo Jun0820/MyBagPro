@@ -388,6 +388,58 @@ const sortClub = (club: Club) => {
     return categoryIndex * 1000 + numeric;
 };
 
+const parseDistanceValue = (value?: string) => {
+    const normalized = String(value || '').replace(/[^\d.]/g, '');
+    const parsed = Number(normalized);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+};
+
+const sortClubByDistance = (view: 'total' | 'carry') => (a: Club, b: Club) => {
+    const specialOrder = (club: Club) =>
+        club.category === TargetCategory.PUTTER ? 1 :
+        club.category === TargetCategory.BALL ? 2 :
+        0;
+    const specialDiff = specialOrder(a) - specialOrder(b);
+    if (specialDiff !== 0) return specialDiff;
+    if (specialOrder(a) > 0) return sortClub(a) - sortClub(b);
+
+    const primaryA = parseDistanceValue(view === 'carry' ? a.carryDistance : a.distance);
+    const primaryB = parseDistanceValue(view === 'carry' ? b.carryDistance : b.distance);
+    const fallbackA = parseDistanceValue(view === 'carry' ? a.distance : a.carryDistance);
+    const fallbackB = parseDistanceValue(view === 'carry' ? b.distance : b.carryDistance);
+    const distanceA = primaryA || fallbackA;
+    const distanceB = primaryB || fallbackB;
+
+    if (distanceA !== distanceB) return distanceB - distanceA;
+    return sortClub(a) - sortClub(b);
+};
+
+const displayShaftText = (club: Club) => {
+    if (club.category === TargetCategory.BALL) return '';
+    const parts = parseShaftParts(club);
+    const values = [parts.model || club.shaft, parts.weight, parts.flex]
+        .map((value) => String(value || '').trim())
+        .filter(Boolean);
+    return Array.from(new Set(values)).join(' ');
+};
+
+const distanceBadgeText = (club: Club, view: 'total' | 'carry') => {
+    if (club.category === TargetCategory.PUTTER || club.category === TargetCategory.BALL) {
+        return { label: '-', value: '-', sub: '' };
+    }
+    const total = String(club.distance || '').trim();
+    const carry = String(club.carryDistance || '').trim();
+    const active = view === 'carry' ? carry : total;
+    const fallback = view === 'carry' ? total : carry;
+    return {
+        label: view === 'carry' ? 'CARRY' : 'TOTAL',
+        value: active || fallback || '-',
+        sub: view === 'carry'
+            ? (total ? `T ${total}` : '')
+            : (carry ? `C ${carry}` : ''),
+    };
+};
+
 const inferPutterHeadShape = (model: string) => {
     const text = model.toLowerCase();
     if (!text.trim()) return '';
@@ -470,7 +522,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
         latestSettingRef.current = setting;
     }, [setting]);
 
-    const clubs = useMemo(() => [...setting.clubs].sort((a, b) => sortClub(a) - sortClub(b)), [setting.clubs]);
+    const clubs = useMemo(() => [...setting.clubs].sort(sortClubByDistance(clubListDistanceView)), [setting.clubs, clubListDistanceView]);
     const selectedKeys = useMemo(() => new Set(setting.clubs.map(slotKeyForClub)), [setting.clubs]);
     const settingName = setting.name?.trim() || DEFAULT_SETTING_NAME;
     const purpose = setting.purpose || 'メイン';
@@ -1292,28 +1344,27 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         {clubs.map((club) => {
                             const isBall = club.category === TargetCategory.BALL;
                             const title = [club.brand, club.model].filter(Boolean).join(' ') || '未入力';
-                            const distanceText = isBall || club.category === TargetCategory.PUTTER
-                                ? '-'
-                                : clubListDistanceView === 'carry'
-                                    ? String(club.carryDistance || '').trim() || '-'
-                                    : String(club.distance || '').trim() || '-';
+                            const distanceDisplay = distanceBadgeText(club, clubListDistanceView);
                             const meta = [
-                                club.shaft || '',
-                                [club.shaftWeight, club.flex].filter(Boolean).join(' '),
+                                displayShaftText(club),
                                 club.loft || '',
                             ].filter(Boolean).join(' / ');
 
                             return (
-                                <article key={club.id} className={cn('grid min-h-[48px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-slate-200 py-1.5 last:border-b-0 md:min-h-[64px] md:rounded-lg md:border md:bg-white md:px-3 md:py-2 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
+                                <article key={club.id} className={cn('grid min-h-[52px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-slate-200 py-1.5 last:border-b-0 md:min-h-[64px] md:rounded-lg md:border md:bg-white md:px-3 md:py-2 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
                                     <div className="min-w-0">
                                         <div className="flex items-center gap-2 text-sm font-black text-trust-navy md:text-base">
-                                            <span className="shrink-0">{club.number || club.category}</span>
+                                            <span className="inline-flex min-w-[38px] shrink-0 items-center justify-center rounded-md bg-trust-navy px-2 py-1 text-[11px] font-black leading-none text-white md:min-w-[44px] md:text-xs">{club.number || club.category}</span>
                                             <span className="truncate">{title}</span>
                                         </div>
                                         <div className="mt-0.5 truncate text-[11px] font-bold text-slate-500 md:text-xs">{meta || '-'}</div>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="min-w-[34px] text-right text-[11px] font-black text-slate-600 md:min-w-[46px] md:text-xs">{distanceText}</div>
+                                        <div className="min-w-[58px] rounded-lg bg-slate-50 px-2 py-1 text-right ring-1 ring-slate-200 md:min-w-[70px]">
+                                            <div className="text-[8px] font-black leading-none tracking-[0.08em] text-slate-400">{distanceDisplay.label}</div>
+                                            <div className="mt-0.5 text-sm font-black leading-none text-trust-navy md:text-base">{distanceDisplay.value}</div>
+                                            {distanceDisplay.sub && <div className="mt-0.5 text-[9px] font-bold leading-none text-slate-400">{distanceDisplay.sub}</div>}
+                                        </div>
                                         <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:px-3 md:text-xs">
                                             編集
                                         </button>
@@ -1605,9 +1656,27 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <h3 className="text-lg font-black text-trust-navy">番手ごとの詳細を調整</h3>
                             <p className="mt-1 hidden text-sm text-slate-600 md:block">作成済みクラブはあとから1本ずつ編集できます。ロフトが分からなくても保存できます。</p>
                         </div>
-                        <div className={cn('inline-flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-black ring-1', saveStatusMeta.tone)}>
-                            {saveStatusMeta.icon}
-                            {saveStatusMeta.label}
+                        <div className="flex flex-wrap items-center gap-2">
+                            <div className="inline-flex rounded-lg bg-slate-50 p-0.5 text-[10px] font-black ring-1 ring-slate-200 md:text-xs">
+                                <button
+                                    type="button"
+                                    onClick={() => setClubListDistanceView('total')}
+                                    className={cn('rounded-md px-2 py-1 transition', clubListDistanceView === 'total' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
+                                >
+                                    総距離
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setClubListDistanceView('carry')}
+                                    className={cn('rounded-md px-2 py-1 transition', clubListDistanceView === 'carry' ? 'bg-white text-trust-navy shadow-sm' : 'text-slate-400')}
+                                >
+                                    キャリー
+                                </button>
+                            </div>
+                            <div className={cn('inline-flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-black ring-1', saveStatusMeta.tone)}>
+                                {saveStatusMeta.icon}
+                                {saveStatusMeta.label}
+                            </div>
                         </div>
                     </div>
                     {clubEditorNotice && (
@@ -1630,12 +1699,14 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             const editorDraft = isExpanded ? editingDraft : null;
                             const isEditingThisClub = editingClubId === club.id;
                             const isDirtyThisClub = isEditingThisClub && hasDirtyEditingDraft;
+                            const distanceDisplay = distanceBadgeText(club, clubListDistanceView);
+                            const shaftDisplay = displayShaftText(club);
                             return (
                                 <article key={club.id} className={cn('border-b border-slate-200 py-1 last:border-b-0 md:rounded-lg md:border md:bg-white md:px-0 md:py-0 md:shadow-sm', pendingBagChangeIds.includes(club.id) ? 'border-cyan-300' : 'border-slate-200')}>
                                     <div className="grid min-h-[48px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-0.5 px-0 py-1 md:min-h-[72px] md:flex md:items-center md:justify-between md:px-3 md:py-3">
                                         <div className="min-w-0">
                                             <div className="flex items-center gap-2 text-sm font-black text-trust-navy">
-                                                <span className="shrink-0">{club.number || club.category}</span>
+                                                <span className="inline-flex min-w-[38px] shrink-0 items-center justify-center rounded-md bg-trust-navy px-2 py-1 text-[11px] font-black leading-none text-white md:min-w-[44px] md:text-xs">{club.number || club.category}</span>
                                                 <span className="truncate md:hidden">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</span>
                                                 {isEditingThisClub && (
                                                     <span className={cn(
@@ -1648,16 +1719,12 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             </div>
                                             <div className="mt-0.5 hidden truncate text-sm font-bold text-slate-700 md:block">{[club.brand, club.model].filter(Boolean).join(' ') || '未入力'}</div>
                                             <div className="mt-0.5 hidden grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 text-[11px] font-bold text-slate-500 md:grid md:block md:truncate md:text-xs">
-                                                <span className="truncate">{club.shaft || '-'}</span>
-                                                <span className="justify-self-end md:hidden">{[club.flex, club.shaftWeight].filter(Boolean).join(' / ') || '-'}</span>
+                                                <span className="truncate">{shaftDisplay || '-'}</span>
                                             </div>
                                             <div className="mt-0.5 truncate pr-2 text-[11px] font-bold text-slate-500 md:hidden">
                                                 {[
-                                                    club.shaft || '-',
-                                                    [club.shaftWeight, club.flex].filter(Boolean).join(' ') || '',
+                                                    shaftDisplay || '-',
                                                     club.loft || '',
-                                                    club.carryDistance ? `C${club.carryDistance}` : '',
-                                                    club.distance ? `T${club.distance}` : '',
                                                 ].filter(Boolean).join(' / ')}
                                             </div>
                                             <div className="mt-0.5 hidden truncate pr-2 text-[11px] font-bold text-slate-500 md:mt-1 md:block md:pr-0 md:text-xs">
@@ -1668,6 +1735,11 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                                             </div>
                                         </div>
                                         <div className="row-span-2 flex flex-wrap items-center justify-end gap-1 self-center md:row-auto md:flex-row md:flex-wrap md:items-center md:gap-2">
+                                            <div className="mr-0.5 min-w-[58px] rounded-lg bg-slate-50 px-2 py-1 text-right ring-1 ring-slate-200 md:min-w-[70px]">
+                                                <div className="text-[8px] font-black leading-none tracking-[0.08em] text-slate-400">{distanceDisplay.label}</div>
+                                                <div className="mt-0.5 text-sm font-black leading-none text-trust-navy md:text-base">{distanceDisplay.value}</div>
+                                                {distanceDisplay.sub && <div className="mt-0.5 text-[9px] font-bold leading-none text-slate-400">{distanceDisplay.sub}</div>}
+                                            </div>
                                             <button type="button" disabled={isClubEditorSaving} onClick={() => openClubEditor(club.id)} className="inline-flex min-h-[30px] items-center rounded-lg border border-slate-200 bg-white px-2 text-[10px] font-black text-trust-navy disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[36px] md:rounded-lg md:px-3 md:text-xs">
                                                 {isExpanded ? '閉じる' : '編集'}
                                             </button>
