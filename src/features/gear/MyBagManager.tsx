@@ -783,7 +783,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     }, [hasDirtyEditingDraft, hasUnsavedChanges, isClubEditorSaving, isManualSaveInFlight]);
 
     const navigateToStep = (nextStep: Step) => {
-        if (isClubEditorSaving) return;
         if (hasDirtyEditingDraft) {
             applyEditingDraftLocally();
         }
@@ -1087,9 +1086,8 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                     key={stepNumber}
                     type="button"
                     onClick={() => navigateToStep(stepNumber as Step)}
-                    disabled={isClubEditorSaving}
                     className={cn(
-                        'min-h-[40px] min-w-[112px] shrink-0 rounded-xl px-3 py-2 text-left text-[11px] font-black transition ring-1 disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[44px] md:min-w-0 md:rounded-lg md:text-xs',
+                        'min-h-[40px] min-w-[112px] shrink-0 rounded-xl px-3 py-2 text-left text-[11px] font-black transition ring-1 md:min-h-[44px] md:min-w-0 md:rounded-lg md:text-xs',
                         step === stepNumber ? 'bg-[#176534] text-white ring-[#176534]' : 'bg-white text-slate-500 ring-slate-200 hover:bg-slate-50',
                     )}
                 >
