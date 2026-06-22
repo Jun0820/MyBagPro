@@ -18,7 +18,6 @@ import { BALL_MASTER_DATA } from '../../data/ballMasterData';
 const ROUND_LIMIT = 14;
 const DEFAULT_SETTING_NAME = '現在のクラブセッティング';
 
-const PURPOSES = ['メイン', 'サブ', '競技用', '練習用', '冬用', '試打・検討中', '過去のセッティング'];
 const BRAND_SUGGESTIONS = ['PING', 'TaylorMade', 'Callaway', 'Titleist', 'Srixon', 'Dunlop', 'Mizuno', 'Yamaha', 'Bridgestone', 'PRGR', 'Cobra', 'PXG', 'ONOFF', 'Fourteen', 'Honma', 'XXIO', 'Cleveland', 'Epon', 'Miura', 'RomaRo', 'Bettinardi', 'Odyssey', 'Scotty Cameron', 'その他'];
 const MODEL_SUGGESTIONS = [
     'G430', 'G430 MAX', 'G430 LST', 'G440', 'G440 MAX', 'G440 LST', 'G440 SFT',
@@ -513,7 +512,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     desktopLayout = 'default',
 }) => {
     const latestSettingRef = useRef(setting);
-    const [step, setStep] = useState<Step>(1);
+    const [step, setStep] = useState<Step>(2);
     const [showFlowEditor, setShowFlowEditor] = useState(
         () => intakeMode !== 'default' || Boolean(requestedEditClubId) || setting.clubs.length === 0,
     );
@@ -1077,14 +1076,13 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
     };
 
     const renderStepNav = () => (
-        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0">
-            {[
-                [1, '名前・用途'],
+        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+            {([
                 [2, '番手選択'],
                 [3, '一括登録'],
                 [4, '詳細調整'],
                 [5, '確認・保存'],
-            ].map(([stepNumber, label]) => (
+            ] as Array<[Step, string]>).map(([stepNumber, label]) => (
                 <button
                     key={stepNumber}
                     type="button"
@@ -1095,7 +1093,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         step === stepNumber ? 'bg-[#176534] text-white ring-[#176534]' : 'bg-white text-slate-500 ring-slate-200 hover:bg-slate-50',
                     )}
                 >
-                    <span className="block text-[10px] opacity-70">STEP {stepNumber}</span>
+                    <span className="block text-[10px] opacity-70">STEP {stepNumber - 1}</span>
                     <span>{label}</span>
                 </button>
             ))}
@@ -1505,7 +1503,7 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                             <span className="truncate">{purpose}</span>
                         </div>
                     </div>
-                    <div className="hidden grid-cols-3 gap-1.5 text-center md:grid md:gap-2">
+                    <div className="hidden grid-cols-2 gap-1.5 text-center md:grid md:gap-2">
                         <div className="rounded-xl bg-slate-50 px-2.5 py-2 ring-1 ring-slate-200 md:rounded-lg md:px-3">
                             <div className="text-[10px] font-black text-slate-400">登録</div>
                             <div className="text-xl font-black text-trust-navy">{selectedClubCount}</div>
@@ -1513,10 +1511,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                         <div className="rounded-xl bg-slate-50 px-2.5 py-2 ring-1 ring-slate-200 md:rounded-lg md:px-3">
                             <div className="text-[10px] font-black text-slate-400">クラブ</div>
                             <div className="text-xl font-black text-trust-navy">{nonBallClubs.length}</div>
-                        </div>
-                        <div className="rounded-xl bg-slate-50 px-2.5 py-2 ring-1 ring-slate-200 md:rounded-lg md:px-3">
-                            <div className="text-[10px] font-black text-slate-400">用途</div>
-                            <div className="text-sm font-black text-trust-navy">{purpose}</div>
                         </div>
                     </div>
                 </div>
@@ -1527,31 +1521,6 @@ export const MyBagManager: React.FC<MyBagManagerProps> = ({
                 <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm font-bold leading-relaxed text-amber-800 md:rounded-lg md:p-4">
                     現在 {nonBallClubs.length}本選択中です。公式ラウンドでは14本までです。練習用・候補クラブとして登録する場合は、このまま保存できます。
                 </div>
-            )}
-
-            {step === 1 && (
-                <section className="space-y-4 px-0 py-0 md:rounded-lg md:bg-white md:p-5 md:shadow-sm md:ring-1 md:ring-slate-200">
-                    <div className="grid gap-4 md:grid-cols-2">
-                        <Field label="セッティング名">
-                            <input
-                                className={textInputClass}
-                                value={setting.name || ''}
-                                onChange={(e) => commitSetting((prev) => ({ ...prev, name: e.target.value }))}
-                                placeholder={DEFAULT_SETTING_NAME}
-                            />
-                        </Field>
-                        <Field label="用途">
-                            <select className={textInputClass} value={purpose} onChange={(e) => commitSetting((prev) => ({ ...prev, purpose: e.target.value }))}>
-                                {PURPOSES.map((item) => <option key={item} value={item}>{item}</option>)}
-                            </select>
-                        </Field>
-                    </div>
-                    <div className="mt-4 flex justify-end">
-                        <button type="button" onClick={() => navigateToStep(2)} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-[#176534] px-5 text-sm font-black text-white">
-                            番手を選ぶ <ArrowRight size={16} />
-                        </button>
-                    </div>
-                </section>
             )}
 
             {step === 2 && (
