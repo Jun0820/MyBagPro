@@ -11,7 +11,6 @@ import {
     CheckCircle2,
     LogIn,
     History,
-    Trophy,
     LogOut,
     Plus,
     Save,
@@ -351,13 +350,6 @@ export const MyGearPage = () => {
                                 >
                                     <History size={16} />
                                     診断履歴
-                                </button>
-                                <button
-                                    onClick={() => navigate('/pros')}
-                                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-black text-slate-600 transition hover:bg-slate-50"
-                                >
-                                    <Trophy size={16} />
-                                    お気に入りプロ
                                 </button>
                             </div>
                         </div>
