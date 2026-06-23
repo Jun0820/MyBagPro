@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import { cn } from '../lib/utils';
+import { useDiagnosis } from '../context/DiagnosisContext';
 
 type PeriodValue = {
   today: number;
@@ -74,6 +75,13 @@ const eventNames = {
   publicPageSignup: ['public_page_signup', 'signup_from_public_page'],
   productClick: ['product_click', 'rakuten_click', 'affiliate_click', 'select_item'],
 } as const;
+
+const fallbackAdminEmails = ['junpei.t.820@gmail.com'];
+const configuredAdminEmails = String(import.meta.env.VITE_ADMIN_EMAILS || import.meta.env.VITE_ADMIN_EMAIL || '')
+  .split(',')
+  .map((email) => email.trim().toLowerCase())
+  .filter(Boolean);
+const adminEmails = configuredAdminEmails.length > 0 ? configuredAdminEmails : fallbackAdminEmails;
 
 const dayMs = 24 * 60 * 60 * 1000;
 
@@ -495,12 +503,19 @@ const trendOptions: Array<{ key: keyof Omit<DailyPoint, 'date'>; label: string }
 ];
 
 export const AdminDashboard = () => {
+  const { user, setShowAuth } = useDiagnosis();
   const [data, setData] = useState<AdminDashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeTrend, setActiveTrend] = useState<keyof Omit<DailyPoint, 'date'>>('signups');
+  const normalizedUserEmail = user.email.trim().toLowerCase();
+  const isAdmin = user.isLoggedIn && adminEmails.includes(normalizedUserEmail);
 
   const refresh = async () => {
+    if (!isAdmin) {
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError('');
     try {
@@ -516,7 +531,7 @@ export const AdminDashboard = () => {
 
   useEffect(() => {
     refresh();
-  }, []);
+  }, [isAdmin]);
 
   const activeTrendLabel = useMemo(() => trendOptions.find((option) => option.key === activeTrend)?.label || '登録者数', [activeTrend]);
 
@@ -550,6 +565,39 @@ export const AdminDashboard = () => {
         </aside>
 
         <main className="px-7 py-6">
+          {!user.isLoggedIn ? (
+            <div className="flex min-h-[70vh] items-center justify-center">
+              <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-50 text-[#176534]">
+                  <BarChart3 size={24} />
+                </div>
+                <h1 className="mt-5 text-2xl font-black">管理画面にログイン</h1>
+                <p className="mt-3 text-sm font-bold leading-7 text-slate-500">
+                  事業ダッシュボードを見るには、管理者アカウントでログインしてください。
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setShowAuth(true)}
+                  className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-[#176534] px-5 text-sm font-black text-white"
+                >
+                  ログインする
+                </button>
+              </div>
+            </div>
+          ) : !isAdmin ? (
+            <div className="flex min-h-[70vh] items-center justify-center">
+              <div className="w-full max-w-lg rounded-2xl border border-amber-200 bg-white p-8 text-center shadow-sm">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+                  <Flag size={24} />
+                </div>
+                <h1 className="mt-5 text-2xl font-black">管理者権限がありません</h1>
+                <p className="mt-3 text-sm font-bold leading-7 text-slate-500">
+                  現在のログインメールでは `/admin` を表示できません。管理者メールは `VITE_ADMIN_EMAILS` で設定できます。
+                </p>
+              </div>
+            </div>
+          ) : (
+          <>
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.18em] text-[#176534]">ADMIN</div>
@@ -665,6 +713,8 @@ export const AdminDashboard = () => {
                 </div>
               </section>
             </>
+          )}
+          </>
           )}
         </main>
       </div>

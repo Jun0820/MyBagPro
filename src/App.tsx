@@ -226,7 +226,28 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     : [];
 
   if (isAdminRoute) {
-    return <>{children}</>;
+    return (
+      <>
+        {children}
+        {showAuth && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-3 backdrop-blur-sm md:p-4">
+            <AccountAuth
+              onLogin={(u, p) => {
+                setUser(u);
+                if (p) setProfile(p);
+                closeAuthFlow();
+              }}
+              onClose={closeAuthFlow}
+              currentProfile={profile}
+              initialMode={authMode === 'register' ? 'register' : 'login'}
+              intent={authMode === 'register' ? 'create-profile' : 'login'}
+              nextDestination={authNext}
+              entryTracked={Boolean(authMode)}
+            />
+          </div>
+        )}
+      </>
+    );
   }
 
   return (
