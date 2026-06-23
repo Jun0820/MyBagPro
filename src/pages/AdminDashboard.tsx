@@ -21,6 +21,7 @@ import {
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import { cn } from '../lib/utils';
 import { useDiagnosis } from '../context/DiagnosisContext';
+import type { UserAccount } from '../types/golf';
 
 type PeriodValue = {
   today: number;
@@ -512,8 +513,108 @@ const trendOptions: Array<{ key: keyof Omit<DailyPoint, 'date'>; label: string }
   { key: 'productClicks', label: '商品クリック数' },
 ];
 
+const AdminLoginPanel = ({ onLogin }: { onLogin: (account: UserAccount) => void }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const canSubmit = email.trim().length > 0 && password.length > 0 && !isSubmitting;
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError('');
+
+    const normalizedEmail = normalizeAdminEmail(email);
+    if (!adminEmails.includes(normalizedEmail)) {
+      setError('このメールアドレスでは管理画面にログインできません。');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email: email.trim().toLowerCase(),
+        password,
+      });
+
+      if (signInError) throw signInError;
+      const authUser = data.session?.user;
+      if (!authUser || !adminEmails.includes(normalizeAdminEmail(authUser.email || ''))) {
+        await supabase.auth.signOut();
+        setError('管理者アカウントでログインしてください。');
+        return;
+      }
+
+      onLogin({
+        id: authUser.id,
+        isLoggedIn: true,
+        name: authUser.user_metadata?.name || 'Admin',
+        email: authUser.email || '',
+        memberSince: authUser.created_at,
+        history: [],
+      });
+    } catch (loginError) {
+      console.error('Admin login error:', loginError);
+      setError('ログインできませんでした。メールアドレスとパスワードを確認してください。');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="flex min-h-[70vh] items-center justify-center">
+      <form onSubmit={handleSubmit} className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-50 text-[#176534]">
+          <BarChart3 size={24} />
+        </div>
+        <h1 className="mt-5 text-center text-2xl font-black">管理画面ログイン</h1>
+        <p className="mt-3 text-center text-sm font-bold leading-7 text-slate-500">
+          管理者アカウントでログインしてください。
+        </p>
+        <div className="mt-6 space-y-4">
+          <label className="block">
+            <span className="text-xs font-black text-slate-500">メールアドレス</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              autoComplete="email"
+              className="mt-1 h-12 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-trust-navy outline-none transition focus:border-[#176534] focus:ring-2 focus:ring-[#176534]/15"
+              placeholder="admin@example.com"
+            />
+          </label>
+          <label className="block">
+            <span className="text-xs font-black text-slate-500">パスワード</span>
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              autoComplete="current-password"
+              className="mt-1 h-12 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-trust-navy outline-none transition focus:border-[#176534] focus:ring-2 focus:ring-[#176534]/15"
+              placeholder="パスワード"
+            />
+          </label>
+        </div>
+        {error && (
+          <div className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-bold text-rose-800">
+            {error}
+          </div>
+        )}
+        <button
+          type="submit"
+          disabled={!canSubmit}
+          className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#176534] px-5 text-sm font-black text-white transition hover:bg-[#12512a] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isSubmitting ? 'ログイン中...' : '管理画面にログイン'}
+        </button>
+      </form>
+    </div>
+  );
+};
+
 export const AdminDashboard = () => {
-  const { user, setShowAuth } = useDiagnosis();
+  const { user, setUser } = useDiagnosis();
   const [data, setData] = useState<AdminDashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -576,24 +677,7 @@ export const AdminDashboard = () => {
 
         <main className="px-7 py-6">
           {!user.isLoggedIn ? (
-            <div className="flex min-h-[70vh] items-center justify-center">
-              <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-50 text-[#176534]">
-                  <BarChart3 size={24} />
-                </div>
-                <h1 className="mt-5 text-2xl font-black">管理画面にログイン</h1>
-                <p className="mt-3 text-sm font-bold leading-7 text-slate-500">
-                  事業ダッシュボードを見るには、管理者アカウントでログインしてください。
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setShowAuth(true)}
-                  className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-[#176534] px-5 text-sm font-black text-white"
-                >
-                  ログインする
-                </button>
-              </div>
-            </div>
+            <AdminLoginPanel onLogin={setUser} />
           ) : !isAdmin ? (
             <div className="flex min-h-[70vh] items-center justify-center">
               <div className="w-full max-w-lg rounded-2xl border border-amber-200 bg-white p-8 text-center shadow-sm">
