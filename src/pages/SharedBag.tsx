@@ -217,7 +217,7 @@ export const SharedBag = () => {
         className="mb-8 flex items-center gap-2 font-bold text-slate-500 transition-colors hover:text-trust-navy"
       >
         <ArrowLeft size={18} />
-        みんなのMy Bagへ戻る
+        みんなのセッティングへ戻る
       </button>
 
       <div className="overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-2xl">
@@ -361,8 +361,8 @@ export const SharedBag = () => {
         <div className="bg-slate-50 px-6 py-8 text-center md:px-10">
           <div className="text-sm text-slate-500">自分のセッティングも公開すると、比較や記録がもっとしやすくなります。</div>
           <div className="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link to="/mybag/create" className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white">
-              自分のMy Bagを作る
+            <Link to="/create" className="inline-flex items-center justify-center gap-2 rounded-full bg-trust-navy px-5 py-3 text-sm font-black text-white">
+              Golf IDを作る
             </Link>
             <Link to="/pros" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-700">
               プロのセッティングも見る

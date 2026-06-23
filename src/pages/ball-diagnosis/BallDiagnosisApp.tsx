@@ -204,7 +204,7 @@ export const BallDiagnosisApp: React.FC = () => {
                 <div className="relative z-10">
                   <span className="block text-emerald-400 text-xs font-bold tracking-widest uppercase mb-1">Pro Mode</span>
                   <h3 className="text-lg font-bold mb-2">プロ診断</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">マイバッグのデータや詳細なプレースタイルを考慮し、最高精度の分析を行います。</p>
+                  <p className="text-slate-400 text-sm leading-relaxed">Golf IDのデータや詳細なプレースタイルを考慮し、精度の高い分析を行います。</p>
                 </div>
               </button>
             </div>

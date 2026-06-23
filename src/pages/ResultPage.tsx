@@ -186,7 +186,7 @@ export const ResultPage = () => {
             product_name: topModel.modelName || '',
             is_logged_in: user.isLoggedIn,
         });
-        alert(`✅ ${topModel.brand} ${topModel.modelName} をMy Bagに登録しました！`);
+        alert(`✅ ${topModel.brand} ${topModel.modelName} をGolf IDに登録しました！`);
     };
 
     const handleBuyClick = (shopId: typeof AFFILIATE_SHOPS[number]['id']) => {
@@ -247,7 +247,7 @@ export const ResultPage = () => {
             eyebrow: 'Primary Move',
             title: 'まずは代表番手を登録する',
             description: 'おすすめ候補を残す前に、ドライバーや7Iを入れておくと比較と保存がかなり安定します。',
-            actionLabel: 'My Bag を整える',
+            actionLabel: 'クラブセッティングを整える',
             onClick: () => {
                 trackEvent('click_primary_move', {
                     source_page: 'result_page',
@@ -1204,7 +1204,7 @@ export const ResultPage = () => {
                         <button
                             onClick={() => {
                                 const topModel = result.rankings[0];
-                                const shareText = `🏌️ My Bag Pro AI診断結果\n\n⛳ 推奨: ${topModel?.modelName || '—'} (${topModel?.brand || '—'})\n📊 適合率: ${topModel?.matchPercentage?.toFixed(1) || '—'}%\n🎯 スイングDNA: ${result.userSwingDna?.type || '—'}\n\n▶ あなたも無料で診断してみよう！`;
+                                const shareText = `🏌️ Golf ID AI診断結果\n\n⛳ 推奨: ${topModel?.modelName || '—'} (${topModel?.brand || '—'})\n📊 適合率: ${topModel?.matchPercentage?.toFixed(1) || '—'}%\n🎯 スイングDNA: ${result.userSwingDna?.type || '—'}\n\n▶ あなたも無料で診断してみよう！`;
                                 const shareUrl = typeof window !== 'undefined' ? window.location.origin : '';
                                 const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
                                 window.open(url, '_blank', 'width=550,height=420');
@@ -1272,8 +1272,8 @@ export const ResultPage = () => {
                     >
                         <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out z-0"></div>
                         <div className="text-left relative z-10">
-                            <div className="text-[10px] text-white/70 font-black tracking-wider uppercase mb-0.5">SAVE TO MY BAG</div>
-                            <div className="text-lg tracking-tight">推奨クラブをMy Bagに登録する</div>
+                            <div className="text-[10px] text-white/70 font-black tracking-wider uppercase mb-0.5">SAVE TO GOLF ID</div>
+                            <div className="text-lg tracking-tight">推奨クラブをGolf IDに登録する</div>
                         </div>
                         <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform backdrop-blur-sm">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>

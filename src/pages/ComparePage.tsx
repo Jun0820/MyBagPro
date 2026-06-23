@@ -75,7 +75,7 @@ export const ComparePage = () => {
         eyebrow: 'Primary Move',
         title: 'まずは代表番手を登録する',
         description: 'ドライバーか7Iが入るだけでも、比較候補の見え方がかなり具体的になります。',
-        actionLabel: 'My Bag を整える',
+        actionLabel: 'クラブセッティングを整える',
         onClick: () => {
           trackEvent('click_primary_move', {
             source_page: 'compare_shortlist',
@@ -488,7 +488,7 @@ export const ComparePage = () => {
   const comparePrimaryMove = missingCount > 0
     ? {
         eyebrow: 'Primary Move',
-        title: 'まずは My Bag の不足を埋める',
+        title: 'まずはクラブセッティングの不足を埋める',
         description: `未登録カテゴリが ${missingCount} 件あります。ここを埋めるだけで、比較結果の見え方がかなり安定します。`,
         actionLabel: '不足カテゴリを登録する',
         onClick: () => {
@@ -593,7 +593,7 @@ export const ComparePage = () => {
       actions.push({
         title: '未登録のクラブを埋める',
         description: `未登録カテゴリが ${missingCount} 個あります。まずは自分のバッグを整えると比較精度が上がります。`,
-        cta: 'My Bagを整える',
+        cta: 'クラブセッティングを整える',
         onClick: () => {
           trackEvent('begin_mybag_creation', {
             source_page: 'compare_page',
@@ -791,7 +791,7 @@ export const ComparePage = () => {
               <div className="rounded-2xl bg-white px-3.5 py-3 ring-1 ring-slate-200">
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">NEXT STEP</div>
                 <div className="mt-1 text-sm font-black text-trust-navy">
-                  {needsBagSetup ? 'My Bagを整える' : missingBall ? 'ボールを入れる' : '差分を埋める'}
+                  {needsBagSetup ? 'クラブセッティングを整える' : missingBall ? 'ボールを入れる' : '差分を埋める'}
                 </div>
               </div>
             </div>
@@ -808,7 +808,7 @@ export const ComparePage = () => {
                   needsBagSetup ? 'bg-trust-navy text-white' : 'border border-slate-300 bg-white text-slate-700'
                 }`}
               >
-                {needsBagSetup ? '不足番手を先に埋める' : 'My Bagを見直す'}
+                {needsBagSetup ? '不足番手を先に埋める' : 'クラブセッティングを見直す'}
                 <ArrowRight size={16} />
               </button>
               <button

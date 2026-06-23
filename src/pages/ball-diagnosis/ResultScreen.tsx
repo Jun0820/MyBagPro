@@ -140,7 +140,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
   ];
 
   const fitSummary = isProMode
-    ? `登録済みのマイバッグとヘッドスピード ${answers.headSpeed}m/s をもとに整理すると、${recommendedBall.name} は今のセッティングにつながりやすく、使い始めの違和感も出にくい候補です。`
+    ? `登録済みのクラブセッティングとヘッドスピード ${answers.headSpeed}m/s をもとに整理すると、${recommendedBall.name} は今のセッティングにつながりやすく、使い始めの違和感も出にくい候補です。`
     : `ヘッドスピード ${answers.headSpeed}m/s と「${getPriorityLabel(answers.priority)}」重視の条件なら、${recommendedBall.name} は性能の向きが合いやすい候補です。`;
 
   const playStyleSummary = [
@@ -186,8 +186,8 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
         // 3. Check for Web Share API support with files
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
-            title: 'My Bag Pro 診断結果',
-            text: `AIが選んだ運命のボールは【${recommendedBall.name}】でした！ #MyBagPro #ゴルフボール診断 #ゴルフギア`,
+            title: 'Golf ID 診断結果',
+            text: `AIが選んだ運命のボールは【${recommendedBall.name}】でした！ #GolfID #ゴルフボール診断 #ゴルフギア`,
             files: [file],
           });
         } else {
@@ -307,7 +307,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
               {isProMode ? <Layers className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" /> : <Flag className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />}
               <div>
                 <div className={`text-xs font-bold mb-1 ${isProMode ? 'text-emerald-300' : 'text-slate-200'}`}>
-                  {isProMode ? 'マイバッグ連携で見た相性' : '今回の条件整理'}
+                  {isProMode ? 'Golf ID連携で見た相性' : '今回の条件整理'}
                 </div>
                  <div className="text-xs text-slate-400 leading-tight">
                   {isProMode ? (
@@ -388,7 +388,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ answers, onRestart }) => {
             <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out z-0"></div>
             <div className="text-left relative z-10">
                 <div className="text-[10px] text-slate-600 font-black tracking-wider uppercase mb-1">Next Step</div>
-                <div className="text-xl tracking-tight">My Bagを作成する</div>
+                <div className="text-xl tracking-tight">Golf IDを作成する</div>
             </div>
             <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center text-white relative z-10 shadow-lg group-hover:scale-110 transition-transform">
                 <ArrowRight className="w-6 h-6" />

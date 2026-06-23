@@ -1,3 +1,4 @@
+import { getBrandConfig } from '../config/brand';
 import type { PublicArticle } from './articles';
 
 export interface ArticleVisual {
@@ -70,14 +71,14 @@ const articleVisuals: Array<ArticleVisual & { keywords: string[] }> = [
   {
     url: '/article-visuals/clubs-grass.jpg',
     alt: '芝の上に並んだゴルフクラブ',
-    caption: 'プロの14本は、同じクラブを真似るよりも番手構成の考え方を読み取るのがMyBagProらしい使い方です。',
+    caption: 'プロの14本は、同じクラブを真似るよりも番手構成の考え方を読み取るのが大切です。',
     keywords: ['クラブセッティング', '使用クラブ', '番手表', '14本', 'プロフィール', '契約', '比較', 'ランキング'],
   },
 ];
 
 const normalizeImagePath = (url: string) => {
   try {
-    return new URL(url, 'https://www.mybagpro.jp').pathname;
+    return new URL(url, getBrandConfig().url).pathname;
   } catch {
     return url;
   }

@@ -66,7 +66,7 @@ export const UsersSettingsPage = () => {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-black text-golf-300">
               <UserRound size={14} />
-              みんなのMy Bag
+              みんなのセッティング
             </div>
             <h1 className="mt-5 max-w-3xl text-4xl font-black tracking-tight md:text-6xl">
               自分に近いゴルファーの
@@ -78,10 +78,10 @@ export const UsersSettingsPage = () => {
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <button
-                onClick={() => navigate('/mybag/create')}
+                onClick={() => navigate('/create')}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3 text-sm font-black text-white"
               >
-                自分のMy Bagを作る
+                Golf IDを作る
                 <ArrowRight size={16} />
               </button>
               <button
@@ -111,8 +111,8 @@ export const UsersSettingsPage = () => {
       <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
-            <div className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Public User Bags</div>
-            <h2 className="mt-2 text-2xl font-black text-trust-navy">公開中のMy Bag一覧</h2>
+              <div className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Public Golf ID</div>
+            <h2 className="mt-2 text-2xl font-black text-trust-navy">公開中のセッティング一覧</h2>
           </div>
           <p className="text-sm text-slate-500">検索は入れず、参考にしやすい公開バッグだけをそのまま見られる構成にしています。</p>
         </div>
@@ -132,7 +132,7 @@ export const UsersSettingsPage = () => {
 
         {!loading && !error && profiles.length === 0 && (
           <div className="mt-6 rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-6 py-10 text-center text-sm text-slate-500">
-            まだ公開中の My Bag はありません。最初の公開プロフィールを作って、参考にされる側にもなれます。
+            まだ公開中のセッティングはありません。最初の公開プロフィールを作って、参考にされる側にもなれます。
           </div>
         )}
 

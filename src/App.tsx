@@ -13,6 +13,7 @@ import { AccountAuth } from './features/auth/AccountAuth';
 import { LegalPage } from './components/LegalPage';
 import { Home } from './pages/Home';
 import { SeoManager } from './components/SeoManager';
+import { getBrandConfig } from './config/brand';
 import { fetchPublishedArticles, type PublicArticle } from './lib/articles';
 import { fetchPublishedSettingProfiles, type PublicSettingProfile } from './lib/contentProfiles';
 import { trackEvent } from './lib/analytics';
@@ -84,10 +85,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [searchProfiles, setSearchProfiles] = useState<PublicSettingProfile[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const authMode = (new URLSearchParams(location.search).get('auth') as 'login' | 'register' | null) || null;
+  const queryAuthMode = (new URLSearchParams(location.search).get('auth') as 'login' | 'register' | null) || null;
+  const authMode = queryAuthMode || (location.pathname === '/create' && !user.isLoggedIn ? 'register' : null);
   const authNext = new URLSearchParams(location.search).get('next');
   const authReturnTo = new URLSearchParams(location.search).get('returnTo');
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const brand = getBrandConfig();
 
   const navItems = useMemo(
     () => [
@@ -242,7 +245,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               initialMode={authMode === 'register' ? 'register' : 'login'}
               intent={authMode === 'register' ? 'create-profile' : 'login'}
               nextDestination={authNext}
-              entryTracked={Boolean(authMode)}
+              entryTracked={Boolean(queryAuthMode)}
             />
           </div>
         )}
@@ -260,7 +263,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <header className="sticky top-0 z-50 bg-white/92 shadow-[0_8px_30px_-28px_rgba(15,23,42,0.45)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-3.5 md:px-8 md:py-4">
           <button onClick={() => navigate('/')} className="flex shrink-0 items-center gap-3">
-            <img src="/branding/logo-wordmark-light.svg" alt="MyBag Pro" className="h-10 w-auto md:h-12" />
+            {brand.brand === 'golfid' ? (
+              <span className="text-xl font-black tracking-tight text-[#102318] md:text-2xl">{brand.name}</span>
+            ) : (
+              <img src="/branding/logo-wordmark-light.svg" alt={brand.name} className="h-10 w-auto md:h-12" />
+            )}
           </button>
 
           <nav className="hidden items-center gap-8 lg:flex">
@@ -384,10 +391,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
           <div>
             <button onClick={() => navigate('/')} className="inline-flex">
-              <img src="/branding/logo-wordmark-dark.svg" alt="MyBag Pro" className="h-12 w-auto" />
+              {brand.brand === 'golfid' ? (
+                <span className="text-2xl font-black tracking-tight text-white">{brand.name}</span>
+              ) : (
+                <img src="/branding/logo-wordmark-dark.svg" alt={brand.name} className="h-12 w-auto" />
+              )}
             </button>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/72">
-              プロのセッティングとあなたのデータをつなぎ、診断・購入判断まで一気通貫で支えるゴルフサイトです。
+              {brand.brand === 'golfid'
+                ? 'クラブ、スコア、悩み、目標をまとめ、AI診断とSNS共有につなげるゴルフサービスです。'
+                : 'プロのセッティングとあなたのデータをつなぎ、診断・購入判断まで一気通貫で支えるゴルフサイトです。'}
             </p>
           </div>
 
@@ -419,7 +432,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         <div className="mx-auto mt-10 flex max-w-[1400px] flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
-          <div>© MyBag Pro All Rights Reserved.</div>
+          <div>© {brand.name} All Rights Reserved.</div>
           <div>Instagramプロフィール画像は選手本人公開アカウントを参照しています。</div>
         </div>
       </footer>
@@ -564,7 +577,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             initialMode={authMode === 'login' ? 'login' : 'register'}
             intent={authMode === 'login' ? 'login' : 'create-profile'}
             nextDestination={authNext}
-            entryTracked={Boolean(authMode)}
+            entryTracked={Boolean(queryAuthMode)}
           />
         </div>
       )}
@@ -646,6 +659,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/pros" element={<ProsSettingsPage />} />
               <Route path="/pros/:slug" element={<ProSettingDetailPage />} />
+              <Route path="/explore" element={<UsersSettingsPage />} />
               <Route path="/settings/users" element={<UsersSettingsPage />} />
               <Route path="/settings/users/:id" element={<SharedBag />} />
               <Route path="/clubs/drivers" element={<DriversCatalogPage />} />
@@ -664,6 +678,7 @@ function App() {
               <Route path="/mypage/view" element={<MyGearPage />} />
               <Route path="/mypage/clubs" element={<MyGearPage />} />
               <Route path="/mypage/profile" element={<MyGearPage />} />
+              <Route path="/create" element={<MyGearPage />} />
               <Route path="/mybag/create" element={<MyGearPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/bag" element={<SharedBag />} />

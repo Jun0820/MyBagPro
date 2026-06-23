@@ -1,69 +1,88 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getBrandConfig } from '../config/brand';
 import { initAnalytics, trackPageView } from '../lib/analytics';
 import { applySeo, getSeoPath } from '../lib/seo';
 
 const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined;
 
-const routeSeoMap: Record<string, { title: string; description: string; noindex?: boolean; keywords?: string[]; image?: string }> = {
-  '/': {
-    title: 'プロの14本から自分のクラブ選びへ',
-    description: 'MyBagProは、プロのクラブセッティング確認、自分のバッグ登録、AI診断、購入検討までつなげるゴルフクラブ分析サイトです。',
-    keywords: ['クラブセッティング', 'プロ 使用クラブ', 'ゴルフ WITB', 'ゴルフクラブ 診断', 'MyBagPro', '女子プロ クラブセッティング'],
-    image: '/article-visuals/golf-bag-course.jpg',
-  },
-  '/pros': {
-    title: 'プロのクラブセッティング一覧',
-    description: '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名、カテゴリ、フリガナ、ヘッドスピードで絞り込めます。',
-    keywords: ['プロ クラブセッティング 一覧', '女子プロ クラブセッティング', '男子プロ 使用クラブ', 'ゴルフ WITB'],
-    image: '/article-visuals/clubs-grass.jpg',
-  },
-  '/settings/users': {
-    title: 'みんなのMy Bag',
-    description: '一般ゴルファーの My Bag を見て、自分に近いクラブセッティングを探せます。',
-  },
-  '/clubs/drivers': {
-    title: '人気ドライバー一覧',
-    description: '人気ドライバーと使用者の掲載データを見ながら、比較と購入導線につなげられます。',
-  },
-  '/articles': {
-    title: '更新記事一覧',
-    description: 'クラブセッティングの更新内容や掲載変更を記事として公開しています。',
-    keywords: ['クラブセッティング 記事', '使用クラブ 最新', 'ゴルフクラブ ニュース'],
-    image: '/article-visuals/green-flag.jpg',
-  },
-  '/sitemap': {
-    title: 'サイトマップ',
-    description: 'My Bag Pro の主要ページ一覧です。',
-  },
-  '/compare': {
-    title: 'セッティング比較',
-    description: '自分のバッグとプロのセッティングを比較します。',
-    noindex: true,
-  },
-  '/diagnosis': {
-    title: 'AI診断',
-    description: 'クラブセッティングやボールのAI診断ページです。',
-    noindex: true,
-  },
-  '/ball-diagnosis': {
-    title: 'ボール診断',
-    description: 'ゴルファー向けのボール診断ページです。',
-    noindex: true,
-  },
-  '/mypage': {
-    title: 'マイページ',
-    description: 'あなたの My Bag を管理するページです。',
-    noindex: true,
-  },
-  '/mybag/create': {
-    title: 'My Bagを作る',
-    description: '自分のクラブセッティングを登録して管理します。',
-    noindex: true,
-  },
+const getRouteSeoMap = (): Record<string, { title: string; description: string; noindex?: boolean; keywords?: string[]; image?: string }> => {
+  const brand = getBrandConfig();
+  return {
+    '/': {
+      title: brand.mainCopy,
+      description: brand.description,
+      keywords:
+        brand.brand === 'golfid'
+          ? ['Golf ID', 'ゴルフ ID', 'AI ゴルフ診断', 'クラブセッティング', 'ゴルフ SNS プロフィール']
+          : ['MyBagPro', 'クラブセッティング', 'プロ 使用クラブ', 'ゴルフ WITB', '女子プロ クラブセッティング'],
+      image: '/article-visuals/golf-bag-course.jpg',
+    },
+    '/pros': {
+      title: 'プロのクラブセッティング一覧',
+      description: '日本男子、日本女子、海外男子、海外女子、インフルエンサー、レッスンプロのクラブセッティング一覧。選手名、カテゴリ、フリガナ、ヘッドスピードで絞り込めます。',
+      keywords: ['プロ クラブセッティング 一覧', '女子プロ クラブセッティング', '男子プロ 使用クラブ', 'ゴルフ WITB'],
+      image: '/article-visuals/clubs-grass.jpg',
+    },
+    '/settings/users': {
+      title: 'みんなのセッティング',
+      description: '一般ゴルファーの公開クラブセッティングを見て、自分に近い構成を探せます。',
+    },
+    '/explore': {
+      title: 'みんなのセッティング',
+      description: '一般ゴルファーの公開クラブセッティングを見て、自分に近い構成を探せます。',
+    },
+    '/clubs/drivers': {
+      title: '人気ドライバー一覧',
+      description: '人気ドライバーと使用者の掲載データを見ながら、比較と購入導線につなげられます。',
+    },
+    '/articles': {
+      title: '更新記事一覧',
+      description: 'クラブセッティングの更新内容や掲載変更を記事として公開しています。',
+      keywords: ['クラブセッティング 記事', '使用クラブ 最新', 'ゴルフクラブ ニュース'],
+      image: '/article-visuals/green-flag.jpg',
+    },
+    '/sitemap': {
+      title: 'サイトマップ',
+      description: `${brand.name} の主要ページ一覧です。`,
+    },
+    '/compare': {
+      title: 'セッティング比較',
+      description: '自分のクラブセッティングとプロのセッティングを比較します。',
+      noindex: true,
+    },
+    '/diagnosis': {
+      title: 'AI診断',
+      description: 'クラブセッティングやボールのAI診断ページです。',
+      noindex: true,
+    },
+    '/ball-diagnosis': {
+      title: 'ボール診断',
+      description: 'ゴルファー向けのボール診断ページです。',
+      noindex: true,
+    },
+    '/mypage': {
+      title: 'マイページ',
+      description: 'あなたのGolf IDを管理するページです。',
+      noindex: true,
+    },
+    '/create': {
+      title: 'Golf IDを作る',
+      description: 'クラブ、スコア、悩み、目標をまとめてGolf IDを作成します。',
+      noindex: true,
+    },
+    '/mybag/create': {
+      title: 'Golf IDを作る',
+      description: '自分のクラブセッティングを登録して管理します。',
+      noindex: true,
+    },
+  };
 };
 
 const getSeoForPath = (pathname: string) => {
+  const routeSeoMap = getRouteSeoMap();
+  const brand = getBrandConfig();
+
   if (pathname === '/settings/pros' || pathname.startsWith('/settings/pros/')) {
     return {
       title: pathname === '/settings/pros' ? 'プロのクラブセッティング一覧' : 'プロのクラブセッティング詳細',
@@ -84,7 +103,7 @@ const getSeoForPath = (pathname: string) => {
 
   if (pathname.startsWith('/settings/users/')) {
     return {
-      title: 'みんなのMy Bag 詳細',
+      title: 'みんなのセッティング詳細',
       description: '一般ゴルファーの公開クラブセッティング詳細ページです。バッグ構成、使用ボール、SNSや外部リンクまで確認できます。',
     };
   }
@@ -115,7 +134,7 @@ const getSeoForPath = (pathname: string) => {
   if (pathname === '/settings' || pathname.startsWith('/settings/')) {
     return {
       title: '管理ページ',
-      description: 'My Bag Pro の管理・設定ページです。',
+      description: `${brand.name} の管理・設定ページです。`,
       noindex: true,
     };
   }
@@ -148,7 +167,7 @@ export const SeoManager = () => {
       keywords: seo.keywords,
       image: seo.image,
     });
-    trackPageView(seoPath, `${seo.title} | My Bag Pro`);
+    trackPageView(seoPath, `${seo.title} | ${getBrandConfig().name}`);
   }, [location.pathname]);
 
   useEffect(() => {

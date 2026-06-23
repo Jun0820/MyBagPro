@@ -1,11 +1,11 @@
-const SITE_NAME = 'My Bag Pro';
-const SITE_URL = 'https://www.mybagpro.jp';
+import { getBrandConfig, getBrandConfigByKey, getCanonicalBrandForPath, type BrandKey } from '../config/brand';
 
-export const getSiteUrl = () => SITE_URL;
+export const getSiteUrl = () => getBrandConfig().url;
 
-export const toAbsoluteUrl = (path = '/') => {
+export const toAbsoluteUrl = (path = '/', brand?: BrandKey) => {
   if (/^https?:\/\//i.test(path)) return path;
-  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
+  const targetBrand = brand ? getBrandConfigByKey(brand) : getCanonicalBrandForPath(path);
+  return `${targetBrand.url}${path.startsWith('/') ? path : `/${path}`}`;
 };
 
 export interface SeoPayload {
@@ -66,16 +66,17 @@ export const applySeo = ({
 }: SeoPayload) => {
   const absoluteUrl = toAbsoluteUrl(path);
   const imageUrl = image ? toAbsoluteUrl(image) : toAbsoluteUrl('/article-visuals/golf-bag-course.jpg');
-  document.title = `${title} | ${SITE_NAME}`;
+  const displayBrand = getCanonicalBrandForPath(path);
+  document.title = `${title} | ${displayBrand.name}`;
 
   upsertMeta('meta[name="description"]', 'name', 'description', description);
-  upsertMeta('meta[property="og:title"]', 'property', 'og:title', `${title} | ${SITE_NAME}`);
+  upsertMeta('meta[property="og:title"]', 'property', 'og:title', `${title} | ${displayBrand.name}`);
   upsertMeta('meta[property="og:description"]', 'property', 'og:description', description);
   upsertMeta('meta[property="og:url"]', 'property', 'og:url', absoluteUrl);
   upsertMeta('meta[property="og:type"]', 'property', 'og:type', type);
-  upsertMeta('meta[property="og:site_name"]', 'property', 'og:site_name', SITE_NAME);
+  upsertMeta('meta[property="og:site_name"]', 'property', 'og:site_name', displayBrand.name);
   upsertMeta('meta[property="og:image"]', 'property', 'og:image', imageUrl);
-  upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', `${title} | ${SITE_NAME}`);
+  upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', `${title} | ${displayBrand.name}`);
   upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
   upsertMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
   upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', imageUrl);

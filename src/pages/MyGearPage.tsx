@@ -48,7 +48,7 @@ export const MyGearPage = () => {
     const location = useLocation();
     const [searchParams] = useSearchParams();
     const activeTab = useMemo<'view' | 'clubs' | 'profile'>(() => {
-        if (location.pathname === '/mypage/clubs' || location.pathname.startsWith('/mybag/create')) return 'clubs';
+        if (location.pathname === '/mypage/clubs' || location.pathname === '/create' || location.pathname.startsWith('/mybag/create')) return 'clubs';
         if (location.pathname === '/mypage/profile') return 'profile';
         return 'view';
     }, [location.pathname]);

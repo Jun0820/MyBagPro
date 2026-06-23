@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, CalendarDays, FileText } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getBrandConfigByKey } from '../config/brand';
 import { fetchPublishedArticleBySlug, fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { trackEvent } from '../lib/analytics';
 import { defaultArticleVisual, getArticleVisual, isGenericArticleImage } from '../lib/articleVisuals';
@@ -138,6 +139,7 @@ const parseRichArticleBody = (body: string): RichArticleBlock[] => {
 export const ArticleDetailPage = () => {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
+  const articleBrand = getBrandConfigByKey('mybagpro');
   const [article, setArticle] = useState<PublicArticle | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<PublicArticle[]>([]);
   const [relatedProfile, setRelatedProfile] = useState<PublicSettingProfile | null>(null);
@@ -203,7 +205,7 @@ export const ArticleDetailPage = () => {
       'クラブセッティング',
       '使用クラブ',
       'ゴルフクラブ',
-      'MyBagPro',
+      articleBrand.name,
     ].filter(Boolean) as string[];
 
     applySeo({
@@ -237,12 +239,12 @@ export const ArticleDetailPage = () => {
         : undefined,
       publisher: {
         '@type': 'Organization',
-        name: 'My Bag Pro',
+        name: articleBrand.name,
         url: toAbsoluteUrl('/'),
       },
       author: {
         '@type': 'Organization',
-        name: 'My Bag Pro',
+        name: articleBrand.name,
       },
     });
 

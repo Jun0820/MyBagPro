@@ -15,7 +15,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ onStart }) => {
           <div className="inline-block relative">
             <div className="absolute inset-0 bg-cyan-400/20 blur-xl rounded-full animate-pulse-slow"></div>
             <h1 className="relative font-eng text-6xl md:text-8xl font-black tracking-tight text-white drop-shadow-lg">
-              My Bag <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Pro</span>
+              Golf <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">ID</span>
             </h1>
           </div>
           <div className="h-px w-16 bg-gradient-to-r from-transparent via-slate-500 to-transparent mx-auto mt-4 mb-2"></div>
@@ -57,4 +57,3 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ onStart }) => {
 };
 
 export default LandingScreen;
-

@@ -5,8 +5,9 @@ import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
 import { buildStoredSocialLinks } from '../../lib/userSocials';
 import { trackEvent } from '../../lib/analytics';
+import { getBrandConfig } from '../../config/brand';
 
-const AUTH_REDIRECT_ORIGIN = import.meta.env.VITE_AUTH_REDIRECT_ORIGIN || 'https://www.mybagpro.jp';
+const AUTH_REDIRECT_ORIGIN = import.meta.env.VITE_AUTH_REDIRECT_ORIGIN || getBrandConfig().url;
 
 interface AccountAuthProps {
     onLogin: (account: UserAccount, profile?: UserProfile) => void;

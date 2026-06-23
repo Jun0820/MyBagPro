@@ -2031,7 +2031,7 @@ export const DiagnosisWizard = () => {
                 {!user.isLoggedIn && (
                     <div className="bg-golf-50 p-5 mt-6 rounded-2xl border border-golf-200">
                         <p className="font-bold text-golf-800 mb-2 flex items-center gap-2">💡 ヒント</p>
-                        <p className="text-sm text-golf-700 mb-4">アカウントを作成すると、診断結果やMy Bagデータを永続的に保存できます。</p>
+                        <p className="text-sm text-golf-700 mb-4">アカウントを作成すると、診断結果やGolf IDデータを永続的に保存できます。</p>
                         <button onClick={() => setShowAuth(true)} className="w-full py-3 bg-white border-2 border-golf-200 text-golf-700 font-bold rounded-xl hover:bg-golf-100 transition-colors">
                             ログイン / 新規登録して保存
                         </button>
