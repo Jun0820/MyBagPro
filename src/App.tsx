@@ -60,6 +60,9 @@ const BallDiagnosisApp = lazy(() => import('./pages/ball-diagnosis/BallDiagnosis
 const Sitemap = lazy(() =>
   import('./pages/Sitemap').then((module) => ({ default: module.Sitemap }))
 );
+const AdminDashboard = lazy(() =>
+  import('./pages/AdminDashboard').then((module) => ({ default: module.AdminDashboard }))
+);
 
 const RouteLoading = () => (
   <div className="flex min-h-[40vh] items-center justify-center rounded-[2rem] bg-white text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200/80">
@@ -84,6 +87,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const authMode = (new URLSearchParams(location.search).get('auth') as 'login' | 'register' | null) || null;
   const authNext = new URLSearchParams(location.search).get('next');
   const authReturnTo = new URLSearchParams(location.search).get('returnTo');
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   const navItems = useMemo(
     () => [
@@ -220,6 +224,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         )
         .slice(0, 5)
     : [];
+
+  if (isAdminRoute) {
+    return <>{children}</>;
+  }
 
   return (
     <div className="min-h-screen bg-[#f5f7f3] text-slate-900">
@@ -636,6 +644,7 @@ function App() {
               <Route path="/mypage/clubs" element={<MyGearPage />} />
               <Route path="/mypage/profile" element={<MyGearPage />} />
               <Route path="/mybag/create" element={<MyGearPage />} />
+              <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/bag" element={<SharedBag />} />
               <Route path="/sitemap" element={<Sitemap />} />
             </Routes>
