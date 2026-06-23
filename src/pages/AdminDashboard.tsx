@@ -76,12 +76,22 @@ const eventNames = {
   productClick: ['product_click', 'rakuten_click', 'affiliate_click', 'select_item'],
 } as const;
 
+const normalizeAdminEmail = (email: string) => {
+  const normalized = email.trim().toLowerCase();
+  const [localPart, domain] = normalized.split('@');
+  if (!localPart || !domain) return normalized;
+  if (domain === 'gmail.com' || domain === 'googlemail.com') {
+    return `${localPart.split('+')[0].replace(/\./g, '')}@gmail.com`;
+  }
+  return normalized;
+};
+
 const fallbackAdminEmails = ['junpei.t.820@gmail.com'];
 const configuredAdminEmails = String(import.meta.env.VITE_ADMIN_EMAILS || import.meta.env.VITE_ADMIN_EMAIL || '')
   .split(',')
-  .map((email) => email.trim().toLowerCase())
+  .map(normalizeAdminEmail)
   .filter(Boolean);
-const adminEmails = configuredAdminEmails.length > 0 ? configuredAdminEmails : fallbackAdminEmails;
+const adminEmails = configuredAdminEmails.length > 0 ? configuredAdminEmails : fallbackAdminEmails.map(normalizeAdminEmail);
 
 const dayMs = 24 * 60 * 60 * 1000;
 
@@ -508,7 +518,7 @@ export const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeTrend, setActiveTrend] = useState<keyof Omit<DailyPoint, 'date'>>('signups');
-  const normalizedUserEmail = user.email.trim().toLowerCase();
+  const normalizedUserEmail = normalizeAdminEmail(user.email);
   const isAdmin = user.isLoggedIn && adminEmails.includes(normalizedUserEmail);
 
   const refresh = async () => {
@@ -592,7 +602,7 @@ export const AdminDashboard = () => {
                 </div>
                 <h1 className="mt-5 text-2xl font-black">管理者権限がありません</h1>
                 <p className="mt-3 text-sm font-bold leading-7 text-slate-500">
-                  現在のログインメールでは `/admin` を表示できません。管理者メールは `VITE_ADMIN_EMAILS` で設定できます。
+                  現在のログインメールでは `/admin` を表示できません。管理者アカウントでログインしてください。
                 </p>
               </div>
             </div>
