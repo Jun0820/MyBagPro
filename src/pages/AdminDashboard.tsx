@@ -676,20 +676,8 @@ export const AdminDashboard = () => {
         </aside>
 
         <main className="px-7 py-6">
-          {!user.isLoggedIn ? (
+          {!isAdmin ? (
             <AdminLoginPanel onLogin={setUser} />
-          ) : !isAdmin ? (
-            <div className="flex min-h-[70vh] items-center justify-center">
-              <div className="w-full max-w-lg rounded-2xl border border-amber-200 bg-white p-8 text-center shadow-sm">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
-                  <Flag size={24} />
-                </div>
-                <h1 className="mt-5 text-2xl font-black">管理者権限がありません</h1>
-                <p className="mt-3 text-sm font-bold leading-7 text-slate-500">
-                  現在のログインメールでは `/admin` を表示できません。管理者アカウントでログインしてください。
-                </p>
-              </div>
-            </div>
           ) : (
           <>
           <div className="flex items-start justify-between gap-4">

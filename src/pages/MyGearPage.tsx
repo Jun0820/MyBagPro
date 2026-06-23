@@ -19,7 +19,7 @@ import {
 import { cn } from '../lib/utils';
 import { useEffect, useMemo } from 'react';
 import { supabase } from '../lib/supabase';
-import { TargetCategory } from '../types/golf';
+import { INITIAL_ACCOUNT, INITIAL_PROFILE, TargetCategory } from '../types/golf';
 
 export const MyGearPage = () => {
     const {
@@ -42,6 +42,7 @@ export const MyGearPage = () => {
         manualSaveMyBagClub,
         syncWithSupabase,
         setShowAuth,
+        setUser,
     } = useDiagnosis();
     const navigate = useNavigate();
     const location = useLocation();
@@ -86,8 +87,18 @@ export const MyGearPage = () => {
 
     const handleLogout = async () => {
         if (!window.confirm('ログアウトしますか？')) return;
-        await supabase.auth.signOut();
-        window.location.href = '#/';
+        try {
+            await supabase.auth.signOut();
+        } catch (error) {
+            console.error('Logout error:', error);
+        } finally {
+            setUser(INITIAL_ACCOUNT);
+            setProfile(INITIAL_PROFILE);
+            localStorage.removeItem('mybagpro_user');
+            localStorage.removeItem('mybagpro_profile');
+            localStorage.removeItem('mybagpro_result_data');
+            navigate('/', { replace: true });
+        }
     };
 
     useEffect(() => {
