@@ -16,8 +16,8 @@ const heroImage = '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
 const primaryMoves = [
   {
-    title: '自分のクラブを登録',
-    text: '番手、モデル、シャフト、飛距離を入れてバッグを見える化します。',
+    title: 'Golf IDを作る',
+    text: 'クラブ、スコア、悩み、目標をまとめて自分のゴルフを見える化します。',
     href: '/mypage/clubs',
     icon: ClipboardList,
   },
@@ -61,13 +61,13 @@ const featuredLinks = [
 
 const valueRows = [
   ['プロの真似で終わらない', '同じクラブを買う前に、番手構成と役割を読み解きます。'],
-  ['自分のバッグに落とし込む', 'キャリー、総距離、シャフト重量、ミス傾向を一緒に見ます。'],
+  ['自分のGolf IDに落とし込む', 'キャリー、総距離、シャフト重量、ミス傾向を一緒に見ます。'],
   ['購入前の迷いを減らす', '診断、比較、詳細、購入先確認まで一つの流れで進めます。'],
 ];
 
 const statItems = [
   { label: 'プロセッティング', value: '掲載中', icon: Trophy },
-  { label: 'My Clubs', value: '保存対応', icon: ClipboardList },
+  { label: 'Golf ID', value: '共有対応', icon: ClipboardList },
   { label: 'AI診断', value: '無料', icon: BarChart3 },
 ];
 
@@ -96,7 +96,7 @@ export const Home = () => {
   };
 
   const goToMyClubs = () => {
-    trackEvent(user.isLoggedIn ? 'open_mybag_from_home' : 'open_register', {
+    trackEvent(user.isLoggedIn ? 'open_golf_id_from_home' : 'open_register', {
       source_surface: 'home_primary',
       next_destination: 'mypage_clubs',
     });
@@ -126,15 +126,16 @@ export const Home = () => {
           <div className="relative mx-auto flex min-h-[520px] max-w-[1380px] flex-col justify-end px-4 pb-6 pt-16 md:min-h-[600px] md:px-8 md:pb-10">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-[#d8c58b] ring-1 ring-white/14">
-                MyBagPro
+                Golf ID
               </div>
               <h1 className="mt-4 text-[2.2rem] font-black leading-[1.02] tracking-tight md:mt-5 md:text-[4.8rem]">
-                プロの14本から、
+                上手くなる人は、
                 <br />
-                自分のクラブ選びへ。
+                自分のゴルフを知っている。
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/82 md:mt-5 md:text-lg md:leading-8">
-                MyBagProは、プロや人気ゴルファーのクラブセッティングを見て、自分のバッグ登録、AI診断、購入検討までつなげるゴルフクラブ分析サイトです。
+                クラブ、スコア、悩み、目標をまとめると、AIがあなたの“次の一手”を提案。
+                作ったGolf IDはSNSプロフィールに貼って、仲間やフォロワーと共有できます。
               </p>
               <form
                 onSubmit={(event) => {
@@ -178,15 +179,16 @@ export const Home = () => {
                   onClick={goToMyClubs}
                   className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-[56px] md:text-base"
                 >
-                  {user.isLoggedIn ? 'マイクラブを開く' : '無料登録してクラブを登録'}
+                  {user.isLoggedIn ? 'Golf IDを開く' : '無料でGolf IDを作る'}
                 </button>
                 <button
-                  onClick={() => goToDiagnosis('hero')}
+                  onClick={() => navigate('/settings/users')}
                   className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-white px-4 text-sm font-black text-[#102318] transition hover:bg-[#f3f6f3] md:min-h-[56px] md:text-base"
                 >
-                  AI診断を始める
+                  みんなのセッティングを見る
                 </button>
               </div>
+              <div className="mt-3 text-xs font-bold text-white/68 md:text-sm">見せたい項目だけ公開できます。</div>
             </div>
 
             <div className="mt-6 grid gap-2 sm:grid-cols-3 md:mt-9 md:max-w-3xl">
@@ -245,11 +247,11 @@ export const Home = () => {
 
       <section className="mx-auto mt-7 grid max-w-[1380px] gap-6 md:mt-10 xl:grid-cols-[0.95fr_1.45fr]">
         <div className="md:pt-1">
-          <div className="text-[11px] font-black uppercase tracking-[0.18em] text-[#176534]">Why MyBagPro</div>
+          <div className="text-[11px] font-black uppercase tracking-[0.18em] text-[#176534]">Why Golf ID</div>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-[#111827] md:text-4xl">クラブ一覧ではなく、選び方まで残す。</h2>
           <p className="mt-3 text-sm leading-7 text-slate-600 md:text-base md:leading-8">
             プロの使用クラブは参考になります。ただし、そのまま真似るだけではヘッドスピード、球筋、距離の階段が合わないこともあります。
-            MyBagProでは、プロの14本を自分のバッグに置き換えて考えられるように設計しています。
+            Golf IDでは、プロの14本を自分のクラブセッティングに置き換えて考えられるように設計しています。
           </p>
           <button
             onClick={() => navigate('/pros')}
@@ -308,7 +310,7 @@ export const Home = () => {
           <div>
             <div className="text-xl font-black tracking-tight md:text-3xl">まずは1本だけでも登録できます。</div>
             <div className="mt-2 text-sm leading-7 text-white/74">
-              ドライバー、7I、ウェッジ、ボールからでも大丈夫です。登録した情報は診断とマイクラブに反映されます。
+              ドライバー、7I、ウェッジ、ボールからでも大丈夫です。登録した情報は診断とGolf IDに反映されます。
             </div>
           </div>
           <div className="grid gap-2 sm:grid-cols-2 md:min-w-[360px]">
