@@ -41,6 +41,15 @@ export interface GolfIdRecord {
   current_issue?: string | null;
   club_setting?: string | null;
   visibility?: Partial<GolfIdVisibility> | null;
+  diagnosis_result?: {
+    diagnosisType?: string;
+    currentStatus?: string;
+    priorityIssue?: string;
+    nextAction?: string;
+    notRecommendedNow?: string;
+    practiceSuggestion?: string;
+    gearSuggestion?: string;
+  } | null;
   is_public?: boolean | null;
   updated_at?: string | null;
 }

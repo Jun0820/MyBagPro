@@ -5,6 +5,7 @@ import { useDiagnosis } from '../context/DiagnosisContext';
 import { getBrandConfig } from '../config/brand';
 import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
+import { generateDiagnosisResult } from '../lib/diagnosis/rules';
 import {
   defaultGolfIdVisibility,
   isValidGolfIdUsername,
@@ -56,6 +57,12 @@ export const GolfIdCreatePage = () => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    trackEvent('golf_id_create_start', {
+      source: 'create_page',
+    });
+  }, []);
 
   const publicUrl = useMemo(() => {
     const username = normalizeGolfIdUsername(form.username);
@@ -160,6 +167,26 @@ export const GolfIdCreatePage = () => {
     }
 
     setSaving(true);
+    const { data: usernameOwner, error: usernameCheckError } = await supabase
+      .from('golf_ids')
+      .select('id')
+      .eq('username', username)
+      .maybeSingle();
+
+    if (usernameCheckError) {
+      setSaving(false);
+      setError('usernameの確認に失敗しました。時間をおいて再度お試しください。');
+      trackEvent('golf_id_save_error', { reason: usernameCheckError.message });
+      return;
+    }
+
+    if (usernameOwner && usernameOwner.id !== existingId) {
+      setSaving(false);
+      setError('このusernameは既に使われています。別のusernameを入力してください。');
+      return;
+    }
+
+    const diagnosisResult = generateDiagnosisResult(form);
     const payload = {
       ...(existingId ? { id: existingId } : {}),
       user_id: user.id,
@@ -175,6 +202,7 @@ export const GolfIdCreatePage = () => {
       current_issue: form.current_issue.trim() || null,
       club_setting: form.club_setting.trim() || null,
       visibility: form.visibility,
+      diagnosis_result: diagnosisResult,
       is_public: true,
     };
 
@@ -190,7 +218,10 @@ export const GolfIdCreatePage = () => {
 
     setExistingId((data as { id?: string } | null)?.id || existingId);
     setMessage('Golf IDを保存しました。公開ページへ移動します。');
-    trackEvent('golf_id_created', { username });
+    trackEvent('golf_id_create_complete', {
+      username,
+      diagnosis_type: diagnosisResult.diagnosisType,
+    });
     navigate(`/u/${username}`);
   };
 

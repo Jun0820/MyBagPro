@@ -16,10 +16,14 @@ create table if not exists public.golf_ids (
   current_issue text,
   club_setting text,
   visibility jsonb not null default '{}'::jsonb,
+  diagnosis_result jsonb,
   is_public boolean not null default true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.golf_ids
+add column if not exists diagnosis_result jsonb;
 
 create unique index if not exists golf_ids_username_lower_uidx
 on public.golf_ids (lower(username));

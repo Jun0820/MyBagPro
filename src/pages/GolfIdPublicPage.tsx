@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, CalendarDays, Gauge, Goal, Trophy, UserRound } from 'lucide-react';
+import { ArrowRight, CalendarDays, Clipboard, Gauge, Goal, MessageCircle, Share2, Trophy, UserRound } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { applySeo } from '../lib/seo';
+import { trackEvent } from '../lib/analytics';
 import {
   defaultGolfIdVisibility,
   normalizeGolfIdUsername,
@@ -26,6 +27,8 @@ export const GolfIdPublicPage = () => {
   const [profile, setProfile] = useState<GolfIdRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [showPlayerCard, setShowPlayerCard] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -55,7 +58,9 @@ export const GolfIdPublicPage = () => {
   }, [username]);
 
   useEffect(() => {
-    const title = profile ? `${profile.nickname}のGolf ID` : '公開Golf ID';
+    const title = profile
+      ? `${profile.nickname}のGolf ID${profile.best_score ? `｜ベスト${profile.best_score}` : ''}${profile.target_score ? `・目標${profile.target_score}` : ''}`
+      : '公開Golf ID';
     applySeo({
       title,
       description: profile
@@ -93,6 +98,35 @@ export const GolfIdPublicPage = () => {
     .split(/\n+/)
     .map((line) => line.trim())
     .filter(Boolean);
+  const publicUrl = `https://golfid.jp/u/${profile.username}`;
+  const diagnosis = profile.diagnosis_result;
+  const shareText = `${profile.nickname}のGolf ID`;
+  const shareUrl = encodeURIComponent(publicUrl);
+  const encodedShareText = encodeURIComponent(shareText);
+
+  const handlePlayerCardGenerate = () => {
+    setShowPlayerCard(true);
+    trackEvent('player_card_generate', {
+      username: profile.username,
+      diagnosis_type: diagnosis?.diagnosisType || null,
+    });
+  };
+
+  const handleCopyUrl = async () => {
+    await navigator.clipboard?.writeText(publicUrl);
+    setCopied(true);
+    trackEvent('sns_share_click', {
+      channel: 'copy_url',
+      username: profile.username,
+    });
+    window.setTimeout(() => setCopied(false), 1600);
+  };
+
+  const handleSignupClick = () => {
+    trackEvent('public_page_signup_click', {
+      username: profile.username,
+    });
+  };
 
   return (
     <main className="bg-slate-50">
@@ -107,6 +141,7 @@ export const GolfIdPublicPage = () => {
               </div>
               <Link
                 to="/create"
+                onClick={handleSignupClick}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-500"
               >
                 自分もGolf IDを作る
@@ -182,6 +217,33 @@ export const GolfIdPublicPage = () => {
             )}
           </div>
 
+          {diagnosis && (
+            <section className="p-4 pt-0 lg:p-6 lg:pt-0">
+              <div className="rounded-2xl bg-emerald-50 p-5 ring-1 ring-emerald-100">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">AI上達診断</p>
+                <h2 className="mt-2 text-xl font-black text-slate-950">{diagnosis.diagnosisType || 'クラブ見直しタイプ'}</h2>
+                <div className="mt-4 grid gap-3 text-sm font-semibold leading-7 text-slate-700 md:grid-cols-2">
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
+                    <p className="text-xs font-black text-emerald-800">今の状態</p>
+                    <p className="mt-2">{diagnosis.currentStatus || '-'}</p>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
+                    <p className="text-xs font-black text-emerald-800">次の一手</p>
+                    <p className="mt-2">{diagnosis.nextAction || '-'}</p>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
+                    <p className="text-xs font-black text-emerald-800">優先課題</p>
+                    <p className="mt-2">{diagnosis.priorityIssue || '-'}</p>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
+                    <p className="text-xs font-black text-emerald-800">クラブ選びのヒント</p>
+                    <p className="mt-2">{diagnosis.gearSuggestion || '-'}</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
           {canShow(profile, 'club_setting') && (
             <section className="p-4 pt-0 lg:p-6 lg:pt-0">
               <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
@@ -201,15 +263,98 @@ export const GolfIdPublicPage = () => {
             </section>
           )}
 
+          <section className="p-4 pt-0 lg:p-6 lg:pt-0">
+            <div className="rounded-2xl bg-slate-950 p-5 text-white">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h2 className="text-lg font-black">Player Card</h2>
+                  <p className="mt-1 text-sm font-semibold text-slate-300">SNSで共有しやすいカード形式で表示できます。</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handlePlayerCardGenerate}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-black text-slate-950 transition hover:bg-emerald-50"
+                >
+                  <Share2 className="h-4 w-4" />
+                  Player Cardを表示
+                </button>
+              </div>
+
+              {showPlayerCard && (
+                <div className="mt-5 rounded-3xl bg-white p-5 text-slate-950">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-700">Golf ID Player Card</p>
+                  <h3 className="mt-2 text-2xl font-black">{profile.nickname}</h3>
+                  <div className="mt-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+                    <div className="rounded-2xl bg-slate-50 p-3">
+                      <p className="text-xs font-black text-slate-500">ベスト</p>
+                      <p className="text-xl font-black text-emerald-700">{formatValue(profile.best_score)}</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-50 p-3">
+                      <p className="text-xs font-black text-slate-500">目標</p>
+                      <p className="text-xl font-black text-emerald-700">{formatValue(profile.target_score)}</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-50 p-3">
+                      <p className="text-xs font-black text-slate-500">HS</p>
+                      <p className="text-xl font-black text-emerald-700">{formatValue(profile.head_speed, ' m/s')}</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-50 p-3">
+                      <p className="text-xs font-black text-slate-500">タイプ</p>
+                      <p className="text-sm font-black text-slate-900">{diagnosis?.diagnosisType || '-'}</p>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm font-bold text-slate-700">{diagnosis?.nextAction || 'Golf IDで次の一手を見つけましょう。'}</p>
+                  <p className="mt-3 break-all text-xs font-bold text-slate-500">{publicUrl}</p>
+                </div>
+              )}
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodedShareText}&url=${shareUrl}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackEvent('sns_share_click', { channel: 'x', username: profile.username })}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                >
+                  Xで共有
+                </a>
+                <a
+                  href={`https://social-plugins.line.me/lineit/share?url=${shareUrl}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackEvent('sns_share_click', { channel: 'line', username: profile.username })}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  LINE
+                </a>
+                <button
+                  type="button"
+                  onClick={handleCopyUrl}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                >
+                  <Clipboard className="h-4 w-4" />
+                  {copied ? 'コピーしました' : 'URLコピー'}
+                </button>
+              </div>
+            </div>
+          </section>
+
           <div className="border-t border-slate-200 bg-slate-50 p-5 text-center">
             <p className="text-sm font-bold text-slate-600">あなたのゴルフも、1ページにまとめられます。</p>
             <Link
               to="/create"
+              onClick={handleSignupClick}
               className="mt-3 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 text-sm font-black text-white transition hover:bg-emerald-800"
             >
               無料でGolf IDを作る
               <ArrowRight className="h-4 w-4" />
             </Link>
+            <a
+              href="https://www.mybagpro.jp/pros"
+              className="ml-0 mt-3 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50 sm:ml-2"
+            >
+              MyBagProを見る
+            </a>
           </div>
         </div>
       </section>

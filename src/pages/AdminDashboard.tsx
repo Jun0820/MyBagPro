@@ -71,9 +71,9 @@ const eventNames = {
   visits: ['page_view', 'session_start'],
   diagnosisStart: ['start_ai_diagnosis', 'diagnosis_start'],
   diagnosisCompleted: ['diagnosis_success', 'diagnosis_result_view', 'diagnosis_complete'],
-  snsImageGenerated: ['share_image_generated', 'sns_image_generated', 'bag_share_image_generated'],
-  snsShared: ['share', 'sns_share', 'share_public_bag', 'open_profile_channel'],
-  publicPageSignup: ['public_page_signup', 'signup_from_public_page'],
+  snsImageGenerated: ['share_image_generated', 'sns_image_generated', 'bag_share_image_generated', 'player_card_generate'],
+  snsShared: ['share', 'sns_share', 'sns_share_click', 'share_public_bag', 'open_profile_channel'],
+  publicPageSignup: ['public_page_signup', 'signup_from_public_page', 'public_page_signup_click', 'golf_id_create_complete'],
   productClick: ['product_click', 'rakuten_click', 'affiliate_click', 'select_item'],
 } as const;
 
