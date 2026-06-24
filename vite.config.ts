@@ -14,6 +14,11 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'index.html'),
         mybagpro: resolve(__dirname, 'mybagpro.html'),
+        mybagproPros: resolve(__dirname, 'mybagpro-pros.html'),
+        mybagproArticles: resolve(__dirname, 'mybagpro-articles.html'),
+        golfidCreate: resolve(__dirname, 'golfid-create.html'),
+        golfidDiagnosis: resolve(__dirname, 'golfid-diagnosis.html'),
+        golfidPublic: resolve(__dirname, 'golfid-public.html'),
       },
       output: {
         manualChunks: {

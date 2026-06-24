@@ -45,6 +45,42 @@
       "handle": "filesystem"
     },
     {
+      "src": "/pros",
+      "dest": "/mybagpro-pros.html"
+    },
+    {
+      "src": "/pros/(.*)",
+      "dest": "/mybagpro-pros.html"
+    },
+    {
+      "src": "/articles",
+      "dest": "/mybagpro-articles.html"
+    },
+    {
+      "src": "/articles/(.*)",
+      "dest": "/mybagpro-articles.html"
+    },
+    {
+      "src": "/create",
+      "dest": "/golfid-create.html"
+    },
+    {
+      "src": "/diagnosis",
+      "dest": "/golfid-diagnosis.html"
+    },
+    {
+      "src": "/diagnosis/(.*)",
+      "dest": "/golfid-diagnosis.html"
+    },
+    {
+      "src": "/u/(.*)",
+      "dest": "/golfid-public.html"
+    },
+    {
+      "src": "/@(.*)",
+      "dest": "/golfid-public.html"
+    },
+    {
       "src": "/(.*)",
       "has": [
         {
