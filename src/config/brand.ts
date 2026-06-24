@@ -31,7 +31,7 @@ export const brandConfigs: Record<BrandKey, BrandConfig> = {
     brand: 'mybagpro',
     name: 'MyBagPro',
     domain: 'mybagpro.jp',
-    url: 'https://mybagpro.jp',
+    url: 'https://www.mybagpro.jp',
     mainCopy: 'プロとみんなのクラブセッティングが見つかる。',
     description:
       'プロ・インフルエンサー・ゴルファーのクラブセッティングをチェック。気になるクラブ選びから、Golf IDでのAI上達診断までつなげられます。',

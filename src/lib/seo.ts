@@ -58,7 +58,7 @@ const upsertCanonical = (href: string) => {
 const buildDocumentTitle = (title: string, path: string, brandName: string) => {
   const pathname = path.startsWith('http') ? new URL(path).pathname : path.split('?')[0] || '/';
   if (pathname === '/' && brandName === 'MyBagPro') {
-    return `My Bag Pro | ${title}`;
+    return `MyBagPro | ${title}`;
   }
   return `${title} | ${brandName}`;
 };
