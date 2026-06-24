@@ -1,7 +1,11 @@
 export type GolfIdVisibilityKey =
   | 'best_score'
+  | 'average_score'
   | 'target_score'
   | 'head_speed'
+  | 'golf_history'
+  | 'favorite_club'
+  | 'weak_club'
   | 'club_setting'
   | 'current_issue';
 
@@ -43,8 +47,12 @@ export interface GolfIdRecord {
 
 export const defaultGolfIdVisibility: GolfIdVisibility = {
   best_score: true,
+  average_score: true,
   target_score: true,
   head_speed: true,
+  golf_history: true,
+  favorite_club: true,
+  weak_club: true,
   club_setting: true,
   current_issue: true,
 };

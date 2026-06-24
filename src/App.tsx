@@ -93,7 +93,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const queryAuthMode = (new URLSearchParams(location.search).get('auth') as 'login' | 'register' | null) || null;
   const authMode = queryAuthMode || (location.pathname === '/create' && !user.isLoggedIn ? 'register' : null);
-  const authNext = new URLSearchParams(location.search).get('next');
+  const authNext = new URLSearchParams(location.search).get('next') || (location.pathname === '/create' ? 'create' : null);
   const authReturnTo = new URLSearchParams(location.search).get('returnTo');
   const isAdminRoute = location.pathname.startsWith('/admin');
   const brand = getBrandConfig();
@@ -570,6 +570,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 navigate('/mypage/clubs?welcome=1&focus=missing-clubs');
                 return;
               }
+              if (authNext === 'create') {
+                navigate('/create?welcome=1');
+                return;
+              }
               const destination =
                 clubCount === 0
                   ? '/mypage/clubs?welcome=1&focus=missing-clubs&next=starter-clubs'
@@ -686,6 +690,7 @@ function App() {
               <Route path="/mypage/profile" element={<MyGearPage />} />
               <Route path="/create" element={<GolfIdCreatePage />} />
               <Route path="/u/:username" element={<GolfIdPublicPage />} />
+              <Route path="/@:username" element={<GolfIdPublicPage />} />
               <Route path="/mybag/create" element={<MyGearPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/bag" element={<SharedBag />} />

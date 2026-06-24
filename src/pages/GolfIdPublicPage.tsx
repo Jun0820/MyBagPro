@@ -123,11 +123,13 @@ export const GolfIdPublicPage = () => {
                 <p className="text-2xl font-black text-slate-950">{formatValue(profile.best_score)}</p>
               </div>
             )}
-            <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-              <CalendarDays className="h-5 w-5 text-emerald-700" />
-              <p className="mt-3 text-xs font-black text-slate-500">平均スコア</p>
-              <p className="text-2xl font-black text-slate-950">{formatValue(profile.average_score)}</p>
-            </div>
+            {canShow(profile, 'average_score') && (
+              <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+                <CalendarDays className="h-5 w-5 text-emerald-700" />
+                <p className="mt-3 text-xs font-black text-slate-500">平均スコア</p>
+                <p className="text-2xl font-black text-slate-950">{formatValue(profile.average_score)}</p>
+              </div>
+            )}
             {canShow(profile, 'target_score') && (
               <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
                 <Goal className="h-5 w-5 text-emerald-700" />
@@ -151,18 +153,24 @@ export const GolfIdPublicPage = () => {
                 プロフィール
               </h2>
               <dl className="mt-4 grid gap-3 text-sm">
-                <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
-                  <dt className="font-bold text-slate-500">ゴルフ歴</dt>
-                  <dd className="font-black text-slate-900">{formatValue(profile.golf_history)}</dd>
-                </div>
-                <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
-                  <dt className="font-bold text-slate-500">得意クラブ</dt>
-                  <dd className="font-black text-slate-900">{formatValue(profile.favorite_club)}</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="font-bold text-slate-500">苦手クラブ</dt>
-                  <dd className="font-black text-slate-900">{formatValue(profile.weak_club)}</dd>
-                </div>
+                {canShow(profile, 'golf_history') && (
+                  <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                    <dt className="font-bold text-slate-500">ゴルフ歴</dt>
+                    <dd className="font-black text-slate-900">{formatValue(profile.golf_history)}</dd>
+                  </div>
+                )}
+                {canShow(profile, 'favorite_club') && (
+                  <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                    <dt className="font-bold text-slate-500">得意クラブ</dt>
+                    <dd className="font-black text-slate-900">{formatValue(profile.favorite_club)}</dd>
+                  </div>
+                )}
+                {canShow(profile, 'weak_club') && (
+                  <div className="flex justify-between gap-4">
+                    <dt className="font-bold text-slate-500">苦手クラブ</dt>
+                    <dd className="font-black text-slate-900">{formatValue(profile.weak_club)}</dd>
+                  </div>
+                )}
               </dl>
             </section>
 

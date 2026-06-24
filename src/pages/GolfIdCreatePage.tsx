@@ -33,8 +33,12 @@ const initialForm: GolfIdFormData = {
 
 const publicToggleLabels: Record<GolfIdVisibilityKey, string> = {
   best_score: 'ベストスコア',
+  average_score: '平均スコア',
   target_score: '目標スコア',
   head_speed: 'ヘッドスピード',
+  golf_history: 'ゴルフ歴',
+  favorite_club: '得意クラブ',
+  weak_club: '苦手クラブ',
   club_setting: 'クラブセッティング',
   current_issue: '今の悩み',
 };

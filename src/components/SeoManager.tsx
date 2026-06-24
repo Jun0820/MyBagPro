@@ -108,7 +108,7 @@ const getSeoForPath = (pathname: string) => {
     };
   }
 
-  if (pathname.startsWith('/u/')) {
+  if (pathname.startsWith('/u/') || pathname.startsWith('/@')) {
     return {
       title: '公開Golf ID',
       description: 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
