@@ -64,6 +64,12 @@ const Sitemap = lazy(() =>
 const AdminDashboard = lazy(() =>
   import('./pages/AdminDashboard').then((module) => ({ default: module.AdminDashboard }))
 );
+const GolfIdCreatePage = lazy(() =>
+  import('./pages/GolfIdCreatePage').then((module) => ({ default: module.GolfIdCreatePage }))
+);
+const GolfIdPublicPage = lazy(() =>
+  import('./pages/GolfIdPublicPage').then((module) => ({ default: module.GolfIdPublicPage }))
+);
 
 const RouteLoading = () => (
   <div className="flex min-h-[40vh] items-center justify-center rounded-[2rem] bg-white text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200/80">
@@ -678,7 +684,8 @@ function App() {
               <Route path="/mypage/view" element={<MyGearPage />} />
               <Route path="/mypage/clubs" element={<MyGearPage />} />
               <Route path="/mypage/profile" element={<MyGearPage />} />
-              <Route path="/create" element={<MyGearPage />} />
+              <Route path="/create" element={<GolfIdCreatePage />} />
+              <Route path="/u/:username" element={<GolfIdPublicPage />} />
               <Route path="/mybag/create" element={<MyGearPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/bag" element={<SharedBag />} />

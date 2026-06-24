@@ -79,6 +79,7 @@ export const getCanonicalBrandForPath = (path = '/', hostname?: string): BrandCo
 
   if (
     pathname === '/create' ||
+    pathname.startsWith('/u/') ||
     pathname === '/diagnosis' ||
     pathname.startsWith('/diagnosis/') ||
     pathname === '/mypage' ||

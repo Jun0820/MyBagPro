@@ -69,7 +69,7 @@ const getRouteSeoMap = (): Record<string, { title: string; description: string; 
     '/create': {
       title: 'Golf IDを作る',
       description: 'クラブ、スコア、悩み、目標をまとめてGolf IDを作成します。',
-      noindex: true,
+      keywords: ['Golf ID 作成', 'ゴルフ プロフィール', 'ゴルフ SNS プロフィール', 'AI ゴルフ診断'],
     },
     '/mybag/create': {
       title: 'Golf IDを作る',
@@ -105,6 +105,13 @@ const getSeoForPath = (pathname: string) => {
     return {
       title: 'みんなのセッティング詳細',
       description: '一般ゴルファーの公開クラブセッティング詳細ページです。バッグ構成、使用ボール、SNSや外部リンクまで確認できます。',
+    };
+  }
+
+  if (pathname.startsWith('/u/')) {
+    return {
+      title: '公開Golf ID',
+      description: 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
     };
   }
 
