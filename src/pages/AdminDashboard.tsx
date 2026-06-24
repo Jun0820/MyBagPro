@@ -75,6 +75,7 @@ const eventNames = {
   diagnosisCompleted: ['diagnosis_success', 'diagnosis_result_view', 'diagnosis_complete'],
   snsImageGenerated: ['share_image_generated', 'sns_image_generated', 'bag_share_image_generated', 'player_card_generate'],
   snsShared: ['share', 'sns_share', 'sns_share_click', 'share_public_bag', 'open_profile_channel'],
+  urlCopy: ['url_copy_click'],
   publicPageSignup: ['public_page_signup', 'signup_from_public_page', 'public_page_signup_click', 'golf_id_create_complete'],
   productClick: ['product_click', 'rakuten_click', 'affiliate_click', 'select_item'],
 } as const;
@@ -281,6 +282,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     diagnosisCompleted,
     snsImageGenerated,
     snsShared,
+    urlCopy,
     publicPageSignup,
     productClicks,
     revenue,
@@ -293,6 +295,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     buildPeriodMetric('analytics_events', { eventNames: eventNames.diagnosisCompleted }),
     buildPeriodMetric('analytics_events', { eventNames: eventNames.snsImageGenerated }),
     buildPeriodMetric('analytics_events', { eventNames: eventNames.snsShared }),
+    buildPeriodMetric('analytics_events', { eventNames: eventNames.urlCopy }),
     buildPeriodMetric('analytics_events', { eventNames: eventNames.publicPageSignup }),
     buildPeriodMetric('analytics_events', { eventNames: eventNames.productClick }),
     buildRevenueMetric().catch(() => emptyPeriod()),
@@ -331,7 +334,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     safeRows<Record<string, unknown>>('analytics_events', 'diagnosis_type,event_name,count,created_at', { from: thirtyStart, to: tomorrow, eventNames: [...eventNames.diagnosisStart, ...eventNames.diagnosisCompleted], limit: 5000 }),
     safeRows<Record<string, unknown>>('profiles', 'name,id,updated_at,is_public', { eq: { is_public: true }, limit: 6 }),
     safeRows<Record<string, unknown>>('content_articles', 'title,slug,published_at,published', { eq: { published: true }, limit: 6 }),
-    safeRows<Record<string, unknown>>('golf_profiles', 'username,nickname,best_score,target_score,created_at', { orderBy: 'created_at', ascending: false, limit: 5 }),
+    safeRows<Record<string, unknown>>('golf_profiles', 'username,nickname,best_score,target_score,created_at', { orderBy: 'created_at', ascending: false, limit: 10 }),
   ]);
 
   const popularPages = aggregateBy(publicPageEvents, ['page_title', 'page_path'], ['pv', 'sns_clicks', 'create_clicks', 'signup_count']);
@@ -346,6 +349,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     { id: 'diagnosis', label: 'AI診断完了数', helper: '診断結果到達', icon: <Stethoscope size={18} />, ...diagnosisCompleted },
     { id: 'sns-image', label: 'SNS画像生成数', helper: '共有素材の作成', icon: <Image size={18} />, ...snsImageGenerated },
     { id: 'sns-share', label: 'SNS共有数', helper: '外部流入の起点', icon: <Share2 size={18} />, ...snsShared },
+    { id: 'url-copy', label: 'URLコピー数', helper: 'プロフィール貼り付け準備', icon: <Link2 size={18} />, ...urlCopy },
     { id: 'public-signup', label: '公開ページ経由の新規登録数', helper: '紹介ループの成果', icon: <Link2 size={18} />, ...publicPageSignup },
     { id: 'product-click', label: '商品クリック数', helper: '購入検討への遷移', icon: <MousePointerClick size={18} />, ...productClicks },
     { id: 'revenue', label: '売上/成果報酬', helper: 'アフィリエイト成果', icon: <CircleDollarSign size={18} />, format: 'currency', ...revenue },

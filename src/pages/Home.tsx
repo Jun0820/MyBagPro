@@ -171,6 +171,11 @@ export const Home = () => {
               <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-[#d8c58b] ring-1 ring-white/14">
                 {brand.name}
               </div>
+              {brand.brand === 'golfid' && (
+                <div className="mt-3 inline-flex rounded-full bg-emerald-500/15 px-3 py-1.5 text-xs font-black text-emerald-100 ring-1 ring-emerald-300/20">
+                  β版公開中。先行メンバーは無料でGolf IDを作成できます。
+                </div>
+              )}
               <h1 className="mt-4 text-[2.2rem] font-black leading-[1.02] tracking-tight md:mt-5 md:text-[4.8rem]">
                 {heroTitleLines[0]}
                 {heroTitleLines[1] && (

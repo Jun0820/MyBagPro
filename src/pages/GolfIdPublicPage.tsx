@@ -4,6 +4,7 @@ import { ArrowRight, CalendarDays, Clipboard, Gauge, Goal, MessageCircle, Share2
 import { supabase } from '../lib/supabase';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
+import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import {
   defaultGolfIdVisibility,
   normalizeGolfIdUsername,
@@ -52,6 +53,9 @@ export const GolfIdPublicPage = () => {
         return;
       }
       setProfile(data as GolfIdRecord);
+      trackEvent('public_page_view', {
+        username,
+      });
     };
 
     loadProfile();
@@ -383,6 +387,19 @@ export const GolfIdPublicPage = () => {
             >
               MyBagProを見る
             </a>
+            {hasFeedbackForm && (
+              <div className="mt-4">
+                <a
+                  href={feedbackFormUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackFeedbackClick('public_page')}
+                  className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-black text-emerald-800 ring-1 ring-emerald-100 transition hover:bg-emerald-50"
+                >
+                  使ってみた感想・改善点を送る
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </section>

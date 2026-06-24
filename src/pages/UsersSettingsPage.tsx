@@ -3,6 +3,7 @@ import { ArrowRight, Gauge, Goal, Loader2, Sparkles, Trophy, UserRound } from 'l
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
+import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { defaultGolfIdVisibility, type GolfIdRecord, type GolfIdVisibilityKey } from '../lib/golfId';
 
 const GOLF_PROFILE_TABLE = 'golf_profiles';
@@ -222,7 +223,7 @@ export const UsersSettingsPage = () => {
         {!loading && !error && profiles.length === 0 && (
           <div className="rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200 md:p-10">
             <Sparkles className="mx-auto h-8 w-8 text-emerald-700" />
-            <h2 className="mt-4 text-2xl font-black text-slate-950">まだ公開Golf IDがありません。最初の1人になりましょう</h2>
+            <h2 className="mt-4 text-2xl font-black text-slate-950">まだ公開Golf IDが少ないです。最初の1人になりましょう</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
               まずはスコア、目標、悩みだけでも登録できます。公開する項目は選べます。
             </p>
@@ -248,6 +249,20 @@ export const UsersSettingsPage = () => {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {hasFeedbackForm && (
+          <div className="mt-5 text-center">
+            <a
+              href={feedbackFormUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackFeedbackClick('explore_page')}
+              className="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-4 text-sm font-black text-emerald-800 shadow-sm ring-1 ring-emerald-100 transition hover:bg-emerald-50"
+            >
+              使ってみた感想・改善点を送る
+            </a>
           </div>
         )}
       </section>

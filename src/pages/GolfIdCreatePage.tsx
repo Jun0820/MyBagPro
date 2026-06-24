@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CheckCircle2, Eye, EyeOff, Loader2, Share2, UserRound } from 'lucide-react';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { getBrandConfig } from '../config/brand';
+import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
 import { generateDiagnosisResult } from '../lib/diagnosis/rules';
@@ -49,6 +50,9 @@ const publicToggleLabels: Record<GolfIdVisibilityKey, string> = {
 const textInputClass =
   'w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100';
 
+const inputClass = (hasError?: boolean) =>
+  `${textInputClass} ${hasError ? 'border-rose-300 bg-rose-50 focus:border-rose-500 focus:ring-rose-100' : ''}`;
+
 export const GolfIdCreatePage = () => {
   const brand = getBrandConfig();
   const navigate = useNavigate();
@@ -59,6 +63,7 @@ export const GolfIdCreatePage = () => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof GolfIdFormData, string>>>({});
 
   useEffect(() => {
     trackEvent('golf_id_create_start', {
@@ -152,6 +157,7 @@ export const GolfIdCreatePage = () => {
   const saveGolfId = async () => {
     setMessage('');
     setError('');
+    setFieldErrors({});
 
     if (!user.isLoggedIn) {
       setShowAuth(true);
@@ -159,15 +165,22 @@ export const GolfIdCreatePage = () => {
     }
 
     const username = normalizeGolfIdUsername(form.username);
+    const nextFieldErrors: Partial<Record<keyof GolfIdFormData, string>> = {};
     if (!form.nickname.trim()) {
+      nextFieldErrors.nickname = 'ニックネームを入力してください。';
+      setFieldErrors(nextFieldErrors);
       setError('ニックネームを入力してください。');
       return;
     }
     if (!username) {
+      nextFieldErrors.username = 'usernameを入力してください。';
+      setFieldErrors(nextFieldErrors);
       setError('usernameを入力してください。');
       return;
     }
     if (!isValidGolfIdUsername(username)) {
+      nextFieldErrors.username = '3〜32文字の半角英数字、ハイフン、アンダーバーのみ使えます。';
+      setFieldErrors(nextFieldErrors);
       setError('usernameは3〜32文字の半角英数字、ハイフン、アンダーバーのみで入力してください。');
       return;
     }
@@ -188,6 +201,7 @@ export const GolfIdCreatePage = () => {
 
     if (usernameOwner && usernameOwner.id !== existingId) {
       setSaving(false);
+      setFieldErrors({ username: 'このusernameは既に使われています。' });
       setError('このusernameは既に使われています。別のusernameを入力してください。');
       return;
     }
@@ -217,6 +231,7 @@ export const GolfIdCreatePage = () => {
 
     if (saveError) {
       const conflict = saveError.message.toLowerCase().includes('duplicate') || saveError.code === '23505';
+      if (conflict) setFieldErrors({ username: 'このusernameは既に使われています。' });
       setError(conflict ? 'このusernameは既に使われています。別のusernameを入力してください。' : '保存に失敗しました。時間をおいて再度お試しください。');
       trackEvent('golf_id_save_error', { reason: saveError.message });
       return;
@@ -236,10 +251,15 @@ export const GolfIdCreatePage = () => {
       <section className="mx-auto grid max-w-6xl gap-6 px-4 py-8 lg:grid-cols-[1fr_340px] lg:px-6 lg:py-12">
         <div className="space-y-5">
           <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-700">Golf ID</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-700">Golf ID</p>
+              <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-black text-emerald-800 ring-1 ring-emerald-100">
+                β版公開中
+              </span>
+            </div>
             <h1 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-4xl">SNSに貼れるGolf IDを作る</h1>
             <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
-              スコア、悩み、クラブセッティングを1ページにまとめます。公開したい項目だけ選べるので、見せたい情報だけプロフィールにできます。
+              先行メンバーは無料でGolf IDを作成できます。まずはクラブ・スコア・悩み・目標をまとめるところから始めましょう。あとから編集できます。
             </p>
             {!user.isLoggedIn && (
               <button
@@ -253,11 +273,18 @@ export const GolfIdCreatePage = () => {
             )}
           </div>
 
+          {(message || error) && (
+            <div className={`rounded-xl px-4 py-3 text-sm font-bold ${error ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-100' : 'bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100'}`}>
+              {error || message}
+            </div>
+          )}
+
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-lg font-black text-slate-950">基本情報</h2>
-                <p className="text-xs font-bold text-slate-500">未入力でも保存できます。あとから編集できます。</p>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 1</p>
+                <h2 className="mt-1 text-lg font-black text-slate-950">基本情報</h2>
+                <p className="text-xs font-bold text-slate-500">公開ページの名前とURLを決めます。あとから編集できます。</p>
               </div>
               {loadingExisting && (
                 <span className="inline-flex items-center gap-2 text-xs font-bold text-slate-500">
@@ -270,12 +297,27 @@ export const GolfIdCreatePage = () => {
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">ニックネーム</span>
-                <input className={textInputClass} value={form.nickname} onChange={(event) => updateField('nickname', event.target.value)} placeholder="山田 太郎" />
+                <input className={inputClass(Boolean(fieldErrors.nickname))} value={form.nickname} onChange={(event) => updateField('nickname', event.target.value)} placeholder="山田 太郎" />
+                {fieldErrors.nickname && <p className="text-xs font-bold text-rose-600">{fieldErrors.nickname}</p>}
               </label>
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">username</span>
-                <input className={textInputClass} value={form.username} onChange={(event) => updateField('username', event.target.value)} placeholder="taro-golf" />
+                <input className={inputClass(Boolean(fieldErrors.username))} value={form.username} onChange={(event) => updateField('username', event.target.value)} placeholder="taro-golf" />
+                <p className="text-[11px] font-bold leading-5 text-slate-500">公開URLに使われます。例: golfid.jp/u/junpei</p>
+                {fieldErrors.username && <p className="text-xs font-bold text-rose-600">{fieldErrors.username}</p>}
               </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">ゴルフ歴</span>
+                <input className={textInputClass} value={form.golf_history} onChange={(event) => updateField('golf_history', event.target.value)} placeholder="5年" />
+              </label>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 2</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">スコア・目標</h2>
+            <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。診断の精度が上がります。</p>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">ベストスコア</span>
                 <input className={textInputClass} inputMode="numeric" value={form.best_score} onChange={(event) => updateField('best_score', event.target.value)} placeholder="82" />
@@ -292,10 +334,14 @@ export const GolfIdCreatePage = () => {
                 <span className="text-xs font-black text-slate-600">ヘッドスピード</span>
                 <input className={textInputClass} inputMode="decimal" value={form.head_speed} onChange={(event) => updateField('head_speed', event.target.value)} placeholder="42" />
               </label>
-              <label className="space-y-1.5">
-                <span className="text-xs font-black text-slate-600">ゴルフ歴</span>
-                <input className={textInputClass} value={form.golf_history} onChange={(event) => updateField('golf_history', event.target.value)} placeholder="5年" />
-              </label>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 3</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">クラブ・悩み</h2>
+            <p className="text-xs font-bold text-slate-500">まずは得意クラブ、苦手クラブ、悩みだけでも入力できます。</p>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">得意クラブ</span>
                 <input className={textInputClass} value={form.favorite_club} onChange={(event) => updateField('favorite_club', event.target.value)} placeholder="7W" />
@@ -316,7 +362,9 @@ export const GolfIdCreatePage = () => {
           </div>
 
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <h2 className="text-lg font-black text-slate-950">公開する項目</h2>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 4</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">公開設定</h2>
+            <p className="text-xs font-bold text-slate-500">見せたい項目だけ公開できます。</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {(Object.keys(publicToggleLabels) as GolfIdVisibilityKey[]).map((key) => (
                 <button
@@ -334,10 +382,16 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          {(message || error) && (
-            <div className={`rounded-xl px-4 py-3 text-sm font-bold ${error ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-100' : 'bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100'}`}>
-              {error || message}
-            </div>
+          {hasFeedbackForm && (
+            <a
+              href={feedbackFormUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackFeedbackClick('create_page')}
+              className="block rounded-2xl bg-white px-4 py-3 text-center text-sm font-black text-emerald-800 shadow-sm ring-1 ring-emerald-100 transition hover:bg-emerald-50"
+            >
+              使ってみた感想・改善点を送る
+            </a>
           )}
 
           <div className="sticky bottom-3 z-10 flex gap-3 rounded-2xl bg-white/95 p-3 shadow-lg ring-1 ring-slate-200 backdrop-blur">
