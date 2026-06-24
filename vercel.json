@@ -24,6 +24,26 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "mybagpro.jp"
+        }
+      ],
+      "destination": "/mybagpro.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.mybagpro.jp"
+        }
+      ],
+      "destination": "/mybagpro.html"
+    },
+    {
       "source": "/((?!api/|assets/|branding/|articles/|profile-images/|favicon|site\\.webmanifest|sitemap\\.xml|robots\\.txt).*)",
       "has": [
         {
