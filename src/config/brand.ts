@@ -51,18 +51,28 @@ export const getBrandKeyForHostname = (hostname?: string): BrandKey => {
   return 'golfid';
 };
 
+export const getConfiguredBrandKey = (): BrandKey | null => {
+  const value = (import.meta.env.VITE_BRAND || '').toLowerCase();
+  if (value === 'golfid' || value === 'mybagpro') return value;
+  return null;
+};
+
 export const getCurrentHostname = () => {
   if (typeof window !== 'undefined') return window.location.hostname;
   return import.meta.env.VITE_CANONICAL_HOST || 'golfid.jp';
 };
 
-export const getBrandConfig = (hostname?: string) => brandConfigs[getBrandKeyForHostname(hostname ?? getCurrentHostname())];
+export const getBrandConfig = (hostname?: string) =>
+  brandConfigs[getConfiguredBrandKey() ?? getBrandKeyForHostname(hostname ?? getCurrentHostname())];
 
 export const getBrandConfigByKey = (brand: BrandKey) => brandConfigs[brand];
 
 export const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
 
 export const getCanonicalBrandForPath = (path = '/', hostname?: string): BrandConfig => {
+  const configuredBrand = getConfiguredBrandKey();
+  if (configuredBrand) return brandConfigs[configuredBrand];
+
   const pathname = path.startsWith('http') ? new URL(path).pathname : path.split('?')[0] || '/';
 
   if (
