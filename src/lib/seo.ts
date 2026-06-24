@@ -55,6 +55,14 @@ const upsertCanonical = (href: string) => {
   tag.setAttribute('href', href);
 };
 
+const buildDocumentTitle = (title: string, path: string, brandName: string) => {
+  const pathname = path.startsWith('http') ? new URL(path).pathname : path.split('?')[0] || '/';
+  if (pathname === '/' && brandName === 'MyBagPro') {
+    return `My Bag Pro | ${title}`;
+  }
+  return `${title} | ${brandName}`;
+};
+
 export const applySeo = ({
   title,
   description,
@@ -67,16 +75,17 @@ export const applySeo = ({
   const absoluteUrl = toAbsoluteUrl(path);
   const imageUrl = image ? toAbsoluteUrl(image) : toAbsoluteUrl('/article-visuals/golf-bag-course.jpg');
   const displayBrand = getCanonicalBrandForPath(path);
-  document.title = `${title} | ${displayBrand.name}`;
+  const documentTitle = buildDocumentTitle(title, path, displayBrand.name);
+  document.title = documentTitle;
 
   upsertMeta('meta[name="description"]', 'name', 'description', description);
-  upsertMeta('meta[property="og:title"]', 'property', 'og:title', `${title} | ${displayBrand.name}`);
+  upsertMeta('meta[property="og:title"]', 'property', 'og:title', documentTitle);
   upsertMeta('meta[property="og:description"]', 'property', 'og:description', description);
   upsertMeta('meta[property="og:url"]', 'property', 'og:url', absoluteUrl);
   upsertMeta('meta[property="og:type"]', 'property', 'og:type', type);
   upsertMeta('meta[property="og:site_name"]', 'property', 'og:site_name', displayBrand.name);
   upsertMeta('meta[property="og:image"]', 'property', 'og:image', imageUrl);
-  upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', `${title} | ${displayBrand.name}`);
+  upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', documentTitle);
   upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
   upsertMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
   upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', imageUrl);
