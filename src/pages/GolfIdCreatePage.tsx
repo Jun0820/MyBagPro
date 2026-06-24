@@ -354,7 +354,7 @@ export const GolfIdCreatePage = () => {
               to="/explore"
               className="hidden items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50 sm:inline-flex"
             >
-              みんなのセッティング
+              みんなのGolf ID
             </Link>
           </div>
         </div>

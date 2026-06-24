@@ -293,6 +293,25 @@ export const ProsSettingsPage = () => {
         </div>
       </section>
 
+      <section className="rounded-lg bg-emerald-950 px-4 py-5 text-white shadow-sm ring-1 ring-emerald-900/40 md:px-6">
+        <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
+            <h2 className="mt-2 text-xl font-black md:text-2xl">このクラブ、あなたにも合う？</h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
+              Golf IDを作って、AI上達診断を受けると、プロの14本をそのまま真似るのではなく、自分の距離・悩みに合わせて見直せます。
+            </p>
+          </div>
+          <a
+            href="https://golfid.jp/create"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
+          >
+            無料でGolf IDを作る
+            <ArrowRight size={16} />
+          </a>
+        </div>
+      </section>
+
       <section className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
         {isLoading && (
           <div className="rounded-lg bg-white p-6 text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200">

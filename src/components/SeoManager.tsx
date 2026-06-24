@@ -29,8 +29,9 @@ const getRouteSeoMap = (): Record<string, { title: string; description: string; 
       description: '一般ゴルファーの公開クラブセッティングを見て、自分に近い構成を探せます。',
     },
     '/explore': {
-      title: 'みんなのセッティング',
-      description: '一般ゴルファーの公開クラブセッティングを見て、自分に近い構成を探せます。',
+      title: 'みんなのGolf IDを見る',
+      description: '公開されているGolf IDから、スコア、目標、ヘッドスピード、悩みを見て自分に近いゴルファーを探せます。',
+      keywords: ['Golf ID 一覧', 'ゴルフ プロフィール', 'ゴルフ SNS プロフィール', 'AI ゴルフ診断'],
     },
     '/clubs/drivers': {
       title: '人気ドライバー一覧',

@@ -1,196 +1,253 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, Globe, Instagram, Send, UserRound, Loader2 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { ArrowRight, Gauge, Goal, Loader2, Sparkles, Trophy, UserRound } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { normalizeUserSocialLinks } from '../lib/userSocials';
+import { trackEvent } from '../lib/analytics';
+import { defaultGolfIdVisibility, type GolfIdRecord, type GolfIdVisibilityKey } from '../lib/golfId';
 
-type PublicProfileCard = {
-  id: string;
-  name: string;
-  headSpeed: number;
-  currentBall: string;
-  coverPhoto?: string;
-  updatedAt?: string;
-  sns: ReturnType<typeof normalizeUserSocialLinks>;
+const GOLF_PROFILE_TABLE = 'golf_profiles';
+
+type ExploreGolfId = Pick<
+  GolfIdRecord,
+  | 'id'
+  | 'username'
+  | 'nickname'
+  | 'best_score'
+  | 'target_score'
+  | 'head_speed'
+  | 'current_issue'
+  | 'visibility'
+  | 'diagnosis_result'
+  | 'updated_at'
+>;
+
+type SampleGolfId = {
+  label: string;
+  nickname: string;
+  bestScore: string;
+  targetScore: string;
+  headSpeed: string;
+  issue: string;
+};
+
+const samples: SampleGolfId[] = [
+  { label: '80切り目標', nickname: 'ショット安定派', bestScore: '82', targetScore: '79', headSpeed: '42', issue: 'アイアンの縦距離をそろえたい' },
+  { label: '100切り目標', nickname: '週末ゴルファー', bestScore: '103', targetScore: '99', headSpeed: '39', issue: 'ドライバーの右ミスを減らしたい' },
+  { label: '飛距離重視', nickname: '1W強化中', bestScore: '91', targetScore: '85', headSpeed: '45', issue: 'ティーショットの飛距離を伸ばしたい' },
+  { label: 'スライス改善', nickname: 'フェード卒業', bestScore: '98', targetScore: '90', headSpeed: '40', issue: 'スライスで右OBが出る' },
+  { label: 'パター改善', nickname: '3パット減らし隊', bestScore: '88', targetScore: '84', headSpeed: '38', issue: 'ショートパットを安定させたい' },
+];
+
+const canShow = (record: ExploreGolfId, key: GolfIdVisibilityKey) => {
+  return { ...defaultGolfIdVisibility, ...(record.visibility || {}) }[key] !== false;
+};
+
+const formatValue = (value?: string | number | null, suffix = '') => {
+  if (value === null || value === undefined || value === '') return '-';
+  return `${value}${suffix}`;
+};
+
+const excerpt = (value?: string | null, max = 46) => {
+  const text = (value || '').trim();
+  if (!text) return '-';
+  return text.length > max ? `${text.slice(0, max)}...` : text;
 };
 
 export const UsersSettingsPage = () => {
-  const navigate = useNavigate();
-  const [profiles, setProfiles] = useState<PublicProfileCard[]>([]);
+  const [profiles, setProfiles] = useState<ExploreGolfId[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let mounted = true;
     const loadProfiles = async () => {
       setLoading(true);
       setError(null);
 
       const { data, error: profilesError } = await supabase
-        .from('profiles')
-        .select('id, name, head_speed, current_ball, cover_photo, sns_links, updated_at')
+        .from(GOLF_PROFILE_TABLE)
+        .select('id,username,nickname,best_score,target_score,head_speed,current_issue,visibility,diagnosis_result,updated_at')
         .eq('is_public', true)
-        .order('updated_at', { ascending: false });
+        .order('updated_at', { ascending: false })
+        .limit(30);
+
+      if (!mounted) return;
 
       if (profilesError) {
-        console.error(profilesError);
-        setError('公開プロフィールの読み込みに失敗しました。');
+        console.error('Failed to load public Golf IDs:', profilesError);
+        setError('公開Golf IDの読み込みに失敗しました。時間をおいて再度お試しください。');
+        setProfiles([]);
         setLoading(false);
         return;
       }
 
-      setProfiles(
-        (data || []).map((profile) => ({
-          id: profile.id,
-          name: profile.name || 'Anonymous Golfer',
-          headSpeed: profile.head_speed || 0,
-          currentBall: profile.current_ball || '',
-          coverPhoto: profile.cover_photo || undefined,
-          updatedAt: profile.updated_at || undefined,
-          sns: normalizeUserSocialLinks(profile.sns_links),
-        })),
-      );
+      setProfiles((data || []) as ExploreGolfId[]);
       setLoading(false);
     };
 
     loadProfiles();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const publicCount = profiles.length;
-  const averageHeadSpeed =
-    publicCount > 0 ? Math.round(profiles.reduce((sum, profile) => sum + (profile.headSpeed || 0), 0) / publicCount) : 0;
+  const stats = useMemo(() => {
+    const visibleHeadSpeeds = profiles
+      .filter((profile) => canShow(profile, 'head_speed'))
+      .map((profile) => Number(profile.head_speed || 0))
+      .filter(Boolean);
+    const averageHeadSpeed =
+      visibleHeadSpeeds.length > 0 ? Math.round(visibleHeadSpeeds.reduce((sum, speed) => sum + speed, 0) / visibleHeadSpeeds.length) : 0;
+    return {
+      count: profiles.length,
+      averageHeadSpeed,
+    };
+  }, [profiles]);
 
   return (
-    <div className="min-h-screen space-y-8 pb-20">
-      <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 text-white shadow-sm">
-        <div className="grid gap-8 px-6 py-8 md:grid-cols-[1.2fr_0.8fr] md:px-10 md:py-10">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-black text-golf-300">
-              <UserRound size={14} />
-              みんなのセッティング
-            </div>
-            <h1 className="mt-5 max-w-3xl text-4xl font-black tracking-tight md:text-6xl">
-              自分に近いゴルファーの
-              <span className="text-golf-300">リアルな14本</span>
-              を見つける。
-            </h1>
-            <p className="mt-5 max-w-3xl text-sm leading-8 text-slate-300 md:text-base">
-              プロだけではなく、一般ゴルファーの公開バッグも参考にできる一覧です。ヘッドスピードや使っているボール、SNSリンクを見ながら、自分に近い実例を探せます。
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <button
-                onClick={() => navigate('/create')}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-golf-500 px-5 py-3 text-sm font-black text-white"
-              >
-                Golf IDを作る
-                <ArrowRight size={16} />
-              </button>
-              <button
-                onClick={() => navigate('/pros')}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-black text-white"
-              >
-                先にプロのセッティングを見る
-              </button>
-            </div>
+    <div className="min-h-screen bg-slate-50 pb-20">
+      <section className="-mx-3 -mt-3 bg-slate-950 px-4 py-8 text-white md:-mx-6 md:-mt-7 md:px-8 md:py-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">
+            <UserRound size={14} />
+            Public Golf ID
           </div>
-
-          <div className="grid gap-4 md:grid-cols-1">
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">公開プロフィール</div>
-              <div className="mt-4 text-4xl font-black text-white">{publicCount}</div>
-              <p className="mt-2 text-sm text-slate-300">公開設定になっている一般ゴルファーのバッグを一覧で見られます。</p>
+          <div className="mt-5 grid gap-6 md:grid-cols-[1fr_320px] md:items-end">
+            <div>
+              <h1 className="max-w-3xl text-4xl font-black tracking-tight md:text-6xl">みんなのGolf IDを見る</h1>
+              <p className="mt-4 max-w-3xl text-sm font-semibold leading-7 text-slate-300 md:text-base md:leading-8">
+                スコア、目標、ヘッドスピード、悩みを公開しているゴルファーのGolf IDです。自分に近い人を見つけると、次に見直すポイントが見えやすくなります。
+              </p>
+              <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+                <Link
+                  to="/create"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 text-sm font-black text-white transition hover:bg-emerald-500"
+                >
+                  無料でGolf IDを作る
+                  <ArrowRight size={16} />
+                </Link>
+                <Link
+                  to="/pros"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white/10 px-5 text-sm font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                >
+                  プロのセッティングも見る
+                </Link>
+              </div>
             </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">平均ヘッドスピード</div>
-              <div className="mt-4 text-4xl font-black text-white">{averageHeadSpeed}<span className="ml-1 text-base text-slate-400">m/s</span></div>
-              <p className="mt-2 text-sm text-slate-300">一覧に出ている公開プロフィールから算出した目安です。</p>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-2xl bg-white/8 p-4 ring-1 ring-white/10">
+                <div className="text-xs font-black text-slate-400">公開Golf ID</div>
+                <div className="mt-2 text-3xl font-black">{stats.count}</div>
+              </div>
+              <div className="rounded-2xl bg-white/8 p-4 ring-1 ring-white/10">
+                <div className="text-xs font-black text-slate-400">平均HS</div>
+                <div className="mt-2 text-3xl font-black">{stats.averageHeadSpeed || '-'}<span className="ml-1 text-sm text-slate-400">m/s</span></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-        <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-              <div className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Public Golf ID</div>
-            <h2 className="mt-2 text-2xl font-black text-trust-navy">公開中のセッティング一覧</h2>
-          </div>
-          <p className="text-sm text-slate-500">検索は入れず、参考にしやすい公開バッグだけをそのまま見られる構成にしています。</p>
-        </div>
-
+      <section className="mx-auto mt-5 max-w-6xl px-0 md:mt-8">
         {loading && (
-          <div className="flex min-h-[240px] items-center justify-center text-slate-400">
-            <div className="flex items-center gap-3 text-sm font-bold">
-              <Loader2 size={18} className="animate-spin text-golf-500" />
-              公開バッグを読み込んでいます...
-            </div>
+          <div className="flex min-h-[260px] items-center justify-center rounded-2xl bg-white text-sm font-black text-slate-500 ring-1 ring-slate-200">
+            <Loader2 size={18} className="mr-2 animate-spin text-emerald-700" />
+            公開Golf IDを読み込んでいます...
           </div>
         )}
 
         {error && (
-          <div className="mt-6 rounded-2xl border border-red-100 bg-red-50 px-5 py-4 text-sm font-medium text-red-600">{error}</div>
-        )}
-
-        {!loading && !error && profiles.length === 0 && (
-          <div className="mt-6 rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-6 py-10 text-center text-sm text-slate-500">
-            まだ公開中のセッティングはありません。最初の公開プロフィールを作って、参考にされる側にもなれます。
-          </div>
+          <div className="rounded-2xl border border-rose-100 bg-rose-50 px-5 py-4 text-sm font-bold text-rose-700">{error}</div>
         )}
 
         {!loading && !error && profiles.length > 0 && (
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {profiles.map((profile) => (
               <Link
                 key={profile.id}
-                to={`/settings/users/${profile.id}`}
-                className="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl"
+                to={`/u/${profile.username}`}
+                onClick={() =>
+                  trackEvent('explore_profile_click', {
+                    username: profile.username,
+                  })
+                }
+                className="group rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md hover:ring-emerald-200"
               >
-                <div className="relative h-40 bg-slate-900">
-                  {profile.coverPhoto ? (
-                    <img src={profile.coverPhoto} alt={profile.name} className="h-full w-full object-cover opacity-85 transition-transform duration-500 group-hover:scale-105" />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-800 to-trust-navy text-slate-500">
-                      <UserRound size={44} />
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="text-xl font-black tracking-tight text-white">{profile.name}</div>
-                    <div className="mt-2 flex flex-wrap gap-2 text-[11px] font-bold text-white/80">
-                      {profile.sns.instagram && <span className="inline-flex items-center gap-1 rounded-full bg-black/25 px-2 py-1"><Instagram size={12} /> @{profile.sns.instagram}</span>}
-                      {profile.sns.x && <span className="inline-flex items-center gap-1 rounded-full bg-black/25 px-2 py-1"><Send size={12} /> @{profile.sns.x}</span>}
-                    </div>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <div className="text-lg font-black text-slate-950">{profile.nickname || 'Golf ID'}</div>
+                    <div className="mt-1 text-xs font-bold text-slate-500">@{profile.username}</div>
+                  </div>
+                  <div className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black text-emerald-800">
+                    {profile.diagnosis_result?.diagnosisType || 'Golf ID'}
                   </div>
                 </div>
-                <div className="space-y-4 p-5">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl bg-slate-50 px-4 py-3">
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Head Speed</div>
-                      <div className="mt-2 text-2xl font-black text-trust-navy">{profile.headSpeed || '—'}<span className="ml-1 text-xs text-slate-400">m/s</span></div>
-                    </div>
-                    <div className="rounded-2xl bg-slate-50 px-4 py-3">
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Ball</div>
-                      <div className="mt-2 line-clamp-2 text-sm font-bold text-trust-navy">{profile.currentBall || '未設定'}</div>
-                    </div>
-                  </div>
 
-                  {(profile.sns.customLinks || []).length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {profile.sns.customLinks?.slice(0, 2).map((link) => (
-                        <span key={link.id} className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-slate-600">
-                          <Globe size={12} />
-                          {link.label}
-                        </span>
-                      ))}
+                <div className="mt-4 grid grid-cols-3 gap-2">
+                  {canShow(profile, 'best_score') && (
+                    <div className="rounded-xl bg-slate-50 p-3">
+                      <Trophy size={15} className="text-emerald-700" />
+                      <div className="mt-2 text-[10px] font-black text-slate-500">ベスト</div>
+                      <div className="text-lg font-black text-slate-950">{formatValue(profile.best_score)}</div>
                     </div>
                   )}
+                  {canShow(profile, 'target_score') && (
+                    <div className="rounded-xl bg-slate-50 p-3">
+                      <Goal size={15} className="text-emerald-700" />
+                      <div className="mt-2 text-[10px] font-black text-slate-500">目標</div>
+                      <div className="text-lg font-black text-slate-950">{formatValue(profile.target_score)}</div>
+                    </div>
+                  )}
+                  {canShow(profile, 'head_speed') && (
+                    <div className="rounded-xl bg-slate-50 p-3">
+                      <Gauge size={15} className="text-emerald-700" />
+                      <div className="mt-2 text-[10px] font-black text-slate-500">HS</div>
+                      <div className="text-lg font-black text-slate-950">{formatValue(profile.head_speed)}</div>
+                    </div>
+                  )}
+                </div>
 
-                  <div className="inline-flex items-center gap-2 text-sm font-black text-golf-700">
-                    詳細を見る
-                    <ArrowRight size={16} />
-                  </div>
+                {canShow(profile, 'current_issue') && (
+                  <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">{excerpt(profile.current_issue)}</p>
+                )}
+                <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-emerald-700">
+                  Golf IDを見る
+                  <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
                 </div>
               </Link>
             ))}
+          </div>
+        )}
+
+        {!loading && !error && profiles.length === 0 && (
+          <div className="rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200 md:p-10">
+            <Sparkles className="mx-auto h-8 w-8 text-emerald-700" />
+            <h2 className="mt-4 text-2xl font-black text-slate-950">まだ公開Golf IDがありません。最初の1人になりましょう</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
+              まずはスコア、目標、悩みだけでも登録できます。公開する項目は選べます。
+            </p>
+            <Link
+              to="/create"
+              className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-5 text-sm font-black text-white transition hover:bg-emerald-800"
+            >
+              無料でGolf IDを作る
+              <ArrowRight size={16} />
+            </Link>
+
+            <div className="mt-7 grid gap-3 text-left md:grid-cols-2 xl:grid-cols-3">
+              {samples.map((sample) => (
+                <div key={sample.label} className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+                  <div className="text-[11px] font-black text-emerald-700">{sample.label}</div>
+                  <div className="mt-2 text-base font-black text-slate-950">{sample.nickname}</div>
+                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs font-black text-slate-600">
+                    <span>Best {sample.bestScore}</span>
+                    <span>Goal {sample.targetScore}</span>
+                    <span>HS {sample.headSpeed}</span>
+                  </div>
+                  <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">{sample.issue}</p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </section>

@@ -135,10 +135,6 @@ export const Home = () => {
       navigate(user.isLoggedIn ? '/mypage/clubs' : '/create?auth=register&next=mypage');
       return;
     }
-    if (href === '/explore') {
-      navigate('/settings/users');
-      return;
-    }
     navigate(href);
   };
 
@@ -293,6 +289,26 @@ export const Home = () => {
             </button>
           ))}
         </div>
+        {brand.brand === 'mybagpro' && (
+          <div className="mt-5 rounded-lg bg-emerald-950 px-4 py-5 text-white shadow-sm ring-1 ring-emerald-900/40 md:px-6">
+            <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
+                <h2 className="mt-2 text-xl font-black md:text-2xl">このクラブ、あなたにも合う？</h2>
+                <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
+                  Golf IDを作って、AI上達診断を受けると、気になるプロのセッティングを自分の距離・悩みに置き換えて考えられます。
+                </p>
+              </div>
+              <button
+                onClick={() => openHref('https://golfid.jp/create')}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
+              >
+                無料でGolf IDを作る
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       <section className="mx-auto mt-7 grid max-w-[1380px] gap-6 md:mt-10 xl:grid-cols-[0.95fr_1.45fr]">

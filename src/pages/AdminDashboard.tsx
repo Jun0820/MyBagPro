@@ -385,6 +385,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
       username: String(row.username || '-'),
       best_score: row.best_score ? Number(row.best_score) : '-',
       target_score: row.target_score ? Number(row.target_score) : '-',
+      created_at: row.created_at ? new Date(String(row.created_at)).toLocaleDateString('ja-JP') : '-',
     })),
     popularPages: popularPages.length ? popularPages : fallbackPageRows,
     articleRankings: articleRankings.length ? articleRankings : fallbackArticleRows,
@@ -521,6 +522,55 @@ const RankingTable = ({ title, columns, rows }: { title: string; columns: Array<
               ))}
             </tr>
           ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
+
+const LatestGolfProfilesTable = ({ rows }: { rows: RankingRow[] }) => (
+  <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <h3 className="text-base font-black text-trust-navy">最新作成Golf ID</h3>
+    <div className="mt-3 overflow-hidden rounded-lg border border-slate-200">
+      <table className="w-full text-left text-sm">
+        <thead className="bg-slate-50 text-xs font-black text-slate-500">
+          <tr>
+            <th className="px-3 py-2">ニックネーム</th>
+            <th className="px-3 py-2">公開ページ</th>
+            <th className="px-3 py-2 text-right">ベスト</th>
+            <th className="px-3 py-2 text-right">目標</th>
+            <th className="px-3 py-2">作成日</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-slate-100">
+          {rows.length > 0 ? (
+            rows.map((row, index) => {
+              const username = String(row.username || '');
+              return (
+                <tr key={`${username}-${index}`} className="text-slate-700">
+                  <td className="px-3 py-2 font-bold">{String(row.name || 'Golf ID')}</td>
+                  <td className="px-3 py-2 font-bold">
+                    {username && username !== '-' ? (
+                      <a href={`https://golfid.jp/u/${username}`} target="_blank" rel="noreferrer" className="text-[#176534] underline-offset-2 hover:underline">
+                        /u/{username}
+                      </a>
+                    ) : (
+                      '-'
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-right font-bold tabular-nums">{String(row.best_score ?? '-')}</td>
+                  <td className="px-3 py-2 text-right font-bold tabular-nums">{String(row.target_score ?? '-')}</td>
+                  <td className="px-3 py-2 font-bold">{String(row.created_at ?? '-')}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan={5} className="px-3 py-5 text-center text-sm font-bold text-slate-400">
+                まだGolf IDが作成されていません。
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
@@ -768,16 +818,7 @@ export const AdminDashboard = () => {
               </section>
 
               <section className="mt-6 grid grid-cols-2 gap-5">
-                <RankingTable
-                  title="最新作成Golf ID"
-                  columns={[
-                    ['name', 'ニックネーム'],
-                    ['username', 'username'],
-                    ['best_score', 'ベスト'],
-                    ['target_score', '目標'],
-                  ]}
-                  rows={data.latestGolfProfiles}
-                />
+                <LatestGolfProfilesTable rows={data.latestGolfProfiles} />
                 <RankingTable
                   title="人気公開ページランキング"
                   columns={[

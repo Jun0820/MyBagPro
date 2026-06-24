@@ -31,6 +31,7 @@ export const GolfIdPublicPage = () => {
   const [notFound, setNotFound] = useState(false);
   const [showPlayerCard, setShowPlayerCard] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -102,7 +103,7 @@ export const GolfIdPublicPage = () => {
     .filter(Boolean);
   const publicUrl = `https://golfid.jp/u/${profile.username}`;
   const diagnosis = profile.diagnosis_result;
-  const shareText = `${profile.nickname}のGolf ID`;
+  const shareText = '自分のGolf IDを作りました。クラブ・スコア・悩み・目標をまとめています。';
   const shareUrl = encodeURIComponent(publicUrl);
   const encodedShareText = encodeURIComponent(shareText);
 
@@ -115,13 +116,35 @@ export const GolfIdPublicPage = () => {
   };
 
   const handleCopyUrl = async () => {
-    await navigator.clipboard?.writeText(publicUrl);
-    setCopied(true);
-    trackEvent('sns_share_click', {
-      channel: 'copy_url',
-      username: profile.username,
-    });
-    window.setTimeout(() => setCopied(false), 1600);
+    setCopyError(false);
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(publicUrl);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = publicUrl;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setCopied(true);
+      trackEvent('url_copy_click', {
+        username: profile.username,
+      });
+      trackEvent('sns_share_click', {
+        channel: 'copy_url',
+        username: profile.username,
+      });
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch (error) {
+      console.error('Failed to copy Golf ID URL:', error);
+      setCopyError(true);
+      window.setTimeout(() => setCopyError(false), 2400);
+    }
   };
 
   const handleSignupClick = () => {
@@ -131,13 +154,13 @@ export const GolfIdPublicPage = () => {
   };
 
   return (
-    <main className="bg-slate-50">
+    <main className="bg-slate-50 pb-24 md:pb-0">
       <section className="mx-auto max-w-5xl px-4 py-8 lg:px-6 lg:py-12">
         <div className="overflow-hidden rounded-[1.75rem] bg-white shadow-sm ring-1 ring-slate-200">
           <div className="bg-slate-950 p-6 text-white sm:p-8">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Golf ID</p>
             <p className="mt-3 inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-black text-emerald-100">
-              このページをSNSプロフィールに貼れます
+              このGolf IDはSNSプロフィールに貼れます
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
@@ -226,15 +249,15 @@ export const GolfIdPublicPage = () => {
             <section className="p-4 pt-0 lg:p-6 lg:pt-0">
               <div className="rounded-2xl bg-emerald-50 p-5 ring-1 ring-emerald-100">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">AI上達診断</p>
-                <h2 className="mt-2 text-xl font-black text-slate-950">{diagnosis.diagnosisType || 'クラブ見直しタイプ'}</h2>
+                <h2 className="mt-2 text-xl font-black text-slate-950">あなたの次の一手</h2>
+                <div className="mt-4 rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
+                  <p className="text-sm font-black text-emerald-800">{diagnosis.diagnosisType || 'クラブ見直しタイプ'}</p>
+                  <p className="mt-2 text-base font-black leading-7 text-slate-950">{diagnosis.nextAction || 'クラブ、スコア、悩みを整理して次の改善ポイントを見つけましょう。'}</p>
+                </div>
                 <div className="mt-4 grid gap-3 text-sm font-semibold leading-7 text-slate-700 md:grid-cols-2">
                   <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
                     <p className="text-xs font-black text-emerald-800">今の状態</p>
                     <p className="mt-2">{diagnosis.currentStatus || '-'}</p>
-                  </div>
-                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
-                    <p className="text-xs font-black text-emerald-800">次の一手</p>
-                    <p className="mt-2">{diagnosis.nextAction || '-'}</p>
                   </div>
                   <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
                     <p className="text-xs font-black text-emerald-800">優先課題</p>
@@ -338,7 +361,7 @@ export const GolfIdPublicPage = () => {
                   className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
                 >
                   <Clipboard className="h-4 w-4" />
-                  {copied ? 'コピーしました' : 'URLコピー'}
+                  {copyError ? 'コピーできませんでした' : copied ? 'コピーしました' : 'URLコピー'}
                 </button>
               </div>
             </div>
@@ -363,6 +386,16 @@ export const GolfIdPublicPage = () => {
           </div>
         </div>
       </section>
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-emerald-100 bg-white/95 px-4 py-3 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
+        <Link
+          to="/create"
+          onClick={handleSignupClick}
+          className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 text-sm font-black text-white"
+        >
+          自分もGolf IDを作る
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
     </main>
   );
 };
