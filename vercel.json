@@ -1,51 +1,72 @@
 {
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }
-      ]
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/settings/pros",
-      "destination": "/pros",
-      "statusCode": 301
+      "src": "/(.*)",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate"
+      },
+      "continue": true
     },
     {
-      "source": "/settings/pros/:slug",
-      "destination": "/pros/:slug",
-      "statusCode": 301
-    }
-  ],
-  "rewrites": [
+      "src": "/settings/pros",
+      "status": 301,
+      "headers": {
+        "Location": "/pros"
+      }
+    },
     {
-      "source": "/:path*",
+      "src": "/settings/pros/(.*)",
+      "status": 301,
+      "headers": {
+        "Location": "/pros/$1"
+      }
+    },
+    {
+      "src": "/",
       "has": [
         {
           "type": "host",
           "value": "mybagpro.jp"
         }
       ],
-      "destination": "/mybagpro.html"
+      "dest": "/mybagpro.html"
     },
     {
-      "source": "/:path*",
+      "src": "/",
       "has": [
         {
           "type": "host",
           "value": "www.mybagpro.jp"
         }
       ],
-      "destination": "/mybagpro.html"
+      "dest": "/mybagpro.html"
     },
     {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "mybagpro.jp"
+        }
+      ],
+      "dest": "/mybagpro.html"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.mybagpro.jp"
+        }
+      ],
+      "dest": "/mybagpro.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
