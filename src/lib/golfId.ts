@@ -71,12 +71,12 @@ export const normalizeGolfIdUsername = (value: string) =>
     .trim()
     .toLowerCase()
     .replace(/^@+/, '')
-    .replace(/[^a-z0-9_.-]/g, '-')
+    .replace(/[^a-z0-9_-]/g, '-')
     .replace(/-+/g, '-')
-    .replace(/^[.-]+|[.-]+$/g, '')
+    .replace(/^[-_]+|[-_]+$/g, '')
     .slice(0, 32);
 
-export const isValidGolfIdUsername = (value: string) => /^[a-z0-9][a-z0-9_.-]{2,31}$/.test(value);
+export const isValidGolfIdUsername = (value: string) => /^[a-z0-9][a-z0-9_-]{2,31}$/.test(value);
 
 export const toNullableNumber = (value: string) => {
   const normalized = value.trim();

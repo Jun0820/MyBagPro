@@ -16,6 +16,7 @@ import {
   Share2,
   Sparkles,
   Stethoscope,
+  UserRound,
   Users,
 } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
@@ -60,6 +61,7 @@ type AdminDashboardData = {
   kpis: KpiMetric[];
   funnel: FunnelStep[];
   daily: DailyPoint[];
+  latestGolfProfiles: RankingRow[];
   popularPages: RankingRow[];
   articleRankings: RankingRow[];
   productCategoryRankings: RankingRow[];
@@ -150,7 +152,16 @@ const safeCount = async (
 const safeRows = async <T,>(
   table: string,
   select: string,
-  options: { from?: Date; to?: Date; dateColumn?: string; eventNames?: readonly string[]; limit?: number; eq?: Record<string, string | number | boolean> } = {},
+  options: {
+    from?: Date;
+    to?: Date;
+    dateColumn?: string;
+    eventNames?: readonly string[];
+    limit?: number;
+    eq?: Record<string, string | number | boolean>;
+    orderBy?: string;
+    ascending?: boolean;
+  } = {},
 ): Promise<T[]> => {
   if (!isSupabaseConfigured) return [];
   try {
@@ -161,6 +172,7 @@ const safeRows = async <T,>(
     Object.entries(options.eq || {}).forEach(([key, value]) => {
       query = query.eq(key, value);
     });
+    if (options.orderBy) query = query.order(options.orderBy, { ascending: options.ascending ?? false });
     if (options.limit) query = query.limit(options.limit);
     const { data, error } = await query;
     if (error || !data) return [];
@@ -262,6 +274,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
 
   const [
     signups,
+    golfProfiles,
     publicPages,
     clubs,
     visits,
@@ -273,6 +286,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     revenue,
   ] = await Promise.all([
     buildPeriodMetric('profiles'),
+    buildPeriodMetric('golf_profiles'),
     buildPeriodMetric('profiles', { eq: { is_public: true } }),
     buildPeriodMetric('clubs'),
     buildPeriodMetric('analytics_events', { eventNames: eventNames.visits }),
@@ -284,9 +298,9 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     buildRevenueMetric().catch(() => emptyPeriod()),
   ]);
 
-  const [signupRows, publicPageRows, diagnosisRows, snsShareRows, productClickRows, visitRows] = await Promise.all([
+  const [signupRows, golfProfileRows, diagnosisRows, snsShareRows, productClickRows, visitRows] = await Promise.all([
     safeRows<Record<string, unknown>>('profiles', 'created_at', { from: thirtyStart, to: tomorrow, limit: 5000 }),
-    safeRows<Record<string, unknown>>('profiles', 'created_at,is_public', { from: thirtyStart, to: tomorrow, eq: { is_public: true }, limit: 5000 }),
+    safeRows<Record<string, unknown>>('golf_profiles', 'created_at,username,nickname,best_score,target_score', { from: thirtyStart, to: tomorrow, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'created_at,event_name', { from: thirtyStart, to: tomorrow, eventNames: eventNames.diagnosisCompleted, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'created_at,event_name', { from: thirtyStart, to: tomorrow, eventNames: eventNames.snsShared, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'created_at,event_name', { from: thirtyStart, to: tomorrow, eventNames: eventNames.productClick, limit: 5000 }),
@@ -295,7 +309,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
 
   const dailyMaps = [
     countRowsByDay(signupRows, 'signups'),
-    countRowsByDay(publicPageRows, 'publicPages'),
+    countRowsByDay(golfProfileRows, 'publicPages'),
     countRowsByDay(diagnosisRows, 'diagnosisCompleted'),
     countRowsByDay(snsShareRows, 'snsShares'),
     countRowsByDay(productClickRows, 'productClicks'),
@@ -310,13 +324,14 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     productClicks: dailyMaps[4].map.get(date) || 0,
   }));
 
-  const [publicPageEvents, articleEvents, categoryEvents, diagnosisTypeEvents, fallbackPublicPages, fallbackArticles] = await Promise.all([
+  const [publicPageEvents, articleEvents, categoryEvents, diagnosisTypeEvents, fallbackPublicPages, fallbackArticles, latestGolfProfiles] = await Promise.all([
     safeRows<Record<string, unknown>>('analytics_events', 'page_title,page_path,event_name,pv,sns_clicks,create_clicks,signup_count,created_at', { from: thirtyStart, to: tomorrow, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'article_title,page_title,event_name,pv,diagnosis_start_count,diagnosis_complete_count,product_clicks,created_at', { from: thirtyStart, to: tomorrow, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'item_category,category,diagnosis_type,event_name,clicks,created_at', { from: thirtyStart, to: tomorrow, eventNames: eventNames.productClick, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'diagnosis_type,event_name,count,created_at', { from: thirtyStart, to: tomorrow, eventNames: [...eventNames.diagnosisStart, ...eventNames.diagnosisCompleted], limit: 5000 }),
     safeRows<Record<string, unknown>>('profiles', 'name,id,updated_at,is_public', { eq: { is_public: true }, limit: 6 }),
     safeRows<Record<string, unknown>>('content_articles', 'title,slug,published_at,published', { eq: { published: true }, limit: 6 }),
+    safeRows<Record<string, unknown>>('golf_profiles', 'username,nickname,best_score,target_score,created_at', { orderBy: 'created_at', ascending: false, limit: 5 }),
   ]);
 
   const popularPages = aggregateBy(publicPageEvents, ['page_title', 'page_path'], ['pv', 'sns_clicks', 'create_clicks', 'signup_count']);
@@ -326,6 +341,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
 
   const kpis: KpiMetric[] = [
     { id: 'signups', label: '登録者数', helper: 'アカウント作成の増加', icon: <Users size={18} />, ...signups },
+    { id: 'golf-id', label: 'Golf ID作成数', helper: '公開Golf IDの作成', icon: <UserRound size={18} />, ...golfProfiles },
     { id: 'public-pages', label: '公開ページ作成数', helper: 'ユーザー公開ページ', icon: <FileText size={18} />, ...publicPages },
     { id: 'diagnosis', label: 'AI診断完了数', helper: '診断結果到達', icon: <Stethoscope size={18} />, ...diagnosisCompleted },
     { id: 'sns-image', label: 'SNS画像生成数', helper: '共有素材の作成', icon: <Image size={18} />, ...snsImageGenerated },
@@ -356,7 +372,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     funnel: [
       { label: '訪問数', value: visits.thirtyDays || visitRows.length },
       { label: '会員登録数', value: signups.thirtyDays },
-      { label: 'ゴルフデータページ作成数', value: publicPages.thirtyDays },
+      { label: 'ゴルフデータページ作成数', value: golfProfiles.thirtyDays || publicPages.thirtyDays },
       { label: 'AI診断完了数', value: diagnosisCompleted.thirtyDays },
       { label: 'SNS画像生成数', value: snsImageGenerated.thirtyDays },
       { label: 'SNS共有数', value: snsShared.thirtyDays },
@@ -364,6 +380,12 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
       { label: '商品クリック数', value: productClicks.thirtyDays },
     ],
     daily,
+    latestGolfProfiles: latestGolfProfiles.map((row) => ({
+      name: String(row.nickname || row.username || 'Golf ID'),
+      username: String(row.username || '-'),
+      best_score: row.best_score ? Number(row.best_score) : '-',
+      target_score: row.target_score ? Number(row.target_score) : '-',
+    })),
     popularPages: popularPages.length ? popularPages : fallbackPageRows,
     articleRankings: articleRankings.length ? articleRankings : fallbackArticleRows,
     productCategoryRankings: productCategoryRankings.length ? productCategoryRankings : [
@@ -746,6 +768,16 @@ export const AdminDashboard = () => {
               </section>
 
               <section className="mt-6 grid grid-cols-2 gap-5">
+                <RankingTable
+                  title="最新作成Golf ID"
+                  columns={[
+                    ['name', 'ニックネーム'],
+                    ['username', 'username'],
+                    ['best_score', 'ベスト'],
+                    ['target_score', '目標'],
+                  ]}
+                  rows={data.latestGolfProfiles}
+                />
                 <RankingTable
                   title="人気公開ページランキング"
                   columns={[

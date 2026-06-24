@@ -11,6 +11,8 @@ import {
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
 
+const GOLF_PROFILE_TABLE = 'golf_profiles';
+
 const canShow = (record: GolfIdRecord | null, key: GolfIdVisibilityKey) => {
   if (!record) return false;
   return { ...defaultGolfIdVisibility, ...(record.visibility || {}) }[key] !== false;
@@ -36,7 +38,7 @@ export const GolfIdPublicPage = () => {
       setLoading(true);
       setNotFound(false);
       const { data, error } = await supabase
-        .from('golf_ids')
+        .from(GOLF_PROFILE_TABLE)
         .select('*')
         .eq('username', username)
         .eq('is_public', true)
@@ -134,6 +136,9 @@ export const GolfIdPublicPage = () => {
         <div className="overflow-hidden rounded-[1.75rem] bg-white shadow-sm ring-1 ring-slate-200">
           <div className="bg-slate-950 p-6 text-white sm:p-8">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Golf ID</p>
+            <p className="mt-3 inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-black text-emerald-100">
+              このページをSNSプロフィールに貼れます
+            </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h1 className="text-3xl font-black tracking-tight sm:text-5xl">{profile.nickname}</h1>

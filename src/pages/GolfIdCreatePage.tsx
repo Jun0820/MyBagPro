@@ -17,6 +17,8 @@ import {
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
 
+const GOLF_PROFILE_TABLE = 'golf_profiles';
+
 const initialForm: GolfIdFormData = {
   username: '',
   nickname: '',
@@ -86,7 +88,7 @@ export const GolfIdCreatePage = () => {
       setLoadingExisting(true);
       setError('');
       const { data, error: fetchError } = await supabase
-        .from('golf_ids')
+        .from(GOLF_PROFILE_TABLE)
         .select('*')
         .eq('user_id', user.id)
         .order('updated_at', { ascending: false })
@@ -161,14 +163,18 @@ export const GolfIdCreatePage = () => {
       setError('ニックネームを入力してください。');
       return;
     }
+    if (!username) {
+      setError('usernameを入力してください。');
+      return;
+    }
     if (!isValidGolfIdUsername(username)) {
-      setError('usernameは3〜32文字の英数字、ハイフン、ドット、アンダーバーで入力してください。');
+      setError('usernameは3〜32文字の半角英数字、ハイフン、アンダーバーのみで入力してください。');
       return;
     }
 
     setSaving(true);
     const { data: usernameOwner, error: usernameCheckError } = await supabase
-      .from('golf_ids')
+      .from(GOLF_PROFILE_TABLE)
       .select('id')
       .eq('username', username)
       .maybeSingle();
@@ -206,7 +212,7 @@ export const GolfIdCreatePage = () => {
       is_public: true,
     };
 
-    const { data, error: saveError } = await supabase.from('golf_ids').upsert(payload).select('id,username').single();
+    const { data, error: saveError } = await supabase.from(GOLF_PROFILE_TABLE).upsert(payload).select('id,username').single();
     setSaving(false);
 
     if (saveError) {
@@ -342,7 +348,7 @@ export const GolfIdCreatePage = () => {
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-800 disabled:cursor-wait disabled:bg-slate-400"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
-              保存して公開
+              {saving ? '作成中...' : '保存して公開'}
             </button>
             <Link
               to="/explore"
