@@ -56,25 +56,41 @@ export const shareToX = ({ text, url }: SharePayload) => {
 };
 
 export const shareToInstagram = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
-  const native = await nativeShare({ title, text, url });
-  if (native.ok) return native;
-
   const copied = await copyToClipboard(`${text}\n${url}`);
+  if (!copied.ok) return copied;
+
+  const native = await nativeShare({ title, text, url });
+  if (native.ok) {
+    return {
+      ok: true,
+      message: 'URLをコピーしました。共有画面からInstagramに送れます。',
+      method: 'native',
+    };
+  }
+
   return {
-    ok: copied.ok,
-    message: copied.ok ? 'URLをコピーしました。Instagramのプロフィールやストーリーズに貼り付けて共有できます。' : copied.message,
+    ok: true,
+    message: 'URLをコピーしました。Instagramのプロフィールやストーリーズに貼り付けて共有できます。',
     method: copied.method,
   };
 };
 
 export const shareToTikTok = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
-  const native = await nativeShare({ title, text, url });
-  if (native.ok) return native;
-
   const copied = await copyToClipboard(`${text}\n${url}`);
+  if (!copied.ok) return copied;
+
+  const native = await nativeShare({ title, text, url });
+  if (native.ok) {
+    return {
+      ok: true,
+      message: 'URLをコピーしました。共有画面からTikTokに送れます。',
+      method: 'native',
+    };
+  }
+
   return {
-    ok: copied.ok,
-    message: copied.ok ? 'URLをコピーしました。TikTokプロフィールや投稿文に貼り付けて共有できます。' : copied.message,
+    ok: true,
+    message: 'URLをコピーしました。TikTokプロフィールや投稿文に貼り付けて共有できます。',
     method: copied.method,
   };
 };

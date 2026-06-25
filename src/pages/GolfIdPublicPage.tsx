@@ -162,7 +162,7 @@ export const GolfIdPublicPage = () => {
     .filter(Boolean);
   const publicUrl = `https://golfid.jp/u/${profile.username}`;
   const diagnosis = profile.diagnosis_result;
-  const shareText = '自分のGolf IDを作りました。クラブ・スコア・悩み・目標をまとめています。';
+  const shareText = '自分のGolf IDを作りました。\nクラブ・スコア・悩み・目標をまとめています。';
   const socialLinkItems = useMemo(() => getSocialLinkItems(profile), [profile]);
 
   const handlePlayerCardGenerate = () => {
