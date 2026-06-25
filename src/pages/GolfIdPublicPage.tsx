@@ -42,8 +42,7 @@ export const GolfIdPublicPage = () => {
       const { data, error } = await supabase
         .from(GOLF_PROFILE_TABLE)
         .select('*')
-        .eq('username', username)
-        .eq('is_public', true)
+        .ilike('username', username)
         .maybeSingle();
 
       if (!mounted) return;

@@ -121,7 +121,7 @@ export const MyGearPage = () => {
     const sidebarMenu = [
         { key: 'view' as const, label: 'ダッシュボード', icon: Eye },
         { key: 'clubs' as const, label: 'マイクラブ', icon: Edit3 },
-        { key: 'profile' as const, label: 'プロフィール編集', icon: User },
+        { key: 'profile' as const, label: 'Golf IDを編集', icon: User },
     ];
     const profileBadge = !user.isLoggedIn
         ? 'ベーシックプラン'
@@ -247,9 +247,9 @@ export const MyGearPage = () => {
             onPrimary: () => manualSaveMyBag(profile.myBag),
         },
         profile: {
-            title: 'プロフィール',
+            title: 'Golf IDを編集',
             description: '診断と公開ページに使う基本情報を整えます。',
-            primaryLabel: 'プロフィールを保存',
+            primaryLabel: 'Golf IDを更新',
             onPrimary: () => manualSave(),
         },
     }[activeTab];

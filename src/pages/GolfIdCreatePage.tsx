@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CheckCircle2, Eye, EyeOff, Loader2, Share2, UserRound } from 'lucide-react';
+import { CheckCircle2, Clipboard, Eye, EyeOff, Loader2, Share2, UserRound } from 'lucide-react';
 import { useDiagnosis } from '../context/DiagnosisContext';
-import { getBrandConfig } from '../config/brand';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
@@ -54,9 +53,9 @@ const inputClass = (hasError?: boolean) =>
   `${textInputClass} ${hasError ? 'border-rose-300 bg-rose-50 focus:border-rose-500 focus:ring-rose-100' : ''}`;
 
 export const GolfIdCreatePage = () => {
-  const brand = getBrandConfig();
   const navigate = useNavigate();
   const { user, profile, setShowAuth } = useDiagnosis();
+  const [activeStep, setActiveStep] = useState(1);
   const [form, setForm] = useState<GolfIdFormData>(initialForm);
   const [existingId, setExistingId] = useState<string | null>(null);
   const [loadingExisting, setLoadingExisting] = useState(false);
@@ -64,6 +63,7 @@ export const GolfIdCreatePage = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof GolfIdFormData, string>>>({});
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     trackEvent('golf_id_create_start', {
@@ -71,10 +71,17 @@ export const GolfIdCreatePage = () => {
     });
   }, []);
 
+  useEffect(() => {
+    trackEvent('golf_id_step_view', {
+      step: activeStep,
+      source: 'create_page',
+    });
+  }, [activeStep]);
+
   const publicUrl = useMemo(() => {
     const username = normalizeGolfIdUsername(form.username);
-    return username ? `${brand.url}/u/${username}` : `${brand.url}/u/username`;
-  }, [brand.url, form.username]);
+    return username ? `https://golfid.jp/u/${username}` : 'https://golfid.jp/u/username';
+  }, [form.username]);
 
   useEffect(() => {
     if (!user.isLoggedIn) {
@@ -154,6 +161,20 @@ export const GolfIdCreatePage = () => {
     }));
   };
 
+  const copyPublicUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(publicUrl);
+      setCopied(true);
+      trackEvent('url_copy_click', {
+        source: 'create_page',
+        username: normalizeGolfIdUsername(form.username),
+      });
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setError('URLをコピーできませんでした。ブラウザの設定を確認してください。');
+    }
+  };
+
   const saveGolfId = async () => {
     setMessage('');
     setError('');
@@ -201,7 +222,7 @@ export const GolfIdCreatePage = () => {
     const { data: usernameOwner, error: usernameCheckError } = await supabase
       .from(GOLF_PROFILE_TABLE)
       .select('id')
-      .eq('username', username)
+      .ilike('username', username)
       .maybeSingle();
 
     if (usernameCheckError) {
@@ -249,33 +270,45 @@ export const GolfIdCreatePage = () => {
       return;
     }
 
+    const savedUsername = normalizeGolfIdUsername((data as { username?: string } | null)?.username || username);
     setExistingId((data as { id?: string } | null)?.id || existingId);
     setMessage('Golf IDを保存しました。公開ページへ移動します。');
     trackEvent('golf_id_create_complete', {
-      username,
+      username: savedUsername,
       diagnosis_type: diagnosisResult.diagnosisType,
     });
-    navigate(`/u/${username}`);
+    navigate(`/u/${savedUsername}`);
   };
+
+  const stepItems = [
+    { number: 1, label: 'Golf ID' },
+    { number: 2, label: 'Score' },
+    { number: 3, label: 'My Golf' },
+    { number: 4, label: 'My Bag' },
+    { number: 5, label: 'Publish' },
+  ];
 
   return (
     <main className="bg-slate-50">
       <section className="mx-auto grid max-w-6xl gap-6 px-4 py-8 lg:grid-cols-[1fr_340px] lg:px-6 lg:py-12">
         <div className="space-y-5">
-          <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
+          <div className="rounded-3xl bg-slate-950 p-5 text-white shadow-sm ring-1 ring-slate-900 sm:p-7">
             <div className="flex flex-wrap items-center gap-2">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-700">Golf ID</p>
-              <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-black text-emerald-800 ring-1 ring-emerald-100">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Golf ID Builder</p>
+              <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-black text-emerald-100 ring-1 ring-emerald-300/20">
                 β版公開中
               </span>
             </div>
-            <h1 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-4xl">SNSに貼れるGolf IDを作る</h1>
-            <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
-              先行メンバーは無料でGolf IDを作成できます。まずはクラブ・スコア・悩み・目標をまとめるところから始めましょう。あとから編集できます。
+            <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
+              {existingId ? 'あなたのGolf IDを更新' : 'あなたのGolf IDを作ろう。'}
+            </h1>
+            <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-300">
+              クラブ、スコア、悩み、目標をまとめると、AIがあなたの“次の一手”を提案します。作成したGolf IDは、SNSプロフィールに貼って共有できます。
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-black text-emerald-800">
-              <span className="rounded-full bg-emerald-50 px-2.5 py-1 ring-1 ring-emerald-100">3分で作成できます</span>
-              <span className="rounded-full bg-emerald-50 px-2.5 py-1 ring-1 ring-emerald-100">見せたい項目だけ公開できます</span>
+            <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-black text-emerald-100">
+              <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">3分で作成できます</span>
+              <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">あとから編集できます</span>
+              <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">見せたい項目だけ公開できます</span>
             </div>
             {!user.isLoggedIn && (
               <button
@@ -289,6 +322,22 @@ export const GolfIdCreatePage = () => {
             )}
           </div>
 
+          <nav className="grid grid-cols-5 gap-1 rounded-2xl bg-white p-1 shadow-sm ring-1 ring-slate-200">
+            {stepItems.map((step) => (
+              <button
+                key={step.number}
+                type="button"
+                onClick={() => setActiveStep(step.number)}
+                className={`rounded-xl px-2 py-2 text-center transition ${
+                  activeStep === step.number ? 'bg-emerald-700 text-white' : 'bg-slate-50 text-slate-500 hover:bg-emerald-50 hover:text-emerald-800'
+                }`}
+              >
+                <span className="block text-[10px] font-black">STEP {step.number}</span>
+                <span className="mt-0.5 block truncate text-[11px] font-black">{step.label}</span>
+              </button>
+            ))}
+          </nav>
+
           {(message || error) && (
             <div className={`rounded-xl px-4 py-3 text-sm font-bold ${error ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-100' : 'bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100'}`}>
               {error || message}
@@ -298,8 +347,8 @@ export const GolfIdCreatePage = () => {
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 1</p>
-                <h2 className="mt-1 text-lg font-black text-slate-950">基本情報</h2>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 1 / Golf ID</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">基本情報</h2>
                 <p className="text-xs font-bold text-slate-500">公開ページの名前とURLを決めます。あとから編集できます。</p>
               </div>
               {loadingExisting && (
@@ -326,7 +375,7 @@ export const GolfIdCreatePage = () => {
           </div>
 
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 2</p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 2 / Score</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">スコア・目標</h2>
             <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。診断の精度が上がります。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -351,7 +400,7 @@ export const GolfIdCreatePage = () => {
           </div>
 
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 3</p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 3 / My Golf</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブ・悩み</h2>
             <p className="text-xs font-bold text-slate-500">まずは得意クラブ、苦手クラブ、悩みだけでも入力できます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -376,7 +425,7 @@ export const GolfIdCreatePage = () => {
           </div>
 
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 4</p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 4 / My Bag</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
             <p className="text-xs font-bold text-slate-500">MVPでは自由入力でOKです。あとで番手ごとの登録に広げやすい形にしていきます。</p>
             <div className="mt-5 grid gap-4">
@@ -388,8 +437,8 @@ export const GolfIdCreatePage = () => {
           </div>
 
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">公開設定</p>
-            <h2 className="mt-1 text-lg font-black text-slate-950">公開設定</h2>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 5 / Publish</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">公開プレビュー・公開設定</h2>
             <p className="text-xs font-bold text-slate-500">見せたい項目だけ公開できます。</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {(Object.keys(publicToggleLabels) as GolfIdVisibilityKey[]).map((key) => (
@@ -449,23 +498,69 @@ export const GolfIdCreatePage = () => {
             <p className="mt-3 text-xs font-semibold leading-6 text-slate-300">SNSプロフィールや自己紹介に貼るためのGolf IDページです。</p>
           </div>
           <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-base font-black text-slate-950">表示プレビュー</h2>
-            <div className="mt-4 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-              <p className="text-xl font-black text-slate-950">{form.nickname || 'ニックネーム'}</p>
-              <p className="mt-1 text-sm font-bold text-slate-500">@{normalizeGolfIdUsername(form.username) || 'username'}</p>
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-                <div className="rounded-xl bg-white p-3">
+            <h2 className="text-base font-black text-slate-950">Golf IDプレビュー</h2>
+            <div className="mt-4 overflow-hidden rounded-3xl bg-slate-950 text-white ring-1 ring-slate-900">
+              <div className="p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</p>
+                  <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] font-black text-emerald-100">Preview</span>
+                </div>
+                <p className="mt-4 text-2xl font-black">{form.nickname || 'ニックネーム'}</p>
+                <p className="mt-1 break-all text-xs font-bold text-slate-300">{publicUrl}</p>
+              </div>
+              <div className="grid grid-cols-3 gap-2 bg-white p-3 text-center text-slate-950">
+                <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
                   <p className="text-[10px] font-black text-slate-500">平均</p>
                   <p className="text-lg font-black text-emerald-700">{form.average_score || '-'}</p>
                 </div>
-                <div className="rounded-xl bg-white p-3">
+                <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
                   <p className="text-[10px] font-black text-slate-500">目標</p>
                   <p className="text-lg font-black text-emerald-700">{form.target_score || '-'}</p>
                 </div>
-                <div className="rounded-xl bg-white p-3">
+                <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
                   <p className="text-[10px] font-black text-slate-500">HS</p>
                   <p className="text-lg font-black text-emerald-700">{form.head_speed || '-'}</p>
                 </div>
+              </div>
+              <div className="space-y-3 bg-white p-4 text-slate-950">
+                <div>
+                  <p className="text-[11px] font-black text-slate-500">今の悩み</p>
+                  <p className="mt-1 text-sm font-bold leading-6">{form.current_issue || '入力した悩みがここに表示されます。'}</p>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="rounded-xl bg-slate-50 p-3">
+                    <p className="text-[10px] font-black text-slate-500">得意クラブ</p>
+                    <p className="mt-1 text-sm font-black">{form.favorite_club || '-'}</p>
+                  </div>
+                  <div className="rounded-xl bg-slate-50 p-3">
+                    <p className="text-[10px] font-black text-slate-500">苦手クラブ</p>
+                    <p className="mt-1 text-sm font-black">{form.weak_club || '-'}</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl bg-emerald-50 p-3 ring-1 ring-emerald-100">
+                  <p className="text-[11px] font-black text-emerald-800">あなたの次の一手</p>
+                  <p className="mt-1 text-sm font-bold leading-6 text-slate-800">
+                    入力内容をもとに、作成後にあなたの次の一手を表示します。
+                  </p>
+                </div>
+                {existingId && (
+                  <div className="grid gap-2">
+                    <Link
+                      to={`/u/${normalizeGolfIdUsername(form.username)}`}
+                      className="inline-flex min-h-10 items-center justify-center rounded-xl bg-emerald-700 px-4 text-sm font-black text-white"
+                    >
+                      公開ページを見る
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={copyPublicUrl}
+                      className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 text-sm font-black text-slate-800"
+                    >
+                      <Clipboard className="h-4 w-4" />
+                      {copied ? 'コピーしました' : 'URLをコピー'}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

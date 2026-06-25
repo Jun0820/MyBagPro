@@ -138,7 +138,7 @@ export const Home = () => {
       return;
     }
     if (href === '/create') {
-      navigate(user.isLoggedIn ? '/mypage/clubs' : '/create?auth=register&next=mypage');
+      navigate(user.isLoggedIn ? '/create' : '/create?auth=register&next=create');
       return;
     }
     navigate(href);
