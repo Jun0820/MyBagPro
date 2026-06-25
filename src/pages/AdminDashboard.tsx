@@ -116,6 +116,26 @@ const emptyPeriod = (): PeriodValue => ({
 const formatNumber = (value: number) => new Intl.NumberFormat('ja-JP').format(Math.round(value));
 const formatCurrency = (value: number) => `¥${formatNumber(value)}`;
 
+const summarizeSocialLinks = (value: unknown) => {
+  const links = (value || {}) as {
+    youtube?: string;
+    instagram?: string;
+    tiktok?: string;
+    x?: string;
+    custom1?: { url?: string };
+    custom2?: { url?: string };
+  };
+  const labels = [
+    links.youtube ? 'YT' : '',
+    links.instagram ? 'IG' : '',
+    links.tiktok ? 'TT' : '',
+    links.x ? 'X' : '',
+    links.custom1?.url ? 'Link1' : '',
+    links.custom2?.url ? 'Link2' : '',
+  ].filter(Boolean);
+  return labels.length > 0 ? labels.join(' / ') : '-';
+};
+
 const periodDelta = (current: number, previous: number) => {
   if (previous === 0) return current > 0 ? 100 : 0;
   return Math.round(((current - previous) / previous) * 100);
@@ -335,7 +355,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     safeRows<Record<string, unknown>>('analytics_events', 'diagnosis_type,event_name,count,created_at', { from: thirtyStart, to: tomorrow, eventNames: [...eventNames.diagnosisStart, ...eventNames.diagnosisCompleted], limit: 5000 }),
     safeRows<Record<string, unknown>>('profiles', 'name,id,updated_at,is_public', { eq: { is_public: true }, limit: 6 }),
     safeRows<Record<string, unknown>>('content_articles', 'title,slug,published_at,published', { eq: { published: true }, limit: 6 }),
-    safeRows<Record<string, unknown>>('golf_profiles', 'username,nickname,best_score,target_score,created_at', { orderBy: 'created_at', ascending: false, limit: 10 }),
+    safeRows<Record<string, unknown>>('golf_profiles', 'username,nickname,best_score,target_score,social_links,created_at', { orderBy: 'created_at', ascending: false, limit: 10 }),
     loadPublicGolfIdProfiles(10).catch(() => []),
   ]);
 
@@ -397,6 +417,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
           username: String(row.username || '-'),
           best_score: row.best_score ? Number(row.best_score) : '-',
           target_score: row.target_score ? Number(row.target_score) : '-',
+          social_links: summarizeSocialLinks(row.social_links),
           created_at: row.created_at ? new Date(String(row.created_at)).toLocaleDateString('ja-JP') : '-',
         }))
       : fallbackGolfProfiles.map((row) => ({
@@ -404,6 +425,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
           username: row.username || '-',
           best_score: row.best_score ?? '-',
           target_score: row.target_score ?? '-',
+          social_links: summarizeSocialLinks(row.social_links),
           created_at: row.updated_at ? new Date(String(row.updated_at)).toLocaleDateString('ja-JP') : '-',
         }))),
     popularPages: popularPages.length ? popularPages : fallbackPageRows,
@@ -556,6 +578,7 @@ const LatestGolfProfilesTable = ({ rows }: { rows: RankingRow[] }) => (
           <tr>
             <th className="px-3 py-2">ニックネーム</th>
             <th className="px-3 py-2">公開ページ</th>
+            <th className="px-3 py-2">SNS</th>
             <th className="px-3 py-2 text-right">ベスト</th>
             <th className="px-3 py-2 text-right">目標</th>
             <th className="px-3 py-2">作成日</th>
@@ -577,6 +600,7 @@ const LatestGolfProfilesTable = ({ rows }: { rows: RankingRow[] }) => (
                       '-'
                     )}
                   </td>
+                  <td className="px-3 py-2 font-bold text-slate-500">{String(row.social_links ?? '-')}</td>
                   <td className="px-3 py-2 text-right font-bold tabular-nums">{String(row.best_score ?? '-')}</td>
                   <td className="px-3 py-2 text-right font-bold tabular-nums">{String(row.target_score ?? '-')}</td>
                   <td className="px-3 py-2 font-bold">{String(row.created_at ?? '-')}</td>
@@ -585,7 +609,7 @@ const LatestGolfProfilesTable = ({ rows }: { rows: RankingRow[] }) => (
             })
           ) : (
             <tr>
-              <td colSpan={5} className="px-3 py-5 text-center text-sm font-bold text-slate-400">
+              <td colSpan={6} className="px-3 py-5 text-center text-sm font-bold text-slate-400">
                 まだGolf IDが作成されていません。
               </td>
             </tr>
