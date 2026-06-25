@@ -362,8 +362,8 @@ export const ProSettingDetailPage = () => {
       .map((club) => [club.brand, club.model].filter(Boolean).join(' '))
       .filter(Boolean);
     const seoDriver = driverClub ? [driverClub.brand, driverClub.model].filter(Boolean).join(' ') : 'ドライバー';
-    const seoTitle = `${setting.name} クラブセッティング ${seasonLabel}｜使用クラブ・ボール`;
-    const seoDescription = `${setting.name}のクラブセッティング${seasonLabel}版。${seoDriver}、アイアン、ウェッジ、パター、使用ボール${setting.ball !== EMPTY_LABEL ? `（${setting.ball}）` : ''}まで確認できます。`;
+    const seoTitle = `${setting.name} クラブセッティング ${seasonLabel}｜ドライバー・アイアン・パターまで`;
+    const seoDescription = `${setting.name}のクラブセッティング${seasonLabel}版。${seoDriver}、フェアウェイウッド、アイアン、ウェッジ、パター、ボール${setting.ball !== EMPTY_LABEL ? `（${setting.ball}）` : ''}まで確認できます。`;
     const seoImage = getProfileVisuals(setting.slug, setting.instagramHandle).hero;
 
     applySeo({

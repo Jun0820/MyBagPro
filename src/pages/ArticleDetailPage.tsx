@@ -25,6 +25,22 @@ const formatPublishedAt = (publishedAt: string | null) => {
   }).format(new Date(publishedAt));
 };
 
+const stripArticleText = (value: string) =>
+  value
+    .replace(/\[IMAGE[^\]]+\]/g, ' ')
+    .replace(/\[CALLOUT[^\]]+\]/g, ' ')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/[-*]\s+/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const buildArticleDescription = (article: PublicArticle) => {
+  const normalized = (article.excerpt || stripArticleText(article.body)).replace(/\s+/g, ' ').trim();
+  if (!normalized) return 'MyBagProのクラブセッティング記事です。プロや人気ゴルファーの14本から、自分のクラブ選びのヒントを確認できます。';
+  if (normalized.length <= 120) return normalized;
+  return `${normalized.slice(0, 117)}...`;
+};
+
 type RichArticleBlock =
   | { type: 'heading'; content: string }
   | { type: 'paragraph'; content: string }
@@ -210,7 +226,7 @@ export const ArticleDetailPage = () => {
 
     applySeo({
       title: article.title,
-      description: article.excerpt || 'クラブセッティングの更新内容を公開する記事です。',
+      description: buildArticleDescription(article),
       path: getSeoPath(`/articles/${slug}`),
       type: 'article',
       keywords: articleKeywords,
@@ -221,7 +237,7 @@ export const ArticleDetailPage = () => {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: article.title,
-      description: article.excerpt || 'クラブセッティングの更新内容を公開する記事です。',
+      description: buildArticleDescription(article),
       articleSection: article.articleType,
       image: toAbsoluteUrl(visual.url),
       datePublished: article.publishedAt || undefined,

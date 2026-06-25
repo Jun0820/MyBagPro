@@ -3,8 +3,17 @@ import { useLocation } from 'react-router-dom';
 import { getBrandConfig } from '../config/brand';
 import { initAnalytics, trackPageView } from '../lib/analytics';
 import { applySeo, getSeoPath } from '../lib/seo';
+import { fetchPublishedArticleBySlug } from '../lib/articles';
+import { fetchPublishedSettingProfileBySlug } from '../lib/contentProfiles';
 
 const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined;
+
+const makeDescription = (value: string, fallback: string) => {
+  const normalized = value.replace(/\s+/g, ' ').trim();
+  if (!normalized) return fallback;
+  if (normalized.length <= 120) return normalized;
+  return `${normalized.slice(0, 117)}...`;
+};
 
 const getRouteSeoMap = (): Record<string, { title: string; description: string; noindex?: boolean; keywords?: string[]; image?: string }> => {
   const brand = getBrandConfig();
@@ -169,6 +178,8 @@ export const SeoManager = () => {
   useEffect(() => {
     const seo = getSeoForPath(location.pathname);
     const seoPath = getSeoPath(getPublicSeoPath(location.pathname));
+    let cancelled = false;
+
     applySeo({
       title: seo.title,
       description: seo.description,
@@ -179,6 +190,57 @@ export const SeoManager = () => {
       image: seo.image,
     });
     trackPageView(seoPath, `${seo.title} | ${getBrandConfig().name}`);
+
+    const applyDynamicDetailSeo = async () => {
+      if (location.pathname.startsWith('/pros/')) {
+        const slug = decodeURIComponent(location.pathname.replace(/^\/pros\//, '').split('/')[0] || '');
+        if (!slug) return;
+        const profile = await fetchPublishedSettingProfileBySlug(slug);
+        if (cancelled || !profile) return;
+        const yearLabel = profile.seasonYear ? `${profile.seasonYear}年` : '最新';
+        const driver = profile.clubs.find((club) => club.category === 'Driver');
+        const driverName = driver ? [driver.brand, driver.model].filter(Boolean).join(' ') : 'ドライバー';
+        applySeo({
+          title: `${profile.name} クラブセッティング ${yearLabel}｜ドライバー・アイアン・パターまで`,
+          description: `${profile.name}のクラブセッティング${yearLabel}版。${driverName}、フェアウェイウッド、アイアン、ウェッジ、パター、ボールまで確認できます。`,
+          path: `/pros/${slug}`,
+          keywords: [
+            `${profile.name} クラブセッティング`,
+            `${profile.name} 使用クラブ`,
+            `${profile.name} ドライバー`,
+            `${profile.name} アイアン`,
+            `${profile.name} パター`,
+          ],
+        });
+        return;
+      }
+
+      if (location.pathname.startsWith('/articles/')) {
+        const slug = decodeURIComponent(location.pathname.replace(/^\/articles\//, '').split('/')[0] || '');
+        if (!slug) return;
+        const article = await fetchPublishedArticleBySlug(slug);
+        if (cancelled || !article) return;
+        applySeo({
+          title: article.title,
+          description: makeDescription(article.excerpt || article.body, 'MyBagProのクラブセッティング記事です。プロや人気ゴルファーの14本から、自分のクラブ選びのヒントを確認できます。'),
+          path: `/articles/${slug}`,
+          type: 'article',
+          keywords: [
+            article.title,
+            article.relatedProfileName ? `${article.relatedProfileName} クラブセッティング` : '',
+            'クラブセッティング',
+            '使用クラブ',
+            'ゴルフクラブ',
+          ].filter(Boolean),
+        });
+      }
+    };
+
+    applyDynamicDetailSeo();
+
+    return () => {
+      cancelled = true;
+    };
   }, [location.pathname]);
 
   useEffect(() => {
