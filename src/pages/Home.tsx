@@ -128,6 +128,12 @@ export const Home = () => {
 
   const openHref = (href: string) => {
     if (isExternalHref(href)) {
+      if (brand.brand === 'mybagpro' && href.includes('golfid.jp/create')) {
+        trackEvent('mybagpro_to_golfid_click', {
+          source_page: 'home',
+          destination: href,
+        });
+      }
       window.location.href = href;
       return;
     }
@@ -315,6 +321,65 @@ export const Home = () => {
           </div>
         )}
       </section>
+
+      {brand.brand === 'golfid' && (
+        <section className="mx-auto mt-7 grid max-w-[1380px] gap-4 md:mt-10 lg:grid-cols-[1fr_1fr]">
+          <div className="rounded-lg bg-white p-5 shadow-sm ring-1 ring-slate-200 md:p-6">
+            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-[#176534]">Public Golf ID</div>
+            <h2 className="mt-2 text-2xl font-black tracking-tight text-[#111827] md:text-3xl">SNSプロフィールに貼れる形で残す。</h2>
+            <div className="mt-5 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xl font-black text-slate-950">山田 太郎</p>
+                  <p className="mt-1 text-xs font-bold text-slate-500">golfid.jp/u/taro-golf</p>
+                </div>
+                <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black text-emerald-800 ring-1 ring-emerald-100">
+                  100切り目標
+                </span>
+              </div>
+              <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+                <div className="rounded-xl bg-white p-3 ring-1 ring-slate-100">
+                  <p className="text-[10px] font-black text-slate-500">ベスト</p>
+                  <p className="text-xl font-black text-emerald-700">96</p>
+                </div>
+                <div className="rounded-xl bg-white p-3 ring-1 ring-slate-100">
+                  <p className="text-[10px] font-black text-slate-500">目標</p>
+                  <p className="text-xl font-black text-emerald-700">89</p>
+                </div>
+                <div className="rounded-xl bg-white p-3 ring-1 ring-slate-100">
+                  <p className="text-[10px] font-black text-slate-500">HS</p>
+                  <p className="text-xl font-black text-emerald-700">41</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm font-semibold leading-7 text-slate-700">ドライバーが右に出る。180y前後の番手を安定させたい。</p>
+            </div>
+          </div>
+
+          <div className="rounded-lg bg-emerald-950 p-5 text-white shadow-sm ring-1 ring-emerald-900/40 md:p-6">
+            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-200">AI Diagnosis</div>
+            <h2 className="mt-2 text-2xl font-black tracking-tight md:text-3xl">次の一手まで、言葉にする。</h2>
+            <div className="mt-5 space-y-3">
+              {[
+                ['今の状態', '右ミスと距離ギャップが同時に出ている状態です。'],
+                ['優先課題', 'ドライバーより先に、180〜200yの番手を安定させましょう。'],
+                ['次の一手', '5Iを無理に使わず、UTか7Wで高さを作る構成を検討します。'],
+              ].map(([label, text]) => (
+                <div key={label} className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/10">
+                  <p className="text-xs font-black text-emerald-100">{label}</p>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-white/90">{text}</p>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() => openHref('/create')}
+              className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
+            >
+              無料でGolf IDを作る
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto mt-7 grid max-w-[1380px] gap-6 md:mt-10 xl:grid-cols-[0.95fr_1.45fr]">
         <div className="md:pt-1">

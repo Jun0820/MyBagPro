@@ -374,6 +374,31 @@ export const ArticleDetailPage = () => {
             </button>
           </div>
         )}
+        <div className="mt-4 rounded-lg bg-emerald-950 px-4 py-4 text-white ring-1 ring-emerald-900/40 md:mt-5 md:px-5">
+          <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
+              <h2 className="mt-1.5 text-lg font-black md:text-xl">このクラブ、あなたにも合う？</h2>
+              <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
+                クラブ・スコア・悩みをまとめて、あなたの次の一手を診断できます。
+              </p>
+            </div>
+            <a
+              href="https://golfid.jp/create"
+              onClick={() =>
+                trackEvent('mybagpro_to_golfid_click', {
+                  source_page: 'article_detail',
+                  article_slug: article.slug,
+                  destination: 'https://golfid.jp/create',
+                })
+              }
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
+            >
+              無料でGolf IDを作る
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </div>
         <div className="mt-5 max-w-4xl space-y-4 md:mt-6">
           {richBlocks.map((block, blockIndex) => {
             if (block.type === 'heading') {

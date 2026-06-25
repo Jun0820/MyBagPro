@@ -676,6 +676,33 @@ export const ProSettingDetailPage = () => {
         </div>
       </section>
 
+      <section className="mt-4 rounded-lg bg-emerald-950 px-4 py-5 text-white shadow-sm ring-1 ring-emerald-900/40 md:mt-6 md:px-6">
+        <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
+            <h2 className="mt-2 text-xl font-black md:text-2xl">このクラブ、あなたにも合う？</h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
+              {setting.name}のセッティングを参考にしながら、クラブ・スコア・悩みをまとめてあなたの次の一手を診断できます。
+            </p>
+          </div>
+          <a
+            href="https://golfid.jp/create"
+            onClick={() =>
+              trackEvent('mybagpro_to_golfid_click', {
+                source_page: 'pro_setting_detail',
+                profile_slug: setting.slug,
+                profile_name: setting.name,
+                destination: 'https://golfid.jp/create',
+              })
+            }
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
+          >
+            無料でGolf IDを作る
+            <ArrowRight size={16} />
+          </a>
+        </div>
+      </section>
+
       <section className="mt-4 md:mt-6">
         <div className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200/80 md:p-5">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">

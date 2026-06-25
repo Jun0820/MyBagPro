@@ -223,7 +223,7 @@ export const UsersSettingsPage = () => {
         {!loading && !error && profiles.length === 0 && (
           <div className="rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200 md:p-10">
             <Sparkles className="mx-auto h-8 w-8 text-emerald-700" />
-            <h2 className="mt-4 text-2xl font-black text-slate-950">まだ公開Golf IDが少ないです。最初の1人になりましょう</h2>
+            <h2 className="mt-4 text-2xl font-black text-slate-950">まだ公開Golf IDがありません。最初の1人になりましょう。</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
               まずはスコア、目標、悩みだけでも登録できます。公開する項目は選べます。
             </p>

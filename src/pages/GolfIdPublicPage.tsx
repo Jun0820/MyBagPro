@@ -90,8 +90,8 @@ export const GolfIdPublicPage = () => {
     return (
       <main className="flex min-h-[60vh] items-center justify-center bg-slate-50 px-4">
         <div className="max-w-md rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200">
-          <h1 className="text-xl font-black text-slate-950">Golf IDが見つかりません</h1>
-          <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">URLが間違っているか、公開が停止されています。</p>
+          <h1 className="text-xl font-black text-slate-950">このGolf IDはまだ作成されていません</h1>
+          <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">新しくGolf IDを作成すると、SNSプロフィールに貼れる公開ページを作れます。</p>
           <Link to="/create" className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white">
             自分もGolf IDを作る
             <ArrowRight className="h-4 w-4" />
@@ -179,6 +179,29 @@ export const GolfIdPublicPage = () => {
                 自分もGolf IDを作る
                 <ArrowRight className="h-4 w-4" />
               </Link>
+            </div>
+            <div className="mt-5 rounded-2xl bg-white/10 p-3 ring-1 ring-white/15">
+              <p className="text-[11px] font-black uppercase tracking-[0.14em] text-emerald-100">Golf ID URL</p>
+              <p className="mt-1 break-all text-sm font-bold text-white">{publicUrl}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={handleCopyUrl}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-xs font-black text-slate-950 transition hover:bg-emerald-50"
+                >
+                  <Clipboard className="h-4 w-4" />
+                  {copyError ? 'コピーできませんでした' : copied ? 'コピーしました' : 'URLをコピー'}
+                </button>
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodedShareText}&url=${shareUrl}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackEvent('sns_share_click', { channel: 'x', username: profile.username })}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                >
+                  Xで共有
+                </a>
+              </div>
             </div>
           </div>
 
@@ -270,6 +293,10 @@ export const GolfIdPublicPage = () => {
                   <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
                     <p className="text-xs font-black text-emerald-800">クラブ選びのヒント</p>
                     <p className="mt-2">{diagnosis.gearSuggestion || '-'}</p>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
+                    <p className="text-xs font-black text-emerald-800">今はやらなくていいこと</p>
+                    <p className="mt-2">{diagnosis.notRecommendedNow || '-'}</p>
                   </div>
                 </div>
               </div>
@@ -387,6 +414,12 @@ export const GolfIdPublicPage = () => {
             >
               MyBagProを見る
             </a>
+            <Link
+              to="/explore"
+              className="ml-0 mt-3 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50 sm:ml-2"
+            >
+              みんなのGolf IDを見る
+            </Link>
             {hasFeedbackForm && (
               <div className="mt-4">
                 <a

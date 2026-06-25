@@ -3,6 +3,7 @@ import { ArrowRight, CalendarDays, Newspaper, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPublishedArticles, type PublicArticle } from '../lib/articles';
 import { defaultArticleVisual, getArticleVisual, isGenericArticleImage } from '../lib/articleVisuals';
+import { trackEvent } from '../lib/analytics';
 import { matchesSearchText } from '../lib/searchNormalizer';
 import { getTournamentSpotlightByArticleSlug } from '../lib/tournamentSpotlights';
 
@@ -122,6 +123,7 @@ export const ArticlesPage = () => {
           </div>
           <a
             href="https://golfid.jp/create"
+            onClick={() => trackEvent('mybagpro_to_golfid_click', { source_page: 'articles', destination: 'https://golfid.jp/create' })}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
           >
             無料でGolf IDを作る

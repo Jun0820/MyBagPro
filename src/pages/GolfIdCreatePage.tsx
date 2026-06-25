@@ -184,6 +184,18 @@ export const GolfIdCreatePage = () => {
       setError('usernameは3〜32文字の半角英数字、ハイフン、アンダーバーのみで入力してください。');
       return;
     }
+    if (!form.target_score.trim()) {
+      nextFieldErrors.target_score = '目標スコアを入力してください。';
+      setFieldErrors(nextFieldErrors);
+      setError('目標スコアを入力してください。');
+      return;
+    }
+    if (!form.current_issue.trim()) {
+      nextFieldErrors.current_issue = '今の悩みを入力してください。';
+      setFieldErrors(nextFieldErrors);
+      setError('今の悩みを入力してください。');
+      return;
+    }
 
     setSaving(true);
     const { data: usernameOwner, error: usernameCheckError } = await supabase
@@ -261,6 +273,10 @@ export const GolfIdCreatePage = () => {
             <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
               先行メンバーは無料でGolf IDを作成できます。まずはクラブ・スコア・悩み・目標をまとめるところから始めましょう。あとから編集できます。
             </p>
+            <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-black text-emerald-800">
+              <span className="rounded-full bg-emerald-50 px-2.5 py-1 ring-1 ring-emerald-100">3分で作成できます</span>
+              <span className="rounded-full bg-emerald-50 px-2.5 py-1 ring-1 ring-emerald-100">見せたい項目だけ公開できます</span>
+            </div>
             {!user.isLoggedIn && (
               <button
                 type="button"
@@ -306,10 +322,6 @@ export const GolfIdCreatePage = () => {
                 <p className="text-[11px] font-bold leading-5 text-slate-500">公開URLに使われます。例: golfid.jp/u/junpei</p>
                 {fieldErrors.username && <p className="text-xs font-bold text-rose-600">{fieldErrors.username}</p>}
               </label>
-              <label className="space-y-1.5">
-                <span className="text-xs font-black text-slate-600">ゴルフ歴</span>
-                <input className={textInputClass} value={form.golf_history} onChange={(event) => updateField('golf_history', event.target.value)} placeholder="5年" />
-              </label>
             </div>
           </div>
 
@@ -328,7 +340,8 @@ export const GolfIdCreatePage = () => {
               </label>
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">目標スコア</span>
-                <input className={textInputClass} inputMode="numeric" value={form.target_score} onChange={(event) => updateField('target_score', event.target.value)} placeholder="89" />
+                <input className={inputClass(Boolean(fieldErrors.target_score))} inputMode="numeric" value={form.target_score} onChange={(event) => updateField('target_score', event.target.value)} placeholder="89" />
+                {fieldErrors.target_score && <p className="text-xs font-bold text-rose-600">{fieldErrors.target_score}</p>}
               </label>
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">ヘッドスピード</span>
@@ -342,6 +355,11 @@ export const GolfIdCreatePage = () => {
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブ・悩み</h2>
             <p className="text-xs font-bold text-slate-500">まずは得意クラブ、苦手クラブ、悩みだけでも入力できます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <label className="space-y-1.5 sm:col-span-2">
+                <span className="text-xs font-black text-slate-600">今の悩み</span>
+                <textarea className={`${inputClass(Boolean(fieldErrors.current_issue))} min-h-24 resize-y`} value={form.current_issue} onChange={(event) => updateField('current_issue', event.target.value)} placeholder="ドライバーが右に出る。180y前後の番手が安定しない。" />
+                {fieldErrors.current_issue && <p className="text-xs font-bold text-rose-600">{fieldErrors.current_issue}</p>}
+              </label>
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">得意クラブ</span>
                 <input className={textInputClass} value={form.favorite_club} onChange={(event) => updateField('favorite_club', event.target.value)} placeholder="7W" />
@@ -350,11 +368,19 @@ export const GolfIdCreatePage = () => {
                 <span className="text-xs font-black text-slate-600">苦手クラブ</span>
                 <input className={textInputClass} value={form.weak_club} onChange={(event) => updateField('weak_club', event.target.value)} placeholder="5I、3Wなど" />
               </label>
-              <label className="space-y-1.5 sm:col-span-2">
-                <span className="text-xs font-black text-slate-600">今の悩み</span>
-                <textarea className={`${textInputClass} min-h-24 resize-y`} value={form.current_issue} onChange={(event) => updateField('current_issue', event.target.value)} placeholder="ドライバーが右に出る。180y前後の番手が安定しない。" />
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">ゴルフ歴</span>
+                <input className={textInputClass} value={form.golf_history} onChange={(event) => updateField('golf_history', event.target.value)} placeholder="5年" />
               </label>
-              <label className="space-y-1.5 sm:col-span-2">
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 4</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
+            <p className="text-xs font-bold text-slate-500">MVPでは自由入力でOKです。あとで番手ごとの登録に広げやすい形にしていきます。</p>
+            <div className="mt-5 grid gap-4">
+              <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">クラブセッティング</span>
                 <textarea className={`${textInputClass} min-h-32 resize-y font-mono text-xs`} value={form.club_setting} onChange={(event) => updateField('club_setting', event.target.value)} placeholder={'1W PING G425 LST\n5W TaylorMade Qi10\n4U PING G430 Hybrid'} />
               </label>
@@ -362,7 +388,7 @@ export const GolfIdCreatePage = () => {
           </div>
 
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 4</p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">公開設定</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">公開設定</h2>
             <p className="text-xs font-bold text-slate-500">見せたい項目だけ公開できます。</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
