@@ -110,9 +110,12 @@ const getSeoForPath = (pathname: string) => {
   }
 
   if (pathname.startsWith('/u/') || pathname.startsWith('/@')) {
+    const username = decodeURIComponent(pathname.replace(/^\/u\//, '').replace(/^\/@/, '')).replace(/^@+/, '').trim();
     return {
-      title: '公開Golf ID',
-      description: 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
+      title: username ? `${username}のGolf ID` : 'Golf ID',
+      description: username
+        ? `${username}さんのGolf ID。スコア、目標、ヘッドスピード、悩み、クラブセッティング、AI上達診断の次の一手をまとめています。`
+        : 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
     };
   }
 

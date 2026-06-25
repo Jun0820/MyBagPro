@@ -30,6 +30,7 @@ export const GolfIdPublicPage = () => {
   const [profile, setProfile] = useState<GolfIdRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const [showPlayerCard, setShowPlayerCard] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -39,15 +40,20 @@ export const GolfIdPublicPage = () => {
     const loadProfile = async () => {
       setLoading(true);
       setNotFound(false);
+      setLoadError(false);
       const { data, error } = await supabase
         .from(GOLF_PROFILE_TABLE)
         .select('*')
-        .ilike('username', username)
+        .eq('username', username)
         .maybeSingle();
 
       if (!mounted) return;
       setLoading(false);
-      if (error || !data) {
+      if (error) {
+        setLoadError(true);
+        return;
+      }
+      if (!data) {
         setNotFound(true);
         return;
       }
@@ -65,12 +71,14 @@ export const GolfIdPublicPage = () => {
 
   useEffect(() => {
     const title = profile
-      ? `${profile.nickname}のGolf ID${profile.best_score ? `｜ベスト${profile.best_score}` : ''}${profile.target_score ? `・目標${profile.target_score}` : ''}`
-      : '公開Golf ID';
+      ? `${profile.nickname || profile.username}のGolf ID${profile.best_score ? `｜ベスト${profile.best_score}` : ''}${profile.target_score ? `・目標${profile.target_score}` : ''}`
+      : username
+      ? `${username}のGolf ID`
+      : 'Golf ID';
     applySeo({
       title,
       description: profile
-        ? `${profile.nickname}さんのスコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDです。`
+        ? `${profile.nickname || profile.username}さんのGolf ID。ベストスコア、目標、ヘッドスピード、悩み、クラブセッティング、AI上達診断の次の一手をまとめています。`
         : 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
       path: `/u/${username}`,
       image: '/article-visuals/golf-bag-course.jpg',
@@ -81,6 +89,21 @@ export const GolfIdPublicPage = () => {
     return (
       <main className="flex min-h-[60vh] items-center justify-center bg-slate-50 px-4">
         <div className="rounded-2xl bg-white px-5 py-4 text-sm font-black text-slate-500 shadow-sm ring-1 ring-slate-200">Golf IDを読み込んでいます...</div>
+      </main>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <main className="flex min-h-[60vh] items-center justify-center bg-slate-50 px-4">
+        <div className="max-w-md rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200">
+          <h1 className="text-xl font-black text-slate-950">読み込みに失敗しました</h1>
+          <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">時間をおいて再度アクセスしてください。Golf IDの公開設定または通信状態を確認しています。</p>
+          <Link to="/explore" className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white">
+            みんなのGolf IDを見る
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </main>
     );
   }
@@ -167,7 +190,7 @@ export const GolfIdPublicPage = () => {
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h1 className="text-3xl font-black tracking-tight sm:text-5xl">{profile.nickname}</h1>
+                <h1 className="text-3xl font-black tracking-tight sm:text-5xl">{profile.nickname || profile.username}</h1>
                 <p className="mt-2 text-sm font-bold text-slate-300">@{profile.username}</p>
               </div>
               <Link
@@ -239,7 +262,7 @@ export const GolfIdPublicPage = () => {
             <section className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
               <h2 className="flex items-center gap-2 text-lg font-black text-slate-950">
                 <UserRound className="h-5 w-5 text-emerald-700" />
-                プロフィール
+                My Golf
               </h2>
               <dl className="mt-4 grid gap-3 text-sm">
                 {canShow(profile, 'golf_history') && (
@@ -274,7 +297,7 @@ export const GolfIdPublicPage = () => {
           {diagnosis && (
             <section className="p-4 pt-0 lg:p-6 lg:pt-0">
               <div className="rounded-2xl bg-emerald-50 p-5 ring-1 ring-emerald-100">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">AI上達診断</p>
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">Next Action</p>
                 <h2 className="mt-2 text-xl font-black text-slate-950">あなたの次の一手</h2>
                 <div className="mt-4 rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
                   <p className="text-sm font-black text-emerald-800">{diagnosis.diagnosisType || 'クラブ見直しタイプ'}</p>
@@ -305,7 +328,8 @@ export const GolfIdPublicPage = () => {
           {canShow(profile, 'club_setting') && (
             <section className="p-4 pt-0 lg:p-6 lg:pt-0">
               <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
-                <h2 className="text-lg font-black text-slate-950">クラブセッティング</h2>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">My Bag</p>
+                <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
                 {clubLines.length > 0 ? (
                   <div className="mt-4 divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200">
                     {clubLines.map((line, index) => (
