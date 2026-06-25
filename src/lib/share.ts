@@ -1,0 +1,80 @@
+export type SharePayload = {
+  title?: string;
+  text: string;
+  url: string;
+};
+
+export type ShareResult = {
+  ok: boolean;
+  message: string;
+  method: 'native' | 'copy' | 'window' | 'error';
+};
+
+const fallbackCopy = (text: string) => {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const ok = document.execCommand('copy');
+  document.body.removeChild(textarea);
+  if (!ok) throw new Error('copy command failed');
+};
+
+export const copyToClipboard = async (value: string): Promise<ShareResult> => {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+    } else {
+      fallbackCopy(value);
+    }
+    return { ok: true, message: 'コピーしました', method: 'copy' };
+  } catch {
+    return { ok: false, message: 'コピーできませんでした。URLを長押ししてコピーしてください。', method: 'error' };
+  }
+};
+
+export const nativeShare = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
+  if (!navigator.share) {
+    return { ok: false, message: 'この端末では共有シートを開けません。', method: 'error' };
+  }
+
+  try {
+    await navigator.share({ title, text, url });
+    return { ok: true, message: '共有画面を開きました', method: 'native' };
+  } catch {
+    return { ok: false, message: '共有をキャンセルしました', method: 'error' };
+  }
+};
+
+export const shareToX = ({ text, url }: SharePayload) => {
+  const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+  window.open(shareUrl, '_blank', 'noopener,noreferrer');
+  return { ok: true, message: 'Xの共有画面を開きました', method: 'window' } satisfies ShareResult;
+};
+
+export const shareToInstagram = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
+  const native = await nativeShare({ title, text, url });
+  if (native.ok) return native;
+
+  const copied = await copyToClipboard(`${text}\n${url}`);
+  return {
+    ok: copied.ok,
+    message: copied.ok ? 'URLをコピーしました。Instagramのプロフィールやストーリーズに貼り付けて共有できます。' : copied.message,
+    method: copied.method,
+  };
+};
+
+export const shareToTikTok = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
+  const native = await nativeShare({ title, text, url });
+  if (native.ok) return native;
+
+  const copied = await copyToClipboard(`${text}\n${url}`);
+  return {
+    ok: copied.ok,
+    message: copied.ok ? 'URLをコピーしました。TikTokプロフィールや投稿文に貼り付けて共有できます。' : copied.message,
+    method: copied.method,
+  };
+};

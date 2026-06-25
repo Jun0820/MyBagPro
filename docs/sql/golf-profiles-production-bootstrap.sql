@@ -18,6 +18,7 @@ create table if not exists public.golf_profiles (
   current_issue text,
   club_setting text,
   clubs jsonb,
+  social_links jsonb not null default '{}'::jsonb,
   visibility jsonb not null default '{}'::jsonb,
   diagnosis_result jsonb,
   is_public boolean not null default true,
@@ -39,6 +40,7 @@ alter table public.golf_profiles
   add column if not exists current_issue text,
   add column if not exists club_setting text,
   add column if not exists clubs jsonb,
+  add column if not exists social_links jsonb not null default '{}'::jsonb,
   add column if not exists visibility jsonb not null default '{}'::jsonb,
   add column if not exists diagnosis_result jsonb,
   add column if not exists is_public boolean not null default true,
@@ -49,6 +51,7 @@ update public.golf_profiles
 set
   username = lower(trim(username)),
   nickname = coalesce(nullif(trim(nickname), ''), username),
+  social_links = coalesce(social_links, '{}'::jsonb),
   visibility = coalesce(visibility, '{}'::jsonb),
   is_public = coalesce(is_public, true)
 where username is not null;
@@ -56,6 +59,7 @@ where username is not null;
 alter table public.golf_profiles
   alter column username set not null,
   alter column nickname set not null,
+  alter column social_links set default '{}'::jsonb,
   alter column visibility set default '{}'::jsonb,
   alter column is_public set default true;
 

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, Gauge, Goal, Loader2, Sparkles, Trophy, UserRound } from 'lucide-react';
+import { ArrowRight, Gauge, Goal, Instagram, Loader2, Music2, Sparkles, Trophy, UserRound, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
@@ -17,6 +17,7 @@ type ExploreGolfId = Pick<
   | 'current_issue'
   | 'visibility'
   | 'diagnosis_result'
+  | 'social_links'
   | 'updated_at'
 >;
 
@@ -51,6 +52,16 @@ const excerpt = (value?: string | null, max = 46) => {
   if (!text) return '-';
   return text.length > max ? `${text.slice(0, max)}...` : text;
 };
+
+const getSocialBadges = (profile: ExploreGolfId) =>
+  [
+    profile.social_links?.youtube ? { key: 'youtube', label: 'YouTube', icon: Youtube } : null,
+    profile.social_links?.instagram ? { key: 'instagram', label: 'Instagram', icon: Instagram } : null,
+    profile.social_links?.tiktok ? { key: 'tiktok', label: 'TikTok', icon: Music2 } : null,
+    profile.social_links?.x ? { key: 'x', label: 'X', icon: null } : null,
+    profile.social_links?.custom1?.url ? { key: 'custom1', label: profile.social_links.custom1.label || 'Link', icon: null } : null,
+    profile.social_links?.custom2?.url ? { key: 'custom2', label: profile.social_links.custom2.label || 'Link', icon: null } : null,
+  ].filter(Boolean) as Array<{ key: string; label: string; icon: typeof Youtube | null }>;
 
 export const UsersSettingsPage = () => {
   const [profiles, setProfiles] = useState<ExploreGolfId[]>([]);
@@ -177,6 +188,19 @@ export const UsersSettingsPage = () => {
                   <div className="min-w-0">
                     <div className="text-lg font-black text-slate-950">{profile.nickname || 'Golf ID'}</div>
                     <div className="mt-1 text-xs font-bold text-slate-500">@{profile.username}</div>
+                    {getSocialBadges(profile).length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {getSocialBadges(profile).slice(0, 4).map((badge) => {
+                          const Icon = badge.icon;
+                          return (
+                            <span key={badge.key} className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-black text-emerald-800 ring-1 ring-emerald-100">
+                              {Icon ? <Icon size={11} /> : null}
+                              {badge.label}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                   <div className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black text-emerald-800">
                     {profile.diagnosis_result?.diagnosisType || 'Golf ID'}

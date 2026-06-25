@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, CalendarDays, Clipboard, Gauge, Goal, MessageCircle, Share2, Trophy, UserRound } from 'lucide-react';
+import { ArrowRight, CalendarDays, Clipboard, Gauge, Goal, Instagram, Link2, MessageCircle, Music2, Share2, Trophy, UserRound, Youtube } from 'lucide-react';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
@@ -11,6 +11,7 @@ import {
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
 import { loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
+import { copyToClipboard, shareToInstagram, shareToTikTok, shareToX, type ShareResult } from '../lib/share';
 
 const canShow = (record: GolfIdRecord | null, key: GolfIdVisibilityKey) => {
   if (!record) return false;
@@ -20,6 +21,18 @@ const canShow = (record: GolfIdRecord | null, key: GolfIdVisibilityKey) => {
 const formatValue = (value?: string | number | null, suffix = '') => {
   if (value === null || value === undefined || value === '') return '-';
   return `${value}${suffix}`;
+};
+
+const getSocialLinkItems = (profile: GolfIdRecord | null) => {
+  const links = profile?.social_links || {};
+  return [
+    links.youtube ? { platform: 'youtube', label: 'YouTube', url: links.youtube, icon: Youtube } : null,
+    links.instagram ? { platform: 'instagram', label: 'Instagram', url: links.instagram, icon: Instagram } : null,
+    links.tiktok ? { platform: 'tiktok', label: 'TikTok', url: links.tiktok, icon: Music2 } : null,
+    links.x ? { platform: 'x', label: 'X', url: links.x, icon: Share2 } : null,
+    links.custom1?.url ? { platform: 'custom1', label: links.custom1.label || 'Link 1', url: links.custom1.url, icon: Link2 } : null,
+    links.custom2?.url ? { platform: 'custom2', label: links.custom2.label || 'Link 2', url: links.custom2.url, icon: Link2 } : null,
+  ].filter(Boolean) as Array<{ platform: string; label: string; url: string; icon: typeof Link2 }>;
 };
 
 const profileTitleName = (profile: GolfIdRecord) => profile.nickname?.trim() || profile.username || 'Golf ID';
@@ -43,6 +56,7 @@ export const GolfIdPublicPage = () => {
   const [showPlayerCard, setShowPlayerCard] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
+  const [shareNotice, setShareNotice] = useState('');
 
   useEffect(() => {
     let mounted = true;
@@ -149,8 +163,7 @@ export const GolfIdPublicPage = () => {
   const publicUrl = `https://golfid.jp/u/${profile.username}`;
   const diagnosis = profile.diagnosis_result;
   const shareText = '自分のGolf IDを作りました。クラブ・スコア・悩み・目標をまとめています。';
-  const shareUrl = encodeURIComponent(publicUrl);
-  const encodedShareText = encodeURIComponent(shareText);
+  const socialLinkItems = useMemo(() => getSocialLinkItems(profile), [profile]);
 
   const handlePlayerCardGenerate = () => {
     setShowPlayerCard(true);
@@ -162,34 +175,39 @@ export const GolfIdPublicPage = () => {
 
   const handleCopyUrl = async () => {
     setCopyError(false);
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(publicUrl);
-      } else {
-        const textarea = document.createElement('textarea');
-        textarea.value = publicUrl;
-        textarea.setAttribute('readonly', '');
-        textarea.style.position = 'fixed';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-      }
+    const result = await copyToClipboard(publicUrl);
+    if (result.ok) {
       setCopied(true);
+      setShareNotice(result.message);
       trackEvent('url_copy_click', {
         username: profile.username,
       });
-      trackEvent('sns_share_click', {
-        channel: 'copy_url',
-        username: profile.username,
-      });
       window.setTimeout(() => setCopied(false), 1800);
-    } catch (error) {
-      console.error('Failed to copy Golf ID URL:', error);
+      window.setTimeout(() => setShareNotice(''), 2400);
+    } else {
       setCopyError(true);
+      setShareNotice(result.message);
       window.setTimeout(() => setCopyError(false), 2400);
+      window.setTimeout(() => setShareNotice(''), 3000);
     }
+  };
+
+  const handleShare = async (platform: 'x' | 'instagram' | 'tiktok') => {
+    let result: ShareResult = { ok: true, message: '', method: 'window' };
+    if (platform === 'x') {
+      result = shareToX({ title: `${profile.nickname || profile.username}のGolf ID`, text: shareText, url: publicUrl });
+    } else if (platform === 'instagram') {
+      result = await shareToInstagram({ title: `${profile.nickname || profile.username}のGolf ID`, text: shareText, url: publicUrl });
+    } else {
+      result = await shareToTikTok({ title: `${profile.nickname || profile.username}のGolf ID`, text: shareText, url: publicUrl });
+    }
+    setShareNotice(result.message);
+    window.setTimeout(() => setShareNotice(''), 3200);
+    trackEvent('sns_share_click', {
+      platform,
+      method: result.method,
+      username: profile.username,
+    });
   };
 
   const handleSignupClick = () => {
@@ -234,15 +252,30 @@ export const GolfIdPublicPage = () => {
                   {copyError ? 'コピーできませんでした' : copied ? 'コピーしました' : 'URLをコピー'}
                 </button>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodedShareText}&url=${shareUrl}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(publicUrl)}`}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => trackEvent('sns_share_click', { channel: 'x', username: profile.username })}
+                  onClick={() => trackEvent('sns_share_click', { platform: 'x', username: profile.username })}
                   className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
                 >
                   Xで共有
                 </a>
+                <button
+                  type="button"
+                  onClick={() => handleShare('instagram')}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                >
+                  Instagramで共有
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleShare('tiktok')}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                >
+                  TikTokで共有
+                </button>
               </div>
+              {shareNotice && <p className="mt-3 rounded-xl bg-emerald-500/15 px-3 py-2 text-xs font-black text-emerald-100">{shareNotice}</p>}
             </div>
           </div>
 
@@ -364,6 +397,41 @@ export const GolfIdPublicPage = () => {
             </section>
           )}
 
+          {socialLinkItems.length > 0 && (
+            <section className="p-4 pt-0 lg:p-6 lg:pt-0">
+              <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">Links</p>
+                <h2 className="mt-1 text-lg font-black text-slate-950">発信リンク</h2>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {socialLinkItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <a
+                        key={item.platform}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackEvent('social_link_click', {
+                            platform: item.platform,
+                            username: profile.username,
+                          })
+                        }
+                        className="inline-flex min-h-12 items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm font-black text-slate-900 ring-1 ring-slate-200 transition hover:bg-emerald-50 hover:text-emerald-800 hover:ring-emerald-100"
+                      >
+                        <span className="inline-flex items-center gap-2">
+                          <Icon className="h-4 w-4 text-emerald-700" />
+                          {item.label}
+                        </span>
+                        <ArrowRight className="h-4 w-4 text-slate-400" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          )}
+
           <section className="p-4 pt-0 lg:p-6 lg:pt-0">
             <div className="rounded-2xl bg-slate-950 p-5 text-white">
               <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -410,16 +478,32 @@ export const GolfIdPublicPage = () => {
 
               <div className="mt-4 flex flex-wrap gap-2">
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodedShareText}&url=${shareUrl}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(publicUrl)}`}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => trackEvent('sns_share_click', { channel: 'x', username: profile.username })}
+                  onClick={() => trackEvent('sns_share_click', { platform: 'x', username: profile.username })}
                   className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
                 >
                   Xで共有
                 </a>
+                <button
+                  type="button"
+                  onClick={() => handleShare('instagram')}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                >
+                  <Instagram className="h-4 w-4" />
+                  Instagram
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleShare('tiktok')}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
+                >
+                  <Music2 className="h-4 w-4" />
+                  TikTok
+                </button>
                 <a
-                  href={`https://social-plugins.line.me/lineit/share?url=${shareUrl}`}
+                  href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(publicUrl)}`}
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => trackEvent('sns_share_click', { channel: 'line', username: profile.username })}

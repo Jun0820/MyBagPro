@@ -8,6 +8,8 @@ import { trackEvent } from '../lib/analytics';
 import { generateDiagnosisResult } from '../lib/diagnosis/rules';
 import {
   defaultGolfIdVisibility,
+  emptyGolfIdSocialLinks,
+  type GolfIdSocialLinkKey,
   isValidGolfIdUsername,
   mapRecordToGolfIdForm,
   normalizeGolfIdUsername,
@@ -31,6 +33,7 @@ const initialForm: GolfIdFormData = {
   weak_club: '',
   current_issue: '',
   club_setting: '',
+  social_links: emptyGolfIdSocialLinks,
   visibility: defaultGolfIdVisibility,
 };
 
@@ -52,6 +55,33 @@ const textInputClass =
 const inputClass = (hasError?: boolean) =>
   `${textInputClass} ${hasError ? 'border-rose-300 bg-rose-50 focus:border-rose-500 focus:ring-rose-100' : ''}`;
 
+const socialUrlLabels: Record<GolfIdSocialLinkKey, string> = {
+  youtube: 'YouTube URL',
+  instagram: 'Instagram URL',
+  tiktok: 'TikTok URL',
+  x: 'X URL',
+};
+
+const socialUrlPlaceholders: Record<GolfIdSocialLinkKey, string> = {
+  youtube: 'https://www.youtube.com/@yourname',
+  instagram: 'https://www.instagram.com/yourname',
+  tiktok: 'https://www.tiktok.com/@yourname',
+  x: 'https://x.com/yourname',
+};
+
+const normalizeOptionalUrl = (value: string) => {
+  const trimmed = value.trim();
+  if (!trimmed) return '';
+  const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  try {
+    const url = new URL(withProtocol);
+    if (!['http:', 'https:'].includes(url.protocol)) return null;
+    return url.toString();
+  } catch {
+    return null;
+  }
+};
+
 export const GolfIdCreatePage = () => {
   const navigate = useNavigate();
   const { user, profile, setShowAuth } = useDiagnosis();
@@ -63,6 +93,7 @@ export const GolfIdCreatePage = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof GolfIdFormData, string>>>({});
+  const [socialErrors, setSocialErrors] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -151,6 +182,29 @@ export const GolfIdCreatePage = () => {
     }));
   };
 
+  const updateSocialUrl = (key: GolfIdSocialLinkKey, value: string) => {
+    setForm((current) => ({
+      ...current,
+      social_links: {
+        ...current.social_links,
+        [key]: value,
+      },
+    }));
+  };
+
+  const updateCustomLink = (key: 'custom1' | 'custom2', field: 'label' | 'url', value: string) => {
+    setForm((current) => ({
+      ...current,
+      social_links: {
+        ...current.social_links,
+        [key]: {
+          ...current.social_links[key],
+          [field]: value,
+        },
+      },
+    }));
+  };
+
   const toggleVisibility = (key: GolfIdVisibilityKey) => {
     setForm((current) => ({
       ...current,
@@ -179,6 +233,7 @@ export const GolfIdCreatePage = () => {
     setMessage('');
     setError('');
     setFieldErrors({});
+    setSocialErrors({});
 
     if (!user.isLoggedIn) {
       setShowAuth(true);
@@ -218,6 +273,34 @@ export const GolfIdCreatePage = () => {
       return;
     }
 
+    const nextSocialErrors: Record<string, string> = {};
+    const normalizedSocialLinks = {
+      youtube: normalizeOptionalUrl(form.social_links.youtube || ''),
+      instagram: normalizeOptionalUrl(form.social_links.instagram || ''),
+      tiktok: normalizeOptionalUrl(form.social_links.tiktok || ''),
+      x: normalizeOptionalUrl(form.social_links.x || ''),
+      custom1: {
+        label: form.social_links.custom1?.label?.trim() || '',
+        url: normalizeOptionalUrl(form.social_links.custom1?.url || ''),
+      },
+      custom2: {
+        label: form.social_links.custom2?.label?.trim() || '',
+        url: normalizeOptionalUrl(form.social_links.custom2?.url || ''),
+      },
+    };
+
+    (Object.keys(socialUrlLabels) as GolfIdSocialLinkKey[]).forEach((key) => {
+      if (normalizedSocialLinks[key] === null) nextSocialErrors[key] = `${socialUrlLabels[key]}の形式を確認してください。`;
+    });
+    if (normalizedSocialLinks.custom1.url === null) nextSocialErrors.custom1_url = '自由URL 1の形式を確認してください。';
+    if (normalizedSocialLinks.custom2.url === null) nextSocialErrors.custom2_url = '自由URL 2の形式を確認してください。';
+
+    if (Object.keys(nextSocialErrors).length > 0) {
+      setSocialErrors(nextSocialErrors);
+      setError('SNSリンクのURL形式を確認してください。');
+      return;
+    }
+
     setSaving(true);
     const { data: usernameOwner, error: usernameCheckError } = await supabase
       .from(GOLF_PROFILE_TABLE)
@@ -254,6 +337,7 @@ export const GolfIdCreatePage = () => {
       weak_club: form.weak_club.trim() || null,
       current_issue: form.current_issue.trim() || null,
       club_setting: form.club_setting.trim() || null,
+      social_links: normalizedSocialLinks,
       visibility: form.visibility,
       diagnosis_result: diagnosisResult,
       is_public: true,
@@ -285,7 +369,8 @@ export const GolfIdCreatePage = () => {
     { number: 2, label: 'Score' },
     { number: 3, label: 'My Golf' },
     { number: 4, label: 'My Bag' },
-    { number: 5, label: 'Publish' },
+    { number: 5, label: 'Links' },
+    { number: 6, label: 'Publish' },
   ];
 
   return (
@@ -322,7 +407,7 @@ export const GolfIdCreatePage = () => {
             )}
           </div>
 
-          <nav className="grid grid-cols-5 gap-1 rounded-2xl bg-white p-1 shadow-sm ring-1 ring-slate-200">
+          <nav className="grid grid-cols-3 gap-1 rounded-2xl bg-white p-1 shadow-sm ring-1 ring-slate-200 sm:grid-cols-6">
             {stepItems.map((step) => (
               <button
                 key={step.number}
@@ -437,7 +522,65 @@ export const GolfIdCreatePage = () => {
           </div>
 
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 5 / Publish</p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 5 / SNS Links</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">発信リンク</h2>
+            <p className="text-xs font-bold text-slate-500">あなたの発信場所をまとめましょう。YouTube、Instagram、TikTok、X、自由URLをGolf IDに表示できます。</p>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {(Object.keys(socialUrlLabels) as GolfIdSocialLinkKey[]).map((key) => (
+                <label key={key} className="space-y-1.5">
+                  <span className="text-xs font-black text-slate-600">{socialUrlLabels[key]}</span>
+                  <input
+                    className={inputClass(Boolean(socialErrors[key]))}
+                    value={form.social_links[key] || ''}
+                    onChange={(event) => updateSocialUrl(key, event.target.value)}
+                    placeholder={socialUrlPlaceholders[key]}
+                  />
+                  {socialErrors[key] && <p className="text-xs font-bold text-rose-600">{socialErrors[key]}</p>}
+                </label>
+              ))}
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">自由URL 1 ラベル</span>
+                <input
+                  className={textInputClass}
+                  value={form.social_links.custom1?.label || ''}
+                  onChange={(event) => updateCustomLink('custom1', 'label', event.target.value)}
+                  placeholder="レッスン予約"
+                />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">自由URL 1 URL</span>
+                <input
+                  className={inputClass(Boolean(socialErrors.custom1_url))}
+                  value={form.social_links.custom1?.url || ''}
+                  onChange={(event) => updateCustomLink('custom1', 'url', event.target.value)}
+                  placeholder="https://example.com"
+                />
+                {socialErrors.custom1_url && <p className="text-xs font-bold text-rose-600">{socialErrors.custom1_url}</p>}
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">自由URL 2 ラベル</span>
+                <input
+                  className={textInputClass}
+                  value={form.social_links.custom2?.label || ''}
+                  onChange={(event) => updateCustomLink('custom2', 'label', event.target.value)}
+                  placeholder="使用クラブ一覧"
+                />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">自由URL 2 URL</span>
+                <input
+                  className={inputClass(Boolean(socialErrors.custom2_url))}
+                  value={form.social_links.custom2?.url || ''}
+                  onChange={(event) => updateCustomLink('custom2', 'url', event.target.value)}
+                  placeholder="https://example.com"
+                />
+                {socialErrors.custom2_url && <p className="text-xs font-bold text-rose-600">{socialErrors.custom2_url}</p>}
+              </label>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 6 / Publish</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">公開プレビュー・公開設定</h2>
             <p className="text-xs font-bold text-slate-500">見せたい項目だけ公開できます。</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -542,6 +685,33 @@ export const GolfIdCreatePage = () => {
                   <p className="mt-1 text-sm font-bold leading-6 text-slate-800">
                     入力内容をもとに、作成後にあなたの次の一手を表示します。
                   </p>
+                </div>
+                <div className="rounded-2xl bg-slate-50 p-3 ring-1 ring-slate-100">
+                  <p className="text-[11px] font-black text-slate-500">発信リンク</p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {[
+                      form.social_links.youtube && 'YouTube',
+                      form.social_links.instagram && 'Instagram',
+                      form.social_links.tiktok && 'TikTok',
+                      form.social_links.x && 'X',
+                      form.social_links.custom1?.url && (form.social_links.custom1.label || 'Link 1'),
+                      form.social_links.custom2?.url && (form.social_links.custom2.label || 'Link 2'),
+                    ]
+                      .filter(Boolean)
+                      .map((label) => (
+                        <span key={String(label)} className="rounded-full bg-white px-2 py-1 text-[10px] font-black text-emerald-800 ring-1 ring-emerald-100">
+                          {label}
+                        </span>
+                      ))}
+                    {![
+                      form.social_links.youtube,
+                      form.social_links.instagram,
+                      form.social_links.tiktok,
+                      form.social_links.x,
+                      form.social_links.custom1?.url,
+                      form.social_links.custom2?.url,
+                    ].some(Boolean) && <span className="text-xs font-bold text-slate-400">SNSリンクを入力するとここに表示されます。</span>}
+                  </div>
                 </div>
                 {existingId && (
                   <div className="grid gap-2">

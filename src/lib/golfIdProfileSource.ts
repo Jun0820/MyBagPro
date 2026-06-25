@@ -1,7 +1,9 @@
 import { supabase } from './supabase';
 import {
   defaultGolfIdVisibility,
+  emptyGolfIdSocialLinks,
   normalizeGolfIdUsername,
+  type GolfIdSocialLinks,
   type GolfIdRecord,
 } from './golfId';
 
@@ -30,6 +32,14 @@ type LegacyProfileRow = {
   golf_history?: string | null;
   current_ball?: string | null;
   sns_links?: {
+    youtube?: string;
+    instagram?: string;
+    tiktok?: string;
+    x?: string;
+    customLinks?: Array<{
+      label?: string;
+      url?: string;
+    }>;
     bagSnapshot?: {
       clubs?: LegacyClubRow[];
       profileStats?: {
@@ -68,6 +78,34 @@ const formatClubLine = (club: LegacyClubRow) => {
   return `${head}${shaft}${distance}`.trim();
 };
 
+const normalizeLegacySocialUrl = (value: unknown, baseUrl: string, handlePrefix = '') => {
+  const text = String(value || '').trim();
+  if (!text) return '';
+  if (/^https?:\/\//i.test(text)) return text;
+  const cleanHandle = text.replace(/^@+/, '').replace(/^\/+/, '');
+  return `${baseUrl}${handlePrefix}${cleanHandle}`;
+};
+
+const mapLegacySocialLinks = (row: LegacyProfileRow): GolfIdSocialLinks => {
+  const links = row.sns_links || {};
+  const customLinks = Array.isArray(links.customLinks) ? links.customLinks : [];
+  return {
+    ...emptyGolfIdSocialLinks,
+    youtube: normalizeLegacySocialUrl(links.youtube, 'https://www.youtube.com/'),
+    instagram: normalizeLegacySocialUrl(links.instagram, 'https://www.instagram.com/'),
+    tiktok: normalizeLegacySocialUrl(links.tiktok, 'https://www.tiktok.com/', '@'),
+    x: normalizeLegacySocialUrl(links.x, 'https://x.com/'),
+    custom1: {
+      label: customLinks[0]?.label || '',
+      url: customLinks[0]?.url || '',
+    },
+    custom2: {
+      label: customLinks[1]?.label || '',
+      url: customLinks[1]?.url || '',
+    },
+  };
+};
+
 export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsername?: string): GolfIdRecord => {
   const username = normalizeGolfIdUsername(requestedUsername || row.name || row.id || 'golfer');
   const snapshot = row.sns_links?.bagSnapshot;
@@ -87,6 +125,7 @@ export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsernam
     weak_club: null,
     current_issue: null,
     club_setting: clubs.join('\n'),
+    social_links: mapLegacySocialLinks(row),
     visibility: defaultGolfIdVisibility,
     diagnosis_result: {
       diagnosisType: 'クラブ見直しタイプ',
@@ -153,7 +192,7 @@ export const loadPublicGolfIdProfile = async (username: string): Promise<GolfIdL
 export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord[]> => {
   const { data, error } = await supabase
     .from('golf_profiles')
-    .select('id,username,nickname,best_score,target_score,head_speed,current_issue,visibility,diagnosis_result,updated_at')
+    .select('id,username,nickname,best_score,target_score,head_speed,current_issue,visibility,diagnosis_result,social_links,updated_at')
     .eq('is_public', true)
     .order('updated_at', { ascending: false })
     .limit(limit);

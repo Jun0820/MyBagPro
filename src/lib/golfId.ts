@@ -11,6 +11,19 @@ export type GolfIdVisibilityKey =
 
 export type GolfIdVisibility = Record<GolfIdVisibilityKey, boolean>;
 
+export type GolfIdSocialLinkKey = 'youtube' | 'instagram' | 'tiktok' | 'x';
+
+export type GolfIdSocialLinks = Partial<Record<GolfIdSocialLinkKey, string>> & {
+  custom1?: {
+    label?: string;
+    url?: string;
+  };
+  custom2?: {
+    label?: string;
+    url?: string;
+  };
+};
+
 export interface GolfIdFormData {
   username: string;
   nickname: string;
@@ -23,6 +36,7 @@ export interface GolfIdFormData {
   weak_club: string;
   current_issue: string;
   club_setting: string;
+  social_links: GolfIdSocialLinks;
   visibility: GolfIdVisibility;
 }
 
@@ -40,6 +54,7 @@ export interface GolfIdRecord {
   weak_club?: string | null;
   current_issue?: string | null;
   club_setting?: string | null;
+  social_links?: GolfIdSocialLinks | null;
   visibility?: Partial<GolfIdVisibility> | null;
   diagnosis_result?: {
     diagnosisType?: string;
@@ -64,6 +79,21 @@ export const defaultGolfIdVisibility: GolfIdVisibility = {
   weak_club: true,
   club_setting: true,
   current_issue: true,
+};
+
+export const emptyGolfIdSocialLinks: GolfIdSocialLinks = {
+  youtube: '',
+  instagram: '',
+  tiktok: '',
+  x: '',
+  custom1: {
+    label: '',
+    url: '',
+  },
+  custom2: {
+    label: '',
+    url: '',
+  },
 };
 
 export const normalizeGolfIdUsername = (value: string) =>
@@ -97,6 +127,18 @@ export const mapRecordToGolfIdForm = (record: GolfIdRecord): GolfIdFormData => (
   weak_club: record.weak_club || '',
   current_issue: record.current_issue || '',
   club_setting: record.club_setting || '',
+  social_links: {
+    ...emptyGolfIdSocialLinks,
+    ...(record.social_links || {}),
+    custom1: {
+      ...emptyGolfIdSocialLinks.custom1,
+      ...(record.social_links?.custom1 || {}),
+    },
+    custom2: {
+      ...emptyGolfIdSocialLinks.custom2,
+      ...(record.social_links?.custom2 || {}),
+    },
+  },
   visibility: {
     ...defaultGolfIdVisibility,
     ...(record.visibility || {}),
