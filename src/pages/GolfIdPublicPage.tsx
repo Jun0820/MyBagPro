@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowRight, CalendarDays, Clipboard, Gauge, Goal, MessageCircle, Share2, Trophy, UserRound } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
@@ -11,8 +10,7 @@ import {
   type GolfIdRecord,
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
-
-const GOLF_PROFILE_TABLE = 'golf_profiles';
+import { loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
 
 const canShow = (record: GolfIdRecord | null, key: GolfIdVisibilityKey) => {
   if (!record) return false;
@@ -40,8 +38,8 @@ export const GolfIdPublicPage = () => {
   const username = useMemo(() => normalizeGolfIdUsername(rawUsername || ''), [rawUsername]);
   const [profile, setProfile] = useState<GolfIdRecord | null>(null);
   const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
-  const [loadError, setLoadError] = useState(false);
+  const [loadStatus, setLoadStatus] = useState<GolfIdLoadStatus | null>(null);
+  const [loadMessage, setLoadMessage] = useState('');
   const [showPlayerCard, setShowPlayerCard] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -50,42 +48,21 @@ export const GolfIdPublicPage = () => {
     let mounted = true;
     const loadProfile = async () => {
       setLoading(true);
-      setNotFound(false);
-      setLoadError(false);
+      setLoadStatus(null);
+      setLoadMessage('');
       setProfile(null);
-
-      const { data, error } = await supabase
-        .from(GOLF_PROFILE_TABLE)
-        .select('*')
-        .eq('username', username)
-        .maybeSingle();
-
-      let resolvedData = data;
-      let resolvedError = error;
-
-      if (!resolvedError && !resolvedData) {
-        const fallback = await supabase
-          .from(GOLF_PROFILE_TABLE)
-          .select('*')
-          .ilike('username', username)
-          .maybeSingle();
-        resolvedData = fallback.data;
-        resolvedError = fallback.error;
-      }
+      const result = await loadPublicGolfIdProfile(username);
 
       if (!mounted) return;
       setLoading(false);
-      if (resolvedError) {
-        setLoadError(true);
+      setLoadStatus(result.status);
+      setLoadMessage(result.message || '');
+      if (result.status !== 'ok' || !result.profile) {
         return;
       }
-      if (!resolvedData) {
-        setNotFound(true);
-        return;
-      }
-      setProfile(resolvedData as GolfIdRecord);
+      setProfile(result.profile);
       trackEvent('public_page_view', {
-        username: (resolvedData as GolfIdRecord).username || username,
+        username: result.profile.username || username,
       });
     };
 
@@ -115,12 +92,32 @@ export const GolfIdPublicPage = () => {
     );
   }
 
-  if (loadError) {
+  if (loadStatus && loadStatus !== 'ok' && loadStatus !== 'not_found') {
+    const errorCopy: Record<Exclude<GolfIdLoadStatus, 'ok' | 'not_found'>, { title: string; body: string }> = {
+      connection_error: {
+        title: '読み込みに失敗しました',
+        body: 'Supabaseへの接続でエラーが発生しました。時間をおいて再度アクセスしてください。',
+      },
+      permission_error: {
+        title: '公開データを読み込めません',
+        body: '公開プロフィールの読み取り権限が不足しています。RLS/selectポリシーを確認してください。',
+      },
+      table_missing: {
+        title: 'Golf IDの保存先が未設定です',
+        body: 'golf_profilesテーブルがまだ作成されていません。既存プロフィールにも一致するGolf IDが見つかりませんでした。',
+      },
+      render_error: {
+        title: '表示に失敗しました',
+        body: 'データは見つかりましたが、公開ページの表示でエラーが発生しました。',
+      },
+    };
+    const copy = errorCopy[loadStatus] || errorCopy.connection_error;
     return (
       <main className="flex min-h-[60vh] items-center justify-center bg-slate-50 px-4">
         <div className="max-w-md rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200">
-          <h1 className="text-xl font-black text-slate-950">読み込みに失敗しました</h1>
-          <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">時間をおいて再度アクセスしてください。Golf IDの公開設定または通信状態を確認しています。</p>
+          <h1 className="text-xl font-black text-slate-950">{copy.title}</h1>
+          <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">{copy.body}</p>
+          {import.meta.env.DEV && loadMessage && <p className="mt-3 break-all rounded-xl bg-slate-50 p-3 text-xs font-bold text-slate-500">{loadMessage}</p>}
           <Link to="/explore" className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white">
             みんなのGolf IDを見る
             <ArrowRight className="h-4 w-4" />
@@ -130,7 +127,7 @@ export const GolfIdPublicPage = () => {
     );
   }
 
-  if (notFound || !profile) {
+  if (loadStatus === 'not_found' || !profile) {
     return (
       <main className="flex min-h-[60vh] items-center justify-center bg-slate-50 px-4">
         <div className="max-w-md rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200">

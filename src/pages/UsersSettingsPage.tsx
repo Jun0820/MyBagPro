@@ -1,12 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, Gauge, Goal, Loader2, Sparkles, Trophy, UserRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { defaultGolfIdVisibility, type GolfIdRecord, type GolfIdVisibilityKey } from '../lib/golfId';
-
-const GOLF_PROFILE_TABLE = 'golf_profiles';
+import { loadPublicGolfIdProfiles } from '../lib/golfIdProfileSource';
 
 type ExploreGolfId = Pick<
   GolfIdRecord,
@@ -65,12 +63,13 @@ export const UsersSettingsPage = () => {
       setLoading(true);
       setError(null);
 
-      const { data, error: profilesError } = await supabase
-        .from(GOLF_PROFILE_TABLE)
-        .select('id,username,nickname,best_score,target_score,head_speed,current_issue,visibility,diagnosis_result,updated_at')
-        .eq('is_public', true)
-        .order('updated_at', { ascending: false })
-        .limit(30);
+      let loadedProfiles: GolfIdRecord[] = [];
+      let profilesError: unknown = null;
+      try {
+        loadedProfiles = await loadPublicGolfIdProfiles(30);
+      } catch (error) {
+        profilesError = error;
+      }
 
       if (!mounted) return;
 
@@ -82,7 +81,7 @@ export const UsersSettingsPage = () => {
         return;
       }
 
-      setProfiles((data || []) as ExploreGolfId[]);
+      setProfiles(loadedProfiles as ExploreGolfId[]);
       setLoading(false);
     };
 

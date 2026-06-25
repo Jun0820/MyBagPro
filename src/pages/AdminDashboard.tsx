@@ -23,6 +23,7 @@ import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import { cn } from '../lib/utils';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import type { UserAccount } from '../types/golf';
+import { loadPublicGolfIdProfiles } from '../lib/golfIdProfileSource';
 
 type PeriodValue = {
   today: number;
@@ -327,7 +328,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     productClicks: dailyMaps[4].map.get(date) || 0,
   }));
 
-  const [publicPageEvents, articleEvents, categoryEvents, diagnosisTypeEvents, fallbackPublicPages, fallbackArticles, latestGolfProfiles] = await Promise.all([
+  const [publicPageEvents, articleEvents, categoryEvents, diagnosisTypeEvents, fallbackPublicPages, fallbackArticles, latestGolfProfiles, fallbackGolfProfiles] = await Promise.all([
     safeRows<Record<string, unknown>>('analytics_events', 'page_title,page_path,event_name,pv,sns_clicks,create_clicks,signup_count,created_at', { from: thirtyStart, to: tomorrow, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'article_title,page_title,event_name,pv,diagnosis_start_count,diagnosis_complete_count,product_clicks,created_at', { from: thirtyStart, to: tomorrow, limit: 5000 }),
     safeRows<Record<string, unknown>>('analytics_events', 'item_category,category,diagnosis_type,event_name,clicks,created_at', { from: thirtyStart, to: tomorrow, eventNames: eventNames.productClick, limit: 5000 }),
@@ -335,6 +336,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     safeRows<Record<string, unknown>>('profiles', 'name,id,updated_at,is_public', { eq: { is_public: true }, limit: 6 }),
     safeRows<Record<string, unknown>>('content_articles', 'title,slug,published_at,published', { eq: { published: true }, limit: 6 }),
     safeRows<Record<string, unknown>>('golf_profiles', 'username,nickname,best_score,target_score,created_at', { orderBy: 'created_at', ascending: false, limit: 10 }),
+    loadPublicGolfIdProfiles(10).catch(() => []),
   ]);
 
   const popularPages = aggregateBy(publicPageEvents, ['page_title', 'page_path'], ['pv', 'sns_clicks', 'create_clicks', 'signup_count']);
@@ -342,9 +344,14 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
   const productCategoryRankings = aggregateBy(categoryEvents, ['item_category', 'category'], ['clicks']);
   const diagnosisTypeRankings = aggregateBy(diagnosisTypeEvents, ['diagnosis_type'], ['count']);
 
+  const effectiveGolfProfiles: PeriodValue =
+    golfProfiles.thirtyDays === 0 && fallbackGolfProfiles.length > 0
+      ? { today: fallbackGolfProfiles.length, sevenDays: fallbackGolfProfiles.length, thirtyDays: fallbackGolfProfiles.length, previousSevenDays: 0, previousThirtyDays: 0 }
+      : golfProfiles;
+
   const kpis: KpiMetric[] = [
     { id: 'signups', label: '登録者数', helper: 'アカウント作成の増加', icon: <Users size={18} />, ...signups },
-    { id: 'golf-id', label: 'Golf ID作成数', helper: '公開Golf IDの作成', icon: <UserRound size={18} />, ...golfProfiles },
+    { id: 'golf-id', label: 'Golf ID作成数', helper: '公開Golf IDの作成', icon: <UserRound size={18} />, ...effectiveGolfProfiles },
     { id: 'public-pages', label: '公開ページ作成数', helper: 'ユーザー公開ページ', icon: <FileText size={18} />, ...publicPages },
     { id: 'diagnosis', label: 'AI診断完了数', helper: '診断結果到達', icon: <Stethoscope size={18} />, ...diagnosisCompleted },
     { id: 'sns-image', label: 'SNS画像生成数', helper: '共有素材の作成', icon: <Image size={18} />, ...snsImageGenerated },
@@ -376,7 +383,7 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
     funnel: [
       { label: '訪問数', value: visits.thirtyDays || visitRows.length },
       { label: '会員登録数', value: signups.thirtyDays },
-      { label: 'ゴルフデータページ作成数', value: golfProfiles.thirtyDays || publicPages.thirtyDays },
+      { label: 'ゴルフデータページ作成数', value: effectiveGolfProfiles.thirtyDays || publicPages.thirtyDays },
       { label: 'AI診断完了数', value: diagnosisCompleted.thirtyDays },
       { label: 'SNS画像生成数', value: snsImageGenerated.thirtyDays },
       { label: 'SNS共有数', value: snsShared.thirtyDays },
@@ -384,13 +391,21 @@ const loadAdminDashboardData = async (): Promise<AdminDashboardData> => {
       { label: '商品クリック数', value: productClicks.thirtyDays },
     ],
     daily,
-    latestGolfProfiles: latestGolfProfiles.map((row) => ({
-      name: String(row.nickname || row.username || 'Golf ID'),
-      username: String(row.username || '-'),
-      best_score: row.best_score ? Number(row.best_score) : '-',
-      target_score: row.target_score ? Number(row.target_score) : '-',
-      created_at: row.created_at ? new Date(String(row.created_at)).toLocaleDateString('ja-JP') : '-',
-    })),
+    latestGolfProfiles: (latestGolfProfiles.length > 0
+      ? latestGolfProfiles.map((row) => ({
+          name: String(row.nickname || row.username || 'Golf ID'),
+          username: String(row.username || '-'),
+          best_score: row.best_score ? Number(row.best_score) : '-',
+          target_score: row.target_score ? Number(row.target_score) : '-',
+          created_at: row.created_at ? new Date(String(row.created_at)).toLocaleDateString('ja-JP') : '-',
+        }))
+      : fallbackGolfProfiles.map((row) => ({
+          name: row.nickname || row.username || 'Golf ID',
+          username: row.username || '-',
+          best_score: row.best_score ?? '-',
+          target_score: row.target_score ?? '-',
+          created_at: row.updated_at ? new Date(String(row.updated_at)).toLocaleDateString('ja-JP') : '-',
+        }))),
     popularPages: popularPages.length ? popularPages : fallbackPageRows,
     articleRankings: articleRankings.length ? articleRankings : fallbackArticleRows,
     productCategoryRankings: productCategoryRankings.length ? productCategoryRankings : [
