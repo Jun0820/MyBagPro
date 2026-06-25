@@ -24,6 +24,17 @@ const formatValue = (value?: string | number | null, suffix = '') => {
   return `${value}${suffix}`;
 };
 
+const profileTitleName = (profile: GolfIdRecord) => profile.nickname?.trim() || profile.username || 'Golf ID';
+
+const buildProfileSeoTitle = (profile: GolfIdRecord | null, username: string) => {
+  if (!profile) return username ? `${username}のGolf ID` : 'Golf ID';
+  const scoreParts = [
+    profile.best_score ? `ベスト${profile.best_score}` : '',
+    profile.target_score ? `目標${profile.target_score}` : '',
+  ].filter(Boolean);
+  return `${profileTitleName(profile)}のGolf ID${scoreParts.length > 0 ? `｜${scoreParts.join('・')}` : ''}`;
+};
+
 export const GolfIdPublicPage = () => {
   const { username: rawUsername } = useParams();
   const username = useMemo(() => normalizeGolfIdUsername(rawUsername || ''), [rawUsername]);
@@ -41,25 +52,40 @@ export const GolfIdPublicPage = () => {
       setLoading(true);
       setNotFound(false);
       setLoadError(false);
+      setProfile(null);
+
       const { data, error } = await supabase
         .from(GOLF_PROFILE_TABLE)
         .select('*')
         .eq('username', username)
         .maybeSingle();
 
+      let resolvedData = data;
+      let resolvedError = error;
+
+      if (!resolvedError && !resolvedData) {
+        const fallback = await supabase
+          .from(GOLF_PROFILE_TABLE)
+          .select('*')
+          .ilike('username', username)
+          .maybeSingle();
+        resolvedData = fallback.data;
+        resolvedError = fallback.error;
+      }
+
       if (!mounted) return;
       setLoading(false);
-      if (error) {
+      if (resolvedError) {
         setLoadError(true);
         return;
       }
-      if (!data) {
+      if (!resolvedData) {
         setNotFound(true);
         return;
       }
-      setProfile(data as GolfIdRecord);
+      setProfile(resolvedData as GolfIdRecord);
       trackEvent('public_page_view', {
-        username,
+        username: (resolvedData as GolfIdRecord).username || username,
       });
     };
 
@@ -70,15 +96,11 @@ export const GolfIdPublicPage = () => {
   }, [username]);
 
   useEffect(() => {
-    const title = profile
-      ? `${profile.nickname || profile.username}のGolf ID${profile.best_score ? `｜ベスト${profile.best_score}` : ''}${profile.target_score ? `・目標${profile.target_score}` : ''}`
-      : username
-      ? `${username}のGolf ID`
-      : 'Golf ID';
+    const title = buildProfileSeoTitle(profile, username);
     applySeo({
       title,
       description: profile
-        ? `${profile.nickname || profile.username}さんのGolf ID。ベストスコア、目標、ヘッドスピード、悩み、クラブセッティング、AI上達診断の次の一手をまとめています。`
+        ? `${profileTitleName(profile)}さんのGolf ID。ベストスコア、目標、ヘッドスピード、悩み、クラブセッティング、AI上達診断の次の一手をまとめています。`
         : 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
       path: `/u/${username}`,
       image: '/article-visuals/golf-bag-course.jpg',
