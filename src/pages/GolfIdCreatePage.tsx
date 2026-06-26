@@ -6,6 +6,8 @@ import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/
 import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
 import { generateDiagnosisResult } from '../lib/diagnosis/rules';
+import { golfIdDesign } from '../config/design';
+import { GolfIdPreviewCard } from '../components/golfid/GolfIdUi';
 import {
   defaultGolfIdVisibility,
   emptyGolfIdSocialLinks,
@@ -50,7 +52,7 @@ const publicToggleLabels: Record<GolfIdVisibilityKey, string> = {
 };
 
 const textInputClass =
-  'w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100';
+  golfIdDesign.input;
 
 const inputClass = (hasError?: boolean) =>
   `${textInputClass} ${hasError ? 'border-rose-300 bg-rose-50 focus:border-rose-500 focus:ring-rose-100' : ''}`;
@@ -374,12 +376,12 @@ export const GolfIdCreatePage = () => {
   ];
 
   return (
-    <main className="bg-slate-50">
-      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-8 lg:grid-cols-[1fr_340px] lg:px-6 lg:py-12">
+    <main className={golfIdDesign.page}>
+      <section className="mx-auto grid max-w-7xl gap-7 px-4 py-8 lg:grid-cols-[minmax(0,1fr)_390px] lg:px-6 lg:py-12">
         <div className="space-y-5">
-          <div className="rounded-3xl bg-slate-950 p-5 text-white shadow-sm ring-1 ring-slate-900 sm:p-7">
+          <div className={`rounded-[2rem] p-5 shadow-[0_22px_70px_-48px_rgba(11,15,13,0.9)] sm:p-8 ${golfIdDesign.darkPanel}`}>
             <div className="flex flex-wrap items-center gap-2">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Golf ID Builder</p>
+              <p className={golfIdDesign.badgeDark}>Golf ID Builder</p>
               <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-black text-emerald-100 ring-1 ring-emerald-300/20">
                 β版公開中
               </span>
@@ -388,7 +390,7 @@ export const GolfIdCreatePage = () => {
               {existingId ? 'あなたのGolf IDを更新' : 'あなたのGolf IDを作ろう。'}
             </h1>
             <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-300">
-              クラブ、スコア、悩み、目標をまとめると、AIがあなたの“次の一手”を提案します。作成したGolf IDは、SNSプロフィールに貼って共有できます。
+              3分で、自分のゴルフの現在地と発信リンクを1ページに。作ったGolf IDはSNSプロフィールに貼れます。
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-black text-emerald-100">
               <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">3分で作成できます</span>
@@ -399,7 +401,7 @@ export const GolfIdCreatePage = () => {
               <button
                 type="button"
                 onClick={() => setShowAuth(true)}
-                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-emerald-800"
+                className={`mt-4 inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-black transition ${golfIdDesign.goldButton}`}
               >
                 <UserRound className="h-4 w-4" />
                 無料登録して作成する
@@ -407,14 +409,14 @@ export const GolfIdCreatePage = () => {
             )}
           </div>
 
-          <nav className="grid grid-cols-3 gap-1 rounded-2xl bg-white p-1 shadow-sm ring-1 ring-slate-200 sm:grid-cols-6">
+          <nav className="grid grid-cols-3 gap-1 rounded-[1.35rem] bg-white p-1.5 shadow-sm ring-1 ring-black/5 sm:grid-cols-6">
             {stepItems.map((step) => (
               <button
                 key={step.number}
                 type="button"
                 onClick={() => setActiveStep(step.number)}
                 className={`rounded-xl px-2 py-2 text-center transition ${
-                  activeStep === step.number ? 'bg-emerald-700 text-white' : 'bg-slate-50 text-slate-500 hover:bg-emerald-50 hover:text-emerald-800'
+                  activeStep === step.number ? 'bg-[#0B0F0D] text-white shadow-sm' : 'bg-[#F5F7F4] text-slate-500 hover:bg-emerald-50 hover:text-emerald-800'
                 }`}
               >
                 <span className="block text-[10px] font-black">STEP {step.number}</span>
@@ -429,10 +431,10 @@ export const GolfIdCreatePage = () => {
             </div>
           )}
 
-          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 1 / Golf ID</p>
+            <p className={golfIdDesign.badgeLight}>STEP 1 / ID</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">基本情報</h2>
                 <p className="text-xs font-bold text-slate-500">公開ページの名前とURLを決めます。あとから編集できます。</p>
               </div>
@@ -459,8 +461,8 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 2 / Score</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+            <p className={golfIdDesign.badgeLight}>STEP 2 / Score</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">スコア・目標</h2>
             <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。診断の精度が上がります。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -484,8 +486,8 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 3 / My Golf</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+            <p className={golfIdDesign.badgeLight}>STEP 3 / My Golf</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブ・悩み</h2>
             <p className="text-xs font-bold text-slate-500">まずは得意クラブ、苦手クラブ、悩みだけでも入力できます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -509,8 +511,8 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 4 / My Bag</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+            <p className={golfIdDesign.badgeLight}>STEP 4 / My Bag</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
             <p className="text-xs font-bold text-slate-500">MVPでは自由入力でOKです。あとで番手ごとの登録に広げやすい形にしていきます。</p>
             <div className="mt-5 grid gap-4">
@@ -521,8 +523,8 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 5 / SNS Links</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+            <p className={golfIdDesign.badgeLight}>STEP 5 / Links</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">発信リンク</h2>
             <p className="text-xs font-bold text-slate-500">あなたの発信場所をまとめましょう。YouTube、Instagram、TikTok、X、自由URLをGolf IDに表示できます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -579,8 +581,8 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">STEP 6 / Publish</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+            <p className={golfIdDesign.badgeLight}>STEP 6 / Publish</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">公開プレビュー・公開設定</h2>
             <p className="text-xs font-bold text-slate-500">見せたい項目だけ公開できます。</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -617,7 +619,7 @@ export const GolfIdCreatePage = () => {
               type="button"
               onClick={saveGolfId}
               disabled={saving}
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-800 disabled:cursor-wait disabled:bg-slate-400"
+              className={`inline-flex flex-1 items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black transition disabled:cursor-wait disabled:bg-slate-400 ${golfIdDesign.primaryButton}`}
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
               {saving ? '作成中...' : '保存して公開'}
@@ -632,7 +634,7 @@ export const GolfIdCreatePage = () => {
         </div>
 
         <aside className="space-y-4">
-          <div className="rounded-2xl bg-slate-950 p-5 text-white shadow-sm">
+          <div className={`rounded-[1.5rem] p-5 shadow-sm ${golfIdDesign.darkPanel}`}>
             <div className="flex items-center gap-2 text-sm font-black text-emerald-200">
               <Share2 className="h-4 w-4" />
               公開URL
@@ -640,79 +642,31 @@ export const GolfIdCreatePage = () => {
             <p className="mt-3 break-all rounded-xl bg-white/10 p-3 text-sm font-bold text-white">{publicUrl}</p>
             <p className="mt-3 text-xs font-semibold leading-6 text-slate-300">SNSプロフィールや自己紹介に貼るためのGolf IDページです。</p>
           </div>
-          <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-base font-black text-slate-950">Golf IDプレビュー</h2>
-            <div className="mt-4 overflow-hidden rounded-3xl bg-slate-950 text-white ring-1 ring-slate-900">
-              <div className="p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</p>
-                  <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] font-black text-emerald-100">Preview</span>
-                </div>
-                <p className="mt-4 text-2xl font-black">{form.nickname || 'ニックネーム'}</p>
-                <p className="mt-1 break-all text-xs font-bold text-slate-300">{publicUrl}</p>
-              </div>
-              <div className="grid grid-cols-3 gap-2 bg-white p-3 text-center text-slate-950">
-                <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                  <p className="text-[10px] font-black text-slate-500">平均</p>
-                  <p className="text-lg font-black text-emerald-700">{form.average_score || '-'}</p>
-                </div>
-                <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                  <p className="text-[10px] font-black text-slate-500">目標</p>
-                  <p className="text-lg font-black text-emerald-700">{form.target_score || '-'}</p>
-                </div>
-                <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                  <p className="text-[10px] font-black text-slate-500">HS</p>
-                  <p className="text-lg font-black text-emerald-700">{form.head_speed || '-'}</p>
-                </div>
-              </div>
-              <div className="space-y-3 bg-white p-4 text-slate-950">
-                <div>
-                  <p className="text-[11px] font-black text-slate-500">今の悩み</p>
-                  <p className="mt-1 text-sm font-bold leading-6">{form.current_issue || '入力した悩みがここに表示されます。'}</p>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="rounded-xl bg-slate-50 p-3">
-                    <p className="text-[10px] font-black text-slate-500">得意クラブ</p>
-                    <p className="mt-1 text-sm font-black">{form.favorite_club || '-'}</p>
-                  </div>
-                  <div className="rounded-xl bg-slate-50 p-3">
-                    <p className="text-[10px] font-black text-slate-500">苦手クラブ</p>
-                    <p className="mt-1 text-sm font-black">{form.weak_club || '-'}</p>
-                  </div>
-                </div>
-                <div className="rounded-2xl bg-emerald-50 p-3 ring-1 ring-emerald-100">
-                  <p className="text-[11px] font-black text-emerald-800">あなたの次の一手</p>
-                  <p className="mt-1 text-sm font-bold leading-6 text-slate-800">
-                    入力内容をもとに、作成後にあなたの次の一手を表示します。
-                  </p>
-                </div>
-                <div className="rounded-2xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                  <p className="text-[11px] font-black text-slate-500">発信リンク</p>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {[
-                      form.social_links.youtube && 'YouTube',
-                      form.social_links.instagram && 'Instagram',
-                      form.social_links.tiktok && 'TikTok',
-                      form.social_links.x && 'X',
-                      form.social_links.custom1?.url && (form.social_links.custom1.label || 'Link 1'),
-                      form.social_links.custom2?.url && (form.social_links.custom2.label || 'Link 2'),
-                    ]
-                      .filter(Boolean)
-                      .map((label) => (
-                        <span key={String(label)} className="rounded-full bg-white px-2 py-1 text-[10px] font-black text-emerald-800 ring-1 ring-emerald-100">
-                          {label}
-                        </span>
-                      ))}
-                    {![
-                      form.social_links.youtube,
-                      form.social_links.instagram,
-                      form.social_links.tiktok,
-                      form.social_links.x,
-                      form.social_links.custom1?.url,
-                      form.social_links.custom2?.url,
-                    ].some(Boolean) && <span className="text-xs font-bold text-slate-400">SNSリンクを入力するとここに表示されます。</span>}
-                  </div>
-                </div>
+          <div className="sticky top-24 rounded-[1.7rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
+            <h2 className="text-base font-black text-slate-950">Live Golf ID Preview</h2>
+            <div className="mt-4">
+              <GolfIdPreviewCard
+                nickname={form.nickname || 'ニックネーム'}
+                username={normalizeGolfIdUsername(form.username) || 'username'}
+                bestScore={form.best_score}
+                targetScore={form.target_score}
+                averageScore={form.average_score}
+                headSpeed={form.head_speed}
+                currentIssue={form.current_issue || '入力した悩みがここに表示されます。'}
+                favoriteClub={form.favorite_club}
+                weakClub={form.weak_club}
+                clubLines={form.club_setting.split(/\n+/).map((line) => line.trim()).filter(Boolean)}
+                socialLabels={[
+                  form.social_links.youtube && { label: 'YouTube', platform: 'youtube' as const },
+                  form.social_links.instagram && { label: 'Instagram', platform: 'instagram' as const },
+                  form.social_links.tiktok && { label: 'TikTok', platform: 'tiktok' as const },
+                  form.social_links.x && { label: 'X', platform: 'x' as const },
+                  form.social_links.custom1?.url && { label: form.social_links.custom1.label || 'Link 1', platform: 'custom1' as const },
+                  form.social_links.custom2?.url && { label: form.social_links.custom2.label || 'Link 2', platform: 'custom2' as const },
+                ].filter(Boolean) as Array<{ label: string; platform: 'youtube' | 'instagram' | 'tiktok' | 'x' | 'custom1' | 'custom2' }>}
+              />
+            </div>
+            <div className="mt-4 space-y-2">
                 {existingId && (
                   <div className="grid gap-2">
                     <Link
@@ -732,7 +686,6 @@ export const GolfIdCreatePage = () => {
                   </div>
                 )}
               </div>
-            </div>
           </div>
         </aside>
       </section>

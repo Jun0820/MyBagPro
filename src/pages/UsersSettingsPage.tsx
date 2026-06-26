@@ -5,6 +5,7 @@ import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { defaultGolfIdVisibility, type GolfIdRecord, type GolfIdVisibilityKey } from '../lib/golfId';
 import { loadPublicGolfIdProfiles } from '../lib/golfIdProfileSource';
+import { golfIdDesign } from '../config/design';
 
 type ExploreGolfId = Pick<
   GolfIdRecord,
@@ -116,10 +117,10 @@ export const UsersSettingsPage = () => {
   }, [profiles]);
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-20">
-      <section className="-mx-3 -mt-3 bg-slate-950 px-4 py-8 text-white md:-mx-6 md:-mt-7 md:px-8 md:py-12">
+    <div className="min-h-screen bg-[#F5F7F4] pb-20">
+      <section className={`-mx-3 -mt-3 px-4 py-8 text-white md:-mx-6 md:-mt-7 md:px-8 md:py-12 ${golfIdDesign.darkPanel}`}>
         <div className="mx-auto max-w-6xl">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-[#D7B56D] ring-1 ring-white/12">
             <UserRound size={14} />
             Public Golf ID
           </div>
@@ -132,14 +133,14 @@ export const UsersSettingsPage = () => {
               <div className="mt-5 flex flex-col gap-2 sm:flex-row">
                 <Link
                   to="/create"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 text-sm font-black text-white transition hover:bg-emerald-500"
+                  className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 text-sm font-black transition ${golfIdDesign.goldButton}`}
                 >
                   無料でGolf IDを作る
                   <ArrowRight size={16} />
                 </Link>
                 <Link
                   to="/pros"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white/10 px-5 text-sm font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-white/10 px-5 text-sm font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
                 >
                   プロのセッティングも見る
                 </Link>
@@ -182,18 +183,19 @@ export const UsersSettingsPage = () => {
                     username: profile.username,
                   })
                 }
-                className="group rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md hover:ring-emerald-200"
+                className="group overflow-hidden rounded-[1.7rem] bg-white shadow-[0_18px_60px_-44px_rgba(11,15,13,0.55)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md hover:ring-[#D7B56D]/40"
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="bg-[#0B0F0D] p-4 text-white">
+                  <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <div className="text-lg font-black text-slate-950">{profile.nickname || 'Golf ID'}</div>
-                    <div className="mt-1 text-xs font-bold text-slate-500">@{profile.username}</div>
+                    <div className="text-lg font-black text-white">{profile.nickname || 'Golf ID'}</div>
+                    <div className="mt-1 text-xs font-bold text-white/55">@{profile.username}</div>
                     {getSocialBadges(profile).length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {getSocialBadges(profile).slice(0, 4).map((badge) => {
                           const Icon = badge.icon;
                           return (
-                            <span key={badge.key} className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-black text-emerald-800 ring-1 ring-emerald-100">
+                            <span key={badge.key} className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2 py-1 text-[10px] font-black text-white ring-1 ring-white/12">
                               {Icon ? <Icon size={11} /> : null}
                               {badge.label}
                             </span>
@@ -202,28 +204,29 @@ export const UsersSettingsPage = () => {
                       </div>
                     )}
                   </div>
-                  <div className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black text-emerald-800">
+                  <div className="rounded-full bg-[#D7B56D] px-2.5 py-1 text-[10px] font-black text-[#0B0F0D]">
                     {profile.diagnosis_result?.diagnosisType || 'Golf ID'}
+                  </div>
                   </div>
                 </div>
 
-                <div className="mt-4 grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-3 gap-2 p-4 pb-0">
                   {canShow(profile, 'best_score') && (
-                    <div className="rounded-xl bg-slate-50 p-3">
+                    <div className="rounded-2xl bg-[#F5F7F4] p-3 ring-1 ring-black/5">
                       <Trophy size={15} className="text-emerald-700" />
                       <div className="mt-2 text-[10px] font-black text-slate-500">ベスト</div>
                       <div className="text-lg font-black text-slate-950">{formatValue(profile.best_score)}</div>
                     </div>
                   )}
                   {canShow(profile, 'target_score') && (
-                    <div className="rounded-xl bg-slate-50 p-3">
+                    <div className="rounded-2xl bg-[#F5F7F4] p-3 ring-1 ring-black/5">
                       <Goal size={15} className="text-emerald-700" />
                       <div className="mt-2 text-[10px] font-black text-slate-500">目標</div>
                       <div className="text-lg font-black text-slate-950">{formatValue(profile.target_score)}</div>
                     </div>
                   )}
                   {canShow(profile, 'head_speed') && (
-                    <div className="rounded-xl bg-slate-50 p-3">
+                    <div className="rounded-2xl bg-[#F5F7F4] p-3 ring-1 ring-black/5">
                       <Gauge size={15} className="text-emerald-700" />
                       <div className="mt-2 text-[10px] font-black text-slate-500">HS</div>
                       <div className="text-lg font-black text-slate-950">{formatValue(profile.head_speed)}</div>
@@ -232,9 +235,9 @@ export const UsersSettingsPage = () => {
                 </div>
 
                 {canShow(profile, 'current_issue') && (
-                  <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">{excerpt(profile.current_issue)}</p>
+                  <p className="px-4 pt-4 text-sm font-semibold leading-6 text-slate-600">{excerpt(profile.current_issue)}</p>
                 )}
-                <div className="mt-4 inline-flex items-center gap-2 text-sm font-black text-emerald-700">
+                <div className="px-4 pb-4 pt-4 inline-flex items-center gap-2 text-sm font-black text-[#1F7A4D]">
                   Golf IDを見る
                   <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
                 </div>
@@ -244,7 +247,7 @@ export const UsersSettingsPage = () => {
         )}
 
         {!loading && !error && profiles.length === 0 && (
-          <div className="rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200 md:p-10">
+          <div className="rounded-[2rem] bg-white p-6 text-center shadow-sm ring-1 ring-black/5 md:p-10">
             <Sparkles className="mx-auto h-8 w-8 text-emerald-700" />
             <h2 className="mt-4 text-2xl font-black text-slate-950">まだ公開Golf IDがありません。最初の1人になりましょう。</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
@@ -252,7 +255,7 @@ export const UsersSettingsPage = () => {
             </p>
             <Link
               to="/create"
-              className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-5 text-sm font-black text-white transition hover:bg-emerald-800"
+              className={`mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 text-sm font-black transition ${golfIdDesign.primaryButton}`}
             >
               無料でGolf IDを作る
               <ArrowRight size={16} />
@@ -260,8 +263,8 @@ export const UsersSettingsPage = () => {
 
             <div className="mt-7 grid gap-3 text-left md:grid-cols-2 xl:grid-cols-3">
               {samples.map((sample) => (
-                <div key={sample.label} className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                  <div className="text-[11px] font-black text-emerald-700">{sample.label}</div>
+                <div key={sample.label} className="rounded-2xl bg-[#F5F7F4] p-4 ring-1 ring-black/5">
+                  <div className="text-[11px] font-black text-[#1F7A4D]">{sample.label}</div>
                   <div className="mt-2 text-base font-black text-slate-950">{sample.nickname}</div>
                   <div className="mt-3 grid grid-cols-3 gap-2 text-xs font-black text-slate-600">
                     <span>Best {sample.bestScore}</span>

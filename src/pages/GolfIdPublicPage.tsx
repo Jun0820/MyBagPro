@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, CalendarDays, Clipboard, Gauge, Goal, Instagram, Link2, MessageCircle, Music2, Share2, Trophy, UserRound, Youtube } from 'lucide-react';
+import { ArrowRight, Clipboard, Instagram, Link2, MessageCircle, Music2, Share2, UserRound, Youtube } from 'lucide-react';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
@@ -12,6 +12,8 @@ import {
 } from '../lib/golfId';
 import { loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
 import { copyToClipboard, shareToInstagram, shareToTikTok, shareToX, type ShareResult } from '../lib/share';
+import { golfIdDesign } from '../config/design';
+import { GolfIdStatCard, GolfIdSocialBadge } from '../components/golfid/GolfIdUi';
 
 const canShow = (record: GolfIdRecord | null, key: GolfIdVisibilityKey) => {
   if (!record) return false;
@@ -100,8 +102,8 @@ export const GolfIdPublicPage = () => {
 
   if (loading) {
     return (
-      <main className="flex min-h-[60vh] items-center justify-center bg-slate-50 px-4">
-        <div className="rounded-2xl bg-white px-5 py-4 text-sm font-black text-slate-500 shadow-sm ring-1 ring-slate-200">Golf IDを読み込んでいます...</div>
+      <main className="flex min-h-[60vh] items-center justify-center bg-[#F5F7F4] px-4">
+        <div className="rounded-2xl bg-white px-5 py-4 text-sm font-black text-slate-500 shadow-sm ring-1 ring-black/5">Golf IDを読み込んでいます...</div>
       </main>
     );
   }
@@ -217,12 +219,12 @@ export const GolfIdPublicPage = () => {
   };
 
   return (
-    <main className="bg-slate-50 pb-24 md:pb-0">
+    <main className="bg-[#F5F7F4] pb-24 md:pb-0">
       <section className="mx-auto max-w-5xl px-4 py-8 lg:px-6 lg:py-12">
-        <div className="overflow-hidden rounded-[1.75rem] bg-white shadow-sm ring-1 ring-slate-200">
-          <div className="bg-slate-950 p-6 text-white sm:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Golf ID</p>
-            <p className="mt-3 inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-black text-emerald-100">
+        <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_90px_-62px_rgba(11,15,13,0.75)] ring-1 ring-black/5">
+          <div className={`p-6 sm:p-8 ${golfIdDesign.darkPanel}`}>
+            <p className={golfIdDesign.badgeDark}>Golf ID</p>
+            <p className="mt-3 inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-black text-emerald-100 ring-1 ring-white/12">
               このGolf IDはSNSプロフィールに貼れます
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
@@ -233,20 +235,20 @@ export const GolfIdPublicPage = () => {
               <Link
                 to="/create"
                 onClick={handleSignupClick}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-500"
+                className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black transition ${golfIdDesign.goldButton}`}
               >
                 自分もGolf IDを作る
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="mt-5 rounded-2xl bg-white/10 p-3 ring-1 ring-white/15">
-              <p className="text-[11px] font-black uppercase tracking-[0.14em] text-emerald-100">Golf ID URL</p>
+            <div className="mt-5 rounded-[1.35rem] bg-white/10 p-3 ring-1 ring-white/15">
+              <p className="text-[11px] font-black uppercase tracking-[0.14em] text-[#D7B56D]">Golf ID URL</p>
               <p className="mt-1 break-all text-sm font-bold text-white">{publicUrl}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={handleCopyUrl}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-xs font-black text-slate-950 transition hover:bg-emerald-50"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-black text-slate-950 transition hover:bg-emerald-50"
                 >
                   <Clipboard className="h-4 w-4" />
                   {copyError ? 'コピーできませんでした' : copied ? 'コピーしました' : 'URLをコピー'}
@@ -256,21 +258,21 @@ export const GolfIdPublicPage = () => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => trackEvent('sns_share_click', { platform: 'x', username: profile.username })}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
                 >
                   Xで共有
                 </a>
                 <button
                   type="button"
                   onClick={() => handleShare('instagram')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
                 >
                   Instagramで共有
                 </button>
                 <button
                   type="button"
                   onClick={() => handleShare('tiktok')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
                 >
                   TikTokで共有
                 </button>
@@ -279,39 +281,33 @@ export const GolfIdPublicPage = () => {
             </div>
           </div>
 
+          {socialLinkItems.length > 0 && (
+            <div className="bg-[#0B0F0D] px-6 pb-6">
+              <div className="flex flex-wrap gap-2">
+                {socialLinkItems.map((item) => (
+                  <GolfIdSocialBadge key={item.platform} label={item.label} platform={item.platform as 'youtube' | 'instagram' | 'tiktok' | 'x' | 'custom1' | 'custom2'} />
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="grid gap-4 p-4 sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
             {canShow(profile, 'best_score') && (
-              <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                <Trophy className="h-5 w-5 text-emerald-700" />
-                <p className="mt-3 text-xs font-black text-slate-500">ベストスコア</p>
-                <p className="text-2xl font-black text-slate-950">{formatValue(profile.best_score)}</p>
-              </div>
+              <GolfIdStatCard label="Best Score" value={profile.best_score} icon="trophy" />
             )}
             {canShow(profile, 'average_score') && (
-              <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                <CalendarDays className="h-5 w-5 text-emerald-700" />
-                <p className="mt-3 text-xs font-black text-slate-500">平均スコア</p>
-                <p className="text-2xl font-black text-slate-950">{formatValue(profile.average_score)}</p>
-              </div>
+              <GolfIdStatCard label="Avg Score" value={profile.average_score} icon="goal" />
             )}
             {canShow(profile, 'target_score') && (
-              <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                <Goal className="h-5 w-5 text-emerald-700" />
-                <p className="mt-3 text-xs font-black text-slate-500">目標スコア</p>
-                <p className="text-2xl font-black text-slate-950">{formatValue(profile.target_score)}</p>
-              </div>
+              <GolfIdStatCard label="Target" value={profile.target_score} icon="goal" />
             )}
             {canShow(profile, 'head_speed') && (
-              <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                <Gauge className="h-5 w-5 text-emerald-700" />
-                <p className="mt-3 text-xs font-black text-slate-500">ヘッドスピード</p>
-                <p className="text-2xl font-black text-slate-950">{formatValue(profile.head_speed, ' m/s')}</p>
-              </div>
+              <GolfIdStatCard label="Head Speed" value={profile.head_speed} suffix=" m/s" icon="gauge" />
             )}
           </div>
 
           <div className="grid gap-4 p-4 pt-0 lg:grid-cols-[1fr_1fr] lg:p-6 lg:pt-0">
-            <section className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+            <section className="rounded-[1.5rem] bg-white p-5 ring-1 ring-black/5">
               <h2 className="flex items-center gap-2 text-lg font-black text-slate-950">
                 <UserRound className="h-5 w-5 text-emerald-700" />
                 My Golf
@@ -339,7 +335,7 @@ export const GolfIdPublicPage = () => {
             </section>
 
             {canShow(profile, 'current_issue') && (
-              <section className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <section className="rounded-[1.5rem] bg-white p-5 ring-1 ring-black/5">
                 <h2 className="text-lg font-black text-slate-950">今の悩み</h2>
                 <p className="mt-3 whitespace-pre-wrap text-sm font-semibold leading-7 text-slate-700">{formatValue(profile.current_issue)}</p>
               </section>
@@ -348,28 +344,28 @@ export const GolfIdPublicPage = () => {
 
           {diagnosis && (
             <section className="p-4 pt-0 lg:p-6 lg:pt-0">
-              <div className="rounded-2xl bg-emerald-50 p-5 ring-1 ring-emerald-100">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">Next Action</p>
-                <h2 className="mt-2 text-xl font-black text-slate-950">あなたの次の一手</h2>
-                <div className="mt-4 rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
-                  <p className="text-sm font-black text-emerald-800">{diagnosis.diagnosisType || 'クラブ見直しタイプ'}</p>
-                  <p className="mt-2 text-base font-black leading-7 text-slate-950">{diagnosis.nextAction || 'クラブ、スコア、悩みを整理して次の改善ポイントを見つけましょう。'}</p>
+              <div className="rounded-[1.7rem] bg-[#0B0F0D] p-5 text-white ring-1 ring-black/5">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#D7B56D]">Next Action</p>
+                <h2 className="mt-2 text-xl font-black text-white">あなたの次の一手</h2>
+                <div className="mt-4 rounded-2xl bg-[#D7B56D] p-4 text-[#0B0F0D]">
+                  <p className="text-sm font-black">{diagnosis.diagnosisType || 'クラブ見直しタイプ'}</p>
+                  <p className="mt-2 text-base font-black leading-7">{diagnosis.nextAction || 'クラブ、スコア、悩みを整理して次の改善ポイントを見つけましょう。'}</p>
                 </div>
-                <div className="mt-4 grid gap-3 text-sm font-semibold leading-7 text-slate-700 md:grid-cols-2">
-                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
-                    <p className="text-xs font-black text-emerald-800">今の状態</p>
+                <div className="mt-4 grid gap-3 text-sm font-semibold leading-7 text-white/78 md:grid-cols-2">
+                  <div className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/12">
+                    <p className="text-xs font-black text-[#D7B56D]">今の状態</p>
                     <p className="mt-2">{diagnosis.currentStatus || '-'}</p>
                   </div>
-                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
-                    <p className="text-xs font-black text-emerald-800">優先課題</p>
+                  <div className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/12">
+                    <p className="text-xs font-black text-[#D7B56D]">優先課題</p>
                     <p className="mt-2">{diagnosis.priorityIssue || '-'}</p>
                   </div>
-                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
-                    <p className="text-xs font-black text-emerald-800">クラブ選びのヒント</p>
+                  <div className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/12">
+                    <p className="text-xs font-black text-[#D7B56D]">クラブ選びのヒント</p>
                     <p className="mt-2">{diagnosis.gearSuggestion || '-'}</p>
                   </div>
-                  <div className="rounded-2xl bg-white p-4 ring-1 ring-emerald-100">
-                    <p className="text-xs font-black text-emerald-800">今はやらなくていいこと</p>
+                  <div className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/12">
+                    <p className="text-xs font-black text-[#D7B56D]">今はやらなくていいこと</p>
                     <p className="mt-2">{diagnosis.notRecommendedNow || '-'}</p>
                   </div>
                 </div>
@@ -379,7 +375,7 @@ export const GolfIdPublicPage = () => {
 
           {canShow(profile, 'club_setting') && (
             <section className="p-4 pt-0 lg:p-6 lg:pt-0">
-              <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <div className="rounded-[1.5rem] bg-white p-5 ring-1 ring-black/5">
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">My Bag</p>
                 <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
                 {clubLines.length > 0 ? (
@@ -399,7 +395,7 @@ export const GolfIdPublicPage = () => {
 
           {socialLinkItems.length > 0 && (
             <section className="p-4 pt-0 lg:p-6 lg:pt-0">
-              <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
+              <div className="rounded-[1.5rem] bg-white p-5 ring-1 ring-black/5">
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-700">Links</p>
                 <h2 className="mt-1 text-lg font-black text-slate-950">発信リンク</h2>
                 <div className="mt-4 grid gap-2 sm:grid-cols-2">

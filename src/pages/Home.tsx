@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { getBrandConfig, isExternalHref } from '../config/brand';
 import { trackEvent } from '../lib/analytics';
 import { useDiagnosis } from '../context/DiagnosisContext';
+import { GolfIdPreviewCard } from '../components/golfid/GolfIdUi';
 
 const heroImage = '/articles/golf-clubs-grass-pexels-20808740.jpg';
 
@@ -168,11 +169,17 @@ export const Home = () => {
 
   return (
     <div className="pb-8 md:pb-12">
-      <section className="-mx-3 -mt-3 overflow-hidden bg-[#0f1914] text-white md:-mx-6 md:-mt-7">
+      <section className="-mx-3 -mt-3 overflow-hidden bg-[#0b0f0d] text-white md:-mx-6 md:-mt-7">
         <div className="relative min-h-[520px] md:min-h-[600px]">
-          <img src={heroImage} alt="ゴルフバッグとクラブ" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,18,14,0.92),rgba(10,18,14,0.72)_42%,rgba(10,18,14,0.18)_100%)]" />
-          <div className="relative mx-auto flex min-h-[520px] max-w-[1380px] flex-col justify-end px-4 pb-6 pt-16 md:min-h-[600px] md:px-8 md:pb-10">
+          {brand.brand === 'mybagpro' && <img src={heroImage} alt="ゴルフバッグとクラブ" className="absolute inset-0 h-full w-full object-cover" />}
+          <div
+            className={
+              brand.brand === 'golfid'
+                ? 'absolute inset-0 bg-[radial-gradient(circle_at_72%_14%,rgba(215,181,109,0.22),transparent_24%),radial-gradient(circle_at_18%_72%,rgba(31,122,77,0.38),transparent_32%),linear-gradient(135deg,#0B0F0D,#102318_58%,#151C17)]'
+                : 'absolute inset-0 bg-[linear-gradient(90deg,rgba(10,18,14,0.92),rgba(10,18,14,0.72)_42%,rgba(10,18,14,0.18)_100%)]'
+            }
+          />
+          <div className="relative mx-auto grid min-h-[520px] max-w-[1380px] gap-8 px-4 pb-6 pt-16 md:min-h-[600px] md:grid-cols-[minmax(0,1fr)_420px] md:items-end md:px-8 md:pb-10">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-[#d8c58b] ring-1 ring-white/14">
                 {brand.name}
@@ -191,62 +198,90 @@ export const Home = () => {
                   </>
                 )}
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/82 md:mt-5 md:text-lg md:leading-8">
-                {brand.description}
+              <p className="mt-4 max-w-2xl whitespace-pre-line text-sm leading-7 text-white/82 md:mt-5 md:text-lg md:leading-8">
+                {brand.brand === 'golfid'
+                  ? 'クラブ、スコア、悩み、目標、SNSリンクをまとめると、\nAIがあなたの“次の一手”を提案。\n作ったGolf IDはSNSプロフィールに貼って共有できます。'
+                  : brand.description}
               </p>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  submitHeroSearch();
-                }}
-                className="mt-5 max-w-2xl rounded-xl bg-white/96 p-1.5 text-[#102318] shadow-[0_18px_48px_-34px_rgba(0,0,0,0.8)] ring-1 ring-white/20 md:mt-6 md:rounded-2xl"
-              >
-                <div className="grid grid-cols-[1fr_auto] gap-1.5">
-                  <label className="flex min-h-[46px] items-center gap-2 px-2 md:min-h-[54px] md:px-3">
-                    <Search size={18} className="shrink-0 text-slate-400" />
-                    <input
-                      value={heroSearch}
-                      onChange={(event) => setHeroSearch(event.target.value)}
-                      placeholder="選手名・メーカー・番手・クラブ名で検索"
-                      className="min-w-0 flex-1 bg-transparent text-sm font-bold text-[#102318] outline-none placeholder:text-slate-400 md:text-base"
-                    />
-                  </label>
-                  <button
-                    type="submit"
-                    className="inline-flex min-h-[46px] items-center justify-center rounded-lg bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-[54px] md:rounded-xl md:px-5"
-                  >
-                    検索
-                  </button>
-                </div>
-                <div className="flex flex-wrap gap-1.5 px-2 pb-1 pt-1 md:px-3">
-                  {searchExamples.map((query) => (
+              {brand.brand === 'mybagpro' && (
+                <form
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    submitHeroSearch();
+                  }}
+                  className="mt-5 max-w-2xl rounded-xl bg-white/96 p-1.5 text-[#102318] shadow-[0_18px_48px_-34px_rgba(0,0,0,0.8)] ring-1 ring-white/20 md:mt-6 md:rounded-2xl"
+                >
+                  <div className="grid grid-cols-[1fr_auto] gap-1.5">
+                    <label className="flex min-h-[46px] items-center gap-2 px-2 md:min-h-[54px] md:px-3">
+                      <Search size={18} className="shrink-0 text-slate-400" />
+                      <input
+                        value={heroSearch}
+                        onChange={(event) => setHeroSearch(event.target.value)}
+                        placeholder="選手名・メーカー・番手・クラブ名で検索"
+                        className="min-w-0 flex-1 bg-transparent text-sm font-bold text-[#102318] outline-none placeholder:text-slate-400 md:text-base"
+                      />
+                    </label>
                     <button
-                      key={query}
-                      type="button"
-                      onClick={() => submitHeroSearch(query)}
-                      className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-600 transition hover:bg-[#eef6ef] hover:text-[#176534] md:text-[11px]"
+                      type="submit"
+                      className="inline-flex min-h-[46px] items-center justify-center rounded-lg bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-[54px] md:rounded-xl md:px-5"
                     >
-                      {query}
+                      検索
                     </button>
-                  ))}
-                </div>
-              </form>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 px-2 pb-1 pt-1 md:px-3">
+                    {searchExamples.map((query) => (
+                      <button
+                        key={query}
+                        type="button"
+                        onClick={() => submitHeroSearch(query)}
+                        className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-600 transition hover:bg-[#eef6ef] hover:text-[#176534] md:text-[11px]"
+                      >
+                        {query}
+                      </button>
+                    ))}
+                  </div>
+                </form>
+              )}
               <div className="mt-5 grid gap-2 sm:max-w-xl sm:grid-cols-2 md:mt-7">
                 <button
                   onClick={() => openHref(brand.primaryCtaHref)}
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#176534] px-4 text-sm font-black text-white transition hover:bg-[#13542b] md:min-h-[56px] md:text-base"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-2xl bg-[#D7B56D] px-4 text-sm font-black text-[#0B0F0D] transition hover:bg-[#e2c47e] md:min-h-[56px] md:text-base"
                 >
                   {user.isLoggedIn && brand.brand === 'golfid' ? `${brand.name}を開く` : brand.primaryCta}
                 </button>
                 <button
                   onClick={() => openHref(brand.secondaryCtaHref)}
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-white px-4 text-sm font-black text-[#102318] transition hover:bg-[#f3f6f3] md:min-h-[56px] md:text-base"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-2xl bg-white/10 px-4 text-sm font-black text-white ring-1 ring-white/15 transition hover:bg-white/15 md:min-h-[56px] md:text-base"
                 >
                   {brand.secondaryCta}
                 </button>
               </div>
               <div className="mt-3 text-xs font-bold text-white/68 md:text-sm">見せたい項目だけ公開できます。</div>
             </div>
+
+            {brand.brand === 'golfid' && (
+              <div className="hidden md:block">
+                <GolfIdPreviewCard
+                  nickname="Tommy"
+                  username="tommy"
+                  bestScore="84"
+                  targetScore="79"
+                  averageScore="92"
+                  headSpeed="51"
+                  currentIssue="3WとUTの距離差を整理して、右ミスを減らしたい。"
+                  favoriteClub="7W"
+                  weakClub="3W"
+                  clubLines={['1W PING G425 LST', '4U PING G430 Hybrid', '7I Yamaha inpres', 'Ball Titleist Pro V1']}
+                  socialLabels={[
+                    { label: 'YouTube', platform: 'youtube' },
+                    { label: 'Instagram', platform: 'instagram' },
+                    { label: 'TikTok', platform: 'tiktok' },
+                    { label: 'X', platform: 'x' },
+                  ]}
+                  nextAction="180〜200yの番手を安定させるため、UTと7Wの役割を分けましょう。"
+                />
+              </div>
+            )}
 
             <div className="mt-6 grid gap-2 sm:grid-cols-3 md:mt-9 md:max-w-3xl">
               {statItems.map((item) => {
