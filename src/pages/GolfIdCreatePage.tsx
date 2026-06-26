@@ -374,6 +374,7 @@ export const GolfIdCreatePage = () => {
     { number: 5, label: 'Links' },
     { number: 6, label: 'Publish' },
   ];
+  const stepPanelClass = (step: number) => (activeStep === step ? '' : 'hidden lg:block');
 
   return (
     <main className={golfIdDesign.page}>
@@ -431,7 +432,7 @@ export const GolfIdCreatePage = () => {
             </div>
           )}
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(1)}`}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
             <p className={golfIdDesign.badgeLight}>STEP 1 / ID</p>
@@ -461,7 +462,7 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(2)}`}>
             <p className={golfIdDesign.badgeLight}>STEP 2 / Score</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">スコア・目標</h2>
             <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。診断の精度が上がります。</p>
@@ -486,7 +487,7 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(3)}`}>
             <p className={golfIdDesign.badgeLight}>STEP 3 / My Golf</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブ・悩み</h2>
             <p className="text-xs font-bold text-slate-500">まずは得意クラブ、苦手クラブ、悩みだけでも入力できます。</p>
@@ -511,7 +512,7 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(4)}`}>
             <p className={golfIdDesign.badgeLight}>STEP 4 / My Bag</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
             <p className="text-xs font-bold text-slate-500">MVPでは自由入力でOKです。あとで番手ごとの登録に広げやすい形にしていきます。</p>
@@ -523,7 +524,7 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(5)}`}>
             <p className={golfIdDesign.badgeLight}>STEP 5 / Links</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">発信リンク</h2>
             <p className="text-xs font-bold text-slate-500">あなたの発信場所をまとめましょう。YouTube、Instagram、TikTok、X、自由URLをGolf IDに表示できます。</p>
@@ -581,7 +582,7 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(6)}`}>
             <p className={golfIdDesign.badgeLight}>STEP 6 / Publish</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">公開プレビュー・公開設定</h2>
             <p className="text-xs font-bold text-slate-500">見せたい項目だけ公開できます。</p>
@@ -613,6 +614,25 @@ export const GolfIdCreatePage = () => {
               使ってみた感想・改善点を送る
             </a>
           )}
+
+          <div className="flex gap-2 lg:hidden">
+            <button
+              type="button"
+              onClick={() => setActiveStep((step) => Math.max(1, step - 1))}
+              disabled={activeStep === 1}
+              className="inline-flex min-h-11 flex-1 items-center justify-center rounded-2xl bg-white px-4 text-sm font-black text-slate-700 ring-1 ring-black/5 disabled:opacity-40"
+            >
+              戻る
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveStep((step) => Math.min(6, step + 1))}
+              disabled={activeStep === 6}
+              className={`inline-flex min-h-11 flex-1 items-center justify-center rounded-2xl px-4 text-sm font-black disabled:opacity-40 ${golfIdDesign.goldButton}`}
+            >
+              次へ
+            </button>
+          </div>
 
           <div className="sticky bottom-3 z-10 flex gap-3 rounded-2xl bg-white/95 p-3 shadow-lg ring-1 ring-slate-200 backdrop-blur">
             <button

@@ -283,7 +283,7 @@ export const Home = () => {
               </div>
             )}
 
-            <div className="mt-6 grid gap-2 sm:grid-cols-3 md:mt-9 md:max-w-3xl">
+            <div className="mt-6 grid gap-2 sm:grid-cols-3 md:col-span-2 md:mt-9 md:max-w-3xl">
               {statItems.map((item) => {
                 const Icon = item.icon;
                 return (
