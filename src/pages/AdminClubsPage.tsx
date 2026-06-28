@@ -19,15 +19,15 @@ const normalizeAdminEmail = (email: string) => {
   return normalized;
 };
 
-const fallbackAdminEmails = ['junpei.t.820@gmail.com'];
+const fallbackAdminEmails = ['junpei.t.820@gmail.com', 'j_tommy_820@yahoo.co.jp'];
 const configuredAdminEmails = String(import.meta.env.VITE_ADMIN_EMAILS || import.meta.env.VITE_ADMIN_EMAIL || '')
   .split(',')
   .map(normalizeAdminEmail)
   .filter(Boolean);
-const adminEmails = configuredAdminEmails.length > 0 ? configuredAdminEmails : fallbackAdminEmails.map(normalizeAdminEmail);
+const adminEmails = Array.from(new Set([...fallbackAdminEmails.map(normalizeAdminEmail), ...configuredAdminEmails]));
 
 export const AdminClubsPage = () => {
-  const { user, setShowAuth } = useDiagnosis();
+  const { user, setUser, setShowAuth } = useDiagnosis();
   const [brands, setBrands] = useState<ClubBrand[]>([]);
   const [models, setModels] = useState<ClubModel[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +37,19 @@ export const AdminClubsPage = () => {
   const [filters, setFilters] = useState({ category: '', brandId: '', releaseYear: '', missingImages: false, onlyUnverified: false });
   const [brandForm, setBrandForm] = useState({ name: '', slug: '', official_url: '' });
   const [modelForm, setModelForm] = useState({ brand_id: '', model_name: '', slug: '', category: 'driver', release_year: '', official_url: '', aliases: '' });
-  const [imageForm, setImageForm] = useState({ club_model_id: '', image_url: '', source_url: '', source_type: 'official', license_status: 'unknown', credit: '', is_primary: true, is_verified: false });
+  const [imageForm, setImageForm] = useState({
+    club_model_id: '',
+    image_url: '',
+    storage_path: '',
+    source_url: '',
+    source_type: 'official',
+    license_status: 'unknown',
+    credit: '',
+    copyright_notice: '',
+    is_primary: true,
+    is_verified: false,
+  });
+  const [aliasForm, setAliasForm] = useState({ club_model_id: '', alias: '' });
 
   const load = async () => {
     setLoading(true);
@@ -64,6 +76,29 @@ export const AdminClubsPage = () => {
   }, [brands.length, models]);
 
   const isAdmin = user.isLoggedIn && adminEmails.includes(normalizeAdminEmail(user.email));
+
+  useEffect(() => {
+    let mounted = true;
+    const syncAdminSession = async () => {
+      if (isAdmin || !isSupabaseConfigured) return;
+      const { data } = await supabase.auth.getUser();
+      const authUser = data.user;
+      if (!mounted || !authUser) return;
+      if (!adminEmails.includes(normalizeAdminEmail(authUser.email || ''))) return;
+      setUser({
+        id: authUser.id,
+        isLoggedIn: true,
+        name: authUser.user_metadata?.name || 'Admin',
+        email: authUser.email || '',
+        memberSince: authUser.created_at,
+        history: [],
+      });
+    };
+    syncAdminSession();
+    return () => {
+      mounted = false;
+    };
+  }, [isAdmin, setUser]);
 
   if (!isAdmin) {
     return (
@@ -133,17 +168,26 @@ export const AdminClubsPage = () => {
   };
 
   const createImage = async () => {
-    if (!imageForm.club_model_id || !imageForm.image_url.trim()) return;
+    if (!imageForm.club_model_id || (!imageForm.image_url.trim() && !imageForm.storage_path.trim())) {
+      setError('画像URLまたはstorage_pathを入力してください。');
+      return;
+    }
+    if (imageForm.is_verified && imageForm.license_status === 'unknown') {
+      setError('license_status unknown の画像は検証済みにできません。');
+      return;
+    }
     setSaving(true);
     setMessage('');
     setError('');
     const payload = {
       club_model_id: imageForm.club_model_id,
-      image_url: imageForm.image_url.trim(),
+      image_url: imageForm.image_url.trim() || null,
+      storage_path: imageForm.storage_path.trim() || null,
       source_url: imageForm.source_url.trim() || null,
       source_type: imageForm.source_type,
       license_status: imageForm.license_status,
       credit: imageForm.credit.trim() || null,
+      copyright_notice: imageForm.copyright_notice.trim() || null,
       is_primary: imageForm.is_primary,
       is_verified: imageForm.is_verified && imageForm.license_status !== 'unknown' && imageForm.license_status !== 'prohibited',
       verified_at: imageForm.is_verified ? new Date().toISOString() : null,
@@ -155,7 +199,26 @@ export const AdminClubsPage = () => {
       return;
     }
     setMessage('画像情報を登録しました。権利不明画像は本番主画像として扱いません。');
-    setImageForm((current) => ({ ...current, image_url: '', source_url: '', credit: '', is_verified: false }));
+    setImageForm((current) => ({ ...current, image_url: '', storage_path: '', source_url: '', credit: '', copyright_notice: '', is_verified: false }));
+    load();
+  };
+
+  const createAlias = async () => {
+    if (!aliasForm.club_model_id || !aliasForm.alias.trim()) return;
+    setSaving(true);
+    setMessage('');
+    setError('');
+    const { error } = await supabase.from('club_aliases').insert({
+      club_model_id: aliasForm.club_model_id,
+      alias: aliasForm.alias.trim(),
+    });
+    setSaving(false);
+    if (error) {
+      setError(error.message);
+      return;
+    }
+    setMessage('別名を追加しました。検索・表記揺れ対応に使えます。');
+    setAliasForm((current) => ({ ...current, alias: '' }));
     load();
   };
 
@@ -208,7 +271,7 @@ export const AdminClubsPage = () => {
         </div>
       </section>
 
-      <section className="mt-5 grid gap-4 xl:grid-cols-3">
+      <section className="mt-5 grid gap-4 xl:grid-cols-4">
         <div className="rounded-[1.7rem] bg-white p-5 shadow-sm ring-1 ring-black/5">
           <h2 className="flex items-center gap-2 text-lg font-black"><Plus size={18} />ブランド追加</h2>
           <div className="mt-4 space-y-3">
@@ -246,6 +309,7 @@ export const AdminClubsPage = () => {
               {models.map((model) => <option key={model.id} value={model.id}>{model.club_brands?.name} {model.model_name}</option>)}
             </select>
             <input value={imageForm.image_url} onChange={(event) => setImageForm((current) => ({ ...current, image_url: event.target.value }))} placeholder="画像URL" className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold" />
+            <input value={imageForm.storage_path} onChange={(event) => setImageForm((current) => ({ ...current, storage_path: event.target.value }))} placeholder="storage_path（自社/許諾画像のみ）" className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold" />
             <input value={imageForm.source_url} onChange={(event) => setImageForm((current) => ({ ...current, source_url: event.target.value }))} placeholder="source_url" className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold" />
             <select value={imageForm.source_type} onChange={(event) => setImageForm((current) => ({ ...current, source_type: event.target.value }))} className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold">
               {sourceTypes.map((type) => <option key={type} value={type}>{type}</option>)}
@@ -254,9 +318,23 @@ export const AdminClubsPage = () => {
               {licenseStatuses.map((status) => <option key={status} value={status}>{status}</option>)}
             </select>
             <input value={imageForm.credit} onChange={(event) => setImageForm((current) => ({ ...current, credit: event.target.value }))} placeholder="credit" className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold" />
+            <input value={imageForm.copyright_notice} onChange={(event) => setImageForm((current) => ({ ...current, copyright_notice: event.target.value }))} placeholder="copyright_notice" className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold" />
             <label className="flex items-center gap-2 text-sm font-black"><input type="checkbox" checked={imageForm.is_primary} onChange={(event) => setImageForm((current) => ({ ...current, is_primary: event.target.checked }))} /> primary画像</label>
             <label className="flex items-center gap-2 text-sm font-black"><input type="checkbox" checked={imageForm.is_verified} onChange={(event) => setImageForm((current) => ({ ...current, is_verified: event.target.checked }))} /> 権利確認済み</label>
             <button onClick={createImage} disabled={saving} className="min-h-11 w-full rounded-2xl bg-[#0B0F0D] text-sm font-black text-white">{saving ? <Loader2 className="mx-auto h-4 w-4 animate-spin" /> : '画像情報を登録'}</button>
+          </div>
+        </div>
+
+        <div className="rounded-[1.7rem] bg-white p-5 shadow-sm ring-1 ring-black/5">
+          <h2 className="flex items-center gap-2 text-lg font-black"><Plus size={18} />別名追加</h2>
+          <p className="mt-2 text-xs font-bold leading-5 text-slate-500">PING/ピン、VENTUS/ベンタスなど、表記揺れ検索の土台です。</p>
+          <div className="mt-4 space-y-3">
+            <select value={aliasForm.club_model_id} onChange={(event) => setAliasForm((current) => ({ ...current, club_model_id: event.target.value }))} className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold">
+              <option value="">モデル選択</option>
+              {models.map((model) => <option key={model.id} value={model.id}>{model.club_brands?.name} {model.model_name}</option>)}
+            </select>
+            <input value={aliasForm.alias} onChange={(event) => setAliasForm((current) => ({ ...current, alias: event.target.value }))} placeholder="例: ピン G440 MAX" className="w-full rounded-2xl border border-slate-200 px-3 py-3 text-sm font-bold" />
+            <button onClick={createAlias} disabled={saving} className="min-h-11 w-full rounded-2xl bg-[#1F7A4D] text-sm font-black text-white">別名を追加</button>
           </div>
         </div>
       </section>

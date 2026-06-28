@@ -76,6 +76,9 @@ const GolfIdCreatePage = lazy(() =>
 const GolfIdPublicPage = lazy(() =>
   import('./pages/GolfIdPublicPage').then((module) => ({ default: module.GolfIdPublicPage }))
 );
+const PasswordResetPage = lazy(() =>
+  import('./pages/PasswordResetPage').then((module) => ({ default: module.PasswordResetPage }))
+);
 
 const RouteLoading = () => (
   <div className="flex min-h-[40vh] items-center justify-center rounded-[2rem] bg-white text-sm font-bold text-slate-500 shadow-sm ring-1 ring-slate-200/80">
@@ -698,6 +701,7 @@ function App() {
               <Route path="/create" element={<GolfIdCreatePage />} />
               <Route path="/u/:username" element={<GolfIdPublicPage />} />
               <Route path="/@:username" element={<GolfIdPublicPage />} />
+              <Route path="/reset-password" element={<PasswordResetPage />} />
               <Route path="/mybag/create" element={<MyGearPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/clubs" element={<AdminClubsPage />} />

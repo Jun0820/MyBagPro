@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CheckCircle2, Clipboard, Eye, EyeOff, Loader2, Share2, UserRound } from 'lucide-react';
+import { CheckCircle2, Eye, EyeOff, Loader2, Share2, UserRound } from 'lucide-react';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { supabase } from '../lib/supabase';
@@ -8,6 +8,7 @@ import { trackEvent } from '../lib/analytics';
 import { generateDiagnosisResult } from '../lib/diagnosis/rules';
 import { golfIdDesign } from '../config/design';
 import { GolfIdPreviewCard } from '../components/golfid/GolfIdUi';
+import { SharePanel } from '../components/golfid/SharePanel';
 import {
   defaultGolfIdVisibility,
   emptyGolfIdSocialLinks,
@@ -96,7 +97,6 @@ export const GolfIdCreatePage = () => {
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof GolfIdFormData, string>>>({});
   const [socialErrors, setSocialErrors] = useState<Record<string, string>>({});
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     trackEvent('golf_id_create_start', {
@@ -215,20 +215,6 @@ export const GolfIdCreatePage = () => {
         [key]: !current.visibility[key],
       },
     }));
-  };
-
-  const copyPublicUrl = async () => {
-    try {
-      await navigator.clipboard.writeText(publicUrl);
-      setCopied(true);
-      trackEvent('url_copy_click', {
-        source: 'create_page',
-        username: normalizeGolfIdUsername(form.username),
-      });
-      window.setTimeout(() => setCopied(false), 1800);
-    } catch {
-      setError('URLをコピーできませんでした。ブラウザの設定を確認してください。');
-    }
   };
 
   const saveGolfId = async () => {
@@ -363,7 +349,7 @@ export const GolfIdCreatePage = () => {
       username: savedUsername,
       diagnosis_type: diagnosisResult.diagnosisType,
     });
-    navigate(`/u/${savedUsername}`);
+    navigate(`/u/${savedUsername}?created=1`);
   };
 
   const stepItems = [
@@ -375,6 +361,9 @@ export const GolfIdCreatePage = () => {
     { number: 6, label: 'Publish' },
   ];
   const stepPanelClass = (step: number) => (activeStep === step ? '' : 'hidden lg:block');
+  const normalizedUsername = normalizeGolfIdUsername(form.username);
+  const shareTitle = `${form.nickname.trim() || normalizedUsername || 'あなた'}のGolf ID`;
+  const shareText = '自分のGolf IDを作りました。\nクラブ・スコア・悩み・目標・SNSリンクをまとめています。';
 
   return (
     <main className={golfIdDesign.page}>
@@ -670,6 +659,19 @@ export const GolfIdCreatePage = () => {
             <p className="mt-3 break-all rounded-xl bg-white/10 p-3 text-sm font-bold text-white">{publicUrl}</p>
             <p className="mt-3 text-xs font-semibold leading-6 text-slate-300">SNSプロフィールや自己紹介に貼るためのGolf IDページです。</p>
           </div>
+          {existingId && normalizedUsername && (
+            <SharePanel
+              url={publicUrl}
+              title={shareTitle}
+              text={shareText}
+              username={normalizedUsername}
+              variant="owner"
+              location="edit_panel"
+              heading="自分のGolf IDを共有"
+              description="あなたのGolf IDは公開されています。SNSプロフィールや自己紹介欄に貼って使えます。"
+              publicPageHref={publicUrl}
+            />
+          )}
           <div className="sticky top-24 rounded-[1.7rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
             <h2 className="text-base font-black text-slate-950">Live Golf ID Preview</h2>
             <div className="mt-4">
@@ -694,26 +696,6 @@ export const GolfIdCreatePage = () => {
                 ].filter(Boolean) as Array<{ label: string; platform: 'youtube' | 'instagram' | 'tiktok' | 'x' | 'custom1' | 'custom2' }>}
               />
             </div>
-            <div className="mt-4 space-y-2">
-                {existingId && (
-                  <div className="grid gap-2">
-                    <Link
-                      to={`/u/${normalizeGolfIdUsername(form.username)}`}
-                      className="inline-flex min-h-10 items-center justify-center rounded-xl bg-emerald-700 px-4 text-sm font-black text-white"
-                    >
-                      公開ページを見る
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={copyPublicUrl}
-                      className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 text-sm font-black text-slate-800"
-                    >
-                      <Clipboard className="h-4 w-4" />
-                      {copied ? 'コピーしました' : 'URLをコピー'}
-                    </button>
-                  </div>
-                )}
-              </div>
           </div>
         </aside>
       </section>

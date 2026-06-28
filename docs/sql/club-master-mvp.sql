@@ -186,3 +186,27 @@ with check (
 
 -- Add your admin email once from Supabase SQL editor:
 -- insert into public.app_admins(email) values ('your-email@example.com') on conflict do nothing;
+insert into public.app_admins(email)
+values
+  ('junpei.t.820@gmail.com'),
+  ('j_tommy_820@yahoo.co.jp')
+on conflict do nothing;
+
+insert into public.club_brands (name, slug, country, official_url)
+values
+  ('TaylorMade', 'taylormade', 'USA', 'https://www.taylormadegolf.jp/'),
+  ('Callaway', 'callaway', 'USA', 'https://www.callawaygolf.jp/'),
+  ('PING', 'ping', 'USA', 'https://clubping.jp/'),
+  ('Titleist', 'titleist', 'USA', 'https://www.titleist.co.jp/'),
+  ('Srixon', 'srixon', 'Japan', 'https://sports.dunlop.co.jp/golf/srixon/'),
+  ('Cleveland', 'cleveland', 'USA', 'https://sports.dunlop.co.jp/golf/clevelandgolf/'),
+  ('Mizuno', 'mizuno', 'Japan', 'https://jpn.mizuno.com/golf/'),
+  ('Bridgestone', 'bridgestone', 'Japan', 'https://www.bs-golf.com/'),
+  ('Cobra', 'cobra', 'USA', 'https://www.cobragolf.com/'),
+  ('PRGR', 'prgr', 'Japan', 'https://www.prgr-golf.com/'),
+  ('Yamaha', 'yamaha', 'Japan', 'https://golf.yamaha.com/'),
+  ('Honma', 'honma', 'Japan', 'https://honmagolf-ec.com/'),
+  ('XXIO', 'xxio', 'Japan', 'https://sports.dunlop.co.jp/golf/xxio/'),
+  ('Odyssey', 'odyssey', 'USA', 'https://www.callawaygolf.jp/odyssey/'),
+  ('Scotty Cameron', 'scotty-cameron', 'USA', 'https://www.scottycameron.com/')
+on conflict (slug) do nothing;

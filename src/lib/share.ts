@@ -55,42 +55,39 @@ export const shareToX = ({ text, url }: SharePayload) => {
   return { ok: true, message: 'Xの共有画面を開きました', method: 'window' } satisfies ShareResult;
 };
 
-export const shareToInstagram = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
-  const copied = await copyToClipboard(`${text}\n${url}`);
+export const shareToLine = ({ url }: SharePayload) => {
+  const shareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}`;
+  window.open(shareUrl, '_blank', 'noopener,noreferrer');
+  return { ok: true, message: 'LINEの共有画面を開きました', method: 'window' } satisfies ShareResult;
+};
+
+export const copyUrlForSocialProfile = async (platform: 'instagram' | 'tiktok', payload: SharePayload): Promise<ShareResult> => {
+  const copied = await copyToClipboard(payload.url);
   if (!copied.ok) return copied;
 
-  const native = await nativeShare({ title, text, url });
+  const native = await nativeShare(payload);
   if (native.ok) {
     return {
       ok: true,
-      message: 'URLをコピーしました。共有画面からInstagramに送れます。',
+      message: `URLをコピーしました。共有画面から${platform === 'instagram' ? 'Instagram' : 'TikTok'}に送れます。`,
       method: 'native',
     };
   }
 
   return {
     ok: true,
-    message: 'URLをコピーしました。Instagramのプロフィールやストーリーズに貼り付けて共有できます。',
+    message:
+      platform === 'instagram'
+        ? 'URLをコピーしました。Instagramのプロフィールやストーリーズに貼り付けて共有できます。'
+        : 'URLをコピーしました。TikTokプロフィールや投稿文に貼り付けて共有できます。',
     method: copied.method,
   };
 };
 
+export const shareToInstagram = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
+  return copyUrlForSocialProfile('instagram', { title, text, url });
+};
+
 export const shareToTikTok = async ({ title = 'Golf ID', text, url }: SharePayload): Promise<ShareResult> => {
-  const copied = await copyToClipboard(`${text}\n${url}`);
-  if (!copied.ok) return copied;
-
-  const native = await nativeShare({ title, text, url });
-  if (native.ok) {
-    return {
-      ok: true,
-      message: 'URLをコピーしました。共有画面からTikTokに送れます。',
-      method: 'native',
-    };
-  }
-
-  return {
-    ok: true,
-    message: 'URLをコピーしました。TikTokプロフィールや投稿文に貼り付けて共有できます。',
-    method: copied.method,
-  };
+  return copyUrlForSocialProfile('tiktok', { title, text, url });
 };

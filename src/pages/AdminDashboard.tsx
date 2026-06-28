@@ -24,6 +24,7 @@ import { cn } from '../lib/utils';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import type { UserAccount } from '../types/golf';
 import { loadPublicGolfIdProfiles } from '../lib/golfIdProfileSource';
+import { trackEvent } from '../lib/analytics';
 
 type PeriodValue = {
   today: number;
@@ -91,12 +92,12 @@ const normalizeAdminEmail = (email: string) => {
   return normalized;
 };
 
-const fallbackAdminEmails = ['junpei.t.820@gmail.com'];
+const fallbackAdminEmails = ['junpei.t.820@gmail.com', 'j_tommy_820@yahoo.co.jp'];
 const configuredAdminEmails = String(import.meta.env.VITE_ADMIN_EMAILS || import.meta.env.VITE_ADMIN_EMAIL || '')
   .split(',')
   .map(normalizeAdminEmail)
   .filter(Boolean);
-const adminEmails = configuredAdminEmails.length > 0 ? configuredAdminEmails : fallbackAdminEmails.map(normalizeAdminEmail);
+const adminEmails = Array.from(new Set([...fallbackAdminEmails.map(normalizeAdminEmail), ...configuredAdminEmails]));
 
 const dayMs = 24 * 60 * 60 * 1000;
 
@@ -632,13 +633,16 @@ const AdminLoginPanel = ({ onLogin }: { onLogin: (account: UserAccount) => void 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
 
   const canSubmit = email.trim().length > 0 && password.length > 0 && !isSubmitting;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError('');
+    setNotice('');
 
     const normalizedEmail = normalizeAdminEmail(email);
     if (!adminEmails.includes(normalizedEmail)) {
@@ -653,7 +657,18 @@ const AdminLoginPanel = ({ onLogin }: { onLogin: (account: UserAccount) => void 
         password,
       });
 
-      if (signInError) throw signInError;
+      if (signInError) {
+        const message = signInError.message.toLowerCase();
+        if (message.includes('invalid login credentials')) {
+          setError('メールアドレスまたはパスワードが違います。通常ログインと同じパスワードを入力してください。');
+          return;
+        }
+        if (message.includes('email not confirmed')) {
+          setError('メール認証が完了していません。認証メールを確認してください。');
+          return;
+        }
+        throw signInError;
+      }
       const authUser = data.session?.user;
       if (!authUser || !adminEmails.includes(normalizeAdminEmail(authUser.email || ''))) {
         await supabase.auth.signOut();
@@ -675,6 +690,35 @@ const AdminLoginPanel = ({ onLogin }: { onLogin: (account: UserAccount) => void 
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handlePasswordReset = async () => {
+    setError('');
+    setNotice('');
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!normalizedEmail) {
+      setError('リセットするメールアドレスを入力してください。');
+      return;
+    }
+    if (!adminEmails.includes(normalizeAdminEmail(normalizedEmail))) {
+      setError('このメールアドレスは管理画面の許可リストにありません。');
+      return;
+    }
+
+    setIsResetting(true);
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(normalizedEmail, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setIsResetting(false);
+
+    if (resetError) {
+      setError('リセットメールを送信できませんでした。時間をおいて再度お試しください。');
+      trackEvent('admin_password_reset_failed', { reason: resetError.message });
+      return;
+    }
+
+    setNotice('パスワード再設定メールを送信しました。メール内のリンクから新しいパスワードを設定してください。');
+    trackEvent('admin_password_reset_requested', { email_domain: normalizedEmail.split('@')[1] || '' });
   };
 
   return (
@@ -716,12 +760,25 @@ const AdminLoginPanel = ({ onLogin }: { onLogin: (account: UserAccount) => void 
             {error}
           </div>
         )}
+        {notice && (
+          <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold leading-6 text-emerald-800">
+            {notice}
+          </div>
+        )}
         <button
           type="submit"
           disabled={!canSubmit}
           className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#176534] px-5 text-sm font-black text-white transition hover:bg-[#12512a] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? 'ログイン中...' : '管理画面にログイン'}
+        </button>
+        <button
+          type="button"
+          onClick={handlePasswordReset}
+          disabled={isResetting || isSubmitting}
+          className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-slate-100 px-5 text-sm font-black text-slate-700 transition hover:bg-slate-200 disabled:cursor-wait disabled:opacity-60"
+        >
+          {isResetting ? 'リセットメール送信中...' : 'パスワードをリセットする'}
         </button>
       </form>
     </div>
@@ -736,6 +793,29 @@ export const AdminDashboard = () => {
   const [activeTrend, setActiveTrend] = useState<keyof Omit<DailyPoint, 'date'>>('signups');
   const normalizedUserEmail = normalizeAdminEmail(user.email);
   const isAdmin = user.isLoggedIn && adminEmails.includes(normalizedUserEmail);
+
+  useEffect(() => {
+    let mounted = true;
+    const syncAdminSession = async () => {
+      if (isAdmin || !isSupabaseConfigured) return;
+      const { data } = await supabase.auth.getUser();
+      const authUser = data.user;
+      if (!mounted || !authUser) return;
+      if (!adminEmails.includes(normalizeAdminEmail(authUser.email || ''))) return;
+      setUser({
+        id: authUser.id,
+        isLoggedIn: true,
+        name: authUser.user_metadata?.name || 'Admin',
+        email: authUser.email || '',
+        memberSince: authUser.created_at,
+        history: [],
+      });
+    };
+    syncAdminSession();
+    return () => {
+      mounted = false;
+    };
+  }, [isAdmin, setUser]);
 
   const refresh = async () => {
     if (!isAdmin) {

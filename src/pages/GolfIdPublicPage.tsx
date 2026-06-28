@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, Clipboard, ImageIcon, Instagram, Link2, MessageCircle, Music2, Share2, UserRound, Youtube } from 'lucide-react';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { ArrowRight, ImageIcon, Instagram, Link2, Music2, Share2, UserRound, Youtube } from 'lucide-react';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
@@ -11,9 +11,9 @@ import {
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
 import { loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
-import { copyToClipboard, shareToInstagram, shareToTikTok, shareToX, type ShareResult } from '../lib/share';
 import { golfIdDesign } from '../config/design';
 import { GolfIdStatCard, GolfIdSocialBadge } from '../components/golfid/GolfIdUi';
+import { SharePanel } from '../components/golfid/SharePanel';
 
 const canShow = (record: GolfIdRecord | null, key: GolfIdVisibilityKey) => {
   if (!record) return false;
@@ -50,15 +50,14 @@ const buildProfileSeoTitle = (profile: GolfIdRecord | null, username: string) =>
 
 export const GolfIdPublicPage = () => {
   const { username: rawUsername } = useParams();
+  const [searchParams] = useSearchParams();
   const username = useMemo(() => normalizeGolfIdUsername(rawUsername || ''), [rawUsername]);
   const [profile, setProfile] = useState<GolfIdRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadStatus, setLoadStatus] = useState<GolfIdLoadStatus | null>(null);
   const [loadMessage, setLoadMessage] = useState('');
   const [showPlayerCard, setShowPlayerCard] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [copyError, setCopyError] = useState(false);
-  const [shareNotice, setShareNotice] = useState('');
+  const createdJustNow = searchParams.get('created') === '1';
 
   useEffect(() => {
     let mounted = true;
@@ -164,51 +163,15 @@ export const GolfIdPublicPage = () => {
     .filter(Boolean);
   const publicUrl = `https://golfid.jp/u/${profile.username}`;
   const diagnosis = profile.diagnosis_result;
-  const shareText = '自分のGolf IDを作りました。\nクラブ・スコア・悩み・目標をまとめています。';
-  const socialLinkItems = useMemo(() => getSocialLinkItems(profile), [profile]);
+  const shareTitle = `${profile.nickname || profile.username}のGolf ID`;
+  const shareText = '自分のGolf IDを作りました。\nクラブ・スコア・悩み・目標・SNSリンクをまとめています。';
+  const socialLinkItems = getSocialLinkItems(profile);
 
   const handlePlayerCardGenerate = () => {
     setShowPlayerCard(true);
     trackEvent('player_card_generate', {
       username: profile.username,
       diagnosis_type: diagnosis?.diagnosisType || null,
-    });
-  };
-
-  const handleCopyUrl = async () => {
-    setCopyError(false);
-    const result = await copyToClipboard(publicUrl);
-    if (result.ok) {
-      setCopied(true);
-      setShareNotice(result.message);
-      trackEvent('url_copy_click', {
-        username: profile.username,
-      });
-      window.setTimeout(() => setCopied(false), 1800);
-      window.setTimeout(() => setShareNotice(''), 2400);
-    } else {
-      setCopyError(true);
-      setShareNotice(result.message);
-      window.setTimeout(() => setCopyError(false), 2400);
-      window.setTimeout(() => setShareNotice(''), 3000);
-    }
-  };
-
-  const handleShare = async (platform: 'x' | 'instagram' | 'tiktok') => {
-    let result: ShareResult = { ok: true, message: '', method: 'window' };
-    if (platform === 'x') {
-      result = shareToX({ title: `${profile.nickname || profile.username}のGolf ID`, text: shareText, url: publicUrl });
-    } else if (platform === 'instagram') {
-      result = await shareToInstagram({ title: `${profile.nickname || profile.username}のGolf ID`, text: shareText, url: publicUrl });
-    } else {
-      result = await shareToTikTok({ title: `${profile.nickname || profile.username}のGolf ID`, text: shareText, url: publicUrl });
-    }
-    setShareNotice(result.message);
-    window.setTimeout(() => setShareNotice(''), 3200);
-    trackEvent('sns_share_click', {
-      platform,
-      method: result.method,
-      username: profile.username,
     });
   };
 
@@ -241,44 +204,15 @@ export const GolfIdPublicPage = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="mt-5 rounded-[1.35rem] bg-white/10 p-3 ring-1 ring-white/15">
-              <p className="text-[11px] font-black uppercase tracking-[0.14em] text-[#D7B56D]">Golf ID URL</p>
-              <p className="mt-1 break-all text-sm font-bold text-white">{publicUrl}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={handleCopyUrl}
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-black text-slate-950 transition hover:bg-emerald-50"
-                >
-                  <Clipboard className="h-4 w-4" />
-                  {copyError ? 'コピーできませんでした' : copied ? 'コピーしました' : 'URLをコピー'}
-                </button>
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(publicUrl)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => trackEvent('sns_share_click', { platform: 'x', username: profile.username })}
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
-                >
-                  Xで共有
-                </a>
-                <button
-                  type="button"
-                  onClick={() => handleShare('instagram')}
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
-                >
-                  Instagramで共有
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleShare('tiktok')}
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-3 py-2 text-xs font-black text-white ring-1 ring-white/15 transition hover:bg-white/15"
-                >
-                  TikTokで共有
-                </button>
-              </div>
-              {shareNotice && <p className="mt-3 rounded-xl bg-emerald-500/15 px-3 py-2 text-xs font-black text-emerald-100">{shareNotice}</p>}
-            </div>
+            <SharePanel
+              url={publicUrl}
+              title={shareTitle}
+              text={shareText}
+              username={profile.username}
+              variant="compact"
+              location="public_top"
+              description="SNSプロフィールに貼るだけで、スコア・目標・使用クラブ・発信リンクをまとめて見せられます。"
+            />
           </div>
 
           {socialLinkItems.length > 0 && (
@@ -289,6 +223,29 @@ export const GolfIdPublicPage = () => {
                 ))}
               </div>
             </div>
+          )}
+
+          {createdJustNow && (
+            <section className="p-4 lg:p-6">
+              <div className="rounded-[1.7rem] bg-[#D7B56D] p-5 text-[#0B0F0D] shadow-[0_18px_60px_-42px_rgba(215,181,109,0.75)]">
+                <p className="text-xs font-black uppercase tracking-[0.16em]">Created</p>
+                <h2 className="mt-2 text-2xl font-black">Golf IDを作成しました。</h2>
+                <p className="mt-2 text-sm font-bold leading-7">このページをSNSプロフィールに貼って共有できます。</p>
+                <div className="mt-4">
+                  <SharePanel
+                    url={publicUrl}
+                    title={shareTitle}
+                    text={shareText}
+                    username={profile.username}
+                    variant="full"
+                    location="created_modal"
+                    heading="作成したGolf IDを共有"
+                    description="まずはURLコピーがおすすめです。InstagramやTikTokのプロフィール欄にも貼れます。"
+                    publicPageHref={publicUrl}
+                  />
+                </div>
+              </div>
+            </section>
           )}
 
           <div className="grid gap-4 p-4 sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
@@ -478,52 +435,20 @@ export const GolfIdPublicPage = () => {
                 </div>
               )}
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(publicUrl)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => trackEvent('sns_share_click', { platform: 'x', username: profile.username })}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
-                >
-                  Xで共有
-                </a>
-                <button
-                  type="button"
-                  onClick={() => handleShare('instagram')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
-                >
-                  <Instagram className="h-4 w-4" />
-                  Instagram
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleShare('tiktok')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
-                >
-                  <Music2 className="h-4 w-4" />
-                  TikTok
-                </button>
-                <a
-                  href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(publicUrl)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => trackEvent('sns_share_click', { channel: 'line', username: profile.username })}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  LINE
-                </a>
-                <button
-                  type="button"
-                  onClick={handleCopyUrl}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-black text-white transition hover:bg-white/15"
-                >
-                  <Clipboard className="h-4 w-4" />
-                  {copyError ? 'コピーできませんでした' : copied ? 'コピーしました' : 'URLコピー'}
-                </button>
-              </div>
             </div>
+          </section>
+
+          <section className="p-4 pt-0 lg:p-6 lg:pt-0">
+            <SharePanel
+              url={publicUrl}
+              title={shareTitle}
+              text={shareText}
+              username={profile.username}
+              variant="full"
+              location="public_bottom"
+              heading="このGolf IDを共有する"
+              description="このGolf IDは、Instagram・TikTok・X・LINE・プロフィール欄に貼って共有できます。"
+            />
           </section>
 
           <div className="border-t border-slate-200 bg-slate-50 p-5 text-center">

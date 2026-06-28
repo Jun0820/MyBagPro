@@ -1,13 +1,39 @@
 import { ImageIcon } from 'lucide-react';
+import { trackEvent } from '../../lib/analytics';
 import { clubImageAlt, getPrimaryClubImage, type ClubModel } from '../../lib/clubMaster';
 
 export const ClubImageCard = ({ model, compact = false }: { model: ClubModel; compact?: boolean }) => {
   const image = getPrimaryClubImage(model);
   const alt = clubImageAlt(model);
+  const modelLabel = `${model.club_brands?.name || ''} ${model.model_name}`.trim();
+  const imageHref = image?.source_url || image?.image_url || model.official_url || '';
+
+  const trackModel = () => {
+    trackEvent('club_model_view', {
+      model_slug: model.slug,
+      brand: model.club_brands?.name || null,
+      category: model.category,
+    });
+  };
+
+  const trackImage = () => {
+    trackEvent('club_image_click', {
+      model_slug: model.slug,
+      license_status: image?.license_status || null,
+      source_type: image?.source_type || null,
+    });
+  };
 
   return (
-    <figure className={`overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 ${compact ? 'grid grid-cols-[88px_1fr]' : ''}`}>
-      <div className={`${compact ? 'h-full min-h-[88px]' : 'aspect-[4/3]'} bg-[#F5F7F4]`}>
+    <figure onMouseEnter={trackModel} className={`overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 ${compact ? 'grid grid-cols-[88px_1fr]' : ''}`}>
+      <a
+        href={imageHref || undefined}
+        target={imageHref ? '_blank' : undefined}
+        rel={imageHref ? 'noopener noreferrer' : undefined}
+        onClick={imageHref ? trackImage : undefined}
+        className={`${compact ? 'h-full min-h-[88px]' : 'aspect-[4/3]'} block bg-[#F5F7F4]`}
+        aria-label={`${modelLabel || model.model_name}の画像ソースを開く`}
+      >
         {image?.image_url ? (
           <img src={image.image_url} alt={alt} className="h-full w-full object-contain p-3" loading="lazy" />
         ) : (
@@ -16,7 +42,7 @@ export const ClubImageCard = ({ model, compact = false }: { model: ClubModel; co
             <span className="text-[11px] font-black">画像準備中</span>
           </div>
         )}
-      </div>
+      </a>
       <figcaption className="p-3">
         <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[#1F7A4D]">{model.club_brands?.name || 'Brand'}</p>
         <h3 className="mt-1 text-sm font-black leading-5 text-slate-950">{model.model_name}</h3>
@@ -27,6 +53,12 @@ export const ClubImageCard = ({ model, compact = false }: { model: ClubModel; co
           <p className="mt-2 text-[10px] font-bold leading-4 text-slate-400">
             {image.credit || image.source_type || 'verified image'} / {image.license_status}
           </p>
+        )}
+        {image?.copyright_notice && (
+          <p className="mt-1 text-[10px] font-bold leading-4 text-slate-400">{image.copyright_notice}</p>
+        )}
+        {!image && (
+          <p className="mt-2 text-[10px] font-bold leading-4 text-slate-400">権利確認済み画像のみ表示します</p>
         )}
       </figcaption>
     </figure>
