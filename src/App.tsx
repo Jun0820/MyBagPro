@@ -39,6 +39,9 @@ const UsersSettingsPage = lazy(() =>
 const DriversCatalogPage = lazy(() =>
   import('./pages/DriversCatalogPage').then((module) => ({ default: module.DriversCatalogPage }))
 );
+const ClubsCatalogPage = lazy(() =>
+  import('./pages/ClubsCatalogPage').then((module) => ({ default: module.ClubsCatalogPage }))
+);
 const ProSettingDetailPage = lazy(() =>
   import('./pages/ProSettingDetailPage').then((module) => ({ default: module.ProSettingDetailPage }))
 );
@@ -63,6 +66,9 @@ const Sitemap = lazy(() =>
 );
 const AdminDashboard = lazy(() =>
   import('./pages/AdminDashboard').then((module) => ({ default: module.AdminDashboard }))
+);
+const AdminClubsPage = lazy(() =>
+  import('./pages/AdminClubsPage').then((module) => ({ default: module.AdminClubsPage }))
 );
 const GolfIdCreatePage = lazy(() =>
   import('./pages/GolfIdCreatePage').then((module) => ({ default: module.GolfIdCreatePage }))
@@ -672,6 +678,7 @@ function App() {
               <Route path="/explore" element={<UsersSettingsPage />} />
               <Route path="/settings/users" element={<UsersSettingsPage />} />
               <Route path="/settings/users/:id" element={<SharedBag />} />
+              <Route path="/clubs" element={<ClubsCatalogPage />} />
               <Route path="/clubs/drivers" element={<DriversCatalogPage />} />
               <Route path="/clubs/drivers/:slug" element={<DriverDetailPage />} />
               <Route path="/buy/:category/:slug" element={<BuyPage />} />
@@ -693,6 +700,7 @@ function App() {
               <Route path="/@:username" element={<GolfIdPublicPage />} />
               <Route path="/mybag/create" element={<MyGearPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/clubs" element={<AdminClubsPage />} />
               <Route path="/bag" element={<SharedBag />} />
               <Route path="/sitemap" element={<Sitemap />} />
             </Routes>

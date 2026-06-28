@@ -426,6 +426,14 @@ export const GolfIdCreatePage = () => {
             ))}
           </nav>
 
+          <div className="rounded-[1.25rem] bg-[#0B0F0D] p-4 text-white shadow-sm ring-1 ring-white/10 lg:hidden">
+            <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-[#D7B56D]">
+              <Share2 className="h-4 w-4" />
+              公開URL
+            </div>
+            <p className="mt-2 break-all rounded-2xl bg-white/10 px-3 py-2 text-sm font-bold">{publicUrl}</p>
+          </div>
+
           {(message || error) && (
             <div className={`rounded-xl px-4 py-3 text-sm font-bold ${error ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-100' : 'bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100'}`}>
               {error || message}

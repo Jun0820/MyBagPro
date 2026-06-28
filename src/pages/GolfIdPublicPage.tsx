@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, Clipboard, Instagram, Link2, MessageCircle, Music2, Share2, UserRound, Youtube } from 'lucide-react';
+import { ArrowRight, Clipboard, ImageIcon, Instagram, Link2, MessageCircle, Music2, Share2, UserRound, Youtube } from 'lucide-react';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
@@ -381,8 +381,14 @@ export const GolfIdPublicPage = () => {
                 {clubLines.length > 0 ? (
                   <div className="mt-4 divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200">
                     {clubLines.map((line, index) => (
-                      <div key={`${line}-${index}`} className="px-4 py-3 text-sm font-bold text-slate-800">
-                        {line}
+                      <div key={`${line}-${index}`} className="grid grid-cols-[48px_1fr] items-center gap-3 px-4 py-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#F5F7F4] text-slate-400 ring-1 ring-black/5">
+                          <ImageIcon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-black text-slate-800">{line}</p>
+                          <p className="mt-0.5 text-[10px] font-bold text-slate-400">クラブ画像は確認済みモデルから順次表示します</p>
+                        </div>
                       </div>
                     ))}
                   </div>
