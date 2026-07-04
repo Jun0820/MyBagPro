@@ -10,7 +10,8 @@ import {
   type GolfIdRecord,
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
-import { loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
+import { loadOwnGolfIdProfile, loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
+import { useDiagnosis } from '../context/DiagnosisContext';
 import { golfIdDesign } from '../config/design';
 import { GolfIdStatCard, GolfIdSocialBadge } from '../components/golfid/GolfIdUi';
 import { SharePanel } from '../components/golfid/SharePanel';
@@ -51,6 +52,7 @@ const buildProfileSeoTitle = (profile: GolfIdRecord | null, username: string) =>
 export const GolfIdPublicPage = () => {
   const { username: rawUsername } = useParams();
   const [searchParams] = useSearchParams();
+  const { user } = useDiagnosis();
   const username = useMemo(() => normalizeGolfIdUsername(rawUsername || ''), [rawUsername]);
   const [profile, setProfile] = useState<GolfIdRecord | null>(null);
   const [loading, setLoading] = useState(true);
@@ -66,7 +68,14 @@ export const GolfIdPublicPage = () => {
       setLoadStatus(null);
       setLoadMessage('');
       setProfile(null);
-      const result = await loadPublicGolfIdProfile(username);
+      let result = await loadPublicGolfIdProfile(username);
+
+      if (result.status === 'not_found' && user.isLoggedIn && user.id) {
+        const ownResult = await loadOwnGolfIdProfile(user.id);
+        if (ownResult.status === 'ok' && ownResult.profile) {
+          result = ownResult;
+        }
+      }
 
       if (!mounted) return;
       setLoading(false);
@@ -85,16 +94,17 @@ export const GolfIdPublicPage = () => {
     return () => {
       mounted = false;
     };
-  }, [username]);
+  }, [username, user.id, user.isLoggedIn]);
 
   useEffect(() => {
     const title = buildProfileSeoTitle(profile, username);
+    const canonicalUsername = profile?.username || username;
     applySeo({
       title,
       description: profile
         ? `${profileTitleName(profile)}さんのGolf ID。ベストスコア、目標、ヘッドスピード、悩み、クラブセッティング、AI上達診断の次の一手をまとめています。`
         : 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
-      path: `/u/${username}`,
+      path: `/u/${canonicalUsername}`,
       image: '/article-visuals/golf-bag-course.jpg',
     });
   }, [profile, username]);

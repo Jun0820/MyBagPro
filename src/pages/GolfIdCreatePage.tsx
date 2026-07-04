@@ -290,11 +290,11 @@ export const GolfIdCreatePage = () => {
     }
 
     setSaving(true);
-    const { data: usernameOwner, error: usernameCheckError } = await supabase
+    const { data: usernameOwners, error: usernameCheckError } = await supabase
       .from(GOLF_PROFILE_TABLE)
       .select('id')
       .ilike('username', username)
-      .maybeSingle();
+      .limit(5);
 
     if (usernameCheckError) {
       setSaving(false);
@@ -303,7 +303,8 @@ export const GolfIdCreatePage = () => {
       return;
     }
 
-    if (usernameOwner && usernameOwner.id !== existingId) {
+    const usernameOwner = (usernameOwners || []).find((row) => row.id !== existingId);
+    if (usernameOwner) {
       setSaving(false);
       setFieldErrors({ username: 'このusernameは既に使われています。' });
       setError('このusernameは既に使われています。別のusernameを入力してください。');

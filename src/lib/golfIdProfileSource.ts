@@ -160,33 +160,47 @@ export const loadLegacyGolfIdProfile = async (username: string): Promise<GolfIdL
 
 export const loadPublicGolfIdProfile = async (username: string): Promise<GolfIdLoadResult> => {
   const normalizedUsername = normalizeGolfIdUsername(username);
+  if (!normalizedUsername) return { status: 'not_found', profile: null };
 
   const { data, error } = await supabase
     .from('golf_profiles')
     .select('*')
-    .eq('username', normalizedUsername)
-    .maybeSingle();
+    .ilike('username', normalizedUsername)
+    .order('updated_at', { ascending: false })
+    .limit(1);
 
-  if (!error && data) return { status: 'ok', profile: data as GolfIdRecord };
+  if (!error && data?.[0]) {
+    const profile = data[0] as GolfIdRecord;
+    return { status: 'ok', profile: { ...profile, username: normalizeGolfIdUsername(profile.username || normalizedUsername) } };
+  }
 
-  if (!error && !data) {
-    const fallback = await supabase
-      .from('golf_profiles')
-      .select('*')
-      .ilike('username', normalizedUsername)
-      .maybeSingle();
-
-    if (!fallback.error && fallback.data) return { status: 'ok', profile: fallback.data as GolfIdRecord };
-    if (fallback.error && !isMissingGolfProfilesTableError(fallback.error)) {
-      return { status: classifyGolfIdError(fallback.error), profile: null, message: fallback.error.message };
-    }
-
+  if (!error && (!data || data.length === 0)) {
     return loadLegacyGolfIdProfile(normalizedUsername);
   }
 
   if (isMissingGolfProfilesTableError(error)) return loadLegacyGolfIdProfile(normalizedUsername);
 
   return { status: classifyGolfIdError(error), profile: null, message: error?.message };
+};
+
+export const loadOwnGolfIdProfile = async (userId: string): Promise<GolfIdLoadResult> => {
+  if (!userId) return { status: 'not_found', profile: null };
+
+  const { data, error } = await supabase
+    .from('golf_profiles')
+    .select('*')
+    .eq('user_id', userId)
+    .order('updated_at', { ascending: false })
+    .limit(1);
+
+  if (!error && data?.[0]) {
+    const profile = data[0] as GolfIdRecord;
+    return { status: 'ok', profile: { ...profile, username: normalizeGolfIdUsername(profile.username || profile.id || 'golfer') } };
+  }
+
+  if (!error) return { status: 'not_found', profile: null };
+  if (isMissingGolfProfilesTableError(error)) return { status: 'table_missing', profile: null, message: error.message };
+  return { status: classifyGolfIdError(error), profile: null, message: error.message };
 };
 
 export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord[]> => {
