@@ -36,10 +36,24 @@ type LegacyProfileRow = {
     instagram?: string;
     tiktok?: string;
     x?: string;
+    custom1?: {
+      label?: string;
+      url?: string;
+    };
+    custom2?: {
+      label?: string;
+      url?: string;
+    };
     customLinks?: Array<{
       label?: string;
       url?: string;
     }>;
+    golfId?: Partial<GolfIdRecord> & {
+      best_score?: number | string | null;
+      average_score?: number | string | null;
+      target_score?: number | string | null;
+      head_speed?: number | string | null;
+    };
     bagSnapshot?: {
       clubs?: LegacyClubRow[];
       profileStats?: {
@@ -96,18 +110,19 @@ const mapLegacySocialLinks = (row: LegacyProfileRow): GolfIdSocialLinks => {
     tiktok: normalizeLegacySocialUrl(links.tiktok, 'https://www.tiktok.com/', '@'),
     x: normalizeLegacySocialUrl(links.x, 'https://x.com/'),
     custom1: {
-      label: customLinks[0]?.label || '',
-      url: customLinks[0]?.url || '',
+      label: links.custom1?.label || customLinks[0]?.label || '',
+      url: links.custom1?.url || customLinks[0]?.url || '',
     },
     custom2: {
-      label: customLinks[1]?.label || '',
-      url: customLinks[1]?.url || '',
+      label: links.custom2?.label || customLinks[1]?.label || '',
+      url: links.custom2?.url || customLinks[1]?.url || '',
     },
   };
 };
 
 export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsername?: string): GolfIdRecord => {
-  const username = normalizeGolfIdUsername(requestedUsername || row.name || row.id || 'golfer');
+  const golfId = row.sns_links?.golfId || {};
+  const username = normalizeGolfIdUsername(requestedUsername || golfId.username || row.name || row.id || 'golfer');
   const snapshot = row.sns_links?.bagSnapshot;
   const stats = snapshot?.profileStats || {};
   const clubs = (snapshot?.clubs || []).map(formatClubLine).filter(Boolean);
@@ -115,19 +130,23 @@ export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsernam
   return {
     id: row.id || username,
     username,
-    nickname: row.name?.trim() || username,
-    best_score: toNumberOrNull(stats.bestScore),
-    average_score: toNumberOrNull(stats.averageScore),
-    target_score: null,
-    head_speed: toNumberOrNull(row.head_speed),
-    golf_history: row.golf_history || null,
-    favorite_club: null,
-    weak_club: null,
-    current_issue: null,
-    club_setting: clubs.join('\n'),
+    user_id: row.id || null,
+    nickname: golfId.nickname?.trim() || row.name?.trim() || username,
+    best_score: toNumberOrNull(golfId.best_score ?? stats.bestScore),
+    average_score: toNumberOrNull(golfId.average_score ?? stats.averageScore),
+    target_score: toNumberOrNull(golfId.target_score),
+    head_speed: toNumberOrNull(golfId.head_speed ?? row.head_speed),
+    golf_history: golfId.golf_history || row.golf_history || null,
+    favorite_club: golfId.favorite_club || null,
+    weak_club: golfId.weak_club || null,
+    current_issue: golfId.current_issue || null,
+    club_setting: golfId.club_setting || clubs.join('\n'),
     social_links: mapLegacySocialLinks(row),
-    visibility: defaultGolfIdVisibility,
-    diagnosis_result: {
+    visibility: {
+      ...defaultGolfIdVisibility,
+      ...(golfId.visibility || {}),
+    },
+    diagnosis_result: golfId.diagnosis_result || {
       diagnosisType: 'クラブ見直しタイプ',
       currentStatus: '登録済みのクラブ、スコア、ヘッドスピードをもとに現在地を整理できます。',
       priorityIssue: 'まずはGolf IDの項目を埋めて、クラブ構成と目標スコアを見比べましょう。',
@@ -146,6 +165,7 @@ export const loadLegacyGolfIdProfile = async (username: string): Promise<GolfIdL
     .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
     .ilike('name', username)
     .eq('is_public', true)
+    .order('updated_at', { ascending: false })
     .limit(1);
 
   if (error) {
@@ -153,7 +173,20 @@ export const loadLegacyGolfIdProfile = async (username: string): Promise<GolfIdL
   }
 
   const row = data?.[0] as LegacyProfileRow | undefined;
-  if (!row) return { status: 'not_found', profile: null };
+  if (!row) {
+    const fallback = await supabase
+      .from('profiles')
+      .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
+      .filter('sns_links->golfId->>username', 'eq', username)
+      .eq('is_public', true)
+      .order('updated_at', { ascending: false })
+      .limit(1);
+
+    if (fallback.error) return { status: classifyGolfIdError(fallback.error), profile: null, message: fallback.error.message };
+    const fallbackRow = fallback.data?.[0] as LegacyProfileRow | undefined;
+    if (!fallbackRow) return { status: 'not_found', profile: null };
+    return { status: 'ok', profile: mapLegacyProfileToGolfId(fallbackRow, username) };
+  }
 
   return { status: 'ok', profile: mapLegacyProfileToGolfId(row, username) };
 };
@@ -198,9 +231,25 @@ export const loadOwnGolfIdProfile = async (userId: string): Promise<GolfIdLoadRe
     return { status: 'ok', profile: { ...profile, username: normalizeGolfIdUsername(profile.username || profile.id || 'golfer') } };
   }
 
-  if (!error) return { status: 'not_found', profile: null };
-  if (isMissingGolfProfilesTableError(error)) return { status: 'table_missing', profile: null, message: error.message };
+  if (!error) return loadOwnLegacyGolfIdProfile(userId);
+  if (isMissingGolfProfilesTableError(error)) return loadOwnLegacyGolfIdProfile(userId);
   return { status: classifyGolfIdError(error), profile: null, message: error.message };
+};
+
+export const loadOwnLegacyGolfIdProfile = async (userId: string): Promise<GolfIdLoadResult> => {
+  if (!userId) return { status: 'not_found', profile: null };
+
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
+    .eq('id', userId)
+    .limit(1);
+
+  if (error) return { status: classifyGolfIdError(error), profile: null, message: error.message };
+
+  const row = data?.[0] as LegacyProfileRow | undefined;
+  if (!row) return { status: 'not_found', profile: null };
+  return { status: 'ok', profile: mapLegacyProfileToGolfId(row) };
 };
 
 export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord[]> => {
@@ -216,7 +265,7 @@ export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord
 
   const legacy = await supabase
     .from('profiles')
-    .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at,created_at')
+    .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
     .eq('is_public', true)
     .order('updated_at', { ascending: false })
     .limit(limit);

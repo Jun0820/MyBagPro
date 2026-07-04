@@ -9,6 +9,7 @@ import { generateDiagnosisResult } from '../lib/diagnosis/rules';
 import { golfIdDesign } from '../config/design';
 import { GolfIdPreviewCard } from '../components/golfid/GolfIdUi';
 import { SharePanel } from '../components/golfid/SharePanel';
+import { isMissingGolfProfilesTableError, loadOwnGolfIdProfile } from '../lib/golfIdProfileSource';
 import {
   defaultGolfIdVisibility,
   emptyGolfIdSocialLinks,
@@ -85,6 +86,79 @@ const normalizeOptionalUrl = (value: string) => {
   }
 };
 
+const buildLegacyGolfIdPayload = (
+  userId: string,
+  username: string,
+  payload: Record<string, unknown>,
+  socialLinks: {
+    youtube: string | null;
+    instagram: string | null;
+    tiktok: string | null;
+    x: string | null;
+    custom1: { label: string; url: string | null };
+    custom2: { label: string; url: string | null };
+  },
+) => {
+  const updatedAt = new Date().toISOString();
+  const bestScore = payload.best_score as number | null;
+  const averageScore = payload.average_score as number | null;
+  const clubSetting = typeof payload.club_setting === 'string' ? payload.club_setting : '';
+  const clubs = clubSetting
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line, index) => ({
+      id: `golf-id-club-${index + 1}`,
+      category: 'club',
+      number: '',
+      brand: '',
+      model: line,
+      shaft: '',
+      distance: '',
+      carryDistance: '',
+    }));
+
+  return {
+    id: userId,
+    name: username,
+    is_public: true,
+    head_speed: payload.head_speed,
+    golf_history: payload.golf_history,
+    updated_at: updatedAt,
+    sns_links: {
+      ...(socialLinks.youtube ? { youtube: socialLinks.youtube } : {}),
+      ...(socialLinks.instagram ? { instagram: socialLinks.instagram } : {}),
+      ...(socialLinks.tiktok ? { tiktok: socialLinks.tiktok } : {}),
+      ...(socialLinks.x ? { x: socialLinks.x } : {}),
+      ...(socialLinks.custom1.url ? { custom1: socialLinks.custom1 } : {}),
+      ...(socialLinks.custom2.url ? { custom2: socialLinks.custom2 } : {}),
+      customLinks: [socialLinks.custom1, socialLinks.custom2].filter((link) => link.label && link.url),
+      golfId: {
+        ...payload,
+        id: userId,
+        user_id: userId,
+        username,
+        updated_at: updatedAt,
+      },
+      ...(bestScore !== null || averageScore !== null || clubs.length > 0
+        ? {
+            bagSnapshot: {
+              ...(clubs.length > 0 ? { clubs } : {}),
+              ...(bestScore !== null || averageScore !== null
+                ? {
+                    profileStats: {
+                      ...(bestScore !== null ? { bestScore } : {}),
+                      ...(averageScore !== null ? { averageScore } : {}),
+                    },
+                  }
+                : {}),
+            },
+          }
+        : {}),
+    },
+  };
+};
+
 export const GolfIdCreatePage = () => {
   const navigate = useNavigate();
   const { user, profile, setShowAuth } = useDiagnosis();
@@ -144,7 +218,18 @@ export const GolfIdCreatePage = () => {
       setLoadingExisting(false);
 
       if (fetchError) {
-        setError('Golf ID保存用テーブルを確認できませんでした。設定完了後に保存できます。');
+        if (isMissingGolfProfilesTableError(fetchError)) {
+          const legacy = await loadOwnGolfIdProfile(user.id);
+          if (!mounted) return;
+          if (legacy.status === 'ok' && legacy.profile) {
+            setExistingId(legacy.profile.id);
+            setForm(mapRecordToGolfIdForm(legacy.profile));
+            return;
+          }
+          setError('');
+        } else {
+          setError('Golf ID保存用テーブルを確認できませんでした。時間をおいて再度お試しください。');
+        }
         return;
       }
 
@@ -290,6 +375,7 @@ export const GolfIdCreatePage = () => {
     }
 
     setSaving(true);
+    let useLegacyStorage = false;
     const { data: usernameOwners, error: usernameCheckError } = await supabase
       .from(GOLF_PROFILE_TABLE)
       .select('id')
@@ -297,13 +383,39 @@ export const GolfIdCreatePage = () => {
       .limit(5);
 
     if (usernameCheckError) {
-      setSaving(false);
-      setError('usernameの確認に失敗しました。時間をおいて再度お試しください。');
-      trackEvent('golf_id_save_error', { reason: usernameCheckError.message });
-      return;
+      if (isMissingGolfProfilesTableError(usernameCheckError)) {
+        useLegacyStorage = true;
+      } else {
+        setSaving(false);
+        setError('usernameの確認に失敗しました。時間をおいて再度お試しください。');
+        trackEvent('golf_id_save_error', { reason: usernameCheckError.message });
+        return;
+      }
     }
 
-    const usernameOwner = (usernameOwners || []).find((row) => row.id !== existingId);
+    let usernameOwner = (usernameOwners || []).find((row) => row.id !== existingId);
+    if (useLegacyStorage) {
+      const legacyNameOwner = await supabase
+        .from('profiles')
+        .select('id')
+        .ilike('name', username)
+        .limit(5);
+      const legacyGolfIdOwner = await supabase
+        .from('profiles')
+        .select('id')
+        .filter('sns_links->golfId->>username', 'eq', username)
+        .limit(5);
+
+      if (legacyNameOwner.error || legacyGolfIdOwner.error) {
+        setSaving(false);
+        setError('usernameの確認に失敗しました。時間をおいて再度お試しください。');
+        trackEvent('golf_id_save_error', { reason: legacyNameOwner.error?.message || legacyGolfIdOwner.error?.message });
+        return;
+      }
+
+      usernameOwner = [...(legacyNameOwner.data || []), ...(legacyGolfIdOwner.data || [])].find((row) => row.id !== user.id);
+    }
+
     if (usernameOwner) {
       setSaving(false);
       setFieldErrors({ username: 'このusernameは既に使われています。' });
@@ -332,7 +444,29 @@ export const GolfIdCreatePage = () => {
       is_public: true,
     };
 
-    const { data, error: saveError } = await supabase.from(GOLF_PROFILE_TABLE).upsert(payload).select('id,username').single();
+    let data: { id?: string; username?: string } | null = null;
+    let saveError: { code?: string; message: string } | null = null;
+
+    if (!useLegacyStorage) {
+      const result = await supabase.from(GOLF_PROFILE_TABLE).upsert(payload).select('id,username').single();
+      data = result.data as { id?: string; username?: string } | null;
+      saveError = result.error;
+      if (saveError && isMissingGolfProfilesTableError(saveError)) {
+        useLegacyStorage = true;
+      }
+    }
+
+    if (useLegacyStorage) {
+      const legacyPayload = buildLegacyGolfIdPayload(user.id, username, payload, normalizedSocialLinks);
+      const legacyResult = await supabase
+        .from('profiles')
+        .upsert(legacyPayload, { onConflict: 'id' })
+        .select('id,name')
+        .single();
+      data = legacyResult.data ? { id: legacyResult.data.id, username: username } : null;
+      saveError = legacyResult.error;
+    }
+
     setSaving(false);
 
     if (saveError) {
