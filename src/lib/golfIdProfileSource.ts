@@ -143,7 +143,7 @@ export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsernam
 export const loadLegacyGolfIdProfile = async (username: string): Promise<GolfIdLoadResult> => {
   const { data, error } = await supabase
     .from('profiles')
-    .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at,created_at')
+    .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
     .ilike('name', username)
     .eq('is_public', true)
     .limit(1);
