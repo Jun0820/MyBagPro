@@ -41,14 +41,17 @@ type LegacyProfileRow = {
     x?: string;
     custom1?: {
       label?: string;
+      description?: string;
       url?: string;
     };
     custom2?: {
       label?: string;
+      description?: string;
       url?: string;
     };
     customLinks?: Array<{
       label?: string;
+      description?: string;
       url?: string;
     }>;
     golfId?: Partial<GolfIdRecord> & {
@@ -151,10 +154,12 @@ const mapLegacySocialLinks = (row: LegacyProfileRow): GolfIdSocialLinks => {
     x: normalizeLegacySocialUrl(links.x, 'https://x.com/'),
     custom1: {
       label: links.custom1?.label || customLinks[0]?.label || '',
+      description: links.custom1?.description || customLinks[0]?.description || '',
       url: links.custom1?.url || customLinks[0]?.url || '',
     },
     custom2: {
       label: links.custom2?.label || customLinks[1]?.label || '',
+      description: links.custom2?.description || customLinks[1]?.description || '',
       url: links.custom2?.url || customLinks[1]?.url || '',
     },
   };
@@ -172,11 +177,18 @@ export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsernam
     username,
     user_id: row.id || null,
     nickname: golfId.nickname?.trim() || row.name?.trim() || username,
+    bio: golfId.bio || null,
+    avatar_url: golfId.avatar_url || null,
+    cover_image_url: golfId.cover_image_url || null,
     best_score: toNumberOrNull(golfId.best_score ?? stats.bestScore),
+    best_scores: golfId.best_scores || null,
     average_score: toNumberOrNull(golfId.average_score ?? stats.averageScore),
     target_score: toNumberOrNull(golfId.target_score),
     head_speed: toNumberOrNull(golfId.head_speed ?? row.head_speed),
     golf_history: golfId.golf_history || row.golf_history || null,
+    frequent_area: golfId.frequent_area || null,
+    home_course: golfId.home_course || null,
+    role_title: golfId.role_title || null,
     favorite_club: golfId.favorite_club || null,
     weak_club: golfId.weak_club || null,
     current_issue: golfId.current_issue || null,

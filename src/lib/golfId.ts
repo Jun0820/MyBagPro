@@ -16,10 +16,12 @@ export type GolfIdSocialLinkKey = 'youtube' | 'instagram' | 'tiktok' | 'x';
 export type GolfIdSocialLinks = Partial<Record<GolfIdSocialLinkKey, string>> & {
   custom1?: {
     label?: string;
+    description?: string;
     url?: string;
   };
   custom2?: {
     label?: string;
+    description?: string;
     url?: string;
   };
 };
@@ -27,11 +29,20 @@ export type GolfIdSocialLinks = Partial<Record<GolfIdSocialLinkKey, string>> & {
 export interface GolfIdFormData {
   username: string;
   nickname: string;
+  bio: string;
+  avatar_url: string;
+  cover_image_url: string;
   best_score: string;
+  best_score_ladies: string;
+  best_score_back: string;
+  best_score_champion: string;
   average_score: string;
   target_score: string;
   head_speed: string;
   golf_history: string;
+  frequent_area: string;
+  home_course: string;
+  role_title: string;
   favorite_club: string;
   weak_club: string;
   current_issue: string;
@@ -45,11 +56,23 @@ export interface GolfIdRecord {
   user_id?: string | null;
   username: string;
   nickname: string;
+  bio?: string | null;
+  avatar_url?: string | null;
+  cover_image_url?: string | null;
   best_score?: number | null;
+  best_scores?: {
+    ladies?: number | null;
+    regular?: number | null;
+    back?: number | null;
+    champion?: number | null;
+  } | null;
   average_score?: number | null;
   target_score?: number | null;
   head_speed?: number | null;
   golf_history?: string | null;
+  frequent_area?: string | null;
+  home_course?: string | null;
+  role_title?: string | null;
   favorite_club?: string | null;
   weak_club?: string | null;
   current_issue?: string | null;
@@ -118,11 +141,20 @@ export const toNullableNumber = (value: string) => {
 export const mapRecordToGolfIdForm = (record: GolfIdRecord): GolfIdFormData => ({
   username: record.username || '',
   nickname: record.nickname || '',
+  bio: record.bio || '',
+  avatar_url: record.avatar_url || '',
+  cover_image_url: record.cover_image_url || '',
   best_score: record.best_score ? String(record.best_score) : '',
+  best_score_ladies: record.best_scores?.ladies ? String(record.best_scores.ladies) : '',
+  best_score_back: record.best_scores?.back ? String(record.best_scores.back) : '',
+  best_score_champion: record.best_scores?.champion ? String(record.best_scores.champion) : '',
   average_score: record.average_score ? String(record.average_score) : '',
   target_score: record.target_score ? String(record.target_score) : '',
   head_speed: record.head_speed ? String(record.head_speed) : '',
   golf_history: record.golf_history || '',
+  frequent_area: record.frequent_area || '',
+  home_course: record.home_course || '',
+  role_title: record.role_title || '',
   favorite_club: record.favorite_club || '',
   weak_club: record.weak_club || '',
   current_issue: record.current_issue || '',

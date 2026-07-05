@@ -28,11 +28,20 @@ const GOLF_PROFILE_TABLE = 'golf_profiles';
 const initialForm: GolfIdFormData = {
   username: '',
   nickname: '',
+  bio: '',
+  avatar_url: '',
+  cover_image_url: '',
   best_score: '',
+  best_score_ladies: '',
+  best_score_back: '',
+  best_score_champion: '',
   average_score: '',
   target_score: '',
   head_speed: '',
   golf_history: '',
+  frequent_area: '',
+  home_course: '',
+  role_title: '',
   favorite_club: '',
   weak_club: '',
   current_issue: '',
@@ -244,11 +253,12 @@ export const GolfIdCreatePage = () => {
       setForm((current) => ({
         ...current,
         nickname: current.nickname || profile.name || user.name || '',
-        username: current.username || normalizeGolfIdUsername(user.name || profile.name || ''),
-        average_score: current.average_score || (profile.averageScore ? String(profile.averageScore) : ''),
-        best_score: current.best_score || (profile.bestScore ? String(profile.bestScore) : ''),
-        head_speed: current.head_speed || (profile.headSpeed ? String(profile.headSpeed) : ''),
-        club_setting:
+      username: current.username || normalizeGolfIdUsername(user.name || profile.name || ''),
+      average_score: current.average_score || (profile.averageScore ? String(profile.averageScore) : ''),
+      best_score: current.best_score || (profile.bestScore ? String(profile.bestScore) : ''),
+      bio: current.bio || 'ゴルフをもっとシンプルに、もっと楽しく。',
+      head_speed: current.head_speed || (profile.headSpeed ? String(profile.headSpeed) : ''),
+      club_setting:
           current.club_setting ||
           profile.myBag.clubs
             .filter((club) => club.brand || club.model)
@@ -280,7 +290,7 @@ export const GolfIdCreatePage = () => {
     }));
   };
 
-  const updateCustomLink = (key: 'custom1' | 'custom2', field: 'label' | 'url', value: string) => {
+  const updateCustomLink = (key: 'custom1' | 'custom2', field: 'label' | 'description' | 'url', value: string) => {
     setForm((current) => ({
       ...current,
       social_links: {
@@ -348,6 +358,8 @@ export const GolfIdCreatePage = () => {
     }
 
     const nextSocialErrors: Record<string, string> = {};
+    const normalizedAvatarUrl = normalizeOptionalUrl(form.avatar_url || '');
+    const normalizedCoverUrl = normalizeOptionalUrl(form.cover_image_url || '');
     const normalizedSocialLinks = {
       youtube: normalizeOptionalUrl(form.social_links.youtube || ''),
       instagram: normalizeOptionalUrl(form.social_links.instagram || ''),
@@ -355,10 +367,12 @@ export const GolfIdCreatePage = () => {
       x: normalizeOptionalUrl(form.social_links.x || ''),
       custom1: {
         label: form.social_links.custom1?.label?.trim() || '',
+        description: form.social_links.custom1?.description?.trim() || '',
         url: normalizeOptionalUrl(form.social_links.custom1?.url || ''),
       },
       custom2: {
         label: form.social_links.custom2?.label?.trim() || '',
+        description: form.social_links.custom2?.description?.trim() || '',
         url: normalizeOptionalUrl(form.social_links.custom2?.url || ''),
       },
     };
@@ -366,6 +380,8 @@ export const GolfIdCreatePage = () => {
     (Object.keys(socialUrlLabels) as GolfIdSocialLinkKey[]).forEach((key) => {
       if (normalizedSocialLinks[key] === null) nextSocialErrors[key] = `${socialUrlLabels[key]}の形式を確認してください。`;
     });
+    if (normalizedAvatarUrl === null) nextSocialErrors.avatar_url = 'プロフィール画像URLの形式を確認してください。';
+    if (normalizedCoverUrl === null) nextSocialErrors.cover_image_url = '背景画像URLの形式を確認してください。';
     if (normalizedSocialLinks.custom1.url === null) nextSocialErrors.custom1_url = '自由URL 1の形式を確認してください。';
     if (normalizedSocialLinks.custom2.url === null) nextSocialErrors.custom2_url = '自由URL 2の形式を確認してください。';
 
@@ -430,11 +446,23 @@ export const GolfIdCreatePage = () => {
       user_id: user.id,
       username,
       nickname: form.nickname.trim(),
+      bio: form.bio.trim() || null,
+      avatar_url: normalizedAvatarUrl || null,
+      cover_image_url: normalizedCoverUrl || null,
       best_score: toNullableNumber(form.best_score),
+      best_scores: {
+        ladies: toNullableNumber(form.best_score_ladies),
+        regular: toNullableNumber(form.best_score),
+        back: toNullableNumber(form.best_score_back),
+        champion: toNullableNumber(form.best_score_champion),
+      },
       average_score: toNullableNumber(form.average_score),
       target_score: toNullableNumber(form.target_score),
       head_speed: toNullableNumber(form.head_speed),
       golf_history: form.golf_history.trim() || null,
+      frequent_area: form.frequent_area.trim() || null,
+      home_course: form.home_course.trim() || null,
+      role_title: form.role_title.trim() || null,
       favorite_club: form.favorite_club.trim() || null,
       weak_club: form.weak_club.trim() || null,
       current_issue: form.current_issue.trim() || null,
@@ -609,6 +637,21 @@ export const GolfIdCreatePage = () => {
                 <p className="text-[11px] font-bold leading-5 text-slate-500">公開URLに使われます。例: golfid.jp/u/junpei</p>
                 {fieldErrors.username && <p className="text-xs font-bold text-rose-600">{fieldErrors.username}</p>}
               </label>
+              <label className="space-y-1.5 sm:col-span-2">
+                <span className="text-xs font-black text-slate-600">一言コメント</span>
+                <input className={textInputClass} value={form.bio} onChange={(event) => updateField('bio', event.target.value)} placeholder="ゴルフをもっとシンプルに、もっと楽しく。" />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">プロフィール画像URL</span>
+                <input className={inputClass(Boolean(socialErrors.avatar_url))} value={form.avatar_url} onChange={(event) => updateField('avatar_url', event.target.value)} placeholder="https://example.com/avatar.jpg" />
+                {socialErrors.avatar_url && <p className="text-xs font-bold text-rose-600">{socialErrors.avatar_url}</p>}
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">背景画像URL</span>
+                <input className={inputClass(Boolean(socialErrors.cover_image_url))} value={form.cover_image_url} onChange={(event) => updateField('cover_image_url', event.target.value)} placeholder="https://example.com/cover.jpg" />
+                <p className="text-[11px] font-bold leading-5 text-slate-500">この背景画像はプロフィール上段に表示されます。</p>
+                {socialErrors.cover_image_url && <p className="text-xs font-bold text-rose-600">{socialErrors.cover_image_url}</p>}
+              </label>
             </div>
           </div>
 
@@ -618,8 +661,20 @@ export const GolfIdCreatePage = () => {
             <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。診断の精度が上がります。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5">
-                <span className="text-xs font-black text-slate-600">ベストスコア</span>
+                <span className="text-xs font-black text-slate-600">レディースティ ベスト</span>
+                <input className={textInputClass} inputMode="numeric" value={form.best_score_ladies} onChange={(event) => updateField('best_score_ladies', event.target.value)} placeholder="84" />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">レギュラーティ ベスト</span>
                 <input className={textInputClass} inputMode="numeric" value={form.best_score} onChange={(event) => updateField('best_score', event.target.value)} placeholder="82" />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">バックティ ベスト</span>
+                <input className={textInputClass} inputMode="numeric" value={form.best_score_back} onChange={(event) => updateField('best_score_back', event.target.value)} placeholder="86" />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">チャンピオンティ ベスト</span>
+                <input className={textInputClass} inputMode="numeric" value={form.best_score_champion} onChange={(event) => updateField('best_score_champion', event.target.value)} placeholder="89" />
               </label>
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">平均スコア</span>
@@ -658,6 +713,18 @@ export const GolfIdCreatePage = () => {
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">ゴルフ歴</span>
                 <input className={textInputClass} value={form.golf_history} onChange={(event) => updateField('golf_history', event.target.value)} placeholder="5年" />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">よく行くエリア</span>
+                <input className={textInputClass} value={form.frequent_area} onChange={(event) => updateField('frequent_area', event.target.value)} placeholder="関東・東海" />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">ホームコース</span>
+                <input className={textInputClass} value={form.home_course} onChange={(event) => updateField('home_course', event.target.value)} placeholder="太平洋クラブ御殿場コース" />
+              </label>
+              <label className="space-y-1.5">
+                <span className="text-xs font-black text-slate-600">肩書</span>
+                <input className={textInputClass} value={form.role_title} onChange={(event) => updateField('role_title', event.target.value)} placeholder="レッスンプロ" />
               </label>
             </div>
           </div>
@@ -710,6 +777,15 @@ export const GolfIdCreatePage = () => {
                 />
                 {socialErrors.custom1_url && <p className="text-xs font-bold text-rose-600">{socialErrors.custom1_url}</p>}
               </label>
+              <label className="space-y-1.5 sm:col-span-2">
+                <span className="text-xs font-black text-slate-600">自由URL 1 概要</span>
+                <input
+                  className={textInputClass}
+                  value={form.social_links.custom1?.description || ''}
+                  onChange={(event) => updateCustomLink('custom1', 'description', event.target.value)}
+                  placeholder="マンツーマンレッスン受付中です！"
+                />
+              </label>
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">自由URL 2 ラベル</span>
                 <input
@@ -728,6 +804,15 @@ export const GolfIdCreatePage = () => {
                   placeholder="https://example.com"
                 />
                 {socialErrors.custom2_url && <p className="text-xs font-bold text-rose-600">{socialErrors.custom2_url}</p>}
+              </label>
+              <label className="space-y-1.5 sm:col-span-2">
+                <span className="text-xs font-black text-slate-600">自由URL 2 概要</span>
+                <input
+                  className={textInputClass}
+                  value={form.social_links.custom2?.description || ''}
+                  onChange={(event) => updateCustomLink('custom2', 'description', event.target.value)}
+                  placeholder="活動・実績"
+                />
               </label>
             </div>
           </div>
