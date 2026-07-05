@@ -127,3 +127,152 @@ on public.golf_profiles
 for delete
 to authenticated
 using (user_id = auth.uid());
+
+-- Migrate existing MyBagPro public profiles into the production Golf ID table.
+-- This keeps /u/<username>, /explore, and /admin on one canonical table after
+-- the bootstrap is applied.
+with source_profiles as (
+  select
+    p.id as profile_user_id,
+    p.name,
+    p.head_speed,
+    p.golf_history,
+    p.current_ball,
+    p.sns_links,
+    p.is_public,
+    p.updated_at,
+    coalesce(p.sns_links->'golfId', '{}'::jsonb) as golf_id
+  from public.profiles p
+  where coalesce(p.is_public, true) = true
+),
+normalized_profiles as (
+  select
+    profile_user_id,
+    lower(
+      trim(
+        regexp_replace(
+          coalesce(nullif(golf_id->>'username', ''), nullif(name, ''), profile_user_id::text),
+          '[^a-zA-Z0-9_-]+',
+          '-',
+          'g'
+        ),
+        '-_'
+      )
+    ) as username,
+    coalesce(nullif(golf_id->>'nickname', ''), nullif(name, ''), 'Golfer') as nickname,
+    case
+      when nullif(golf_id->>'best_score', '') ~ '^[0-9]+$' then (golf_id->>'best_score')::integer
+      when nullif(sns_links->'bagSnapshot'->'profileStats'->>'bestScore', '') ~ '^[0-9]+$' then (sns_links->'bagSnapshot'->'profileStats'->>'bestScore')::integer
+      else null
+    end as best_score,
+    case
+      when nullif(golf_id->>'average_score', '') ~ '^[0-9]+$' then (golf_id->>'average_score')::integer
+      when nullif(sns_links->'bagSnapshot'->'profileStats'->>'averageScore', '') ~ '^[0-9]+$' then (sns_links->'bagSnapshot'->'profileStats'->>'averageScore')::integer
+      else null
+    end as average_score,
+    case
+      when nullif(golf_id->>'target_score', '') ~ '^[0-9]+$' then (golf_id->>'target_score')::integer
+      else null
+    end as target_score,
+    case
+      when nullif(golf_id->>'head_speed', '') ~ '^[0-9]+(\.[0-9]+)?$' then (golf_id->>'head_speed')::numeric
+      when head_speed::text ~ '^[0-9]+(\.[0-9]+)?$' then head_speed::numeric
+      else null
+    end as head_speed,
+    coalesce(nullif(golf_id->>'golf_history', ''), golf_history) as golf_history,
+    nullif(golf_id->>'favorite_club', '') as favorite_club,
+    nullif(golf_id->>'weak_club', '') as weak_club,
+    nullif(golf_id->>'current_issue', '') as current_issue,
+    coalesce(
+      nullif(golf_id->>'club_setting', ''),
+      (
+        select string_agg(
+          nullif(trim(concat_ws(' ', club->>'number', club->>'brand', club->>'model')), ''),
+          E'\n'
+          order by ordinality
+        )
+        from jsonb_array_elements(coalesce(sns_links->'bagSnapshot'->'clubs', '[]'::jsonb)) with ordinality as club(club, ordinality)
+      )
+    ) as club_setting,
+    null::jsonb as clubs,
+    jsonb_strip_nulls(
+      jsonb_build_object(
+        'youtube', nullif(sns_links->>'youtube', ''),
+        'instagram', nullif(sns_links->>'instagram', ''),
+        'tiktok', nullif(sns_links->>'tiktok', ''),
+        'x', nullif(sns_links->>'x', ''),
+        'custom1', coalesce(sns_links->'custom1', (sns_links->'customLinks'->0)),
+        'custom2', coalesce(sns_links->'custom2', (sns_links->'customLinks'->1))
+      )
+    ) as social_links,
+    coalesce(golf_id->'visibility', '{}'::jsonb) as visibility,
+    coalesce(
+      golf_id->'diagnosis_result',
+      jsonb_build_object(
+        'diagnosisType', 'クラブ見直しタイプ',
+        'currentStatus', '登録済みのクラブ、スコア、ヘッドスピードをもとに現在地を整理できます。',
+        'priorityIssue', 'まずはGolf IDの項目を埋めて、クラブ構成と目標スコアを見比べましょう。',
+        'nextAction', 'クラブセッティングとスコア目標を1ページにまとめ、次に見直す番手を明確にしましょう。',
+        'notRecommendedNow', 'いきなり全クラブを買い替えるより、距離階段と苦手番手から確認しましょう。',
+        'gearSuggestion', case when current_ball is not null then '使用ボール: ' || current_ball else 'クラブ構成の抜けや距離差を確認しましょう。' end
+      )
+    ) as diagnosis_result,
+    coalesce(is_public, true) as is_public,
+    coalesce(updated_at, now()) as updated_at
+  from source_profiles
+),
+deduped_profiles as (
+  select distinct on (lower(username))
+    *
+  from normalized_profiles
+  where username is not null
+    and username <> ''
+  order by lower(username), updated_at desc
+)
+insert into public.golf_profiles (
+  user_id,
+  username,
+  nickname,
+  best_score,
+  average_score,
+  target_score,
+  head_speed,
+  golf_history,
+  favorite_club,
+  weak_club,
+  current_issue,
+  club_setting,
+  clubs,
+  social_links,
+  visibility,
+  diagnosis_result,
+  is_public,
+  created_at,
+  updated_at
+)
+select
+  profile_user_id,
+  username,
+  nickname,
+  best_score,
+  average_score,
+  target_score,
+  head_speed,
+  golf_history,
+  favorite_club,
+  weak_club,
+  current_issue,
+  club_setting,
+  clubs,
+  coalesce(social_links, '{}'::jsonb),
+  coalesce(visibility, '{}'::jsonb),
+  diagnosis_result,
+  is_public,
+  updated_at,
+  updated_at
+from deduped_profiles dp
+where not exists (
+  select 1
+  from public.golf_profiles gp
+  where lower(gp.username) = lower(dp.username)
+);
