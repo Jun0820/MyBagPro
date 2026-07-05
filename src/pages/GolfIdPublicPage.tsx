@@ -68,26 +68,32 @@ export const GolfIdPublicPage = () => {
       setLoadStatus(null);
       setLoadMessage('');
       setProfile(null);
-      let result = await loadPublicGolfIdProfile(username);
+      try {
+        let result = await loadPublicGolfIdProfile(username);
 
-      if (result.status === 'not_found' && user.isLoggedIn && user.id) {
-        const ownResult = await loadOwnGolfIdProfile(user.id);
-        if (ownResult.status === 'ok' && ownResult.profile) {
-          result = ownResult;
+        if (result.status === 'not_found' && user.isLoggedIn && user.id) {
+          const ownResult = await loadOwnGolfIdProfile(user.id);
+          if (ownResult.status === 'ok' && ownResult.profile) {
+            result = ownResult;
+          }
         }
-      }
 
-      if (!mounted) return;
-      setLoading(false);
-      setLoadStatus(result.status);
-      setLoadMessage(result.message || '');
-      if (result.status !== 'ok' || !result.profile) {
-        return;
+        if (!mounted) return;
+        setLoadStatus(result.status);
+        setLoadMessage(result.message || '');
+        if (result.status === 'ok' && result.profile) {
+          setProfile(result.profile);
+          trackEvent('public_page_view', {
+            username: result.profile.username || username,
+          });
+        }
+      } catch (error) {
+        if (!mounted) return;
+        setLoadStatus('connection_error');
+        setLoadMessage(error instanceof Error ? error.message : 'Golf IDの読み込み中にエラーが発生しました。');
+      } finally {
+        if (mounted) setLoading(false);
       }
-      setProfile(result.profile);
-      trackEvent('public_page_view', {
-        username: result.profile.username || username,
-      });
     };
 
     loadProfile();

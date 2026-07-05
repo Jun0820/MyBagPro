@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1f2c4411-c515-4d2e-a0f7-ed8a3abfb4f2",
+    "user_id": "1f2c4411-c515-4d2e-a0f7-ed8a3abfb4f2",
+    "username": "tommy",
+    "nickname": "Tommy",
+    "best_score": null,
+    "average_score": null,
+    "target_score": null,
+    "head_speed": 52,
+    "golf_history": "1〜3年",
+    "favorite_club": null,
+    "weak_club": null,
+    "current_issue": null,
+    "club_setting": "4U Ping G430 Hybrid / PING TOUR 2.0 BLACK 90 90g X / 240y\n5I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 205y\n6I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 190y\n7I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 168y\n8I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 160y\n9I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 145y\nPW Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 130y\n50° Titleist Vokey SM8 / Dynamic Gold S200 120g S / 120y\n54° Titleist Vokey SM8 / Dynamic Gold S200 120g S / 105y\n58° Titleist Vokey SM8 / Dynamic Gold S200 120g S / 90y\nPT Odyssey Ai-ONE\nBALL\n1W Ping G425 LST / 26 VENTUS TR Blue 60g X / 295y\n3W TaylorMade Qi10 FW / 26 VENTUS TR BLUE 7 70g X / 270y\n5U Ping G430 Hybrid / PING TOUR 2.0 BLACK90 90g X / 225y",
+    "social_links": {
+      "youtube": "",
+      "instagram": "",
+      "tiktok": "",
+      "x": "",
+      "custom1": {
+        "label": "",
+        "url": ""
+      },
+      "custom2": {
+        "label": "",
+        "url": ""
+      }
+    },
+    "visibility": {},
+    "diagnosis_result": {
+      "diagnosisType": "クラブ見直しタイプ",
+      "currentStatus": "登録済みのクラブ、スコア、ヘッドスピードをもとに現在地を整理できます。",
+      "priorityIssue": "まずはGolf IDの項目を埋めて、クラブ構成と目標スコアを見比べましょう。",
+      "nextAction": "クラブセッティングとスコア目標を1ページにまとめ、次に見直す番手を明確にしましょう。",
+      "notRecommendedNow": "いきなり全クラブを買い替えるより、距離階段と苦手番手から確認しましょう。",
+      "gearSuggestion": "使用ボール: Pro V1"
+    },
+    "is_public": true,
+    "updated_at": "2026-07-03T06:07:54.399+00:00"
+  }
+]
