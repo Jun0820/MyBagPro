@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CheckCircle2, Eye, EyeOff, Loader2, Share2, UserRound } from 'lucide-react';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
@@ -161,6 +161,7 @@ const buildLegacyGolfIdPayload = (
 
 export const GolfIdCreatePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, profile, setShowAuth } = useDiagnosis();
   const [activeStep, setActiveStep] = useState(1);
   const [form, setForm] = useState<GolfIdFormData>(initialForm);
@@ -497,6 +498,15 @@ export const GolfIdCreatePage = () => {
   ];
   const stepPanelClass = (step: number) => (activeStep === step ? '' : 'hidden lg:block');
   const normalizedUsername = normalizeGolfIdUsername(form.username);
+  const isMyPageProfile = location.pathname.startsWith('/mypage/profile');
+  const heroTitle = isMyPageProfile
+    ? 'Golf IDを編集'
+    : existingId
+      ? 'あなたのGolf IDを更新'
+      : 'あなたのGolf IDを作ろう。';
+  const heroDescription = isMyPageProfile
+    ? 'ここで保存した内容が、公開Golf IDページに反映されます。スコア、悩み、クラブ、SNSリンクを整えて、プロフィールに貼れるページにしましょう。'
+    : '3分で、自分のゴルフの現在地と発信リンクを1ページに。作ったGolf IDはSNSプロフィールに貼れます。';
   const shareTitle = `${form.nickname.trim() || normalizedUsername || 'あなた'}のGolf ID`;
   const shareText = '自分のGolf IDを作りました。\nクラブ・スコア・悩み・目標・SNSリンクをまとめています。';
 
@@ -512,16 +522,24 @@ export const GolfIdCreatePage = () => {
               </span>
             </div>
             <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
-              {existingId ? 'あなたのGolf IDを更新' : 'あなたのGolf IDを作ろう。'}
+              {heroTitle}
             </h1>
             <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-300">
-              3分で、自分のゴルフの現在地と発信リンクを1ページに。作ったGolf IDはSNSプロフィールに貼れます。
+              {heroDescription}
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-black text-emerald-100">
-              <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">3分で作成できます</span>
+              <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">{isMyPageProfile ? '公開ページに反映されます' : '3分で作成できます'}</span>
               <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">あとから編集できます</span>
               <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">見せたい項目だけ公開できます</span>
             </div>
+            {isMyPageProfile && normalizedUsername && (
+              <Link
+                to={`/u/${normalizedUsername}`}
+                className="mt-5 inline-flex min-h-11 items-center justify-center rounded-2xl bg-white px-4 text-sm font-black text-[#0B0F0D] transition hover:bg-emerald-50"
+              >
+                公開ページを見る
+              </Link>
+            )}
             {!user.isLoggedIn && (
               <button
                 type="button"

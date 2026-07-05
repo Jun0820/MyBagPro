@@ -697,7 +697,7 @@ function App() {
               <Route path="/mypage" element={<MyGearPage />} />
               <Route path="/mypage/view" element={<MyGearPage />} />
               <Route path="/mypage/clubs" element={<MyGearPage />} />
-              <Route path="/mypage/profile" element={<MyGearPage />} />
+              <Route path="/mypage/profile" element={<GolfIdCreatePage />} />
               <Route path="/create" element={<GolfIdCreatePage />} />
               <Route path="/u/:username" element={<GolfIdPublicPage />} />
               <Route path="/@:username" element={<GolfIdPublicPage />} />
