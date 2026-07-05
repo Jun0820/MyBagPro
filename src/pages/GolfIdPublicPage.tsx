@@ -78,6 +78,19 @@ type ParsedClubLine = {
   kind: 'wood' | 'utility' | 'iron' | 'wedge' | 'putter' | 'ball' | 'other';
 };
 
+type PublicClubRow = {
+  number?: string | null;
+  club_label?: string | null;
+  label?: string | null;
+  brand?: string | null;
+  model?: string | null;
+  shaft?: string | null;
+  distance?: string | number | null;
+  total_distance?: string | number | null;
+  carryDistance?: string | number | null;
+  carry_distance?: string | number | null;
+};
+
 const clubOrder = (badge: string) => {
   const normalized = badge.toUpperCase();
   if (normalized === 'BALL') return 999;
@@ -128,6 +141,27 @@ const parseClubLine = (line: string, index: number): ParsedClubLine => {
   };
 };
 
+const parseClubRow = (row: PublicClubRow, index: number): ParsedClubLine => {
+  const badge = String(row.club_label || row.label || row.number || `#${index + 1}`).toUpperCase().replace('UT', 'U');
+  const brand = String(row.brand || '').trim();
+  const model = String(row.model || '').trim();
+  const shaft = String(row.shaft || '').trim();
+  const distanceValue = row.distance ?? row.total_distance ?? row.carryDistance ?? row.carry_distance ?? '';
+  const distance = distanceValue === null || distanceValue === undefined || distanceValue === '' ? '-' : String(distanceValue).replace(/y(?:d|ds)?$/i, '');
+  const raw = [badge, brand, model, shaft, distance ? `${distance}y` : ''].filter(Boolean).join(' / ');
+
+  return {
+    raw,
+    badge,
+    brand: brand || (badge === 'BALL' ? 'Ball' : badge === 'PT' ? 'Putter' : ''),
+    model: model || (badge === 'BALL' ? '登録ボール' : badge === 'PT' ? '登録パター' : '-'),
+    shaft,
+    distance,
+    order: clubOrder(badge),
+    kind: clubKind(badge),
+  };
+};
+
 const clubDistanceSort = (club: ParsedClubLine) => {
   if (club.kind === 'putter') return -1;
   if (club.kind === 'ball') return -2;
@@ -172,6 +206,19 @@ const getBestScores = (profile: GolfIdRecord) => {
   return items
     .map((item) => ({ ...item, value: item.value === null || item.value === undefined || item.value === '' ? '' : String(item.value) }))
     .filter((item) => item.value);
+};
+
+const getClubRows = (profile: GolfIdRecord) => {
+  const source = profile as unknown as { clubs?: PublicClubRow[]; bag_items?: PublicClubRow[]; bagItems?: PublicClubRow[] };
+  const rows = source.clubs || source.bag_items || source.bagItems || [];
+  if (Array.isArray(rows) && rows.length > 0) {
+    return rows.map(parseClubRow);
+  }
+  return (profile.club_setting || '')
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map(parseClubLine);
 };
 
 export const GolfIdPublicPage = () => {
@@ -298,12 +345,7 @@ export const GolfIdPublicPage = () => {
     );
   }
 
-  const clubLines = (profile.club_setting || '')
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-  const clubs = clubLines
-    .map(parseClubLine)
+  const clubs = getClubRows(profile)
     .sort((a, b) => {
       const distanceDiff = clubDistanceSort(b) - clubDistanceSort(a);
       return distanceDiff !== 0 ? distanceDiff : a.order - b.order;
@@ -318,13 +360,22 @@ export const GolfIdPublicPage = () => {
   const bio = getExtendedProfileValue(profile, ['bio', 'comment', 'profile_comment', 'profileComment']) || 'ゴルフをもっとシンプルに、もっと楽しく。';
   const avatarUrl = getExtendedProfileValue(profile, ['avatar_url', 'avatarUrl', 'profile_image_url', 'profileImageUrl']);
   const coverUrl = getExtendedProfileValue(profile, ['cover_image_url', 'coverImageUrl', 'cover_url', 'coverUrl']) || '/article-visuals/golf-bag-course.jpg';
-  const profileFields = [
+  const newProfileFields = [
     canShow(profile, 'golf_history') ? ['ゴルフ歴', formatValue(profile.golf_history)] : null,
     ['よく行くエリア', getExtendedProfileValue(profile, ['frequent_area', 'frequentArea', 'play_area', 'playArea'])],
     ['ホームコース', getExtendedProfileValue(profile, ['home_course', 'homeCourse'])],
     ['肩書', getExtendedProfileValue(profile, ['title', 'role_title', 'roleTitle', 'profile_title', 'profileTitle'])],
   ].filter(Boolean) as Array<[string, string]>;
-  const visibleProfileFields = profileFields.filter(([, value]) => value && value !== '-');
+  const visibleProfileFields = newProfileFields.filter(([, value]) => value && value !== '-');
+  const fallbackProfileFields = [
+    canShow(profile, 'favorite_club') ? ['得意クラブ', formatValue(profile.favorite_club)] : null,
+    canShow(profile, 'weak_club') ? ['苦手クラブ', formatValue(profile.weak_club)] : null,
+    canShow(profile, 'current_issue') ? ['今の悩み', formatValue(profile.current_issue)] : null,
+    canShow(profile, 'head_speed') ? ['ヘッドスピード', formatValue(profile.head_speed, 'm/s')] : null,
+  ].filter(Boolean) as Array<[string, string]>;
+  const publicProfileFields = visibleProfileFields.length > 0
+    ? [...visibleProfileFields, ...fallbackProfileFields.filter(([, value]) => value && value !== '-').slice(0, Math.max(0, 4 - visibleProfileFields.length))]
+    : fallbackProfileFields.filter(([, value]) => value && value !== '-');
 
   const handleSignupClick = () => {
     trackEvent('public_page_signup_click', {
@@ -424,14 +475,14 @@ export const GolfIdPublicPage = () => {
             )}
 
             <div className="grid gap-5 lg:grid-cols-[1fr_1fr]">
-            {visibleProfileFields.length > 0 && (
+            {publicProfileFields.length > 0 && (
               <section className="rounded-[1.4rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
                 <h2 className="flex items-center gap-2 text-lg font-black text-emerald-950">
                   <UserRound className="h-5 w-5 text-emerald-700" />
                   Golf Profile
                 </h2>
                 <dl className="mt-3 grid grid-cols-2 gap-2">
-                  {visibleProfileFields.map(([label, value]) => (
+                  {publicProfileFields.map(([label, value]) => (
                     <div key={label} className="rounded-2xl bg-[#F7F8F5] px-4 py-3 shadow-sm ring-1 ring-black/5">
                       <dt className="text-[11px] font-black text-emerald-800">{label}</dt>
                       <dd className="mt-1 whitespace-pre-wrap text-sm font-black leading-6 text-slate-900">{value}</dd>

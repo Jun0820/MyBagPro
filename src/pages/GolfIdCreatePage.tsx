@@ -25,6 +25,29 @@ import {
 
 const GOLF_PROFILE_TABLE = 'golf_profiles';
 
+const isMissingGolfProfileColumnError = (error: { code?: string; message?: string } | null) =>
+  error?.code === 'PGRST204' || /Could not find .* column|schema cache/i.test(error?.message || '');
+
+const toCompatibleGolfProfilePayload = (payload: Record<string, unknown>) => ({
+  ...(payload.id ? { id: payload.id } : {}),
+  user_id: payload.user_id,
+  username: payload.username,
+  nickname: payload.nickname,
+  best_score: payload.best_score,
+  average_score: payload.average_score,
+  target_score: payload.target_score,
+  head_speed: payload.head_speed,
+  golf_history: payload.golf_history,
+  favorite_club: payload.favorite_club,
+  weak_club: payload.weak_club,
+  current_issue: payload.current_issue,
+  club_setting: payload.club_setting,
+  social_links: payload.social_links,
+  visibility: payload.visibility,
+  diagnosis_result: payload.diagnosis_result,
+  is_public: payload.is_public,
+});
+
 const initialForm: GolfIdFormData = {
   username: '',
   nickname: '',
@@ -482,6 +505,14 @@ export const GolfIdCreatePage = () => {
       saveError = result.error;
       if (saveError && isMissingGolfProfilesTableError(saveError)) {
         useLegacyStorage = true;
+      } else if (saveError && isMissingGolfProfileColumnError(saveError)) {
+        const compatibleResult = await supabase
+          .from(GOLF_PROFILE_TABLE)
+          .upsert(toCompatibleGolfProfilePayload(payload))
+          .select('id,username')
+          .single();
+        data = compatibleResult.data as { id?: string; username?: string } | null;
+        saveError = compatibleResult.error;
       }
     }
 
