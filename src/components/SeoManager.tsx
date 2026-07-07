@@ -23,7 +23,7 @@ const getRouteSeoMap = (): Record<string, { title: string; description: string; 
       description: brand.description,
       keywords:
         brand.brand === 'golfid'
-          ? ['Golf ID', 'ゴルフ ID', 'AI ゴルフ診断', 'クラブセッティング', 'ゴルフ SNS プロフィール']
+          ? ['Golf ID', 'ゴルフ ID', 'ゴルフ プロフィール', 'ゴルフ SNS プロフィール', 'QR共有']
           : ['MyBagPro', 'クラブセッティング', 'プロ 使用クラブ', 'ゴルフ WITB', '女子プロ クラブセッティング'],
       image: '/article-visuals/golf-bag-course.jpg',
     },
@@ -39,8 +39,8 @@ const getRouteSeoMap = (): Record<string, { title: string; description: string; 
     },
     '/explore': {
       title: 'みんなのGolf IDを見る',
-      description: '公開されているGolf IDから、スコア、目標、ヘッドスピード、悩みを見て自分に近いゴルファーを探せます。',
-      keywords: ['Golf ID 一覧', 'ゴルフ プロフィール', 'ゴルフ SNS プロフィール', 'AI ゴルフ診断'],
+      description: '公開されているGolf IDから、スコア、ヘッドスピード、My Bag、SNSリンクの見せ方を参考にできます。',
+      keywords: ['Golf ID 一覧', 'ゴルフ プロフィール', 'ゴルフ SNS プロフィール', 'QR共有'],
     },
     '/clubs/drivers': {
       title: '人気ドライバー一覧',
@@ -62,8 +62,8 @@ const getRouteSeoMap = (): Record<string, { title: string; description: string; 
       noindex: true,
     },
     '/diagnosis': {
-      title: 'AI診断',
-      description: 'クラブセッティングやボールのAI診断ページです。',
+      title: 'クラブ診断',
+      description: 'My Bagをもとに、クラブ構成、番手間ギャップ、シャフト、ロフト、飛距離バランスを分析します。',
       noindex: true,
     },
     '/ball-diagnosis': {
@@ -78,8 +78,8 @@ const getRouteSeoMap = (): Record<string, { title: string; description: string; 
     },
     '/create': {
       title: 'Golf IDを作る',
-      description: 'クラブ、スコア、悩み、目標をまとめてGolf IDを作成します。',
-      keywords: ['Golf ID 作成', 'ゴルフ プロフィール', 'ゴルフ SNS プロフィール', 'AI ゴルフ診断'],
+      description: 'スコア、クラブ、SNSリンク、QRをまとめて、共有できるGolf IDを作成します。',
+      keywords: ['Golf ID 作成', 'ゴルフ プロフィール', 'ゴルフ SNS プロフィール', 'QR共有'],
     },
     '/mybag/create': {
       title: 'Golf IDを作る',
@@ -123,8 +123,8 @@ const getSeoForPath = (pathname: string) => {
     return {
       title: username ? `${username}のGolf ID` : 'Golf ID',
       description: username
-        ? `${username}さんのGolf ID。スコア、目標、ヘッドスピード、悩み、クラブセッティング、AI上達診断の次の一手をまとめています。`
-        : 'スコア、クラブセッティング、ゴルフの悩みをまとめた公開Golf IDページです。',
+        ? `${username}さんのGolf ID。スコア、ヘッドスピード、Golf Profile、SNSリンク、My Bagをまとめた共有プロフィールです。`
+        : 'スコア、クラブセッティング、SNSリンクをまとめた公開Golf IDページです。',
     };
   }
 

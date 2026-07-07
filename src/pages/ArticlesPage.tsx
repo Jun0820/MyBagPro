@@ -118,7 +118,7 @@ export const ArticlesPage = () => {
             <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
             <h2 className="mt-2 text-xl font-black md:text-2xl">このクラブ、あなたにも合う？</h2>
             <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
-              Golf IDを作って、AI上達診断を受けると、自分のスコア・悩み・クラブ構成から次に見直すポイントを整理できます。
+              Golf IDを作ると、スコア・My Bag・SNSリンクを1ページにまとめて共有できます。クラブ構成の詳しい診断はMyBagProで確認できます。
             </p>
           </div>
           <a

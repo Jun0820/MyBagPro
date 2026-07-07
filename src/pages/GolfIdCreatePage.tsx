@@ -564,10 +564,10 @@ export const GolfIdCreatePage = () => {
       ? 'あなたのGolf IDを更新'
       : 'あなたのGolf IDを作ろう。';
   const heroDescription = isMyPageProfile
-    ? 'ここで保存した内容が、公開Golf IDページに反映されます。スコア、悩み、クラブ、SNSリンクを整えて、プロフィールに貼れるページにしましょう。'
-    : '3分で、自分のゴルフの現在地と発信リンクを1ページに。作ったGolf IDはSNSプロフィールに貼れます。';
+    ? 'ここで保存した内容が、公開Golf IDページに反映されます。スコア、クラブ、SNSリンクを整えて、プロフィールに貼れるページにしましょう。'
+    : '3分で、スコア・クラブ・SNSリンクを1ページに。作ったGolf IDはプロフィール欄やLINEで共有できます。';
   const shareTitle = `${form.nickname.trim() || normalizedUsername || 'あなた'}のGolf ID`;
-  const shareText = '自分のGolf IDを作りました。\nクラブ・スコア・悩み・目標・SNSリンクをまとめています。';
+  const shareText = '自分のGolf IDを作りました。\nスコア・クラブ・SNSリンクをまとめたゴルフ用プロフィールです。';
 
   return (
     <main className={golfIdDesign.page}>
@@ -689,7 +689,7 @@ export const GolfIdCreatePage = () => {
           <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(2)}`}>
             <p className={golfIdDesign.badgeLight}>STEP 2 / Score</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">スコア・目標</h2>
-            <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。診断の精度が上がります。</p>
+            <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。公開ページのプロフィールカードに反映されます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">レディースティ ベスト</span>
@@ -726,7 +726,7 @@ export const GolfIdCreatePage = () => {
           <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(3)}`}>
             <p className={golfIdDesign.badgeLight}>STEP 3 / My Golf</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブ・悩み</h2>
-            <p className="text-xs font-bold text-slate-500">まずは得意クラブ、苦手クラブ、悩みだけでも入力できます。</p>
+            <p className="text-xs font-bold text-slate-500">コーチやフィッターに共有したい内容だけ入力できます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5 sm:col-span-2">
                 <span className="text-xs font-black text-slate-600">今の悩み</span>

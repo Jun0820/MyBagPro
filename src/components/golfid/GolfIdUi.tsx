@@ -112,7 +112,6 @@ export const GolfIdPreviewCard = ({
   weakClub,
   clubLines = [],
   socialLabels = [],
-  nextAction,
   className = '',
 }: {
   nickname?: string;
@@ -126,7 +125,6 @@ export const GolfIdPreviewCard = ({
   weakClub?: string | null;
   clubLines?: string[];
   socialLabels?: Array<{ label: string; platform?: keyof typeof socialIconMap }>;
-  nextAction?: string | null;
   className?: string;
 }) => {
   const handle = username || 'username';
@@ -147,7 +145,7 @@ export const GolfIdPreviewCard = ({
           <div className="mt-5 grid grid-cols-4 gap-2">
             {[
               ['Best', bestScore],
-              ['Target', targetScore],
+              ['Goal', targetScore],
               ['Avg', averageScore],
               ['HS', headSpeed],
             ].map(([label, value]) => (
@@ -159,8 +157,8 @@ export const GolfIdPreviewCard = ({
           </div>
 
           <div className="mt-4 rounded-2xl bg-[#D7B56D] p-4 text-[#0B0F0D]">
-            <p className="text-[11px] font-black uppercase tracking-[0.16em]">Next Action</p>
-            <p className="mt-2 text-sm font-black leading-6">{nextAction || '入力内容をもとに、あなたの次の一手を表示します。'}</p>
+            <p className="text-[11px] font-black uppercase tracking-[0.16em]">Share Card</p>
+            <p className="mt-2 text-sm font-black leading-6">QRやURLで、コーチ・フィッター・同伴者にあなたのゴルフを共有できます。</p>
           </div>
         </div>
       </div>

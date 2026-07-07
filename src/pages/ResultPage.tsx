@@ -1204,7 +1204,7 @@ export const ResultPage = () => {
                         <button
                             onClick={() => {
                                 const topModel = result.rankings[0];
-                                const shareText = `🏌️ Golf ID AI診断結果\n\n⛳ 推奨: ${topModel?.modelName || '—'} (${topModel?.brand || '—'})\n📊 適合率: ${topModel?.matchPercentage?.toFixed(1) || '—'}%\n🎯 スイングDNA: ${result.userSwingDna?.type || '—'}\n\n▶ あなたも無料で診断してみよう！`;
+                                const shareText = `🏌️ MyBagPro診断結果\n\n⛳ 推奨: ${topModel?.modelName || '—'} (${topModel?.brand || '—'})\n📊 適合率: ${topModel?.matchPercentage?.toFixed(1) || '—'}%\n🎯 スイングDNA: ${result.userSwingDna?.type || '—'}\n\n▶ あなたも無料でクラブ診断してみよう！`;
                                 const shareUrl = typeof window !== 'undefined' ? window.location.origin : '';
                                 const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
                                 window.open(url, '_blank', 'width=550,height=420');

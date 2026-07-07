@@ -866,7 +866,7 @@ export const AdminDashboard = () => {
             ))}
           </nav>
           <div className="mt-8 rounded-xl bg-emerald-50 p-4 text-xs font-bold leading-6 text-emerald-900">
-            成長ループは「ページ作成 → AI診断 → SNS公開 → 新規登録」で見ます。0が続く項目はイベント計測の追加候補です。
+            成長ループは「Golf ID作成 → 共有 → 新規登録」と「MyBagPro診断 → 詳細閲覧 → 共有」で分けて見ます。0が続く項目はイベント計測の追加候補です。
           </div>
         </aside>
 

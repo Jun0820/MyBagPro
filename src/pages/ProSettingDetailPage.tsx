@@ -682,7 +682,7 @@ export const ProSettingDetailPage = () => {
             <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
             <h2 className="mt-2 text-xl font-black md:text-2xl">このクラブ、あなたにも合う？</h2>
             <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
-              {setting.name}のセッティングを参考にしながら、クラブ・スコア・悩みをまとめてあなたの次の一手を診断できます。
+              {setting.name}のセッティングを参考にしながら、自分のMy BagやスコアをGolf IDで共有できます。詳しいクラブ診断はMyBagProで確認できます。
             </p>
           </div>
           <a

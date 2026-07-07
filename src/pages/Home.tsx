@@ -3,8 +3,9 @@ import {
   BarChart3,
   CheckCircle2,
   ClipboardList,
+  QrCode,
   Search,
-  Sparkles,
+  Share2,
   Trophy,
   UsersRound,
 } from 'lucide-react';
@@ -22,24 +23,30 @@ const getPrimaryMoves = (brand: ReturnType<typeof getBrandConfig>) =>
     ? [
         {
           title: 'Golf IDを作る',
-          text: 'クラブ、スコア、悩み、目標をまとめて自分のゴルフを見える化します。',
+          text: 'スコア、クラブ、SNSリンクをまとめて、プロフィールに貼れるゴルフ名刺を作ります。',
           href: '/create',
           icon: ClipboardList,
         },
         {
-          title: 'AI上達診断',
-          text: 'ミス傾向と距離の階段から、次に直すクラブを整理します。',
-          href: '/diagnosis',
-          icon: Sparkles,
+          title: 'QRで共有する',
+          text: '同伴者、コーチ、フィッターにURLやQRであなたのゴルフ情報を渡せます。',
+          href: '/create',
+          icon: QrCode,
         },
         {
-          title: '公開ページを見る',
-          text: 'ほかのゴルファーのセッティングや公開Golf IDを参考にできます。',
+          title: 'みんなのGolf IDを見る',
+          text: '公開Golf IDから、スコア、クラブ、SNSリンクの見せ方を参考にできます。',
           href: '/explore',
           icon: UsersRound,
         },
       ]
     : [
+        {
+          title: 'クラブ診断を始める',
+          text: 'My Bagを登録して、番手間ギャップやシャフト/ロフト/飛距離バランスを分析します。',
+          href: '/diagnosis',
+          icon: BarChart3,
+        },
         {
           title: 'プロの14本を見る',
           text: '日本女子、男子、海外プロのクラブセッティングを確認できます。',
@@ -47,16 +54,10 @@ const getPrimaryMoves = (brand: ReturnType<typeof getBrandConfig>) =>
           icon: Trophy,
         },
         {
-          title: 'クラブ選びの記事',
-          text: '番手構成、UT、7W、ボール選びなどの記事から探せます。',
-          href: '/articles',
-          icon: Search,
-        },
-        {
-          title: 'Golf IDで診断する',
-          text: '気になるクラブ選びを自分のデータとAI診断につなげます。',
+          title: 'Golf IDで共有する',
+          text: '診断結果やMy Bagの要約を、共有プロフィールとして見せられます。',
           href: 'https://golfid.jp/create',
-          icon: Sparkles,
+          icon: Share2,
         },
       ];
 
@@ -85,26 +86,26 @@ const featuredLinks = [
 ];
 
 const statItems = [
-  { label: 'プロセッティング', value: '掲載中', icon: Trophy },
-  { label: 'Golf ID', value: '共有対応', icon: ClipboardList },
-  { label: 'AI診断', value: '無料', icon: BarChart3 },
+  { label: 'Golf ID', value: '共有プロフィール', icon: ClipboardList },
+  { label: 'QR / SNS', value: '共有対応', icon: QrCode },
+  { label: 'MyBagPro', value: '診断へ連携', icon: BarChart3 },
 ];
 
 const getBrandSections = (brand: ReturnType<typeof getBrandConfig>) =>
   brand.brand === 'golfid'
     ? [
-        ['Golf IDでできること', 'クラブ、スコア、悩み、目標をひとつにまとめ、公開範囲を選んで共有できます。'],
-        ['AI上達診断でわかること', '飛距離の階段、ミス傾向、クラブ構成から、次に見直すポイントを整理します。'],
-        ['公開Golf IDサンプル', 'ほかのゴルファーのセッティングを見て、自分に近い構成を探せます。'],
-        ['Player Card共有', 'SNSプロフィールに貼れる公開ページとカードで、自分のゴルフを伝えやすくします。'],
-        ['無料作成CTA', 'まずは1本のクラブや使用ボールだけでも登録して始められます。'],
+        ['Golf IDでできること', '名前、スコア、クラブ、SNSリンク、QRをひとつの共有プロフィールにまとめられます。'],
+        ['QR共有', '同伴者、コーチ、フィッターに、ラウンド前や相談前の自己紹介カードとして渡せます。'],
+        ['コーチ/フィッター共有', '一般公開とは別に、悩みやクラブ情報を共有する用途へ拡張できる設計です。'],
+        ['MyBagPro診断済みバッジ', '詳細診断はMyBagProで行い、Golf IDには要約や診断済み表示だけを載せます。'],
+        ['SNSプロフィールに貼る', 'Instagram、TikTok、X、LINE、YouTubeなどから見に来てもらえる入口になります。'],
       ]
     : [
         ['プロのクラブセッティング', '日本女子、男子、海外プロの14本を、使用確認時期やソースと一緒に確認できます。'],
-        ['インフルエンサーのギア', '人気ゴルファーのリアルなクラブ構成やSNS導線を見られます。'],
-        ['みんなのセッティング', '一般ゴルファーの公開セッティングから、自分に近い番手構成を探せます。'],
+        ['My Bag診断', '自分のクラブ構成を登録して、番手間ギャップ、シャフト重量、ロフト、飛距離の流れを分析します。'],
+        ['比較する', 'プロや一般ゴルファーのセッティングと、自分のクラブ構成を比較できます。'],
         ['クラブ選びの記事', '5番アイアン、UT、7W、ボールなど、悩みからクラブ選びを深掘りできます。'],
-        ['Golf ID作成CTA', '気になるセッティングを見たら、Golf IDで自分のクラブ診断へ進めます。'],
+        ['Golf IDへ反映', '診断結果の要約やMy Bagを、共有用のGolf IDに反映できます。'],
       ];
 
 const shortcutLinks = [
@@ -200,7 +201,7 @@ export const Home = () => {
               </h1>
               <p className="mt-4 max-w-2xl whitespace-pre-line text-sm leading-7 text-white/82 md:mt-5 md:text-lg md:leading-8">
                 {brand.brand === 'golfid'
-                  ? 'クラブ、スコア、悩み、目標、SNSリンクをまとめると、\nAIがあなたの“次の一手”を提案。\n作ったGolf IDはSNSプロフィールに貼って共有できます。'
+                  ? 'スコア、クラブ、SNSリンク、QRをひとつに。\nコーチにも、フィッターにも、同伴者にも。\nあなたのゴルフをすぐ共有できるプロフィールIDです。'
                   : brand.description}
               </p>
               {brand.brand === 'mybagpro' && (
@@ -278,7 +279,6 @@ export const Home = () => {
                     { label: 'TikTok', platform: 'tiktok' },
                     { label: 'X', platform: 'x' },
                   ]}
-                  nextAction="180〜200yの番手を安定させるため、UTと7Wの役割を分けましょう。"
                 />
               </div>
             )}
@@ -340,16 +340,16 @@ export const Home = () => {
             <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
               <div>
                 <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
-                <h2 className="mt-2 text-xl font-black md:text-2xl">このクラブ、あなたにも合う？</h2>
+                <h2 className="mt-2 text-xl font-black md:text-2xl">診断結果を、Golf IDで共有する。</h2>
                 <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
-                  Golf IDを作って、AI上達診断を受けると、気になるプロのセッティングを自分の距離・悩みに置き換えて考えられます。
+                  MyBagProで分析したMy Bagや診断の要約を、コーチ・フィッター・同伴者に渡せるプロフィールとして整理できます。
                 </p>
               </div>
               <button
                 onClick={() => openHref('https://golfid.jp/create')}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
               >
-                無料でGolf IDを作る
+                Golf IDを作成する
                 <ArrowRight size={16} />
               </button>
             </div>
@@ -361,7 +361,7 @@ export const Home = () => {
         <section className="mx-auto mt-7 grid max-w-[1380px] gap-4 md:mt-10 lg:grid-cols-[1fr_1fr]">
           <div className="rounded-lg bg-white p-5 shadow-sm ring-1 ring-slate-200 md:p-6">
             <div className="text-[11px] font-black uppercase tracking-[0.18em] text-[#176534]">Public Golf ID</div>
-            <h2 className="mt-2 text-2xl font-black tracking-tight text-[#111827] md:text-3xl">SNSプロフィールに貼れる形で残す。</h2>
+            <h2 className="mt-2 text-2xl font-black tracking-tight text-[#111827] md:text-3xl">SNSプロフィールに貼れるゴルフ名刺。</h2>
             <div className="mt-5 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -369,7 +369,7 @@ export const Home = () => {
                   <p className="mt-1 text-xs font-bold text-slate-500">golfid.jp/u/taro-golf</p>
                 </div>
                 <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black text-emerald-800 ring-1 ring-emerald-100">
-                  100切り目標
+                  QR共有対応
                 </span>
               </div>
               <div className="mt-4 grid grid-cols-3 gap-2 text-center">
@@ -378,26 +378,26 @@ export const Home = () => {
                   <p className="text-xl font-black text-emerald-700">96</p>
                 </div>
                 <div className="rounded-xl bg-white p-3 ring-1 ring-slate-100">
-                  <p className="text-[10px] font-black text-slate-500">目標</p>
-                  <p className="text-xl font-black text-emerald-700">89</p>
+                  <p className="text-[10px] font-black text-slate-500">平均</p>
+                  <p className="text-xl font-black text-emerald-700">92</p>
                 </div>
                 <div className="rounded-xl bg-white p-3 ring-1 ring-slate-100">
                   <p className="text-[10px] font-black text-slate-500">HS</p>
                   <p className="text-xl font-black text-emerald-700">41</p>
                 </div>
               </div>
-              <p className="mt-4 text-sm font-semibold leading-7 text-slate-700">ドライバーが右に出る。180y前後の番手を安定させたい。</p>
+              <p className="mt-4 text-sm font-semibold leading-7 text-slate-700">よく行くエリア、My Bag、SNSリンクを1ページで共有できます。</p>
             </div>
           </div>
 
           <div className="rounded-lg bg-emerald-950 p-5 text-white shadow-sm ring-1 ring-emerald-900/40 md:p-6">
-            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-200">AI Diagnosis</div>
-            <h2 className="mt-2 text-2xl font-black tracking-tight md:text-3xl">次の一手まで、言葉にする。</h2>
+            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-200">Share Modes</div>
+            <h2 className="mt-2 text-2xl font-black tracking-tight md:text-3xl">コーチにも、フィッターにも渡せる。</h2>
             <div className="mt-5 space-y-3">
               {[
-                ['今の状態', '右ミスと距離ギャップが同時に出ている状態です。'],
-                ['優先課題', 'ドライバーより先に、180〜200yの番手を安定させましょう。'],
-                ['次の一手', '5Iを無理に使わず、UTか7Wで高さを作る構成を検討します。'],
+                ['ラウンド用', '同伴者にスコア、ホームコース、SNSを簡単に共有。'],
+                ['コーチ用', '悩み、目標、得意/苦手クラブ、動画URLを渡す想定。'],
+                ['フィッター用', 'ヘッドスピード、クラブ、シャフト、飛距離を見せる想定。'],
               ].map(([label, text]) => (
                 <div key={label} className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/10">
                   <p className="text-xs font-black text-emerald-100">{label}</p>
@@ -409,7 +409,7 @@ export const Home = () => {
               onClick={() => openHref('/create')}
               className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-50"
             >
-              無料でGolf IDを作る
+              Golf IDを作成する
               <ArrowRight size={16} />
             </button>
           </div>
@@ -424,7 +424,7 @@ export const Home = () => {
           </h2>
           <p className="mt-3 text-sm leading-7 text-slate-600 md:text-base md:leading-8">
             {brand.brand === 'golfid'
-              ? 'クラブ、スコア、悩み、目標をまとめることで、診断、公開ページ、SNS共有まで一つの流れで使えます。見せたい項目だけ公開できます。'
+              ? 'スコア、クラブ、SNSリンク、QRをまとめることで、ラウンド前、レッスン前、フィッティング前に自分のゴルフを伝えやすくなります。見せたい項目だけ公開できます。'
               : 'プロや人気ゴルファーの使用クラブは参考になります。ただし、そのまま真似るだけではヘッドスピード、球筋、距離の階段が合わないこともあります。MyBagProでは、14本の意図を読み取り、自分のクラブ選びに活かせるように整理します。'}
           </p>
           <button
@@ -485,8 +485,8 @@ export const Home = () => {
             <div className="text-xl font-black tracking-tight md:text-3xl">まずは1本だけでも登録できます。</div>
             <div className="mt-2 text-sm leading-7 text-white/74">
               {brand.brand === 'golfid'
-                ? 'ドライバー、7I、ウェッジ、ボールからでも大丈夫です。登録した情報は診断とGolf IDに反映されます。'
-                : '記事やプロのセッティングを見たら、自分のGolf IDを作ってAI上達診断につなげられます。'}
+                ? '名前、スコア、My Bag、SNSリンクから始められます。作成したURLはプロフィール欄やLINEで共有できます。'
+                : '記事やプロのセッティングを見たら、My Bagを登録してクラブ構成を診断できます。必要な要約だけGolf IDで共有できます。'}
             </div>
           </div>
           <div className="grid gap-2 sm:grid-cols-2 md:min-w-[360px]">

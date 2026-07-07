@@ -108,22 +108,37 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const brand = getBrandConfig();
 
   const navItems = useMemo(
-    () => [
-      { label: 'プロのセッティング', href: '/pros' },
-      { label: 'クラブ診断', href: '/diagnosis' },
-      { label: '記事・コラム', href: '/articles' },
-    ],
-    []
+    () =>
+      brand.brand === 'golfid'
+        ? [
+            { label: 'Golf IDとは', href: '/' },
+            { label: '作成する', href: '/create' },
+            { label: 'みんなのGolf ID', href: '/explore' },
+          ]
+        : [
+            { label: 'プロのセッティング', href: '/pros' },
+            { label: 'クラブ診断', href: '/diagnosis' },
+            { label: '記事・コラム', href: '/articles' },
+          ],
+    [brand.brand]
   );
 
   const mobileItems = useMemo(
-    () => [
-      { label: 'ホーム', href: '/', icon: HomeIcon, kind: 'route' as const },
-      { label: '診断', href: '/diagnosis', icon: Stethoscope, kind: 'route' as const },
-      { label: 'マイページ', href: '/mypage', icon: User, kind: 'route' as const },
-      { label: 'メニュー', href: '#menu', icon: Menu, kind: 'menu' as const },
-    ],
-    []
+    () =>
+      brand.brand === 'golfid'
+        ? [
+            { label: 'ホーム', href: '/', icon: HomeIcon, kind: 'route' as const },
+            { label: '作成', href: '/create', icon: User, kind: 'route' as const },
+            { label: '見る', href: '/explore', icon: Search, kind: 'route' as const },
+            { label: 'メニュー', href: '#menu', icon: Menu, kind: 'menu' as const },
+          ]
+        : [
+            { label: 'ホーム', href: '/', icon: HomeIcon, kind: 'route' as const },
+            { label: '診断', href: '/diagnosis', icon: Stethoscope, kind: 'route' as const },
+            { label: 'マイページ', href: '/mypage', icon: User, kind: 'route' as const },
+            { label: 'メニュー', href: '#menu', icon: Menu, kind: 'menu' as const },
+          ],
+    [brand.brand]
   );
 
   const closeAuthFlow = useCallback(() => {
@@ -322,6 +337,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </button>
             <button
               onClick={() => {
+                if (brand.brand === 'golfid') {
+                  navigate(user.isLoggedIn ? '/mypage/profile' : '/create');
+                  return;
+                }
                 if (user.isLoggedIn) {
                   navigate('/diagnosis');
                   return;
@@ -330,7 +349,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               }}
               className="inline-flex h-11 items-center justify-center rounded-xl bg-[#1c6a3d] px-4 text-sm font-black text-white shadow-[0_18px_32px_-24px_rgba(22,101,52,0.95)] transition hover:bg-[#155d35] md:px-6"
             >
-              {user.isLoggedIn ? 'クラブ診断をはじめる' : '無料登録して診断'}
+              {brand.brand === 'golfid'
+                ? user.isLoggedIn
+                  ? 'Golf IDを編集'
+                  : 'Golf IDを作る'
+                : user.isLoggedIn
+                  ? 'クラブ診断をはじめる'
+                  : '無料登録して診断'}
             </button>
           </div>
 
@@ -384,6 +409,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
+                if (brand.brand === 'golfid') {
+                  navigate(user.isLoggedIn ? '/mypage/profile' : '/create');
+                  return;
+                }
                 if (user.isLoggedIn) {
                   navigate('/diagnosis');
                   return;
@@ -392,7 +421,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               }}
               className="inline-flex min-h-10 items-center justify-center rounded-2xl bg-[#1c6a3d] px-4 text-sm font-black text-white"
             >
-              {user.isLoggedIn ? '診断を始める' : '無料登録して診断'}
+              {brand.brand === 'golfid'
+                ? user.isLoggedIn
+                  ? 'Golf ID編集'
+                  : 'IDを作る'
+                : user.isLoggedIn
+                  ? '診断を始める'
+                  : '無料登録して診断'}
             </button>
           </div>
         </div>
@@ -414,8 +449,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </button>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/72">
               {brand.brand === 'golfid'
-                ? 'クラブ、スコア、悩み、目標をまとめ、AI診断とSNS共有につなげるゴルフサービスです。'
-                : 'プロのセッティングとあなたのデータをつなぎ、診断・購入判断まで一気通貫で支えるゴルフサイトです。'}
+                ? 'スコア、クラブ、SNSリンク、QRを1ページにまとめ、コーチ・フィッター・仲間に共有できるゴルフ用プロフィールです。'
+                : 'プロのセッティングとあなたのデータをつなぎ、クラブ診断・比較・購入判断まで支えるゴルフサイトです。'}
             </p>
           </div>
 

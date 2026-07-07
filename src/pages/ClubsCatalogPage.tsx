@@ -125,9 +125,9 @@ export const ClubsCatalogPage = () => {
 
       <section className="mt-8 rounded-[1.7rem] bg-[#0B0F0D] p-5 text-white">
         <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[#C7A45D]">Golf ID</p>
-        <h2 className="mt-2 text-2xl font-black">Golf IDを作って、AI上達診断を受ける</h2>
+        <h2 className="mt-2 text-2xl font-black">気になるクラブを、あなたのGolf IDへ。</h2>
         <p className="mt-2 text-sm font-semibold leading-7 text-white/70">
-          気になるクラブを見つけたら、自分のスコア・悩み・使用クラブと合わせて診断できます。
+          スコア・My Bag・SNSリンクを1ページにまとめて、コーチやフィッターに共有できます。詳しいクラブ診断はMyBagProで確認できます。
         </p>
         <a href="https://golfid.jp/create" className="mt-4 inline-flex min-h-12 items-center justify-center rounded-2xl bg-white px-5 text-sm font-black text-[#0B0F0D]">
           無料でGolf IDを作る

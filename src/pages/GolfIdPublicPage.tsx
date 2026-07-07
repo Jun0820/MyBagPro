@@ -352,7 +352,7 @@ export const GolfIdPublicPage = () => {
     });
   const publicUrl = `https://golfid.jp/u/${profile.username}`;
   const shareTitle = `${profile.nickname || profile.username}のGolf ID`;
-  const shareText = '自分のGolf IDを作りました。\nクラブ・スコア・悩み・目標・SNSリンクをまとめています。';
+  const shareText = '自分のGolf IDを作りました。\nスコア・クラブ・SNSリンクをまとめたゴルフ用プロフィールです。';
   const socialLinkItems = getSocialLinkItems(profile);
   const customLinkItems = getCustomLinkItems(profile);
   const bestScores = canShow(profile, 'best_score') ? getBestScores(profile) : [];

@@ -1,5 +1,45 @@
 [
   {
+    "id": "79c1deb2-71c0-487b-920a-c8e7ab3511a1",
+    "user_id": "79c1deb2-71c0-487b-920a-c8e7ab3511a1",
+    "username": "ryugolf",
+    "nickname": "ryugolf",
+    "best_score": null,
+    "average_score": null,
+    "target_score": null,
+    "head_speed": 46,
+    "golf_history": "6年",
+    "favorite_club": null,
+    "weak_club": null,
+    "current_issue": null,
+    "club_setting": "1W\n5W\n4U\n5I\n6I\n7I\n8I\n9I\nPW\n50°\n58°\n54°\nPT",
+    "social_links": {
+      "youtube": "",
+      "instagram": "",
+      "tiktok": "",
+      "x": "",
+      "custom1": {
+        "label": "",
+        "url": ""
+      },
+      "custom2": {
+        "label": "",
+        "url": ""
+      }
+    },
+    "visibility": {},
+    "diagnosis_result": {
+      "diagnosisType": "クラブ見直しタイプ",
+      "currentStatus": "登録済みのクラブ、スコア、ヘッドスピードをもとに現在地を整理できます。",
+      "priorityIssue": "まずはGolf IDの項目を埋めて、クラブ構成と目標スコアを見比べましょう。",
+      "nextAction": "クラブセッティングとスコア目標を1ページにまとめ、次に見直す番手を明確にしましょう。",
+      "notRecommendedNow": "いきなり全クラブを買い替えるより、距離階段と苦手番手から確認しましょう。",
+      "gearSuggestion": "クラブ構成の抜けや距離差を確認しましょう。"
+    },
+    "is_public": true,
+    "updated_at": "2026-07-06T12:52:54.959+00:00"
+  },
+  {
     "id": "1f2c4411-c515-4d2e-a0f7-ed8a3abfb4f2",
     "user_id": "1f2c4411-c515-4d2e-a0f7-ed8a3abfb4f2",
     "username": "tommy",

@@ -13,10 +13,10 @@ export const Sitemap = () => {
             ]
         },
         {
-            title: 'AI診断機能',
+            title: 'MyBagPro診断機能',
             items: [
-                { name: 'AIクラブ診断', path: '/diagnosis', icon: <Target size={18} /> },
-                { name: 'AIボール診断', path: '/ball-diagnosis', icon: <Target size={18} /> },
+                { name: 'クラブ診断', path: '/diagnosis', icon: <Target size={18} /> },
+                { name: 'ボール診断', path: '/ball-diagnosis', icon: <Target size={18} /> },
                 { name: '診断結果表示', path: '/result', icon: <ClipboardList size={18} /> },
             ]
         },

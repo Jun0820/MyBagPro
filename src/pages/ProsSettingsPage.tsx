@@ -299,7 +299,7 @@ export const ProsSettingsPage = () => {
             <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
             <h2 className="mt-2 text-xl font-black md:text-2xl">このクラブ、あなたにも合う？</h2>
             <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
-              Golf IDを作って、AI上達診断を受けると、プロの14本をそのまま真似るのではなく、自分の距離・悩みに合わせて見直せます。
+              気になるプロの14本を見つけたら、自分のスコア・My Bag・SNSリンクをGolf IDにまとめて共有できます。詳しいクラブ診断はMyBagProで確認できます。
             </p>
           </div>
           <a

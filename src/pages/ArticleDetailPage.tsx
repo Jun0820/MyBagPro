@@ -396,7 +396,7 @@ export const ArticleDetailPage = () => {
               <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-200">Golf ID</div>
               <h2 className="mt-1.5 text-lg font-black md:text-xl">このクラブ、あなたにも合う？</h2>
               <p className="mt-2 text-sm font-semibold leading-6 text-emerald-50">
-                クラブ・スコア・悩みをまとめて、あなたの次の一手を診断できます。
+                スコア・My Bag・SNSリンクをまとめて、コーチやフィッターに共有できるGolf IDを作れます。
               </p>
             </div>
             <a
