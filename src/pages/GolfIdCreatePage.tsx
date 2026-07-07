@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { CheckCircle2, Eye, EyeOff, Loader2, Share2, UserRound } from 'lucide-react';
+import { CheckCircle2, ClipboardList, Eye, EyeOff, Loader2, QrCode, Share2, UserRound, UsersRound } from 'lucide-react';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { supabase } from '../lib/supabase';
@@ -928,6 +928,28 @@ export const GolfIdCreatePage = () => {
             <p className="mt-3 break-all rounded-xl bg-white/10 p-3 text-sm font-bold text-white">{publicUrl}</p>
             <p className="mt-3 text-xs font-semibold leading-6 text-slate-300">SNSプロフィールや自己紹介に貼るためのGolf IDページです。</p>
           </div>
+          <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
+            <p className={golfIdDesign.badgeLight}>Use Case</p>
+            <h2 className="mt-3 text-base font-black text-slate-950">作ったGolf IDは、すぐ共有できます。</h2>
+            <div className="mt-3 grid gap-2">
+              {[
+                { label: 'SNSプロフィールに貼る', icon: Share2 },
+                { label: 'ラウンド前にLINEで送る', icon: UsersRound },
+                { label: 'コーチ・フィッターに渡す', icon: ClipboardList },
+                { label: 'QRでその場で見せる', icon: QrCode },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.label} className="flex items-center gap-3 rounded-2xl bg-[#F5F7F4] px-3 py-2.5 ring-1 ring-black/5">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-emerald-800 ring-1 ring-black/5">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="text-xs font-black text-slate-700">{item.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
           {existingId && normalizedUsername && (
             <SharePanel
               url={publicUrl}
@@ -942,7 +964,7 @@ export const GolfIdCreatePage = () => {
             />
           )}
           <div className="sticky top-24 rounded-[1.7rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
-            <h2 className="text-base font-black text-slate-950">Live Golf ID Preview</h2>
+            <h2 className="text-base font-black text-slate-950">公開ページプレビュー</h2>
             <div className="mt-4">
               <GolfIdPreviewCard
                 nickname={form.nickname || 'ニックネーム'}
