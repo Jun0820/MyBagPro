@@ -114,7 +114,7 @@ const generateArticleHtml = () => {
     const title = article.title;
     const description = truncate(
       article.excerpt || article.body,
-      'プロ・インフルエンサー・ゴルファーのクラブセッティングをチェック。気になるクラブ選びから、Golf IDでのAI上達診断までつなげられます。'
+      'プロ・インフルエンサー・一般ゴルファーのクラブセッティングを比較し、My Bagからクラブ構成や課題を診断できます。'
     );
     const canonical = `${siteUrl}/articles/${article.slug}`;
     const html = applySeo(shell, { title, description, canonical, image: `${siteUrl}/article-visuals/green-flag.jpg`, type: 'article' });

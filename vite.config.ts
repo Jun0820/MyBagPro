@@ -19,22 +19,22 @@ const brandMeta: Record<
   golfid: {
     name: 'Golf ID',
     url: 'https://golfid.jp',
-    title: '上手くなる人は、自分のゴルフを知っている。 | Golf ID',
+    title: 'あなたのゴルフを、1ページで伝える。 | Golf ID',
     description:
-      'クラブ、スコア、悩み、目標をまとめると、AIがあなたの“次の一手”を提案。作ったGolf IDはSNSプロフィールに貼って、仲間やフォロワーと共有できます。',
-    keywords: 'Golf ID, ゴルフ ID, ゴルフ, クラブセッティング, WITB, プロ ゴルフクラブ, ゴルフクラブ 診断',
-    twitterDescription: 'クラブ、スコア、悩み、目標をまとめると、AIがあなたの“次の一手”を提案。',
-    structuredDescription: 'クラブ、スコア、悩み、目標をまとめ、AI診断とSNS共有につなげられるゴルフプロフィールサービス',
+      'スコア、クラブ、SNS、QRをひとつにまとめるゴルファーの共有プロフィール。コーチ、フィッター、同伴者、SNSにあなたのゴルフをすぐ共有できます。',
+    keywords: 'Golf ID, ゴルフ ID, ゴルフプロフィール, ゴルフ SNS, QR共有, クラブセッティング',
+    twitterDescription: 'スコア、クラブ、SNS、QRをひとつにまとめるゴルファーの共有プロフィール。',
+    structuredDescription: 'スコア、クラブ、SNS、QRをひとつにまとめ、コーチ、フィッター、同伴者、SNSに共有できるゴルフプロフィールサービス',
   },
   mybagpro: {
     name: 'MyBagPro',
     url: 'https://www.mybagpro.jp',
-    title: 'MyBagPro | プロとみんなのクラブセッティングが見つかる',
+    title: 'MyBagPro | あなたのクラブと課題を診断する',
     description:
-      'プロ・インフルエンサー・ゴルファーのクラブセッティングをチェック。気になるクラブ選びから、Golf IDでのAI上達診断までつなげられます。',
+      'プロ・インフルエンサー・一般ゴルファーのクラブセッティングを比較し、My Bagから番手間ギャップ、シャフト、ロフト、飛距離バランスを分析します。',
     keywords: 'MyBagPro, クラブセッティング, プロ 使用クラブ, ゴルフ WITB, 女子プロ クラブセッティング, ゴルフクラブ 診断',
-    twitterDescription: 'プロやみんなのクラブセッティングを確認し、自分のクラブ選びに活かせます。',
-    structuredDescription: 'プロ・インフルエンサー・ゴルファーのクラブセッティングを確認し、自分のクラブ選びに活かせるゴルフ情報サイト',
+    twitterDescription: 'プロのセッティングと自分のMy Bagをつなげ、クラブ構成や課題を診断できます。',
+    structuredDescription: 'プロ・インフルエンサー・一般ゴルファーのクラブセッティングを比較し、My Bagからクラブ構成や課題を診断するゴルフサービス',
   },
 }
 
