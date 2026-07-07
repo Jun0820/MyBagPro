@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { defaultGolfIdVisibility, type GolfIdRecord, type GolfIdVisibilityKey } from '../lib/golfId';
-import { loadPublicGolfIdProfiles } from '../lib/golfIdProfileSource';
+import { loadFallbackGolfIdProfiles, loadPublicGolfIdProfiles } from '../lib/golfIdProfileSource';
 import { golfIdDesign } from '../config/design';
 
 type ExploreGolfId = Pick<
@@ -67,13 +67,24 @@ const getSocialBadges = (profile: ExploreGolfId) =>
 export const UsersSettingsPage = () => {
   const [profiles, setProfiles] = useState<ExploreGolfId[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
     const loadProfiles = async () => {
       setLoading(true);
+      setRefreshing(false);
       setError(null);
+
+      const fallbackProfiles = await loadFallbackGolfIdProfiles();
+      if (!mounted) return;
+
+      if (fallbackProfiles.length > 0) {
+        setProfiles(fallbackProfiles.slice(0, 30) as ExploreGolfId[]);
+        setLoading(false);
+        setRefreshing(true);
+      }
 
       let loadedProfiles: GolfIdRecord[] = [];
       let profilesError: unknown = null;
@@ -87,14 +98,20 @@ export const UsersSettingsPage = () => {
 
       if (profilesError) {
         console.error('Failed to load public Golf IDs:', profilesError);
-        setError('公開Golf IDの読み込みに失敗しました。時間をおいて再度お試しください。');
-        setProfiles([]);
+        if (fallbackProfiles.length === 0) {
+          setError('公開Golf IDの読み込みに失敗しました。時間をおいて再度お試しください。');
+          setProfiles([]);
+        }
         setLoading(false);
+        setRefreshing(false);
         return;
       }
 
-      setProfiles(loadedProfiles as ExploreGolfId[]);
+      if (loadedProfiles.length > 0 || fallbackProfiles.length === 0) {
+        setProfiles(loadedProfiles as ExploreGolfId[]);
+      }
       setLoading(false);
+      setRefreshing(false);
     };
 
     loadProfiles();
@@ -157,6 +174,12 @@ export const UsersSettingsPage = () => {
               </div>
             </div>
           </div>
+          {refreshing && (
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-slate-300 ring-1 ring-white/10">
+              <Loader2 size={13} className="animate-spin" />
+              最新データを確認中
+            </div>
+          )}
         </div>
       </section>
 

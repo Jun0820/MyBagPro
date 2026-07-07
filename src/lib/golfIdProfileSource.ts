@@ -16,7 +16,9 @@ export type GolfIdLoadResult = {
 };
 
 const PUBLIC_QUERY_TIMEOUT_MS = 4500;
+const PUBLIC_LIST_QUERY_TIMEOUT_MS = 1800;
 const FALLBACK_JSON_PATH = '/golf-id-profiles-fallback.json';
+let fallbackGolfIdProfilesCache: GolfIdRecord[] | null = null;
 
 type LegacyClubRow = {
   number?: string;
@@ -98,17 +100,19 @@ const withTimeout = async <T,>(promise: PromiseLike<T>, label: string, timeoutMs
   }
 };
 
-const loadFallbackGolfIdProfiles = async (): Promise<GolfIdRecord[]> => {
+export const loadFallbackGolfIdProfiles = async (): Promise<GolfIdRecord[]> => {
+  if (fallbackGolfIdProfilesCache) return fallbackGolfIdProfilesCache;
   if (typeof fetch !== 'function') return [];
   try {
     const response = await withTimeout(
-      fetch(`${FALLBACK_JSON_PATH}?v=${Date.now()}`, { cache: 'no-store' }),
+      fetch(FALLBACK_JSON_PATH, { cache: 'force-cache' }),
       'Golf ID fallback JSON',
-      2500,
+      900,
     );
     if (!response.ok) return [];
     const rows = await response.json();
-    return Array.isArray(rows) ? (rows as GolfIdRecord[]) : [];
+    fallbackGolfIdProfilesCache = Array.isArray(rows) ? (rows as GolfIdRecord[]) : [];
+    return fallbackGolfIdProfilesCache;
   } catch {
     return [];
   }
@@ -368,6 +372,7 @@ export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord
       .order('updated_at', { ascending: false })
       .limit(limit),
     'public Golf ID profiles query',
+    PUBLIC_LIST_QUERY_TIMEOUT_MS,
   ).catch(async () => ({ data: await loadFallbackGolfIdProfiles(), error: null }));
 
   if (!error && data) return data as GolfIdRecord[];
@@ -381,6 +386,7 @@ export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord
       .order('updated_at', { ascending: false })
       .limit(limit),
     'legacy public Golf ID profiles query',
+    PUBLIC_LIST_QUERY_TIMEOUT_MS,
   ).catch(async () => ({ data: await loadFallbackGolfIdProfiles(), error: null }));
 
   if (legacy.error) throw legacy.error;
