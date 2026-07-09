@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronRight, ClipboardList, Globe2, ImageIcon, Instagram, Link2, Music2, QrCode, Share2, Trophy, UserRound, UsersRound, Youtube } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, Globe2, ImageIcon, Instagram, Link2, Music2, Share2, Trophy, UserRound, Youtube } from 'lucide-react';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
 import {
@@ -455,38 +455,6 @@ export const GolfIdPublicPage = () => {
           )}
 
           <div className="space-y-5 px-3 py-5 sm:px-6 lg:px-8">
-            <section className="rounded-[1.5rem] bg-[#0B0F0D] p-4 text-white shadow-[0_24px_70px_-52px_rgba(11,15,13,0.92)] ring-1 ring-white/10 sm:p-5">
-              <div className="grid gap-4 lg:grid-cols-[1fr_220px] lg:items-center">
-                <div>
-                  <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-[#D7B56D] ring-1 ring-white/12">
-                    <QrCode className="h-3.5 w-3.5" />
-                    Share Golf ID
-                  </p>
-                  <h2 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">この1ページを渡せば、あなたのゴルフが伝わります。</h2>
-                  <p className="mt-2 text-sm font-bold leading-7 text-white/72">
-                    SNSプロフィール、LINE、ラウンド前の自己紹介、コーチ・フィッターへの相談に使える共有プロフィールです。
-                  </p>
-                  <div className="mt-4 rounded-2xl bg-white/10 px-3 py-2 ring-1 ring-white/12">
-                    <p className="break-all text-sm font-black text-white">{publicUrl}</p>
-                  </div>
-                  <div className="mt-3">
-                    <ShareButtons
-                      url={publicUrl}
-                      title={shareTitle}
-                      text={shareText}
-                      username={profile.username}
-                      location="public_bottom"
-                      mode="compact"
-                    />
-                  </div>
-                </div>
-                <div className="rounded-[1.3rem] bg-white p-3 text-center shadow-2xl ring-1 ring-white/20">
-                  <img src={qrImageUrl} alt={`${profile.username}のGolf ID QRコード`} className="mx-auto h-40 w-40 rounded-xl sm:h-48 sm:w-48" loading="lazy" />
-                  <p className="mt-2 text-xs font-black text-slate-500">QRで見せる</p>
-                </div>
-              </div>
-            </section>
-
             {bestScores.length > 0 && (
               <section className="rounded-[1.6rem] bg-[#0B5D36] p-4 text-white shadow-[0_22px_60px_-44px_rgba(18,53,31,0.95)] ring-1 ring-white/10 sm:p-5">
                 <h2 className="flex items-center gap-2 text-lg font-black">
@@ -588,35 +556,6 @@ export const GolfIdPublicPage = () => {
             )}
             </div>
 
-            <section className="grid gap-3 md:grid-cols-3">
-              {[
-                {
-                  title: 'ラウンド前',
-                  text: '同伴者にスコア、ホームコース、SNSをすぐ共有。',
-                  icon: UsersRound,
-                },
-                {
-                  title: 'コーチへ',
-                  text: '悩み、目標、得意/苦手クラブを事前に共有。',
-                  icon: ClipboardList,
-                },
-                {
-                  title: 'フィッターへ',
-                  text: 'My Bagと飛距離を見せて、相談をスムーズに。',
-                  icon: QrCode,
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.title} className="rounded-[1.3rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
-                    <Icon className="h-5 w-5 text-emerald-700" />
-                    <h2 className="mt-3 text-base font-black text-slate-950">{item.title}</h2>
-                    <p className="mt-1 text-xs font-bold leading-5 text-slate-500">{item.text}</p>
-                  </div>
-                );
-              })}
-            </section>
-
             {canShow(profile, 'club_setting') && (
               <section className="rounded-[1.4rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
                 <h2 className="flex items-center gap-2 text-lg font-black text-emerald-950">
@@ -680,22 +619,29 @@ export const GolfIdPublicPage = () => {
             </section>
 
             <section className="rounded-[1.4rem] bg-white p-4 shadow-sm ring-1 ring-black/5 sm:p-5">
-              <div className="flex items-start justify-between gap-3">
+              <div className="grid gap-4 sm:grid-cols-[1fr_180px] sm:items-start">
                 <div>
-                  <p className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-700">Share</p>
+                  <p className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-700">QR / Share</p>
                   <h2 className="mt-2 text-xl font-black text-slate-950">このGolf IDを共有する</h2>
-                  <p className="mt-1 text-sm font-bold leading-6 text-slate-500">Instagram、TikTok、X、LINE、プロフィール欄に貼って使えます。</p>
+                  <p className="mt-1 text-sm font-bold leading-6 text-slate-500">URL・QR・LINE・SNSで、プロフィールリンクとしてすぐ共有できます。</p>
+                  <div className="mt-3 rounded-2xl bg-[#F7F8F5] px-3 py-2 ring-1 ring-black/5">
+                    <p className="break-all text-sm font-black text-slate-800">{publicUrl}</p>
+                  </div>
+                  <div className="mt-4">
+                    <ShareButtons
+                      url={publicUrl}
+                      title={shareTitle}
+                      text={shareText}
+                      username={profile.username}
+                      location="public_bottom"
+                      mode="full"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="mt-4">
-                <ShareButtons
-                  url={publicUrl}
-                  title={shareTitle}
-                  text={shareText}
-                  username={profile.username}
-                  location="public_bottom"
-                  mode="full"
-                />
+                <div className="rounded-[1.3rem] bg-[#F7F8F5] p-3 text-center ring-1 ring-black/5">
+                  <img src={qrImageUrl} alt={`${profile.username}のGolf ID QRコード`} className="mx-auto h-36 w-36 rounded-xl sm:h-40 sm:w-40" loading="lazy" />
+                  <p className="mt-2 text-xs font-black text-slate-500">QRで見せる</p>
+                </div>
               </div>
             </section>
 

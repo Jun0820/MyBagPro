@@ -5,7 +5,6 @@ import { useDiagnosis } from '../context/DiagnosisContext';
 import { feedbackFormUrl, hasFeedbackForm, trackFeedbackClick } from '../config/feedback';
 import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
-import { generateDiagnosisResult } from '../lib/diagnosis/rules';
 import { golfIdDesign } from '../config/design';
 import { GolfIdPreviewCard } from '../components/golfid/GolfIdUi';
 import { SharePanel } from '../components/golfid/SharePanel';
@@ -367,19 +366,6 @@ export const GolfIdCreatePage = () => {
       setError('usernameは3〜32文字の半角英数字、ハイフン、アンダーバーのみで入力してください。');
       return;
     }
-    if (!form.target_score.trim()) {
-      nextFieldErrors.target_score = '目標スコアを入力してください。';
-      setFieldErrors(nextFieldErrors);
-      setError('目標スコアを入力してください。');
-      return;
-    }
-    if (!form.current_issue.trim()) {
-      nextFieldErrors.current_issue = '今の悩みを入力してください。';
-      setFieldErrors(nextFieldErrors);
-      setError('今の悩みを入力してください。');
-      return;
-    }
-
     const nextSocialErrors: Record<string, string> = {};
     const normalizedAvatarUrl = normalizeOptionalUrl(form.avatar_url || '');
     const normalizedCoverUrl = normalizeOptionalUrl(form.cover_image_url || '');
@@ -463,7 +449,6 @@ export const GolfIdCreatePage = () => {
       return;
     }
 
-    const diagnosisResult = generateDiagnosisResult(form);
     const payload = {
       ...(existingId ? { id: existingId } : {}),
       user_id: user.id,
@@ -492,7 +477,7 @@ export const GolfIdCreatePage = () => {
       club_setting: form.club_setting.trim() || null,
       social_links: normalizedSocialLinks,
       visibility: form.visibility,
-      diagnosis_result: diagnosisResult,
+      diagnosis_result: null,
       is_public: true,
     };
 
@@ -542,20 +527,16 @@ export const GolfIdCreatePage = () => {
     setMessage('Golf IDを保存しました。公開ページへ移動します。');
     trackEvent('golf_id_create_complete', {
       username: savedUsername,
-      diagnosis_type: diagnosisResult.diagnosisType,
     });
     navigate(`/u/${savedUsername}?created=1`);
   };
 
   const stepItems = [
-    { number: 1, label: 'Golf ID' },
-    { number: 2, label: 'Score' },
-    { number: 3, label: 'My Golf' },
-    { number: 4, label: 'My Bag' },
-    { number: 5, label: 'Links' },
-    { number: 6, label: 'Publish' },
+    { number: 1, label: '編集' },
+    { number: 2, label: '共有' },
+    { number: 3, label: '設定' },
   ];
-  const stepPanelClass = (step: number) => (activeStep === step ? '' : 'hidden lg:block');
+  const stepPanelClass = (step: number) => (activeStep === step ? '' : 'hidden');
   const normalizedUsername = normalizeGolfIdUsername(form.username);
   const isMyPageProfile = location.pathname.startsWith('/mypage/profile');
   const heroTitle = isMyPageProfile
@@ -564,8 +545,8 @@ export const GolfIdCreatePage = () => {
       ? 'あなたのGolf IDを更新'
       : 'あなたのGolf IDを作ろう。';
   const heroDescription = isMyPageProfile
-    ? 'ここで保存した内容が、公開Golf IDページに反映されます。スコア、クラブ、SNSリンクを整えて、プロフィールに貼れるページにしましょう。'
-    : '3分で、スコア・クラブ・SNSリンクを1ページに。作ったGolf IDはプロフィール欄やLINEで共有できます。';
+    ? '表示名、スコア、My Bag、SNSリンクを整えて、すぐ共有できるゴルフ名刺にしましょう。'
+    : '60秒で、表示名・スコア・SNSリンクを1ページに。My Bagはあとから追加できます。';
   const shareTitle = `${form.nickname.trim() || normalizedUsername || 'あなた'}のGolf ID`;
   const shareText = '自分のGolf IDを作りました。\nスコア・クラブ・SNSリンクをまとめたゴルフ用プロフィールです。';
 
@@ -575,7 +556,7 @@ export const GolfIdCreatePage = () => {
         <div className="space-y-5">
           <div className={`rounded-[2rem] p-5 shadow-[0_22px_70px_-48px_rgba(11,15,13,0.9)] sm:p-8 ${golfIdDesign.darkPanel}`}>
             <div className="flex flex-wrap items-center gap-2">
-              <p className={golfIdDesign.badgeDark}>Golf ID Builder</p>
+              <p className={golfIdDesign.badgeDark}>Golf ID</p>
               <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-black text-emerald-100 ring-1 ring-emerald-300/20">
                 β版公開中
               </span>
@@ -587,7 +568,7 @@ export const GolfIdCreatePage = () => {
               {heroDescription}
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-black text-emerald-100">
-              <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">{isMyPageProfile ? '公開ページに反映されます' : '3分で作成できます'}</span>
+              <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">{isMyPageProfile ? '公開ページに反映されます' : '60秒で作成できます'}</span>
               <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">あとから編集できます</span>
               <span className="rounded-full bg-white/10 px-2.5 py-1 ring-1 ring-white/10">見せたい項目だけ公開できます</span>
             </div>
@@ -611,7 +592,7 @@ export const GolfIdCreatePage = () => {
             )}
           </div>
 
-          <nav className="grid grid-cols-3 gap-1 rounded-[1.35rem] bg-white p-1.5 shadow-sm ring-1 ring-black/5 sm:grid-cols-6">
+          <nav className="sticky top-2 z-10 grid grid-cols-3 gap-1 rounded-[1.35rem] bg-white/95 p-1.5 shadow-sm ring-1 ring-black/5 backdrop-blur">
             {stepItems.map((step) => (
               <button
                 key={step.number}
@@ -621,8 +602,7 @@ export const GolfIdCreatePage = () => {
                   activeStep === step.number ? 'bg-[#0B0F0D] text-white shadow-sm' : 'bg-[#F5F7F4] text-slate-500 hover:bg-emerald-50 hover:text-emerald-800'
                 }`}
               >
-                <span className="block text-[10px] font-black">STEP {step.number}</span>
-                <span className="mt-0.5 block truncate text-[11px] font-black">{step.label}</span>
+                <span className="block truncate text-sm font-black">{step.label}</span>
               </button>
             ))}
           </nav>
@@ -644,9 +624,9 @@ export const GolfIdCreatePage = () => {
           <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(1)}`}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-            <p className={golfIdDesign.badgeLight}>STEP 1 / ID</p>
-            <h2 className="mt-1 text-lg font-black text-slate-950">基本情報</h2>
-                <p className="text-xs font-bold text-slate-500">公開ページの名前とURLを決めます。あとから編集できます。</p>
+            <p className={golfIdDesign.badgeLight}>プロフィール</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">表示名と公開URL</h2>
+                <p className="text-xs font-bold text-slate-500">まずはここだけで公開できます。My Bagはあとから追加できます。</p>
               </div>
               {loadingExisting && (
                 <span className="inline-flex items-center gap-2 text-xs font-bold text-slate-500">
@@ -658,12 +638,12 @@ export const GolfIdCreatePage = () => {
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5">
-                <span className="text-xs font-black text-slate-600">ニックネーム</span>
+                <span className="text-xs font-black text-slate-600">表示名</span>
                 <input className={inputClass(Boolean(fieldErrors.nickname))} value={form.nickname} onChange={(event) => updateField('nickname', event.target.value)} placeholder="山田 太郎" />
                 {fieldErrors.nickname && <p className="text-xs font-bold text-rose-600">{fieldErrors.nickname}</p>}
               </label>
               <label className="space-y-1.5">
-                <span className="text-xs font-black text-slate-600">username</span>
+                <span className="text-xs font-black text-slate-600">ID名</span>
                 <input className={inputClass(Boolean(fieldErrors.username))} value={form.username} onChange={(event) => updateField('username', event.target.value)} placeholder="taro-golf" />
                 <p className="text-[11px] font-bold leading-5 text-slate-500">公開URLに使われます。例: golfid.jp/u/junpei</p>
                 {fieldErrors.username && <p className="text-xs font-bold text-rose-600">{fieldErrors.username}</p>}
@@ -686,10 +666,10 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(2)}`}>
-            <p className={golfIdDesign.badgeLight}>STEP 2 / Score</p>
-            <h2 className="mt-1 text-lg font-black text-slate-950">スコア・目標</h2>
-            <p className="text-xs font-bold text-slate-500">わかる範囲だけで大丈夫です。公開ページのプロフィールカードに反映されます。</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(1)}`}>
+            <p className={golfIdDesign.badgeLight}>スコア</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">スコア・ヘッドスピード</h2>
+            <p className="text-xs font-bold text-slate-500">初回はベストスコアとヘッドスピードだけで十分です。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">レディースティ ベスト</span>
@@ -712,7 +692,7 @@ export const GolfIdCreatePage = () => {
                 <input className={textInputClass} inputMode="numeric" value={form.average_score} onChange={(event) => updateField('average_score', event.target.value)} placeholder="96" />
               </label>
               <label className="space-y-1.5">
-                <span className="text-xs font-black text-slate-600">目標スコア</span>
+                <span className="text-xs font-black text-slate-600">目標スコア 任意</span>
                 <input className={inputClass(Boolean(fieldErrors.target_score))} inputMode="numeric" value={form.target_score} onChange={(event) => updateField('target_score', event.target.value)} placeholder="89" />
                 {fieldErrors.target_score && <p className="text-xs font-bold text-rose-600">{fieldErrors.target_score}</p>}
               </label>
@@ -723,13 +703,13 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(3)}`}>
-            <p className={golfIdDesign.badgeLight}>STEP 3 / My Golf</p>
-            <h2 className="mt-1 text-lg font-black text-slate-950">クラブ・悩み</h2>
-            <p className="text-xs font-bold text-slate-500">コーチやフィッターに共有したい内容だけ入力できます。</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(1)}`}>
+            <p className={golfIdDesign.badgeLight}>プロフィール</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">よく行くエリア・補足</h2>
+            <p className="text-xs font-bold text-slate-500">通常公開に出したい情報だけ入力します。悩みはコーチ共有用としても使えます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <label className="space-y-1.5 sm:col-span-2">
-                <span className="text-xs font-black text-slate-600">今の悩み</span>
+                <span className="text-xs font-black text-slate-600">現在の悩み 任意</span>
                 <textarea className={`${inputClass(Boolean(fieldErrors.current_issue))} min-h-24 resize-y`} value={form.current_issue} onChange={(event) => updateField('current_issue', event.target.value)} placeholder="ドライバーが右に出る。180y前後の番手が安定しない。" />
                 {fieldErrors.current_issue && <p className="text-xs font-bold text-rose-600">{fieldErrors.current_issue}</p>}
               </label>
@@ -760,10 +740,10 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(4)}`}>
-            <p className={golfIdDesign.badgeLight}>STEP 4 / My Bag</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(1)}`}>
+            <p className={golfIdDesign.badgeLight}>My Bag</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
-            <p className="text-xs font-bold text-slate-500">MVPでは自由入力でOKです。あとで番手ごとの登録に広げやすい形にしていきます。</p>
+            <p className="text-xs font-bold text-slate-500">初回登録では不要です。My Bagを追加すると、よりゴルファーらしいプロフィールになります。</p>
             <div className="mt-5 grid gap-4">
               <label className="space-y-1.5">
                 <span className="text-xs font-black text-slate-600">クラブセッティング</span>
@@ -772,10 +752,10 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(5)}`}>
-            <p className={golfIdDesign.badgeLight}>STEP 5 / Links</p>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(1)}`}>
+            <p className={golfIdDesign.badgeLight}>SNS & Links</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">発信リンク</h2>
-            <p className="text-xs font-bold text-slate-500">あなたの発信場所をまとめましょう。YouTube、Instagram、TikTok、X、自由URLをGolf IDに表示できます。</p>
+            <p className="text-xs font-bold text-slate-500">初回はSNSリンク1つだけでOKです。あとから追加できます。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               {(Object.keys(socialUrlLabels) as GolfIdSocialLinkKey[]).map((key) => (
                 <label key={key} className="space-y-1.5">
@@ -848,9 +828,9 @@ export const GolfIdCreatePage = () => {
             </div>
           </div>
 
-          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(6)}`}>
-            <p className={golfIdDesign.badgeLight}>STEP 6 / Publish</p>
-            <h2 className="mt-1 text-lg font-black text-slate-950">公開プレビュー・公開設定</h2>
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(3)}`}>
+            <p className={golfIdDesign.badgeLight}>設定</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">公開設定</h2>
             <p className="text-xs font-bold text-slate-500">見せたい項目だけ公開できます。</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {(Object.keys(publicToggleLabels) as GolfIdVisibilityKey[]).map((key) => (
@@ -866,6 +846,50 @@ export const GolfIdCreatePage = () => {
                   {form.visibility[key] ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                 </button>
               ))}
+            </div>
+          </div>
+
+          <div className={`space-y-4 ${stepPanelClass(2)}`}>
+            <SharePanel
+              url={publicUrl}
+              title={shareTitle}
+              text={shareText}
+              username={normalizedUsername}
+              variant="owner"
+              location="edit_panel"
+              heading="Golf IDを共有"
+              description="URL・QR・LINE・SNSで、あなたのゴルフプロフィールをすぐ共有できます。"
+              publicPageHref={publicUrl}
+            />
+            <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard}`}>
+              <p className={golfIdDesign.badgeLight}>コーチ/フィッター共有</p>
+              <h2 className="mt-1 text-lg font-black text-slate-950">専用共有リンク</h2>
+              <p className="mt-2 text-sm font-bold leading-7 text-slate-600">
+                通常公開ページには表示せず、必要な相手にだけ送るリンクです。コーチには悩みや動画URL、フィッターにはMy Bagや飛距離を共有する設計にします。
+              </p>
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                <Link to={normalizedUsername ? `/u/${normalizedUsername}?mode=coach` : '/create'} className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-black text-emerald-900 ring-1 ring-emerald-100">
+                  コーチ共有リンクを確認
+                </Link>
+                <Link to={normalizedUsername ? `/u/${normalizedUsername}?mode=fitter` : '/create'} className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-black text-emerald-900 ring-1 ring-emerald-100">
+                  フィッター共有リンクを確認
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(3)}`}>
+            <p className={golfIdDesign.badgeLight}>役割分担</p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">Golf IDは名刺。MyBagProは診断書。</h2>
+            <div className="mt-4 grid gap-3">
+              <div className="rounded-2xl bg-[#F5F7F4] p-4 ring-1 ring-black/5">
+                <p className="text-sm font-black text-slate-950">Golf ID</p>
+                <p className="mt-1 text-xs font-bold leading-6 text-slate-600">プロフィール、スコア、My Bag、SNS、QRをまとめて共有します。</p>
+              </div>
+              <div className="rounded-2xl bg-[#F5F7F4] p-4 ring-1 ring-black/5">
+                <p className="text-sm font-black text-slate-950">MyBagPro</p>
+                <p className="mt-1 text-xs font-bold leading-6 text-slate-600">クラブ構成、課題、番手間ギャップ、AI診断、次の一手を分析します。</p>
+              </div>
             </div>
           </div>
 
@@ -892,8 +916,8 @@ export const GolfIdCreatePage = () => {
             </button>
             <button
               type="button"
-              onClick={() => setActiveStep((step) => Math.min(6, step + 1))}
-              disabled={activeStep === 6}
+              onClick={() => setActiveStep((step) => Math.min(3, step + 1))}
+              disabled={activeStep === 3}
               className={`inline-flex min-h-11 flex-1 items-center justify-center rounded-2xl px-4 text-sm font-black disabled:opacity-40 ${golfIdDesign.goldButton}`}
             >
               次へ
