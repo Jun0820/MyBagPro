@@ -29,6 +29,17 @@ const GOLF_PROFILE_TABLE = 'golf_profiles';
 const isMissingGolfProfileColumnError = (error: { code?: string; message?: string } | null) =>
   error?.code === 'PGRST204' || /Could not find .* column|schema cache/i.test(error?.message || '');
 
+const isGolfProfilesTableUnavailable = (error: unknown) => {
+  const maybeError = error as { code?: string; message?: string; details?: string } | null;
+  const text = `${maybeError?.message || ''} ${maybeError?.details || ''}`;
+  return (
+    isMissingGolfProfilesTableError(error) ||
+    maybeError?.code === 'PGRST205' ||
+    maybeError?.code === 'PGRST116' ||
+    /golf_profiles/i.test(text) && /schema cache|could not find|does not exist|not found/i.test(text)
+  );
+};
+
 const toCompatibleGolfProfilePayload = (payload: Record<string, unknown>) => ({
   ...(payload.id ? { id: payload.id } : {}),
   user_id: payload.user_id,
@@ -298,7 +309,7 @@ export const GolfIdCreatePage = () => {
       setLoadingExisting(false);
 
       if (fetchError) {
-        if (isMissingGolfProfilesTableError(fetchError)) {
+        if (isGolfProfilesTableUnavailable(fetchError)) {
           const legacy = await loadOwnGolfIdProfile(user.id);
           if (!mounted) return;
           if (legacy.status === 'ok' && legacy.profile) {
@@ -308,7 +319,7 @@ export const GolfIdCreatePage = () => {
           }
           setError('');
         } else {
-          setError('Golf ID保存用テーブルを確認できませんでした。時間をおいて再度お試しください。');
+          setError('');
         }
         return;
       }
@@ -457,7 +468,7 @@ export const GolfIdCreatePage = () => {
       .limit(5);
 
     if (usernameCheckError) {
-      if (isMissingGolfProfilesTableError(usernameCheckError)) {
+      if (isGolfProfilesTableUnavailable(usernameCheckError)) {
         useLegacyStorage = true;
       } else {
         setSaving(false);
@@ -557,7 +568,7 @@ export const GolfIdCreatePage = () => {
             .single();
       data = result.data as { id?: string; username?: string } | null;
       saveError = result.error;
-      if (saveError && isMissingGolfProfilesTableError(saveError)) {
+      if (saveError && isGolfProfilesTableUnavailable(saveError)) {
         useLegacyStorage = true;
       } else if (saveError && isMissingGolfProfileColumnError(saveError)) {
         const compatiblePayload = toCompatibleGolfProfilePayload(payload);
