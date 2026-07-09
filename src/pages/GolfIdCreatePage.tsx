@@ -9,7 +9,7 @@ import { golfIdDesign } from '../config/design';
 import { GolfIdPreviewCard } from '../components/golfid/GolfIdUi';
 import { SharePanel } from '../components/golfid/SharePanel';
 import { MyBagManager } from '../features/gear/MyBagManager';
-import { isMissingGolfProfilesTableError, loadOwnGolfIdProfile } from '../lib/golfIdProfileSource';
+import { loadOwnLegacyGolfIdProfile } from '../lib/golfIdProfileSource';
 import {
   defaultGolfIdVisibility,
   emptyGolfIdSocialLinks,
@@ -19,47 +19,24 @@ import {
   normalizeGolfIdUsername,
   toNullableNumber,
   type GolfIdFormData,
-  type GolfIdRecord,
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
 import { TargetCategory, type ClubSetting } from '../types/golf';
 
-const GOLF_PROFILE_TABLE = 'golf_profiles';
+const GOLF_ID_SAVE_TIMEOUT_MS = 8000;
 
-const isMissingGolfProfileColumnError = (error: { code?: string; message?: string } | null) =>
-  error?.code === 'PGRST204' || /Could not find .* column|schema cache/i.test(error?.message || '');
+const withGolfIdSaveTimeout = async <T,>(promise: PromiseLike<T>, label: string): Promise<T> => {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error(`${label} timed out after ${GOLF_ID_SAVE_TIMEOUT_MS}ms`)), GOLF_ID_SAVE_TIMEOUT_MS);
+  });
 
-const isGolfProfilesTableUnavailable = (error: unknown) => {
-  const maybeError = error as { code?: string; message?: string; details?: string } | null;
-  const text = `${maybeError?.message || ''} ${maybeError?.details || ''}`;
-  return (
-    isMissingGolfProfilesTableError(error) ||
-    maybeError?.code === 'PGRST205' ||
-    maybeError?.code === 'PGRST116' ||
-    /golf_profiles/i.test(text) && /schema cache|could not find|does not exist|not found/i.test(text)
-  );
+  try {
+    return await Promise.race([promise, timeout]);
+  } finally {
+    if (timeoutId) clearTimeout(timeoutId);
+  }
 };
-
-const toCompatibleGolfProfilePayload = (payload: Record<string, unknown>) => ({
-  ...(payload.id ? { id: payload.id } : {}),
-  user_id: payload.user_id,
-  username: payload.username,
-  nickname: payload.nickname,
-  best_score: payload.best_score,
-  average_score: payload.average_score,
-  target_score: payload.target_score,
-  head_speed: payload.head_speed,
-  golf_history: payload.golf_history,
-  favorite_club: payload.favorite_club,
-  weak_club: payload.weak_club,
-  current_issue: payload.current_issue,
-  club_setting: payload.club_setting,
-  clubs: payload.clubs,
-  social_links: payload.social_links,
-  visibility: payload.visibility,
-  diagnosis_result: payload.diagnosis_result,
-  is_public: payload.is_public,
-});
 
 const formatClubForGolfId = (club: ClubSetting['clubs'][number]) => {
   const number = club.number || (club.category === TargetCategory.BALL ? 'BALL' : club.category === TargetCategory.PUTTER ? 'PT' : '');
@@ -176,20 +153,34 @@ const buildLegacyGolfIdPayload = (
   const bestScore = payload.best_score as number | null;
   const averageScore = payload.average_score as number | null;
   const clubSetting = typeof payload.club_setting === 'string' ? payload.club_setting : '';
-  const clubs = clubSetting
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line, index) => ({
-      id: `golf-id-club-${index + 1}`,
-      category: 'club',
-      number: '',
-      brand: '',
-      model: line,
-      shaft: '',
-      distance: '',
-      carryDistance: '',
-    }));
+  const structuredClubs = Array.isArray(payload.clubs) ? (payload.clubs as Array<Record<string, unknown>>) : [];
+  const clubs = structuredClubs.length > 0
+    ? structuredClubs.map((club, index) => ({
+        id: String(club.id || `golf-id-club-${index + 1}`),
+        category: String(club.category || 'club'),
+        number: String(club.number || ''),
+        brand: String(club.brand || ''),
+        model: String(club.model || ''),
+        shaft: String(club.shaft || ''),
+        loft: String(club.loft || ''),
+        distance: String(club.distance || ''),
+        carryDistance: String(club.carry_distance || club.carryDistance || ''),
+      }))
+    : clubSetting
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line, index) => ({
+          id: `golf-id-club-${index + 1}`,
+          category: 'club',
+          number: '',
+          brand: '',
+          model: line,
+          shaft: '',
+          loft: '',
+          distance: '',
+          carryDistance: '',
+        }));
 
   return {
     id: userId,
@@ -297,37 +288,14 @@ export const GolfIdCreatePage = () => {
     const loadExisting = async () => {
       setLoadingExisting(true);
       setError('');
-      const { data, error: fetchError } = await supabase
-        .from(GOLF_PROFILE_TABLE)
-        .select('*')
-        .eq('user_id', user.id)
-        .order('updated_at', { ascending: false })
-        .limit(1)
-        .maybeSingle();
+      const legacy = await loadOwnLegacyGolfIdProfile(user.id);
 
       if (!mounted) return;
       setLoadingExisting(false);
 
-      if (fetchError) {
-        if (isGolfProfilesTableUnavailable(fetchError)) {
-          const legacy = await loadOwnGolfIdProfile(user.id);
-          if (!mounted) return;
-          if (legacy.status === 'ok' && legacy.profile) {
-            setExistingId(legacy.profile.id);
-            setForm(mapRecordToGolfIdForm(legacy.profile));
-            return;
-          }
-          setError('');
-        } else {
-          setError('');
-        }
-        return;
-      }
-
-      if (data) {
-        const record = data as GolfIdRecord;
-        setExistingId(record.id);
-        setForm(mapRecordToGolfIdForm(record));
+      if (legacy.status === 'ok' && legacy.profile) {
+        setExistingId(legacy.profile.id);
+        setForm(mapRecordToGolfIdForm(legacy.profile));
         return;
       }
 
@@ -460,164 +428,103 @@ export const GolfIdCreatePage = () => {
     }
 
     setSaving(true);
-    let useLegacyStorage = false;
-    const { data: usernameOwners, error: usernameCheckError } = await supabase
-      .from(GOLF_PROFILE_TABLE)
-      .select('id,user_id')
-      .ilike('username', username)
-      .limit(5);
 
-    if (usernameCheckError) {
-      if (isGolfProfilesTableUnavailable(usernameCheckError)) {
-        useLegacyStorage = true;
-      } else {
-        setSaving(false);
-        setError('usernameの確認に失敗しました。時間をおいて再度お試しください。');
-        trackEvent('golf_id_save_error', { reason: usernameCheckError.message });
-        return;
-      }
-    }
-
-    const ownUsernameOwner = (usernameOwners || []).find((row) => row.user_id === user.id);
-    const targetExistingId = existingId || ownUsernameOwner?.id || null;
-    let usernameOwner: { id: string; user_id?: string | null } | undefined = (usernameOwners || []).find(
-      (row) => row.id !== targetExistingId && row.user_id !== user.id,
-    );
-    if (useLegacyStorage) {
-      const legacyNameOwner = await supabase
-        .from('profiles')
-        .select('id')
-        .ilike('name', username)
-        .limit(5);
-      const legacyGolfIdOwner = await supabase
-        .from('profiles')
-        .select('id')
-        .filter('sns_links->golfId->>username', 'eq', username)
-        .limit(5);
+    try {
+      const [legacyNameOwner, legacyGolfIdOwner] = await Promise.all([
+        withGolfIdSaveTimeout(
+          supabase
+            .from('profiles')
+            .select('id')
+            .eq('name', username)
+            .limit(5),
+          'Golf ID username check',
+        ),
+        withGolfIdSaveTimeout(
+          supabase
+            .from('profiles')
+            .select('id')
+            .filter('sns_links->golfId->>username', 'eq', username)
+            .limit(5),
+          'Golf ID embedded username check',
+        ),
+      ]);
 
       if (legacyNameOwner.error || legacyGolfIdOwner.error) {
-        setSaving(false);
-        setError('usernameの確認に失敗しました。時間をおいて再度お試しください。');
-        trackEvent('golf_id_save_error', { reason: legacyNameOwner.error?.message || legacyGolfIdOwner.error?.message });
+        throw new Error(legacyNameOwner.error?.message || legacyGolfIdOwner.error?.message || 'username check failed');
+      }
+
+      const usernameOwner = [...(legacyNameOwner.data || []), ...(legacyGolfIdOwner.data || [])].find((row) => row.id !== user.id);
+      if (usernameOwner) {
+        setFieldErrors({ username: 'このusernameは既に使われています。' });
+        setError('このusernameは既に使われています。別のusernameを入力してください。');
         return;
       }
 
-      usernameOwner = [...(legacyNameOwner.data || []), ...(legacyGolfIdOwner.data || [])].find((row) => row.id !== user.id);
-    }
+      const myBagClubSetting = buildClubSettingText(profile.myBag);
+      const visibleClubSetting = myBagClubSetting || form.club_setting.trim() || null;
+      const profileClubs = buildGolfProfileClubs(profile.myBag);
 
-    if (usernameOwner) {
-      setSaving(false);
-      setFieldErrors({ username: 'このusernameは既に使われています。' });
-      setError('このusernameは既に使われています。別のusernameを入力してください。');
-      return;
-    }
+      const payload = {
+        id: user.id,
+        user_id: user.id,
+        username,
+        nickname: form.nickname.trim(),
+        bio: form.bio.trim() || null,
+        avatar_url: normalizedAvatarUrl || null,
+        cover_image_url: normalizedCoverUrl || null,
+        best_score: toNullableNumber(form.best_score),
+        best_scores: {
+          ladies: toNullableNumber(form.best_score_ladies),
+          regular: toNullableNumber(form.best_score),
+          back: toNullableNumber(form.best_score_back),
+          champion: toNullableNumber(form.best_score_champion),
+        },
+        average_score: toNullableNumber(form.average_score),
+        target_score: toNullableNumber(form.target_score),
+        head_speed: toNullableNumber(form.head_speed),
+        golf_history: form.golf_history.trim() || null,
+        frequent_area: form.frequent_area.trim() || null,
+        home_course: form.home_course.trim() || null,
+        role_title: form.role_title.trim() || null,
+        favorite_club: form.favorite_club.trim() || null,
+        weak_club: form.weak_club.trim() || null,
+        current_issue: form.current_issue.trim() || null,
+        club_setting: visibleClubSetting,
+        clubs: profileClubs,
+        social_links: normalizedSocialLinks,
+        visibility: form.visibility,
+        diagnosis_result: null,
+        is_public: true,
+      };
 
-    const myBagClubSetting = buildClubSettingText(profile.myBag);
-    const visibleClubSetting = myBagClubSetting || form.club_setting.trim() || null;
-    const profileClubs = buildGolfProfileClubs(profile.myBag);
-
-    const payload = {
-      ...(targetExistingId ? { id: targetExistingId } : {}),
-      user_id: user.id,
-      username,
-      nickname: form.nickname.trim(),
-      bio: form.bio.trim() || null,
-      avatar_url: normalizedAvatarUrl || null,
-      cover_image_url: normalizedCoverUrl || null,
-      best_score: toNullableNumber(form.best_score),
-      best_scores: {
-        ladies: toNullableNumber(form.best_score_ladies),
-        regular: toNullableNumber(form.best_score),
-        back: toNullableNumber(form.best_score_back),
-        champion: toNullableNumber(form.best_score_champion),
-      },
-      average_score: toNullableNumber(form.average_score),
-      target_score: toNullableNumber(form.target_score),
-      head_speed: toNullableNumber(form.head_speed),
-      golf_history: form.golf_history.trim() || null,
-      frequent_area: form.frequent_area.trim() || null,
-      home_course: form.home_course.trim() || null,
-      role_title: form.role_title.trim() || null,
-      favorite_club: form.favorite_club.trim() || null,
-      weak_club: form.weak_club.trim() || null,
-      current_issue: form.current_issue.trim() || null,
-      club_setting: visibleClubSetting,
-      clubs: profileClubs,
-      social_links: normalizedSocialLinks,
-      visibility: form.visibility,
-      diagnosis_result: null,
-      is_public: true,
-    };
-
-    let data: { id?: string; username?: string } | null = null;
-    let saveError: { code?: string; message: string } | null = null;
-
-    if (!useLegacyStorage) {
-      const result = targetExistingId
-        ? await supabase
-            .from(GOLF_PROFILE_TABLE)
-            .update(payload)
-            .eq('id', targetExistingId)
-            .eq('user_id', user.id)
-            .select('id,username')
-            .single()
-        : await supabase
-            .from(GOLF_PROFILE_TABLE)
-            .insert(payload)
-            .select('id,username')
-            .single();
-      data = result.data as { id?: string; username?: string } | null;
-      saveError = result.error;
-      if (saveError && isGolfProfilesTableUnavailable(saveError)) {
-        useLegacyStorage = true;
-      } else if (saveError && isMissingGolfProfileColumnError(saveError)) {
-        const compatiblePayload = toCompatibleGolfProfilePayload(payload);
-        const compatibleResult = targetExistingId
-          ? await supabase
-              .from(GOLF_PROFILE_TABLE)
-              .update(compatiblePayload)
-              .eq('id', targetExistingId)
-              .eq('user_id', user.id)
-              .select('id,username')
-              .single()
-          : await supabase
-              .from(GOLF_PROFILE_TABLE)
-              .insert(compatiblePayload)
-              .select('id,username')
-              .single();
-        data = compatibleResult.data as { id?: string; username?: string } | null;
-        saveError = compatibleResult.error;
-      }
-    }
-
-    if (useLegacyStorage) {
       const legacyPayload = buildLegacyGolfIdPayload(user.id, username, payload, normalizedSocialLinks);
-      const legacyResult = await supabase
-        .from('profiles')
-        .upsert(legacyPayload, { onConflict: 'id' })
-        .select('id,name')
-        .single();
-      data = legacyResult.data ? { id: legacyResult.data.id, username: username } : null;
-      saveError = legacyResult.error;
-    }
+      const legacyResult = await withGolfIdSaveTimeout(
+        supabase
+          .from('profiles')
+          .upsert(legacyPayload, { onConflict: 'id' })
+          .select('id,name')
+          .single(),
+        'Golf ID profile save',
+      );
 
-    setSaving(false);
+      if (legacyResult.error) throw new Error(legacyResult.error.message);
 
-    if (saveError) {
-      const conflict = saveError.message.toLowerCase().includes('duplicate') || saveError.code === '23505';
+      const savedUsername = normalizeGolfIdUsername(legacyResult.data?.name || username);
+      setExistingId(legacyResult.data?.id || user.id);
+      setMessage('Golf IDを保存しました。公開ページへ移動します。');
+      trackEvent('golf_id_create_complete', {
+        username: savedUsername,
+      });
+      navigate(`/u/${savedUsername}?created=1`);
+    } catch (saveError) {
+      const message = saveError instanceof Error ? saveError.message : 'unknown save error';
+      const conflict = message.toLowerCase().includes('duplicate') || message.includes('23505');
       if (conflict) setFieldErrors({ username: 'このusernameは既に使われています。' });
-      setError(conflict ? 'このusernameは既に使われています。別のusernameを入力してください。' : '保存に失敗しました。時間をおいて再度お試しください。');
-      trackEvent('golf_id_save_error', { reason: saveError.message });
-      return;
+      setError(conflict ? 'このusernameは既に使われています。別のusernameを入力してください。' : '保存に失敗しました。通信環境を確認してもう一度お試しください。');
+      trackEvent('golf_id_save_error', { reason: message });
+    } finally {
+      setSaving(false);
     }
-
-    const savedUsername = normalizeGolfIdUsername((data as { username?: string } | null)?.username || username);
-    setExistingId((data as { id?: string } | null)?.id || existingId);
-    setMessage('Golf IDを保存しました。公開ページへ移動します。');
-    trackEvent('golf_id_create_complete', {
-      username: savedUsername,
-    });
-    navigate(`/u/${savedUsername}?created=1`);
   };
 
   const stepItems = [
@@ -660,7 +567,7 @@ export const GolfIdCreatePage = () => {
   return (
     <main className={golfIdDesign.page}>
       <section className="mx-auto grid max-w-7xl gap-7 px-4 py-8 lg:grid-cols-[minmax(0,1fr)_390px] lg:px-6 lg:py-12">
-        <div className="space-y-5">
+        <div className="space-y-5 pb-24 lg:pb-0">
           <div className={`rounded-[2rem] p-5 shadow-[0_22px_70px_-48px_rgba(11,15,13,0.9)] sm:p-8 ${golfIdDesign.darkPanel}`}>
             <div className="flex flex-wrap items-center gap-2">
               <p className={golfIdDesign.badgeDark}>Golf ID</p>
@@ -1046,7 +953,7 @@ export const GolfIdCreatePage = () => {
             </button>
           </div>
 
-          <div className="sticky bottom-3 z-10 flex gap-3 rounded-2xl bg-white/95 p-3 shadow-lg ring-1 ring-slate-200 backdrop-blur">
+          <div className="sticky bottom-3 z-50 flex gap-3 rounded-2xl bg-white/95 p-3 shadow-lg ring-1 ring-slate-200 backdrop-blur">
             <button
               type="button"
               onClick={saveGolfId}
@@ -1054,7 +961,7 @@ export const GolfIdCreatePage = () => {
               className={`inline-flex flex-1 items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black transition disabled:cursor-wait disabled:bg-slate-400 ${golfIdDesign.primaryButton}`}
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
-              {saving ? '作成中...' : '保存して公開'}
+              {saving ? '保存中...' : '保存して公開'}
             </button>
             <Link
               to="/explore"
