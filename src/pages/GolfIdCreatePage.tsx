@@ -8,6 +8,7 @@ import { trackEvent } from '../lib/analytics';
 import { golfIdDesign } from '../config/design';
 import { GolfIdPreviewCard } from '../components/golfid/GolfIdUi';
 import { SharePanel } from '../components/golfid/SharePanel';
+import { MyBagManager } from '../features/gear/MyBagManager';
 import { isMissingGolfProfilesTableError, loadOwnGolfIdProfile } from '../lib/golfIdProfileSource';
 import {
   defaultGolfIdVisibility,
@@ -21,6 +22,7 @@ import {
   type GolfIdRecord,
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
+import { TargetCategory, type ClubSetting } from '../types/golf';
 
 const GOLF_PROFILE_TABLE = 'golf_profiles';
 
@@ -41,11 +43,40 @@ const toCompatibleGolfProfilePayload = (payload: Record<string, unknown>) => ({
   weak_club: payload.weak_club,
   current_issue: payload.current_issue,
   club_setting: payload.club_setting,
+  clubs: payload.clubs,
   social_links: payload.social_links,
   visibility: payload.visibility,
   diagnosis_result: payload.diagnosis_result,
   is_public: payload.is_public,
 });
+
+const formatClubForGolfId = (club: ClubSetting['clubs'][number]) => {
+  const number = club.number || (club.category === TargetCategory.BALL ? 'BALL' : club.category === TargetCategory.PUTTER ? 'PT' : '');
+  const head = [number, club.brand, club.model].filter(Boolean).join(' ').trim();
+  const shaft = [club.shaft, club.shaftWeight, club.flex].filter(Boolean).join(' ').trim();
+  const distance = club.distance || club.carryDistance;
+  return [head, shaft, distance ? `${distance}y` : ''].filter(Boolean).join(' / ').trim();
+};
+
+const buildClubSettingText = (setting: ClubSetting) =>
+  setting.clubs
+    .map(formatClubForGolfId)
+    .filter(Boolean)
+    .join('\n');
+
+const buildGolfProfileClubs = (setting: ClubSetting) =>
+  setting.clubs.map((club) => ({
+    id: club.id,
+    number: club.number || (club.category === TargetCategory.BALL ? 'BALL' : club.category === TargetCategory.PUTTER ? 'PT' : ''),
+    category: club.category,
+    brand: club.brand || '',
+    model: club.model || '',
+    shaft: [club.shaft, club.shaftWeight, club.flex].filter(Boolean).join(' ').trim(),
+    loft: club.loft || '',
+    distance: club.distance || '',
+    carry_distance: club.carryDistance || '',
+    memo: club.memo || '',
+  }));
 
 const initialForm: GolfIdFormData = {
   username: '',
@@ -193,7 +224,24 @@ const buildLegacyGolfIdPayload = (
 export const GolfIdCreatePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, profile, setShowAuth } = useDiagnosis();
+  const {
+    user,
+    profile,
+    updateProfile,
+    saveStatus,
+    isManualSaveInFlight,
+    saveErrorDetail,
+    hasUnsavedChanges,
+    pendingBagChangeCount,
+    pendingBagChangeIds,
+    lastCloudSavedAt,
+    lastSaveTargetClubCount,
+    lastSavedClubCount,
+    manualSaveMyBag,
+    manualSaveMyBagClub,
+    syncWithSupabase,
+    setShowAuth,
+  } = useDiagnosis();
   const [activeStep, setActiveStep] = useState(1);
   const [form, setForm] = useState<GolfIdFormData>(initialForm);
   const [existingId, setExistingId] = useState<string | null>(null);
@@ -404,7 +452,7 @@ export const GolfIdCreatePage = () => {
     let useLegacyStorage = false;
     const { data: usernameOwners, error: usernameCheckError } = await supabase
       .from(GOLF_PROFILE_TABLE)
-      .select('id')
+      .select('id,user_id')
       .ilike('username', username)
       .limit(5);
 
@@ -419,7 +467,11 @@ export const GolfIdCreatePage = () => {
       }
     }
 
-    let usernameOwner = (usernameOwners || []).find((row) => row.id !== existingId);
+    const ownUsernameOwner = (usernameOwners || []).find((row) => row.user_id === user.id);
+    const targetExistingId = existingId || ownUsernameOwner?.id || null;
+    let usernameOwner: { id: string; user_id?: string | null } | undefined = (usernameOwners || []).find(
+      (row) => row.id !== targetExistingId && row.user_id !== user.id,
+    );
     if (useLegacyStorage) {
       const legacyNameOwner = await supabase
         .from('profiles')
@@ -449,8 +501,14 @@ export const GolfIdCreatePage = () => {
       return;
     }
 
+    void manualSaveMyBag(profile.myBag);
+
+    const myBagClubSetting = buildClubSettingText(profile.myBag);
+    const visibleClubSetting = myBagClubSetting || form.club_setting.trim() || null;
+    const profileClubs = buildGolfProfileClubs(profile.myBag);
+
     const payload = {
-      ...(existingId ? { id: existingId } : {}),
+      ...(targetExistingId ? { id: targetExistingId } : {}),
       user_id: user.id,
       username,
       nickname: form.nickname.trim(),
@@ -474,7 +532,8 @@ export const GolfIdCreatePage = () => {
       favorite_club: form.favorite_club.trim() || null,
       weak_club: form.weak_club.trim() || null,
       current_issue: form.current_issue.trim() || null,
-      club_setting: form.club_setting.trim() || null,
+      club_setting: visibleClubSetting,
+      clubs: profileClubs,
       social_links: normalizedSocialLinks,
       visibility: form.visibility,
       diagnosis_result: null,
@@ -485,17 +544,38 @@ export const GolfIdCreatePage = () => {
     let saveError: { code?: string; message: string } | null = null;
 
     if (!useLegacyStorage) {
-      const result = await supabase.from(GOLF_PROFILE_TABLE).upsert(payload).select('id,username').single();
+      const result = targetExistingId
+        ? await supabase
+            .from(GOLF_PROFILE_TABLE)
+            .update(payload)
+            .eq('id', targetExistingId)
+            .eq('user_id', user.id)
+            .select('id,username')
+            .single()
+        : await supabase
+            .from(GOLF_PROFILE_TABLE)
+            .insert(payload)
+            .select('id,username')
+            .single();
       data = result.data as { id?: string; username?: string } | null;
       saveError = result.error;
       if (saveError && isMissingGolfProfilesTableError(saveError)) {
         useLegacyStorage = true;
       } else if (saveError && isMissingGolfProfileColumnError(saveError)) {
-        const compatibleResult = await supabase
-          .from(GOLF_PROFILE_TABLE)
-          .upsert(toCompatibleGolfProfilePayload(payload))
-          .select('id,username')
-          .single();
+        const compatiblePayload = toCompatibleGolfProfilePayload(payload);
+        const compatibleResult = targetExistingId
+          ? await supabase
+              .from(GOLF_PROFILE_TABLE)
+              .update(compatiblePayload)
+              .eq('id', targetExistingId)
+              .eq('user_id', user.id)
+              .select('id,username')
+              .single()
+          : await supabase
+              .from(GOLF_PROFILE_TABLE)
+              .insert(compatiblePayload)
+              .select('id,username')
+              .single();
         data = compatibleResult.data as { id?: string; username?: string } | null;
         saveError = compatibleResult.error;
       }
@@ -549,6 +629,24 @@ export const GolfIdCreatePage = () => {
     : '60秒で、表示名・スコア・SNSリンクを1ページに。My Bagはあとから追加できます。';
   const shareTitle = `${form.nickname.trim() || normalizedUsername || 'あなた'}のGolf ID`;
   const shareText = '自分のGolf IDを作りました。\nスコア・クラブ・SNSリンクをまとめたゴルフ用プロフィールです。';
+  const myBagText = buildClubSettingText(profile.myBag);
+  const previewClubLines = myBagText
+    ? myBagText.split(/\n+/).map((line) => line.trim()).filter(Boolean)
+    : form.club_setting.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+
+  const handleGolfIdMyBagUpdate = (nextOrUpdater: ClubSetting | ((prev: ClubSetting) => ClubSetting)) => {
+    const previousText = buildClubSettingText(profile.myBag);
+    const next = typeof nextOrUpdater === 'function' ? nextOrUpdater(profile.myBag) : nextOrUpdater;
+    const nextText = buildClubSettingText(next);
+    updateProfile('myBag', next);
+    setForm((current) => {
+      if (current.club_setting.trim() && current.club_setting.trim() !== previousText) return current;
+      return {
+        ...current,
+        club_setting: nextText,
+      };
+    });
+  };
 
   return (
     <main className={golfIdDesign.page}>
@@ -743,12 +841,27 @@ export const GolfIdCreatePage = () => {
           <div className={`rounded-[1.5rem] p-4 sm:p-6 ${golfIdDesign.lightCard} ${stepPanelClass(1)}`}>
             <p className={golfIdDesign.badgeLight}>My Bag</p>
             <h2 className="mt-1 text-lg font-black text-slate-950">クラブセッティング</h2>
-            <p className="text-xs font-bold text-slate-500">初回登録では不要です。My Bagを追加すると、よりゴルファーらしいプロフィールになります。</p>
-            <div className="mt-5 grid gap-4">
-              <label className="space-y-1.5">
-                <span className="text-xs font-black text-slate-600">クラブセッティング</span>
-                <textarea className={`${textInputClass} min-h-32 resize-y font-mono text-xs`} value={form.club_setting} onChange={(event) => updateField('club_setting', event.target.value)} placeholder={'1W PING G425 LST\n5W TaylorMade Qi10\n4U PING G430 Hybrid'} />
-              </label>
+            <p className="text-xs font-bold text-slate-500">
+              マイクラブと同じ編集画面です。ここで変更した内容を保存して公開すると、Golf IDのMy Bagにも反映されます。
+            </p>
+            <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white p-2 sm:p-3">
+              <MyBagManager
+                setting={profile.myBag}
+                onUpdate={handleGolfIdMyBagUpdate}
+                saveStatus={saveStatus}
+                isManualSaveInFlight={isManualSaveInFlight}
+                saveErrorDetail={saveErrorDetail}
+                hasUnsavedChanges={hasUnsavedChanges}
+                pendingBagChangeCount={pendingBagChangeCount}
+                pendingBagChangeIds={pendingBagChangeIds}
+                lastCloudSavedAt={lastCloudSavedAt}
+                lastSaveTargetClubCount={lastSaveTargetClubCount}
+                lastSavedClubCount={lastSavedClubCount}
+                onManualSave={(settingOverride) => manualSaveMyBag(settingOverride || profile.myBag)}
+                onManualSaveClub={(clubId, settingOverride) => manualSaveMyBagClub(clubId, settingOverride || profile.myBag)}
+                onReloadFromCloud={syncWithSupabase}
+                desktopLayout="table"
+              />
             </div>
           </div>
 
@@ -1000,7 +1113,7 @@ export const GolfIdCreatePage = () => {
                 currentIssue={form.current_issue || '入力した悩みがここに表示されます。'}
                 favoriteClub={form.favorite_club}
                 weakClub={form.weak_club}
-                clubLines={form.club_setting.split(/\n+/).map((line) => line.trim()).filter(Boolean)}
+                clubLines={previewClubLines}
                 socialLabels={[
                   form.social_links.youtube && { label: 'YouTube', platform: 'youtube' as const },
                   form.social_links.instagram && { label: 'Instagram', platform: 'instagram' as const },
