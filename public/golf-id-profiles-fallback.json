@@ -3,16 +3,16 @@
     "id": "1f2c4411-c515-4d2e-a0f7-ed8a3abfb4f2",
     "user_id": "1f2c4411-c515-4d2e-a0f7-ed8a3abfb4f2",
     "username": "tommy",
-    "nickname": "Tommy",
-    "best_score": 84,
-    "average_score": 89,
-    "target_score": 79,
+    "nickname": "tommy",
+    "best_score": null,
+    "average_score": null,
+    "target_score": null,
     "head_speed": 52,
     "golf_history": "1〜3年",
-    "favorite_club": "5I",
+    "favorite_club": null,
     "weak_club": null,
-    "current_issue": "パター",
-    "club_setting": "4U Ping G430 Hybrid / PING TOUR 2.0 BLACK 90 90g X / 240y\n5I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 205y\n6I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 190y\n7I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 168y\n8I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 160y\n9I Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 145y\nPW Yamaha inpres XV forged tour / Dynamic Gold S200 120g S / 130y\n50° Titleist Vokey SM8 / Dynamic Gold S200 120g S / 120y\n54° Titleist Vokey SM8 / Dynamic Gold S200 120g S / 105y\n58° Titleist Vokey SM8 / Dynamic Gold S200 120g S / 90y\nPT Odyssey Ai-ONE\nBALL\n1W Ping G425 LST / 26 VENTUS TR Blue 60g X / 295y\n3W TaylorMade Qi10 FW / 26 VENTUS TR BLUE 7 70g X / 270y\n5U Ping G430 Hybrid / PING TOUR 2.0 BLACK90 90g X / 225y",
+    "current_issue": null,
+    "club_setting": "Ping G430 Hybrid / PING TOUR 2.0 BLACK 90 90g X / 240y\nYamaha inpres XV forged tour / Dynamic Gold S200 120g S / 205y\nYamaha inpres XV forged tour / Dynamic Gold S200 120g S / 190y\nYamaha inpres XV forged tour / Dynamic Gold S200 120g S / 168y\nYamaha inpres XV forged tour / Dynamic Gold S200 120g S / 160y\nYamaha inpres XV forged tour / Dynamic Gold S200 120g S / 145y\nYamaha inpres XV forged tour / Dynamic Gold S200 120g S / 130y\nTitleist Vokey SM8 / Dynamic Gold S200 120g S / 120y\nTitleist Vokey SM8 / Dynamic Gold S200 120g S / 105y\nTitleist Vokey SM8 / Dynamic Gold S200 120g S / 90y\nOdyssey Ai-ONE\nPing G425 LST / 26 VENTUS TR Blue 60g X / 295y\nTaylorMade Qi10 FW / 26 VENTUS TR BLUE 7 70g X / 270y\nPing G430 Hybrid / PING TOUR 2.0 BLACK90 90g X / 225y",
     "social_links": {
       "youtube": "",
       "instagram": "https://www.instagram.com/tommy",
@@ -27,28 +27,17 @@
         "url": ""
       }
     },
-    "visibility": {
-      "weak_club": false,
-      "best_score": true,
-      "head_speed": true,
-      "club_setting": true,
-      "golf_history": true,
-      "target_score": true,
-      "average_score": true,
-      "current_issue": false,
-      "favorite_club": true
-    },
+    "visibility": {},
     "diagnosis_result": {
-      "nextAction": "次のラウンドでは3パット数と1m以内の成功率を記録しましょう。",
-      "currentStatus": "スコア改善の余地はグリーン上の再現性にありそうです。",
-      "diagnosisType": "パッティング安定タイプ",
-      "priorityIssue": "距離感とショートパットの安定",
-      "gearSuggestion": "ストロークに合うヘッド形状と長さを確認しましょう。",
-      "notRecommendedNow": "形状だけでパターを買い替えるより、まずはミスの傾向を見ましょう。",
-      "practiceSuggestion": "1m、3m、7mの距離を決めて、毎回同じテンポで打つ練習がおすすめです。"
+      "diagnosisType": "クラブ見直しタイプ",
+      "currentStatus": "登録済みのクラブ、スコア、ヘッドスピードをもとに現在地を整理できます。",
+      "priorityIssue": "まずはGolf IDの項目を埋めて、クラブ構成と目標スコアを見比べましょう。",
+      "nextAction": "クラブセッティングとスコア目標を1ページにまとめ、次に見直す番手を明確にしましょう。",
+      "notRecommendedNow": "いきなり全クラブを買い替えるより、距離階段と苦手番手から確認しましょう。",
+      "gearSuggestion": "使用ボール: Pro V1"
     },
     "is_public": true,
-    "updated_at": "2026-07-07T14:34:55.205+00:00"
+    "updated_at": "2026-07-09T04:16:13.206+00:00"
   },
   {
     "id": "79c1deb2-71c0-487b-920a-c8e7ab3511a1",

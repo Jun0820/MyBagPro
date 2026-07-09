@@ -73,6 +73,11 @@ export const normalizeUserSocialLinks = (value: unknown): UserSocialLinks => {
   if (!value || typeof value !== 'object') return {};
 
   const record = value as Record<string, unknown>;
+  const golfId = record.golfId && typeof record.golfId === 'object'
+    ? (record.golfId as Record<string, unknown>)
+    : undefined;
+  const youtube = typeof record.youtube === 'string' ? record.youtube.trim() : '';
+  const tiktok = typeof record.tiktok === 'string' ? record.tiktok.trim() : '';
   const customLinksSource = Array.isArray(record.customLinks) ? record.customLinks : [];
   const bagSnapshotSource =
     record.bagSnapshot && typeof record.bagSnapshot === 'object'
@@ -106,6 +111,11 @@ export const normalizeUserSocialLinks = (value: unknown): UserSocialLinks => {
   const averageScore = toNumberOrUndefined(profileStatsSource.averageScore);
 
   return {
+    ...(golfId ? { golfId } : {}),
+    ...(youtube ? { youtube } : {}),
+    ...(tiktok ? { tiktok } : {}),
+    ...(record.custom1 && typeof record.custom1 === 'object' ? { custom1: record.custom1 } : {}),
+    ...(record.custom2 && typeof record.custom2 === 'object' ? { custom2: record.custom2 } : {}),
     instagram: instagram || undefined,
     x: x || undefined,
     customLinks,
@@ -138,10 +148,22 @@ export const buildStoredSocialLinks = (
   bagSnapshot?: UserSocialLinks['bagSnapshot'],
 ): UserSocialLinks => {
   const normalized = normalizeUserSocialLinks(links || {});
+  const passthrough = normalized as UserSocialLinks & {
+    golfId?: Record<string, unknown>;
+    youtube?: string;
+    tiktok?: string;
+    custom1?: unknown;
+    custom2?: unknown;
+  };
   const bestScore = toNumberOrUndefined(stats?.bestScore);
   const averageScore = toNumberOrUndefined(stats?.averageScore);
 
   return {
+    ...(passthrough.golfId ? { golfId: passthrough.golfId } : {}),
+    ...(passthrough.youtube ? { youtube: passthrough.youtube } : {}),
+    ...(passthrough.tiktok ? { tiktok: passthrough.tiktok } : {}),
+    ...(passthrough.custom1 ? { custom1: passthrough.custom1 } : {}),
+    ...(passthrough.custom2 ? { custom2: passthrough.custom2 } : {}),
     ...(normalized.instagram ? { instagram: normalized.instagram } : {}),
     ...(normalized.x ? { x: normalized.x } : {}),
     ...(normalized.customLinks && normalized.customLinks.length > 0

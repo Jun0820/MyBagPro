@@ -501,8 +501,6 @@ export const GolfIdCreatePage = () => {
       return;
     }
 
-    void manualSaveMyBag(profile.myBag);
-
     const myBagClubSetting = buildClubSettingText(profile.myBag);
     const visibleClubSetting = myBagClubSetting || form.club_setting.trim() || null;
     const profileClubs = buildGolfProfileClubs(profile.myBag);

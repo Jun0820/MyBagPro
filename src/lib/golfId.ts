@@ -77,6 +77,22 @@ export interface GolfIdRecord {
   weak_club?: string | null;
   current_issue?: string | null;
   club_setting?: string | null;
+  clubs?: Array<{
+    id?: string;
+    number?: string | null;
+    club_label?: string | null;
+    label?: string | null;
+    category?: string | null;
+    brand?: string | null;
+    model?: string | null;
+    shaft?: string | null;
+    loft?: string | null;
+    distance?: string | number | null;
+    total_distance?: string | number | null;
+    carryDistance?: string | number | null;
+    carry_distance?: string | number | null;
+    memo?: string | null;
+  }> | null;
   social_links?: GolfIdSocialLinks | null;
   visibility?: Partial<GolfIdVisibility> | null;
   diagnosis_result?: {
