@@ -15,7 +15,7 @@ export type GolfIdLoadResult = {
   message?: string;
 };
 
-const PUBLIC_QUERY_TIMEOUT_MS = 12000;
+const PUBLIC_QUERY_TIMEOUT_MS = 2500;
 const PUBLIC_LIST_QUERY_TIMEOUT_MS = 1800;
 const FALLBACK_JSON_PATH = '/golf-id-profiles-fallback.json';
 let fallbackGolfIdProfilesCache: GolfIdRecord[] | null = null;
@@ -221,56 +221,60 @@ export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsernam
 };
 
 export const loadLegacyGolfIdProfile = async (username: string): Promise<GolfIdLoadResult> => {
-  let data: unknown[] | null = null;
-  let error: { message: string } | null = null;
   try {
-    const result = await withTimeout(
-      supabase
-        .from('profiles')
-        .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
-        .eq('name', username)
-        .eq('is_public', true)
-        .order('updated_at', { ascending: false })
-        .limit(1),
-      'legacy Golf ID profile query',
-    );
-    data = result.data;
-    error = result.error;
+    const [nameResult, embeddedUsernameResult] = await Promise.all([
+      withTimeout(
+        supabase
+          .from('profiles')
+          .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
+          .eq('name', username)
+          .eq('is_public', true)
+          .order('updated_at', { ascending: false })
+          .limit(1),
+        'legacy Golf ID profile query',
+      ),
+      withTimeout(
+        supabase
+          .from('profiles')
+          .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
+          .filter('sns_links->golfId->>username', 'eq', username)
+          .eq('is_public', true)
+          .order('updated_at', { ascending: false })
+          .limit(1),
+        'legacy Golf ID username query',
+      ).catch((queryError) => {
+        return { data: null, error: { message: queryError instanceof Error ? queryError.message : 'legacy username query failed' } };
+      }),
+    ]);
+
+    if (nameResult.error) {
+      return { status: classifyGolfIdError(nameResult.error), profile: null, message: nameResult.error.message };
+    }
+
+    const row = (nameResult.data?.[0] || embeddedUsernameResult.data?.[0]) as LegacyProfileRow | undefined;
+    if (row) return { status: 'ok', profile: mapLegacyProfileToGolfId(row, username) };
+
+    if (embeddedUsernameResult.error) {
+      return { status: classifyGolfIdError(embeddedUsernameResult.error), profile: null, message: embeddedUsernameResult.error.message };
+    }
+
+    return loadFallbackGolfIdProfile(username);
   } catch (queryError) {
     return { status: 'connection_error', profile: null, message: queryError instanceof Error ? queryError.message : 'legacy query failed' };
   }
-
-  if (error) {
-    return { status: classifyGolfIdError(error), profile: null, message: error.message };
-  }
-
-  const row = data?.[0] as LegacyProfileRow | undefined;
-  if (!row) {
-    const fallback = await withTimeout(
-      supabase
-        .from('profiles')
-        .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
-        .filter('sns_links->golfId->>username', 'eq', username)
-        .eq('is_public', true)
-        .order('updated_at', { ascending: false })
-        .limit(1),
-      'legacy Golf ID username query',
-    ).catch((queryError) => {
-      return { data: null, error: { message: queryError instanceof Error ? queryError.message : 'legacy username query failed' } };
-    });
-
-    if (fallback.error) return { status: classifyGolfIdError(fallback.error), profile: null, message: fallback.error.message };
-    const fallbackRow = fallback.data?.[0] as LegacyProfileRow | undefined;
-    if (!fallbackRow) return loadFallbackGolfIdProfile(username);
-    return { status: 'ok', profile: mapLegacyProfileToGolfId(fallbackRow, username) };
-  }
-
-  return { status: 'ok', profile: mapLegacyProfileToGolfId(row, username) };
 };
 
 export const loadPublicGolfIdProfile = async (username: string): Promise<GolfIdLoadResult> => {
   const normalizedUsername = normalizeGolfIdUsername(username);
   if (!normalizedUsername) return { status: 'not_found', profile: null };
+
+  const legacy = await loadLegacyGolfIdProfile(normalizedUsername);
+  if (legacy.status === 'ok') return legacy;
+
+  const fallback = await loadFallbackGolfIdProfile(normalizedUsername);
+  if (fallback.status === 'ok') return fallback;
+
+  if (legacy.status !== 'not_found') return legacy;
 
   let data: unknown[] | null = null;
   let error: { code?: string; message?: string } | null = null;
@@ -283,18 +287,15 @@ export const loadPublicGolfIdProfile = async (username: string): Promise<GolfIdL
         .order('updated_at', { ascending: false })
         .limit(1),
       'Golf ID profile query',
+      900,
     );
     data = result.data;
     error = result.error;
   } catch (queryError) {
-    const legacy = await loadLegacyGolfIdProfile(normalizedUsername).catch(() => null);
-    if (legacy?.status === 'ok') return legacy;
-    const fallback = await loadFallbackGolfIdProfile(normalizedUsername);
-    if (fallback.status === 'ok') return fallback;
     return {
-      status: legacy?.status && legacy.status !== 'not_found' ? legacy.status : 'connection_error',
+      status: 'connection_error',
       profile: null,
-      message: legacy?.message || (queryError instanceof Error ? queryError.message : 'Golf ID profile query failed'),
+      message: queryError instanceof Error ? queryError.message : 'Golf ID profile query failed',
     };
   }
 
@@ -303,14 +304,10 @@ export const loadPublicGolfIdProfile = async (username: string): Promise<GolfIdL
     return { status: 'ok', profile: { ...profile, username: normalizeGolfIdUsername(profile.username || normalizedUsername) } };
   }
 
-  if (!error && (!data || data.length === 0)) {
-    return loadLegacyGolfIdProfile(normalizedUsername);
-  }
+  if (!error && (!data || data.length === 0)) return { status: 'not_found', profile: null };
 
-  if (isMissingGolfProfilesTableError(error)) return loadLegacyGolfIdProfile(normalizedUsername);
+  if (isMissingGolfProfilesTableError(error)) return { status: 'not_found', profile: null };
 
-  const fallback = await loadFallbackGolfIdProfile(normalizedUsername);
-  if (fallback.status === 'ok') return fallback;
   return { status: classifyGolfIdError(error), profile: null, message: error?.message };
 };
 
@@ -365,6 +362,26 @@ export const loadOwnLegacyGolfIdProfile = async (userId: string): Promise<GolfId
 };
 
 export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord[]> => {
+  try {
+    const legacy = await withTimeout(
+      supabase
+        .from('profiles')
+        .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
+        .eq('is_public', true)
+        .order('updated_at', { ascending: false })
+        .limit(limit),
+      'legacy public Golf ID profiles query',
+      PUBLIC_LIST_QUERY_TIMEOUT_MS,
+    );
+
+    if (legacy.error) throw legacy.error;
+    const legacyProfiles = ((legacy.data || []) as LegacyProfileRow[]).map((row) => mapLegacyProfileToGolfId(row));
+    if (legacyProfiles.length > 0) return legacyProfiles;
+  } catch {
+    const fallback = await loadFallbackGolfIdProfiles();
+    if (fallback.length > 0) return fallback;
+  }
+
   const { data, error } = await withTimeout(
     supabase
       .from('golf_profiles')
@@ -373,23 +390,10 @@ export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord
       .order('updated_at', { ascending: false })
       .limit(limit),
     'public Golf ID profiles query',
-    PUBLIC_LIST_QUERY_TIMEOUT_MS,
+    900,
   ).catch(async () => ({ data: await loadFallbackGolfIdProfiles(), error: null }));
 
   if (!error && data) return data as GolfIdRecord[];
   if (error && !isMissingGolfProfilesTableError(error)) throw error;
-
-  const legacy = await withTimeout(
-    supabase
-      .from('profiles')
-      .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
-      .eq('is_public', true)
-      .order('updated_at', { ascending: false })
-      .limit(limit),
-    'legacy public Golf ID profiles query',
-    PUBLIC_LIST_QUERY_TIMEOUT_MS,
-  ).catch(async () => ({ data: await loadFallbackGolfIdProfiles(), error: null }));
-
-  if (legacy.error) throw legacy.error;
-  return ((legacy.data || []) as LegacyProfileRow[]).map((row) => mapLegacyProfileToGolfId(row));
+  return loadFallbackGolfIdProfiles();
 };

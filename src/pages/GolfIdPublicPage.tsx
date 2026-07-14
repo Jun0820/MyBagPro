@@ -9,7 +9,7 @@ import {
   type GolfIdRecord,
   type GolfIdVisibilityKey,
 } from '../lib/golfId';
-import { loadOwnGolfIdProfile, loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
+import { loadOwnLegacyGolfIdProfile, loadPublicGolfIdProfile, type GolfIdLoadStatus } from '../lib/golfIdProfileSource';
 import { useDiagnosis } from '../context/DiagnosisContext';
 import { ShareButtons } from '../components/golfid/SharePanel';
 
@@ -244,7 +244,7 @@ export const GolfIdPublicPage = () => {
         let result = await loadPublicGolfIdProfile(username);
 
         if (result.status === 'not_found' && user.isLoggedIn && user.id) {
-          const ownResult = await loadOwnGolfIdProfile(user.id);
+          const ownResult = await loadOwnLegacyGolfIdProfile(user.id);
           if (ownResult.status === 'ok' && ownResult.profile) {
             result = ownResult;
           }
