@@ -618,10 +618,11 @@ export const ProSettingDetailPage = () => {
                 <dt className="text-[10px] font-black tracking-[0.14em] text-slate-400">{fact.label}</dt>
                 <dd className="mt-1 text-sm font-black leading-5 text-white">{fact.value}</dd>
                 {fact.label === 'ボール' && fact.value !== EMPTY_LABEL ? (
+                  <div className="mt-2 flex flex-wrap gap-2">
                   <a
                     href={getAffiliateUrl('', fact.value, 'RAKUTEN')}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="sponsored noopener noreferrer"
                     onClick={() => {
                       trackEvent('click_affiliate_shop', {
                         source_page: 'pro_setting_detail_ball_fact',
@@ -633,10 +634,30 @@ export const ProSettingDetailPage = () => {
                         model_name: fact.value,
                       });
                     }}
-                    className="mt-2 inline-flex rounded-full bg-[#bf0000] px-3 py-1.5 text-[11px] font-black text-white transition hover:bg-[#a60000]"
+                    className="inline-flex rounded-full bg-[#bf0000] px-3 py-1.5 text-[11px] font-black text-white transition hover:bg-[#a60000]"
                   >
                     楽天で見る
                   </a>
+                  <a
+                    href={getAffiliateUrl('', fact.value, 'AMAZON')}
+                    target="_blank"
+                    rel="sponsored noopener noreferrer"
+                    onClick={() => {
+                      trackEvent('click_affiliate_shop', {
+                        source_page: 'pro_setting_detail_ball_fact',
+                        profile_slug: setting.slug,
+                        profile_name: setting.name,
+                        shop_id: 'AMAZON',
+                        shop_name: 'Amazon',
+                        product_type: 'golf_ball',
+                        model_name: fact.value,
+                      });
+                    }}
+                    className="inline-flex rounded-full bg-slate-800 px-3 py-1.5 text-[11px] font-black text-white transition hover:bg-slate-700"
+                  >
+                    Amazonで見る
+                  </a>
+                  </div>
                 ) : null}
               </div>
             ))}
@@ -802,7 +823,7 @@ export const ProSettingDetailPage = () => {
                         <a
                           href={getAffiliateUrl(club.brand || '', club.model, 'RAKUTEN')}
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel="sponsored noopener noreferrer"
                           onClick={() => {
                             trackEvent('click_affiliate_shop', {
                               source_page: 'pro_setting_detail_club_table',
@@ -818,6 +839,26 @@ export const ProSettingDetailPage = () => {
                           className="inline-flex items-center justify-center rounded-full bg-[#bf0000] px-3 py-2 text-xs font-black text-white transition hover:bg-[#a60000]"
                         >
                           楽天で見る
+                        </a>
+                        <a
+                          href={getAffiliateUrl(club.brand || '', club.model, 'AMAZON')}
+                          target="_blank"
+                          rel="sponsored noopener noreferrer"
+                          onClick={() => {
+                            trackEvent('click_affiliate_shop', {
+                              source_page: 'pro_setting_detail_club_table',
+                              profile_slug: setting.slug,
+                              profile_name: setting.name,
+                              shop_id: 'AMAZON',
+                              shop_name: 'Amazon',
+                              brand: club.brand || '',
+                              model_name: club.model,
+                              club_category: club.category,
+                            });
+                          }}
+                          className="inline-flex items-center justify-center rounded-full bg-slate-800 px-3 py-2 text-xs font-black text-white transition hover:bg-slate-700"
+                        >
+                          Amazonで見る
                         </a>
                         {isDriver && driverDetail ? (
                           <button
@@ -894,11 +935,11 @@ export const ProSettingDetailPage = () => {
                             </div>
                           ) : null}
 
-                          <div className="mt-3 flex gap-2">
+                          <div className="mt-3 flex flex-wrap gap-2">
                             <a
                               href={getAffiliateUrl(club.brand || '', club.model, 'RAKUTEN')}
                               target="_blank"
-                              rel="noopener noreferrer"
+                              rel="sponsored noopener noreferrer"
                               onClick={() => {
                                 trackEvent('click_affiliate_shop', {
                                   source_page: 'pro_setting_detail_club_card',
@@ -914,6 +955,26 @@ export const ProSettingDetailPage = () => {
                               className="inline-flex flex-1 items-center justify-center rounded-full bg-[#bf0000] px-4 py-2.5 text-xs font-black text-white"
                             >
                               楽天で見る
+                            </a>
+                            <a
+                              href={getAffiliateUrl(club.brand || '', club.model, 'AMAZON')}
+                              target="_blank"
+                              rel="sponsored noopener noreferrer"
+                              onClick={() => {
+                                trackEvent('click_affiliate_shop', {
+                                  source_page: 'pro_setting_detail_club_card',
+                                  profile_slug: setting.slug,
+                                  profile_name: setting.name,
+                                  shop_id: 'AMAZON',
+                                  shop_name: 'Amazon',
+                                  brand: club.brand || '',
+                                  model_name: club.model,
+                                  club_category: club.category,
+                                });
+                              }}
+                              className="inline-flex flex-1 items-center justify-center rounded-full bg-slate-800 px-4 py-2.5 text-xs font-black text-white"
+                            >
+                              Amazonで見る
                             </a>
                             {isDriver && driverDetail ? (
                               <button
