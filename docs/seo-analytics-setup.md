@@ -1,69 +1,39 @@
-# SEO And Analytics Setup
+# 計測とSearch Consoleの運用（2026-11-17）
 
-## 追加したもの
-- ルートごとの `title / description / og / canonical / robots`
-- `robots.txt`
-- `sitemap.xml`
-- GA4 のページビュー計測
-- Search Console 用の `google-site-verification` 対応
+## 現在の状態
+- GAプロパティはMy Bag Pro。両サイトを同じプロパティで計測し、ホスト名で区別する。
+- GA管理画面に「MyBagPro 本番」（www.mybagpro.jp完全一致）、「Golf ID 本番」（golfid.jp完全一致）の比較を保存済み。
+- イベントスコープのカスタム定義を作成済み：サイト名 site_brand、購入先ショップ shop_id、クリック箇所 source_page。
+- site_brandの送信は修正版公開後。既存のshop_id/source_pageもカスタム定義登録前に遡って集計されるとは限らない。
+- Search Consoleに https://www.mybagpro.jp/ と https://golfid.jp/ を追加し、既設HTMLファイルで自動確認済み。確認ファイルを削除しないこと。
+- www側のsitemap.xmlは正常処理・480ページ検出を確認。これはインデックス登録480ページという意味ではない。
+- Golf ID本番のsitemap.xmlはMyBagProのURLを返すため、まだ送信していない。
 
-## GA4 の設定
+## 修正コード
+VITE_GA_MEASUREMENT_IDを指定。コードのページビュー送信は手動に一本化し、初期configでsend_page_view:falseを指定する。
+SeoManagerは記事・選手タイトルの確定後に送信し、遅い取得には2.5秒の代替送信を設ける。ナビゲーションキーで二重送信を防ぎ、古いページの非同期結果は送信しない。
+site_brand、site_hostname、page_pathをイベントに付ける。購入リンクは既存click_affiliate_shopを使い、shop_idとsource_pageで比較する。購入クリックをpurchaseや実報酬と扱わない。
+本番ホスト以外は送信しない。ローカル検証は必要時だけDEVかつVITE_GA_DEBUG=true。本番debug_modeは付けない。
+URLのキャンペーンパラメータを残し、認証フラグメントや任意の入力クエリは送らない。
 
-`.env.local` に Measurement ID を追加する。
+## 公開時に必要なGA操作（未実施）
+Google公式：https://developers.google.com/analytics/devguides/collection/ga4/views
+send_page_view:falseだけでは拡張計測の履歴変更イベントは止まらない。
+公開と同じ作業で、データストリーム My Bag Pro Web > 拡張計測 > ページビューの詳細設定にある「ブラウザの履歴イベントに基づくページの変更」を無効にする。元の設定を記録する。
+現本番コードも手動page_viewを送っているが、復旧可能な本番公開を確保してから設定を同期する。今回この設定は変更していない。
+実際の通信で初回・内部遷移・戻る操作につきpage_viewが1回であること、両サイトとショップが区別されることを確認する。ローカル単体テストだけでGA受信まで保証しない。
 
-```env
-VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
-```
+## サイトマップ
+MyBagProは既存sitemap.xml/robots.txtを維持する。Golf IDはsitemap-golfid.xml（トップ、作成、公開一覧）とrobots-golfid.txtを生成する。
+vercel.jsonでgolfid.jp/www.golfid.jpの/sitemap.xmlと/robots.txtを専用ファイルへ振り分ける。filesystem処理より前に置く。
+ViteローカルサーバーはVercelのホスト振分けを再現しないため、公開前にVercel側でもホスト別の200応答とXMLを確認する。その後Golf IDのSearch Consoleにhttps://golfid.jp/sitemap.xmlを送信する。
 
-設定後にビルドし直して本番へアップすると、ページビュー計測が有効になる。
+## 検証
+node scripts/check-analytics.mjs
+型検査、Viteビルド、詳細SEO HTML生成を実施。
+スマホ390px・パソコン1440pxで選手詳細の購入リンク表示、一覧への移動を確認。
 
-## Search Console の設定
-
-`.env.local` に確認コードを追加する。
-
-```env
-VITE_GOOGLE_SITE_VERIFICATION=google-site-verification-code
-```
-
-設定後にビルドし直して本番へアップすると、`<meta name="google-site-verification">` が head に入る。
-
-Search Console 側では次の順で進める。
-
-1. `https://search.google.com/search-console` を開く
-2. プロパティ追加で `URL プレフィックス` を選ぶ
-3. `https://mybagpro.jp/` を入力する
-4. `HTML タグ` を選ぶ
-5. 表示された verification code を `VITE_GOOGLE_SITE_VERIFICATION` に入れる
-6. ビルドして本番へアップする
-7. Search Console に戻って `確認` を押す
-8. その後 `サイトマップ` に `https://mybagpro.jp/sitemap.xml` を送信する
-
-## すぐ確認する項目
-
-- `https://mybagpro.jp/robots.txt`
-- `https://mybagpro.jp/sitemap.xml`
-- ページソースに `google-site-verification`
-- GA4 の Realtime に自分の閲覧が入るか
-
-## あなたが入れる環境変数
-
-```env
-VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
-VITE_GOOGLE_SITE_VERIFICATION=google-site-verification-code
-```
-
-## いまの SEO で改善した点
-- ホームの title / description を現状の事業方針に更新
-- 一覧ページ、記事ページ、詳細ページに route 単位の SEO を適用
-- `compare`, `diagnosis`, `mypage` は `noindex`
-- `robots.txt` と `sitemap.xml` を追加
-
-## 残る制約
-- 現在は `HashRouter` のため、SEO は強くない
-- 本格的に検索流入を取りにいくなら、将来的には `BrowserRouter + 通常URL + SSR/SSG` に寄せたい
-
-## 次にやると強いもの
-- `HashRouter` から通常URLへ移行
-- 選手ごとの OGP 画像
-- 記事ごとの `Article` 構造化データ
-- Search Console のクエリを見て静的集客ページを増やす
+## 本番反映の制約
+この作業コピーはアップロードZIP由来。現本番全体と一致することは未確認であり、そのまま全体置換しない。
+既存の本番Vercelへのアクセス、元デプロイへの復旧手順を確保してから差分を取り込む。DNS移行は保留。
+各ASPのサイト別確定報酬の識別は未完了。GAの改善だけでサイト別報酬が判明するわけではない。

@@ -42,6 +42,46 @@
       "dest": "/mybagpro.html"
     },
     {
+      "src": "/sitemap\\.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "golfid.jp"
+        }
+      ],
+      "dest": "/sitemap-golfid.xml"
+    },
+    {
+      "src": "/robots\\.txt",
+      "has": [
+        {
+          "type": "host",
+          "value": "golfid.jp"
+        }
+      ],
+      "dest": "/robots-golfid.txt"
+    },
+    {
+      "src": "/sitemap\\.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.golfid.jp"
+        }
+      ],
+      "dest": "/sitemap-golfid.xml"
+    },
+    {
+      "src": "/robots\\.txt",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.golfid.jp"
+        }
+      ],
+      "dest": "/robots-golfid.txt"
+    },
+    {
       "handle": "filesystem"
     },
     {
