@@ -121,3 +121,13 @@ ${urls
 
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xml);
 console.log(`Generated sitemap with ${urls.length} URLs.`);
+
+// Golf ID has separate canonical pages; never submit MyBagPro URLs as its sitemap.
+const golfIdPaths = ['/', '/create', '/explore'];
+const golfIdXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${golfIdPaths.map((pathname) => `  <url><loc>https://golfid.jp${pathname}</loc></url>`).join('\n')}
+</urlset>
+`;
+fs.writeFileSync(path.join(publicDir, 'sitemap-golfid.xml'), golfIdXml);
+fs.writeFileSync(path.join(publicDir, 'robots-golfid.txt'), 'User-agent: *\nAllow: /\n\nSitemap: https://golfid.jp/sitemap.xml\n');

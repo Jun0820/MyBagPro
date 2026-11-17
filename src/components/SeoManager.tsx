@@ -189,7 +189,11 @@ export const SeoManager = () => {
       keywords: seo.keywords,
       image: seo.image,
     });
-    trackPageView(seoPath, `${seo.title} | ${getBrandConfig().name}`);
+    const sendPageView = () => {
+      if (!cancelled) trackPageView(location.pathname, document.title, location.key);
+    };
+    // A slow content request must not prevent this visit from being recorded.
+    const analyticsTimeout = window.setTimeout(sendPageView, 2500);
 
     const applyDynamicDetailSeo = async () => {
       if (location.pathname.startsWith('/pros/')) {
@@ -236,12 +240,18 @@ export const SeoManager = () => {
       }
     };
 
-    applyDynamicDetailSeo();
+    void applyDynamicDetailSeo()
+      .catch(() => { /* Keep the route's fallback SEO if content is unavailable. */ })
+      .finally(() => {
+        window.clearTimeout(analyticsTimeout);
+        sendPageView();
+      });
 
     return () => {
       cancelled = true;
+      window.clearTimeout(analyticsTimeout);
     };
-  }, [location.pathname]);
+  }, [location.pathname, location.key]);
 
   useEffect(() => {
     const selector = 'meta[name="google-site-verification"]';
