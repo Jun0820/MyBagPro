@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronRight, Globe2, ImageIcon, Instagram, Link2, Music2, Share2, Trophy, UserRound, Youtube } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, Club, Globe2, Instagram, Link2, Music2, Share2, Trophy, UserRound, Youtube } from 'lucide-react';
 import { applySeo } from '../lib/seo';
 import { trackEvent } from '../lib/analytics';
 import {
@@ -82,13 +82,62 @@ type PublicClubRow = {
   number?: string | null;
   club_label?: string | null;
   label?: string | null;
+  category?: string | null;
   brand?: string | null;
   model?: string | null;
   shaft?: string | null;
+  loft?: string | number | null;
   distance?: string | number | null;
   total_distance?: string | number | null;
   carryDistance?: string | number | null;
   carry_distance?: string | number | null;
+};
+
+const normalizeClubBadge = (value: unknown) => {
+  const normalized = String(value || '')
+    .trim()
+    .toUpperCase()
+    .replace(/番ウッド/g, 'W')
+    .replace(/番アイアン/g, 'I')
+    .replace(/番(?:UT|ユーティリティ)/g, 'U')
+    .replace(/UT$/g, 'U')
+    .replace(/DRIVER|ドライバー/g, '1W')
+    .replace(/PUTTER|パター/g, 'PT')
+    .replace(/ゴルフボール|BALL/g, 'BALL');
+  const match = normalized.match(/(?:^|\s)(\d{1,2}(?:W|U|I)|PW|AW|GW|SW|LW|PT|BALL|\d{2}°)(?:\s|$)/);
+  return match?.[1] || '';
+};
+
+const inferClubBadge = (row: PublicClubRow) => {
+  const direct = normalizeClubBadge(row.club_label || row.label || row.number);
+  if (direct) return direct;
+
+  const fromText = normalizeClubBadge(`${row.model || ''} ${row.brand || ''}`);
+  if (fromText) return fromText;
+
+  const category = String(row.category || '').toLowerCase();
+  const loft = String(row.loft || '').replace(/[^0-9.]/g, '');
+  const loftNumber = Number(loft);
+  if (category.includes('ドライバー') || category.includes('driver')) return '1W';
+  if (category.includes('フェアウェイ') || category.includes('fairway') || category === 'fw') {
+    if (loftNumber >= 13 && loftNumber <= 16) return '3W';
+    if (loftNumber >= 17 && loftNumber <= 19) return '5W';
+    if (loftNumber >= 20 && loftNumber <= 22) return '7W';
+    if (loftNumber >= 23 && loftNumber <= 25) return '9W';
+    return 'FW';
+  }
+  if (category.includes('ユーティリティ') || category.includes('utility') || category.includes('hybrid') || category === 'ut') {
+    if (loftNumber >= 18 && loftNumber <= 20) return '3U';
+    if (loftNumber >= 21 && loftNumber <= 24) return '4U';
+    if (loftNumber >= 25 && loftNumber <= 27) return '5U';
+    if (loftNumber >= 28 && loftNumber <= 31) return '6U';
+    return 'UT';
+  }
+  if (category.includes('ウェッジ') || category.includes('wedge')) return loft ? `${loft}°` : 'WG';
+  if (category.includes('アイアン') || category.includes('iron')) return 'I';
+  if (category.includes('パター') || category.includes('putter')) return 'PT';
+  if (category.includes('ボール') || category.includes('ball')) return 'BALL';
+  return 'CLUB';
 };
 
 const clubOrder = (badge: string) => {
@@ -111,19 +160,19 @@ const clubKind = (badge: string): ParsedClubLine['kind'] => {
   const normalized = badge.toUpperCase();
   if (normalized === 'BALL') return 'ball';
   if (normalized === 'PT') return 'putter';
-  if (/^\d{2}°$/.test(normalized)) return 'wedge';
+  if (/^\d{2}°$/.test(normalized) || normalized === 'WG') return 'wedge';
   if (/W$/.test(normalized)) return 'wood';
   if (/(U|UT)$/.test(normalized)) return 'utility';
   if (/I$/.test(normalized) || normalized === 'PW') return 'iron';
   return 'other';
 };
 
-const parseClubLine = (line: string, index: number): ParsedClubLine => {
+const parseClubLine = (line: string): ParsedClubLine => {
   const clean = line.replace(/\s+/g, ' ').trim();
   const parts = clean.split('/').map((part) => part.trim()).filter(Boolean);
   const headPart = parts[0] || clean;
   const headMatch = headPart.match(/^([0-9]{1,2}(?:W|U|UT|I)|PW|PT|BALL|[0-9]{2}°)\s*(.*)$/i);
-  const badge = (headMatch?.[1] || '').toUpperCase().replace('UT', 'U') || `#${index + 1}`;
+  const badge = (headMatch?.[1] || '').toUpperCase().replace('UT', 'U') || inferClubBadge({ model: headPart });
   const headText = headMatch?.[2]?.trim() || (badge === 'BALL' || badge === 'PT' ? '' : headPart);
   const brand = brandNames.find((name) => headText.toLowerCase().startsWith(name.toLowerCase())) || '';
   const model = brand ? headText.slice(brand.length).trim() : headText;
@@ -141,8 +190,8 @@ const parseClubLine = (line: string, index: number): ParsedClubLine => {
   };
 };
 
-const parseClubRow = (row: PublicClubRow, index: number): ParsedClubLine => {
-  const badge = String(row.club_label || row.label || row.number || `#${index + 1}`).toUpperCase().replace('UT', 'U');
+const parseClubRow = (row: PublicClubRow): ParsedClubLine => {
+  const badge = inferClubBadge(row);
   const brand = String(row.brand || '').trim();
   const model = String(row.model || '').trim();
   const shaft = String(row.shaft || '').trim();
@@ -160,6 +209,55 @@ const parseClubRow = (row: PublicClubRow, index: number): ParsedClubLine => {
     order: clubOrder(badge),
     kind: clubKind(badge),
   };
+};
+
+const withSpecificLegacyBadges = (rows: PublicClubRow[], clubs: ParsedClubLine[]) => {
+  const next = clubs.map((club) => ({ ...club }));
+  const applyBadge = (index: number, badge: string) => {
+    next[index] = {
+      ...next[index],
+      badge,
+      order: clubOrder(badge),
+      kind: clubKind(badge),
+    };
+  };
+
+  const ironIndexes = next
+    .map((club, index) => ({ club, index }))
+    .filter(({ club }) => club.badge === 'I')
+    .sort((a, b) => clubDistanceSort(b.club) - clubDistanceSort(a.club));
+  if (ironIndexes.length > 0 && ironIndexes.length <= 7) {
+    const firstIron = Math.max(3, 10 - ironIndexes.length);
+    ironIndexes.forEach(({ index }, offset) => applyBadge(index, `${firstIron + offset}I`));
+  }
+
+  const wedgeIndexes = next
+    .map((club, index) => ({ club, index }))
+    .filter(({ club }) => club.badge === 'WG')
+    .sort((a, b) => clubDistanceSort(b.club) - clubDistanceSort(a.club));
+  if (wedgeIndexes.length > 0) {
+    const ironModels = new Set(
+      rows
+        .filter((row) => String(row.category || '').includes('アイアン'))
+        .map((row) => `${row.brand || ''} ${row.model || ''}`.trim().toLowerCase())
+        .filter(Boolean),
+    );
+    const pitchingWedge = wedgeIndexes.find(({ index }) =>
+      ironModels.has(`${rows[index]?.brand || ''} ${rows[index]?.model || ''}`.trim().toLowerCase()),
+    );
+    if (pitchingWedge) applyBadge(pitchingWedge.index, 'PW');
+
+    const specialtyWedges = wedgeIndexes.filter(({ index }) => index !== pitchingWedge?.index);
+    const commonLofts =
+      specialtyWedges.length === 2 ? ['52°', '58°'] :
+      specialtyWedges.length === 3 ? ['50°', '54°', '58°'] :
+      specialtyWedges.length === 4 ? ['48°', '52°', '56°', '60°'] : [];
+    specialtyWedges.forEach(({ index }, offset) => {
+      if (commonLofts[offset]) applyBadge(index, commonLofts[offset]);
+    });
+  }
+
+  return next;
 };
 
 const clubDistanceSort = (club: ParsedClubLine) => {
@@ -180,8 +278,8 @@ const clubIconTone: Record<ParsedClubLine['kind'], string> = {
 };
 
 const buildProfileSeoTitle = (profile: GolfIdRecord | null, username: string) => {
-  if (!profile) return username ? `${username}のGolf ID | Golf ID` : 'Golf ID';
-  return `${profileTitleName(profile)}のGolf ID | Golf ID`;
+  if (!profile) return username ? `${username}のGolf ID` : '公開プロフィール';
+  return `${profileTitleName(profile)}のGolf ID`;
 };
 
 const getExtendedProfileValue = (profile: GolfIdRecord, keys: string[]) => {
@@ -212,7 +310,7 @@ const getClubRows = (profile: GolfIdRecord) => {
   const source = profile as unknown as { clubs?: PublicClubRow[]; bag_items?: PublicClubRow[]; bagItems?: PublicClubRow[] };
   const rows = source.clubs || source.bag_items || source.bagItems || [];
   if (Array.isArray(rows) && rows.length > 0) {
-    return rows.map(parseClubRow);
+    return withSpecificLegacyBadges(rows, rows.map(parseClubRow));
   }
   return (profile.club_setting || '')
     .split(/\n+/)
@@ -559,17 +657,14 @@ export const GolfIdPublicPage = () => {
             {canShow(profile, 'club_setting') && (
               <section className="rounded-[1.4rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
                 <h2 className="flex items-center gap-2 text-lg font-black text-emerald-950">
-                  <ImageIcon className="h-5 w-5 text-emerald-700" />
+                  <Club className="h-5 w-5 text-emerald-700" />
                   My Bag
                 </h2>
                 {clubs.length > 0 ? (
                   <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200 bg-white">
                     {clubs.map((club, index) => (
-                      <div key={`${club.raw}-${index}`} className="grid min-w-0 grid-cols-[42px_42px_minmax(0,1fr)] items-center gap-2 border-b border-slate-100 px-2 py-2.5 last:border-b-0 sm:grid-cols-[56px_50px_minmax(0,1fr)_88px_22px] sm:px-3">
-                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-50 text-slate-500 ring-1 ring-black/5 sm:h-12 sm:w-12 sm:rounded-2xl">
-                          <ImageIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                        </div>
-                        <div className={`flex h-9 items-center justify-center rounded-xl text-sm font-black shadow-sm ${clubIconTone[club.kind]}`}>
+                      <div key={`${club.raw}-${index}`} className="grid min-w-0 grid-cols-[48px_minmax(0,1fr)] items-center gap-3 border-b border-slate-100 px-3 py-2.5 last:border-b-0 sm:grid-cols-[54px_minmax(0,1fr)_88px]">
+                        <div className={`flex h-10 items-center justify-center rounded-xl px-1 text-sm font-black shadow-sm ${clubIconTone[club.kind]}`}>
                           {club.badge}
                         </div>
                         <div className="min-w-0">
@@ -577,16 +672,15 @@ export const GolfIdPublicPage = () => {
                           <div className="flex min-w-0 items-start justify-between gap-2">
                             <p className="truncate text-sm font-black leading-5 text-slate-950">{club.model}</p>
                             <span className="shrink-0 text-right text-base font-black leading-5 text-slate-950 sm:hidden">
-                              {club.distance}<span className="ml-0.5 text-[10px] font-bold text-slate-500">y</span>
+                              {club.distance}{club.distance !== '-' && <span className="ml-0.5 text-[10px] font-bold text-slate-500">y</span>}
                             </span>
                           </div>
                           <p className="truncate text-[11px] font-bold text-slate-500">{club.shaft || '-'}</p>
                         </div>
                         <div className="hidden text-right sm:block">
                           <p className="text-xl font-black leading-none tracking-tight text-slate-950 sm:text-2xl">{club.distance}</p>
-                          <p className="text-[10px] font-bold text-slate-500">yd</p>
+                          {club.distance !== '-' && <p className="text-[10px] font-bold text-slate-500">yd</p>}
                         </div>
-                        <ChevronRight className="hidden h-4 w-4 text-slate-300 sm:block" />
                       </div>
                     ))}
                   </div>

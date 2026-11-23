@@ -506,11 +506,13 @@ export const GolfIdCreatePage = () => {
           .single(),
         'Golf ID profile save',
       );
+      if (legacyResult.error || !legacyResult.data) {
+        throw new Error(legacyResult.error?.message || 'Golf ID save failed');
+      }
 
-      if (legacyResult.error) throw new Error(legacyResult.error.message);
-
-      const savedUsername = normalizeGolfIdUsername(legacyResult.data?.name || username);
-      setExistingId(legacyResult.data?.id || user.id);
+      // The profiles trigger rebuilds public_profiles in the same transaction.
+      const savedUsername = normalizeGolfIdUsername(legacyResult.data.name || username);
+      setExistingId(legacyResult.data.id || user.id);
       setMessage('Golf IDを保存しました。公開ページへ移動します。');
       trackEvent('golf_id_create_complete', {
         username: savedUsername,

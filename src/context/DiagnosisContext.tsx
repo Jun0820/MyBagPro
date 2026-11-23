@@ -9,6 +9,7 @@ import { convertProfileToCustomerData, sendToGoogleSheets } from '../lib/googleS
 import { supabase } from '../lib/supabase';
 import { buildStoredSocialLinks, normalizeUserSocialLinks } from '../lib/userSocials';
 import { trackEvent } from '../lib/analytics';
+import { loadOwnProfileDisplaySnapshot } from '../lib/golfIdProfileSource';
 
 interface DiagnosisContextType {
     user: UserAccount;
@@ -832,6 +833,123 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
             setSaveStatus('saving');
         }
         try {
+            // Fast path for the dashboard/public-profile editor. The owner snapshot
+            // contains every display field and the complete bag in one RPC call.
+            const displaySnapshot = await loadOwnProfileDisplaySnapshot();
+            if (displaySnapshot.status === 'ok' && displaySnapshot.payload) {
+                const payload = displaySnapshot.payload;
+                const aggregateProfile = payload.profile || {};
+                const aggregateScores = payload.scores || {};
+                const aggregateGolf = payload.golf || {};
+                const aggregateBag = payload.bag || {};
+                const aggregateClubs = (payload.clubs || aggregateBag.clubs || []) as Club[];
+                const existingSocials = normalizeUserSocialLinks(profileRef.current.snsLinks);
+                const existingGolfId = (existingSocials as typeof existingSocials & { golfId?: Record<string, unknown> }).golfId || {};
+                const snapshotSocials = normalizeUserSocialLinks({
+                    ...existingSocials,
+                    ...(payload.sns || {}),
+                    customLinks: (payload.links || []).map((link, index) => ({
+                        id: `link-${index + 1}`,
+                        label: link.label || `リンク${index + 1}`,
+                        url: link.url || '',
+                    })),
+                    profileStats: {
+                        bestScore: aggregateScores.bestScore,
+                        averageScore: aggregateScores.averageScore,
+                    },
+                    bagSnapshot: {
+                        clubs: aggregateClubs,
+                        ball: aggregateBag.ball?.model || '',
+                        name: aggregateBag.name || '',
+                        purpose: aggregateBag.purpose || '',
+                        ballBrand: aggregateBag.ball?.brand || '',
+                        ballColor: aggregateBag.ball?.color || '',
+                        ballMemo: aggregateBag.ball?.memo || '',
+                        updatedAt: payload.meta?.sourceUpdatedAt || payload.meta?.rebuiltAt || '',
+                    },
+                    golfId: {
+                        ...existingGolfId,
+                        username: aggregateProfile.username || aggregateProfile.golfId || '',
+                        nickname: aggregateProfile.displayName || aggregateProfile.nickname || '',
+                        bio: aggregateProfile.bio || '',
+                        avatar_url: aggregateProfile.avatarUrl || '',
+                        cover_image_url: aggregateProfile.coverImageUrl || '',
+                        best_score: aggregateScores.bestScore ?? null,
+                        best_scores: aggregateScores.bestScores || null,
+                        average_score: aggregateScores.averageScore ?? null,
+                        target_score: aggregateScores.targetScore ?? null,
+                        head_speed: aggregateGolf.headSpeed ?? null,
+                        golf_history: aggregateProfile.golfHistory || '',
+                        frequent_area: aggregateProfile.frequentArea || '',
+                        home_course: aggregateProfile.homeCourse || '',
+                        role_title: aggregateProfile.roleTitle || '',
+                        favorite_club: aggregateGolf.favoriteClub || '',
+                        weak_club: aggregateGolf.weakClub || '',
+                        current_issue: aggregateGolf.currentIssue || '',
+                        club_setting: aggregateBag.clubSetting || '',
+                        clubs: aggregateClubs,
+                        social_links: payload.sns || {},
+                        visibility: payload.visibility || {},
+                        diagnosis_result: payload.diagnosis || null,
+                        is_public: true,
+                    },
+                });
+                const bestScore = Number(aggregateScores.bestScore);
+                const averageScore = Number(aggregateScores.averageScore);
+                const headSpeed = Number(aggregateGolf.headSpeed);
+                const nextProfile: UserProfile = {
+                    ...profileRef.current,
+                    name: aggregateProfile.displayName || aggregateProfile.nickname || profileRef.current.name,
+                    gender: (aggregateProfile.gender as UserProfile['gender']) || profileRef.current.gender,
+                    age: aggregateProfile.age === undefined ? profileRef.current.age : String(aggregateProfile.age),
+                    headSpeed: Number.isFinite(headSpeed) ? headSpeed : profileRef.current.headSpeed,
+                    birthdate: aggregateProfile.birthdate || profileRef.current.birthdate,
+                    golfHistory: (aggregateProfile.golfHistory as UserProfile['golfHistory']) || profileRef.current.golfHistory,
+                    coverPhoto: aggregateProfile.coverImageUrl || profileRef.current.coverPhoto,
+                    isPublic: aggregateProfile.isPublic ?? true,
+                    currentBall: aggregateBag.ball?.model || profileRef.current.currentBall,
+                    bestScore: Number.isFinite(bestScore) ? bestScore : profileRef.current.bestScore,
+                    averageScore: Number.isFinite(averageScore) ? averageScore : profileRef.current.averageScore,
+                    snsLinks: snapshotSocials,
+                    myBag: {
+                        ...profileRef.current.myBag,
+                        name: aggregateBag.name || profileRef.current.myBag.name,
+                        purpose: aggregateBag.purpose || profileRef.current.myBag.purpose,
+                        ball: aggregateBag.ball?.model || profileRef.current.myBag.ball,
+                        ballBrand: aggregateBag.ball?.brand || profileRef.current.myBag.ballBrand,
+                        ballColor: aggregateBag.ball?.color || profileRef.current.myBag.ballColor,
+                        ballMemo: aggregateBag.ball?.memo || profileRef.current.myBag.ballMemo,
+                        clubs: aggregateClubs,
+                    },
+                };
+
+                profileRef.current = nextProfile;
+                setProfile(nextProfile);
+                lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, nextProfile).signature;
+                lastRemoteBagSnapshotRef.current = {
+                    clubs: cloneClubs(aggregateClubs),
+                    ball: nextProfile.myBag.ball || '',
+                };
+                setLastSaveTargetClubCount(aggregateClubs.length);
+                setLastSavedClubCount(aggregateClubs.length);
+                setSaveDebugInfo({
+                    expectedCount: aggregateClubs.length,
+                    receivedCount: aggregateClubs.length,
+                    dedupedCount: aggregateClubs.length,
+                    verifiedCount: aggregateClubs.length,
+                    sampleClubs: buildSaveDebugSample(aggregateClubs),
+                });
+                setLastCloudSavedAt(payload.meta?.sourceUpdatedAt || payload.meta?.rebuiltAt || null);
+                setHasUnsavedChanges(false);
+                setPendingBagChangeCount(0);
+                setPendingBagChangeIds([]);
+                if (showStatus) setSaveStatus('idle');
+                return;
+            }
+            if (displaySnapshot.status === 'error') {
+                console.warn('Display snapshot unavailable; falling back to normalized tables:', displaySnapshot.message);
+            }
+
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -842,18 +960,18 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                 throw new Error(`profiles sync: ${profileError.message}`);
             }
 
-            if (!profileData) {
+            let ensuredProfileData = profileData;
+            if (!ensuredProfileData) {
                 await ensureProfileRow(user);
-            }
-
-            const { data: ensuredProfileData, error: ensuredProfileError } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', user.id)
-                .maybeSingle();
-
-            if (ensuredProfileError) {
-                throw new Error(`profiles sync reload: ${ensuredProfileError.message}`);
+                const reloadResult = await supabase
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', user.id)
+                    .maybeSingle();
+                if (reloadResult.error) {
+                    throw new Error(`profiles sync reload: ${reloadResult.error.message}`);
+                }
+                ensuredProfileData = reloadResult.data;
             }
 
             if (ensuredProfileData) {
@@ -897,6 +1015,47 @@ export const DiagnosisProvider = ({ children }: { children: ReactNode }) => {
                         ball: ensuredProfileData.current_ball || prev.myBag.ball,
                     },
                 }));
+            }
+
+            const embeddedSocials = normalizeUserSocialLinks(ensuredProfileData?.sns_links);
+            const embeddedClubs = embeddedSocials.bagSnapshot?.clubs || [];
+            if (ensuredProfileData && embeddedClubs.length > 0) {
+                const nextProfile: UserProfile = {
+                    ...profileRef.current,
+                    myBag: {
+                        ...profileRef.current.myBag,
+                        name: embeddedSocials.bagSnapshot?.name || profileRef.current.myBag.name,
+                        purpose: embeddedSocials.bagSnapshot?.purpose || profileRef.current.myBag.purpose,
+                        ballBrand: embeddedSocials.bagSnapshot?.ballBrand || profileRef.current.myBag.ballBrand,
+                        ballColor: embeddedSocials.bagSnapshot?.ballColor || profileRef.current.myBag.ballColor,
+                        ballMemo: embeddedSocials.bagSnapshot?.ballMemo || profileRef.current.myBag.ballMemo,
+                        ball: embeddedSocials.bagSnapshot?.ball || ensuredProfileData.current_ball || profileRef.current.myBag.ball,
+                        clubs: embeddedClubs,
+                    },
+                };
+                profileRef.current = nextProfile;
+                setProfile(nextProfile);
+                lastRemoteSaveSignatureRef.current = buildRemoteSavePayload(userRef.current, nextProfile).signature;
+                lastRemoteBagSnapshotRef.current = {
+                    clubs: cloneClubs(embeddedClubs),
+                    ball: nextProfile.myBag.ball || '',
+                };
+                setLastSaveTargetClubCount(embeddedClubs.length);
+                setLastSavedClubCount(embeddedClubs.length);
+                setSaveDebugInfo({
+                    expectedCount: embeddedClubs.length,
+                    receivedCount: embeddedClubs.length,
+                    dedupedCount: embeddedClubs.length,
+                    verifiedCount: embeddedClubs.length,
+                    extendedColumnsSaved: true,
+                    sampleClubs: buildSaveDebugSample(embeddedClubs),
+                });
+                setLastCloudSavedAt(embeddedSocials.bagSnapshot?.updatedAt || ensuredProfileData.updated_at || null);
+                setHasUnsavedChanges(false);
+                setPendingBagChangeCount(0);
+                setPendingBagChangeIds([]);
+                if (showStatus) setSaveStatus('idle');
+                return;
             }
 
             const { data: clubData, error: clubsError } = await supabase

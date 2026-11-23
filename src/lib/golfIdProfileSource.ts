@@ -15,13 +15,83 @@ export type GolfIdLoadResult = {
   message?: string;
 };
 
-const PUBLIC_QUERY_TIMEOUT_MS = 2500;
+const PUBLIC_QUERY_TIMEOUT_MS = 7000;
 const PUBLIC_LIST_QUERY_TIMEOUT_MS = 1800;
 const FALLBACK_JSON_PATH = '/golf-id-profiles-fallback.json';
 let fallbackGolfIdProfilesCache: GolfIdRecord[] | null = null;
+let aggregateProfileSourceAvailable: boolean | null = null;
+
+export type AggregateProfilePayload = {
+  profile?: {
+    displayName?: string;
+    nickname?: string;
+    golfId?: string;
+    username?: string;
+    bio?: string;
+    avatarUrl?: string;
+    coverImageUrl?: string;
+    gender?: string;
+    age?: string | number;
+    birthdate?: string;
+    golfHistory?: string | number;
+    frequentArea?: string;
+    homeCourse?: string;
+    roleTitle?: string;
+    isPublic?: boolean;
+  };
+  scores?: {
+    bestScore?: number | string | null;
+    bestScores?: GolfIdRecord['best_scores'];
+    averageScore?: number | string | null;
+    targetScore?: number | string | null;
+  };
+  golf?: {
+    headSpeed?: number | string | null;
+    favoriteClub?: string;
+    weakClub?: string;
+    currentIssue?: string;
+  };
+  bag?: {
+    name?: string;
+    purpose?: string;
+    ball?: {
+      model?: string;
+      brand?: string;
+      color?: string;
+      memo?: string;
+    };
+    clubSetting?: string;
+    clubs?: GolfIdRecord['clubs'];
+  };
+  clubs?: GolfIdRecord['clubs'];
+  sns?: GolfIdSocialLinks;
+  links?: Array<{ label?: string; description?: string; url?: string }>;
+  diagnosis?: GolfIdRecord['diagnosis_result'];
+  visibility?: GolfIdRecord['visibility'];
+  meta?: {
+    sourceUpdatedAt?: string;
+    rebuiltAt?: string;
+  };
+};
+
+export type OwnProfileSnapshotResult = {
+  status: 'ok' | 'missing' | 'error';
+  payload: AggregateProfilePayload | null;
+  message?: string;
+};
+
+type AggregateProfileRow = {
+  username?: string;
+  payload?: AggregateProfilePayload;
+  summary?: AggregateProfilePayload;
+  source_updated_at?: string | null;
+  rebuilt_at?: string | null;
+};
 
 type LegacyClubRow = {
+  id?: string;
   number?: string;
+  category?: string;
   brand?: string;
   model?: string;
   shaft?: string;
@@ -80,6 +150,13 @@ export const isMissingGolfProfilesTableError = (error: unknown) => {
   return maybeError?.code === 'PGRST205' || /Could not find the table 'public\.golf_profiles'/i.test(maybeError?.message || '');
 };
 
+const isMissingAggregateProfileSourceError = (error: unknown) => {
+  const maybeError = error as { code?: string; message?: string } | null;
+  return maybeError?.code === 'PGRST205'
+    || maybeError?.code === 'PGRST202'
+    || /Could not find (?:the table|the function).*(?:public_profiles|get_my_profile_display_snapshot)|schema cache.*(?:public_profiles|get_my_profile_display_snapshot)/i.test(maybeError?.message || '');
+};
+
 export const classifyGolfIdError = (error: unknown): GolfIdLoadStatus => {
   const maybeError = error as { code?: string; message?: string } | null;
   if (isMissingGolfProfilesTableError(error)) return 'table_missing';
@@ -107,7 +184,7 @@ export const loadFallbackGolfIdProfiles = async (): Promise<GolfIdRecord[]> => {
     const response = await withTimeout(
       fetch(FALLBACK_JSON_PATH, { cache: 'force-cache' }),
       'Golf ID fallback JSON',
-      900,
+      3000,
     );
     if (!response.ok) return [];
     const rows = await response.json();
@@ -130,6 +207,107 @@ const toNumberOrNull = (value: unknown) => {
   if (value === null || value === undefined || value === '') return null;
   const numeric = Number(value);
   return Number.isFinite(numeric) ? numeric : null;
+};
+
+const mapAggregateProfileToGolfId = (row: AggregateProfileRow, requestedUsername?: string): GolfIdRecord => {
+  const payload = row.payload || {};
+  const profile = payload.profile || {};
+  const scores = payload.scores || {};
+  const golf = payload.golf || {};
+  const links = Array.isArray(payload.links) ? payload.links : [];
+  const username = normalizeGolfIdUsername(
+    requestedUsername || row.username || profile.username || profile.golfId || profile.displayName || 'golfer',
+  );
+  const socials = payload.sns || {};
+
+  return {
+    id: username,
+    username,
+    nickname: profile.displayName || profile.nickname || username,
+    bio: profile.bio || null,
+    avatar_url: profile.avatarUrl || null,
+    cover_image_url: profile.coverImageUrl || null,
+    best_score: toNumberOrNull(scores.bestScore),
+    best_scores: scores.bestScores || null,
+    average_score: toNumberOrNull(scores.averageScore),
+    target_score: toNumberOrNull(scores.targetScore),
+    head_speed: toNumberOrNull(golf.headSpeed),
+    golf_history: profile.golfHistory === undefined ? null : String(profile.golfHistory),
+    frequent_area: profile.frequentArea || null,
+    home_course: profile.homeCourse || null,
+    role_title: profile.roleTitle || null,
+    favorite_club: golf.favoriteClub || null,
+    weak_club: golf.weakClub || null,
+    current_issue: golf.currentIssue || null,
+    club_setting: payload.bag?.clubSetting || null,
+    clubs: payload.clubs || payload.bag?.clubs || null,
+    social_links: {
+      ...emptyGolfIdSocialLinks,
+      ...socials,
+      custom1: socials.custom1 || links[0] || emptyGolfIdSocialLinks.custom1,
+      custom2: socials.custom2 || links[1] || emptyGolfIdSocialLinks.custom2,
+    },
+    visibility: {
+      ...defaultGolfIdVisibility,
+      ...(payload.visibility || {}),
+    },
+    diagnosis_result: payload.diagnosis || null,
+    is_public: profile.isPublic ?? true,
+    updated_at: row.source_updated_at || payload.meta?.sourceUpdatedAt || row.rebuilt_at || payload.meta?.rebuiltAt || null,
+  };
+};
+
+const loadAggregatePublicProfile = async (username: string): Promise<GolfIdLoadResult | null> => {
+  if (aggregateProfileSourceAvailable === false) return null;
+  try {
+    const result = await withTimeout(
+      supabase
+        .from('public_profiles')
+        .select('username,payload,source_updated_at,rebuilt_at')
+        .eq('username', username)
+        .maybeSingle(),
+      'public profile snapshot query',
+      1200,
+    );
+
+    if (result.error) {
+      if (isMissingAggregateProfileSourceError(result.error)) {
+        aggregateProfileSourceAvailable = false;
+        return null;
+      }
+      return { status: classifyGolfIdError(result.error), profile: null, message: result.error.message };
+    }
+    aggregateProfileSourceAvailable = true;
+    if (!result.data) return { status: 'not_found', profile: null };
+    return { status: 'ok', profile: mapAggregateProfileToGolfId(result.data as AggregateProfileRow, username) };
+  } catch (error) {
+    if (isMissingAggregateProfileSourceError(error)) return null;
+    if (error instanceof Error && /timed out/i.test(error.message)) {
+      aggregateProfileSourceAvailable = false;
+      return null;
+    }
+    return { status: 'connection_error', profile: null, message: error instanceof Error ? error.message : 'snapshot query failed' };
+  }
+};
+
+export const loadOwnProfileDisplaySnapshot = async (): Promise<OwnProfileSnapshotResult> => {
+  try {
+    const result = await withTimeout(
+      supabase.rpc('get_my_profile_display_snapshot'),
+      'own profile snapshot query',
+      1200,
+    );
+    if (result.error) {
+      if (isMissingAggregateProfileSourceError(result.error)) return { status: 'missing', payload: null };
+      return { status: 'error', payload: null, message: result.error.message };
+    }
+    if (!result.data) return { status: 'missing', payload: null };
+    return { status: 'ok', payload: result.data as AggregateProfilePayload };
+  } catch (error) {
+    if (isMissingAggregateProfileSourceError(error)) return { status: 'missing', payload: null };
+    if (error instanceof Error && /timed out/i.test(error.message)) return { status: 'missing', payload: null };
+    return { status: 'error', payload: null, message: error instanceof Error ? error.message : 'own snapshot query failed' };
+  }
 };
 
 const formatClubLine = (club: LegacyClubRow) => {
@@ -201,7 +379,11 @@ export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsernam
     weak_club: golfId.weak_club || null,
     current_issue: golfId.current_issue || null,
     club_setting: golfId.club_setting || clubs.join('\n'),
-    clubs: golfIdClubs.length > 0 ? (golfIdClubs as GolfIdRecord['clubs']) : null,
+    clubs: golfIdClubs.length > 0
+      ? (golfIdClubs as GolfIdRecord['clubs'])
+      : snapshotClubs.length > 0
+        ? (snapshotClubs as GolfIdRecord['clubs'])
+        : null,
     social_links: mapLegacySocialLinks(row),
     visibility: {
       ...defaultGolfIdVisibility,
@@ -222,43 +404,42 @@ export const mapLegacyProfileToGolfId = (row: LegacyProfileRow, requestedUsernam
 
 export const loadLegacyGolfIdProfile = async (username: string): Promise<GolfIdLoadResult> => {
   try {
-    const [nameResult, embeddedUsernameResult] = await Promise.all([
-      withTimeout(
-        supabase
-          .from('profiles')
-          .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
-          .eq('name', username)
-          .eq('is_public', true)
-          .order('updated_at', { ascending: false })
-          .limit(1),
-        'legacy Golf ID profile query',
-      ),
-      withTimeout(
-        supabase
-          .from('profiles')
-          .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
-          .filter('sns_links->golfId->>username', 'eq', username)
-          .eq('is_public', true)
-          .order('updated_at', { ascending: false })
-          .limit(1),
-        'legacy Golf ID username query',
-      ).catch((queryError) => {
-        return { data: null, error: { message: queryError instanceof Error ? queryError.message : 'legacy username query failed' } };
-      }),
-    ]);
+    const nameResult = await withTimeout(
+      supabase
+        .from('profiles')
+        .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
+        .ilike('name', username)
+        .eq('is_public', true)
+        .order('updated_at', { ascending: false })
+        .limit(1),
+      'legacy Golf ID profile query',
+    );
 
     if (nameResult.error) {
       return { status: classifyGolfIdError(nameResult.error), profile: null, message: nameResult.error.message };
     }
 
-    const row = (nameResult.data?.[0] || embeddedUsernameResult.data?.[0]) as LegacyProfileRow | undefined;
+    const directRow = nameResult.data?.[0] as LegacyProfileRow | undefined;
+    if (directRow) return { status: 'ok', profile: mapLegacyProfileToGolfId(directRow, username) };
+
+    const embeddedUsernameResult = await withTimeout(
+      supabase
+        .from('profiles')
+        .select('id,name,head_speed,golf_history,current_ball,sns_links,is_public,updated_at')
+        .filter('sns_links->golfId->>username', 'eq', username)
+        .eq('is_public', true)
+        .order('updated_at', { ascending: false })
+        .limit(1),
+      'legacy Golf ID username query',
+    );
+    const row = embeddedUsernameResult.data?.[0] as LegacyProfileRow | undefined;
     if (row) return { status: 'ok', profile: mapLegacyProfileToGolfId(row, username) };
 
     if (embeddedUsernameResult.error) {
       return { status: classifyGolfIdError(embeddedUsernameResult.error), profile: null, message: embeddedUsernameResult.error.message };
     }
 
-    return loadFallbackGolfIdProfile(username);
+    return { status: 'not_found', profile: null };
   } catch (queryError) {
     return { status: 'connection_error', profile: null, message: queryError instanceof Error ? queryError.message : 'legacy query failed' };
   }
@@ -268,51 +449,32 @@ export const loadPublicGolfIdProfile = async (username: string): Promise<GolfIdL
   const normalizedUsername = normalizeGolfIdUsername(username);
   if (!normalizedUsername) return { status: 'not_found', profile: null };
 
+  // Fast path: one row already containing every public display field.
+  const aggregate = await loadAggregatePublicProfile(normalizedUsername);
+  if (aggregate) return aggregate;
+
   const legacy = await loadLegacyGolfIdProfile(normalizedUsername);
   if (legacy.status === 'ok') return legacy;
 
   const fallback = await loadFallbackGolfIdProfile(normalizedUsername);
   if (fallback.status === 'ok') return fallback;
-
   if (legacy.status !== 'not_found') return legacy;
-
-  let data: unknown[] | null = null;
-  let error: { code?: string; message?: string } | null = null;
-  try {
-    const result = await withTimeout(
-      supabase
-        .from('golf_profiles')
-        .select('*')
-        .ilike('username', normalizedUsername)
-        .order('updated_at', { ascending: false })
-        .limit(1),
-      'Golf ID profile query',
-      900,
-    );
-    data = result.data;
-    error = result.error;
-  } catch (queryError) {
-    return {
-      status: 'connection_error',
-      profile: null,
-      message: queryError instanceof Error ? queryError.message : 'Golf ID profile query failed',
-    };
-  }
-
-  if (!error && data?.[0]) {
-    const profile = data[0] as GolfIdRecord;
-    return { status: 'ok', profile: { ...profile, username: normalizeGolfIdUsername(profile.username || normalizedUsername) } };
-  }
-
-  if (!error && (!data || data.length === 0)) return { status: 'not_found', profile: null };
-
-  if (isMissingGolfProfilesTableError(error)) return { status: 'not_found', profile: null };
-
-  return { status: classifyGolfIdError(error), profile: null, message: error?.message };
+  return { status: 'not_found', profile: null };
 };
 
 export const loadOwnGolfIdProfile = async (userId: string): Promise<GolfIdLoadResult> => {
   if (!userId) return { status: 'not_found', profile: null };
+
+  const ownSnapshot = await loadOwnProfileDisplaySnapshot();
+  if (ownSnapshot.status === 'ok' && ownSnapshot.payload) {
+    return {
+      status: 'ok',
+      profile: mapAggregateProfileToGolfId({ payload: ownSnapshot.payload }),
+    };
+  }
+  if (ownSnapshot.status === 'error') {
+    return { status: 'connection_error', profile: null, message: ownSnapshot.message };
+  }
 
   let data: unknown[] | null = null;
   let error: { message: string } | null = null;
@@ -362,6 +524,30 @@ export const loadOwnLegacyGolfIdProfile = async (userId: string): Promise<GolfId
 };
 
 export const loadPublicGolfIdProfiles = async (limit = 30): Promise<GolfIdRecord[]> => {
+  try {
+    const aggregate = await withTimeout(
+      supabase
+        .from('public_profiles')
+        .select('username,summary,source_updated_at,rebuilt_at')
+        .order('rebuilt_at', { ascending: false })
+        .limit(limit),
+      'public profile snapshot list query',
+      1000,
+    );
+    if (!aggregate.error) {
+      return ((aggregate.data || []) as AggregateProfileRow[]).map((row) => mapAggregateProfileToGolfId({
+        ...row,
+        payload: row.summary || row.payload,
+      }));
+    }
+    if (!isMissingAggregateProfileSourceError(aggregate.error)) throw aggregate.error;
+  } catch (error) {
+    if (!isMissingAggregateProfileSourceError(error)) {
+      const fallback = await loadFallbackGolfIdProfiles();
+      if (fallback.length > 0) return fallback;
+    }
+  }
+
   try {
     const legacy = await withTimeout(
       supabase
