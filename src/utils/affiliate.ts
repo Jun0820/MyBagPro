@@ -5,8 +5,13 @@ const configuredRakutenId = import.meta.env.VITE_RAKUTEN_AFFILIATE_ID?.trim();
 const RAKUTEN_AFFILIATE_ID = !configuredRakutenId || configuredRakutenId === '1f433d4e.d742b51d.1f433d4f.c13174af'
     ? '1e362ee6.40782372.1e362ee7.795c5e52'
     : configuredRakutenId;
-const YAHOO_VALUECOMMERCE_SID = '3762568';
-const YAHOO_VALUECOMMERCE_PID = '892534722';
+// Site-specific MyLink pairs issued by ValueCommerce on 2026-11-27.
+const getYahooTracking = () => {
+    const hostname = typeof window === 'undefined' ? '' : window.location.hostname.toLowerCase();
+    return /^(www\.)?golfid\.jp$/.test(hostname)
+        ? { sid: '3789995', pid: '892759779' }
+        : { sid: '3789994', pid: '892759777' };
+};
 
 export type AffiliateShopId = 'AMAZON' | 'RAKUTEN' | 'RAKUTEN_GOLF_PARTNER' | 'RAKUTEN_GOLF_PARTNER_ANNEX' | 'YAHOO';
 
@@ -43,8 +48,9 @@ export const getAffiliateUrl = (brand: string, modelName: string, shop: Affiliat
             // Rakuten Golf Partner Annex (Shop ID: 285653)
             return rakutenAffiliateUrl(`https://search.rakuten.co.jp/search/mall/${query}/?sid=285653`);
         case 'YAHOO':
+            const { sid, pid } = getYahooTracking();
             const yahooTarget = encodeURIComponent(`https://shopping.yahoo.co.jp/search?p=${query}`);
-            return `http://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${YAHOO_VALUECOMMERCE_SID}&pid=${YAHOO_VALUECOMMERCE_PID}&vc_url=${yahooTarget}`;
+            return `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${sid}&pid=${pid}&vc_url=${yahooTarget}`;
         default:
             return `https://www.google.com/search?q=${query}`;
     }
