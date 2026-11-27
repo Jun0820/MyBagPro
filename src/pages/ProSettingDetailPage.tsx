@@ -657,6 +657,25 @@ export const ProSettingDetailPage = () => {
                   >
                     Amazonで見る
                   </a>
+                  <a
+                    href={getAffiliateUrl('', fact.value, 'YAHOO')}
+                    target="_blank"
+                    rel="sponsored noopener noreferrer"
+                    onClick={() => {
+                      trackEvent('click_affiliate_shop', {
+                        source_page: 'pro_setting_detail_ball_fact',
+                        profile_slug: setting.slug,
+                        profile_name: setting.name,
+                        shop_id: 'YAHOO',
+                        shop_name: 'Yahoo!ショッピング',
+                        product_type: 'golf_ball',
+                        model_name: fact.value,
+                      });
+                    }}
+                    className="inline-flex rounded-full bg-orange-600 px-3 py-1.5 text-[11px] font-black text-white transition hover:bg-orange-700"
+                  >
+                    Yahoo!で見る
+                  </a>
                   </div>
                 ) : null}
               </div>
@@ -860,6 +879,26 @@ export const ProSettingDetailPage = () => {
                         >
                           Amazonで見る
                         </a>
+                        <a
+                          href={getAffiliateUrl(club.brand || '', club.model, 'YAHOO')}
+                          target="_blank"
+                          rel="sponsored noopener noreferrer"
+                          onClick={() => {
+                            trackEvent('click_affiliate_shop', {
+                              source_page: 'pro_setting_detail_club_table',
+                              profile_slug: setting.slug,
+                              profile_name: setting.name,
+                              shop_id: 'YAHOO',
+                              shop_name: 'Yahoo!ショッピング',
+                              brand: club.brand || '',
+                              model_name: club.model,
+                              club_category: club.category,
+                            });
+                          }}
+                          className="inline-flex items-center justify-center rounded-full bg-orange-600 px-3 py-2 text-xs font-black text-white transition hover:bg-orange-700"
+                        >
+                          Yahoo!で見る
+                        </a>
                         {isDriver && driverDetail ? (
                           <button
                             onClick={() => {
@@ -975,6 +1014,26 @@ export const ProSettingDetailPage = () => {
                               className="inline-flex flex-1 items-center justify-center rounded-full bg-slate-800 px-4 py-2.5 text-xs font-black text-white"
                             >
                               Amazonで見る
+                            </a>
+                            <a
+                              href={getAffiliateUrl(club.brand || '', club.model, 'YAHOO')}
+                              target="_blank"
+                              rel="sponsored noopener noreferrer"
+                              onClick={() => {
+                                trackEvent('click_affiliate_shop', {
+                                  source_page: 'pro_setting_detail_club_card',
+                                  profile_slug: setting.slug,
+                                  profile_name: setting.name,
+                                  shop_id: 'YAHOO',
+                                  shop_name: 'Yahoo!ショッピング',
+                                  brand: club.brand || '',
+                                  model_name: club.model,
+                                  club_category: club.category,
+                                });
+                              }}
+                              className="inline-flex min-w-[7rem] flex-1 items-center justify-center rounded-full bg-orange-600 px-4 py-2.5 text-xs font-black text-white"
+                            >
+                              Yahoo!で見る
                             </a>
                             {isDriver && driverDetail ? (
                               <button
