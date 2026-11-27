@@ -991,7 +991,7 @@ export const ProSettingDetailPage = () => {
                                   club_category: club.category,
                                 });
                               }}
-                              className="inline-flex flex-1 items-center justify-center rounded-full bg-[#bf0000] px-4 py-2.5 text-xs font-black text-white"
+                              className="inline-flex min-w-[7rem] flex-1 items-center justify-center rounded-full bg-[#bf0000] px-4 py-2.5 text-xs font-black text-white"
                             >
                               楽天で見る
                             </a>
@@ -1011,7 +1011,7 @@ export const ProSettingDetailPage = () => {
                                   club_category: club.category,
                                 });
                               }}
-                              className="inline-flex flex-1 items-center justify-center rounded-full bg-slate-800 px-4 py-2.5 text-xs font-black text-white"
+                              className="inline-flex min-w-[7rem] flex-1 items-center justify-center rounded-full bg-slate-800 px-4 py-2.5 text-xs font-black text-white"
                             >
                               Amazonで見る
                             </a>
